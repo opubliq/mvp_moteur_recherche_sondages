@@ -1,2 +1,41 @@
-# mvp_moteur_recherche_sondages
-Code pour faire la MVP d'un moteur de recherche de mots-clés dans notre base de données de sondages et qui retourne des visualisations simples sur ce mot-clé
+# MVP – Plateforme d'exploration de sondages publics
+
+Ce projet vise à construire un MVP pour explorer des données de sondages publics québécois via trois branches fonctionnelles : création de base de données, matching utilisateur, visualisation.
+
+## Structure du projet
+
+```
+.
+├── app/                 # Interface utilisateur (ex. Streamlit)
+├── bd/                  # Fichiers SQLite ou scripts liés à la BD finale
+├── create_survey_bd/    # Scripts R pour extraire, nettoyer et indexer les sondages
+├── matching/            # Matching input utilisateur ↔ questions (keywords, LLM)
+├── schemas/             # Codebook, définitions des variables, métadonnées
+├── tests/               # Scripts de test pour chaque module
+├── viz/                 # Extraction de variables et visualisations
+└── README.md
+
+```
+
+## Branches fonctionnelles
+
+1. **Création de la BD** (`create_survey_bd/`)
+   - Nettoyage et structuration en R
+   - Indexation dans une base SQLite
+
+2. **Matching utilisateur** (`matching/`)
+   - Recherche par mot-clé ou sémantique
+   - Intégration possible d’un LLM pour enrichir les requêtes
+
+3. **Visualisation** (`viz/`)
+   - Extraction de variables pertinentes
+   - Visualisation via règles simples
+
+## Dossier `schemas/`
+
+Contient le **codebook** (`codebook.csv`) décrivant les questions :
+- `question_abbr`, `question_text`, `theme`, `variable_type`, etc.
+
+---
+
+**Statut :** version MVP en développement.

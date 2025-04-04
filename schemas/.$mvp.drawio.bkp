@@ -1,0 +1,47 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2">
+  <diagram name="Page-1" id="E3ciikssUChXVkTogEWr">
+    <mxGraphModel dx="1044" dy="667" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="O1tii4YkPFs9-t-dU3cT-1" target="O1tii4YkPFs9-t-dU3cT-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-1" value="Sondages extraits du Web&lt;div&gt;(.csv)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="O1tii4YkPFs9-t-dU3cT-6" target="O1tii4YkPFs9-t-dU3cT-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-6" value="Input de l&#39;utilisateur: mot-clé, prompt, phrase" style="rounded=0;whiteSpace=wrap;html=1;direction=west;" vertex="1" parent="1">
+          <mxGeometry x="89" y="179" width="121" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" edge="1" parent="1" target="O1tii4YkPFs9-t-dU3cT-18">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="209" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-7" value="Base de sondages indexée" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;direction=east;" vertex="1" parent="1">
+          <mxGeometry x="510" y="150" width="80" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-9" value="Nettoyage, structuration, indexation" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;spacing=11;size=10;rotation=0;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="250" y="54.91" width="130.26" height="50.17" as="geometry" />
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="O1tii4YkPFs9-t-dU3cT-9" target="O1tii4YkPFs9-t-dU3cT-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-15" value="Matching simple,&lt;div&gt;puis LLM&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;spacing=11;size=10;rotation=0;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="290" y="183.92" width="130.26" height="50.17" as="geometry" />
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=-15;entryPerimeter=0;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="O1tii4YkPFs9-t-dU3cT-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="209" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="O1tii4YkPFs9-t-dU3cT-18" value="Variables extraites pour visualisations" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="179" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
