@@ -14,7 +14,6 @@ Ce projet vise à construire un MVP pour explorer des données de sondages publi
 ├── tests/               # Scripts de test pour chaque module
 ├── viz/                 # Extraction de variables et visualisations
 └── README.md
-
 ```
 
 ## Branches fonctionnelles
