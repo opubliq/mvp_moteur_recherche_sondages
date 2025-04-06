@@ -18,16 +18,27 @@ if (!dbExistsTable(con, "surveys_metadata")) {
   ")
 }
 
-## Créer la table codebook
-if (!dbExistsTable(con, "codebook")) {
+## Créer la table codebook_variables
+if (!dbExistsTable(con, "codebook_variables")) {
   dbExecute(con, "
-    CREATE TABLE codebook (
+    CREATE TABLE codebook_variables (
       survey_id TEXT,
       variable_id TEXT,
-      variable_label TEXT,
-      variable_question_label TEXT,
-      variable_notes TEXT,
-      variable_type TEXT,
+      label TEXT,
+      question_label TEXT,
+      notes TEXT,
+      type TEXT,
+      PRIMARY KEY (survey_id, variable_id)
+    );
+  ")
+}
+
+## Créer la table codebook_values
+if (!dbExistsTable(con, "codebook_values")) {
+  dbExecute(con, "
+    CREATE TABLE codebook_values (
+      survey_id TEXT,
+      variable_id TEXT,
       value TEXT,
       value_label TEXT,
       PRIMARY KEY (survey_id, variable_id, value)
