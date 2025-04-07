@@ -1,5 +1,10 @@
 import streamlit as st
 import numpy as np
+
+import sys
+sys.path.append("matching")
+sys.path.append("viz")
+
 from matching.semantic_search import load_model, load_corpus, semantic_search
 from viz.functions import plot_variables_from_results
 
