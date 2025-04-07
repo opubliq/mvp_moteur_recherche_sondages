@@ -201,7 +201,7 @@ opubliqr::append_to_codebook(
 
 # Save into bd as table -----------------------------------------------------------
 
-survey_id <- "democracy_checkup"
+survey_id <- "democracy_checkup_2022"
 table_name <- paste0("survey_", survey_id)
 
 # Écrit le df_clean dans la base
