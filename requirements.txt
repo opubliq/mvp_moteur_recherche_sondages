@@ -1,6 +1,7 @@
-sentence-transformers
 streamlit
 pandas
 matplotlib
-sqlite3
-sentence-transformers
+numpy
+scikit-learn
+sentence-transformers==2.2.2
+torch==1.13.1
