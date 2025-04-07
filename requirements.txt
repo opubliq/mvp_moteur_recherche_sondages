@@ -4,4 +4,3 @@ matplotlib
 scikit-learn
 numpy
 sentence-transformers==2.2.2
-torch==1.13.1
