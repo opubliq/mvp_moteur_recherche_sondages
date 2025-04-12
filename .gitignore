@@ -1,5 +1,7 @@
 models/
 
+.streamlit/secrets.toml
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
