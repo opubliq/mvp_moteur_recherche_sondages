@@ -1,12 +1,22 @@
 import sqlite3
 import numpy as np
 import pandas as pd
-from sentence_transformers import SentenceTransformer, util
+import requests
+from sklearn.metrics.pairwise import cosine_similarity
 
-def load_model():
-    return SentenceTransformer("all-mpnet-base-v2", cache_folder="./matching/models", use_auth_token=False)
+# --- Paramètres API Hugging Face ---
+API_URL = "https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2"
+HF_TOKEN = "hf_..."  # Remplacer par ton vrai token, ou mieux : utiliser un secret dans Hugging Face Spaces
 
-def load_corpus(db_path="surveys_bd.sqlite"):
+headers = {"Authorization": f"Bearer {HF_TOKEN}"}
+
+def embed_text_hf(text):
+    response = requests.post(API_URL, headers=headers, json={"inputs": text})
+    response.raise_for_status()
+    return np.array(response.json()[0])
+
+# --- Chargement des textes et embeddings ---
+def load_corpus(db_path="surveys_bd.sqlite", embedding_path="corpus_embeddings.npy"):
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("SELECT survey_id, variable_id, label, question_label, label FROM codebook_variables")
@@ -18,25 +28,23 @@ def load_corpus(db_path="surveys_bd.sqlite"):
         text = f"{q_label.strip()}. {var_label.strip()}. {val_label.strip()}"
         corpus_info.append((sid, vid))
         corpus_texts.append(text.lower())
-    return corpus_info, corpus_texts
 
-def semantic_search(query, model, corpus_texts, corpus_info, top_k=15):
-    query_embedding = model.encode(query, convert_to_tensor=True)
-    corpus_embeddings = model.encode(corpus_texts, convert_to_tensor=True)
-    cos_scores = util.cos_sim(query_embedding, corpus_embeddings)[0]
-    top_results = cos_scores.topk(k=top_k)
+    corpus_embeddings = np.load(embedding_path)  # Doit contenir un array (N, D)
+    return corpus_info, corpus_texts, corpus_embeddings
 
-    scores = top_results.values.cpu().numpy()
-    indices = top_results.indices.cpu().numpy()
+# --- Recherche sémantique avec similarité cosinus ---
+def semantic_search(query, corpus_texts, corpus_info, corpus_embeddings, top_k=15):
+    query_embedding = embed_text_hf(query).reshape(1, -1)
+    sims = cosine_similarity(query_embedding, corpus_embeddings)[0]
+    top_indices = np.argsort(sims)[::-1][:top_k]
 
-    score_diffs = np.abs(np.diff(scores))
-    #min_gap = max(0.01, np.quantile(score_diffs, 0.6))
+    score_diffs = np.abs(np.diff(sims[top_indices]))
     min_gap = 0.001
     idx = np.where(score_diffs < min_gap)[0]
-    last_idx = idx[0] if idx.size > 0 else len(scores)
+    last_idx = idx[0] if idx.size > 0 else len(top_indices)
 
-    filtered_indices = indices[:last_idx]
-    filtered_scores = scores[:last_idx]
+    filtered_indices = top_indices[:last_idx]
+    filtered_scores = sims[filtered_indices]
 
     results = []
     for score, idx in zip(filtered_scores, filtered_indices):

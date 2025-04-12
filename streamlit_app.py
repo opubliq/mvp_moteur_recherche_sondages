@@ -5,15 +5,12 @@ import sys
 sys.path.append("matching")
 sys.path.append("viz")
 
-from matching.semantic_search import load_model, load_corpus, semantic_search
+from matching.semantic_search import load_corpus, semantic_search
 from viz.functions import plot_variables_from_results
 
 st.set_page_config(layout="wide")
 
 # --- Caching pour performance ---
-@st.cache_resource
-def cached_model():
-    return load_model()
 
 @st.cache_data
 def cached_corpus():
@@ -39,9 +36,8 @@ if st.button("🔄 Rafraîchir les exemples", key="refresh_button"):
     st.session_state["rerun"] = True
 
 if query:
-    model = cached_model()
     corpus_info, corpus_texts = cached_corpus()
-    df_results = semantic_search(query, model, corpus_texts, corpus_info)
+    df_results = semantic_search(query, corpus_texts, corpus_info)
 
     st.write(f"Résultats pour : **{query}**")
 
