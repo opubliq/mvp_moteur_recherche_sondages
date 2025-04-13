@@ -68,7 +68,7 @@ if query:
 
                 # TABLE DANS LA SIDEBAR
                 with st.sidebar:
-                    st.subheader("📋 Résultats")
+                    st.subheader("Résultats")
                     edited_df = st.data_editor(
                         df_labeled[["🔘 Sélection", "variable_label", "similarity_score"]],
                         use_container_width=True,
