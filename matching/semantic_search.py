@@ -49,9 +49,15 @@ HEADERS = {"Authorization": f"Bearer {st.secrets['HF_TOKEN']}"}
 #         return np.zeros(384)  # Dimension standard pour ce modèle
 
 def embed_text_hf(text):
-    response = requests.post(API_URL, headers=HEADERS, json={"inputs": text})
-    response.raise_for_status()
-    return np.array(response.json()).reshape(1, -1)
+    try:
+        response = requests.post(API_URL, headers=HEADERS, json={"inputs": text})
+        response.raise_for_status()
+        return np.array(response.json()).reshape(1, -1)
+    except requests.exceptions.RequestException as e:
+        st.error("❌ Erreur de connexion à l'API Hugging Face. (503 ou autre)")
+        st.exception(e)
+        return np.zeros((1, 384))  # fallback vide pour éviter crash
+
 
 
 # --- Chargement des textes et embeddings ---

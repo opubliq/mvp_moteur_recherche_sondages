@@ -311,7 +311,7 @@ TSWLatexianTemp*
 
 
 # Streamlit + modèles
-models/
+matching/models/
 .streamlit/secrets.toml
 __pycache__/
 *.py[cod]
