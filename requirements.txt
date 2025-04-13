@@ -8,7 +8,6 @@ numpy
 sentence-transformers==2.2.2
 torch>=2.0
 transformers==4.29.2
-tokenizers==0.13.2
 huggingface-hub==0.14.1
 
 # Pour éviter d'avoir à compiler certains packages
