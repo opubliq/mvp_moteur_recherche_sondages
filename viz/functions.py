@@ -69,6 +69,13 @@ def plot_variables_from_results(df_matches, db_path="surveys_bd.sqlite"):
         ax.bar_label(ax.containers[0], fmt='%d')
         fig.tight_layout()
 
-        cols[i].pyplot(fig)
+        with cols[i]:
+            st.markdown(
+                "<div style='max-height:300px; overflow:hidden;'>", 
+                unsafe_allow_html=True
+            )
+            st.pyplot(fig)
+            st.markdown("</div>", unsafe_allow_html=True)
+
 
     conn.close()
