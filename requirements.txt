@@ -3,11 +3,5 @@ pandas
 matplotlib
 scikit-learn
 numpy
-
-# NLP & embeddings
-sentence-transformers==2.2.2
-torch>=2.0
 huggingface-hub==0.14.1
-
-# Pour éviter d'avoir à compiler certains packages
 protobuf<4
