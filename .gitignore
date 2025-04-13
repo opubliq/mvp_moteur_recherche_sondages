@@ -1,4 +1,4 @@
-models/
+.streamlit/secrets.toml
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -308,3 +308,20 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
+
+# Streamlit + modèles
+models/
+.streamlit/secrets.toml
+__pycache__/
+*.py[cod]
+*.rds
+*.sav
+*.sqlite
+*.db
+*.npy
+
+# Streamlit cache & log files
+.streamlit/config.toml
+*.log
+*.tfevents*

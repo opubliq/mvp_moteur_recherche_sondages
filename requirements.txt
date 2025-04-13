@@ -3,7 +3,5 @@ pandas
 matplotlib
 scikit-learn
 numpy
-sentence-transformers==2.2.2
-torch>=1.12,<2.0
-transformers==4.30.2
 huggingface-hub==0.14.1
+protobuf<4
