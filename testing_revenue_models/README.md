@@ -13,6 +13,8 @@ Les différents plans pour accédér à la plateforme. Ces plans varient selon:
     - Pages thématiques liées à l'actualité
     - Veille et alertes sur certains enjeux
     - Générations de rapports automatiques
+    - Analyses approfondies (régressions, probabilités prédites, etc.)
+    - Sophistication des graphiques
 - Volume d'usage
     - Faire payer par prompt. Plus tu l'utilises, plus ça coûte cher.
     - On pourrait permettre à l'utilisateur de setter son budget/quota lui-même avec un suivi facile de la consommation
@@ -42,11 +44,40 @@ Revenus provenant d’organisations qui souhaitent promouvoir un sondage ou mett
 ### 3. Accès API (pour développeurs ou partenaires)
 Accès technique aux données via une API, facturé séparément selon le volume de requêtes. Ciblé pour les médias, firmes de données, outils externes ou intégrateurs.
 
-## Structure
 
-Chaque modèle fera l’objet d’un document séparé contenant :
-- Une brève description
-- Les hypothèses principales
-- Les sources de revenus envisagées
-- Les indicateurs de performance
-- Une évaluation des risques et opportunités
+
+## Étapes
+
+- Segmentation de clients
+- Pour chaque segment, postulats différents par features, volume d'usage, contenu sponsorisé/publicitaire et propensions à payer globale.
+- Analyse exploratoire
+- Puis utiliser l'analyse exploratoire pour déterminer les forfaits.
+
+
+- Segments
+  - Agences de relations publiques
+  - Ministères / organismes gouvernementaux
+  - Groupes de lobbyisme
+  - Médias / journalistes
+  - Partis politiques
+  - Chercheurs en sciences sociales  
+  - Particuliers curieux
+
+- Postulats à faire
+  - Taille de marché du segment
+  - Budget global pour ce genre d'outils
+  - Coût par requête
+  - Features
+    - Exportation de données (CSV, Excel, etc.)
+    - Pages thématiques liées à l'actualité
+    - Veille et alertes sur certains enjeux
+    - Générations de rapports automatiques
+    - Analyses approfondies (régressions, probabilités prédites, etc.)
+    - Sophistication des graphiques
+  - Volume d'usage
+    - Nombre de requêtes par mois
+    - Variabilité (ponctuel, régulier, etc.)
+    - Sensibilité à la facturation à l'usage
+  - Sensibilité à l'exclusivité de la base de données
+  - Sensibilité au contenu publicitaire commercial
+  - Sensibilité au contenu sponsorisé
