@@ -13,7 +13,7 @@ Les différents plans pour accédér à la plateforme. Ces plans varient selon:
     - Pages thématiques liées à l'actualité
     - Veille et alertes sur certains enjeux
     - Générations de rapports automatiques
-    - Analyses approfondies (régressions, probabilités prédites, etc.)
+    - Analyses approfondies (croisement de données, filtrer pour des SES, régressions, probabilités prédites, etc.)
     - Sophistication des graphiques
 - Volume d'usage
     - Faire payer par prompt. Plus tu l'utilises, plus ça coûte cher.
