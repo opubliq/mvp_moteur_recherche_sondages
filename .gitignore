@@ -1,4 +1,6 @@
 .streamlit/secrets.toml
+lambda_model/python/
+lambda_model/lambda_package.zip
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
