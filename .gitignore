@@ -327,3 +327,4 @@ __pycache__/
 .streamlit/config.toml
 *.log
 *.tfevents*
+aws_keys.env
