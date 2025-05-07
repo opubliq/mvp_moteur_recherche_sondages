@@ -1,7 +1,6 @@
-streamlit
+Flask
 pandas
 matplotlib
 scikit-learn
 numpy
-huggingface-hub==0.14.1
 protobuf<4
