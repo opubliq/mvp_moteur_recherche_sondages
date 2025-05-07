@@ -1,8 +1,6 @@
 #!/bin/bash
 
 set -e
-
-# Aller dans le dossier du script
 cd "$(dirname "$0")"
 
 echo "Nettoyage..."
@@ -11,8 +9,8 @@ rm -rf python lambda_package.zip
 echo "Installation des dépendances..."
 pip install -r requirements.txt -t python
 
-echo "Copie des fichiers..."
-cp -r ../models/all-MiniLM-L6-v2-onnx python/
+echo "Copie du modèle et tokenizer..."
+cp -r ../models/all-MiniLM-L6-v2-onnx python/all-MiniLM-L6-v2-onnx
 cp lambda_function.py python/
 
 echo "Compression..."

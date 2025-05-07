@@ -1,13 +1,13 @@
 import onnxruntime as ort
 import numpy as np
 import json
+from transformers import AutoTokenizer
 
-# Load ONNX model
+# Charger modèle ONNX
 session = ort.InferenceSession("all-MiniLM-L6-v2-onnx/model.onnx")
 
-# Load tokenizer
-from transformers import AutoTokenizer
-tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/all-MiniLM-L6-v2")
+# Charger tokenizer depuis chemin local
+tokenizer = AutoTokenizer.from_pretrained("all-MiniLM-L6-v2-onnx/tokenizer")
 
 def lambda_handler(event, context):
     data = json.loads(event["body"])
