@@ -24,8 +24,8 @@ def root():
     return {"message": "API d'embedding Opubliq"}
 
 @app.post("/embed")
-def embed(req: EmbedRequest):
+async def embed(req: EmbedRequest):
     if not req.text.strip():
         raise HTTPException(status_code=400, detail="Texte vide non autorisé")
-    embedding = model.encode(req.text).tolist()
-    return {"embedding": embedding}
+    embedding = await run_in_threadpool(model.encode, req.text)
+    return {"embedding": embedding.tolist()}
