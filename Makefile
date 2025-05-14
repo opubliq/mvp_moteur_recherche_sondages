@@ -14,7 +14,7 @@ test:  ## Lance le script de test simple
 freeze:  ## Sauvegarde les dépendances dans requirements.txt
 	pip freeze > requirements.txt
 
-tree: ## Enregistre l'arborescence du projet dans le fichier arborescence.txt
+savetree: ## Enregistre l'arborescence du projet dans le fichier arborescence.txt
 	@echo "Arborescence du projet : " > arborescence.txt
 	@tree -L 3 >> arborescence.txt
 	@echo "Arborescence enregistrée dans le fichier arborescence.txt"
