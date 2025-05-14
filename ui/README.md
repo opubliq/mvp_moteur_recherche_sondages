@@ -1,12 +1,52 @@
-# React + Vite
+# Moteur de Recherche de Sondages - Composant UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce dépôt contient l'interface utilisateur React pour le projet Moteur de Recherche de Sondages, construit avec Vite.
 
-Currently, two official plugins are available:
+## Stack Technique
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React](https://reactjs.org/) - Bibliothèque UI
+- [Vite](https://vitejs.dev/) - Outil de build et serveur de développement
+- [TailwindCSS](https://tailwindcss.com/) - Framework CSS utilitaire
+- [React Router](https://reactrouter.com/) - Routage côté client
 
-## Expanding the ESLint configuration
+## Développement
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prérequis
+
+- Node.js (v18+)
+- npm ou yarn
+
+### Mise en Route
+
+1. Cloner le dépôt
+2. Installer les dépendances :
+    ```bash
+    npm install
+    ```
+3. Démarrer le serveur de développement :
+    ```bash
+    npm run dev
+    ```
+
+## Build pour la Production
+
+```bash
+npm run build
+```
+
+Les artefacts de build seront stockés dans le répertoire `dist/`.
+
+## Structure du Projet
+
+```
+ui/
+├── public/         # Ressources statiques
+├── src/
+│   ├── assets/     # Images, polices, etc.
+│   ├── components/ # Composants UI réutilisables
+│   ├── pages/      # Composants de pages
+│   ├── services/   # Services API
+│   ├── App.jsx     # Composant principal de l'application
+│   └── main.jsx    # Point d'entrée de l'application
+└── README.md
+```
