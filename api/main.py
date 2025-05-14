@@ -7,10 +7,14 @@ app = FastAPI()
 
 # Charger le modèle local
 MODEL_PATH = "models/all-MiniLM-L6-v2"
-if not os.path.exists(MODEL_PATH):
-    raise RuntimeError(f"Modèle non trouvé à {MODEL_PATH}")
-model = SentenceTransformer(MODEL_PATH)
+model = None
 
+@app.on_event("startup")
+async def load_model():
+    global model
+    if not os.path.exists(MODEL_PATH):
+        raise RuntimeError(f"Modèle non trouvé à {MODEL_PATH}")
+    model = SentenceTransformer(MODEL_PATH)
 # Schéma d'entrée
 class EmbedRequest(BaseModel):
     text: str
