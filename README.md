@@ -38,3 +38,17 @@ Contient le **codebook** (`codebook.csv`) décrivant les questions :
 ---
 
 **Statut :** version MVP en développement.
+
+### Composants
+- [API d'embedding (FastAPI)](api/README.md)
+
+
+### Makefile
+
+Le projet inclut un Makefile qui permet de créer des raccourcis pour les commandes fréquemment utilisées :
+- Installation des dépendances
+- Exécution des tests
+- Lancement des différents composants
+- Construction de la base de données
+
+Pour voir les commandes disponibles, utilisez `make help`.
