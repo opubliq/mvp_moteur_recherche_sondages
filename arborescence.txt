@@ -1,7 +1,8 @@
 .
 ├── app
+│   └── test_flask_model.py
 ├── arborescence.txt
-├── bd
+├── aws_keys.env
 ├── create_survey_bd
 │   ├── democracy_checkup_2022
 │   │   ├── 01_extract.R
@@ -15,137 +16,61 @@
 │       ├── 02_structure.R
 │       ├── codebook.xlsx
 │       └── data.csv
-├── .devcontainer
-│   └── devcontainer.json
-├── .git
-│   ├── branches
-│   ├── COMMIT_EDITMSG
-│   ├── config
-│   ├── description
-│   ├── FETCH_HEAD
-│   ├── HEAD
-│   ├── hooks
-│   │   ├── applypatch-msg.sample
-│   │   ├── commit-msg.sample
-│   │   ├── fsmonitor-watchman.sample
-│   │   ├── post-update.sample
-│   │   ├── pre-applypatch.sample
-│   │   ├── pre-commit.sample
-│   │   ├── pre-merge-commit.sample
-│   │   ├── prepare-commit-msg.sample
-│   │   ├── pre-push.sample
-│   │   ├── pre-rebase.sample
-│   │   ├── pre-receive.sample
-│   │   ├── push-to-checkout.sample
-│   │   └── update.sample
-│   ├── index
-│   ├── info
-│   │   └── exclude
-│   ├── logs
-│   │   ├── HEAD
-│   │   └── refs
-│   ├── objects
-│   │   ├── 01
-│   │   ├── 06
-│   │   ├── 08
-│   │   ├── 0c
-│   │   ├── 0f
-│   │   ├── 11
-│   │   ├── 15
-│   │   ├── 16
-│   │   ├── 1a
-│   │   ├── 1f
-│   │   ├── 26
-│   │   ├── 29
-│   │   ├── 2b
-│   │   ├── 2d
-│   │   ├── 30
-│   │   ├── 31
-│   │   ├── 32
-│   │   ├── 33
-│   │   ├── 39
-│   │   ├── 3d
-│   │   ├── 43
-│   │   ├── 4b
-│   │   ├── 51
-│   │   ├── 55
-│   │   ├── 59
-│   │   ├── 5c
-│   │   ├── 5f
-│   │   ├── 60
-│   │   ├── 63
-│   │   ├── 67
-│   │   ├── 6c
-│   │   ├── 6f
-│   │   ├── 70
-│   │   ├── 7a
-│   │   ├── 7b
-│   │   ├── 7d
-│   │   ├── 81
-│   │   ├── 82
-│   │   ├── 8a
-│   │   ├── 93
-│   │   ├── 94
-│   │   ├── 95
-│   │   ├── 9f
-│   │   ├── a0
-│   │   ├── a3
-│   │   ├── a9
-│   │   ├── aa
-│   │   ├── ab
-│   │   ├── b2
-│   │   ├── b5
-│   │   ├── b6
-│   │   ├── b9
-│   │   ├── bc
-│   │   ├── c3
-│   │   ├── c6
-│   │   ├── cc
-│   │   ├── cd
-│   │   ├── d0
-│   │   ├── d1
-│   │   ├── d2
-│   │   ├── d6
-│   │   ├── d8
-│   │   ├── d9
-│   │   ├── dc
-│   │   ├── e0
-│   │   ├── e6
-│   │   ├── ec
-│   │   ├── f1
-│   │   ├── f5
-│   │   ├── f8
-│   │   ├── f9
-│   │   ├── fd
-│   │   ├── info
-│   │   └── pack
-│   ├── ORIG_HEAD
-│   ├── packed-refs
-│   └── refs
-│       ├── heads
-│       ├── remotes
-│       └── tags
-├── .gitignore
+├── lambda
+│   └── docker
+│       ├── all-MiniLM-L6-v2
+│       ├── aws_login.sh
+│       ├── Dockerfile
+│       ├── docker_push.sh
+│       ├── lambda_function.py
+│       ├── requirements.txt
+│       └── test_docker.sh
 ├── matching
-│   ├── explo.py
-│   ├── explo.R
+│   ├── explo
+│   │   ├── convert_to_onnx.py
+│   │   ├── download_hf_model.py
+│   │   ├── explo.py
+│   │   ├── export_tokenizer.py
+│   │   ├── get_data.py
+│   │   └── test_hf_api.py
 │   ├── __init__.py
-│   ├── models
-│   │   ├── sentence-transformers_all-MiniLM-L6-v2
-│   │   ├── sentence-transformers_all-mpnet-base-v2
-│   │   └── sentence-transformers_multi-qa-MiniLM-L6-cos-v1
 │   └── semantic_search.py
+├── models
+│   ├── all-MiniLM-L6-v2
+│   │   ├── 1_Pooling
+│   │   ├── 2_Normalize
+│   │   ├── config.json
+│   │   ├── config_sentence_transformers.json
+│   │   ├── modules.json
+│   │   ├── pytorch_model.bin
+│   │   ├── README.md
+│   │   ├── sentence_bert_config.json
+│   │   ├── special_tokens_map.json
+│   │   ├── tokenizer_config.json
+│   │   ├── tokenizer.json
+│   │   └── vocab.txt
+│   └── all-MiniLM-L6-v2-onnx
+│       ├── config.json
+│       ├── model.onnx
+│       ├── special_tokens_map.json
+│       ├── tokenizer
+│       ├── tokenizer_config.json
+│       ├── tokenizer.json
+│       └── vocab.txt
 ├── README.md
 ├── requirements.txt
 ├── runtime.txt
 ├── schemas
-│   ├── .$mvp.drawio.bkp
 │   ├── mvp.drawio
 │   └── mvp.drawio.pdf
-├── streamlit_app.py
 ├── surveys_bd.sqlite
+├── testing_revenue_models
+│   ├── explo2.R
+│   ├── explo.R
+│   ├── postulats.R
+│   └── README.md
 ├── tests
 └── viz
     └── functions.py
 
-100 directories, 49 files
+20 directories, 54 files
