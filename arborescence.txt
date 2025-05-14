@@ -1,4 +1,10 @@
+Arborescence du projet : 
 .
+├── api
+│   ├── main.py
+│   ├── __pycache__
+│   │   └── main.cpython-311.pyc
+│   └── README.md
 ├── arborescence.txt
 ├── aws_keys.env
 ├── create_survey_bd
@@ -14,7 +20,9 @@
 │       ├── 02_structure.R
 │       ├── codebook.xlsx
 │       └── data.csv
+├── Makefile
 ├── matching
+│   ├── download_hf_model.py
 │   ├── explo
 │   │   ├── explo.py
 │   │   ├── explo.R
@@ -24,7 +32,18 @@
 │   └── semantic_search.py
 ├── models
 │   └── all-MiniLM-L6-v2
-│       └── 2_Normalize
+│       ├── 1_Pooling
+│       ├── 2_Normalize
+│       ├── config.json
+│       ├── config_sentence_transformers.json
+│       ├── modules.json
+│       ├── pytorch_model.bin
+│       ├── README.md
+│       ├── sentence_bert_config.json
+│       ├── special_tokens_map.json
+│       ├── tokenizer_config.json
+│       ├── tokenizer.json
+│       └── vocab.txt
 ├── README.md
 ├── requirements.txt
 ├── runtime.txt
@@ -39,7 +58,8 @@
 │   ├── postulats.R
 │   └── README.md
 ├── tests
+│   └── test_api_embed.py
 └── viz
     └── functions.py
 
-13 directories, 30 files
+16 directories, 46 files
