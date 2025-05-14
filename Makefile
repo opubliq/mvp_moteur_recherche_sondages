@@ -18,3 +18,6 @@ savetree: ## Enregistre l'arborescence du projet dans le fichier arborescence.tx
 	@echo "Arborescence du projet : " > arborescence.txt
 	@tree -L 3 >> arborescence.txt
 	@echo "Arborescence enregistrée dans le fichier arborescence.txt"
+
+dev:  ## Lance le projet en mode développement via npm
+	cd ui/ && npm run dev
