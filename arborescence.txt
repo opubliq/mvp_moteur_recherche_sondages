@@ -46,11 +46,9 @@ Arborescence du projet :
 │       └── vocab.txt
 ├── README.md
 ├── requirements.txt
-├── runtime.txt
 ├── schemas
 │   ├── mvp.drawio
 │   └── mvp.drawio.pdf
-├── streamlit_app.py
 ├── surveys_bd.sqlite
 ├── testing_revenue_models
 │   ├── explo2.R
@@ -59,7 +57,230 @@ Arborescence du projet :
 │   └── README.md
 ├── tests
 │   └── test_api_embed.py
+├── ui
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── node_modules
+│   │   ├── accepts
+│   │   ├── acorn
+│   │   ├── acorn-jsx
+│   │   ├── ajv
+│   │   ├── @alloc
+│   │   ├── @ampproject
+│   │   ├── ansi-styles
+│   │   ├── argparse
+│   │   ├── autoprefixer
+│   │   ├── @babel
+│   │   ├── balanced-match
+│   │   ├── body-parser
+│   │   ├── brace-expansion
+│   │   ├── browserslist
+│   │   ├── bytes
+│   │   ├── call-bind-apply-helpers
+│   │   ├── call-bound
+│   │   ├── callsites
+│   │   ├── caniuse-lite
+│   │   ├── chalk
+│   │   ├── chownr
+│   │   ├── color-convert
+│   │   ├── color-name
+│   │   ├── concat-map
+│   │   ├── content-disposition
+│   │   ├── content-type
+│   │   ├── convert-source-map
+│   │   ├── cookie
+│   │   ├── cookie-signature
+│   │   ├── cors
+│   │   ├── cross-spawn
+│   │   ├── csstype
+│   │   ├── debug
+│   │   ├── deep-is
+│   │   ├── depd
+│   │   ├── detect-libc
+│   │   ├── dunder-proto
+│   │   ├── ee-first
+│   │   ├── electron-to-chromium
+│   │   ├── encodeurl
+│   │   ├── enhanced-resolve
+│   │   ├── @esbuild
+│   │   ├── esbuild
+│   │   ├── escalade
+│   │   ├── escape-html
+│   │   ├── escape-string-regexp
+│   │   ├── es-define-property
+│   │   ├── es-errors
+│   │   ├── @eslint
+│   │   ├── eslint
+│   │   ├── @eslint-community
+│   │   ├── eslint-plugin-react-hooks
+│   │   ├── eslint-plugin-react-refresh
+│   │   ├── eslint-scope
+│   │   ├── eslint-visitor-keys
+│   │   ├── es-object-atoms
+│   │   ├── espree
+│   │   ├── esquery
+│   │   ├── esrecurse
+│   │   ├── estraverse
+│   │   ├── esutils
+│   │   ├── etag
+│   │   ├── eventsource
+│   │   ├── eventsource-parser
+│   │   ├── express
+│   │   ├── express-rate-limit
+│   │   ├── fast-deep-equal
+│   │   ├── fast-json-stable-stringify
+│   │   ├── fast-levenshtein
+│   │   ├── fdir
+│   │   ├── file-entry-cache
+│   │   ├── finalhandler
+│   │   ├── find-up
+│   │   ├── flat-cache
+│   │   ├── flatted
+│   │   ├── forwarded
+│   │   ├── fraction.js
+│   │   ├── fresh
+│   │   ├── function-bind
+│   │   ├── gensync
+│   │   ├── get-intrinsic
+│   │   ├── get-proto
+│   │   ├── globals
+│   │   ├── glob-parent
+│   │   ├── gopd
+│   │   ├── graceful-fs
+│   │   ├── has-flag
+│   │   ├── hasown
+│   │   ├── has-symbols
+│   │   ├── http-errors
+│   │   ├── @humanfs
+│   │   ├── @humanwhocodes
+│   │   ├── iconv-lite
+│   │   ├── ignore
+│   │   ├── import-fresh
+│   │   ├── imurmurhash
+│   │   ├── inherits
+│   │   ├── ipaddr.js
+│   │   ├── @isaacs
+│   │   ├── isexe
+│   │   ├── is-extglob
+│   │   ├── is-glob
+│   │   ├── is-promise
+│   │   ├── jiti
+│   │   ├── @jridgewell
+│   │   ├── jsesc
+│   │   ├── json5
+│   │   ├── json-buffer
+│   │   ├── json-schema-traverse
+│   │   ├── json-stable-stringify-without-jsonify
+│   │   ├── js-tokens
+│   │   ├── js-yaml
+│   │   ├── keyv
+│   │   ├── levn
+│   │   ├── lightningcss
+│   │   ├── lightningcss-linux-x64-gnu
+│   │   ├── locate-path
+│   │   ├── lodash.merge
+│   │   ├── lru-cache
+│   │   ├── magic-string
+│   │   ├── math-intrinsics
+│   │   ├── media-typer
+│   │   ├── merge-descriptors
+│   │   ├── mime-db
+│   │   ├── mime-types
+│   │   ├── minimatch
+│   │   ├── minipass
+│   │   ├── minizlib
+│   │   ├── mkdirp
+│   │   ├── @modelcontextprotocol
+│   │   ├── ms
+│   │   ├── nanoid
+│   │   ├── natural-compare
+│   │   ├── negotiator
+│   │   ├── node-releases
+│   │   ├── normalize-range
+│   │   ├── object-assign
+│   │   ├── object-inspect
+│   │   ├── once
+│   │   ├── on-finished
+│   │   ├── optionator
+│   │   ├── parent-module
+│   │   ├── parseurl
+│   │   ├── path-exists
+│   │   ├── path-key
+│   │   ├── path-to-regexp
+│   │   ├── picocolors
+│   │   ├── picomatch
+│   │   ├── pkce-challenge
+│   │   ├── p-limit
+│   │   ├── p-locate
+│   │   ├── postcss
+│   │   ├── postcss-value-parser
+│   │   ├── prelude-ls
+│   │   ├── proxy-addr
+│   │   ├── punycode
+│   │   ├── qs
+│   │   ├── range-parser
+│   │   ├── raw-body
+│   │   ├── react
+│   │   ├── react-dom
+│   │   ├── react-refresh
+│   │   ├── resolve-from
+│   │   ├── @rollup
+│   │   ├── rollup
+│   │   ├── router
+│   │   ├── safe-buffer
+│   │   ├── safer-buffer
+│   │   ├── scheduler
+│   │   ├── semver
+│   │   ├── send
+│   │   ├── serve-static
+│   │   ├── setprototypeof
+│   │   ├── shebang-command
+│   │   ├── shebang-regex
+│   │   ├── side-channel
+│   │   ├── side-channel-list
+│   │   ├── side-channel-map
+│   │   ├── side-channel-weakmap
+│   │   ├── source-map-js
+│   │   ├── statuses
+│   │   ├── strip-json-comments
+│   │   ├── supports-color
+│   │   ├── @tailwindcss
+│   │   ├── tailwindcss
+│   │   ├── tapable
+│   │   ├── tar
+│   │   ├── tinyglobby
+│   │   ├── toidentifier
+│   │   ├── type-check
+│   │   ├── type-is
+│   │   ├── @types
+│   │   ├── unpipe
+│   │   ├── update-browserslist-db
+│   │   ├── uri-js
+│   │   ├── vary
+│   │   ├── vite
+│   │   ├── @vitejs
+│   │   ├── which
+│   │   ├── word-wrap
+│   │   ├── wrappy
+│   │   ├── yallist
+│   │   ├── yocto-queue
+│   │   ├── zod
+│   │   └── zod-to-json-schema
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.js
+│   ├── public
+│   │   └── vite.svg
+│   ├── README.md
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── assets
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── tailwind.config.js
+│   └── vite.config.js
 └── viz
     └── functions.py
 
-16 directories, 46 files
+226 directories, 57 files
