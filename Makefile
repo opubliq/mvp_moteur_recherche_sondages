@@ -23,4 +23,7 @@ save-tree: ## Enregistre l'arborescence du projet dans le fichier arborescence.t
 	@echo "Arborescence enregistrée dans le fichier arborescence.txt"
 
 dev-react:  ## Lance l'interface React en mode développement via npm
+	@echo "Démarrage de l'API FastAPI..."
+	. .venv-api-embedding/bin/activate && uvicorn api.main:app --reload & sleep 3
+	@echo "Démarrage de l'application React..."
 	cd ui/ && npm run dev
