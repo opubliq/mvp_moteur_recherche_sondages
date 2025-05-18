@@ -3,6 +3,7 @@ import { useState } from 'react'
 function App() {
   const [text, setText] = useState('')
   const [results, setResults] = useState([])
+  const [selected, setSelected] = useState([])
   const [error, setError] = useState(null)
 
   const getSearchResults = async () => {
@@ -49,13 +50,33 @@ function App() {
           <div className="mt-6">
             <h2 className="text-lg font-medium mb-2">Résultats</h2>
             <ul className="list-disc ml-5 space-y-2">
-              {results.map((r, i) => (
-                <li key={i}>
-                  <strong>{r.survey_id} / {r.variable_id}</strong> – Score : {r.similarity_score.toFixed(3)}
-                  <br />
-                  <em>{r.text}</em>
+            {results.map((r, i) => {
+              const id = `${r.survey_id}::${r.variable_id}`
+              const isChecked = selected.includes(id)
+              const disabled = !isChecked && selected.length >= 3
+
+              return (
+                <li key={id} className="border-b pb-2">
+                  <label className="flex items-start gap-2">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      disabled={disabled}
+                      onChange={() => {
+                        setSelected((prev) =>
+                          isChecked ? prev.filter((v) => v !== id) : [...prev, id]
+                        )
+                      }}
+                    />
+                    <span>
+                      <strong>{r.survey_id} / {r.variable_id}</strong> — Score : {r.similarity_score.toFixed(3)}
+                      <br />
+                      <em>{r.text}</em>
+                    </span>
+                  </label>
                 </li>
-              ))}
+              )
+              })}
             </ul>
           </div>
         )}
