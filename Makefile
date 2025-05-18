@@ -11,6 +11,9 @@ run fastapi:  ## Démarre l'API FastAPI localement
 test fastapi embed:  ## Lance le script de test simple
 	python tests/test_api_embed.py
 
+test fastapi search:  ## Teste l'endpoint /search
+	python tests/test_api_search.py
+
 freeze:  ## Sauvegarde les dépendances dans requirements.txt
 	pip freeze > requirements.txt
 
