@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import BarChartViz from './BarChartViz'
 
 function App() {
   const [text, setText] = useState('')
   const [results, setResults] = useState([])
   const [selected, setSelected] = useState([])
   const [error, setError] = useState(null)
+  const [vizData, setVizData] = useState([])
 
   const getSearchResults = async () => {
     setError(null)
@@ -17,8 +19,28 @@ function App() {
       if (!res.ok) throw new Error(await res.text())
       const data = await res.json()
       setResults(data.results)
+      setSelected([])
+      setVizData([])
     } catch (err) {
       setError(err.message)
+    }
+  }
+
+  const fetchViz = async () => {
+    try {
+      const payload = selected.map((id) => {
+        const [survey_id, variable_id] = id.split("::")
+        return { survey_id, variable_id }
+      })
+      const res = await fetch("http://localhost:8000/viz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items: payload })
+      })
+      const data = await res.json()
+      setVizData(data.distributions)
+    } catch (err) {
+      console.error("Erreur viz:", err)
     }
   }
 
@@ -50,34 +72,54 @@ function App() {
           <div className="mt-6">
             <h2 className="text-lg font-medium mb-2">Résultats</h2>
             <ul className="list-disc ml-5 space-y-2">
-            {results.map((r, i) => {
-              const id = `${r.survey_id}::${r.variable_id}`
-              const isChecked = selected.includes(id)
-              const disabled = !isChecked && selected.length >= 3
+              {results.map((r, i) => {
+                const id = `${r.survey_id}::${r.variable_id}`
+                const isChecked = selected.includes(id)
+                const disabled = !isChecked && selected.length >= 3
 
-              return (
-                <li key={id} className="border-b pb-2">
-                  <label className="flex items-start gap-2">
-                    <input
-                      type="checkbox"
-                      checked={isChecked}
-                      disabled={disabled}
-                      onChange={() => {
-                        setSelected((prev) =>
-                          isChecked ? prev.filter((v) => v !== id) : [...prev, id]
-                        )
-                      }}
-                    />
-                    <span>
-                      <strong>{r.survey_id} / {r.variable_id}</strong> — Score : {r.similarity_score.toFixed(3)}
-                      <br />
-                      <em>{r.text}</em>
-                    </span>
-                  </label>
-                </li>
-              )
+                return (
+                  <li key={id} className="border-b pb-2">
+                    <label className="flex items-start gap-2">
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        disabled={disabled}
+                        onChange={() => {
+                          setSelected((prev) =>
+                            isChecked
+                              ? prev.filter((v) => v !== id)
+                              : [...prev, id]
+                          )
+                        }}
+                      />
+                      <span>
+                        <strong>{r.survey_id} / {r.variable_id}</strong> — Score : {r.similarity_score.toFixed(3)}
+                        <br />
+                        <em>{r.text}</em>
+                      </span>
+                    </label>
+                  </li>
+                )
               })}
             </ul>
+          </div>
+        )}
+
+        {selected.length > 0 && (
+          <button
+            onClick={fetchViz}
+            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition mt-4"
+          >
+            Afficher graphiques
+          </button>
+        )}
+
+        {vizData.length > 0 && (
+          <div className="mt-10">
+            <h2 className="text-xl font-bold mb-4">Visualisations</h2>
+            {vizData.map((d, i) => (
+              <BarChartViz key={i} title={d.label} data={d} />
+            ))}
           </div>
         )}
       </div>
