@@ -2,20 +2,20 @@ import { useState } from 'react'
 
 function App() {
   const [text, setText] = useState('')
-  const [embedding, setEmbedding] = useState(null)
+  const [results, setResults] = useState([])
   const [error, setError] = useState(null)
 
-  const getEmbedding = async () => {
+  const getSearchResults = async () => {
     setError(null)
     try {
-      const res = await fetch('http://localhost:8000/embed', {
+      const res = await fetch('http://localhost:8000/search', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ query: text, top_k: 5 }),
       })
       if (!res.ok) throw new Error(await res.text())
       const data = await res.json()
-      setEmbedding(data.embedding)
+      setResults(data.results)
     } catch (err) {
       setError(err.message)
     }
@@ -24,34 +24,39 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800 p-8">
       <div className="max-w-2xl mx-auto bg-white shadow-xl rounded-xl p-6">
-        <h1 className="text-2xl font-semibold mb-4">Embedding API Demo</h1>
-        
+        <h1 className="text-2xl font-semibold mb-4">Recherche sémantique</h1>
+
         <textarea
           className="w-full border p-3 rounded mb-4"
           rows={4}
-          placeholder="Entrez un texte..."
+          placeholder="Entrez une requête..."
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
 
         <button
-          onClick={getEmbedding}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+          onClick={getSearchResults}
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
         >
-          Obtenir embedding
+          Lancer recherche
         </button>
 
         {error && (
           <p className="text-red-600 mt-4">Erreur : {error}</p>
         )}
 
-        {embedding && (
+        {results.length > 0 && (
           <div className="mt-6">
-            <h2 className="text-lg font-medium mb-2">Résultat</h2>
-            <p>Longueur du vecteur : {embedding.length}</p>
-            <pre className="bg-gray-200 text-sm p-2 mt-2 rounded">
-              {JSON.stringify(embedding.slice(0, 5), null, 2)}...
-            </pre>
+            <h2 className="text-lg font-medium mb-2">Résultats</h2>
+            <ul className="list-disc ml-5 space-y-2">
+              {results.map((r, i) => (
+                <li key={i}>
+                  <strong>{r.survey_id} / {r.variable_id}</strong> – Score : {r.similarity_score.toFixed(3)}
+                  <br />
+                  <em>{r.text}</em>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>

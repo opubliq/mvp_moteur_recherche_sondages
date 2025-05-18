@@ -11,7 +11,7 @@ app = FastAPI()
 # CORS doit être défini juste après l'instance FastAPI
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Pour le développement
+    allow_origins=["http://localhost:5173"],  # autorise l'origine React
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
