@@ -14,6 +14,9 @@ test-fastapi-embed:  ## Lance le script de test simple
 test-fastapi-search:  ## Teste l'endpoint /search
 	python tests/test_api_search.py
 
+test-fastapi-viz: ## Teste l'endpoint /viz
+	python tests/test_api_viz.py
+
 freeze:  ## Sauvegarde les dépendances dans requirements.txt
 	pip freeze > requirements.txt
 

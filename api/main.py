@@ -5,6 +5,9 @@ from sentence_transformers import SentenceTransformer
 import os
 from sklearn.metrics.pairwise import cosine_similarity
 from matching.semantic_search import load_corpus, semantic_search
+from typing import List
+import pandas as pd
+from viz.functions import plot_variables_from_results
 
 app = FastAPI()
 
@@ -50,3 +53,30 @@ def search(req: SearchRequest):
 
     results = df.to_dict(orient="records")
     return {"results": results}
+
+
+class VizRequest(BaseModel):
+    items: List[dict]  # chaque dict = {"survey_id": ..., "variable_id": ...}
+
+@app.post("/viz")
+def get_visualisation(req: VizRequest):
+    try:
+        df = pd.DataFrame(req.items)
+        fig = plot_variables_from_results(df)
+
+        # Extraire les données brutes du graphique (ex: barplot)
+        if hasattr(fig, 'data') and fig.data:
+            traces = []
+            for trace in fig.data:
+                traces.append({
+                    "type": trace.type,
+                    "name": trace.name,
+                    "x": list(trace.x),
+                    "y": list(trace.y),
+                })
+            return {"traces": traces}
+        else:
+            raise HTTPException(status_code=500, detail="Graphique vide")
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
