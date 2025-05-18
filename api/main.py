@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 import os
 from sklearn.metrics.pairwise import cosine_similarity
+from matching.semantic_search import load_corpus, semantic_search
 
 app = FastAPI()
 
@@ -37,30 +38,15 @@ def embed(req: EmbedRequest):
 
 class SearchRequest(BaseModel):
     query: str
-    documents: list[str]
     top_k: int = 5
-    
+
 @app.post("/search")
 def search(req: SearchRequest):
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="Requête vide non autorisée")
-    if not req.documents:
-        raise HTTPException(status_code=400, detail="Aucun document fourni pour la recherche")
-    
-    # Encoder la requête et les documents
-    query_embedding = model.encode(req.query)
-    document_embeddings = model.encode(req.documents)
-    
-    # Calculer les similarités
-    similarities = cosine_similarity([query_embedding], document_embeddings)[0]
-    
-    # Trier les résultats
-    results = []
-    for i, score in enumerate(similarities):
-        results.append({"document": req.documents[i], "score": float(score)})
-    
-    # Trier par score décroissant et limiter au top_k
-    results.sort(key=lambda x: x["score"], reverse=True)
-    results = results[:req.top_k]
-    
+
+    corpus_info, corpus_texts = load_corpus()
+    df = semantic_search(req.query, corpus_texts, corpus_info, model=model, top_k=req.top_k)
+
+    results = df.to_dict(orient="records")
     return {"results": results}
