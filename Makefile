@@ -5,10 +5,10 @@
 help:  ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-run:  ## Démarre l'API FastAPI localement
+run fastapi:  ## Démarre l'API FastAPI localement
 	. .venv-api-embedding/bin/activate && uvicorn api.main:app --reload
 
-test:  ## Lance le script de test simple
+test fastapi embed:  ## Lance le script de test simple
 	python tests/test_api_embed.py
 
 freeze:  ## Sauvegarde les dépendances dans requirements.txt
@@ -19,5 +19,5 @@ savetree: ## Enregistre l'arborescence du projet dans le fichier arborescence.tx
 	@tree -L 3 >> arborescence.txt
 	@echo "Arborescence enregistrée dans le fichier arborescence.txt"
 
-dev:  ## Lance le projet en mode développement via npm
+dev react:  ## Lance l'interface React en mode développement via npm
 	cd ui/ && npm run dev
