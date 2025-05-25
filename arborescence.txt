@@ -1,7 +1,12 @@
+Arborescence du projet : 
 .
-├── app
+├── api
+│   ├── main.py
+│   ├── __pycache__
+│   │   └── main.cpython-311.pyc
+│   └── README.md
 ├── arborescence.txt
-├── bd
+├── aws_keys.env
 ├── create_survey_bd
 │   ├── democracy_checkup_2022
 │   │   ├── 01_extract.R
@@ -15,137 +20,303 @@
 │       ├── 02_structure.R
 │       ├── codebook.xlsx
 │       └── data.csv
-├── .devcontainer
-│   └── devcontainer.json
-├── .git
-│   ├── branches
-│   ├── COMMIT_EDITMSG
-│   ├── config
-│   ├── description
-│   ├── FETCH_HEAD
-│   ├── HEAD
-│   ├── hooks
-│   │   ├── applypatch-msg.sample
-│   │   ├── commit-msg.sample
-│   │   ├── fsmonitor-watchman.sample
-│   │   ├── post-update.sample
-│   │   ├── pre-applypatch.sample
-│   │   ├── pre-commit.sample
-│   │   ├── pre-merge-commit.sample
-│   │   ├── prepare-commit-msg.sample
-│   │   ├── pre-push.sample
-│   │   ├── pre-rebase.sample
-│   │   ├── pre-receive.sample
-│   │   ├── push-to-checkout.sample
-│   │   └── update.sample
-│   ├── index
-│   ├── info
-│   │   └── exclude
-│   ├── logs
-│   │   ├── HEAD
-│   │   └── refs
-│   ├── objects
-│   │   ├── 01
-│   │   ├── 06
-│   │   ├── 08
-│   │   ├── 0c
-│   │   ├── 0f
-│   │   ├── 11
-│   │   ├── 15
-│   │   ├── 16
-│   │   ├── 1a
-│   │   ├── 1f
-│   │   ├── 26
-│   │   ├── 29
-│   │   ├── 2b
-│   │   ├── 2d
-│   │   ├── 30
-│   │   ├── 31
-│   │   ├── 32
-│   │   ├── 33
-│   │   ├── 39
-│   │   ├── 3d
-│   │   ├── 43
-│   │   ├── 4b
-│   │   ├── 51
-│   │   ├── 55
-│   │   ├── 59
-│   │   ├── 5c
-│   │   ├── 5f
-│   │   ├── 60
-│   │   ├── 63
-│   │   ├── 67
-│   │   ├── 6c
-│   │   ├── 6f
-│   │   ├── 70
-│   │   ├── 7a
-│   │   ├── 7b
-│   │   ├── 7d
-│   │   ├── 81
-│   │   ├── 82
-│   │   ├── 8a
-│   │   ├── 93
-│   │   ├── 94
-│   │   ├── 95
-│   │   ├── 9f
-│   │   ├── a0
-│   │   ├── a3
-│   │   ├── a9
-│   │   ├── aa
-│   │   ├── ab
-│   │   ├── b2
-│   │   ├── b5
-│   │   ├── b6
-│   │   ├── b9
-│   │   ├── bc
-│   │   ├── c3
-│   │   ├── c6
-│   │   ├── cc
-│   │   ├── cd
-│   │   ├── d0
-│   │   ├── d1
-│   │   ├── d2
-│   │   ├── d6
-│   │   ├── d8
-│   │   ├── d9
-│   │   ├── dc
-│   │   ├── e0
-│   │   ├── e6
-│   │   ├── ec
-│   │   ├── f1
-│   │   ├── f5
-│   │   ├── f8
-│   │   ├── f9
-│   │   ├── fd
-│   │   ├── info
-│   │   └── pack
-│   ├── ORIG_HEAD
-│   ├── packed-refs
-│   └── refs
-│       ├── heads
-│       ├── remotes
-│       └── tags
-├── .gitignore
+├── Makefile
 ├── matching
-│   ├── explo.py
-│   ├── explo.R
+│   ├── download_hf_model.py
+│   ├── explo
+│   │   ├── explo.py
+│   │   ├── explo.R
+│   │   ├── get_data.py
+│   │   └── test_hf_api.py
 │   ├── __init__.py
-│   ├── models
-│   │   ├── sentence-transformers_all-MiniLM-L6-v2
-│   │   ├── sentence-transformers_all-mpnet-base-v2
-│   │   └── sentence-transformers_multi-qa-MiniLM-L6-cos-v1
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   └── semantic_search.cpython-311.pyc
 │   └── semantic_search.py
+├── models
+│   └── all-MiniLM-L6-v2
+│       ├── 1_Pooling
+│       ├── 2_Normalize
+│       ├── config.json
+│       ├── config_sentence_transformers.json
+│       ├── modules.json
+│       ├── pytorch_model.bin
+│       ├── README.md
+│       ├── sentence_bert_config.json
+│       ├── special_tokens_map.json
+│       ├── tokenizer_config.json
+│       ├── tokenizer.json
+│       └── vocab.txt
 ├── README.md
 ├── requirements.txt
-├── runtime.txt
 ├── schemas
-│   ├── .$mvp.drawio.bkp
 │   ├── mvp.drawio
 │   └── mvp.drawio.pdf
-├── streamlit_app.py
 ├── surveys_bd.sqlite
+├── testing_revenue_models
+│   ├── explo2.R
+│   ├── explo.R
+│   ├── postulats.R
+│   └── README.md
 ├── tests
+│   ├── test_api_embed.py
+│   ├── test_api_search.py
+│   └── test_api_viz.py
+├── ui
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── node_modules
+│   │   ├── accepts
+│   │   ├── acorn
+│   │   ├── acorn-jsx
+│   │   ├── ajv
+│   │   ├── @alloc
+│   │   ├── @ampproject
+│   │   ├── ansi-styles
+│   │   ├── argparse
+│   │   ├── autoprefixer
+│   │   ├── @babel
+│   │   ├── balanced-match
+│   │   ├── body-parser
+│   │   ├── brace-expansion
+│   │   ├── browserslist
+│   │   ├── bytes
+│   │   ├── call-bind-apply-helpers
+│   │   ├── call-bound
+│   │   ├── callsites
+│   │   ├── caniuse-lite
+│   │   ├── chalk
+│   │   ├── chownr
+│   │   ├── clsx
+│   │   ├── color-convert
+│   │   ├── color-name
+│   │   ├── concat-map
+│   │   ├── content-disposition
+│   │   ├── content-type
+│   │   ├── convert-source-map
+│   │   ├── cookie
+│   │   ├── cookie-signature
+│   │   ├── cors
+│   │   ├── cross-spawn
+│   │   ├── csstype
+│   │   ├── d3-array
+│   │   ├── d3-color
+│   │   ├── d3-ease
+│   │   ├── d3-format
+│   │   ├── d3-interpolate
+│   │   ├── d3-path
+│   │   ├── d3-scale
+│   │   ├── d3-shape
+│   │   ├── d3-time
+│   │   ├── d3-time-format
+│   │   ├── d3-timer
+│   │   ├── debug
+│   │   ├── decimal.js-light
+│   │   ├── deep-is
+│   │   ├── depd
+│   │   ├── detect-libc
+│   │   ├── dom-helpers
+│   │   ├── dunder-proto
+│   │   ├── ee-first
+│   │   ├── electron-to-chromium
+│   │   ├── encodeurl
+│   │   ├── enhanced-resolve
+│   │   ├── @esbuild
+│   │   ├── esbuild
+│   │   ├── escalade
+│   │   ├── escape-html
+│   │   ├── escape-string-regexp
+│   │   ├── es-define-property
+│   │   ├── es-errors
+│   │   ├── @eslint
+│   │   ├── eslint
+│   │   ├── @eslint-community
+│   │   ├── eslint-plugin-react-hooks
+│   │   ├── eslint-plugin-react-refresh
+│   │   ├── eslint-scope
+│   │   ├── eslint-visitor-keys
+│   │   ├── es-object-atoms
+│   │   ├── espree
+│   │   ├── esquery
+│   │   ├── esrecurse
+│   │   ├── estraverse
+│   │   ├── esutils
+│   │   ├── etag
+│   │   ├── eventemitter3
+│   │   ├── eventsource
+│   │   ├── eventsource-parser
+│   │   ├── express
+│   │   ├── express-rate-limit
+│   │   ├── fast-deep-equal
+│   │   ├── fast-equals
+│   │   ├── fast-json-stable-stringify
+│   │   ├── fast-levenshtein
+│   │   ├── fdir
+│   │   ├── file-entry-cache
+│   │   ├── finalhandler
+│   │   ├── find-up
+│   │   ├── flat-cache
+│   │   ├── flatted
+│   │   ├── forwarded
+│   │   ├── fraction.js
+│   │   ├── fresh
+│   │   ├── function-bind
+│   │   ├── gensync
+│   │   ├── get-intrinsic
+│   │   ├── get-proto
+│   │   ├── globals
+│   │   ├── glob-parent
+│   │   ├── gopd
+│   │   ├── graceful-fs
+│   │   ├── has-flag
+│   │   ├── hasown
+│   │   ├── has-symbols
+│   │   ├── http-errors
+│   │   ├── @humanfs
+│   │   ├── @humanwhocodes
+│   │   ├── iconv-lite
+│   │   ├── ignore
+│   │   ├── import-fresh
+│   │   ├── imurmurhash
+│   │   ├── inherits
+│   │   ├── internmap
+│   │   ├── ipaddr.js
+│   │   ├── @isaacs
+│   │   ├── isexe
+│   │   ├── is-extglob
+│   │   ├── is-glob
+│   │   ├── is-promise
+│   │   ├── jiti
+│   │   ├── @jridgewell
+│   │   ├── jsesc
+│   │   ├── json5
+│   │   ├── json-buffer
+│   │   ├── json-schema-traverse
+│   │   ├── json-stable-stringify-without-jsonify
+│   │   ├── js-tokens
+│   │   ├── js-yaml
+│   │   ├── keyv
+│   │   ├── levn
+│   │   ├── lightningcss
+│   │   ├── lightningcss-linux-x64-gnu
+│   │   ├── lightningcss-linux-x64-musl
+│   │   ├── locate-path
+│   │   ├── lodash
+│   │   ├── lodash.merge
+│   │   ├── loose-envify
+│   │   ├── lru-cache
+│   │   ├── magic-string
+│   │   ├── math-intrinsics
+│   │   ├── media-typer
+│   │   ├── merge-descriptors
+│   │   ├── mime-db
+│   │   ├── mime-types
+│   │   ├── minimatch
+│   │   ├── minipass
+│   │   ├── minizlib
+│   │   ├── mkdirp
+│   │   ├── @modelcontextprotocol
+│   │   ├── ms
+│   │   ├── nanoid
+│   │   ├── natural-compare
+│   │   ├── negotiator
+│   │   ├── node-releases
+│   │   ├── normalize-range
+│   │   ├── object-assign
+│   │   ├── object-inspect
+│   │   ├── once
+│   │   ├── on-finished
+│   │   ├── optionator
+│   │   ├── parent-module
+│   │   ├── parseurl
+│   │   ├── path-exists
+│   │   ├── path-key
+│   │   ├── path-to-regexp
+│   │   ├── picocolors
+│   │   ├── picomatch
+│   │   ├── pkce-challenge
+│   │   ├── p-limit
+│   │   ├── p-locate
+│   │   ├── postcss
+│   │   ├── postcss-value-parser
+│   │   ├── prelude-ls
+│   │   ├── prop-types
+│   │   ├── proxy-addr
+│   │   ├── punycode
+│   │   ├── qs
+│   │   ├── range-parser
+│   │   ├── raw-body
+│   │   ├── react
+│   │   ├── react-dom
+│   │   ├── react-is
+│   │   ├── react-refresh
+│   │   ├── react-smooth
+│   │   ├── react-transition-group
+│   │   ├── recharts
+│   │   ├── recharts-scale
+│   │   ├── resolve-from
+│   │   ├── @rollup
+│   │   ├── rollup
+│   │   ├── router
+│   │   ├── safe-buffer
+│   │   ├── safer-buffer
+│   │   ├── scheduler
+│   │   ├── semver
+│   │   ├── send
+│   │   ├── serve-static
+│   │   ├── setprototypeof
+│   │   ├── shebang-command
+│   │   ├── shebang-regex
+│   │   ├── side-channel
+│   │   ├── side-channel-list
+│   │   ├── side-channel-map
+│   │   ├── side-channel-weakmap
+│   │   ├── source-map-js
+│   │   ├── statuses
+│   │   ├── strip-json-comments
+│   │   ├── supports-color
+│   │   ├── @tailwindcss
+│   │   ├── tailwindcss
+│   │   ├── tapable
+│   │   ├── tar
+│   │   ├── tinyglobby
+│   │   ├── tiny-invariant
+│   │   ├── toidentifier
+│   │   ├── type-check
+│   │   ├── type-is
+│   │   ├── @types
+│   │   ├── unpipe
+│   │   ├── update-browserslist-db
+│   │   ├── uri-js
+│   │   ├── vary
+│   │   ├── victory-vendor
+│   │   ├── vite
+│   │   ├── @vitejs
+│   │   ├── which
+│   │   ├── word-wrap
+│   │   ├── wrappy
+│   │   ├── yallist
+│   │   ├── yocto-queue
+│   │   ├── zod
+│   │   └── zod-to-json-schema
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.js
+│   ├── public
+│   │   └── vite.svg
+│   ├── README.md
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── assets
+│   │   ├── BarChartViz.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── tailwind.config.js
+│   └── vite.config.js
 └── viz
-    └── functions.py
+    ├── functions.py
+    └── __pycache__
+        └── functions.cpython-311.pyc
 
-100 directories, 49 files
+256 directories, 63 files

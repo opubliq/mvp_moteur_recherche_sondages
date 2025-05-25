@@ -38,3 +38,39 @@ Contient le **codebook** (`codebook.csv`) décrivant les questions :
 ---
 
 **Statut :** version MVP en développement.
+
+### Composants
+- [API d'embedding (FastAPI)](api/README.md)
+
+
+### Makefile
+
+Le projet inclut un Makefile qui permet de créer des raccourcis pour les commandes fréquemment utilisées :
+- Installation des dépendances
+- Exécution des tests
+- Lancement des différents composants
+- Construction de la base de données
+
+Pour voir les commandes disponibles, utilisez `make help`.
+
+### Tester l'API localement
+
+1. Construire l'image Docker :
+
+```bash
+docker build -t fullstack-embedding-app .
+```
+
+2. Lancer le conteneur :
+
+```bash
+docker run -p 8000:8000 fullstack-embedding-app
+```
+
+3. Vérifier que l'API répond :
+
+```bash
+curl http://localhost:8000
+```
+
+Le scrit `test_api_local.sh` fait ces 3 commandes.

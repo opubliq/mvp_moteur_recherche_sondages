@@ -1,0 +1,14 @@
+# caches Python
+__pycache__/
+*.py[cod]
+
+# fichiers inutiles ou sensibles
+.vscode/
+.git/
+*.log
+*.Rhistory
+.dockerignore
+.gitignore
+
+# dépendances JS locales
+ui/node_modules/
