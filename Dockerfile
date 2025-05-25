@@ -5,8 +5,15 @@ SHELL ["/bin/bash", "-c"]
 WORKDIR /app
 
 COPY requirements.txt .
-RUN apt-get update && apt-get install -y r-base
+
+RUN apt-get update && \
+    apt-get install -y \
+    r-base \
+    curl \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 RUN pip install -r requirements.txt
+
 
 COPY api ./api
 
