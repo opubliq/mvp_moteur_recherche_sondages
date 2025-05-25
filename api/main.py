@@ -20,10 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL_PATH = "models/all-MiniLM-L6-v2"
-if not os.path.exists(MODEL_PATH):
-    raise RuntimeError(f"Modèle non trouvé à {MODEL_PATH}")
-model = SentenceTransformer(MODEL_PATH)
+# MODEL_PATH = "models/all-MiniLM-L6-v2"
+# if not os.path.exists(MODEL_PATH):
+#     raise RuntimeError(f"Modèle non trouvé à {MODEL_PATH}")
+model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 class EmbedRequest(BaseModel):
     text: str
