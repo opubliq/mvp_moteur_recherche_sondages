@@ -8,7 +8,7 @@ COPY requirements.txt .
 
 RUN apt-get update && \
     apt-get install -y \
-    r-base \
+    # r-base \
     curl \
     git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
