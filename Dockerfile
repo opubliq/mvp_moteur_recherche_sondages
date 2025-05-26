@@ -19,7 +19,7 @@ RUN pip install -r requirements.txt
 COPY api ./api
 COPY matching ./matching
 COPY viz ./viz
-# COPY models ./models
+COPY models ./models
 
 # Install Zsh, Oh My Zsh and Powerlevel10k
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh && \
