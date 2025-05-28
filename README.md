@@ -90,3 +90,23 @@ Le scrit `test_api_local.sh` fait ces 3 commandes.
 
 3. **Tester l’API sur Postman**
    - Tester les endpoints principaux (`/`, `/embed`, `/search`, `/viz`) pour vérifier que tout fonctionne après le déploiement.
+
+### Workflow pour déployer le UI
+
+1. **Compiler l'interface React pour la production**
+   - Lancer la commande :
+     ```
+     make build-react
+     ```
+   - Cette commande exécute `npm run build` dans le répertoire `ui/`
+
+2. **Déployer l'interface sur Netlify**
+   - Lancer la commande :
+     ```
+     make deploy-react
+     ```
+   - Cette commande exécute une compilation locale avec `netlify build` puis déploie en production avec `netlify deploy --prod`
+
+3. **Vérifier le déploiement**
+   - Ouvrir l'URL du site Netlify (https://ui-moteur-recherche.netlify.app) pour vérifier que l'interface fonctionne correctement
+   - Tester les fonctionnalités principales pour s'assurer que la communication avec l'API fonctionne
