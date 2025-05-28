@@ -8,18 +8,6 @@ from matching.semantic_search import load_corpus, semantic_search
 from typing import List
 import pandas as pd
 from viz.functions import get_variable_distribution
-import subprocess
-import sys
-
-try:
-    import torch
-except ImportError:
-    subprocess.check_call([
-        sys.executable, "-m", "pip", "install",
-        "torch==2.1.2+cpu",
-        "-f", "https://download.pytorch.org/whl/cpu"
-    ])
-
 
 app = FastAPI()
 
