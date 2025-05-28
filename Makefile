@@ -27,3 +27,10 @@ save-tree: ## Enregistre l'arborescence du projet dans le fichier arborescence.t
 
 dev-react:  ## Lance l'interface React en mode développement via npm
 	cd ui/ && npm run dev
+
+build-react:  ## Compile l'interface React pour la production
+	cd ui/ && npm run build
+
+deploy-react:  ## Déploie l'interface React sur le serveur
+	netlify build              # build local
+	netlify deploy --prod      # déploie en prod

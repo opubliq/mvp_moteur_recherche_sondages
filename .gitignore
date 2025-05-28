@@ -326,3 +326,6 @@ __pycache__/
 .streamlit/config.toml
 *.log
 *.tfevents*
+
+# Local Netlify folder
+.netlify
