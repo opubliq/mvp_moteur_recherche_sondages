@@ -12,9 +12,9 @@ docker build -t $IMAGE_NAME .
 echo "🚀 Lancement du conteneur..."
 docker run -d -p 8000:8000 --name test-api $IMAGE_NAME
 
-echo "⏳ Attente de l'API (max 5s)..."
+echo "⏳ Attente de l'API (max 60s)..."
 success=false
-for i in {1..5}; do
+for i in {1..60}; do
   if curl -s http://localhost:8000 > /dev/null; then
     echo "✅ API accessible."
     curl http://localhost:8000
@@ -25,7 +25,7 @@ for i in {1..5}; do
 done
 
 if [ "$success" = false ]; then
-  echo "❌ Échec : l'API ne répond pas après 10s."
+  echo "❌ Échec : l'API ne répond pas après 60s."
 fi
 
 

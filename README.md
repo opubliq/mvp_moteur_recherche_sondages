@@ -74,3 +74,19 @@ curl http://localhost:8000
 ```
 
 Le scrit `test_api_local.sh` fait ces 3 commandes.
+
+### Workflow pour redéployer l’API sur DigitalOcean
+
+1. **Builder et pousser l’image Docker**
+   - Lancer le script :
+     ```
+     ./deploy_docker.sh
+     ```
+
+2. **Redéployer l’application sur DigitalOcean App Platform**
+   - Aller sur le dashboard DigitalOcean.
+   - Sélectionner l’app `embedding-api`.
+   - Cliquer sur “Deploy” pour utiliser la nouvelle image Docker.
+
+3. **Tester l’API sur Postman**
+   - Tester les endpoints principaux (`/`, `/embed`, `/search`, `/viz`) pour vérifier que tout fonctionne après le déploiement.
