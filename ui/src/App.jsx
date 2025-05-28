@@ -11,7 +11,7 @@ function App() {
   const getSearchResults = async () => {
     setError(null)
     try {
-      const res = await fetch('http://localhost:8000/search', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: text, top_k: 5 }),
@@ -32,7 +32,7 @@ function App() {
         const [survey_id, variable_id] = id.split("::")
         return { survey_id, variable_id }
       })
-      const res = await fetch("http://localhost:8000/viz", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/viz`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items: payload })
