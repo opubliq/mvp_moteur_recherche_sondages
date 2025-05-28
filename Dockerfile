@@ -18,4 +18,5 @@ COPY viz ./viz
 COPY surveys_bd.sqlite ./surveys_bd.sqlite
 #COPY models ./models
 
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 8080
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8080"]
