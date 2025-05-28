@@ -8,6 +8,18 @@ from matching.semantic_search import load_corpus, semantic_search
 from typing import List
 import pandas as pd
 from viz.functions import get_variable_distribution
+import subprocess
+import sys
+
+try:
+    import torch
+except ImportError:
+    subprocess.check_call([
+        sys.executable, "-m", "pip", "install",
+        "torch==2.1.2+cpu",
+        "-f", "https://download.pytorch.org/whl/cpu"
+    ])
+
 
 app = FastAPI()
 
@@ -20,10 +32,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL_PATH = "models/all-MiniLM-L6-v2"
-if not os.path.exists(MODEL_PATH):
-    raise RuntimeError(f"Modèle non trouvé à {MODEL_PATH}")
-model = SentenceTransformer(MODEL_PATH)
+#MODEL_PATH = "models/all-MiniLM-L6-v2"
+#if not os.path.exists(MODEL_PATH):
+#    raise RuntimeError(f"Modèle non trouvé à {MODEL_PATH}")
+#model = SentenceTransformer(MODEL_PATH)
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
 class EmbedRequest(BaseModel):
     text: str
