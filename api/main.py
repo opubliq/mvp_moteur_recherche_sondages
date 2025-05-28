@@ -14,7 +14,10 @@ app = FastAPI()
 # CORS doit être défini juste après l'instance FastAPI
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # autorise l'origine React
+    allow_origins=[
+        "http://localhost:5173",
+        "https://ui-moteur-recherche.netlify.app/"
+        ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
