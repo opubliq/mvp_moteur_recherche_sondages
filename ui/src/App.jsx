@@ -202,11 +202,7 @@ function App() {
                           }}
                           className="checkbox checkbox-primary"
                         />
-                        <span>
-                          <strong>{r.survey_id} / {r.variable_id}</strong> — Score : {r.similarity_score.toFixed(3)}
-                          <br />
-                          <em>{r.text}</em>
-                        </span>
+                        <span className="font-medium">{r.label}</span>
                       </label>
                     </li>
                   );
