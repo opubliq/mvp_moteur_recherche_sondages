@@ -46,8 +46,13 @@ function App() {
   const [selected, setSelected] = useState([]);
   const [error, setError] = useState(null);
   const [vizData, setVizData] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState(themes[0]);
-  const [font, setFont] = useState(fonts[0].class);
+  const getRandomItem = (array) => {
+    // Fisher-Yates shuffle, but we only need one item
+    const index = Math.floor(Math.random() * array.length);
+    return array[index];
+  };
+  const [selectedTheme, setSelectedTheme] = useState(getRandomItem(themes));
+  const [font, setFont] = useState(getRandomItem(fonts).class);
 
   useEffect(() => {
     if (selectedTheme) {
