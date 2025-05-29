@@ -114,17 +114,18 @@ function App() {
 
   return (
     <div className={`min-h-screen bg-base-200 text-base-content ${font}`}>
-    <header className="bg-base-100 shadow p-4 flex justify-between items-center">
+      {/* Header/navbar */}
+      <header className="flex items-center justify-between px-6 py-4 bg-base-100 border-b border-base-300">
         <div className="text-xl font-bold">Opubliq – Moteur de recherche</div>
         <div className="flex gap-4">
-          {/* Dropdown thème */}
+          {/* Dropdown theme */}
           <div className="relative">
-            <label className="block text-sm font-medium mb-1">Choisir le thème:</label>
+            <label className="text-sm font-medium mr-2">Thème:</label>
             <Listbox value={selectedTheme} onChange={setSelectedTheme}>
-              <Listbox.Button className="select select-bordered w-48" data-theme={selectedTheme}>
+              <Listbox.Button className="select select-bordered w-40" data-theme={selectedTheme}>
                 {selectedTheme}
               </Listbox.Button>
-              <Listbox.Options className="absolute left-0 w-48 mt-2 max-h-64 overflow-y-auto bg-base-100 rounded shadow-lg z-50">
+              <Listbox.Options className="absolute left-0 w-40 mt-2 max-h-64 overflow-y-auto bg-base-100 rounded shadow-lg z-50">
                 {themes.map(theme => (
                   <Listbox.Option
                     key={theme}
@@ -138,18 +139,17 @@ function App() {
               </Listbox.Options>
             </Listbox>
           </div>
-              
-          {/* Dropdown police */}
+          {/* Dropdown font */}
           <div className="relative">
-            <label className="block text-sm font-medium mb-1">Choisir la police:</label>
+            <label className="text-sm font-medium mr-2">Police:</label>
             <Listbox value={font} onChange={setFont}>
               <Listbox.Button
-                className="select select-bordered w-48"
+                className="select select-bordered w-40"
                 style={{ fontFamily: extractFontName(fonts.find(f => f.class === font)?.name || "") }}
               >
                 {fonts.find(f => f.class === font)?.name}
               </Listbox.Button>
-              <Listbox.Options className="absolute left-0 w-48 mt-2 max-h-64 overflow-y-auto bg-base-100 rounded shadow-lg z-50">
+              <Listbox.Options className="absolute left-0 w-40 mt-2 max-h-64 overflow-y-auto bg-base-100 rounded shadow-lg z-50">
                 {fonts.map(f => (
                   <Listbox.Option
                     key={f.class}
@@ -166,9 +166,10 @@ function App() {
         </div>
       </header>
 
-      <div className="flex h-screen">
+      {/* Layout principal avec sidebar */}
+      <div className="flex h-[calc(100vh-64px)]">
         {/* Sidebar */}
-        <aside className="w-1/4 min-w-[220px] max-w-xs bg-base-100 p-6 flex flex-col gap-6 border-r border-base-300">
+        <aside className="w-64 bg-base-100 border-r border-base-300 flex flex-col p-6 gap-6">
           <h2 className="text-lg font-bold mb-4">Recherche</h2>
           <textarea
             className="textarea textarea-bordered w-full"
@@ -182,9 +183,9 @@ function App() {
             {results.length > 0 && (
               <ul className="list-disc ml-5 space-y-2">
                 {results.map((r, i) => {
-                  const id = `${r.survey_id}::${r.variable_id}`
-                  const isChecked = selected.includes(id)
-                  const disabled = !isChecked && selected.length >= 3
+                  const id = `${r.survey_id}::${r.variable_id}`;
+                  const isChecked = selected.includes(id);
+                  const disabled = !isChecked && selected.length >= 3;
                   return (
                     <li key={id} className="border-b pb-2">
                       <label className="flex items-start gap-2">
@@ -197,7 +198,7 @@ function App() {
                               isChecked
                                 ? prev.filter(v => v !== id)
                                 : [...prev, id]
-                            )
+                            );
                           }}
                           className="checkbox checkbox-primary"
                         />
@@ -208,7 +209,7 @@ function App() {
                         </span>
                       </label>
                     </li>
-                  )
+                  );
                 })}
               </ul>
             )}
@@ -236,7 +237,6 @@ function App() {
         {/* Contenu principal */}
         <main className="flex-1 p-8 overflow-y-auto">
           <h1 className="text-2xl font-semibold mb-4">Recherche sémantique</h1>
-          {/* Place ici les dropdowns theme/police et le reste de ton UI */}
           {vizData.length > 0 && (
             <div className="mt-10">
               <h2 className="text-xl font-bold mb-4">Visualisations</h2>
