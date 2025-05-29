@@ -45,86 +45,87 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800 p-8">
-      <div className="max-w-2xl mx-auto bg-white shadow-xl rounded-xl p-6">
-        <h1 className="text-2xl font-semibold mb-4">Recherche sémantique</h1>
+  <div className="min-h-screen bg-base-200 text-base-content p-8">
+    <div className="max-w-2xl mx-auto card bg-base-100 shadow-xl rounded-xl p-6">
+      <h1 className="text-2xl font-semibold mb-4">Recherche sémantique</h1>
 
-        <textarea
-          className="w-full border p-3 rounded mb-4"
-          rows={4}
-          placeholder="Entrez une requête..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
+      <textarea
+        className="textarea textarea-bordered w-full mb-4"
+        rows={4}
+        placeholder="Entrez une requête..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
 
+      <button
+        onClick={getSearchResults}
+        className="btn btn-primary"
+      >
+        Lancer recherche
+      </button>
+
+      {error && (
+        <p className="text-error mt-4">Erreur : {error}</p>
+      )}
+
+      {results.length > 0 && (
+        <div className="mt-6">
+          <h2 className="text-lg font-medium mb-2">Résultats</h2>
+          <ul className="list-disc ml-5 space-y-2">
+            {results.map((r, i) => {
+              const id = `${r.survey_id}::${r.variable_id}`
+              const isChecked = selected.includes(id)
+              const disabled = !isChecked && selected.length >= 3
+
+              return (
+                <li key={id} className="border-b pb-2">
+                  <label className="flex items-start gap-2">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      disabled={disabled}
+                      onChange={() => {
+                        setSelected((prev) =>
+                          isChecked
+                            ? prev.filter((v) => v !== id)
+                            : [...prev, id]
+                        )
+                      }}
+                      className="checkbox checkbox-primary"
+                    />
+                    <span>
+                      <strong>{r.survey_id} / {r.variable_id}</strong> — Score : {r.similarity_score.toFixed(3)}
+                      <br />
+                      <em>{r.text}</em>
+                    </span>
+                  </label>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
+
+      {selected.length > 0 && (
         <button
-          onClick={getSearchResults}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+          onClick={fetchViz}
+          className="btn btn-secondary mt-4"
         >
-          Lancer recherche
+          Afficher graphiques
         </button>
+      )}
 
-        {error && (
-          <p className="text-red-600 mt-4">Erreur : {error}</p>
-        )}
-
-        {results.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-lg font-medium mb-2">Résultats</h2>
-            <ul className="list-disc ml-5 space-y-2">
-              {results.map((r, i) => {
-                const id = `${r.survey_id}::${r.variable_id}`
-                const isChecked = selected.includes(id)
-                const disabled = !isChecked && selected.length >= 3
-
-                return (
-                  <li key={id} className="border-b pb-2">
-                    <label className="flex items-start gap-2">
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        disabled={disabled}
-                        onChange={() => {
-                          setSelected((prev) =>
-                            isChecked
-                              ? prev.filter((v) => v !== id)
-                              : [...prev, id]
-                          )
-                        }}
-                      />
-                      <span>
-                        <strong>{r.survey_id} / {r.variable_id}</strong> — Score : {r.similarity_score.toFixed(3)}
-                        <br />
-                        <em>{r.text}</em>
-                      </span>
-                    </label>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        )}
-
-        {selected.length > 0 && (
-          <button
-            onClick={fetchViz}
-            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition mt-4"
-          >
-            Afficher graphiques
-          </button>
-        )}
-
-        {vizData.length > 0 && (
-          <div className="mt-10">
-            <h2 className="text-xl font-bold mb-4">Visualisations</h2>
-            {vizData.map((d, i) => (
-              <BarChartViz key={i} title={d.label} data={d} />
-            ))}
-          </div>
-        )}
-      </div>
+      {vizData.length > 0 && (
+        <div className="mt-10">
+          <h2 className="text-xl font-bold mb-4">Visualisations</h2>
+          {vizData.map((d, i) => (
+            <BarChartViz key={i} title={d.label} data={d} />
+          ))}
+        </div>
+      )}
     </div>
-  )
+  </div>
+)
 }
 
 export default App
