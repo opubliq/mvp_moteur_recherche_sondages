@@ -3,6 +3,13 @@ import BarChartViz from './BarChartViz'
 import { useEffect } from "react";
 import { themeChange } from "theme-change";
 
+const fonts = [
+    { name: "Sans (Inter)", class: "font-sans" },
+    { name: "Serif (Merriweather)", class: "font-serif" },
+    { name: "Mono (Fira Mono)", class: "font-mono" },
+    // Ajoute ici d'autres familles si tu les as importées
+  ];
+
 function App() {
   useEffect(() => {
     themeChange(false); // false = React mode, évite la double initialisation
@@ -20,6 +27,8 @@ function App() {
     "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter",
     // Ajoute ici les nouveaux thèmes si DaisyUI en ajoute plus tard
   ];
+  const [font, setFont] = useState(fonts[0].class);
+
 
   const getSearchResults = async () => {
     setError(null)
@@ -58,7 +67,7 @@ function App() {
   }
 
   return (
-  <div className="min-h-screen bg-base-200 text-base-content p-8">
+  <div className={`min-h-screen bg-base-200 text-base-content p-8 ${font}`}>
     <div className="max-w-2xl mx-auto card bg-base-100 shadow-xl rounded-xl p-6">
       <h1 className="text-2xl font-semibold mb-4">Recherche sémantique</h1>
 
@@ -71,6 +80,18 @@ function App() {
             <option key={theme} value={theme}>{theme}</option>
           ))}
         </select>
+      </div>
+
+      <div className="flex gap-2 mb-6">
+        {fonts.map(f => (
+          <button
+            key={f.class}
+            className={`btn btn-sm ${font === f.class ? "btn-primary" : ""}`}
+            onClick={() => setFont(f.class)}
+          >
+            {f.name}
+          </button>
+        ))}
       </div>
 
       <textarea
