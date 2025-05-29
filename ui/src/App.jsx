@@ -82,7 +82,7 @@ function App() {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, top_k: 5 }),
+        body: JSON.stringify({ query, top_k: 10 }),
       })
       if (!res.ok) throw new Error(await res.text())
       const data = await res.json()
@@ -179,20 +179,20 @@ function App() {
             onChange={e => setText(e.target.value)}
           />
           <div>
-            <h3 className="text-md font-semibold mb-2">Variables à afficher</h3>
+            <h3 className="text-md font-semibold mb-2">Variables à visualiser</h3>
             {results.length > 0 && (
               <ul className="list-disc ml-5 space-y-2">
                 {results.map((r, i) => {
                   const id = `${r.survey_id}::${r.variable_id}`;
                   const isChecked = selected.includes(id);
-                  const disabled = !isChecked && selected.length >= 3;
+                  // const disabled = !isChecked && selected.length >= 3;
                   return (
                     <li key={id} className="border-b pb-2">
                       <label className="flex items-start gap-2">
                         <input
                           type="checkbox"
                           checked={isChecked}
-                          disabled={disabled}
+                          // disabled={disabled}
                           onChange={() => {
                             setSelected(prev =>
                               isChecked
@@ -236,10 +236,18 @@ function App() {
         </aside>
         {/* Contenu principal */}
         <main className="flex-1 p-8 overflow-y-auto">
-          <h1 className="text-2xl font-semibold mb-4">Recherche sémantique</h1>
+          <h1 className="text-2xl font-bold mb-6">Visualisations</h1>
           {vizData.length > 0 && (
-            <div className="mt-10">
-              <h2 className="text-xl font-bold mb-4">Visualisations</h2>
+            <div
+              className="
+                grid
+                grid-cols-1
+                sm:grid-cols-2
+                md:grid-cols-3
+                gap-6
+              "
+              style={{ minHeight: "300px" }} // optionnel, pour le look
+            >
               {vizData.map((d, i) => (
                 <BarChartViz key={i} title={d.label} data={d} />
               ))}
