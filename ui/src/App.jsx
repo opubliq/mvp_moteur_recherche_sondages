@@ -1,12 +1,25 @@
 import { useState } from 'react'
 import BarChartViz from './BarChartViz'
+import { useEffect } from "react";
+import { themeChange } from "theme-change";
 
 function App() {
+  useEffect(() => {
+    themeChange(false); // false = React mode, évite la double initialisation
+  }, []);
+  console.log('theme applique:', document.documentElement.getAttribute('data-theme'));
   const [text, setText] = useState('')
   const [results, setResults] = useState([])
   const [selected, setSelected] = useState([])
   const [error, setError] = useState(null)
   const [vizData, setVizData] = useState([])
+  const themes = [
+    "light", "dark", "cupcake", "bumblebee", "emerald", "corporate", "synthwave",
+    "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua",
+    "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula",
+    "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter",
+    // Ajoute ici les nouveaux thèmes si DaisyUI en ajoute plus tard
+  ];
 
   const getSearchResults = async () => {
     setError(null)
@@ -48,6 +61,17 @@ function App() {
   <div className="min-h-screen bg-base-200 text-base-content p-8">
     <div className="max-w-2xl mx-auto card bg-base-100 shadow-xl rounded-xl p-6">
       <h1 className="text-2xl font-semibold mb-4">Recherche sémantique</h1>
+
+      <div className="mb-6">
+        <label className="label">
+          <span className="label-text">Choisir le thème:</span>
+        </label>
+        <select className="select select-bordered w-full" data-choose-theme>
+          {themes.map((theme) => (
+            <option key={theme} value={theme}>{theme}</option>
+          ))}
+        </select>
+      </div>
 
       <textarea
         className="textarea textarea-bordered w-full mb-4"
