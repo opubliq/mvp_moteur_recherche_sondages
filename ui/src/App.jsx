@@ -48,7 +48,15 @@ function App() {
     "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter",
     // Ajoute ici les nouveaux thèmes si DaisyUI en ajoute plus tard
   ];
-  const [font, setFont] = useState(fonts[0].class);
+  const [selectedTheme, setSelectedTheme] = useState(themes[0]); // themes[0] = "light"
+  const [font, setFont] = useState(fonts[1].class);
+
+  useEffect(() => {
+  if (selectedTheme) {
+    document.documentElement.setAttribute("data-theme", selectedTheme);
+  }
+  }, [selectedTheme]); // Met à jour le thème quand selectedTheme change
+  
 
 
   const getSearchResults = async () => {
@@ -93,22 +101,36 @@ function App() {
       <h1 className="text-2xl font-semibold mb-4">Recherche sémantique</h1>
 
       <div className="flex gap-4 mb-6">
-        <div className="flex-1">
-          <label className="label">
-            <span className="label-text">Choisir le thème:</span>
-          </label>
-          <select className="select select-bordered w-full" data-choose-theme>
-            {themes.map((theme) => (
-              <option key={theme} value={theme}>{theme}</option>
-            ))}
-          </select>
+        {/* Sélecteur de thème DaisyUI */}
+        <div className="flex-1 relative">
+          <Listbox value={selectedTheme} onChange={setSelectedTheme}>
+            <Listbox.Label className="label">
+              <span className="label-text">Choisir le thème :</span>
+            </Listbox.Label>
+            <Listbox.Button className="select select-bordered w-full" data-theme={selectedTheme}>
+              {selectedTheme}
+            </Listbox.Button>
+            <Listbox.Options className="absolute left-0 w-full mt-2 max-h-64 overflow-y-auto rounded shadow-lg z-50">
+              {themes.map(theme => (
+                <Listbox.Option
+                  key={theme}
+                  value={theme}
+                  data-theme={theme}
+                  className="p-2 cursor-pointer rounded bg-base-100 text-base-content"
+                >
+                  {theme}
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
+          </Listbox>
         </div>
-
-        <div className="relative">
+            
+        {/* Sélecteur de police */}
+        <div className="flex-1 relative">
           <Listbox value={font} onChange={setFont}>
-            <label className="label">
-              <span className="label-text">Choisir la police:</span>
-            </label>
+            <Listbox.Label className="label">
+              <span className="label-text">Choisir la police :</span>
+            </Listbox.Label>
             <Listbox.Button
               className="select select-bordered w-full"
               style={{
@@ -117,9 +139,7 @@ function App() {
             >
               {fonts.find(f => f.class === font)?.name}
             </Listbox.Button>
-            <Listbox.Options
-              className="absolute left-0 w-full mt-2 max-h-64 overflow-y-auto bg-base-100 rounded shadow-lg z-50"
-            >
+            <Listbox.Options className="absolute left-0 w-full mt-2 max-h-64 overflow-y-auto bg-base-100 rounded shadow-lg z-50">
               {fonts.map(f => (
                 <Listbox.Option
                   key={f.class}
@@ -134,6 +154,7 @@ function App() {
           </Listbox>
         </div>
       </div>
+
 
       <textarea
         className="textarea textarea-bordered w-full mb-4"
