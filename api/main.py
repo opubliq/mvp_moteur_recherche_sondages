@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 import os
 from sklearn.metrics.pairwise import cosine_similarity
-from matching.semantic_search import load_corpus, semantic_search
+from matching.semantic_search import load_corpus, load_metadata_tables, semantic_search
 from typing import List
 import pandas as pd
 from viz.functions import get_variable_distribution
@@ -49,7 +49,8 @@ def search(req: SearchRequest):
         raise HTTPException(status_code=400, detail="Requête vide non autorisée")
 
     corpus_info, corpus_texts = load_corpus()
-    df = semantic_search(req.query, corpus_texts, corpus_info, model=model, top_k=req.top_k)
+    codebook_variables, surveys_metadata = load_metadata_tables()
+    df = semantic_search(req.query, corpus_texts, corpus_info, model=model, codebook_variables=codebook_variables, surveys_metadata=surveys_metadata, top_k=req.top_k)
 
     results = df.to_dict(orient="records")
     return {"results": results}
