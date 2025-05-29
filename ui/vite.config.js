@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [
     react(),
-    splitVendorChunkPlugin()
+    splitVendorChunkPlugin() 
   ],
   build: {
     chunkSizeWarningLimit: 1000 // en kB, ajuste selon tes besoins
