@@ -104,7 +104,7 @@ function App() {
           </select>
         </div>
 
-        <div className="flex-1">
+        <div className="relative">
           <Listbox value={font} onChange={setFont}>
             <label className="label">
               <span className="label-text">Choisir la police:</span>
@@ -118,7 +118,7 @@ function App() {
               {fonts.find(f => f.class === font)?.name}
             </Listbox.Button>
             <Listbox.Options
-              className="mt-2 max-h-64 overflow-y-auto bg-base-100 rounded shadow-lg z-50"
+              className="absolute left-0 w-full mt-2 max-h-64 overflow-y-auto bg-base-100 rounded shadow-lg z-50"
             >
               {fonts.map(f => (
                 <Listbox.Option
