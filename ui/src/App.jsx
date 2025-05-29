@@ -59,23 +59,45 @@ function App() {
   
 
 
-  const getSearchResults = async () => {
-    setError(null)
+const getSearchResults = async () => {
+  setError(null)
+  let query = text.trim();
+
+  if (!query) {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/search`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: text, top_k: 5 }),
-      })
-      if (!res.ok) throw new Error(await res.text())
-      const data = await res.json()
-      setResults(data.results)
-      setSelected([])
-      setVizData([])
-    } catch (err) {
-      setError(err.message)
+      const resp = await fetch('https://random-word-api.vercel.app/api?words=3');
+      const data = await resp.json();
+      query = data.join(' '); // 3 mots séparés par un espace
+      setText(query);         // Affiche les 3 mots dans le textarea
+    } catch (e) {
+      // fallback local si l'API échoue
+      const fallbackWords = ["forest", "computer", "friend", "music", "coffee", "river", "dream"];
+      // On en prend 3 au hasard
+      const shuffled = fallbackWords.sort(() => 0.5 - Math.random());
+      query = shuffled.slice(0, 3).join(' ');
+      setText(query);
     }
   }
+
+
+  try {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/search`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, top_k: 5 }),
+    })
+    if (!res.ok) throw new Error(await res.text())
+    const data = await res.json()
+    setResults(data.results)
+    setSelected([])
+    setVizData([])
+  } catch (err) {
+    setError(err.message)
+  }
+}
+
+
+
 
   const fetchViz = async () => {
     try {
