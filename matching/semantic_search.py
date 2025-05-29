@@ -3,6 +3,14 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 
+def load_metadata_tables(db_path="surveys_bd.sqlite"):
+    conn = sqlite3.connect(db_path)
+    codebook_variables = pd.read_sql_query("SELECT * FROM codebook_variables", conn)
+    surveys_metadata = pd.read_sql_query("SELECT * FROM surveys_metadata", conn)
+    conn.close()
+    return codebook_variables, surveys_metadata
+
+
 # --- Chargement des textes et embeddings ---
 def load_corpus(db_path="surveys_bd.sqlite", embedding_path=None):
     try:
@@ -35,18 +43,11 @@ def load_corpus(db_path="surveys_bd.sqlite", embedding_path=None):
         return corpus_info, corpus_texts
 
     except Exception as e:
-        print(f"Erreur lors du chargement du corpus: {str(e)}")
-        corpus_info = [(1, 101), (1, 102), (2, 201)]
-        corpus_texts = [
-            "quel est votre niveau de confiance envers le gouvernement?",
-            "êtes-vous satisfait de votre situation financière?", 
-            "pensez-vous que l'économie va s'améliorer dans l'année à venir?"
-        ]
-        return corpus_info, corpus_texts
+        raise RuntimeError(f"Erreur lors du chargement du corpus: {str(e)}")
 
 
 # --- Recherche sémantique avec similarité cosinus ---
-def semantic_search(query, corpus_texts, corpus_info, model, top_k=15):
+def semantic_search(query, corpus_texts, corpus_info, model, codebook_variables, surveys_metadata, top_k=15):
     try:
         if not corpus_texts or not corpus_info:
             raise ValueError("Corpus vide. Impossible de continuer.")
@@ -56,7 +57,6 @@ def semantic_search(query, corpus_texts, corpus_info, model, top_k=15):
             query_embedding = query_embedding.reshape(1, -1)
 
         corpus_embeddings = model.encode(corpus_texts)
-
         sims = cosine_similarity(query_embedding, corpus_embeddings)[0]
 
         top_k = min(top_k, len(sims))
@@ -65,25 +65,34 @@ def semantic_search(query, corpus_texts, corpus_info, model, top_k=15):
         results = []
         for idx in top_indices:
             sid, vid = corpus_info[idx]
+
+            # Recherche des labels dans codebook_variables
+            row_var = codebook_variables[
+                (codebook_variables['survey_id'] == sid) &
+                (codebook_variables['variable_id'] == vid)
+            ]
+            label = row_var['label'].values[0] if not row_var.empty else None
+            question_label = row_var['question_label'].values[0] if not row_var.empty else None
+
+            # Recherche des metadata dans surveys_metadata
+            row_survey = surveys_metadata[surveys_metadata['survey_id'] == sid]
+            title = row_survey['title'].values[0] if not row_survey.empty else None
+            year = row_survey['year'].values[0] if not row_survey.empty else None
+
             results.append({
                 "survey_id": sid,
                 "variable_id": vid,
                 "similarity_score": float(sims[idx]),
-                "text": corpus_texts[idx]
+                "text": corpus_texts[idx],
+                "label": label,
+                "question_label": question_label,
+                "title": title,
+                "year": year
             })
 
         return pd.DataFrame(results)
 
     except Exception as e:
-        print(f"Erreur lors de la recherche sémantique: {str(e)}")
-        return pd.DataFrame({
-            "survey_id": [1, 1, 2],
-            "variable_id": [101, 102, 201],
-            "similarity_score": [0.95, 0.85, 0.75],
-            "text": [
-                "confiance envers le gouvernement",
-                "satisfaction avec la situation financière",
-                "perspectives économiques futures"
-            ]
-        })
+        raise RuntimeError(f"Erreur lors de la recherche sémantique: {str(e)}")
+
 
