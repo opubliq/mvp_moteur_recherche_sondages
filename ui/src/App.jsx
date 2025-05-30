@@ -178,10 +178,26 @@ function App() {
             value={text}
             onChange={e => setText(e.target.value)}
           />
+          <div className="flex gap-2 mt-4">
+            <button
+              onClick={getSearchResults}
+              className="btn btn-primary flex-1"
+            >
+              Lancer recherche
+            </button>
+            {selected.length > 0 && (
+              <button
+                onClick={fetchViz}
+                className="btn btn-secondary flex-1"
+              >
+                Afficher graphiques
+              </button>
+            )}
+          </div>
           <div>
             <h3 className="text-md font-semibold mb-2">Variables à visualiser</h3>
             {results.length > 0 && (
-              <ul className="list-disc ml-5 space-y-2">
+              <ul className="list-none ml-5 space-y-2">
                 {results.map((r, i) => {
                   const id = `${r.survey_id}::${r.variable_id}`;
                   const isChecked = selected.includes(id);
@@ -202,7 +218,14 @@ function App() {
                           }}
                           className="checkbox checkbox-primary"
                         />
-                        <span className="font-medium">{r.label}</span>
+                        <span className="flex flex-col">
+                            <span className="font-medium">{r.label}</span>
+                            <span className="text-[10px] text-gray-500 mt-1">
+                              {r.question_label}
+                              <br />
+                              <span className="italic">{r.title}</span>
+                            </span>
+                          </span>
                       </label>
                     </li>
                   );
@@ -210,28 +233,12 @@ function App() {
               </ul>
             )}
           </div>
-          <div className="flex gap-2 mt-4">
-            <button
-              onClick={getSearchResults}
-              className="btn btn-primary flex-1"
-            >
-              Lancer recherche
-            </button>
-            {selected.length > 0 && (
-              <button
-                onClick={fetchViz}
-                className="btn btn-secondary flex-1"
-              >
-                Afficher graphiques
-              </button>
-            )}
-          </div>
           {error && (
             <p className="text-error mt-4">Erreur : {error}</p>
           )}
         </aside>
         {/* Contenu principal */}
-        <main className="flex-1 p-8 overflow-y-auto">
+        <main className="flex-1 p-8 overflow-y-auto min-h-screen">
           <h1 className="text-2xl font-bold mb-6">Visualisations</h1>
           {vizData.length > 0 && (
             <div
@@ -242,7 +249,7 @@ function App() {
                 md:grid-cols-3
                 gap-6
               "
-              style={{ minHeight: "300px" }} // optionnel, pour le look
+              style={{ minHeight: "400px" }} // optionnel, pour le look
             >
               {vizData.map((d, i) => (
                 <BarChartViz key={i} title={d.label} data={d} />
