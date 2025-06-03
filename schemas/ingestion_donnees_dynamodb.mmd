@@ -1,0 +1,34 @@
+flowchart TD
+    subgraph Utilisateur
+        A[Dépose fichiers dans S3]
+    end
+
+    subgraph S3
+        B1[raw-surveys-data/survey_id/]
+        B2[structured-surveys-data/survey_id/]
+        B3[cleaning-scripts/survey_id/]
+    end
+
+    subgraph Lambda
+        C1[Lambda 1 Structuration]
+        C2[Lambda 2 Nettoyage & Transformation]
+    end
+
+    subgraph Stockage final
+        D[DynamoDB - tables sondages, codebooks, réponses]
+    end
+
+    A --> B1
+    B1 --> C1
+    C1 --> B2
+    B2 --> C2
+    B3 -.-> C2
+    C2 --> D
+
+    %% Légende
+    classDef s3 fill:#e0f7fa,stroke:#00796b,stroke-width:2px,color:#222;
+    classDef lambda fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,color:#222;
+    classDef dynamo fill:#e1bee7,stroke:#7b1fa2,stroke-width:2px,color:#222;
+    class B1,B2,B3 s3;
+    class C1,C2 lambda;
+    class D dynamo;
