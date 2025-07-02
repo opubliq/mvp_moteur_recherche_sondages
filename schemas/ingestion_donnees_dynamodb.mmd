@@ -3,26 +3,29 @@ flowchart TD
         A[Dépose fichiers dans S3]
     end
 
-    subgraph S3
-        B1[raw-surveys-data/survey_id/]
-        B2[structured-surveys-data/survey_id/]
-        B3[cleaning-scripts/survey_id/]
+    subgraph "Pipeline d’ingestion (géré par opubliq/pipeline_sondages)"
+        subgraph S3
+            B1[raw-surveys-data/survey_id/]
+            B2[structured-surveys-data/survey_id/]
+            B3[cleaning-scripts/survey_id/]
+        end
+
+        subgraph Lambda
+            C1[Lambda 1 Structuration]
+            C2[Lambda 2 Nettoyage & Transformation]
+        end
+
+        A --> B1
+        B1 --> C1
+        C1 --> B2
+        B2 --> C2
+        B3 -.-> C2
     end
 
-    subgraph Lambda
-        C1[Lambda 1 Structuration]
-        C2[Lambda 2 Nettoyage & Transformation]
-    end
-
-    subgraph Stockage final
+    subgraph "Stockage final et application (ce dépôt)"
         D[DynamoDB - tables sondages, codebooks, réponses]
     end
 
-    A --> B1
-    B1 --> C1
-    C1 --> B2
-    B2 --> C2
-    B3 -.-> C2
     C2 --> D
 
     %% Légende
