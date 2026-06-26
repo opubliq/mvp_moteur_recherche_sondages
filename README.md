@@ -21,3 +21,39 @@ ln -s /home/hubcad25/opubliq/gdrive/_SharedFolder_data_produit data
 
 L'ingestion et le nettoyage des fichiers bruts sont gérés dans un dépôt séparé
 (`opubliq/pipeline_sondages`). Ce dépôt-ci se concentre sur la recherche et la démo.
+
+## Configuration
+
+Copier `.env.example` vers `.env` (gitignored) et remplir les valeurs. Variables requises :
+
+| Variable | Description |
+|----------|-------------|
+| `SEARCH_ENDPOINT` | Endpoint du service Azure AI Search (`https://<service>.search.windows.net`) |
+| `SEARCH_ADMIN_KEY` | Clé admin (ingestion / création d'index) |
+| `SEARCH_QUERY_KEY` | Clé query (recherche en lecture seule, côté serveur) |
+| `AOAI_ENDPOINT` | Endpoint Azure OpenAI |
+| `AOAI_KEY` | Clé Azure OpenAI |
+| `AOAI_EMBED_DEPLOYMENT` | Nom du déploiement d'embeddings (`text-embedding-3-large`, 3072 dims) |
+
+## Infra Azure
+
+Provisionnée dans l'abonnement « Azure subscription 1 », région **canadaeast** :
+
+| Ressource | Nom | Tier |
+|-----------|-----|------|
+| Resource group | `rg-opubliq-sondages` | — |
+| Azure AI Search | `opubliq-sondages-728c` | **Free** (0 $/mois ; 50 MB, 3 index, ~10k docs, pas de semantic ranker) |
+| Azure OpenAI | `opubliq-sondages-aoai-728c` | S0 (facturé au token) |
+| Déploiement embeddings | `text-embedding-3-large` (v1, 3072 dims) | Standard |
+
+Recréer les clés / endpoints au besoin :
+
+```bash
+RG=rg-opubliq-sondages
+az search admin-key show   --service-name opubliq-sondages-728c -g $RG --query primaryKey -o tsv
+az search query-key list   --service-name opubliq-sondages-728c -g $RG --query "[0].key" -o tsv
+az cognitiveservices account keys list -n opubliq-sondages-aoai-728c -g $RG --query key1 -o tsv
+```
+
+> Le tier Free de AI Search suffit pour le proto. Passer à **Basic** (~75 $/mois) seulement si
+> on dépasse 50 MB / 10k docs ou qu'on a besoin du semantic ranker.
