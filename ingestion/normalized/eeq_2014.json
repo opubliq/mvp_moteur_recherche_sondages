@@ -1,0 +1,4788 @@
+{
+  "survey": {
+    "survey_id": "eeq_2014",
+    "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+    "year": 2014,
+    "pollster": "Université McGill",
+    "language": "fr",
+    "n_respondents": 1517,
+    "raw_data_file": "Quebec Election Study 2014.sav",
+    "tags": [
+      "electoral",
+      "provincial",
+      "québec",
+      "2014",
+      "eeq"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "LANG",
+      "question_text": "Préfèreriez-vous répondre à ce questionnaire en anglais ou en français? Would you prefer to complete the survey in English or French?",
+      "response_options": [
+        {
+          "code": "EN",
+          "label": "English"
+        },
+        {
+          "code": "FR",
+          "label": "Français"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QAGE",
+      "question_text": "En quelle année êtes-vous né(e)? / Entrez l'année de naissance",
+      "response_options": [
+        {
+          "code": 9999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CLAGE",
+      "question_text": "Groupe d'age",
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Entre 18 et 24 ans:"
+        },
+        {
+          "code": 3,
+          "label": "Entre 25 et 34 ans:"
+        },
+        {
+          "code": 4,
+          "label": "Entre 35 et 44 ans:"
+        },
+        {
+          "code": 5,
+          "label": "Entre 45 et 54 ans:"
+        },
+        {
+          "code": 6,
+          "label": "Entre 55 et 64 ans:"
+        },
+        {
+          "code": 7,
+          "label": "Entre 65 et 74 ans:"
+        },
+        {
+          "code": 8,
+          "label": "75 ans +"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QSEXE",
+      "question_text": "Quel est votre sexe?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Masculin"
+        },
+        {
+          "code": 2,
+          "label": "Féminin"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QLANG",
+      "question_text": "Quelle est la langue que vous avez apprise en premier lieu à la maison dans votre enfance et que vous comprenez toujours?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 3,
+          "label": "Autre"
+        },
+        {
+          "code": 4,
+          "label": "Français et anglais"
+        },
+        {
+          "code": 5,
+          "label": "Français et autre"
+        },
+        {
+          "code": 6,
+          "label": "Anglais et autre"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QREGION",
+      "question_text": "Dans quelle région du Québec habitez-vous?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Bas-Saint-Laurent"
+        },
+        {
+          "code": 2,
+          "label": "Saguenay-Lac-Saint-Jean"
+        },
+        {
+          "code": 3,
+          "label": "Capitale-Nationale"
+        },
+        {
+          "code": 4,
+          "label": "Mauricie"
+        },
+        {
+          "code": 5,
+          "label": "Estrie"
+        },
+        {
+          "code": 6,
+          "label": "Montréal"
+        },
+        {
+          "code": 7,
+          "label": "Outaouais"
+        },
+        {
+          "code": 8,
+          "label": "Abitibi-Témiscamingue"
+        },
+        {
+          "code": 9,
+          "label": "Côte-Nord"
+        },
+        {
+          "code": 10,
+          "label": "Nord-du-Québec"
+        },
+        {
+          "code": 11,
+          "label": "Gaspésie/Iles-de-la-Madeleine"
+        },
+        {
+          "code": 12,
+          "label": "Chaudière-Appalaches"
+        },
+        {
+          "code": 13,
+          "label": "Laval"
+        },
+        {
+          "code": 14,
+          "label": "Lanaudière"
+        },
+        {
+          "code": 15,
+          "label": "Laurentides"
+        },
+        {
+          "code": 16,
+          "label": "Montérégie"
+        },
+        {
+          "code": 17,
+          "label": "Centre-du-Québec"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "REGIO",
+      "question_text": "Région métropolitaine",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "MTL RMR"
+        },
+        {
+          "code": 2,
+          "label": "QC RMR"
+        },
+        {
+          "code": 3,
+          "label": "AUTRES RÉGIONS"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QENFAN",
+      "question_text": "Y a-t-il des enfants de moins de 18 ans vivant dans votre ménage?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QSCOL",
+      "question_text": "À quel niveau se situe la dernière année de scolarité que vous avez complétée?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Aucune scolarité"
+        },
+        {
+          "code": 2,
+          "label": "Cours primaire (sans diplôme)"
+        },
+        {
+          "code": 3,
+          "label": "Cours primaire (avec diplôme)"
+        },
+        {
+          "code": 4,
+          "label": "Cours secondaire (sans diplôme)"
+        },
+        {
+          "code": 5,
+          "label": "Cours secondaire (avec diplôme)"
+        },
+        {
+          "code": 6,
+          "label": "CÉGEP (sans diplôme)"
+        },
+        {
+          "code": 7,
+          "label": "CÉGEP (avec diplôme)"
+        },
+        {
+          "code": 8,
+          "label": "Cours technique"
+        },
+        {
+          "code": 9,
+          "label": "Université non complétée"
+        },
+        {
+          "code": 10,
+          "label": "Baccalauréat"
+        },
+        {
+          "code": 11,
+          "label": "Maîtrise ou doctorat"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q1",
+      "question_text": "Parmi les enjeux suivants, lequel était, pour vous personnellement, le plus important lors de l'élection provinciale du 7 avril dernier?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "L'économie"
+        },
+        {
+          "code": 2,
+          "label": "La santé"
+        },
+        {
+          "code": 3,
+          "label": "L'environnement"
+        },
+        {
+          "code": 4,
+          "label": "L'éducation"
+        },
+        {
+          "code": 5,
+          "label": "L'aide aux familles"
+        },
+        {
+          "code": 6,
+          "label": "La pauvreté"
+        },
+        {
+          "code": 7,
+          "label": "L'intégrité"
+        },
+        {
+          "code": 8,
+          "label": "Les taxes et les finances publiques"
+        },
+        {
+          "code": 9,
+          "label": "La souveraineté du Québec"
+        },
+        {
+          "code": 10,
+          "label": "La charte de la laïcité"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q2",
+      "question_text": "Avez-vous voté à cette élection provinciale?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q3",
+      "question_text": "Pour quel parti avez-vous voté?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "Option nationale"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q4",
+      "question_text": "Est-ce que ce parti était votre premier choix?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q5",
+      "question_text": "Quel parti était votre premier choix?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "Option nationale"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q6",
+      "question_text": "Pour quel parti aviez-vous voté lors de l'élection provinciale du 4 septembre 2012?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "Option nationale"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 97,
+          "label": "Je n'ai pas voté"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7A",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / Les positions politiques du parti",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout important"
+        },
+        {
+          "code": 2,
+          "label": "Pas très important"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt important"
+        },
+        {
+          "code": 4,
+          "label": "Très important"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7B",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / La qualité du/de la candidat(e) local(e)",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout important"
+        },
+        {
+          "code": 2,
+          "label": "Pas très important"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt important"
+        },
+        {
+          "code": 4,
+          "label": "Très important"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7C",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / Le/la chef du parti",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout important"
+        },
+        {
+          "code": 2,
+          "label": "Pas très important"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt important"
+        },
+        {
+          "code": 4,
+          "label": "Très important"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7D",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / La capacité du parti à défendre les intérêts actuels et futurs du Québec",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout important"
+        },
+        {
+          "code": 2,
+          "label": "Pas très important"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt important"
+        },
+        {
+          "code": 4,
+          "label": "Très important"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7E",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / La capacité du parti à comprendre l'histoire et la culture du Québec",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout important"
+        },
+        {
+          "code": 2,
+          "label": "Pas très important"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt important"
+        },
+        {
+          "code": 4,
+          "label": "Très important"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7F",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / La probabilité que le parti forme un gouvernement",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout important"
+        },
+        {
+          "code": 2,
+          "label": "Pas très important"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt important"
+        },
+        {
+          "code": 4,
+          "label": "Très important"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7G",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / Les préférences constitutionnelles du parti",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout important"
+        },
+        {
+          "code": 2,
+          "label": "Pas très important"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt important"
+        },
+        {
+          "code": 4,
+          "label": "Très important"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q8",
+      "question_text": "Vos préférences partisanes mises à part, quel parti a selon vous mené la meilleure campagne ?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "Option nationale"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q9",
+      "question_text": "Et quel parti a selon vous mené la moins bonne campagne?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "Option nationale"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q10",
+      "question_text": "À quel point êtes-vous satisfait(e) de la performance du gouvernement péquiste en général ?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": 2,
+          "label": "Assez satisfait(e)"
+        },
+        {
+          "code": 3,
+          "label": "Pas très satisfait(e)"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout satisfait(e)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q11",
+      "question_text": "Et à quel point êtes-vous satisfait(e) de la performance du gouvernement péquiste dans la gestion de l'économie ?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": 2,
+          "label": "Assez satisfait(e)"
+        },
+        {
+          "code": 3,
+          "label": "Pas très satisfait(e)"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout satisfait(e)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q12",
+      "question_text": "Quel est votre degré d'attachement au Québec ?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très attaché(e)"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt attaché(e)"
+        },
+        {
+          "code": 3,
+          "label": "Pas très attaché(e)"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout attaché(e)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q13",
+      "question_text": "Et quel est votre degré d'attachement au Canada ?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très attaché(e)"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt attaché(e)"
+        },
+        {
+          "code": 3,
+          "label": "Pas très attaché(e)"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout attaché(e)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q14A",
+      "question_text": "Les gens ont différentes façons de se définir. Diriez-vous que vous vous considérez...?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Uniquement comme Québécois(e), pas du tout comme Canadien(ne)"
+        },
+        {
+          "code": 2,
+          "label": "D'abord comme Québécois(e), puis comme Canadien(ne)"
+        },
+        {
+          "code": 3,
+          "label": "Également comme Québécois(e) et comme Canadien(ne)"
+        },
+        {
+          "code": 4,
+          "label": "D'abord comme Canadien(ne), puis comme Québécois(e)"
+        },
+        {
+          "code": 5,
+          "label": "Uniquement comme Canadien(ne), pas du tout comme Québécois(e)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q14B",
+      "question_text": "Les gens ont différentes façons de se définir. Diriez-vous que vous vous considérez...?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Uniquement comme Canadien(ne), pas du tout comme Québécois(e)"
+        },
+        {
+          "code": 2,
+          "label": "D'abord comme Canadien(ne), puis comme Québécois(e)"
+        },
+        {
+          "code": 3,
+          "label": "Également comme Canadien(ne) et comme Québécois(e)"
+        },
+        {
+          "code": 4,
+          "label": "D'abord comme Québécois(e), puis comme Canadien(ne)"
+        },
+        {
+          "code": 5,
+          "label": "Uniquement comme Québécois(e), pas du tout comme Canadien(ne)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q15",
+      "question_text": "Certaines personnes croient que les Québécois ont des valeurs et priorités qui les rendent distincts au sein du Canada. D'autres croient que les Québécois ont les mêmes valeurs et priorités que les autres Canadiens. Et d'autres se situent entre ces deux po",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0: Valeurs distinctes"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10: Mêmes valeurs"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q16",
+      "question_text": "Avez-vous voté lors du référendum de 1995 sur la souveraineté du Québec?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17",
+      "question_text": "Pour quelle option avez-vous voté?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q18",
+      "question_text": "À quel point l'enjeu de l'indépendance politique du Québec est-il important pour vous, personnellement?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très important"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt important"
+        },
+        {
+          "code": 3,
+          "label": "Pas très important"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout important"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19",
+      "question_text": "Si un référendum sur l'indépendance avait lieu vous demandant si vous voulez que le Québec devienne un pays indépendant, voteriez-vous OUI ou voteriez-vous NON?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q20",
+      "question_text": "Et si un référendum avait lieu vous demandant si vous voulez que l'Assemblée nationale du Québec obtienne beaucoup plus de pouvoirs d'Ottawa, voteriez-vous OUI ou voteriez-vous NON?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q21",
+      "question_text": "Et si un référendum avait lieu vous demandant si vous voulez que l'Assemblée nationale du Québec signe la Constitution canadienne de 1982, voteriez-vous OUI ou voteriez-vous NON?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q22",
+      "question_text": "Et s'il y avait un référendum vous demandant de choisir parmi les trois options suivantes. Voteriez-vous pour: signer la Constitution de 1982, avoir plus de pouvoirs pour le Québec, ou l'indépendance?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": 2,
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": 3,
+          "label": "Indépendance"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q23",
+      "question_text": "Si l'option <Q22> était rejetée par une majorité de la population, quelle serait alors votre deuxième préférence?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": 2,
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": 3,
+          "label": "Indépendance"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q24A",
+      "question_text": "Classez, par ordre de préférence personnelle, les trois options constitutionnelles suivantes. / Premier choix",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": 2,
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": 3,
+          "label": "Indépendance"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q24B",
+      "question_text": "Classez, par ordre de préférence personnelle, les trois options constitutionnelles suivantes. / Deuxième choix",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": 2,
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": 3,
+          "label": "Indépendance"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q24C",
+      "question_text": "Classez, par ordre de préférence personnelle, les trois options constitutionnelles suivantes. / Troisième choix",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": 2,
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": 3,
+          "label": "Indépendance"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q25",
+      "question_text": "Parmi les trois questions suivantes, laquelle préféreriez-vous voir posée dans un référendum?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": 2,
+          "label": "Demander plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": 3,
+          "label": "Faire l'indépendance du Québec"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q26A",
+      "question_text": "Si le Parti québécois tenait un référendum pour demander plus de pouvoirs au gouvernement fédéral, voteriez-vous OUI ou voteriez-vous NON?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q26B",
+      "question_text": "Si le Parti libéral du Québec tenait un référendum pour demander plus de pouvoirs au gouvernement fédéral, voteriez-vous OUI ou voteriez-vous NON?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q27A",
+      "question_text": "Qu'est-ce qui constituerait pour vous une majorité claire dans un référendum sur l'indépendance du Québec?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "50% plus une voix"
+        },
+        {
+          "code": 2,
+          "label": "55%"
+        },
+        {
+          "code": 3,
+          "label": "60%"
+        },
+        {
+          "code": 4,
+          "label": "Plus de 60%"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q27B",
+      "question_text": "Qu'est-ce qui constituerait pour vous une majorité claire dans un référendum sur la Constitution canadienne de 1982?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "50% plus une voix"
+        },
+        {
+          "code": 2,
+          "label": "55%"
+        },
+        {
+          "code": 3,
+          "label": "60%"
+        },
+        {
+          "code": 4,
+          "label": "Plus de 60%"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28",
+      "question_text": "Quel est votre intérêt pour la politique en général? Êtes-vous:",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très intéressé(e)"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt intéressé(e)"
+        },
+        {
+          "code": 3,
+          "label": "Pas très intéressé(e)"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout intéressé(e)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29A",
+      "question_text": "Sur une échelle de ZERO à CENT, où zéro veut dire que vous N'AIMEZ VRAIMENT PAS DU TOUT un politicien, et cent veut dire que vous L'AIMEZ VRAIMENT BEAUCOUP, que pensez-vous de... PHILIPPE COUILLARD ? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 997,
+          "label": "Je ne le/la connais pas"
+        },
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment l'évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29B",
+      "question_text": "Sur une échelle de ZERO à CENT, où zéro veut dire que vous N'AIMEZ VRAIMENT PAS DU TOUT un politicien, et cent veut dire que vous L'AIMEZ VRAIMENT BEAUCOUP, que pensez-vous de... PAULINE MAROIS ? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 997,
+          "label": "Je ne le/la connais pas"
+        },
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment l'évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29C",
+      "question_text": "Sur une échelle de ZERO à CENT, où zéro veut dire que vous N'AIMEZ VRAIMENT PAS DU TOUT un politicien, et cent veut dire que vous L'AIMEZ VRAIMENT BEAUCOUP, que pensez-vous de... FRANÇOIS LEGAULT ? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 997,
+          "label": "Je ne le/la connais pas"
+        },
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment l'évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29D",
+      "question_text": "Sur une échelle de ZERO à CENT, où zéro veut dire que vous N'AIMEZ VRAIMENT PAS DU TOUT un politicien, et cent veut dire que vous L'AIMEZ VRAIMENT BEAUCOUP, que pensez-vous de... FRANÇOISE DAVID ? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 997,
+          "label": "Je ne le/la connais pas"
+        },
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment l'évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29E",
+      "question_text": "Sur une échelle de ZERO à CENT, où zéro veut dire que vous N'AIMEZ VRAIMENT PAS DU TOUT un politicien, et cent veut dire que vous L'AIMEZ VRAIMENT BEAUCOUP, que pensez-vous de... SOL ZANETTI ? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 997,
+          "label": "Je ne le/la connais pas"
+        },
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment l'évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29F",
+      "question_text": "Sur une échelle de ZERO à CENT, où zéro veut dire que vous N'AIMEZ VRAIMENT PAS DU TOUT un politicien, et cent veut dire que vous L'AIMEZ VRAIMENT BEAUCOUP, que pensez-vous de... ALEX TYRRELL ? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 997,
+          "label": "Je ne le/la connais pas"
+        },
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment l'évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29G",
+      "question_text": "Sur une échelle de ZERO à CENT, où zéro veut dire que vous N'AIMEZ VRAIMENT PAS DU TOUT un politicien, et cent veut dire que vous L'AIMEZ VRAIMENT BEAUCOUP, que pensez-vous de... PIERRE KARL PÉLADEAU ? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 997,
+          "label": "Je ne le/la connais pas"
+        },
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment l'évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30A",
+      "question_text": "Selon vous, lequel des chefs de parti est le plus compétent?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Philippe Couillard"
+        },
+        {
+          "code": 2,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 3,
+          "label": "François Legault"
+        },
+        {
+          "code": 4,
+          "label": "Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Sol Zanetti"
+        },
+        {
+          "code": 6,
+          "label": "Alex Tyrrell"
+        },
+        {
+          "code": 95,
+          "label": "Tous"
+        },
+        {
+          "code": 97,
+          "label": "Aucun"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30B",
+      "question_text": "Selon vous, lequel des chefs de parti est le plus honnête?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Philippe Couillard"
+        },
+        {
+          "code": 2,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 3,
+          "label": "François Legault"
+        },
+        {
+          "code": 4,
+          "label": "Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Sol Zanetti"
+        },
+        {
+          "code": 6,
+          "label": "Alex Tyrrell"
+        },
+        {
+          "code": 95,
+          "label": "Tous"
+        },
+        {
+          "code": 97,
+          "label": "Aucun"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30C",
+      "question_text": "Selon vous, lequel des chefs de parti est le plus proche des gens?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Philippe Couillard"
+        },
+        {
+          "code": 2,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 3,
+          "label": "François Legault"
+        },
+        {
+          "code": 4,
+          "label": "Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Sol Zanetti"
+        },
+        {
+          "code": 6,
+          "label": "Alex Tyrrell"
+        },
+        {
+          "code": 95,
+          "label": "Tous"
+        },
+        {
+          "code": 97,
+          "label": "Aucun"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q31A",
+      "question_text": "En politique, les gens parlent de la « gauche » et de la « droite ». Sur une échelle allant de 0 à 10, où 0 est le plus à gauche et 10 est le plus à droite, où placeriez-vous chacun des partis politiques suivants? / Parti libéral du Québec",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 Le plus à gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 Le plus à droite"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q31B",
+      "question_text": "En politique, les gens parlent de la « gauche » et de la « droite ». Sur une échelle allant de 0 à 10, où 0 est le plus à gauche et 10 est le plus à droite, où placeriez-vous chacun des partis politiques suivants? / Parti québécois",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 Le plus à gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 Le plus à droite"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q31C",
+      "question_text": "En politique, les gens parlent de la « gauche » et de la « droite ». Sur une échelle allant de 0 à 10, où 0 est le plus à gauche et 10 est le plus à droite, où placeriez-vous chacun des partis politiques suivants? / Coalition avenir Québec",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 Le plus à gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 Le plus à droite"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q31D",
+      "question_text": "En politique, les gens parlent de la « gauche » et de la « droite ». Sur une échelle allant de 0 à 10, où 0 est le plus à gauche et 10 est le plus à droite, où placeriez-vous chacun des partis politiques suivants? / Québec solidaire",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 Le plus à gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 Le plus à droite"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q31E",
+      "question_text": "En politique, les gens parlent de la « gauche » et de la « droite ». Sur une échelle allant de 0 à 10, où 0 est le plus à gauche et 10 est le plus à droite, où placeriez-vous chacun des partis politiques suivants? / Option nationale",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 Le plus à gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 Le plus à droite"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q31F",
+      "question_text": "En politique, les gens parlent de la « gauche » et de la « droite ». Sur une échelle allant de 0 à 10, où 0 est le plus à gauche et 10 est le plus à droite, où placeriez-vous chacun des partis politiques suivants? / Parti vert du Québec",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 Le plus à gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 Le plus à droite"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q32",
+      "question_text": "Et sur la même échelle, où vous placeriez-vous, de manière générale?",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0: Le plus à gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10: Le plus à droite"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q33",
+      "question_text": "Diriez-vous que l'on peut faire confiance à la plupart des gens ou qu'on n'est jamais trop prudent dans nos relations avec les autres?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "On peut faire confiance à la plupart des gens"
+        },
+        {
+          "code": 2,
+          "label": "On n'est jamais trop prudent dans nos relations avec les autres"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34A",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" C'est la responsabilité du gouvernement de garantir que les besoins fondamentaux sont satisfaits pour tous. \"",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34B",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" L'Assemblée nationale du Québec ne se soucie pas beaucoup de ce que les gens comme moi pensent. \"",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34C",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Les gens comme moi n'ont rien à dire sur ce que fait le gouvernement provincial à Québec. \"",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34D",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Parfois la politique et le gouvernement au niveau provincial semblent si compliqués qu'une personne comme moi",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q35",
+      "question_text": "Dans l'ensemble, êtes-vous satisfait(e) de la façon dont la démocratie fonctionne au Québec? Êtes-vous:",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": 2,
+          "label": "Assez satisfait(e)"
+        },
+        {
+          "code": 3,
+          "label": "Pas très satisfait(e)"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout satisfait(e)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q36A",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Notre société doit faire tout ce qui est nécessaire pour s'assurer que chacun ait une chance égale de réussir.",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q36B",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Ce n'est pas si grave si certaines personnes ont plus de chance que d'autres dans la vie. \"",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q36C",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Sans l'action du gouvernement, il y aurait beaucoup plus de pauvreté dans nos sociétés. \"",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q36D",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Quand les entreprises font beaucoup d'argent, tout le monde y gagne, y compris les pauvres. \"",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q36E",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Il y a trop d'immigrants au Québec. \"",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q37",
+      "question_text": "Selon vous, l'avortement devrait-il être illégal ou non?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q38",
+      "question_text": "Êtes-vous pour ou contre le mariage entre personnes de même sexe?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pour"
+        },
+        {
+          "code": 2,
+          "label": "Contre"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q39",
+      "question_text": "Êtes-vous pour ou contre la peine de mort?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pour"
+        },
+        {
+          "code": 2,
+          "label": "Contre"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q40",
+      "question_text": "Certaines personnes disent que les gouvernements devraient s'assurer que chaque personne ait un emploi et une bonne qualité de vie. D'autres personnes disent que les gouvernements devraient plutôt laisser chaque personne se débrouiller par elle-même. Et d'",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1: Les gouvernements devraient s'assurer que chaque personne a un emploi et une bonne qualité de vie"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5: Les gouvernements devraient laisser chaque personne se débrouiller par elle-même"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q41",
+      "question_text": "Il existe des opinions différentes à propos de ceux qui viennent de l'extérieur du Québec, qui apportent souvent avec eux leurs propres coutumes, religions et traditions. Croyez-vous qu'il vaut mieux que ces nouveaux arrivants essaient de s'adapter et de s",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Les nouveaux arrivants devraient s'adapter et s'intégrer"
+        },
+        {
+          "code": 2,
+          "label": "Les nouveaux arrivants devraient rester différents et contribuer à la diversité des coutumes et traditions"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42A",
+      "question_text": "Quel parti est le meilleur pour défendre les intérêts du Québec?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42B",
+      "question_text": "Quel parti est le meilleur pour défendre l'identité et la culture québécoise?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42C",
+      "question_text": "Quel parti est le meilleur pour gérer l'économie?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42D",
+      "question_text": "Quel parti est le meilleur pour améliorer l'éducation?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42E",
+      "question_text": "Quel parti est le meilleur pour protéger l'environnement?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42F",
+      "question_text": "Quel parti est le meilleur pour gérer le système de santé?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42G",
+      "question_text": "Quel parti est le meilleur pour combattre la pauvreté?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42H",
+      "question_text": "Quel parti est le meilleur pour lutter contre la corruption?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42I",
+      "question_text": "Quel parti est le meilleur pour baisser les taxes?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q43A",
+      "question_text": "Sur une échelle de ZERO à CENT, où zéro veut dire que vous N'AIMEZ VRAIMENT PAS DU TOUT les syndicats, et cent veut dire que vous les AIMEZ VRAIMENT BEAUCOUP, que pensez-vous des SYNDICATS en général? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment les évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q43B",
+      "question_text": "Et sur la même échelle, que pensez-vous des ENTREPRISES en général? / Entrez une réponse (entre 0 et 100)",
+      "response_options": [
+        {
+          "code": 998,
+          "label": "Je ne sais pas / Je ne sais pas comment les évaluer"
+        },
+        {
+          "code": 999,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q44A",
+      "question_text": "Concernant le projet de charte de la laïcité proposée par le gouvernement l'automne dernier, diriez-vous que vous êtes fortement d'accord avec cette charte, plutôt d'accord, plutôt en désaccord ou fortement en désaccord?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q44B",
+      "question_text": "Concernant le projet de charte des valeurs proposée par le gouvernement l'automne dernier, diriez-vous que vous êtes fortement d'accord avec cette charte, plutôt d'accord, plutôt en désaccord ou fortement en désaccord?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q45",
+      "question_text": "Si vous comparez la situation économique au Québec avec le reste du Canada, pensez-vous que la situation est meilleure au Québec, pire ou la même que celle du Canada?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Meilleure"
+        },
+        {
+          "code": 2,
+          "label": "Pire"
+        },
+        {
+          "code": 3,
+          "label": "La même"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q46",
+      "question_text": "Si le Québec devenait un pays indépendant, croyez-vous que la situation économique au Québec s'améliorerait, se détériorerait ou resterait à peu près la même?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "S'améliorerait"
+        },
+        {
+          "code": 2,
+          "label": "Se détériorerait"
+        },
+        {
+          "code": 3,
+          "label": "Resterait à peu près la même"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q47",
+      "question_text": "Et si le Québec devenait un pays indépendant, croyez-vous que votre situation financière personnelle s'améliorerait, se détériorerait ou resterait à peu près la même?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "S'améliorerait"
+        },
+        {
+          "code": 2,
+          "label": "Se détériorerait"
+        },
+        {
+          "code": 3,
+          "label": "Resterait à peu près la même"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q48",
+      "question_text": "Si le Québec devenait un pays indépendant, croyez-vous qu'il devrait garder le dollar canadien ou utiliser sa propre devise monétaire?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Garder le dollar canadien"
+        },
+        {
+          "code": 2,
+          "label": "Utiliser sa propre devise monétaire"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q49",
+      "question_text": "En général, diriez-vous que faire partie du Canada est très positif, plutôt positif, plutôt négatif ou très négatif pour l'économie du Québec?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très positif"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt positif"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt négatif"
+        },
+        {
+          "code": 4,
+          "label": "Très négatif"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q50",
+      "question_text": "Certaines personnes croient qu'il est mieux pour un pays de faire partie d'un plus grand marché, même si cela veut dire perdre une partie de sa souveraineté. D'autres croient qu'il est mieux pour un pays de garder sa souveraineté, même si cela veut dire fa",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0: Un plus grand marché avec moins de souveraineté"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10: Plus de souveraineté avec un plus petit marché"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q51",
+      "question_text": "Dans l'avenir, quelle serait la meilleure option pour l'économie du Québec: renforcer ses relations avec le reste du Canada ou renforcer ses relations avec les États-Unis?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Renforcer ses relations avec le reste du Canada"
+        },
+        {
+          "code": 2,
+          "label": "Renforcer ses relations avec les États-Unis"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q52",
+      "question_text": "Selon vous, l'économie du Québec s'est-elle améliorée, détériorée ou est-elle restée à peu près la même depuis un an?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "S'est améliorée"
+        },
+        {
+          "code": 2,
+          "label": "S'est détériorée"
+        },
+        {
+          "code": 3,
+          "label": "Restée à peu près le même"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q53",
+      "question_text": "Sur une échelle de ZÉRO à DIX, où zéro veut dire qu'il n'est PAS DU TOUT IMPORTANT selon vous de tenir un référendum sur l'indépendance du Québec, et dix veut dire qu'il est TRÈS IMPORTANT, quelle est l'importance de tenir un référendum sur l'indépendance",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0: Pas du tout important"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10: Très important"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q54",
+      "question_text": "Et sur la même échelle, quelle est l'importance d'adopter une charte de la laïcité?",
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0: Pas du tout important"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10: Très important"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q55",
+      "question_text": "En politique provinciale , vous considérez-vous habituellement comme un…?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Libéral"
+        },
+        {
+          "code": 2,
+          "label": "Péquiste"
+        },
+        {
+          "code": 3,
+          "label": "Caquiste"
+        },
+        {
+          "code": 4,
+          "label": "Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Oniste"
+        },
+        {
+          "code": 6,
+          "label": "Vert"
+        },
+        {
+          "code": 97,
+          "label": "Rien de cela"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q56",
+      "question_text": "Vous sentez-vous très fortement <Q55>, assez fortement, ou pas très fortement?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très fortement"
+        },
+        {
+          "code": 2,
+          "label": "Assez fortement"
+        },
+        {
+          "code": 3,
+          "label": "Pas très fortement"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q57",
+      "question_text": "Les prochaines questions serviront à des fins statistiques seulement. Parmi les catégories suivantes, laquelle reflète le mieux le revenu total avant impôt de tous les membres de votre foyer pour l'année 2013? Ceci inclut les revenus de toutes les sources",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Moins de 8 000$"
+        },
+        {
+          "code": 2,
+          "label": "8 000$ - 15 999$"
+        },
+        {
+          "code": 3,
+          "label": "16 000$ - 23 999$"
+        },
+        {
+          "code": 4,
+          "label": "24 000$ - 39 999$"
+        },
+        {
+          "code": 5,
+          "label": "40 000$ - 55 999$"
+        },
+        {
+          "code": 6,
+          "label": "56 000$ - 71 999$"
+        },
+        {
+          "code": 7,
+          "label": "72 000$ - 87 999$"
+        },
+        {
+          "code": 8,
+          "label": "88 000$ - 103 999$"
+        },
+        {
+          "code": 9,
+          "label": "104 000$ ou plus"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q58",
+      "question_text": "Travaillez-vous actuellement à votre compte, êtes-vous salarié(e), avez-vous pris votre retraite, êtes-vous au chômage ou cherchez-vous du travail, êtes-vous étudiant(e), ménager(ère), ou quelque chose d'autre?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Travaille à son compte (avec ou sans employés)"
+        },
+        {
+          "code": 2,
+          "label": "Travaille pour un salaire (à temps plein ou à temps partiel, inclut congé payé)"
+        },
+        {
+          "code": 3,
+          "label": "Retraité(e)"
+        },
+        {
+          "code": 4,
+          "label": "Au chômage/cherche du travail"
+        },
+        {
+          "code": 5,
+          "label": "Étudiant(e)"
+        },
+        {
+          "code": 6,
+          "label": "Ménager(ère)"
+        },
+        {
+          "code": 7,
+          "label": "Handicapé(e)"
+        },
+        {
+          "code": 8,
+          "label": "Occupe deux ou plus de deux emplois rémunérés"
+        },
+        {
+          "code": 9,
+          "label": "Étudiant(e) et salarié(e)"
+        },
+        {
+          "code": 10,
+          "label": "Ménager(ère) et salarié(e)"
+        },
+        {
+          "code": 11,
+          "label": "Retraité(e) et salarié(e)"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "employment",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q59A",
+      "question_text": "Parmi les types de placements financiers suivants, quels sont ceux que vous détenez ou que détient l'un des membres de votre foyer? / Compte épargne dans une banque",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q59B",
+      "question_text": "Parmi les types de placements financiers suivants, quels sont ceux que vous détenez ou que détient l'un des membres de votre foyer? / Compte dans une société de fiducie",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q59C",
+      "question_text": "Parmi les types de placements financiers suivants, quels sont ceux que vous détenez ou que détient l'un des membres de votre foyer? / REER ou CELI",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q59D",
+      "question_text": "Parmi les types de placements financiers suivants, quels sont ceux que vous détenez ou que détient l'un des membres de votre foyer? / Actions ou parts d'entreprise",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q59E",
+      "question_text": "Parmi les types de placements financiers suivants, quels sont ceux que vous détenez ou que détient l'un des membres de votre foyer? / Obligations (obligations d'épargne du Canada, etc.)",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q59F",
+      "question_text": "Parmi les types de placements financiers suivants, quels sont ceux que vous détenez ou que détient l'un des membres de votre foyer? / Portefeuille d'actifs financiers (CPG, fonds mutuels, etc.)",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q59G",
+      "question_text": "Parmi les types de placements financiers suivants, quels sont ceux que vous détenez ou que détient l'un des membres de votre foyer? / Régime d'épargne-retraite",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q60A",
+      "question_text": "Aujourd'hui, êtes-vous propriétaire : / De votre résidence principale?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q60B",
+      "question_text": "Aujourd'hui, êtes-vous propriétaire : / D'une résidence secondaire (maison de campagne, chalet, etc.)?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q60C",
+      "question_text": "Aujourd'hui, êtes-vous propriétaire : / D'autres biens immobiliers ou de propriétés que vous louez (duplex, etc.)?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q60D",
+      "question_text": "Aujourd'hui, êtes-vous propriétaire : / D'autres biens immobiliers ou propriétés?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q60E",
+      "question_text": "Aujourd'hui, êtes-vous propriétaire : / D'un ou de plusieurs terrains?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q61",
+      "question_text": "Est-ce que vous ou quelqu'un dans votre ménage est syndiqué(e)?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "union_membership",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q62",
+      "question_text": "Considérez-vous appartenir à une religion ou à une dénomination particulière?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "religion",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q63",
+      "question_text": "À quelle religion appartenez-vous?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Christianisme (Catholicisme)"
+        },
+        {
+          "code": 2,
+          "label": "Christianisme (Protestant)"
+        },
+        {
+          "code": 3,
+          "label": "Christianisme (autre)"
+        },
+        {
+          "code": 4,
+          "label": "Judaïsme"
+        },
+        {
+          "code": 5,
+          "label": "Islam"
+        },
+        {
+          "code": 6,
+          "label": "Autre"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "religion_type",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q64",
+      "question_text": "Sans compter les mariages et les funérailles, combien de fois assistez-vous aux messes à votre lieu de culte?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Chaque semaine"
+        },
+        {
+          "code": 2,
+          "label": "Deux fois par mois"
+        },
+        {
+          "code": 3,
+          "label": "Une fois par mois"
+        },
+        {
+          "code": 4,
+          "label": "Une ou deux fois par année"
+        },
+        {
+          "code": 7,
+          "label": "Presque jamais (ou jamais)"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "religion_practice",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q65",
+      "question_text": "Où êtes-vous né(e)?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Au Québec"
+        },
+        {
+          "code": 2,
+          "label": "Ailleurs au Canada"
+        },
+        {
+          "code": 3,
+          "label": "Hors du Canada"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "place_of_birth",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66",
+      "question_text": "Quelle langue parlez-vous le plus souvent à la maison?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Anglais"
+        },
+        {
+          "code": 2,
+          "label": "Français"
+        },
+        {
+          "code": 3,
+          "label": "Chinois"
+        },
+        {
+          "code": 4,
+          "label": "Italien"
+        },
+        {
+          "code": 5,
+          "label": "Portugais"
+        },
+        {
+          "code": 6,
+          "label": "Espagnol"
+        },
+        {
+          "code": 7,
+          "label": "Allemand"
+        },
+        {
+          "code": 8,
+          "label": "Polonais"
+        },
+        {
+          "code": 9,
+          "label": "Punjabi"
+        },
+        {
+          "code": 10,
+          "label": "Grec"
+        },
+        {
+          "code": 11,
+          "label": "Vietnamien"
+        },
+        {
+          "code": 12,
+          "label": "Arabe"
+        },
+        {
+          "code": 13,
+          "label": "Inuktitut"
+        },
+        {
+          "code": 14,
+          "label": "Cri"
+        },
+        {
+          "code": 15,
+          "label": "Tagal (Philippin)"
+        },
+        {
+          "code": 16,
+          "label": "Ukrainien / Russe"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language_home",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q67",
+      "question_text": "De quelle origine ethnique êtes-vous?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadienne, Québécoise"
+        },
+        {
+          "code": 2,
+          "label": "Autochtone (Amérindienne, Premières nations)"
+        },
+        {
+          "code": 3,
+          "label": "Afrique du Nord (Maroc, Algérie, Tunisie, Libye, Égypte)"
+        },
+        {
+          "code": 4,
+          "label": "Afrique (Gabon, Congo, Côte d'Ivoire, Éthiopie, Kenya, Cameroun, Mauritanie, ...) et Afrique du Sud"
+        },
+        {
+          "code": 5,
+          "label": "Amérique centrale et sud (Nicaragua, Pérou, Bolivie, Vénézuela, Argentine, El Salvador, Guatemala, …)"
+        },
+        {
+          "code": 6,
+          "label": "Américaine (États-Unis)"
+        },
+        {
+          "code": 7,
+          "label": "Mexicaine"
+        },
+        {
+          "code": 8,
+          "label": "Antillaise (Haïti, Jamaïque, République Dominicaine, ….)"
+        },
+        {
+          "code": 9,
+          "label": "Asiatique (Japon, Chine, Vietnam, Corée, Cambodge, ...)"
+        },
+        {
+          "code": 10,
+          "label": "Européenne (France, Belgique, Italie, Espagne, Portugal, Allemagne, Autriche, Suède, Norvège, Danemark, Pays-Bas, Grèce,"
+        },
+        {
+          "code": 11,
+          "label": "Europe de l'Est (Russie, Ukraine, Pologne, Roumanie, Ex-Yougoslavie, Croatie, République Tchèque, République Slovaque, H"
+        },
+        {
+          "code": 12,
+          "label": "Moyen-Orient (Jordanie, Arabie Saoudite, Irak, Liban,...), sauf l'Afrique du Nord"
+        },
+        {
+          "code": 13,
+          "label": "Turquie, Arménie, Iran, Kurde"
+        },
+        {
+          "code": 96,
+          "label": "Autre origine"
+        },
+        {
+          "code": 98,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "ethnicity",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q68",
+      "question_text": "Quel est votre statut civil officiel?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Marié(e)"
+        },
+        {
+          "code": 2,
+          "label": "Marié(e), mais séparé(e)"
+        },
+        {
+          "code": 3,
+          "label": "Célibataire"
+        },
+        {
+          "code": 4,
+          "label": "Divorcé(e)"
+        },
+        {
+          "code": 5,
+          "label": "Veuf/veuve"
+        },
+        {
+          "code": 6,
+          "label": "Dans une union civile"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "civil_status",
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}
