@@ -1,0 +1,10 @@
+{
+  "name": "mvp-moteur-recherche-sondages",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@netlify/functions": "^2.8.2",
+    "typescript": "^5.8.3"
+  }
+}

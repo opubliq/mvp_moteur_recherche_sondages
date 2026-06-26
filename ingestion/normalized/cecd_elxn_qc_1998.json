@@ -1,0 +1,1462 @@
+{
+  "survey": {
+    "survey_id": "cecd_elxn_qc_1998",
+    "survey_name": "Panel électoral du Québec 1998 (CECD)",
+    "year": 1998,
+    "pollster": "Createc / CROP",
+    "language": "fr",
+    "n_respondents": 1483,
+    "raw_data_file": "Total_panel_election_QC1998.sav",
+    "tags": [
+      "electoral",
+      "provincial",
+      "québec",
+      "panel",
+      "1998"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "quetr",
+      "question_text": "# QUEST",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sexe_post",
+      "question_text": "SEXE",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "HOMME"
+        },
+        {
+          "code": 2,
+          "label": "FEMME"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q4m1",
+      "question_text": "Q4 Quelle est la principale raison pour laquelle vous avez fait votre choix",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Vote strategique"
+        },
+        {
+          "code": 2,
+          "label": "Pour le changement"
+        },
+        {
+          "code": 3,
+          "label": "Menage dans sante"
+        },
+        {
+          "code": 4,
+          "label": "Rencontre candidat"
+        },
+        {
+          "code": 5,
+          "label": "A cause du chef"
+        },
+        {
+          "code": 6,
+          "label": "Contre la separation, le referendum"
+        },
+        {
+          "code": 7,
+          "label": "A cause du programme"
+        },
+        {
+          "code": 8,
+          "label": "Aime pas autres partis"
+        },
+        {
+          "code": 9,
+          "label": "Pour la continuite, 2ieme chance"
+        },
+        {
+          "code": 10,
+          "label": "A cause du debat"
+        },
+        {
+          "code": 11,
+          "label": "Menage dans finances (reduct"
+        },
+        {
+          "code": 12,
+          "label": "Confiance dans ce parti"
+        },
+        {
+          "code": 13,
+          "label": "Ont tenu promesses"
+        },
+        {
+          "code": 14,
+          "label": "Pour la separation"
+        },
+        {
+          "code": 15,
+          "label": "Semblait le meilleur parti"
+        },
+        {
+          "code": 16,
+          "label": "Conseil famille/amis"
+        },
+        {
+          "code": 17,
+          "label": "A cause de campagne"
+        },
+        {
+          "code": 90,
+          "label": "Autres (PRECISER)"
+        },
+        {
+          "code": 99,
+          "label": "Nsp/Nrp"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q4m2",
+      "question_text": "Q4 Quelle est la principale raison pour laquelle vous avez fait votre choix",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Vote strategique"
+        },
+        {
+          "code": 2,
+          "label": "Pour le changement"
+        },
+        {
+          "code": 3,
+          "label": "Pour menage dans sante"
+        },
+        {
+          "code": 4,
+          "label": "Rencontre candidat"
+        },
+        {
+          "code": 5,
+          "label": "A cause du chef"
+        },
+        {
+          "code": 6,
+          "label": "Contre la separation, le referendum"
+        },
+        {
+          "code": 7,
+          "label": "A cause du programme"
+        },
+        {
+          "code": 8,
+          "label": "N'aimait pas les deux autres partis"
+        },
+        {
+          "code": 9,
+          "label": "Pour la continuite, 2ieme chance"
+        },
+        {
+          "code": 10,
+          "label": "A cause du debat"
+        },
+        {
+          "code": 11,
+          "label": "Pour menage dans finances (reduct"
+        },
+        {
+          "code": 12,
+          "label": "Confiance dans ce parti"
+        },
+        {
+          "code": 13,
+          "label": "Ont tenu promesses"
+        },
+        {
+          "code": 14,
+          "label": "Pour la separation"
+        },
+        {
+          "code": 15,
+          "label": "Me semblait le meilleur parti"
+        },
+        {
+          "code": 16,
+          "label": "Conseils famille, amis"
+        },
+        {
+          "code": 17,
+          "label": "A cause de la campagne"
+        },
+        {
+          "code": 90,
+          "label": "Autres (PRECISER)"
+        },
+        {
+          "code": 99,
+          "label": "Nsp/Nrp"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q3post",
+      "question_text": "Vote déclaré",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "L'ADQ"
+        },
+        {
+          "code": 2,
+          "label": "* Le Parti égalité"
+        },
+        {
+          "code": 3,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 4,
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": 5,
+          "label": "un autre parti"
+        },
+        {
+          "code": 6,
+          "label": "* a annulé son vote"
+        },
+        {
+          "code": 8,
+          "label": "n'a pas voté"
+        },
+        {
+          "code": 9,
+          "label": "* Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vpl",
+      "question_text": "intention de vote",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "L'ADQ"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti égalité"
+        },
+        {
+          "code": 3,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 4,
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": 5,
+          "label": "un autre parti"
+        },
+        {
+          "code": 6,
+          "label": "annule./ne voterait pas"
+        },
+        {
+          "code": 7,
+          "label": "NSP"
+        },
+        {
+          "code": 8,
+          "label": "Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q2post",
+      "question_text": "hésitation pré vote",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "hésitant ou indécis"
+        },
+        {
+          "code": 2,
+          "label": "idée faite"
+        },
+        {
+          "code": 8,
+          "label": "n'a pas voté"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q1post",
+      "question_text": "A voté ou non",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "oui"
+        },
+        {
+          "code": 2,
+          "label": "non"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvote",
+      "question_text": "intention de vote détaillée",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "L'ADQ"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti égalité"
+        },
+        {
+          "code": 3,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 4,
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": 5,
+          "label": "un autre parti"
+        },
+        {
+          "code": 6,
+          "label": "annule./ne voterait pas"
+        },
+        {
+          "code": 8,
+          "label": "NSP"
+        },
+        {
+          "code": 9,
+          "label": "Refus"
+        },
+        {
+          "code": 10,
+          "label": "ne votera pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "poids",
+      "question_text": "pondération",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ponder2",
+      "question_text": "pondération",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "firme_post",
+      "question_text": "firme de sondage",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "createc"
+        },
+        {
+          "code": 2,
+          "label": "crop"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ponder3",
+      "question_text": "pondération",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "raison1",
+      "question_text": "Première raison invoquée",
+      "response_options": [
+        {
+          "code": 100,
+          "label": "Gouvernement"
+        },
+        {
+          "code": 110,
+          "label": "Changement/ stabilité du gouvernement"
+        },
+        {
+          "code": 120,
+          "label": "Satisfait ou non du gouvernement"
+        },
+        {
+          "code": 121,
+          "label": "Satisfait ou non du gouv: santé"
+        },
+        {
+          "code": 122,
+          "label": "Satisfait du gouv: fonction publique"
+        },
+        {
+          "code": 130,
+          "label": "Gouv. a respecté ou non promesses"
+        },
+        {
+          "code": 200,
+          "label": "Les paris"
+        },
+        {
+          "code": 210,
+          "label": "Confiance ou non"
+        },
+        {
+          "code": 211,
+          "label": "Confiance dans le programme du parti"
+        },
+        {
+          "code": 212,
+          "label": "Confiance dans le parti"
+        },
+        {
+          "code": 220,
+          "label": "Identification partisane"
+        },
+        {
+          "code": 300,
+          "label": "les députés"
+        },
+        {
+          "code": 310,
+          "label": "Respect ou no de leurs promesses"
+        },
+        {
+          "code": 330,
+          "label": "Rencontre avec le candidat"
+        },
+        {
+          "code": 400,
+          "label": "les chefs"
+        },
+        {
+          "code": 410,
+          "label": "Satisfait ou non du chef"
+        },
+        {
+          "code": 420,
+          "label": "Aime la personnalité du chef"
+        },
+        {
+          "code": 500,
+          "label": "Politiques"
+        },
+        {
+          "code": 510,
+          "label": "Pour/contre la souveraineté (question nationale)"
+        },
+        {
+          "code": 520,
+          "label": "Pour un ménage dans les finances publiques"
+        },
+        {
+          "code": 521,
+          "label": "Pour un ménage dans la santé"
+        },
+        {
+          "code": 600,
+          "label": "Autres"
+        },
+        {
+          "code": 610,
+          "label": "Vote de protestation (contre un(des) parti(s)"
+        },
+        {
+          "code": 620,
+          "label": "Vote de sympathie"
+        },
+        {
+          "code": 630,
+          "label": "Vote stratégique (Pq pas trop fort)"
+        },
+        {
+          "code": 640,
+          "label": "Devoir d'aller voter"
+        },
+        {
+          "code": 650,
+          "label": "À cause du débat"
+        },
+        {
+          "code": 660,
+          "label": "Conseils des amis, familles"
+        },
+        {
+          "code": 670,
+          "label": "À cause de la campagne en général"
+        },
+        {
+          "code": 680,
+          "label": "Indécis"
+        },
+        {
+          "code": 997,
+          "label": "Incompréhensible"
+        },
+        {
+          "code": 998,
+          "label": "NSP/NRP"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "raison2",
+      "question_text": "Deuxième raison invoquée",
+      "response_options": [
+        {
+          "code": 100,
+          "label": "Gouvernement"
+        },
+        {
+          "code": 110,
+          "label": "Changement/ stabilité du gouvernement"
+        },
+        {
+          "code": 120,
+          "label": "Satisfait ou non du gouvernement"
+        },
+        {
+          "code": 121,
+          "label": "Satisfait ou non du gouv: santé"
+        },
+        {
+          "code": 122,
+          "label": "Satisfait du gouv: fonction publique"
+        },
+        {
+          "code": 200,
+          "label": "Les paris"
+        },
+        {
+          "code": 210,
+          "label": "Confiance ou non"
+        },
+        {
+          "code": 211,
+          "label": "Confiance dans le programme du parti"
+        },
+        {
+          "code": 212,
+          "label": "Confiance dans le parti"
+        },
+        {
+          "code": 220,
+          "label": "Identification partisane"
+        },
+        {
+          "code": 300,
+          "label": "les députés"
+        },
+        {
+          "code": 310,
+          "label": "Respect ou no de leurs promesses"
+        },
+        {
+          "code": 330,
+          "label": "Rencontre avec le candidat"
+        },
+        {
+          "code": 400,
+          "label": "les chefs"
+        },
+        {
+          "code": 410,
+          "label": "Satisfait ou non du chef"
+        },
+        {
+          "code": 420,
+          "label": "Aime la personnalité du chef"
+        },
+        {
+          "code": 500,
+          "label": "Politiques"
+        },
+        {
+          "code": 510,
+          "label": "Pour/contre la souveraineté (question nationale)"
+        },
+        {
+          "code": 520,
+          "label": "Pour un ménage dans les finances publiques"
+        },
+        {
+          "code": 521,
+          "label": "Pour un ménage dans la santé"
+        },
+        {
+          "code": 600,
+          "label": "Autres"
+        },
+        {
+          "code": 610,
+          "label": "Vote de protestation (contre un(des) parti(s)"
+        },
+        {
+          "code": 620,
+          "label": "Vote de sympathie"
+        },
+        {
+          "code": 630,
+          "label": "Vote stratégique (Pq pas trop fort)"
+        },
+        {
+          "code": 640,
+          "label": "Devoir d'aller voter"
+        },
+        {
+          "code": 650,
+          "label": "À cause du débat"
+        },
+        {
+          "code": 660,
+          "label": "Conseils des amis, familles"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "mention1",
+      "question_text": "MENTION 1",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "mention2",
+      "question_text": "MENTION 2",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "quest2_crop",
+      "question_text": "# QUEST de crop",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ponderc",
+      "question_text": "pondération",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "s_jr",
+      "question_text": "JOUR DU RAPPEL",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "s_jse",
+      "question_text": "JOUR DE LA SEMAINE",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "s_app",
+      "question_text": "NOMBRE D'APPELS",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "age",
+      "question_text": "A quel groupe d'age appartenez-vous? (LIRE SI NECESSAIRE)",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "18-24"
+        },
+        {
+          "code": 2,
+          "label": "25-34"
+        },
+        {
+          "code": 3,
+          "label": "35-44"
+        },
+        {
+          "code": 4,
+          "label": "45-54"
+        },
+        {
+          "code": 5,
+          "label": "55-64"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "r3_createc",
+      "question_text": "VOTE AU SONDAGE",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "PLQ"
+        },
+        {
+          "code": 2,
+          "label": "PQ"
+        },
+        {
+          "code": 3,
+          "label": "ADQ"
+        },
+        {
+          "code": 4,
+          "label": "LE PARTI EGALITE"
+        },
+        {
+          "code": 5,
+          "label": "UN AUTRE PARTI"
+        },
+        {
+          "code": 6,
+          "label": "Autre parti non precise (NE PAS LIRE)"
+        },
+        {
+          "code": 7,
+          "label": "Ne sait pas"
+        },
+        {
+          "code": 8,
+          "label": "N'irait pas voter/Annulerait"
+        },
+        {
+          "code": 9,
+          "label": "Refus de repondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "r4_createc",
+      "question_text": "RELANCE DU SONDAGE",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "PLQ"
+        },
+        {
+          "code": 2,
+          "label": "PQ"
+        },
+        {
+          "code": 3,
+          "label": "ADQ"
+        },
+        {
+          "code": 4,
+          "label": "LE PARTI EGALITE"
+        },
+        {
+          "code": 5,
+          "label": "UN AUTRE PARTI"
+        },
+        {
+          "code": 6,
+          "label": "Autre parti non precise (NE PAS LIRE)"
+        },
+        {
+          "code": 7,
+          "label": "Ne sait pas"
+        },
+        {
+          "code": 8,
+          "label": "N'irait pas voter/Annulerait"
+        },
+        {
+          "code": 9,
+          "label": "Refus de repondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "allervot",
+      "question_text": "Intention d'aller voter",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "certain,très"
+        },
+        {
+          "code": 2,
+          "label": "prob, assez"
+        },
+        {
+          "code": 3,
+          "label": "prob pas, peu prob."
+        },
+        {
+          "code": 4,
+          "label": "sure pas, pas prob."
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "satisf",
+      "question_text": "Satisfaction face au gouvernement",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "très satisf"
+        },
+        {
+          "code": 2,
+          "label": "plutot satisf"
+        },
+        {
+          "code": 3,
+          "label": "plutot insatisf"
+        },
+        {
+          "code": 4,
+          "label": "tres insatisf"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "scol",
+      "question_text": "scolarité",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1-9 ans"
+        },
+        {
+          "code": 2,
+          "label": "10-15 ans"
+        },
+        {
+          "code": 3,
+          "label": "univ. +"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "meilpm",
+      "question_text": "Meilleur P.M, pour diriger le Québec",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Bouchard"
+        },
+        {
+          "code": 2,
+          "label": "Charest"
+        },
+        {
+          "code": 3,
+          "label": "autres, nsp, aucun"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vote94",
+      "question_text": "Vote en 1994",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "PLQ"
+        },
+        {
+          "code": 2,
+          "label": "PQ"
+        },
+        {
+          "code": 3,
+          "label": "non vote"
+        },
+        {
+          "code": 4,
+          "label": "nsp refus autres"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "occup",
+      "question_text": "occupation",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "t. plein"
+        },
+        {
+          "code": 2,
+          "label": "t. partiel"
+        },
+        {
+          "code": 3,
+          "label": "ne trav. pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "voteref",
+      "question_text": "Intention de vote référendaire",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "oui"
+        },
+        {
+          "code": 2,
+          "label": "non"
+        },
+        {
+          "code": 3,
+          "label": "annule,nvp"
+        },
+        {
+          "code": 8,
+          "label": "nsp"
+        },
+        {
+          "code": 9,
+          "label": "refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q7a_crop",
+      "question_text": "7a. S'il y avait des élections provinciales aujourd'hui au Québec, pour lequel des partis suivants voteriez-vous? Est-ce...",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "L'ADQ"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti égalité"
+        },
+        {
+          "code": 3,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 4,
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": 5,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 6,
+          "label": "annulerait/voterait pas"
+        },
+        {
+          "code": 8,
+          "label": "NSP"
+        },
+        {
+          "code": 9,
+          "label": "Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q7b_crop",
+      "question_text": "7b. Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Est-ce...",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "L'ADQ"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti égalité"
+        },
+        {
+          "code": 3,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 4,
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": 5,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 6,
+          "label": "annulerait/voterait pas"
+        },
+        {
+          "code": 8,
+          "label": "* NSP"
+        },
+        {
+          "code": 9,
+          "label": "* Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q16a_crop",
+      "question_text": "16a. Si un référendum avait lieu aujourd'hui sur la même question que celle qui a été posée lors du dernier référendum de 1995, c'est-à-dire sur la souveraineté assortie d'une offre de partenariat au reste du Canada, voteriez-vous OUI ou voteriez-vous NON",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "OUI"
+        },
+        {
+          "code": 2,
+          "label": "NON"
+        },
+        {
+          "code": 3,
+          "label": "voterait pas/annulerait"
+        },
+        {
+          "code": 8,
+          "label": "* NSP"
+        },
+        {
+          "code": 9,
+          "label": "* Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q16b_crop",
+      "question_text": "16b. Même si vous n'avez peut-être pas encore fait votre choix, s'il y avait un référendum aujourd'hui sur cette question, seriez-vous tenté(e) de voter pour le OUI ou pour le NON?",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "OUI"
+        },
+        {
+          "code": 2,
+          "label": "NON"
+        },
+        {
+          "code": 3,
+          "label": "voterait pas/annulerait"
+        },
+        {
+          "code": 8,
+          "label": "* NSP"
+        },
+        {
+          "code": 9,
+          "label": "* Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvote2",
+      "question_text": "Intention de vote",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "PLQ"
+        },
+        {
+          "code": 2,
+          "label": "PQ"
+        },
+        {
+          "code": 3,
+          "label": "ADQ"
+        },
+        {
+          "code": 4,
+          "label": "LE PARTI EGALITE"
+        },
+        {
+          "code": 5,
+          "label": "UN AUTRE PARTI"
+        },
+        {
+          "code": 6,
+          "label": "Autre parti non precise (NE PAS LIRE)"
+        },
+        {
+          "code": 7,
+          "label": "Ne sait pas"
+        },
+        {
+          "code": 8,
+          "label": "N'irait pas voter/Annulerait"
+        },
+        {
+          "code": 9,
+          "label": "Refus de repondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q3post2",
+      "question_text": "Vote déclaré",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "ADQ"
+        },
+        {
+          "code": 3,
+          "label": "Lib."
+        },
+        {
+          "code": 4,
+          "label": "Pq"
+        },
+        {
+          "code": 5,
+          "label": "autres"
+        },
+        {
+          "code": 6,
+          "label": "pas voté"
+        },
+        {
+          "code": 9,
+          "label": "refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "typo",
+      "question_text": "Typologie intention - vote déclaré",
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "typog",
+      "question_text": "Typologie intention - vote déclaré - regroupé",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "adq-adq"
+        },
+        {
+          "code": 2,
+          "label": "plq-plq"
+        },
+        {
+          "code": 3,
+          "label": "pq-pq"
+        },
+        {
+          "code": 4,
+          "label": "nvp-nvp"
+        },
+        {
+          "code": 5,
+          "label": "ref-ref"
+        },
+        {
+          "code": 6,
+          "label": "parti-plq"
+        },
+        {
+          "code": 7,
+          "label": "parti-pq"
+        },
+        {
+          "code": 8,
+          "label": "parti-adq"
+        },
+        {
+          "code": 9,
+          "label": "nvpnsp-plq"
+        },
+        {
+          "code": 10,
+          "label": "nvpnsp-pq"
+        },
+        {
+          "code": 11,
+          "label": "nvpnspref-adq"
+        },
+        {
+          "code": 12,
+          "label": "plq-nvp"
+        },
+        {
+          "code": 13,
+          "label": "pq-nvp"
+        },
+        {
+          "code": 14,
+          "label": "adq+-nvp"
+        },
+        {
+          "code": 15,
+          "label": "ref-plq"
+        },
+        {
+          "code": 16,
+          "label": "ref-pq"
+        },
+        {
+          "code": 17,
+          "label": "parti-ref"
+        },
+        {
+          "code": 18,
+          "label": "ref-nvp&nvp-ref"
+        },
+        {
+          "code": 19,
+          "label": "vers autre parti"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "allervo2",
+      "question_text": "Intention d'aller voter - regroupé",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "très prob,sur"
+        },
+        {
+          "code": 2,
+          "label": "assez prob"
+        },
+        {
+          "code": 3,
+          "label": "peu pas sur"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q3post3",
+      "question_text": "Vote déclaré - ADQ+autres groupés",
+      "response_options": [
+        {
+          "code": 1,
+          "label": "ADQ + autres"
+        },
+        {
+          "code": 3,
+          "label": "Lib."
+        },
+        {
+          "code": 4,
+          "label": "Pq"
+        },
+        {
+          "code": 6,
+          "label": "pas voté"
+        },
+        {
+          "code": 9,
+          "label": " refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}
