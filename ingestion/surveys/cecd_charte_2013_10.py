@@ -57,12 +57,8 @@ def extract() -> dict:
     df, meta = pyreadstat.read_sav(str(sav_path))
 
     n_respondents: int = len(df)
-    variable_labels: dict[str, str] = dict(
-        getattr(meta, "column_names_to_labels", {}) or {}
-    )
-    value_labels: dict[str, dict] = dict(
-        getattr(meta, "variable_value_labels", {}) or {}
-    )
+    variable_labels: dict[str, str] = dict(getattr(meta, "column_names_to_labels", {}) or {})
+    value_labels: dict[str, dict] = dict(getattr(meta, "variable_value_labels", {}) or {})
 
     questions = []
     for col in df.columns:
@@ -141,10 +137,6 @@ if __name__ == "__main__":
     data = extract()
     print(f"Questions: {len(data['questions'])}")
     print(f"Socio-démo: {sum(1 for q in data['questions'] if q['is_sociodemo'])}")
-    out = (
-        Path(__file__).parent.parent
-        / "normalized"
-        / f"{SURVEY_ID}.json"
-    )
+    out = Path(__file__).parent.parent / "normalized" / f"{SURVEY_ID}.json"
     out.write_text(json.dumps(data, ensure_ascii=False, indent=2))
     print(f"Écrit : {out}")

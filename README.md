@@ -35,6 +35,79 @@ Copier `.env.example` vers `.env` (gitignored) et remplir les valeurs. Variables
 | `AOAI_KEY` | Clé Azure OpenAI |
 | `AOAI_EMBED_DEPLOYMENT` | Nom du déploiement d'embeddings (`text-embedding-3-large`, 3072 dims) |
 
+## Installation
+
+Prérequis : [`uv`](https://docs.astral.sh/uv/) (Python ≥ 3.11) et Node 22+.
+
+```bash
+uv sync          # crée .venv et installe les deps Python (dont ruff, pytest)
+npm install      # installe les deps front + Netlify CLI local
+```
+
+## Ingestion
+
+L'orchestrateur lit les modules `ingestion/surveys/*.py` (un `extract()` par sondage),
+construit les documents parent-child, calcule les embeddings des questions et les
+pousse vers l'index Azure AI Search. Idempotent (merge-or-upload sur la clé `id`).
+
+```bash
+uv run python -m ingestion.run                  # ingère tous les sondages
+uv run python -m ingestion.run --recreate-index # supprime + recrée l'index d'abord
+uv run python -m ingestion.run --only eeq_2014  # un seul survey_id
+```
+
+Requiert un `.env` complet (les clés `SEARCH_ADMIN_KEY` + `AOAI_*` sont utilisées ici).
+
+## Front en local
+
+Le front (Vite) appelle les Netlify Functions `/search` et `/survey`, qui ont besoin
+des clés Azure. On lance donc le tout via la CLI Netlify (Vite seul ne sert pas les
+functions) :
+
+```bash
+npx netlify dev        # front + functions sur http://localhost:8888
+```
+
+`netlify dev` charge le `.env` automatiquement et expose `/search` et `/survey` (voir
+`netlify.toml`). Pour valider le rendu sans index Azure peuplé, lancer Vite seul avec
+le flag mock : `VITE_USE_MOCK=true npm run dev`.
+
+## Déploiement (Netlify)
+
+`netlify.toml` configure déjà le build (`npm run build` → `dist/`) et le bundling des
+functions. Côté Netlify, configurer ces variables d'environnement (Site settings →
+Environment variables) — **uniquement les clés serveur, jamais la clé admin** :
+
+| Variable | Rôle |
+|----------|------|
+| `SEARCH_ENDPOINT` | Endpoint Azure AI Search |
+| `SEARCH_QUERY_KEY` | Clé query (lecture seule) utilisée par les functions |
+| `AOAI_ENDPOINT` | Endpoint Azure OpenAI |
+| `AOAI_KEY` | Clé Azure OpenAI |
+| `AOAI_EMBED_DEPLOYMENT` | Déploiement d'embeddings (doit matcher celui de l'ingestion) |
+
+`SEARCH_ADMIN_KEY` ne doit **pas** être configurée sur Netlify : les functions ne font
+que lire. Pousser sur `main` déclenche le build/déploiement.
+
+## Lint & CI
+
+```bash
+uv run ruff check .          # lint Python
+uv run ruff format --check . # vérif formatage (sans --check pour reformater)
+uv run pytest -q             # tests (pydantic/build_docs, aucun appel Azure)
+npm run build                # build front (inclut tsc -b)
+```
+
+La CI GitHub Actions (`.github/workflows/ci.yml`) rejoue ces étapes sur chaque push /
+PR, sans secret (aucun job n'appelle Azure). Avant d'ouvrir une PR, lancer
+`uv run ruff format .` pour appliquer le formatage.
+
+## Versioning des embeddings
+
+Chaque document enfant porte le champ `embedding_model` (déploiement AOAI utilisé). En
+cas de changement de modèle d'embeddings, suivre la procédure de migration **blue-green**
+décrite dans [`docs/EMBEDDINGS.md`](docs/EMBEDDINGS.md).
+
 ## Infra Azure
 
 Provisionnée dans l'abonnement « Azure subscription 1 », région **canadaeast** :

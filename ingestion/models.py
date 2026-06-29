@@ -6,8 +6,6 @@ qui contient un `Survey` et une liste de `Question`.
 
 from __future__ import annotations
 
-from typing import Any
-
 from pydantic import BaseModel, Field, field_validator
 
 

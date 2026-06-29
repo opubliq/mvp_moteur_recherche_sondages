@@ -69,8 +69,7 @@ def build_docs(survey_file: SurveyFile) -> list[dict[str, Any]]:
             "variable": question.variable,
             "question_text": question.question_text,
             "response_options": [
-                {"code": str(opt.code), "label": opt.label}
-                for opt in question.response_options
+                {"code": str(opt.code), "label": opt.label} for opt in question.response_options
             ],
             "var_type": question.var_type,
             "is_sociodemo": question.is_sociodemo,

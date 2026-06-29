@@ -1,0 +1,57 @@
+name: CI
+
+# Lint + format-check + tests/build, sans secret : aucun job n'appelle Azure en live.
+# (Les tests Python sont purement pydantic/build_docs ; le build front est statique.)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Annule les runs précédents encore en cours sur la même réf.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Python (ruff + pytest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Sync dependencies
+        run: uv sync --frozen
+
+      - name: Ruff lint
+        run: uv run ruff check .
+
+      - name: Ruff format check
+        run: uv run ruff format --check .
+
+      - name: Pytest
+        # La suite ne touche ni Azure ni le réseau : aucun .env requis.
+        run: uv run pytest -q
+
+  frontend:
+    name: Frontend (build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (inclut tsc -b)
+        run: npm run build

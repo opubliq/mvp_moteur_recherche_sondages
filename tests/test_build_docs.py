@@ -3,8 +3,8 @@
 import pytest
 from pydantic import ValidationError
 
-from ingestion.models import Question, ResponseOption, Survey, SurveyFile
 from ingestion.build_docs import build_docs, embed_text
+from ingestion.models import Question, Survey, SurveyFile
 
 # ---------------------------------------------------------------------------
 # Fixture : exemple de sondage minimal mais complet

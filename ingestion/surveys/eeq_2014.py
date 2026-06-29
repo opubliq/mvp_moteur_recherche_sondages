@@ -73,23 +73,23 @@ EXCLUDED_VARS: set[str] = {
 # ---------------------------------------------------------------------------
 
 SOCIODEMO_VARS: dict[str, str] = {
-    "QAGE": "age",           # année de naissance (continue)
-    "CLAGE": "age",          # groupe d'âge (catégorielle)
-    "QSEXE": "gender",       # sexe
-    "QLANG": "language",     # langue maternelle
-    "QREGION": "region",     # région du Québec
-    "REGIO": "region",       # région métropolitaine (agrégée)
-    "QSCOL": "education",    # niveau de scolarité
-    "Q57": "income",         # revenu total du ménage
-    "Q58": "employment",     # situation d'emploi
+    "QAGE": "age",  # année de naissance (continue)
+    "CLAGE": "age",  # groupe d'âge (catégorielle)
+    "QSEXE": "gender",  # sexe
+    "QLANG": "language",  # langue maternelle
+    "QREGION": "region",  # région du Québec
+    "REGIO": "region",  # région métropolitaine (agrégée)
+    "QSCOL": "education",  # niveau de scolarité
+    "Q57": "income",  # revenu total du ménage
+    "Q58": "employment",  # situation d'emploi
     "Q61": "union_membership",  # syndicalisation
-    "Q62": "religion",       # appartenance religieuse
+    "Q62": "religion",  # appartenance religieuse
     "Q63": "religion_type",  # dénomination religieuse
     "Q64": "religion_practice",  # fréquence des pratiques religieuses
-    "Q65": "place_of_birth", # lieu de naissance
+    "Q65": "place_of_birth",  # lieu de naissance
     "Q66": "language_home",  # langue parlée à la maison
-    "Q67": "ethnicity",      # origine ethnique
-    "Q68": "civil_status",   # statut civil
+    "Q67": "ethnicity",  # origine ethnique
+    "Q68": "civil_status",  # statut civil
 }
 
 # ---------------------------------------------------------------------------
@@ -103,11 +103,24 @@ SOCIODEMO_VARS: dict[str, str] = {
 # Q53     : importance référendum indépendance 0-10
 # Q54     : importance charte laïcité 0-10
 SCALE_VARS: set[str] = {
-    "Q29A", "Q29B", "Q29C", "Q29D", "Q29E", "Q29F", "Q29G",
-    "Q43A", "Q43B",
-    "Q31A", "Q31B", "Q31C", "Q31D", "Q31E", "Q31F",
+    "Q29A",
+    "Q29B",
+    "Q29C",
+    "Q29D",
+    "Q29E",
+    "Q29F",
+    "Q29G",
+    "Q43A",
+    "Q43B",
+    "Q31A",
+    "Q31B",
+    "Q31C",
+    "Q31D",
+    "Q31E",
+    "Q31F",
     "Q32",
-    "Q53", "Q54",
+    "Q53",
+    "Q54",
 }
 
 # ---------------------------------------------------------------------------
@@ -162,16 +175,19 @@ def extract() -> dict:
         # Construire les options de réponse depuis les value labels SAV
         raw_opts: dict = val_labels.get(col, {})
         response_options = []
-        for code, label in sorted(raw_opts.items(), key=lambda kv: (
-            float(kv[0]) if isinstance(kv[0], (int, float)) else str(kv[0])
-        )):
+        for code, label in sorted(
+            raw_opts.items(),
+            key=lambda kv: float(kv[0]) if isinstance(kv[0], (int, float)) else str(kv[0]),
+        ):
             # Convertir les codes float entiers (1.0, 2.0…) en int
             if isinstance(code, float) and code == int(code):
                 code = int(code)
-            response_options.append({
-                "code": code,
-                "label": _clean_text(str(label)),
-            })
+            response_options.append(
+                {
+                    "code": code,
+                    "label": _clean_text(str(label)),
+                }
+            )
 
         # Inférer le type de variable
         dtype_str = str(df[col].dtype)
@@ -187,16 +203,18 @@ def extract() -> dict:
         is_sociodemo = col in SOCIODEMO_VARS
         sociodemo_type = SOCIODEMO_VARS.get(col)
 
-        questions.append({
-            "variable": col,
-            "question_text": question_text,
-            "response_options": response_options,
-            "var_type": var_type,
-            "is_sociodemo": is_sociodemo,
-            "sociodemo_type": sociodemo_type,
-            "concepts": [],
-            "themes": [],
-        })
+        questions.append(
+            {
+                "variable": col,
+                "question_text": question_text,
+                "response_options": response_options,
+                "var_type": var_type,
+                "is_sociodemo": is_sociodemo,
+                "sociodemo_type": sociodemo_type,
+                "concepts": [],
+                "themes": [],
+            }
+        )
 
     result: dict = {
         "survey": {

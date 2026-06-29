@@ -62,6 +62,7 @@ SOCIODEMO_VARS: dict[str, str] = {
 # Fonction principale
 # ---------------------------------------------------------------------------
 
+
 def extract() -> dict:
     """Lit le fichier SAV et retourne le dict SurveyFile normalisé.
 
@@ -90,25 +91,27 @@ def extract() -> dict:
         # Inférer le type de variable
         dtype_str = str(df[col].dtype)
         if dtype_str == "object":
-            var_type = "open"       # chaîne de caractères (mention1, mention2)
+            var_type = "open"  # chaîne de caractères (mention1, mention2)
         elif raw_opts:
-            var_type = "single"     # numérique avec étiquettes → choix unique
+            var_type = "single"  # numérique avec étiquettes → choix unique
         else:
-            var_type = "continuous" # poids, numéro de questionnaire, compteurs…
+            var_type = "continuous"  # poids, numéro de questionnaire, compteurs…
 
         is_sociodemo = col in SOCIODEMO_VARS
         sociodemo_type = SOCIODEMO_VARS.get(col)
 
-        questions.append({
-            "variable": col,
-            "question_text": question_text,
-            "response_options": response_options,
-            "var_type": var_type,
-            "is_sociodemo": is_sociodemo,
-            "sociodemo_type": sociodemo_type,
-            "concepts": [],
-            "themes": [],
-        })
+        questions.append(
+            {
+                "variable": col,
+                "question_text": question_text,
+                "response_options": response_options,
+                "var_type": var_type,
+                "is_sociodemo": is_sociodemo,
+                "sociodemo_type": sociodemo_type,
+                "concepts": [],
+                "themes": [],
+            }
+        )
 
     result: dict = {
         "survey": {
