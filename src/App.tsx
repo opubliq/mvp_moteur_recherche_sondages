@@ -4,6 +4,7 @@ import type { SearchFilters, SearchResult } from "./types";
 import SearchBar from "./components/SearchBar";
 import Facets, { type FacetOptions } from "./components/Facets";
 import SurveyGroup, { type SurveyGroupData } from "./components/SurveyGroup";
+import SurveyDetail from "./components/SurveyDetail";
 
 /** Regroupe les résultats par sondage, en conservant l'ordre de pertinence. */
 function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
@@ -53,6 +54,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [selectedSurveyId, setSelectedSurveyId] = useState<string | null>(null);
 
   async function runSearch(q: string, f: SearchFilters) {
     setLoading(true);
@@ -95,6 +97,15 @@ export default function App() {
 
   const groups = useMemo(() => groupBySurvey(displayed), [displayed]);
 
+  // Nom déjà connu (depuis les résultats) pour l'en-tête de la vue détail.
+  const selectedSurveyName = useMemo(
+    () =>
+      selectedSurveyId
+        ? results.find((r) => r.survey_id === selectedSurveyId)?.survey_name
+        : undefined,
+    [results, selectedSurveyId],
+  );
+
   return (
     <div className="min-h-screen bg-base-200">
       <header className="navbar bg-base-100 shadow-sm">
@@ -107,6 +118,14 @@ export default function App() {
       </header>
 
       <main className="mx-auto w-full max-w-6xl px-4 py-6">
+        {selectedSurveyId ? (
+          <SurveyDetail
+            surveyId={selectedSurveyId}
+            fallbackName={selectedSurveyName}
+            onBack={() => setSelectedSurveyId(null)}
+          />
+        ) : (
+          <>
         <div className="mb-6">
           <SearchBar onSearch={handleSearch} loading={loading} />
         </div>
@@ -150,10 +169,16 @@ export default function App() {
                 {groups.length} sondage{groups.length > 1 ? "s" : ""}
               </p>
               {groups.map((g) => (
-                <SurveyGroup key={g.survey_id} group={g} />
+                <SurveyGroup
+                  key={g.survey_id}
+                  group={g}
+                  onOpenSurvey={setSelectedSurveyId}
+                />
               ))}
             </div>
           </div>
+        )}
+          </>
         )}
       </main>
     </div>

@@ -19,6 +19,12 @@
   to = "/.netlify/functions/search"
   status = 200
 
+# Expose la function sous /survey (vue détail d'un sondage)
+[[redirects]]
+  from = "/survey"
+  to = "/.netlify/functions/survey"
+  status = 200
+
 # Fallback SPA
 [[redirects]]
   from = "/*"

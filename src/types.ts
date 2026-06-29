@@ -35,3 +35,22 @@ export interface SearchFilters {
   pollster?: string;
   language?: string;
 }
+
+/** Doc parent (doc_type=survey) renvoyé par la Netlify Function `/survey`. */
+export interface SurveyParent {
+  id: string;
+  survey_id: string;
+  survey_name: string;
+  survey_year: number | null;
+  pollster: string | null;
+  language: string | null;
+  n_respondents: number | null;
+  tags: string[];
+}
+
+/** Contrat de la Netlify Function `/survey` (voir netlify/functions/survey.ts). */
+export interface SurveyDetailResponse {
+  survey: SurveyParent | null;
+  questions: SearchResult[];
+  count: number;
+}
