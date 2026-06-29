@@ -1,10 +1,26 @@
 [build]
+  command   = "npm run build"
+  publish   = "dist"
   functions = "netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
 
 [dev]
-  framework  = "#static"
+  command    = "npm run dev"
+  framework  = "vite"
+  targetPort = 5173
   port       = 8888
   autoLaunch = false
+
+# Expose la function sous /search (contrat front)
+[[redirects]]
+  from = "/search"
+  to = "/.netlify/functions/search"
+  status = 200
+
+# Fallback SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

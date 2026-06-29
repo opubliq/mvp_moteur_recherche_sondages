@@ -17,6 +17,12 @@ __pycache__/
 # Node
 node_modules/
 
+# Vite build output
+dist/
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
 # Bases locales
 *.sqlite
 *.db
