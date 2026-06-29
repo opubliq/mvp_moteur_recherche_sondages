@@ -25,8 +25,9 @@ import importlib
 import json
 import logging
 import pkgutil
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
@@ -37,6 +38,7 @@ from ingestion.config import get_settings
 from ingestion.create_index import create_index
 from ingestion.embed import embed_batch
 from ingestion.models import SurveyFile
+from ingestion.validate import assert_no_fabricated_text
 
 logger = logging.getLogger("ingestion.run")
 
@@ -73,9 +75,7 @@ def _discover_sources() -> dict[str, Callable[[], dict[str, Any]]]:
             survey_id = json_path.stem
             if survey_id in sources:
                 continue
-            sources[survey_id] = lambda p=json_path: json.loads(
-                p.read_text(encoding="utf-8")
-            )
+            sources[survey_id] = lambda p=json_path: json.loads(p.read_text(encoding="utf-8"))
 
     return sources
 
@@ -92,6 +92,10 @@ def _ingest_survey(
     logger.info("[%s] extraction…", survey_id)
     raw = loader()
     survey_file = SurveyFile.model_validate(raw)
+
+    # Garde-fou : aucun question_text/label fabriqué ne doit être indexé.
+    # Lève FabricatedTextError si un wording semble inventé (cf. validate.py).
+    assert_no_fabricated_text(survey_file)
 
     docs = build_docs(survey_file)
     children = [d for d in docs if d.get("doc_type") == "question"]
@@ -112,7 +116,7 @@ def _ingest_survey(
                 f"[{survey_id}] désynchronisation embeddings/children : "
                 f"{len(vectors)} vecteurs pour {len(children)} questions."
             )
-        for child, vector in zip(children, vectors):
+        for child, vector in zip(children, vectors, strict=True):
             child["content_vector"] = vector
             child["embedding_model"] = get_settings().aoai_embed_deployment
 
@@ -144,8 +148,8 @@ def run(only: str | None = None, recreate_index: bool = False) -> None:
     if only is not None:
         if only not in sources:
             raise SystemExit(
-                f"Sondage '{only}' introuvable. Disponibles : "
-                + ", ".join(sorted(sources)) or "(aucun)"
+                f"Sondage '{only}' introuvable. Disponibles : " + ", ".join(sorted(sources))
+                or "(aucun)"
             )
         sources = {only: sources[only]}
 
@@ -165,8 +169,7 @@ def run(only: str | None = None, recreate_index: bool = False) -> None:
         total += _ingest_survey(survey_id, sources[survey_id], client)
 
     logger.info(
-        "Terminé : %d documents poussés sur %d sondage(s). "
-        "Doc count index : %d.",
+        "Terminé : %d documents poussés sur %d sondage(s). Doc count index : %d.",
         total,
         len(sources),
         client.get_document_count(),
