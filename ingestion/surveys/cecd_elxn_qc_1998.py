@@ -42,6 +42,28 @@ POLLSTER = "Createc / CROP"
 LANGUAGE = "fr"
 
 # ---------------------------------------------------------------------------
+# Variables EXCLUES (techniques : pondérations, admin, gestion terrain)
+# ---------------------------------------------------------------------------
+# Aucune valeur analytique — ce ne sont pas des questions posées aux répondants.
+#   quetr, quest2_crop         : numéros de questionnaire (# QUEST)
+#   poids, ponder2, ponder3,
+#   ponderc                    : pondérations (poids statistiques)
+#   firme_post                 : firme de sondage (métadonnée d'administration)
+#   s_jr, s_jse, s_app         : jour de rappel / jour de semaine / nombre d'appels
+EXCLUDED_VARS: set[str] = {
+    "quetr",
+    "quest2_crop",
+    "poids",
+    "ponder2",
+    "ponder3",
+    "ponderc",
+    "firme_post",
+    "s_jr",
+    "s_jse",
+    "s_app",
+}
+
+# ---------------------------------------------------------------------------
 # Classification des variables socio-démographiques
 # ---------------------------------------------------------------------------
 
@@ -77,7 +99,14 @@ def extract() -> dict:
 
     questions = []
     for col in df.columns:
-        question_text = (var_labels.get(col) or "").strip() or col
+        if col in EXCLUDED_VARS:
+            continue
+
+        # Pas de fallback `or col` : interdit par CONVENTIONS.md (fabriquerait un
+        # question_text à partir du nom de variable). On exclut plutôt.
+        question_text = (var_labels.get(col) or "").strip()
+        if not question_text:
+            continue
 
         # Construire les options de réponse depuis les value labels SAV
         raw_opts: dict = val_labels.get(col, {})
