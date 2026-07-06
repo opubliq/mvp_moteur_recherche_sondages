@@ -21,6 +21,10 @@ class Question(BaseModel):
 
     variable: str = Field(..., description="Nom de variable RAW (ex. Q1, V23)")
     question_text: str
+    # Titre lisible AUTHORÉ (LLM) — ne remplace pas question_text (verbatim raw).
+    # Sert l'affichage UI et sauve les libellés bruts trop courts/cryptiques.
+    # Champ « mou » : jamais protégé par validate.py, matérialisé en enrichment.
+    display_label: str | None = None
     response_options: list[ResponseOption] = Field(default_factory=list)
     var_type: str | None = None  # ex. "single", "multiple", "open", "scale"
     is_sociodemo: bool = False
@@ -48,7 +52,13 @@ class Survey(BaseModel):
 
     survey_id: str = Field(..., description="Identifiant unique du sondage")
     survey_name: str
+    # Résumé AUTHORÉ (LLM) de ce que couvre le sondage (contexte UI + recherche).
+    # Champ « mou » optionnel, matérialisé en enrichment.
+    survey_description: str | None = None
     year: int | None = None
+    # Mois du terrain (1-12), best-effort : rempli si dérivable (survey_id, date
+    # d'élection, codebook), sinon None. Jamais fabriqué.
+    survey_month: int | None = None
     pollster: str | None = None
     language: str = "fr"
     n_respondents: int | None = None

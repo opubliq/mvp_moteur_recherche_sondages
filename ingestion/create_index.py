@@ -93,6 +93,20 @@ def build_index(name: str, dims: int) -> SearchIndex:
             type=SearchFieldDataType.String,
             analyzer_name=FRENCH_ANALYZER,
         ),
+        # Résumé authoré du sondage (parent) : recherchable, dénormalisé nulle part.
+        SearchableField(
+            name="survey_description",
+            type=SearchFieldDataType.String,
+            analyzer_name=FRENCH_ANALYZER,
+        ),
+        # Mois du terrain (1-12), best-effort : filtre/facet/tri comme survey_year.
+        SimpleField(
+            name="survey_month",
+            type=SearchFieldDataType.Int32,
+            filterable=True,
+            facetable=True,
+            sortable=True,
+        ),
         SimpleField(
             name="n_respondents",
             type=SearchFieldDataType.Int32,
@@ -117,6 +131,12 @@ def build_index(name: str, dims: int) -> SearchIndex:
             type=SearchFieldDataType.String,
             analyzer_name=FRENCH_ANALYZER,
         ),
+        # Titre lisible authoré (LLM) : recherchable, affiché dans l'UI.
+        SearchableField(
+            name="display_label",
+            type=SearchFieldDataType.String,
+            analyzer_name=FRENCH_ANALYZER,
+        ),
         ComplexField(
             name="response_options",
             collection=True,
@@ -135,6 +155,16 @@ def build_index(name: str, dims: int) -> SearchIndex:
         ),
         SearchField(
             name="content_vector",
+            type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
+            searchable=True,
+            vector_search_dimensions=dims,
+            vector_search_profile_name=VECTOR_PROFILE_NAME,
+        ),
+        # Vecteur de CONTEXTE sondage (nom + description), dénormalisé sur chaque
+        # question. Interrogé avec un poids moindre que content_vector à la
+        # recherche (multi-vecteurs pondérés, cf. netlify/functions/search.ts).
+        SearchField(
+            name="survey_vector",
             type=SearchFieldDataType.Collection(SearchFieldDataType.Single),
             searchable=True,
             vector_search_dimensions=dims,

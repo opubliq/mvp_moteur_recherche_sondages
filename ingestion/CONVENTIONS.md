@@ -39,9 +39,9 @@ if not raw_label:
 question_text = _clean_text(raw_label)
 ```
 
-> Note : `ingestion/surveys/cecd_elxn_qc_1998.py` contient encore ce fallback
-> `or col` (legacy). Il ne se déclenche pas sur ce SAV (toutes les variables
-> ont un label) et le garde-fou §3 l'attraperait sinon. À corriger si retouché.
+> Note : `ingestion/surveys/cecd_elxn_qc_1998.py` utilisait ce fallback `or col`
+> (legacy) — **corrigé** (2026-07-06) en `continue`, avec ajout d'un
+> `EXCLUDED_VARS` (pondérations, n° de questionnaire, admin terrain).
 
 ## 2. Quand le wording est absent du raw
 

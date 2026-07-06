@@ -3,7 +3,7 @@
 import pytest
 from pydantic import ValidationError
 
-from ingestion.build_docs import build_docs, embed_text
+from ingestion.build_docs import build_docs, embed_text, survey_embed_text
 from ingestion.models import Question, Survey, SurveyFile
 
 # ---------------------------------------------------------------------------
@@ -152,6 +152,40 @@ def test_embed_text_no_options() -> None:
     q = Question(variable="Q_OPEN", question_text="Commentaires libres?")
     text = embed_text(q)
     assert text == "Commentaires libres?"
+
+
+def test_embed_text_includes_display_label_and_concepts() -> None:
+    q = Question(
+        variable="raison1",
+        question_text="Première raison invoquée",
+        display_label="Première raison du choix électoral",
+        concepts=["motivation électorale", "raison du vote"],
+    )
+    text = embed_text(q)
+    assert q.question_text in text
+    assert "Première raison du choix électoral" in text
+    assert "motivation électorale, raison du vote" in text
+
+
+def test_embed_text_excludes_survey_context(survey_file: SurveyFile) -> None:
+    """Le vecteur QUESTION ne contient PAS le contexte sondage (vecteur séparé)."""
+    q = survey_file.questions[0]
+    text = embed_text(q)
+    assert survey_file.survey.survey_name not in text
+
+
+def test_survey_embed_text_name_only() -> None:
+    survey = Survey(survey_id="S1", survey_name="Sondage X")
+    assert survey_embed_text(survey) == "Sondage X"
+
+
+def test_survey_embed_text_with_description() -> None:
+    survey = Survey(
+        survey_id="S1",
+        survey_name="Sondage X",
+        survey_description="Enquête sur la confiance institutionnelle.",
+    )
+    assert survey_embed_text(survey) == "Sondage X — Enquête sur la confiance institutionnelle."
 
 
 # ---------------------------------------------------------------------------

@@ -13,20 +13,45 @@ from __future__ import annotations
 
 from typing import Any
 
-from ingestion.models import Question, SurveyFile
+from ingestion.models import Question, Survey, SurveyFile
 
 
 def embed_text(question: Question) -> str:
-    """Retourne le texte à embedder pour une question.
+    """Retourne le texte à embedder pour le vecteur QUESTION (`content_vector`).
 
-    Concatène question_text et les libellés des choix de réponse,
-    séparés par des sauts de ligne.  Le calcul d'embedding est délégué
-    à l'orchestrateur ; cette fonction ne fait aucun appel réseau.
+    Question-dominant, sans contexte de sondage (celui-ci vit dans un vecteur
+    séparé `survey_vector`, cf. `survey_embed_text`). Assemble, séparés par des
+    sauts de ligne :
+        question_text     (wording verbatim — ancre)
+        display_label     (titre lisible, si présent)
+        labels des choix de réponse
+        concepts          (mots-clés, si présents)
+
+    Le calcul d'embedding est délégué à l'orchestrateur ; aucun appel réseau ici.
     """
     parts = [question.question_text]
+    if question.display_label:
+        parts.append(question.display_label)
     for opt in question.response_options:
         parts.append(opt.label)
+    if question.concepts:
+        parts.append(", ".join(question.concepts))
     return "\n".join(parts)
+
+
+def survey_embed_text(survey: Survey) -> str:
+    """Retourne le texte à embedder pour le vecteur SONDAGE (`survey_vector`).
+
+    Contexte de niveau sondage (identique pour toutes ses questions) : nom +
+    description. Ce vecteur, dénormalisé sur chaque question, est interrogé à la
+    recherche avec un poids MOINDRE que `content_vector` (cf. netlify/search.ts)
+    → il oriente vers les sondages thématiquement pertinents sans écraser le
+    signal propre à la question.
+    """
+    text = survey.survey_name
+    if survey.survey_description:
+        text = f"{text} — {survey.survey_description}"
+    return text
 
 
 def build_docs(survey_file: SurveyFile) -> list[dict[str, Any]]:
@@ -48,7 +73,9 @@ def build_docs(survey_file: SurveyFile) -> list[dict[str, Any]]:
         "doc_type": "survey",
         "survey_id": survey.survey_id,
         "survey_name": survey.survey_name,
+        "survey_description": survey.survey_description,
         "survey_year": survey.year,
+        "survey_month": survey.survey_month,
         "pollster": survey.pollster,
         "language": survey.language,
         "n_respondents": survey.n_respondents,
@@ -68,6 +95,7 @@ def build_docs(survey_file: SurveyFile) -> list[dict[str, Any]]:
             # Champ de recherche principal
             "variable": question.variable,
             "question_text": question.question_text,
+            "display_label": question.display_label,
             "response_options": [
                 {"code": str(opt.code), "label": opt.label} for opt in question.response_options
             ],
@@ -80,6 +108,7 @@ def build_docs(survey_file: SurveyFile) -> list[dict[str, Any]]:
             "survey_id": survey.survey_id,
             "survey_name": survey.survey_name,
             "survey_year": survey.year,
+            "survey_month": survey.survey_month,
             "pollster": survey.pollster,
             "language": survey.language,
             "n_respondents": survey.n_respondents,

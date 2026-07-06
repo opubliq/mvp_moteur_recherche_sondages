@@ -33,10 +33,11 @@ from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 
 from ingestion import surveys as surveys_pkg
-from ingestion.build_docs import build_docs, embed_text
+from ingestion.build_docs import build_docs, embed_text, survey_embed_text
 from ingestion.config import get_settings
 from ingestion.create_index import create_index
 from ingestion.embed import embed_batch
+from ingestion.enrich import apply_enrichment
 from ingestion.models import SurveyFile
 from ingestion.validate import assert_no_fabricated_text
 
@@ -91,6 +92,9 @@ def _ingest_survey(
     """
     logger.info("[%s] extraction…", survey_id)
     raw = loader()
+    # Superpose les champs authorés (display_label, concepts/themes, description,
+    # month) depuis ingestion/enrichment/<survey_id>.py, sans toucher au verbatim.
+    raw = apply_enrichment(raw, survey_id)
     survey_file = SurveyFile.model_validate(raw)
 
     # Garde-fou : aucun question_text/label fabriqué ne doit être indexé.
@@ -116,9 +120,14 @@ def _ingest_survey(
                 f"[{survey_id}] désynchronisation embeddings/children : "
                 f"{len(vectors)} vecteurs pour {len(children)} questions."
             )
+        # Vecteur de contexte sondage : calculé UNE fois, dénormalisé sur chaque
+        # question (identique pour tout le sondage).
+        survey_vector = embed_batch([survey_embed_text(survey_file.survey)])[0]
+        deployment = get_settings().aoai_embed_deployment
         for child, vector in zip(children, vectors, strict=True):
             child["content_vector"] = vector
-            child["embedding_model"] = get_settings().aoai_embed_deployment
+            child["survey_vector"] = survey_vector
+            child["embedding_model"] = deployment
 
     # Upload idempotent (merge-or-upload sur la clé `id`).
     logger.info("[%s] upload de %d documents vers Azure…", survey_id, len(docs))

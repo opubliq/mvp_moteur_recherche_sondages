@@ -6,7 +6,8 @@
  * Flux :
  *   1. Génère l'embedding de `query` via Azure OpenAI (text-embedding-3-large, 3072 dims)
  *   2. Lance une recherche hybride sur l'index `survey-questions` :
- *      texte plein + vecteur kNN sur `content_vector`
+ *      texte plein + kNN multi-vecteurs pondérés (`content_vector` poids 1.0
+ *      + `survey_vector` poids 0.3)
  *   3. Applique TOUJOURS le filtre `doc_type eq 'question'` (+ filtres facette éventuels)
  *   4. Renvoie les résultats — les clés Azure ne quittent JAMAIS le serveur
  *
@@ -24,6 +25,13 @@ const INDEX_NAME = "survey-questions";
 const SEARCH_API_VERSION = "2024-07-01";
 const AOAI_API_VERSION = "2024-02-01";
 const MAX_TOP = 50;
+
+// Recherche vectorielle pondérée : la requête est comparée à DEUX vecteurs par
+// question — le vecteur QUESTION (content_vector, dominant) et le vecteur
+// CONTEXTE sondage (survey_vector, secondaire). Le poids sondage < 1 oriente
+// vers les sondages pertinents sans écraser le signal propre à la question.
+const CONTENT_VECTOR_WEIGHT = 1.0;
+const SURVEY_VECTOR_WEIGHT = 0.3;
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -203,6 +211,15 @@ export const handler: Handler = async (event) => {
         fields: "content_vector",
         k: 50,
         exhaustive: false,
+        weight: CONTENT_VECTOR_WEIGHT,
+      },
+      {
+        kind: "vector",
+        vector,
+        fields: "survey_vector",
+        k: 50,
+        exhaustive: false,
+        weight: SURVEY_VECTOR_WEIGHT,
       },
     ],
     filter,
