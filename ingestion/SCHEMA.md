@@ -109,6 +109,6 @@ calculé UNE fois puis dénormalisé sur chaque question du sondage :
 
 À la recherche (`netlify/functions/search.ts`), la requête est comparée aux deux
 vecteurs avec des **poids distincts** (`content_vector` = 1.0, `survey_vector` =
-0.3) : le contexte sondage oriente vers les sondages pertinents sans écraser le
+0.15) : le contexte sondage oriente vers les sondages pertinents sans écraser le
 signal propre à la question. Un saut de ligne entre chaque élément ; pas de
 préfixe ni ponctuation ajoutée.
