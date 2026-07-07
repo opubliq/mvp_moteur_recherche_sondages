@@ -19,6 +19,12 @@
   to = "/.netlify/functions/search"
   status = 200
 
+# Expose la function sous /decompose (décomposition de requête)
+[[redirects]]
+  from = "/decompose"
+  to = "/.netlify/functions/decompose"
+  status = 200
+
 # Expose la function sous /survey (vue détail d'un sondage)
 [[redirects]]
   from = "/survey"

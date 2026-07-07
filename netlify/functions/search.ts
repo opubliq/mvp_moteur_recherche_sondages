@@ -355,7 +355,10 @@ export const handler: Handler = async (event) => {
       "tags",
       "n_respondents",
     ].join(","),
-    top: concepts && concepts.length > 0 ? Math.max(clampedTop, 100) : clampedTop,
+    // Avec concepts : on récupère le pool maximal de candidats (1000 = plafond
+    // Azure AI Search) pour ne perdre aucun résultat Faible/Partiel/Exact au
+    // moment du scoring local. Les Hors-sujet sont filtrés ensuite.
+    top: concepts && concepts.length > 0 ? Math.max(clampedTop, 1000) : clampedTop,
   };
 
   console.log(`[search] AI Search — query="${luceneQuery}" filter="${filter}" top=${searchPayload.top}`);
@@ -449,8 +452,9 @@ export const handler: Handler = async (event) => {
       results = results.filter((r) => r.pertinence !== "Hors-sujet");
     }
 
-    // On recoupe au top demandé
-    results = results.slice(0, clampedTop);
+    // On garde tout ce qui est pertinent (Exact / Partiel / Faible), sans
+    // plafond de nombre : seuls les Hors-sujet sont écartés.
+    results = results.filter((r) => r.pertinence !== "Hors-sujet");
   }
 
   return {
