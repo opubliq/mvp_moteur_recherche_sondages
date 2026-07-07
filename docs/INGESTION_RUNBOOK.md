@@ -39,11 +39,12 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **12 sondages ingérés**, ~2810 docs (vérité terrain de l'index Azure) :
+- **13 sondages ingérés**, ~3043 docs (vérité terrain de l'index Azure) :
   `cecd_charte_2013_10`, `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`,
   `cecd_elxn_qc_2007`, `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`,
   `cecd_sante_can_usa`, `eeq_2014`, `govcan_06822_wave1_2024`,
-  `govcan_06822_wave2_2024`, `govcan_habit_2024`, `govcan_parca_2024`.
+  `govcan_06822_wave2_2024`, `govcan_06822_wave3_2024`, `govcan_habit_2024`,
+  `govcan_parca_2024`.
 - Candidats restants : voir `ingestion/COUVERTURE.md` (55 ingérables classe A/B ;
   NE PAS ingérer les 2 classe C « nécessite questionnaire »).
 
