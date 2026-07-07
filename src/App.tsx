@@ -120,6 +120,19 @@ export default function App() {
 
   const groups = useMemo(() => groupBySurvey(results), [results]);
 
+  // Statistiques de pertinence globales (tous sondages confondus).
+  const relevanceStats = useMemo(
+    () =>
+      results.reduce(
+        (acc, r) => {
+          if (r.pertinence) acc[r.pertinence] = (acc[r.pertinence] || 0) + 1;
+          return acc;
+        },
+        {} as Record<string, number>,
+      ),
+    [results],
+  );
+
   // Nom déjà connu (depuis les résultats) pour l'en-tête de la vue détail.
   const selectedSurveyName = useMemo(
     () =>
@@ -212,10 +225,29 @@ export default function App() {
                     />
 
                     <div className="space-y-4">
-                      <p className="text-sm opacity-60">
-                        {results.length} question{results.length > 1 ? "s" : ""} ·{" "}
-                        {groups.length} sondage{groups.length > 1 ? "s" : ""}
-                      </p>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <p className="text-sm opacity-60">
+                          {results.length} question{results.length > 1 ? "s" : ""} ·{" "}
+                          {groups.length} sondage{groups.length > 1 ? "s" : ""}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          {relevanceStats["Exact"] > 0 && (
+                            <div className="badge bg-success text-success-content border-success badge-sm font-medium" title="Matches Exacts">
+                              {relevanceStats["Exact"]} Exact
+                            </div>
+                          )}
+                          {relevanceStats["Partiel"] > 0 && (
+                            <div className="badge bg-warning text-warning-content border-warning badge-sm font-medium" title="Matches Partiels">
+                              {relevanceStats["Partiel"]} Partiel
+                            </div>
+                          )}
+                          {relevanceStats["Faible"] > 0 && (
+                            <div className="badge bg-error text-error-content border-error badge-sm font-medium" title="Matches Faibles">
+                              {relevanceStats["Faible"]} Faible
+                            </div>
+                          )}
+                        </div>
+                      </div>
                       {groups.map((g) => (
                         <SurveyGroup
                           key={g.survey_id}
