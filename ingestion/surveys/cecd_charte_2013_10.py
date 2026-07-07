@@ -11,6 +11,8 @@ Raison : ces deux variables n'ont aucun value label ; les inclure ferait
 """
 
 from __future__ import annotations
+import numpy as np
+import pandas as pd
 
 from pathlib import Path
 
@@ -62,6 +64,9 @@ def extract() -> dict:
 
     questions = []
     for col in df.columns:
+        # Ratio détection auto
+        series_data = df[col].replace([' ', ''], np.nan).dropna() if 'df' in locals() else pd.Series()
+        has_verbatims = (len(series_data) > 10 and (series_data.nunique() / len(series_data)) > 0.1)
         has_verbatims = False
         if col in _SKIP_VARS:
             continue

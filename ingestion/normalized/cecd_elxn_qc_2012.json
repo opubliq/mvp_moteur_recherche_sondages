@@ -1,0 +1,1137 @@
+{
+  "survey": {
+    "survey_id": "cecd_elxn_qc_2012",
+    "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+    "survey_description": null,
+    "year": 2012,
+    "survey_month": null,
+    "pollster": "CROP",
+    "language": "fr",
+    "n_respondents": 844,
+    "raw_data_file": "repondants_post_2012.sav",
+    "tags": [
+      "electoral",
+      "provincial",
+      "québec",
+      "panel",
+      "2012"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "reg",
+      "question_text": "REGION",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Montreal Island"
+        },
+        {
+          "code": 2,
+          "label": "Rest of Montreal CMA"
+        },
+        {
+          "code": 3,
+          "label": "Quebec CMA"
+        },
+        {
+          "code": 4,
+          "label": "Rest of Quebec"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "age",
+      "question_text": "groupe d'âge",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "18-24"
+        },
+        {
+          "code": 2,
+          "label": "25-34"
+        },
+        {
+          "code": 3,
+          "label": "35-44"
+        },
+        {
+          "code": 4,
+          "label": "45-54"
+        },
+        {
+          "code": 5,
+          "label": "55-64"
+        },
+        {
+          "code": 6,
+          "label": "65+"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sexe",
+      "question_text": "Sexe du répondant",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Homme"
+        },
+        {
+          "code": 2,
+          "label": "Femme"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "lmat",
+      "question_text": "Quelle est votre langue maternelle, c'est-à-dire celle que vous avez appris à parler en premier et que vous comprenez toujours?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvoteprov1",
+      "question_text": "Si des élections provinciales devaient avoir lieu aujourd'hui, pour lequel des partis suivants voteriez-vous ou seriez-vous tenté de voter?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Option Nationale de Jean-Martin Aussant"
+        },
+        {
+          "code": 2,
+          "label": "Parti Libéral du Québec de Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Le Parti Québec Solidaire de Amir Khadir et Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Le Parti Vert de Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "La Coalition Avenir Québec de François Legault"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 97,
+          "label": "Je n'irais pas voter/J'annulerais mon vote"
+        },
+        {
+          "code": 98,
+          "label": "Je préfère ne pas répondre"
+        },
+        {
+          "code": 99,
+          "label": "Ne sait pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvoteprov2",
+      "question_text": "Peut-être que votre choix n'est pas définitif, mais y a-t-il tout de même un parti que vous seriez tenté d'appuyer?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Option Nationale de Jean-Martin Aussant"
+        },
+        {
+          "code": 2,
+          "label": "Parti Libéral du Québec de Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Le Parti Québec Solidaire de Amir Khadir et Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Le Parti Vert de Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "La Coalition Avenir Québec de François Legault"
+        },
+        {
+          "code": 96,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 97,
+          "label": "Je n'irais pas voter/J'annulerais mon vote"
+        },
+        {
+          "code": 98,
+          "label": "Je préfère ne pas répondre"
+        },
+        {
+          "code": 99,
+          "label": "Ne sait pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "definitif",
+      "question_text": "Votre décision est-elle ferme ou bien est-il possible que vous changiez d'avis d'ici l'élection?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Décision ferme"
+        },
+        {
+          "code": 2,
+          "label": "Possible de changer d'avis d'ici l'élection"
+        },
+        {
+          "code": 99,
+          "label": "Ne sait pas / Refus de répondre"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vudebat_m1",
+      "question_text": "Dans le cadre de la campagne électorale qui est en cours actuellement au Québec, quatre débats télévisés ont été présentés mettant en vedette les chefs des différents partis politiques provinciaux. Quel(s) débat(s) parmi les suivants avez-vous regardé?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le débat entre les 4 chefs principaux diffusé à 20h à Radio-"
+        },
+        {
+          "code": 2,
+          "label": "Le face à face entre Jean Charest et Pauline Marois diffusé"
+        },
+        {
+          "code": 3,
+          "label": "Le face à face entre Jean Charest et François Legault diffus"
+        },
+        {
+          "code": 4,
+          "label": "Le face à face entre François Legault et Pauline Marois diff"
+        },
+        {
+          "code": 8,
+          "label": "Aucun d'entre-eux"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus de répondre"
+        }
+      ],
+      "var_type": "multiple",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vudebat_m2",
+      "question_text": "Dans le cadre de la campagne électorale qui est en cours actuellement au Québec, quatre débats télévisés ont été présentés mettant en vedette les chefs des différents partis politiques provinciaux. Quel(s) débat(s) parmi les suivants avez-vous regardé?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le débat entre les 4 chefs principaux diffusé à 20h à Radio-"
+        },
+        {
+          "code": 2,
+          "label": "Le face à face entre Jean Charest et Pauline Marois diffusé"
+        },
+        {
+          "code": 3,
+          "label": "Le face à face entre Jean Charest et François Legault diffus"
+        },
+        {
+          "code": 4,
+          "label": "Le face à face entre François Legault et Pauline Marois diff"
+        },
+        {
+          "code": 8,
+          "label": "Aucun d'entre-eux"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus de répondre"
+        }
+      ],
+      "var_type": "multiple",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vudebat_m3",
+      "question_text": "Dans le cadre de la campagne électorale qui est en cours actuellement au Québec, quatre débats télévisés ont été présentés mettant en vedette les chefs des différents partis politiques provinciaux. Quel(s) débat(s) parmi les suivants avez-vous regardé?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le débat entre les 4 chefs principaux diffusé à 20h à Radio-"
+        },
+        {
+          "code": 2,
+          "label": "Le face à face entre Jean Charest et Pauline Marois diffusé"
+        },
+        {
+          "code": 3,
+          "label": "Le face à face entre Jean Charest et François Legault diffus"
+        },
+        {
+          "code": 4,
+          "label": "Le face à face entre François Legault et Pauline Marois diff"
+        },
+        {
+          "code": 8,
+          "label": "Aucun d'entre-eux"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus de répondre"
+        }
+      ],
+      "var_type": "multiple",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vudebat_m4",
+      "question_text": "Dans le cadre de la campagne électorale qui est en cours actuellement au Québec, quatre débats télévisés ont été présentés mettant en vedette les chefs des différents partis politiques provinciaux. Quel(s) débat(s) parmi les suivants avez-vous regardé?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le débat entre les 4 chefs principaux diffusé à 20h à Radio-"
+        },
+        {
+          "code": 2,
+          "label": "Le face à face entre Jean Charest et Pauline Marois diffusé"
+        },
+        {
+          "code": 3,
+          "label": "Le face à face entre Jean Charest et François Legault diffus"
+        },
+        {
+          "code": 4,
+          "label": "Le face à face entre François Legault et Pauline Marois diff"
+        },
+        {
+          "code": 8,
+          "label": "Aucun d'entre-eux"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus de répondre"
+        }
+      ],
+      "var_type": "multiple",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vudebatSRC",
+      "question_text": "Et, diriez-vous avoir regardé le débat entre les 4 chefs principaux diffusé à 20h à Radio-Canada ou Télé-Québec, dimanche le 19 août 2012...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...au complet"
+        },
+        {
+          "code": 2,
+          "label": "...en quasi-totalité"
+        },
+        {
+          "code": 3,
+          "label": "...OU seulement quelques minutes"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus de répondre"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vudebat_CH_MA",
+      "question_text": "Et, diriez-vous avoir regardé le face à face entre Jean Charest et Pauline Marois diffusé à 21h à TVA, lundi le 20 août 2012...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...au complet"
+        },
+        {
+          "code": 2,
+          "label": "...en quasi-totalité"
+        },
+        {
+          "code": 3,
+          "label": "...OU seulement quelques minutes"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus de répondre"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vudebat_CH_LE",
+      "question_text": "Et, diriez-vous avoir regardé le face à face entre Jean Charest et François Legault diffusé à 21h à TVA, mardi le 21 août 2012...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...au complet"
+        },
+        {
+          "code": 2,
+          "label": "...en quasi-totalité"
+        },
+        {
+          "code": 3,
+          "label": "...OU seulement quelques minutes"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus de répondre"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vudebat_MA_LE",
+      "question_text": "Et, diriez-vous avoir regardé le face à face entre François Legault et Pauline Marois diffusé à 21h à TVA, mercredi le 22 août 2012...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...au complet"
+        },
+        {
+          "code": 2,
+          "label": "...en quasi-totalité"
+        },
+        {
+          "code": 3,
+          "label": "...OU seulement quelques minutes"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus de répondre"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvoteref",
+      "question_text": "Q8 - Si un référendum avait lieu aujourd'hui vous demandant si vous voulez que le Québec devienne un pays souverain, voteriez-vous oui ou voteriez-vous non?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 97,
+          "label": "Je n'irais pas voter/J'annulerais mon vote"
+        },
+        {
+          "code": 98,
+          "label": "Je préfère ne pas répondre"
+        },
+        {
+          "code": 99,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "meilleurPM",
+      "question_text": "Parmi les chefs suivants, lequel ferait selon vous le meilleur premier ministre du Québec? (LIRE LES NOMS)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jean-Martin Aussant"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "François Legault"
+        },
+        {
+          "code": 97,
+          "label": "Aucun"
+        },
+        {
+          "code": 99,
+          "label": "Ne sait pas / Refus de répondre"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "bonequipe",
+      "question_text": "Je vais maintenant vous lire une série d'affirmations. Pour chacune d'elles, dites-moi à quel chef l'affirmation s'applique le mieux. Capable de s'entourer d'une bonne équipe",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "François Legault"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Amir Khadir et Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "Jean-Martin Aussant"
+        },
+        {
+          "code": 7,
+          "label": "Aucun de ces chefs"
+        },
+        {
+          "code": 9,
+          "label": "Ne sait pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "boneconomie",
+      "question_text": "Je vais maintenant vous lire une série d'affirmations. Pour chacune d'elles, dites-moi à quel chef l'affirmation s'applique le mieux. Compétent dans les questions économiques",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "François Legault"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Amir Khadir et Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "Jean-Martin Aussant"
+        },
+        {
+          "code": 7,
+          "label": "Aucun de ces chefs"
+        },
+        {
+          "code": 9,
+          "label": "Ne sait pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "honnete",
+      "question_text": "Je vais maintenant vous lire une série d'affirmations. Pour chacune d'elles, dites-moi à quel chef l'affirmation s'applique le mieux. Honnête",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "François Legault"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Amir Khadir et Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "Jean-Martin Aussant"
+        },
+        {
+          "code": 7,
+          "label": "Aucun de ces chefs"
+        },
+        {
+          "code": 9,
+          "label": "Ne sait pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "comprendgens",
+      "question_text": "Je vais maintenant vous lire une série d'affirmations. Pour chacune d'elles, dites-moi à quel chef l'affirmation s'applique le mieux. Comprend les gens comme moi",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "François Legault"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Amir Khadir et Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "Jean-Martin Aussant"
+        },
+        {
+          "code": 7,
+          "label": "Aucun de ces chefs"
+        },
+        {
+          "code": 9,
+          "label": "Ne sait pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "livremarch",
+      "question_text": "Je vais maintenant vous lire une série d'affirmations. Pour chacune d'elles, dites-moi à quel chef l'affirmation s'applique le mieux. Capable de livrer la marchandise",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "François Legault"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Amir Khadir et Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "Jean-Martin Aussant"
+        },
+        {
+          "code": 7,
+          "label": "Aucun de ces chefs"
+        },
+        {
+          "code": 9,
+          "label": "Ne sait pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "apportechang",
+      "question_text": "Je vais maintenant vous lire une série d'affirmations. Pour chacune d'elles, dites-moi à quel chef l'affirmation s'applique le mieux. Apporterait du changement",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "François Legault"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Amir Khadir et Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "Claude Sabourin"
+        },
+        {
+          "code": 6,
+          "label": "Jean-Martin Aussant"
+        },
+        {
+          "code": 7,
+          "label": "Aucun de ces chefs"
+        },
+        {
+          "code": 9,
+          "label": "Ne sait pas"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "prochgouv",
+      "question_text": "Q19 - Et selon vous, quel devrait être la principale qualité du prochain gouvernement du Québec... (LIRE LA LISTE. SÉLECTIONNER UNE SEULE MENTION.)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Maintenir la stabilité économique"
+        },
+        {
+          "code": 2,
+          "label": "Être intègre"
+        },
+        {
+          "code": 3,
+          "label": "Apporter du changement"
+        },
+        {
+          "code": 4,
+          "label": "Être responsable"
+        },
+        {
+          "code": 99,
+          "label": "Ne sait pas / Refus de répondre"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "luentend",
+      "question_text": "Avez-vous lu ou entendu des résultats de sondages portant sur les élections dernièrement?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sefie",
+      "question_text": "Personnellement, jusqu'à quel point vous fiez-vous aux sondages pour savoir qui gagnera la prochaine élection au Québec :",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Beaucoup"
+        },
+        {
+          "code": 2,
+          "label": "Assez"
+        },
+        {
+          "code": 3,
+          "label": "Un peu"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sondbons",
+      "question_text": "Diriez-vous que les sondages pendant les campagnes électorales sont une très bonne chose, une assez bonne chose, une assez mauvaise chose, ou une très mauvaise chose pour les électeurs ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "une très bonne chose"
+        },
+        {
+          "code": 2,
+          "label": "une assez bonne chose"
+        },
+        {
+          "code": 3,
+          "label": "une assez mauvaise chose"
+        },
+        {
+          "code": 4,
+          "label": "une très mauvaise chose"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "participation",
+      "question_text": "Q1. D'abord, pouvez-vous me dire si vous êtes allé voter lors de l'élection qui vient de se tenir au Québec?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "OUI - le jour même de l'élection (mardi 4 septembre)"
+        },
+        {
+          "code": 2,
+          "label": "OUI - par anticipation une semaine avant?"
+        },
+        {
+          "code": 3,
+          "label": "NON - n'a pas voté"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "voteprov",
+      "question_text": "Q2. Et pour quel parti avez-vous voté?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "N'a pas voté"
+        },
+        {
+          "code": 1,
+          "label": "La Coalition Avenir Québec"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": 4,
+          "label": "Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Le Parti Vert"
+        },
+        {
+          "code": 6,
+          "label": "Option nationale"
+        },
+        {
+          "code": 7,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 8,
+          "label": "A annulé son vote"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "indecis2",
+      "question_text": "Q3. Durant la semaine qui a précédé l'élection, diriez-vous que vous étiez indécis(e) ou que votre idée était déjà faite?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Indécis(e)"
+        },
+        {
+          "code": 2,
+          "label": "Idée déjà faite"
+        },
+        {
+          "code": 3,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "influperso",
+      "question_text": "Q4. Et personnellement, diriez-vous que les résultats des sondages ont rendu votre décision",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Plus difficile à prendre?"
+        },
+        {
+          "code": 2,
+          "label": "Plus facile à prendre?"
+        },
+        {
+          "code": 3,
+          "label": "Ca n'a fait aucune différence"
+        },
+        {
+          "code": 4,
+          "label": "Ne suit pas les sondages"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "has_verbatims": false,
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}

@@ -20,6 +20,8 @@ Usage :
 """
 
 from __future__ import annotations
+import numpy as np
+import pandas as pd
 
 import json
 from pathlib import Path
@@ -176,6 +178,9 @@ def extract() -> dict:
 
     questions = []
     for col in df.columns:
+        # Ratio détection auto
+        series_data = df[col].replace([' ', ''], np.nan).dropna() if 'df' in locals() else pd.Series()
+        has_verbatims = (len(series_data) > 10 and (series_data.nunique() / len(series_data)) > 0.1)
         has_verbatims = False
         if col in EXCLUDED_VARS:
             continue
@@ -215,6 +220,7 @@ def extract() -> dict:
         dtype_str = str(df[col].dtype)
         if dtype_str == "object":
             var_type = "open"
+            has_verbatims = True
             has_verbatims = True  # chaîne de caractères (verbatim ouvert)
         elif raw_opts:
             var_type = "single"  # numérique avec étiquettes → choix unique

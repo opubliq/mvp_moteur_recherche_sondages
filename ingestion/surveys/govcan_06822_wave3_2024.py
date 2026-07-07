@@ -135,6 +135,7 @@ def extract() -> dict:
         if not options:
             var_type = "open"
             has_verbatims = True
+            has_verbatims = True
         elif any(
             o["label"].lower() in ["accurate", "inaccurate"] for o in options
         ):

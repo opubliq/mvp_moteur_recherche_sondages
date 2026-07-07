@@ -33,6 +33,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "gender",
       "concepts": [],
@@ -53,6 +54,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "gender",
       "concepts": [],
@@ -77,6 +79,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "region",
       "concepts": [],
@@ -177,6 +180,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "region",
       "concepts": [],
@@ -277,6 +281,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "region",
       "concepts": [],
@@ -313,6 +318,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "age",
       "concepts": [],
@@ -353,6 +359,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "occupation",
       "concepts": [],
@@ -385,6 +392,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "education",
       "concepts": [],
@@ -421,6 +429,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "income",
       "concepts": [],
@@ -449,6 +458,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "language",
       "concepts": [],
@@ -459,7 +469,8 @@
       "question_text": "Langue maternelle autre",
       "display_label": null,
       "response_options": [],
-      "var_type": "continuous",
+      "var_type": "open",
+      "has_verbatims": true,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -488,6 +499,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -498,7 +510,8 @@
       "question_text": "Langue d'usage autre",
       "display_label": null,
       "response_options": [],
-      "var_type": "continuous",
+      "var_type": "open",
+      "has_verbatims": true,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -543,6 +556,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -575,6 +589,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -619,6 +634,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -651,6 +667,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -695,6 +712,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -739,6 +757,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -763,6 +782,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -807,6 +827,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -847,6 +868,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -899,6 +921,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -943,6 +966,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -983,6 +1007,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1007,6 +1032,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1031,6 +1057,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1063,6 +1090,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1095,6 +1123,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1123,6 +1152,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1159,6 +1189,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1191,6 +1222,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1227,6 +1259,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1251,6 +1284,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1275,6 +1309,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1307,6 +1342,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1331,6 +1367,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1359,6 +1396,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1407,6 +1445,7 @@
         }
       ],
       "var_type": "multiple",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1454,7 +1493,8 @@
           "label": "Sondages sont ok"
         }
       ],
-      "var_type": "multiple",
+      "var_type": "open",
+      "has_verbatims": true,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1479,6 +1519,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1503,6 +1544,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1527,6 +1569,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1551,6 +1594,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1575,6 +1619,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1619,6 +1664,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1651,6 +1697,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1683,6 +1730,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1715,6 +1763,7 @@
         }
       ],
       "var_type": "multiple",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1747,6 +1796,7 @@
         }
       ],
       "var_type": "multiple",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1767,6 +1817,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1795,6 +1846,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1831,6 +1883,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1855,6 +1908,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1883,6 +1937,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1907,6 +1962,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1931,6 +1987,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1971,6 +2028,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2003,6 +2061,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2027,6 +2086,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2051,6 +2111,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2103,6 +2164,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2123,6 +2185,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2143,6 +2206,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2153,7 +2217,8 @@
       "question_text": "Quelle est la principale raison pour laquelle vous avez voté pour...",
       "display_label": null,
       "response_options": [],
-      "var_type": "continuous",
+      "var_type": "open",
+      "has_verbatims": true,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2164,7 +2229,8 @@
       "question_text": "Quelle est la principale raison pour laquelle vous avez (annulé votre vote ou n'êtes pas allé voter) ?",
       "display_label": null,
       "response_options": [],
-      "var_type": "continuous",
+      "var_type": "open",
+      "has_verbatims": true,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2193,6 +2259,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2225,6 +2292,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2235,7 +2303,8 @@
       "question_text": "Réponse des répondants concernant le poste de radio écouté.",
       "display_label": null,
       "response_options": [],
-      "var_type": "continuous",
+      "var_type": "open",
+      "has_verbatims": true,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2268,6 +2337,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -2760,6 +2830,7 @@
         }
       ],
       "var_type": "single",
+      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
