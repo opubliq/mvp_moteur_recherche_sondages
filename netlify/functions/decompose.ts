@@ -201,7 +201,9 @@ export const handler: Handler = async (event) => {
           { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: query.trim() },
         ],
-        temperature: 0,
+        // gpt-5-mini est un modèle reasoning : temperature doit rester à 1 (défaut),
+        // reasoning_effort "minimal" garde la latence basse pour le hot path.
+        reasoning_effort: "minimal",
         response_format: { type: "json_object" },
       }),
     });
