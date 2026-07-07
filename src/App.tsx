@@ -82,7 +82,6 @@ export default function App() {
   async function handleSearch(q: string) {
     setQuery(q);
     setFilters({});
-    setThemeFilter(null);
     setDecomposing(true);
     setError(null);
 
