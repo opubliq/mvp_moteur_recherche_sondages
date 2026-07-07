@@ -62,6 +62,7 @@ def extract() -> dict:
 
     questions = []
     for col in df.columns:
+        has_verbatims = False
         if col in _SKIP_VARS:
             continue
 
@@ -89,6 +90,7 @@ def extract() -> dict:
                 "question_text": question_text,
                 "response_options": response_options,
                 "var_type": var_type,
+                "has_verbatims": has_verbatims,
                 "is_sociodemo": is_sociodemo,
                 "sociodemo_type": sociodemo_type,
                 "concepts": [],

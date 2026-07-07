@@ -159,6 +159,7 @@ def extract() -> dict:
 
     questions = []
     for col in df.columns:
+        has_verbatims = False
         # Exclusions techniques
         if col in EXCLUDED_VARS:
             continue
@@ -193,6 +194,7 @@ def extract() -> dict:
         dtype_str = str(df[col].dtype)
         if dtype_str == "object":
             var_type = "open"
+            has_verbatims = True
         elif col in SCALE_VARS:
             var_type = "scale"
         elif raw_opts:
@@ -209,6 +211,7 @@ def extract() -> dict:
                 "question_text": question_text,
                 "response_options": response_options,
                 "var_type": var_type,
+                "has_verbatims": has_verbatims,
                 "is_sociodemo": is_sociodemo,
                 "sociodemo_type": sociodemo_type,
                 "concepts": [],

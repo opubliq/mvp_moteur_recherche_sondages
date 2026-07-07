@@ -27,6 +27,7 @@ class Question(BaseModel):
     display_label: str | None = None
     response_options: list[ResponseOption] = Field(default_factory=list)
     var_type: str | None = None  # ex. "single", "multiple", "open", "scale"
+    has_verbatims: bool = False
     is_sociodemo: bool = False
     sociodemo_type: str | None = None  # ex. "age", "gender", "education"
     concepts: list[str] = Field(default_factory=list)

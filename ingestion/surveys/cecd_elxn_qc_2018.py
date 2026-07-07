@@ -191,6 +191,7 @@ def extract() -> dict:
 
     questions = []
     for col in df.columns:
+        has_verbatims = False
         if col in EXCLUDED_VARS:
             continue
 
@@ -223,7 +224,8 @@ def extract() -> dict:
         # Inférer le type de variable
         dtype_str = str(df[col].dtype)
         if dtype_str == "object":
-            var_type = "open"  # chaîne de caractères (verbatim ouvert)
+            var_type = "open"
+            has_verbatims = True  # chaîne de caractères (verbatim ouvert)
         elif col in SCALE_VARS:
             var_type = "scale"  # échelle numérique d'accord/intensité
         elif raw_opts:
@@ -239,6 +241,7 @@ def extract() -> dict:
                 "question_text": question_text,
                 "response_options": response_options,
                 "var_type": var_type,
+                "has_verbatims": has_verbatims,
                 "is_sociodemo": is_sociodemo,
                 "sociodemo_type": sociodemo_type,
                 "concepts": [],

@@ -126,14 +126,7 @@ export default function App() {
 
   const facetOptions = useMemo(() => buildFacetOptions(results), [results]);
 
-  // Le filtre thème est appliqué côté client (champ collection non filtrable serveur).
-  const displayed = useMemo(
-    () =>
-      themeFilter ? results.filter((r) => r.themes.includes(themeFilter)) : results,
-    [results, themeFilter],
-  );
-
-  const groups = useMemo(() => groupBySurvey(displayed), [displayed]);
+  const groups = useMemo(() => groupBySurvey(results), [results]);
 
   // Nom déjà connu (depuis les résultats) pour l'en-tête de la vue détail.
   const selectedSurveyName = useMemo(
@@ -234,13 +227,13 @@ export default function App() {
                       options={facetOptions}
                       filters={filters}
                       onFilterChange={handleFilterChange}
-                      themeFilter={themeFilter}
-                      onThemeChange={setThemeFilter}
+                      themeFilter={filters.themes?.[0] || null}
+                      onThemeChange={(t) => handleFilterChange({ ...filters, themes: t ? [t] : undefined })}
                     />
 
                     <div className="space-y-4">
                       <p className="text-sm opacity-60">
-                        {displayed.length} question{displayed.length > 1 ? "s" : ""} ·{" "}
+                        {results.length} question{results.length > 1 ? "s" : ""} ·{" "}
                         {groups.length} sondage{groups.length > 1 ? "s" : ""}
                       </p>
                       {groups.map((g) => (
@@ -258,7 +251,6 @@ export default function App() {
           </>
         )}
       </main>
-
     </div>
   );
 }

@@ -48,6 +48,7 @@ export interface SearchFilters {
   survey_year?: number;
   pollster?: string;
   language?: string;
+  themes?: string[];
 }
 
 /** Doc parent (doc_type=survey) renvoyé par la Netlify Function `/survey`. */

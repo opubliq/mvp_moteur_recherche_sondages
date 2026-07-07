@@ -74,6 +74,7 @@ Un fichier par sondage, structure :
 | `display_label`    | string\|null| question.display_label (mou, LLM)                |
 | `response_options` | [{code,label}] | codes convertis en string                     |
 | `var_type`         | string\|null| question.var_type                                |
+| `has_verbatims`    | bool        | true si des réponses libres sont liées           |
 | `is_sociodemo`     | bool        | question.is_sociodemo                            |
 | `sociodemo_type`   | string\|null| question.sociodemo_type                          |
 | `concepts`         | [string]    | question.concepts                                |

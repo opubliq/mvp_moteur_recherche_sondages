@@ -25,6 +25,15 @@ export default function SurveyGroup({
     group.survey_year != null ? String(group.survey_year) : null,
   ].filter(Boolean);
 
+  // Calcul des statistiques de pertinence pour ce groupe
+  const stats = group.questions.reduce(
+    (acc, q) => {
+      if (q.pertinence) acc[q.pertinence] = (acc[q.pertinence] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>,
+  );
+
   return (
     <section className="collapse collapse-arrow bg-base-100 shadow-sm border border-base-300">
       <input
@@ -32,17 +41,35 @@ export default function SurveyGroup({
         checked={isExpanded}
         onChange={() => setIsExpanded(!isExpanded)}
       />
-      <div className="collapse-title !flex flex-wrap items-baseline gap-x-3 gap-y-1 pr-12">
+      <div className="collapse-title !flex flex-wrap items-center gap-x-3 gap-y-1 pr-12">
         <span className="text-lg font-semibold">
           {group.survey_name}
         </span>
         {meta.length > 0 && (
           <span className="text-sm opacity-60">{meta.join(" · ")}</span>
         )}
-        <span className="badge badge-sm ml-auto mr-2">
-          {group.questions.length} question
-          {group.questions.length > 1 ? "s" : ""}
-        </span>
+        
+        <div className="ml-auto flex items-center gap-2 mr-2">
+          {stats["Exact"] > 0 && (
+            <div className="badge badge-success badge-sm text-white font-medium" title="Matches Exacts">
+              {stats["Exact"]} Exact
+            </div>
+          )}
+          {stats["Partiel"] > 0 && (
+            <div className="badge badge-warning badge-sm font-medium" title="Matches Partiels">
+              {stats["Partiel"]} Partiel
+            </div>
+          )}
+          {stats["Faible"] > 0 && (
+            <div className="badge badge-error badge-sm outline-none font-medium" title="Matches Faibles">
+              {stats["Faible"]} Faible
+            </div>
+          )}
+          <span className="text-xs opacity-40 ml-1">
+            ({group.questions.length})
+          </span>
+        </div>
+
         <button
           type="button"
           className="btn btn-outline btn-xs relative z-10"

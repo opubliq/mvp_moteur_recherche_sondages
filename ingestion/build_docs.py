@@ -100,6 +100,7 @@ def build_docs(survey_file: SurveyFile) -> list[dict[str, Any]]:
                 {"code": str(opt.code), "label": opt.label} for opt in question.response_options
             ],
             "var_type": question.var_type,
+            "has_verbatims": question.has_verbatims,
             "is_sociodemo": question.is_sociodemo,
             "sociodemo_type": question.sociodemo_type,
             "concepts": question.concepts,

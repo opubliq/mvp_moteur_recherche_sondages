@@ -183,6 +183,12 @@ def build_index(name: str, dims: int) -> SearchIndex:
             facetable=True,
         ),
         SimpleField(
+            name="has_verbatims",
+            type=SearchFieldDataType.Boolean,
+            filterable=True,
+            facetable=True,
+        ),
+        SimpleField(
             name="sociodemo_type",
             type=SearchFieldDataType.String,
             filterable=True,

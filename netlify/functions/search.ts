@@ -114,6 +114,14 @@ function buildFilter(filters?: Record<string, string | number | boolean>): strin
     }
   }
 
+  // Support du filtre par thèmes (collection)
+  if (filters && filters.themes && Array.isArray(filters.themes)) {
+    for (const theme of filters.themes) {
+      const escaped = theme.replace(/'/g, "''");
+      clauses.push(`themes/any(t: t eq '${escaped}')`);
+    }
+  }
+
   return clauses.join(" and ");
 }
 
