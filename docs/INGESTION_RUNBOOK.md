@@ -39,8 +39,8 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **5 sondages ingérés**, 265 docs : `cecd_elxn_qc_1998`, `cecd_charte_2013_10`,
-  `eeq_2014`, `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`.
+- **6 sondages ingérés**, 315 docs : `cecd_elxn_qc_1998`, `cecd_charte_2013_10`,
+  `eeq_2014`, `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`, `cecd_elxn_can_2011`.
 - Candidats restants : voir `ingestion/COUVERTURE.md` (55 ingérables classe A/B ;
   NE PAS ingérer les 2 classe C « nécessite questionnaire »).
 
