@@ -104,6 +104,11 @@ export default function App() {
     if (query) void runSearch(query, next, concepts);
   }
 
+  function handleRerankChange(next: boolean) {
+    setRerank(next);
+    if (query) void runSearch(query, filters, concepts, next);
+  }
+
   // Changement local des concepts (poids)
   function handleConceptsChange(nextConcepts: Concept[]) {
     setConcepts(nextConcepts);
@@ -159,6 +164,18 @@ export default function App() {
           <>
         <div className="mb-6">
           <SearchBar onSearch={handleSearch} loading={loading || decomposing} />
+          <div className="mt-2 flex items-center gap-2 px-1">
+            <input
+              type="checkbox"
+              id="rerank-toggle"
+              className="checkbox checkbox-xs"
+              checked={rerank}
+              onChange={(e) => handleRerankChange(e.target.checked)}
+            />
+            <label htmlFor="rerank-toggle" className="cursor-pointer text-xs opacity-70">
+              Activer le reranking Juge LLM (GPT-4o-mini) — Élimine le bruit thématique
+            </label>
+          </div>
         </div>
 
         {concepts.length > 0 && (
