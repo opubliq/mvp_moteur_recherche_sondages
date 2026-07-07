@@ -1,0 +1,6596 @@
+{
+  "survey": {
+    "survey_id": "govcan_06822_wave2_2024",
+    "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+    "survey_description": null,
+    "year": 2024,
+    "survey_month": null,
+    "pollster": "Government of Canada",
+    "language": "en",
+    "n_respondents": 3375,
+    "raw_data_file": "data/govcan_06822_wave2_2024/068-22-wave2-data.csv",
+    "tags": []
+  },
+  "questions": [
+    {
+      "variable": "AGE",
+      "question_text": "In which of the following age categories do you belong?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "18 to 24"
+        },
+        {
+          "code": 2,
+          "label": "25 to 34"
+        },
+        {
+          "code": 3,
+          "label": "35 to 44"
+        },
+        {
+          "code": 4,
+          "label": "45 to 54"
+        },
+        {
+          "code": 5,
+          "label": "55 to 64"
+        },
+        {
+          "code": 6,
+          "label": "65 to 74"
+        },
+        {
+          "code": 7,
+          "label": "75 and older"
+        },
+        {
+          "code": 98,
+          "label": "Under 18"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "GENDER",
+      "question_text": "What best describes your gender? This refers to current gender which may be different from sex assigned at birth and may be different from what is indicated on your legal documents.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Man"
+        },
+        {
+          "code": 2,
+          "label": "Woman"
+        },
+        {
+          "code": 3,
+          "label": "Non-binary"
+        },
+        {
+          "code": 77,
+          "label": "I use a different term (please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PROVINCE",
+      "question_text": "In which province or territory do you live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "British Columbia"
+        },
+        {
+          "code": 2,
+          "label": "Alberta"
+        },
+        {
+          "code": 3,
+          "label": "Saskatchewan"
+        },
+        {
+          "code": 4,
+          "label": "Manitoba"
+        },
+        {
+          "code": 5,
+          "label": "Ontario"
+        },
+        {
+          "code": 6,
+          "label": "Quebec"
+        },
+        {
+          "code": 7,
+          "label": "New Brunswick"
+        },
+        {
+          "code": 8,
+          "label": "Nova Scotia"
+        },
+        {
+          "code": 9,
+          "label": "Prince Edward Island"
+        },
+        {
+          "code": 10,
+          "label": "Newfoundland and Labrador"
+        },
+        {
+          "code": 11,
+          "label": "Yukon"
+        },
+        {
+          "code": 12,
+          "label": "Northwest Territories"
+        },
+        {
+          "code": 13,
+          "label": "Nunavut"
+        },
+        {
+          "code": 97,
+          "label": "I live outside Canada"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "HOUSEHOLD_INCOME",
+      "question_text": "Which of the following categories best describes your total household income in 2022? That is, the total income of all persons in your household combined, before taxes.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Under $20,000"
+        },
+        {
+          "code": 2,
+          "label": "$20,000 to just under $40,000"
+        },
+        {
+          "code": 3,
+          "label": "$40,000 to just under $60,000"
+        },
+        {
+          "code": 4,
+          "label": "$60,000 to just under $80,000"
+        },
+        {
+          "code": 5,
+          "label": "$80,000 to just under $100,000"
+        },
+        {
+          "code": 6,
+          "label": "$100,000 to just under $150,000"
+        },
+        {
+          "code": 7,
+          "label": "$150,000 to just under $200,000"
+        },
+        {
+          "code": 8,
+          "label": "$200,000 to just under $250,000"
+        },
+        {
+          "code": 9,
+          "label": "$250,000 and above"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INDIGENOUS",
+      "question_text": "Are you First Nations, Métis, or Inuk (Inuit)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_1",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_2",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_3",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_4",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_5",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_6",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_7",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_8",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_9",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_10",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_11",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_12",
+      "question_text": "<In addition to being an Indigenous person, you may belong to another racial or cultural group on the following list. Are you...? / You may belong to one or more racial or cultural groups on the following list. Are you...?>",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 77,
+          "label": "Ethnicity not listed above - (Please specify)"
+        },
+        {
+          "code": 9998,
+          "label": "No, I don't identify with any other racial or cultural group"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "VACCINE_COVID",
+      "question_text": "Have you received a COVID-19 vaccine?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes, one dose"
+        },
+        {
+          "code": 2,
+          "label": "Yes, two doses"
+        },
+        {
+          "code": 3,
+          "label": "Yes, three doses"
+        },
+        {
+          "code": 4,
+          "label": "Yes, four doses"
+        },
+        {
+          "code": 5,
+          "label": "Yes, five or more doses"
+        },
+        {
+          "code": 6,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "LANGUAGE",
+      "question_text": "Which language do you speak most often at home?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "English"
+        },
+        {
+          "code": 2,
+          "label": "French"
+        },
+        {
+          "code": 3,
+          "label": "Arabic"
+        },
+        {
+          "code": 4,
+          "label": "Atikamekw"
+        },
+        {
+          "code": 5,
+          "label": "Cantonese"
+        },
+        {
+          "code": 6,
+          "label": "Cree"
+        },
+        {
+          "code": 7,
+          "label": "Dene"
+        },
+        {
+          "code": 8,
+          "label": "Dutch"
+        },
+        {
+          "code": 9,
+          "label": "German"
+        },
+        {
+          "code": 10,
+          "label": "Greek"
+        },
+        {
+          "code": 11,
+          "label": "Gujarati"
+        },
+        {
+          "code": 12,
+          "label": "Hindi"
+        },
+        {
+          "code": 13,
+          "label": "Inuktitut"
+        },
+        {
+          "code": 14,
+          "label": "Italian"
+        },
+        {
+          "code": 15,
+          "label": "Korean"
+        },
+        {
+          "code": 16,
+          "label": "Mandarin"
+        },
+        {
+          "code": 17,
+          "label": "Mi'kmaq"
+        },
+        {
+          "code": 18,
+          "label": "Montagnais (Innu)"
+        },
+        {
+          "code": 19,
+          "label": "Ojibway"
+        },
+        {
+          "code": 20,
+          "label": "Oji-Cree"
+        },
+        {
+          "code": 21,
+          "label": "Persian (Farsi)"
+        },
+        {
+          "code": 22,
+          "label": "Polish"
+        },
+        {
+          "code": 23,
+          "label": "Portuguese"
+        },
+        {
+          "code": 24,
+          "label": "Punjabi"
+        },
+        {
+          "code": 25,
+          "label": "Romanian"
+        },
+        {
+          "code": 26,
+          "label": "Russian"
+        },
+        {
+          "code": 27,
+          "label": "Spanish"
+        },
+        {
+          "code": 28,
+          "label": "Tagalog (Pilipino, Filipino)"
+        },
+        {
+          "code": 29,
+          "label": "Tamil"
+        },
+        {
+          "code": 30,
+          "label": "Ukrainian"
+        },
+        {
+          "code": 31,
+          "label": "Urdu"
+        },
+        {
+          "code": 32,
+          "label": "Vietnamese"
+        },
+        {
+          "code": 77,
+          "label": "Language not listed above (please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "BIRTH_PLACE",
+      "question_text": "Where were you born?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canada"
+        },
+        {
+          "code": 2,
+          "label": "Outside Canada (please specify the country)"
+        },
+        {
+          "code": 3,
+          "label": "WESTERN EUROPE"
+        },
+        {
+          "code": 6,
+          "label": "SOUTH ASIA"
+        },
+        {
+          "code": 8,
+          "label": "LATIN/CENTRAL/SOUTH AMERICA"
+        },
+        {
+          "code": 9,
+          "label": "CARIBBEAN/WEST INDIES"
+        },
+        {
+          "code": 10,
+          "label": "AFRICA/SOUTH AFRICA"
+        },
+        {
+          "code": 12,
+          "label": "U.S.A"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "IMMIGRATE_YEAR",
+      "question_text": "In what year did you immigrate to Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 7777,
+          "label": "Enter year:"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "LGBTQ2",
+      "question_text": "Do you identify as a member of the 2SLGBTQI+ community (Two-Spirited, Lesbian, Gay, Bisexual, Transgender, Queer, Intersex, another sexual orientation or gender identity?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "VOTE_LASTELEC",
+      "question_text": "Did you vote in the last Canadian national election in September, 2021?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_1",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_2",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_3",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_4",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_5",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_6",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_7",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_8",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_9",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_10",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INTBARRIER_11",
+      "question_text": "Do you experience any issues with internet access (e.g., financial, technical, geographic, other)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "No/inadequate access to device (e.g., laptop, smartphone, ta"
+        },
+        {
+          "code": 2,
+          "label": "No/inadequate mobile internet access"
+        },
+        {
+          "code": 3,
+          "label": "Home internet too expensive"
+        },
+        {
+          "code": 4,
+          "label": "Mobile internet too expensive"
+        },
+        {
+          "code": 5,
+          "label": "Slow speed"
+        },
+        {
+          "code": 6,
+          "label": "Frequent disconnects"
+        },
+        {
+          "code": 7,
+          "label": "Lack of internet providers where I live"
+        },
+        {
+          "code": 8,
+          "label": "Don't know how to use/access internet"
+        },
+        {
+          "code": 9,
+          "label": "Challenges due to a disability"
+        },
+        {
+          "code": 10,
+          "label": "Security or privacy concerns"
+        },
+        {
+          "code": 12,
+          "label": "No/inadequate home internet access"
+        },
+        {
+          "code": 77,
+          "label": "Other (Please specify)"
+        },
+        {
+          "code": 97,
+          "label": "No issues"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_F_COV_1",
+      "question_text": "The pharmaceutical industry created COVID-19 in order to profit from vaccines.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_F_COV_2",
+      "question_text": "COVID-19 vaccines can cause infertility.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_F_COV_3",
+      "question_text": "No children in Canada under age 10 have died from COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_F_COV_4",
+      "question_text": "A cardiac unit in a Canadian children's hospital was expanded to treat COVID-19 vaccine side effects.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_T_COV_1",
+      "question_text": "Thermometers cannot detect COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_T_COV_2",
+      "question_text": "COVID-19 vaccination does not increase the risk of miscarriage.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_T_COV_3",
+      "question_text": "Some COVID-19 patients still have COVID-19 after symptoms disappear.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_T_COV_4",
+      "question_text": "A small number of people in Canada have had allergic reactions to the COVID-19 vaccine.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_F_COV_1",
+      "question_text": "The pharmaceutical industry created COVID-19 in order to profit from vaccines.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_F_COV_2",
+      "question_text": "COVID-19 vaccines can cause infertility.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_F_COV_3",
+      "question_text": "No children in Canada under age 10 have died from COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_F_COV_4",
+      "question_text": "A cardiac unit in a Canadian children's hospital was expanded to treat COVID-19 vaccine side effects.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_T_COV_1",
+      "question_text": "Thermometers cannot detect COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_T_COV_2",
+      "question_text": "COVID-19 vaccination does not increase the risk of miscarriage.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_T_COV_3",
+      "question_text": "Some COVID-19 patients still have COVID-19 after symptoms disappear.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_T_COV_4",
+      "question_text": "A small number of people in Canada have had allergic reactions to the COVID-19 vaccine.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_F_CLI_1",
+      "question_text": "Roughly half of climate scientists disagree that climate change is happening.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_F_CLI_2",
+      "question_text": "Frequencies emitted by wind turbines can cause cancer.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_F_CLI_3",
+      "question_text": "Natural gas is as clean an energy source as wind or solar.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_F_CLI_4",
+      "question_text": "Adapting to the impacts of climate change is cheaper than preventing it.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_T_CLI_1",
+      "question_text": "Most climate models are generally accurate in their estimates of long-term changes in global temperature.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_T_CLI_2",
+      "question_text": "2020 was the second warmest year since measurements began in the 1850s.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_T_CLI_3",
+      "question_text": "Oil companies have had evidence of human-caused climate change for several decades.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MACC_T_CLI_4",
+      "question_text": "Record cold temperatures can still occur in a world that is warming overall.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely inaccurate"
+        },
+        {
+          "code": 2,
+          "label": "Mostly inaccurate"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat inaccurate"
+        },
+        {
+          "code": 4,
+          "label": "Don't know"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat accurate"
+        },
+        {
+          "code": 6,
+          "label": "Mostly accurate"
+        },
+        {
+          "code": 7,
+          "label": "Completely accurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_F_CLI_1",
+      "question_text": "Roughly half of climate scientists disagree that climate change is happening.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_F_CLI_2",
+      "question_text": "Frequencies emitted by wind turbines can cause cancer.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_F_CLI_3",
+      "question_text": "Natural gas is as clean an energy source as wind or solar.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_F_CLI_4",
+      "question_text": "Adapting to the impacts of climate change is cheaper than preventing it.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_T_CLI_1",
+      "question_text": "Most climate models are generally accurate in their estimates of long-term changes in global temperature.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_T_CLI_2",
+      "question_text": "2020 was the second warmest year since measurements began in the 1850s.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_T_CLI_3",
+      "question_text": "Oil companies have had evidence of human-caused climate change for several decades.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_T_CLI_4",
+      "question_text": "Record cold temperatures can still occur in a world that is warming overall.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "0.1"
+        },
+        {
+          "code": 3,
+          "label": "0.2"
+        },
+        {
+          "code": 4,
+          "label": "0.3"
+        },
+        {
+          "code": 5,
+          "label": "0.4"
+        },
+        {
+          "code": 6,
+          "label": "0.5"
+        },
+        {
+          "code": 7,
+          "label": "0.6"
+        },
+        {
+          "code": 8,
+          "label": "0.7"
+        },
+        {
+          "code": 9,
+          "label": "0.8"
+        },
+        {
+          "code": 10,
+          "label": "0.9"
+        },
+        {
+          "code": 11,
+          "label": "1"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOV_CAN",
+      "question_text": "In general, how much do you CURRENTLY trust or distrust the federal government to make good decisions in the best interest of the public?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOV_PAST",
+      "question_text": "In general, how much did you trust or distrust the federal government to make good decisions in the best interest of the public BEFORE the COVID-19 pandemic?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_COMPETENT",
+      "question_text": "The federal government is competent.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_CARE",
+      "question_text": "The federal government listens to what ordinary people think.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_INTEGRITY",
+      "question_text": "The federal government is too influenced by industry.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_OPEN",
+      "question_text": "The federal government provides all relevant information to the public.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_WELFARE",
+      "question_text": "The federal government is concerned with my welfare.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_GOODJOB",
+      "question_text": "The federal government is doing a good job.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_SKILLWORKER",
+      "question_text": "The federal government has the necessary skilled people to carry out its job.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_PUBCONCERN",
+      "question_text": "The federal government listens to concerns raised by the public.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_PROMISES",
+      "question_text": "The federal government keeps its promises.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOC_TRUSTGEN",
+      "question_text": "Generally speaking, would you say that most people can be trusted, or that you can't be too careful in dealing with people?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "You can't be too careful 0"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "Most people can be trusted 10"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUSTNEWSOPIN",
+      "question_text": "News opinion shows, editorials, or op-eds",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUSTNEWSSOCMED",
+      "question_text": "News on social media",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUSTSCIENTISTS",
+      "question_text": "Scientists",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUSTNEWSJOURNALIST",
+      "question_text": "Professional journalists",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "AI_TRUST",
+      "question_text": "If you learned that a news article that you read was created by artificial intelligence (AI) software, how much would you trust it compared to articles written by people?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Much less"
+        },
+        {
+          "code": 2,
+          "label": "Less"
+        },
+        {
+          "code": 3,
+          "label": "Similar"
+        },
+        {
+          "code": 4,
+          "label": "More"
+        },
+        {
+          "code": 5,
+          "label": "Much more"
+        },
+        {
+          "code": 99,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOV_PUBHEALTH",
+      "question_text": "Public health",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOV_CLIMATE",
+      "question_text": "Climate change",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOV_DIG",
+      "question_text": "Digital technologies (e.g., social media, artificial intelligence)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIDI_GOVINVOLVE",
+      "question_text": "How much do you think the federal government should be involved in monitoring and combating the spread of misinformation and disinformation?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all involved"
+        },
+        {
+          "code": 2,
+          "label": "Slightly involved"
+        },
+        {
+          "code": 3,
+          "label": "Moderately involved"
+        },
+        {
+          "code": 4,
+          "label": "Very involved"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "GOV_SURP",
+      "question_text": "If the federal government had a budget surplus, should it use it to reduce taxes or increase spending on social services?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Reduce taxes 1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "Split evenly 5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "Increase social spending 9"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGICHARTER_DISCLOSE",
+      "question_text": "Openly and clearly disclose what personal data they are tracking.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGICHARTER_WITHDRAW",
+      "question_text": "Stop collecting and permanently delete all of my personal information if I no longer want them to have it.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGICHARTER_ALGO",
+      "question_text": "Disclose why each post and advertisement was recommended to me.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGICHARTER_MINORS",
+      "question_text": "Limit how much information they are able to collect about minors (i.e., younger than 18 years old).",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SPEECH_DISINFO_PRE",
+      "question_text": "If you absolutely have to choose between protecting freedom of expression and preventing disinformation from spreading, which is more important to you?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Protecting freedom of expression"
+        },
+        {
+          "code": 2,
+          "label": "Preventing disinformation from spreading"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "POLICY_C27",
+      "question_text": "Are you aware of Bill C-27, the Digital Charter Implementation Act (intended to improve protections for personal information and data online) in Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DEMCAN_EXPPOLI",
+      "question_text": "Individuals in Canada are free to express their personal views on political topics without fear of surveillance or punishment.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DEMCAN_FREEASSEMBLE",
+      "question_text": "Individuals can freely assemble in Canada (e.g., freedom to protest peacefully, engage in petitions, organize public events).",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_DEM_ACCEPTING",
+      "question_text": "Accepting of people from different ethnic groups and religions",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Less"
+        },
+        {
+          "code": 2,
+          "label": "Not had much impact"
+        },
+        {
+          "code": 3,
+          "label": "More"
+        },
+        {
+          "code": 99,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_DEM_MANIPULATE",
+      "question_text": "Easy to manipulate with false information and rumours",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Less"
+        },
+        {
+          "code": 2,
+          "label": "Not had much impact"
+        },
+        {
+          "code": 3,
+          "label": "More"
+        },
+        {
+          "code": 99,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_DEM_DIVISION",
+      "question_text": "Divided in their political opinions",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Less"
+        },
+        {
+          "code": 2,
+          "label": "Not had much impact"
+        },
+        {
+          "code": 3,
+          "label": "More"
+        },
+        {
+          "code": 99,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_EVER",
+      "question_text": "In the past few months, have you used any of the following social media platforms, apps, or websites, even once? Facebook Twitter Instagram TikTok Reddit YouTube Messaging apps (e.g., WhatsApp, WeChat)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_FB",
+      "question_text": "Facebook",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_TWI",
+      "question_text": "Twitter",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_INS",
+      "question_text": "Instagram",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_TIK",
+      "question_text": "TikTok",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_RED",
+      "question_text": "Reddit",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_YOU",
+      "question_text": "YouTube",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_MESSAGING",
+      "question_text": "Messaging apps (e.g., WhatsApp, WeChat)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ACTIVITY_LIKE",
+      "question_text": "Like or react to (e.g., using emojis) posts",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Rarely"
+        },
+        {
+          "code": 3,
+          "label": "Sometimes"
+        },
+        {
+          "code": 4,
+          "label": "Often"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ACTIVITY_SEND",
+      "question_text": "Share by sending directly to someone you know (e.g., text, private message)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Rarely"
+        },
+        {
+          "code": 3,
+          "label": "Sometimes"
+        },
+        {
+          "code": 4,
+          "label": "Often"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ACTIVITY_SHARE",
+      "question_text": "Share by reposting to your social media network (e.g., retweet, repost)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Rarely"
+        },
+        {
+          "code": 3,
+          "label": "Sometimes"
+        },
+        {
+          "code": 4,
+          "label": "Often"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ACTIVITY_SHARECOMMENT",
+      "question_text": "Add your own opinion (e.g., reply, share with added comment, stitch)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Rarely"
+        },
+        {
+          "code": 3,
+          "label": "Sometimes"
+        },
+        {
+          "code": 4,
+          "label": "Often"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CRITIGNORE_VERIFY",
+      "question_text": "Check how accurate the information is by searching elsewhere (e.g., Searching online, clicking links to original article)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Rarely"
+        },
+        {
+          "code": 3,
+          "label": "Sometimes"
+        },
+        {
+          "code": 4,
+          "label": "Often"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CRITIGNORE_BLOCK",
+      "question_text": "Block, report, unfollow, or request to see fewer posts from accounts posting the false or misleading information",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Rarely"
+        },
+        {
+          "code": 3,
+          "label": "Sometimes"
+        },
+        {
+          "code": 4,
+          "label": "Often"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_FRIENDFAM",
+      "question_text": "Family, friends, and colleagues",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_SOCMED",
+      "question_text": "Social media users (including influencers, celebrities)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_SCI",
+      "question_text": "Scientific experts",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_RADIOTVNEWS",
+      "question_text": "News organizations and journalists (e.g., CBC/Radio Canada, Fox News, BBC, TVA, La Presse)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_GCWEB",
+      "question_text": "Federal Government of Canada information sources (e.g., websites, social media accounts, commercials)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOURCE_FORMAT_CONV",
+      "question_text": "Conversations with people (verbal, email, text message, etc.)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOURCE_FORMAT_PRINT",
+      "question_text": "Print newspaper or magazines",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOURCE_FORMAT_ONLINEARTICLES",
+      "question_text": "Online news articles or newsletters",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOURCE_FORMAT_RADIOTV",
+      "question_text": "Radio or television news channels",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOURCE_FORMAT_POSTS",
+      "question_text": "Text or image posts on social media (e.g., Twitter, Reddit, Facebook, or other)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOURCE_FORMAT_VIDEO",
+      "question_text": "Online videos (e.g., YouTube)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "FEDWEB_USEFUL",
+      "question_text": "In general, how useful are your visits to Federal government websites (e.g., Canada.ca)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all useful"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat useful"
+        },
+        {
+          "code": 3,
+          "label": "Useful"
+        },
+        {
+          "code": 4,
+          "label": "I never visit federal government websites"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ONLINEABUSE_EXPOSURE",
+      "question_text": "Come across online hate speech or harassment (e.g., posts that deliberately promoted hatred against an identifiable group).",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ONLINEABUSE_TARGETING",
+      "question_text": "Been targeted with online hate speech or harassment.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        },
+        {
+          "code": 6,
+          "label": "Several hours per day (or more)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_FEEL_PASSIVE",
+      "question_text": "I usually learn about important news information without actively seeking it out.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_FEEL_MIDI",
+      "question_text": "I come across lots of false or misleading information online.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_FEEL_GOV",
+      "question_text": "I am confident that I can find important government information (e.g. public health information, election information, services, etc.) when I need it.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_FEEL_REALITY",
+      "question_text": "I feel like many other people in Canada are living in a different reality based on the information they consume or believe.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_FEEL_AFFECT",
+      "question_text": "I often get very upset or frustrated when I read opinions online that I disagree with.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_FEEL_BRIDGSOCAP",
+      "question_text": "Interacting with people online makes me feel like part of a larger community.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIDI_CONFIDENCE",
+      "question_text": "How easy or difficult do you find it to distinguish between true and false news or information?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very easy"
+        },
+        {
+          "code": 2,
+          "label": "Easy"
+        },
+        {
+          "code": 3,
+          "label": "Neither easy nor difficult"
+        },
+        {
+          "code": 4,
+          "label": "Difficult"
+        },
+        {
+          "code": 5,
+          "label": "Very Difficult"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SCILIT_CORR",
+      "question_text": "If two things are related, or correlated, it means that one caused the other.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "0"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SCILIT_PROB",
+      "question_text": "If a couple has a one-in-four chance of having a child with an inherited illness, this means that if their first child has the illness, the next three will not.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "0"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "NML_AA1",
+      "question_text": "The owner of a media company influences the content that is produced",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "NML_MM1",
+      "question_text": "Two people might see the same news story and get different information from it",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "NML_RR3",
+      "question_text": "A news story about conflict is more likely to be featured prominently",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_LITERACY_GMO",
+      "question_text": "Which statement on GMOs (Genetically Modified Organisms) is a factual statement as opposed to a personal opinion?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "GMOs will bring about a global food crisis."
+        },
+        {
+          "code": 2,
+          "label": "According to inventories, 15 new GMOs were registered in the"
+        },
+        {
+          "code": 3,
+          "label": "GMO experimentation should be banned."
+        },
+        {
+          "code": 4,
+          "label": "Most GMO researchers have been paid off by large corporation"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ALGORITHM",
+      "question_text": "How are most decisions made about what stories and links are recommended to people on social media?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "At random"
+        },
+        {
+          "code": 2,
+          "label": "By editors and journalists that work for news outlets"
+        },
+        {
+          "code": 3,
+          "label": "By editors and journalists that work for Facebook / other so"
+        },
+        {
+          "code": 4,
+          "label": "By computer analysis of what you liked or interacted with in"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGLIT_MALWARE",
+      "question_text": "Malware",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all familiar"
+        },
+        {
+          "code": 2,
+          "label": "Slightly familiar"
+        },
+        {
+          "code": 3,
+          "label": "Moderately familiar"
+        },
+        {
+          "code": 4,
+          "label": "Very familiar"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGLIT_CHATGPT",
+      "question_text": "ChatGPT",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all familiar"
+        },
+        {
+          "code": 2,
+          "label": "Slightly familiar"
+        },
+        {
+          "code": 3,
+          "label": "Moderately familiar"
+        },
+        {
+          "code": 4,
+          "label": "Very familiar"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGLIT_DEEPFAKE",
+      "question_text": "Deepfake",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all familiar"
+        },
+        {
+          "code": 2,
+          "label": "Slightly familiar"
+        },
+        {
+          "code": 3,
+          "label": "Moderately familiar"
+        },
+        {
+          "code": 4,
+          "label": "Very familiar"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGLIT_BOGUS",
+      "question_text": "Proxypod",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all familiar"
+        },
+        {
+          "code": 2,
+          "label": "Slightly familiar"
+        },
+        {
+          "code": 3,
+          "label": "Moderately familiar"
+        },
+        {
+          "code": 4,
+          "label": "Very familiar"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIGLIT_AI",
+      "question_text": "Artificial Intelligence (AI)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all familiar"
+        },
+        {
+          "code": 2,
+          "label": "Slightly familiar"
+        },
+        {
+          "code": 3,
+          "label": "Moderately familiar"
+        },
+        {
+          "code": 4,
+          "label": "Very familiar"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CONSPOP_CONSPMENT_A",
+      "question_text": "Much of our lives are being controlled by plots hatched in secret places.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CONSPOP_CONSPMENT_D",
+      "question_text": "Big events like wars, recessions, and the outcomes of elections, are controlled by small groups of people who are working in secret against the rest of us.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "AOT_A",
+      "question_text": "It is important to be loyal to your beliefs even when evidence is brought to bear against them.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Agree"
+        },
+        {
+          "code": 6,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "AOT_B",
+      "question_text": "Whether something feels true is more important than evidence.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Agree"
+        },
+        {
+          "code": 6,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "EDUCATION",
+      "question_text": "What is the highest level of formal education that you have completed?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Elementary school or less"
+        },
+        {
+          "code": 2,
+          "label": "Some high school"
+        },
+        {
+          "code": 3,
+          "label": "High school diploma or equivalent"
+        },
+        {
+          "code": 4,
+          "label": "Registered Apprenticeship or other trades certificate or dip"
+        },
+        {
+          "code": 5,
+          "label": "Partial college/university education"
+        },
+        {
+          "code": 6,
+          "label": "College, CEGEP or other non-university certificate or diplom"
+        },
+        {
+          "code": 7,
+          "label": "University certificate or diploma below bachelor's level"
+        },
+        {
+          "code": 8,
+          "label": "Bachelor's degree"
+        },
+        {
+          "code": 9,
+          "label": "Postgraduate degree above bachelor's level"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT",
+      "question_text": "Are you a parent?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT_U18_1",
+      "question_text": "Do you have any children in the following age groups living in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Under 6"
+        },
+        {
+          "code": 3,
+          "label": "2024-06-11 00:00:00"
+        },
+        {
+          "code": 4,
+          "label": "2024-12-17 00:00:00"
+        },
+        {
+          "code": 5,
+          "label": "18"
+        },
+        {
+          "code": 9,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT_U18_2",
+      "question_text": "Do you have any children in the following age groups living in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Under 6"
+        },
+        {
+          "code": 3,
+          "label": "2024-06-11 00:00:00"
+        },
+        {
+          "code": 4,
+          "label": "2024-12-17 00:00:00"
+        },
+        {
+          "code": 5,
+          "label": "18"
+        },
+        {
+          "code": 9,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT_U18_3",
+      "question_text": "Do you have any children in the following age groups living in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Under 6"
+        },
+        {
+          "code": 3,
+          "label": "2024-06-11 00:00:00"
+        },
+        {
+          "code": 4,
+          "label": "2024-12-17 00:00:00"
+        },
+        {
+          "code": 5,
+          "label": "18"
+        },
+        {
+          "code": 9,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT_U18_4",
+      "question_text": "Do you have any children in the following age groups living in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Under 6"
+        },
+        {
+          "code": 3,
+          "label": "2024-06-11 00:00:00"
+        },
+        {
+          "code": 4,
+          "label": "2024-12-17 00:00:00"
+        },
+        {
+          "code": 5,
+          "label": "18"
+        },
+        {
+          "code": 9,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "COMMUNITY_SIZE",
+      "question_text": "Which of the following best describes the place where you now live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "A large city"
+        },
+        {
+          "code": 2,
+          "label": "A suburb near a large city"
+        },
+        {
+          "code": 3,
+          "label": "A small city or town"
+        },
+        {
+          "code": 4,
+          "label": "A rural area"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}

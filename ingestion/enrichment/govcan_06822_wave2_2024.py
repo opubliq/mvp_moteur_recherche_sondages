@@ -1,0 +1,264 @@
+"""Enrichment authoré — govcan_06822_wave2_2024. Produit par subagent LLM (2026-07-07)."""
+
+SURVEY = {
+    "description": "Wave 2 of the Continuous Survey of Canadians conducted in March 2023. This wave focuses on trust in government, misinformation regarding COVID-19 and climate change, social media's impact on democracy, and digital literacy.",
+    "month": 3,
+}
+
+QUESTIONS = {
+    "MACC_F_COV_1": {
+        "display_label": "Accuracy perception: Pharmaceutical industry created COVID-19 for profit",
+        "concepts": ["misinformation", "covid-19", "pharmaceutical industry", "conspiracy theory"],
+        "themes": ["health", "misinformation"],
+    },
+    "MACC_F_COV_2": {
+        "display_label": "Accuracy perception: COVID-19 vaccines cause infertility",
+        "concepts": ["misinformation", "covid-19", "vaccine safety", "infertility"],
+        "themes": ["health", "misinformation"],
+    },
+    "MACC_F_COV_3": {
+        "display_label": "Accuracy perception: No children under 10 died from COVID-19 in Canada",
+        "concepts": ["misinformation", "covid-19", "mortality", "children"],
+        "themes": ["health", "misinformation"],
+    },
+    "MACC_F_COV_4": {
+        "display_label": "Accuracy perception: Cardiac unit expanded for vaccine side effects in children",
+        "concepts": ["misinformation", "covid-19", "vaccine safety", "heart health"],
+        "themes": ["health", "misinformation"],
+    },
+    "MACC_T_COV_1": {
+        "display_label": "Accuracy perception: Thermometers cannot detect COVID-19",
+        "concepts": ["covid-19", "testing", "detection"],
+        "themes": ["health"],
+    },
+    "MACC_T_COV_2": {
+        "display_label": "Accuracy perception: COVID-19 vaccine does not increase miscarriage risk",
+        "concepts": ["covid-19", "vaccine safety", "pregnancy"],
+        "themes": ["health"],
+    },
+    "MACC_T_COV_3": {
+        "display_label": "Accuracy perception: COVID-19 can persist after symptoms disappear",
+        "concepts": ["covid-19", "transmission", "health knowledge"],
+        "themes": ["health"],
+    },
+    "MACC_T_COV_4": {
+        "display_label": "Accuracy perception: Small number of allergic reactions to COVID-19 vaccine in Canada",
+        "concepts": ["covid-19", "vaccine safety", "allergic reactions"],
+        "themes": ["health"],
+    },
+    "MACC_F_CLI_1": {
+        "display_label": "Accuracy perception: Half of climate scientists disagree on climate change",
+        "concepts": ["misinformation", "climate change", "scientific consensus"],
+        "themes": ["environment", "misinformation"],
+    },
+    "MACC_F_CLI_2": {
+        "display_label": "Accuracy perception: Wind turbine frequencies cause cancer",
+        "concepts": ["misinformation", "renewable energy", "health risks"],
+        "themes": ["environment", "health", "misinformation"],
+    },
+    "MACC_F_CLI_3": {
+        "display_label": "Accuracy perception: Natural gas is as clean as wind or solar",
+        "concepts": ["misinformation", "energy", "fossil fuels", "renewable energy"],
+        "themes": ["environment", "misinformation"],
+    },
+    "MACC_F_CLI_4": {
+        "display_label": "Accuracy perception: Adapting to climate change is cheaper than preventing it",
+        "concepts": ["misinformation", "climate change", "economics", "adaptation"],
+        "themes": ["environment", "misinformation"],
+    },
+    "MACC_T_CLI_1": {
+        "display_label": "Accuracy perception: Climate models are generally accurate",
+        "concepts": ["climate change", "scientific models"],
+        "themes": ["environment"],
+    },
+    "MACC_T_CLI_2": {
+        "display_label": "Accuracy perception: 2020 was the second warmest year on record",
+        "concepts": ["climate change", "global warming", "historical data"],
+        "themes": ["environment"],
+    },
+    "MACC_T_CLI_3": {
+        "display_label": "Accuracy perception: Oil companies knew of human-caused climate change for decades",
+        "concepts": ["climate change", "corporate responsibility", "fossil fuel industry"],
+        "themes": ["environment"],
+    },
+    "MACC_T_CLI_4": {
+        "display_label": "Accuracy perception: Record cold can still occur with global warming",
+        "concepts": ["climate change", "weather patterns", "global warming"],
+        "themes": ["environment"],
+    },
+    "TRUST_GOV_CAN": {
+        "display_label": "Current trust in the federal government",
+        "concepts": ["trust", "federal government"],
+        "themes": ["governance"],
+    },
+    "TRUST_GOV_PAST": {
+        "display_label": "Past trust in the federal government",
+        "concepts": ["trust", "federal government", "historical comparison"],
+        "themes": ["governance"],
+    },
+    "TRUST_FACET_GC_COMPETENT": {
+        "display_label": "Perception of federal government competence",
+        "concepts": ["trust", "federal government", "competence"],
+        "themes": ["governance"],
+    },
+    "TRUST_FACET_GC_CARE": {
+        "display_label": "Perception of government listening to ordinary people",
+        "concepts": ["trust", "federal government", "responsiveness"],
+        "themes": ["governance"],
+    },
+    "TRUST_FACET_GC_INTEGRITY": {
+        "display_label": "Perception of industry influence on federal government",
+        "concepts": ["trust", "federal government", "integrity", "lobbying"],
+        "themes": ["governance"],
+    },
+    "TRUST_FACET_GC_OPEN": {
+        "display_label": "Perception of government transparency and information sharing",
+        "concepts": ["trust", "federal government", "transparency"],
+        "themes": ["governance"],
+    },
+    "TRUST_FACET_GC_WELFARE": {
+        "display_label": "Perception of government concern for citizen welfare",
+        "concepts": ["trust", "federal government", "social welfare"],
+        "themes": ["governance"],
+    },
+    "TRUST_FACET_GC_GOODJOB": {
+        "display_label": "General approval of federal government performance",
+        "concepts": ["trust", "federal government", "performance"],
+        "themes": ["governance"],
+    },
+    "SOC_TRUSTGEN": {
+        "display_label": "General social trust in other people",
+        "concepts": ["social trust", "interpersonal relations"],
+        "themes": ["society"],
+    },
+    "AI_TRUST": {
+        "display_label": "Trust in news articles created by artificial intelligence",
+        "concepts": ["trust", "artificial intelligence", "news", "journalism"],
+        "themes": ["digital life", "media"],
+    },
+    "TRUST_GOV_PUBHEALTH": {
+        "display_label": "Trust in government regarding public health",
+        "concepts": ["trust", "federal government", "public health"],
+        "themes": ["governance", "health"],
+    },
+    "TRUST_GOV_CLIMATE": {
+        "display_label": "Trust in government regarding climate change",
+        "concepts": ["trust", "federal government", "climate change"],
+        "themes": ["governance", "environment"],
+    },
+    "TRUST_GOV_DIG": {
+        "display_label": "Trust in government regarding digital technologies",
+        "concepts": ["trust", "federal government", "digital technology", "artificial intelligence"],
+        "themes": ["governance", "digital life"],
+    },
+    "MIDI_GOVINVOLVE": {
+        "display_label": "Desired government involvement in combating misinformation",
+        "concepts": ["misinformation", "federal government", "regulation", "censorship"],
+        "themes": ["governance", "misinformation"],
+    },
+    "DIGICHARTER_DISCLOSE": {
+        "display_label": "Support for mandatory disclosure of personal data tracking",
+        "concepts": ["digital charter", "privacy", "data protection", "transparency"],
+        "themes": ["governance", "digital life"],
+    },
+    "DIGICHARTER_WITHDRAW": {
+        "display_label": "Support for right to delete personal information",
+        "concepts": ["digital charter", "privacy", "data protection", "right to be forgotten"],
+        "themes": ["governance", "digital life"],
+    },
+    "DIGICHARTER_ALGO": {
+        "display_label": "Support for disclosure of algorithmic recommendations",
+        "concepts": ["digital charter", "algorithms", "transparency", "social media"],
+        "themes": ["governance", "digital life"],
+    },
+    "DIGICHARTER_MINORS": {
+        "display_label": "Support for limiting data collection on minors",
+        "concepts": ["digital charter", "privacy", "minors", "data protection"],
+        "themes": ["governance", "digital life"],
+    },
+    "SPEECH_DISINFO_PRE": {
+        "display_label": "Preference between freedom of expression and preventing misinformation",
+        "concepts": ["freedom of expression", "misinformation", "censorship", "values"],
+        "themes": ["governance", "misinformation", "democracy"],
+    },
+    "DEMCAN_EXPPOLI": {
+        "display_label": "Perceived freedom to express political views in Canada",
+        "concepts": ["democracy", "freedom of expression", "politics"],
+        "themes": ["governance", "democracy"],
+    },
+    "DEMCAN_FREEASSEMBLE": {
+        "display_label": "Perceived freedom of assembly and protest in Canada",
+        "concepts": ["democracy", "freedom of assembly", "protest"],
+        "themes": ["governance", "democracy"],
+    },
+    "SOCMED_DEM_ACCEPTING": {
+        "display_label": "Perception of social media's impact on social acceptance",
+        "concepts": ["social media", "democracy", "tolerance", "diversity"],
+        "themes": ["society", "digital life"],
+    },
+    "SOCMED_DEM_MANIPULATE": {
+        "display_label": "Perception of social media susceptibility to misinformation",
+        "concepts": ["social media", "democracy", "misinformation", "manipulation"],
+        "themes": ["society", "digital life", "misinformation"],
+    },
+    "SOCMED_DEM_DIVISION": {
+        "display_label": "Perception of social media's impact on political division",
+        "concepts": ["social media", "democracy", "polarization", "political opinion"],
+        "themes": ["society", "digital life", "politics"],
+    },
+    "ONLINEABUSE_EXPOSURE": {
+        "display_label": "Frequency of exposure to online hate speech or harassment",
+        "concepts": ["online abuse", "hate speech", "harassment", "digital safety"],
+        "themes": ["society", "digital life"],
+    },
+    "ONLINEABUSE_TARGETING": {
+        "display_label": "Experience of being targeted by online hate speech or harassment",
+        "concepts": ["online abuse", "hate speech", "harassment", "personal experience"],
+        "themes": ["society", "digital life"],
+    },
+    "MIDI_CONFIDENCE": {
+        "display_label": "Self-reported ability to distinguish true from false news",
+        "concepts": ["misinformation", "media literacy", "self-efficacy"],
+        "themes": ["misinformation", "media"],
+    },
+    "SCILIT_CORR": {
+        "display_label": "Scientific literacy: Understanding of correlation vs causation",
+        "concepts": ["scientific literacy", "causality"],
+        "themes": ["education"],
+    },
+    "SCILIT_PROB": {
+        "display_label": "Scientific literacy: Understanding of probability",
+        "concepts": ["scientific literacy", "probability"],
+        "themes": ["education"],
+    },
+    "DIGLIT_CHATGPT": {
+        "display_label": "Familiarity with ChatGPT",
+        "concepts": ["digital literacy", "artificial intelligence", "chatgpt"],
+        "themes": ["digital life", "education"],
+    },
+    "DIGLIT_DEEPFAKE": {
+        "display_label": "Familiarity with deepfakes",
+        "concepts": ["digital literacy", "deepfakes", "misinformation"],
+        "themes": ["digital life", "misinformation"],
+    },
+    "CONSPOP_CONSPMENT_A": {
+        "display_label": "Conspiracy mentality: Belief in secret plots controlling lives",
+        "concepts": ["conspiracy theory", "psychology", "trust"],
+        "themes": ["society", "misinformation"],
+    },
+    "CONSPOP_CONSPMENT_D": {
+        "display_label": "Conspiracy mentality: Belief in small groups controlling big events",
+        "concepts": ["conspiracy theory", "psychology", "politics"],
+        "themes": ["society", "misinformation"],
+    },
+    "AOT_A": {
+        "display_label": "Actively Open-minded Thinking: Loyalty to beliefs vs evidence",
+        "concepts": ["psychology", "cognition", "evidence-based thinking"],
+        "themes": ["education", "society"],
+    },
+    "AOT_B": {
+        "display_label": "Actively Open-minded Thinking: Importance of feel-truth vs evidence",
+        "concepts": ["psychology", "cognition", "truth perception"],
+        "themes": ["education", "society"],
+    },
+}
