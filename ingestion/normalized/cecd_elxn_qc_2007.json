@@ -1,0 +1,2769 @@
+{
+  "survey": {
+    "survey_id": "cecd_elxn_qc_2007",
+    "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+    "survey_description": null,
+    "year": 2007,
+    "survey_month": null,
+    "pollster": "CROP",
+    "language": "fr",
+    "n_respondents": 2442,
+    "raw_data_file": "complet_tous_repondants_2007.sav",
+    "tags": [
+      "electoral",
+      "provincial",
+      "québec",
+      "panel",
+      "2007"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "sexe",
+      "question_text": "Sexe du répondant",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "HOMME"
+        },
+        {
+          "code": 2,
+          "label": "FEMME"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "genre_post",
+      "question_text": "Sexe du répondant",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Homme"
+        },
+        {
+          "code": 2,
+          "label": "Femme"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "reg",
+      "question_text": "RÉGION",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "MONTRÉAL ILE"
+        },
+        {
+          "code": 2,
+          "label": "MONTRÉAL RESTE RMR"
+        },
+        {
+          "code": 3,
+          "label": "RESTE DU QUÉBEC"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "reg2",
+      "question_text": "Sous-région",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "ABITIBI-TÉMISCAMINGUE"
+        },
+        {
+          "code": 2,
+          "label": "BAS-ST-LAURENT"
+        },
+        {
+          "code": 3,
+          "label": "CHAUDIÈRE-APPALACHES (RA EXCL. RMR)"
+        },
+        {
+          "code": 4,
+          "label": "CHAUDIÈRE-APPALACHES (RMR-RA)"
+        },
+        {
+          "code": 5,
+          "label": "CÔTE-NORD DU QUÉBEC"
+        },
+        {
+          "code": 6,
+          "label": "ESTRIE"
+        },
+        {
+          "code": 7,
+          "label": "GASPÉSIE-ÎLES-DE-LA-MADELEINE"
+        },
+        {
+          "code": 8,
+          "label": "LANAUDIÈRE (EXCL.)"
+        },
+        {
+          "code": 9,
+          "label": "LAURENTIDES (EXCL.)"
+        },
+        {
+          "code": 10,
+          "label": "MAURICIE"
+        },
+        {
+          "code": 11,
+          "label": "MONTÉRÉGIE (EXCL.)"
+        },
+        {
+          "code": 12,
+          "label": "MONTRÉAL (RMR)-LANAUDIÈRE RA"
+        },
+        {
+          "code": 13,
+          "label": "MONTRÉAL (RMR)-LAURENTIDES RA"
+        },
+        {
+          "code": 14,
+          "label": "MONTRÉAL (RMR)-LAVAL RA"
+        },
+        {
+          "code": 15,
+          "label": "MONTRÉAL (RMR)-MONTÉRÉGIE RA"
+        },
+        {
+          "code": 16,
+          "label": "MONTRÉAL (RMR)-MONTRÉAL RA"
+        },
+        {
+          "code": 17,
+          "label": "NORD DU QUÉBEC"
+        },
+        {
+          "code": 18,
+          "label": "OUTAOUAIS"
+        },
+        {
+          "code": 19,
+          "label": "QUÉBEC (RA SANS QUÉBEC RMR)"
+        },
+        {
+          "code": 20,
+          "label": "QUÉBEC (RMR-RA)"
+        },
+        {
+          "code": 21,
+          "label": "SAGUENAY-LAC-ST-JEAN"
+        },
+        {
+          "code": 22,
+          "label": "CENTRE DU QUÉBEC"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "reg2_pst",
+      "question_text": "sous-région post",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "ABITIBI-TÉMISCAMINGUE"
+        },
+        {
+          "code": 2,
+          "label": "BAS-ST-LAURENT"
+        },
+        {
+          "code": 3,
+          "label": "CHAUDIÈRE-APPALACHES (RA EXCL. RMR)"
+        },
+        {
+          "code": 4,
+          "label": "CHAUDIÈRE-APPALACHES (RMR-RA)"
+        },
+        {
+          "code": 5,
+          "label": "CÔTE-NORD DU QUÉBEC"
+        },
+        {
+          "code": 6,
+          "label": "ESTRIE"
+        },
+        {
+          "code": 7,
+          "label": "GASPÉSIE-ÎLES-DE-LA-MADELEINE"
+        },
+        {
+          "code": 8,
+          "label": "LANAUDIÈRE (EXCL.)"
+        },
+        {
+          "code": 9,
+          "label": "LAURENTIDES (EXCL.)"
+        },
+        {
+          "code": 10,
+          "label": "MAURICIE"
+        },
+        {
+          "code": 11,
+          "label": "MONTÉRÉGIE (EXCL.)"
+        },
+        {
+          "code": 12,
+          "label": "MONTRÉAL (RMR)-LANAUDIÈRE RA"
+        },
+        {
+          "code": 13,
+          "label": "MONTRÉAL (RMR)-LAURENTIDES RA"
+        },
+        {
+          "code": 14,
+          "label": "MONTRÉAL (RMR)-LAVAL RA"
+        },
+        {
+          "code": 15,
+          "label": "MONTRÉAL (RMR)-MONTÉRÉGIE RA"
+        },
+        {
+          "code": 16,
+          "label": "MONTRÉAL (RMR)-MONTRÉAL RA"
+        },
+        {
+          "code": 17,
+          "label": "NORD DU QUÉBEC"
+        },
+        {
+          "code": 18,
+          "label": "OUTAOUAIS"
+        },
+        {
+          "code": 19,
+          "label": "QUÉBEC (RA SANS QUÉBEC RMR)"
+        },
+        {
+          "code": 20,
+          "label": "QUÉBEC (RMR-RA)"
+        },
+        {
+          "code": 21,
+          "label": "SAGUENAY-LAC-ST-JEAN"
+        },
+        {
+          "code": 22,
+          "label": "CENTRE DU QUÉBEC"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "age",
+      "question_text": "29. Auquel des groupes d'âges suivants appartenez-vous?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "18-24 ans"
+        },
+        {
+          "code": 2,
+          "label": "25-34 ans"
+        },
+        {
+          "code": 3,
+          "label": "35-44 ans"
+        },
+        {
+          "code": 4,
+          "label": "45-54 ans"
+        },
+        {
+          "code": 5,
+          "label": "55-64 ans"
+        },
+        {
+          "code": 6,
+          "label": "ou 65 ans et plus?"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "occup",
+      "question_text": "30. occupation principale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...travailleur(se) à temps plein (30 hres et +/sem.)"
+        },
+        {
+          "code": 2,
+          "label": "...travailleur(se) à temps partiel"
+        },
+        {
+          "code": 3,
+          "label": "...chômeur(se), à la recherche d'un emploi"
+        },
+        {
+          "code": 4,
+          "label": "...à la maison à temps plein (ménagère, B.S.)"
+        },
+        {
+          "code": 5,
+          "label": "...retraité(e)"
+        },
+        {
+          "code": 6,
+          "label": "...étudiant(e)"
+        },
+        {
+          "code": 9,
+          "label": "* refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "scol",
+      "question_text": "31. Combien d'années d'études avez-vous complétées?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...7 années ou moins (primaire)"
+        },
+        {
+          "code": 2,
+          "label": "...8 à 12 années (secondaire)"
+        },
+        {
+          "code": 3,
+          "label": "...13 à 15 années (Cegep/collège, école technique)"
+        },
+        {
+          "code": 4,
+          "label": "...ou 16 années ou plus? (Université)"
+        },
+        {
+          "code": 9,
+          "label": "* refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "revenu",
+      "question_text": "32. Dans laquelle des catégories suivantes se situe le revenu annuel total, avant impôts et déductions, de tous les membres de votre foyer, en vous incluant? Est-ce...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...moins de 20 000 $"
+        },
+        {
+          "code": 2,
+          "label": "...20 000 $ à 39 999 $"
+        },
+        {
+          "code": 3,
+          "label": "...40 000 $ à 59 999 $"
+        },
+        {
+          "code": 4,
+          "label": "...60 000 $ à 79 999 $"
+        },
+        {
+          "code": 5,
+          "label": "...ou 80 000 $ et plus?"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "lmat",
+      "question_text": "33. Quelle est votre langue maternelle, c'est-à-dire la première langue que vous avez apprise et que vous pouvez encore parler?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 6,
+          "label": "Autre (préciser) :"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "lmat_ouv",
+      "question_text": "Langue maternelle autre",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "lusage",
+      "question_text": "34. Quelle langue parle-t-on le plus souvent dans votre foyer?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 6,
+          "label": "autre (préciser) :"
+        },
+        {
+          "code": 9,
+          "label": "* refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "lusage_ouv",
+      "question_text": "Langue d'usage autre",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "nbms18",
+      "question_text": "35. Combien de personnes de moins de 18 ans résident en permanence dans votre foyer?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "aucune"
+        },
+        {
+          "code": 1,
+          "label": "1 personne"
+        },
+        {
+          "code": 2,
+          "label": "2 personnes"
+        },
+        {
+          "code": 3,
+          "label": "3 personnes"
+        },
+        {
+          "code": 4,
+          "label": "4 personnes"
+        },
+        {
+          "code": 5,
+          "label": "5 personnes"
+        },
+        {
+          "code": 6,
+          "label": "6 personnes et plus"
+        },
+        {
+          "code": 9,
+          "label": "* refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "interet",
+      "question_text": "1. Personnellement, vous intéressez-vous beaucoup, assez, peu ou pas du tout à la présente campagne électorale au Québec?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "beaucoup"
+        },
+        {
+          "code": 2,
+          "label": "assez"
+        },
+        {
+          "code": 3,
+          "label": "peu"
+        },
+        {
+          "code": 4,
+          "label": "pas du tout"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1q2",
+      "question_text": "2. Selon vous, lequel des 5 chefs a fait la meilleure campagne jusqu'à maintenant?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "André Boisclair (PQ)"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest (PLQ)"
+        },
+        {
+          "code": 3,
+          "label": "Françoise David (PQS)"
+        },
+        {
+          "code": 4,
+          "label": "Mario Dumont (ADQ)"
+        },
+        {
+          "code": 5,
+          "label": "Scott Mckay (PV)"
+        },
+        {
+          "code": 6,
+          "label": "* les 5 également"
+        },
+        {
+          "code": 7,
+          "label": "* aucun des cinq"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "satisf",
+      "question_text": "3. Diriez-vous que vous êtes très satisfait(e), plutôt satisfait(e), plutôt insatisfait(e) ou très insatisfait(e) du présent gouvernement du Québec?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt satisfait(e)"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt insatisfait(e)"
+        },
+        {
+          "code": 4,
+          "label": "Très insatisfait(e)"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvote1",
+      "question_text": "4. S'il y avait des élections provinciales aujourd'hui au Québec, pour lequel des partis suivants voteriez-vous? Voteriez-vous pour...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "* annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvote2",
+      "question_text": "5. Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Serait-pour...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...L'Action Démocratique du Québec"
+        },
+        {
+          "code": 2,
+          "label": "...Le Parti Libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "...Le Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "...Le Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "...Le Parti Vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "* annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "defini",
+      "question_text": "6. Diriez-vous que votre choix est définitif ou y a-t-il une possibilité que vous changiez d'idée d'ici les élections?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Définitif"
+        },
+        {
+          "code": 2,
+          "label": "Peut changer d'idée"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "deuxint",
+      "question_text": "7. Quel parti serait votre 2e choix si vous deviez changer d'idée?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "* Aucun"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "apte",
+      "question_text": "8. Lequel des cinq leaders politiques suivants estimez-vous le plus apte à diriger le prochain gouvernement du Québec : LIRE",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "André Boisclair (PQ)"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest (PLQ)"
+        },
+        {
+          "code": 3,
+          "label": "Françoise David (PQS)"
+        },
+        {
+          "code": 4,
+          "label": "Mario Dumont (ADQ)"
+        },
+        {
+          "code": 5,
+          "label": "Scott Mckay (PV)"
+        },
+        {
+          "code": 6,
+          "label": "* aucun"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1q9",
+      "question_text": "9. Selon vous, quel sera l'enjeu le plus important de la présente campagne électorale? Est-ce….",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "L'environnement"
+        },
+        {
+          "code": 2,
+          "label": "Le déséquilibre fiscal"
+        },
+        {
+          "code": 3,
+          "label": "La santé"
+        },
+        {
+          "code": 4,
+          "label": "L'éducation"
+        },
+        {
+          "code": 5,
+          "label": "L'emploi"
+        },
+        {
+          "code": 6,
+          "label": "Les accommodements raisonnables"
+        },
+        {
+          "code": 7,
+          "label": "La défense des intérêts du Québec"
+        },
+        {
+          "code": 8,
+          "label": "* Plusieurs ou toutes ces réponses"
+        },
+        {
+          "code": 96,
+          "label": "* autre (précisez) :"
+        },
+        {
+          "code": 99,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1q10",
+      "question_text": "10. Selon vous, jusqu'à maintenant, quel parti a recruté l'équipe de candidats la plus apte à former le prochain gouvernement?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "* Aucun"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "gagne",
+      "question_text": "11. D'après vous, indépendamment de votre préférence personnelle, quel parti va gagner les prochaines élections au Québec ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "libgagne",
+      "question_text": "Pensez-vous que le parti libéral va gagner",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "non"
+        },
+        {
+          "code": 1,
+          "label": "oui"
+        },
+        {
+          "code": 9,
+          "label": "NSP"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1abandon",
+      "question_text": "12 Si le Parti québécois était élu lors des prochaines élections pour former le prochain gouvernement, croyez-vous que le PQ devrait abandonner son projet de tenir un référendum sur la souveraineté dans le prochain mandat ou qu'il devrait maintenir cet en",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Abandonner son projet de référendum dans prochain mandat"
+        },
+        {
+          "code": 2,
+          "label": "Maintenir son projet de référendum"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intref1",
+      "question_text": "13. Si un référendum avait lieu aujourd'hui sur la même question que celle qui a été posée lors du dernier référendum de 1995, c'est-à-dire sur la souveraineté accompagnée d'une offre de partenariat au reste du Canada, voteriez-vous Oui ou voteriez-vous N",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "OUI"
+        },
+        {
+          "code": 2,
+          "label": "NON"
+        },
+        {
+          "code": 3,
+          "label": "* ne voterait pas/annulerait"
+        },
+        {
+          "code": 8,
+          "label": "* NSP"
+        },
+        {
+          "code": 9,
+          "label": "* refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intref2",
+      "question_text": "14. Même si vous n'avez peut-être pas encore fait votre choix, s'il y avait un référendum aujourd'hui sur cette question, seriez-vous tenté(e) de voter Oui ou de voter Non?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "OUI"
+        },
+        {
+          "code": 2,
+          "label": "NON"
+        },
+        {
+          "code": 3,
+          "label": "* ne voterait pas/annulerait"
+        },
+        {
+          "code": 8,
+          "label": "* NSP"
+        },
+        {
+          "code": 9,
+          "label": "* refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1q15",
+      "question_text": "15. Diriez-vous que l'accès au système de santé au Québec est meilleur, pire ou semblable à ce qu'il était il y a quatre ans ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Meilleur"
+        },
+        {
+          "code": 2,
+          "label": "Pire"
+        },
+        {
+          "code": 3,
+          "label": "Semblable à ce qu'il était il y a quatre ans"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1q16",
+      "question_text": "16. En ce qui concerne les frais de scolarité à l'université, quelle option préférez-vous parmi les suivantes?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Doubler les frais de scolarité dès l¹an prochain"
+        },
+        {
+          "code": 2,
+          "label": "Augmenter les frais de scolarité de 50 $ par session (soit u"
+        },
+        {
+          "code": 3,
+          "label": "Geler les frais de scolarité"
+        },
+        {
+          "code": 4,
+          "label": "* Rendre l¹université gratuite"
+        },
+        {
+          "code": 6,
+          "label": "* Autre (précisez) :"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1q17",
+      "question_text": "17. Pour ce qui est des frais de garderie, quelle option préférez-vous parmi les suivantes?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Créer de nouvelles places en garderie à 7 $"
+        },
+        {
+          "code": 2,
+          "label": "Verser 100 $ par semaine par enfant aux parents qui n¹envoie"
+        },
+        {
+          "code": 3,
+          "label": "Ne pas dépenser davantage pour les garderies"
+        },
+        {
+          "code": 6,
+          "label": "* Autre (précisez) :"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1q18",
+      "question_text": "18. En ce qui concerne la durée de la journée scolaire au niveau primaire, quelle option préférez-vous parmi les suivantes ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Ajouter une heure d¹école par jour en art ou en sport"
+        },
+        {
+          "code": 2,
+          "label": "Ajouter une heure par jour en français"
+        },
+        {
+          "code": 3,
+          "label": "Ajouter une heure d'aide aux devoirs"
+        },
+        {
+          "code": 4,
+          "label": "Ne pas allonger la journée d¹école"
+        },
+        {
+          "code": 5,
+          "label": "* Autre (précisez) :"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1q19",
+      "question_text": "19. En ce qui a trait au projet de développement du Mont-Orford, êtes-vous favorable ou défavorable à la privatisation d'une partie des terrains du Mont-Orford?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Favorable"
+        },
+        {
+          "code": 2,
+          "label": "Défavorable"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "luentend",
+      "question_text": "20. Avez-vous lu ou entendu des résultats de sondages portant sur les élections dernièrement?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "quiavance",
+      "question_text": "21. D'après ces sondages, dans l'ensemble du Québec, qui est en avance en ce moment?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le Parti libéral"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "* Aucun des deux"
+        },
+        {
+          "code": 4,
+          "label": "L'Action démocratique du Québec"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "beaucoup",
+      "question_text": "22. Est-ce que le <Q21> est beaucoup en avance ou un peu en avance?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Beaucoup en avance"
+        },
+        {
+          "code": 2,
+          "label": "Un peu en avance"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "avancelib",
+      "question_text": "23. Les derniers sondages montrent que le Parti libéral aurait 5 à 9 points d'avance sur le Parti Québécois. Vous personnellement, diriez-vous que le Parti Libéral est...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Plus en avance que ce que les sondages disent"
+        },
+        {
+          "code": 2,
+          "label": "À peu près comme ce que les sondages disent"
+        },
+        {
+          "code": 3,
+          "label": "Moins en avance que ce que les sondages disent?"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q24ar1",
+      "question_text": "Raisons pour lesquelles les sondages ne sont pas justes - 1",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 10,
+          "label": "Lib. pas \"bons\""
+        },
+        {
+          "code": 20,
+          "label": "Lib. \"bons\""
+        },
+        {
+          "code": 30,
+          "label": "Autres partis pas \"bons\""
+        },
+        {
+          "code": 40,
+          "label": "Autres partis \"bons\""
+        },
+        {
+          "code": 50,
+          "label": "Sondages pas fiables/Lib + efficaces"
+        },
+        {
+          "code": 60,
+          "label": "Vote volatil"
+        },
+        {
+          "code": 70,
+          "label": "Impression"
+        },
+        {
+          "code": 80,
+          "label": "Autres"
+        },
+        {
+          "code": 90,
+          "label": "Sondages sont ok"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q24ar2",
+      "question_text": "Raisons pour lesquelles les sondages ne sont pas justes - 2",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 10,
+          "label": "Lib. pas \"bons\""
+        },
+        {
+          "code": 20,
+          "label": "Lib. \"bons\""
+        },
+        {
+          "code": 30,
+          "label": "Autres partis pas \"bons\""
+        },
+        {
+          "code": 40,
+          "label": "Autres partis \"bons\""
+        },
+        {
+          "code": 50,
+          "label": "Sondages pas fiables/Lib + efficaces"
+        },
+        {
+          "code": 60,
+          "label": "Vote volatil"
+        },
+        {
+          "code": 70,
+          "label": "Impression"
+        },
+        {
+          "code": 80,
+          "label": "Autres"
+        },
+        {
+          "code": 90,
+          "label": "Sondages sont ok"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "posadq",
+      "question_text": "25. possible ou impossible ... c) Que vous votiez pour l'ADQ - l'Action démocratique du Québec ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Possible"
+        },
+        {
+          "code": 2,
+          "label": "Impossible"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "poslib",
+      "question_text": "25. possible ou impossible ... a) Que vous votiez pour le Parti Libéral?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Possible"
+        },
+        {
+          "code": 2,
+          "label": "Impossible"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "posnovote",
+      "question_text": "25. possible ou impossible ... e) Que vous décidiez de ne pas aller voter?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Possible"
+        },
+        {
+          "code": 2,
+          "label": "Impossible"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "pospq",
+      "question_text": "25. possible ou impossible ... b) Que vous votiez pour le Parti Québécois?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Possible"
+        },
+        {
+          "code": 2,
+          "label": "Impossible"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "posqspv",
+      "question_text": "25. possible ou impossible ... d) Que vous votiez pour un autre parti comme Québec solidaire ou le Parti Vert?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Possible"
+        },
+        {
+          "code": 2,
+          "label": "Impossible"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "influence",
+      "question_text": "26. Quelle influence pensez-vous que les sondages vont avoir sur le vote des gens, en général, dans cette élection? Est-ce qu'ils vont amener les gens...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "À voter plus en faveur du Parti Libéral"
+        },
+        {
+          "code": 2,
+          "label": "À voter plus en faveur du Parti Québécois"
+        },
+        {
+          "code": 3,
+          "label": "À voter plus en faveur de l'Action Démocratique du Québec"
+        },
+        {
+          "code": 4,
+          "label": "À voter plus en faveur d'un autre parti comme Québec Solidai"
+        },
+        {
+          "code": 5,
+          "label": "OU amener les gens à ne pas aller voter?"
+        },
+        {
+          "code": 6,
+          "label": "* les sondages n'auront pas d'influence"
+        },
+        {
+          "code": 7,
+          "label": "* Ont une influence mais ne sait pas laquelle"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sefie",
+      "question_text": "27. Personnellement, jusqu'à quel point vous fiez-vous aux sondages pour savoir qui gagnera la prochaine élection au Québec :",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Beaucoup"
+        },
+        {
+          "code": 2,
+          "label": "Assez"
+        },
+        {
+          "code": 3,
+          "label": "Un peu"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sondbons",
+      "question_text": "28a. Diriez-vous que les sondages pendant les campagnes électorales sont une très bonne chose, une assez bonne chose, une assez mauvaise chose, ou une très mauvaise chose pour les électeurs?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "une très bonne chose"
+        },
+        {
+          "code": 2,
+          "label": "une assez bonne chose"
+        },
+        {
+          "code": 3,
+          "label": "une assez mauvaise chose"
+        },
+        {
+          "code": 4,
+          "label": "une très mauvaise chose"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q28br1",
+      "question_text": "Raisons pour lesquelles les sondages sont une bonne ou une mauvaise chose pour les électeurs-1",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 10,
+          "label": "Sondages ont une influence positive"
+        },
+        {
+          "code": 20,
+          "label": "Sondages donnent une information fiable"
+        },
+        {
+          "code": 50,
+          "label": "Sondages ont une influence négative"
+        },
+        {
+          "code": 60,
+          "label": "Sondages donnent information non fiable"
+        },
+        {
+          "code": 99,
+          "label": "autres,  nsp"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q28br2",
+      "question_text": "Raisons pour lesquelles les sondages sont une bonne ou une mauvaise chose pour les électeurs-2",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 10,
+          "label": "Sondages ont une influence positive"
+        },
+        {
+          "code": 20,
+          "label": "Sondages donnent une information fiable"
+        },
+        {
+          "code": 50,
+          "label": "Sondages ont une influence négative"
+        },
+        {
+          "code": 60,
+          "label": "Sondages donnent information non fiable"
+        },
+        {
+          "code": 99,
+          "label": "autres,  nsp"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1particip",
+      "question_text": "GA. Il y aura un débat des chefs à la télévision mardi le13 mars de 20 h à 22 h. CROP fera un court sondage auprès des gens qui auront regardé ce débat. Accepteriez-vous que CROP vous appelle après 21 h pour connaître votre opinion sur ce débat?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "oui"
+        },
+        {
+          "code": 2,
+          "label": "non/refuse/ne regardera pas le débat"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z2q2",
+      "question_text": "2. Avez-vous regardé, en entier ou en partie, le débat télévisé entre André Boisclair, Jean Charest et Mario Dumont (le mardi 13 mars)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "oui, en entier"
+        },
+        {
+          "code": 2,
+          "label": "oui, en partie"
+        },
+        {
+          "code": 3,
+          "label": "non, n'a pas regardé"
+        },
+        {
+          "code": 9,
+          "label": "* Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z2q3",
+      "question_text": "3. Selon vous, lequel des trois chefs a été le plus convaincant? LIRE",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "André Boisclair"
+        },
+        {
+          "code": 2,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "Mario Dumont"
+        },
+        {
+          "code": 4,
+          "label": "* les 3 également"
+        },
+        {
+          "code": 5,
+          "label": "* aucun des trois"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z2q6",
+      "question_text": "6. À l'heure actuelle, seriez-vous plutôt favorable à continuer avec le gouvernement Charest ou seriez-vous plutôt favorable à un changement de gouvernement au Québec?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Favorable à continuer avec le gouvernement Charest"
+        },
+        {
+          "code": 2,
+          "label": "Favorable à un changement de gouvernement au Qc"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z2q9",
+      "question_text": "9. Avez-vous décidé d'appuyer ce parti avant le début de la campagne électorale, pendant la présente campagne électorale ou après le débat des chefs à la télévision?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "avant la campagne"
+        },
+        {
+          "code": 2,
+          "label": "pendant la campagne"
+        },
+        {
+          "code": 3,
+          "label": "après le débat à la télévision"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z2q13",
+      "question_text": "13. Selon vous, le prochain gouvernement du Québec sera-t-il majoritaire ou minoritaire?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Majoritaire"
+        },
+        {
+          "code": 2,
+          "label": "Minoritaire"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z2q14",
+      "question_text": "14. Est-ce que la perspective d'un gouvernement minoritaire vous inquiète?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "voteprec",
+      "question_text": "15a. Pour quel parti avez-vous voté aux dernières élections provinciales d'avril 2003? LIRE",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "L'Action démocratique du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": 4,
+          "label": "ou un autre parti? (précisez):"
+        },
+        {
+          "code": 6,
+          "label": "* n'a pas voté"
+        },
+        {
+          "code": 8,
+          "label": "* NSP/ne se souvient pas"
+        },
+        {
+          "code": 9,
+          "label": "* Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z2q15b",
+      "question_text": "15b. Vous considérez-vous surtout comme un(e) fédéraliste, surtout comme un(e) souverainiste, surtout comme un(e) autonomiste ou comme quelqu'un qui n'est rien de tout cela?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Surtout fédéraliste"
+        },
+        {
+          "code": 2,
+          "label": "Surtout souverainiste"
+        },
+        {
+          "code": 3,
+          "label": "Surtout autonomiste"
+        },
+        {
+          "code": 4,
+          "label": "Rien de tout cela"
+        },
+        {
+          "code": 9,
+          "label": "* NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "voteoui",
+      "question_text": "1.   D'abord, pouvez-vous me dire si vous êtes allé voter lors de l'élection qui vient de se tenir au Québec?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui, le jour même de l'élection (lundi 26 mars)"
+        },
+        {
+          "code": 2,
+          "label": "Oui, par anticipation une semaine avant?"
+        },
+        {
+          "code": 3,
+          "label": "Non, n'a pas voté"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "indecis",
+      "question_text": "2.    Durant la semaine qui a précédé votre vote, diriez-vous que vous étiez indécis(e) ou que votre idée était déjà faite?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Indécis(e)"
+        },
+        {
+          "code": 2,
+          "label": "Idée déjà faite"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "vote",
+      "question_text": "3.  Et pour quel parti avez-vous voté?   NE PAS LIRE",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "n'a pas voté"
+        },
+        {
+          "code": 1,
+          "label": "L'Action Démocratique du Québec/ADQ"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "Le Parti Québecois"
+        },
+        {
+          "code": 4,
+          "label": "Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Le Parti Vert"
+        },
+        {
+          "code": 6,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 7,
+          "label": "A annulé son vote"
+        },
+        {
+          "code": 9,
+          "label": "Refus"
+        },
+        {
+          "code": 10,
+          "label": "non rejoint"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "raischang",
+      "question_text": "4a.   Quelle est la principale raison pour laquelle vous avez voté pour <Q3>?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 96,
+          "label": "Raison (précisez) :"
+        },
+        {
+          "code": 99,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "raisannul",
+      "question_text": "4b.  Quelle est la principale raison pour laquelle vous avez (annulé votre vote ou n'êtes pas allé voter) ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 96,
+          "label": "Raison (précisez) :"
+        },
+        {
+          "code": 99,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q4a_verb",
+      "question_text": "Quelle est la principale raison pour laquelle vous avez voté pour...",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q4b_verb",
+      "question_text": "Quelle est la principale raison pour laquelle vous avez (annulé votre vote ou n'êtes pas allé voter) ?",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sondtrop",
+      "question_text": "5.  Diriez-vous que, pendant la dernière campagne électorale, il y a eu...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...trop de sondages"
+        },
+        {
+          "code": 2,
+          "label": "...juste assez de sondages"
+        },
+        {
+          "code": 3,
+          "label": "...pas assez de sondages"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sonddiff",
+      "question_text": "6.  Et personnellement, diriez-vous que les résultats des sondages ont rendu votre décision...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Plus difficile à prendre"
+        },
+        {
+          "code": 2,
+          "label": "ou plus facile à prendre"
+        },
+        {
+          "code": 3,
+          "label": "Ça n'a fait aucune différence"
+        },
+        {
+          "code": 4,
+          "label": "ne suit pas les sondages"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus/Ne s'applique pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "poste_radio",
+      "question_text": "Réponse des répondants concernant le poste de radio écouté.",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "radio",
+      "question_text": "Information concernant les habitudes d'écoute de la radio des répondants.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 96,
+          "label": "* NSP/Refus"
+        },
+        {
+          "code": 97,
+          "label": "N'écoute pas la radio"
+        },
+        {
+          "code": 98,
+          "label": "Écoute plusieurs postes"
+        },
+        {
+          "code": 99,
+          "label": "Écoute ne sais pas quel poste"
+        },
+        {
+          "code": 999,
+          "label": "Information disponible"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "siglenum",
+      "question_text": "Appelation des postes radio - numerique",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "BOOMER AM"
+        },
+        {
+          "code": 3,
+          "label": "CBC"
+        },
+        {
+          "code": 4,
+          "label": "CFDA-FM"
+        },
+        {
+          "code": 5,
+          "label": "CFEI-FM"
+        },
+        {
+          "code": 6,
+          "label": "CFEL-FM"
+        },
+        {
+          "code": 7,
+          "label": "CFGE-FM"
+        },
+        {
+          "code": 8,
+          "label": "CFGL"
+        },
+        {
+          "code": 9,
+          "label": "CFGR-FM"
+        },
+        {
+          "code": 10,
+          "label": "CFIM-FM"
+        },
+        {
+          "code": 11,
+          "label": "CFIX-FM"
+        },
+        {
+          "code": 12,
+          "label": "CFJM-FM"
+        },
+        {
+          "code": 13,
+          "label": "CFJO-FM"
+        },
+        {
+          "code": 14,
+          "label": "CFLO-FM"
+        },
+        {
+          "code": 15,
+          "label": "CFLX-FM"
+        },
+        {
+          "code": 16,
+          "label": "CFNJ-FM"
+        },
+        {
+          "code": 17,
+          "label": "CFNJ"
+        },
+        {
+          "code": 18,
+          "label": "CFNO-FM"
+        },
+        {
+          "code": 19,
+          "label": "CFOM-FM"
+        },
+        {
+          "code": 20,
+          "label": "CFOM"
+        },
+        {
+          "code": 21,
+          "label": "CFOU-FM"
+        },
+        {
+          "code": 22,
+          "label": "CFQR-FM"
+        },
+        {
+          "code": 23,
+          "label": "CFVM"
+        },
+        {
+          "code": 24,
+          "label": "CFXM-FM"
+        },
+        {
+          "code": 25,
+          "label": "CFZZ-FM"
+        },
+        {
+          "code": 26,
+          "label": "CHCN-AM 610"
+        },
+        {
+          "code": 27,
+          "label": "CHEQ-FM"
+        },
+        {
+          "code": 28,
+          "label": "CHEY-FM"
+        },
+        {
+          "code": 29,
+          "label": "CHGA-FM"
+        },
+        {
+          "code": 30,
+          "label": "CHIC-FM"
+        },
+        {
+          "code": 31,
+          "label": "CHIK-FM"
+        },
+        {
+          "code": 32,
+          "label": "CHIZ-FM"
+        },
+        {
+          "code": 33,
+          "label": "CHJM-FM"
+        },
+        {
+          "code": 34,
+          "label": "CHLC-FM"
+        },
+        {
+          "code": 35,
+          "label": "CHLN 550 AM"
+        },
+        {
+          "code": 36,
+          "label": "CHLT 630 630 AM"
+        },
+        {
+          "code": 37,
+          "label": "CHLX-FM"
+        },
+        {
+          "code": 38,
+          "label": "CHMP-FM"
+        },
+        {
+          "code": 39,
+          "label": "CHNC-AM"
+        },
+        {
+          "code": 40,
+          "label": "CHOA-FM"
+        },
+        {
+          "code": 41,
+          "label": "CHOE-FM"
+        },
+        {
+          "code": 42,
+          "label": "CHOI-FM"
+        },
+        {
+          "code": 43,
+          "label": "CHOM-FM"
+        },
+        {
+          "code": 44,
+          "label": "CHOX-FM"
+        },
+        {
+          "code": 45,
+          "label": "CHRC 80"
+        },
+        {
+          "code": 46,
+          "label": "CHRD-FM"
+        },
+        {
+          "code": 47,
+          "label": "CHRL-FM"
+        },
+        {
+          "code": 48,
+          "label": "CHRM-FM"
+        },
+        {
+          "code": 49,
+          "label": "CHUM-FM"
+        },
+        {
+          "code": 50,
+          "label": "CHVD-FM"
+        },
+        {
+          "code": 51,
+          "label": "CHYZ-FM"
+        },
+        {
+          "code": 52,
+          "label": "CIBM-FM"
+        },
+        {
+          "code": 53,
+          "label": "CIEL-FM"
+        },
+        {
+          "code": 54,
+          "label": "CIEU-FM"
+        },
+        {
+          "code": 55,
+          "label": "CIGB-FM"
+        },
+        {
+          "code": 56,
+          "label": "CIGR-FM"
+        },
+        {
+          "code": 57,
+          "label": "CIHO-FM"
+        },
+        {
+          "code": 58,
+          "label": "CIHT-FM"
+        },
+        {
+          "code": 59,
+          "label": "CIKI-FM"
+        },
+        {
+          "code": 60,
+          "label": "CILE-FM"
+        },
+        {
+          "code": 61,
+          "label": "CIMB-FM"
+        },
+        {
+          "code": 62,
+          "label": "CIME-FM"
+        },
+        {
+          "code": 63,
+          "label": "CIMF-FM"
+        },
+        {
+          "code": 64,
+          "label": "CIMO-FM"
+        },
+        {
+          "code": 65,
+          "label": "CINW"
+        },
+        {
+          "code": 66,
+          "label": "CION-FM"
+        },
+        {
+          "code": 67,
+          "label": "CIPC-FM"
+        },
+        {
+          "code": 68,
+          "label": "CIRA-FM"
+        },
+        {
+          "code": 69,
+          "label": "CISM-FM"
+        },
+        {
+          "code": 70,
+          "label": "CISS-FM"
+        },
+        {
+          "code": 71,
+          "label": "CITE-FM"
+        },
+        {
+          "code": 72,
+          "label": "CITF-FM"
+        },
+        {
+          "code": 73,
+          "label": "CJAB-FM"
+        },
+        {
+          "code": 74,
+          "label": "CJAD 800"
+        },
+        {
+          "code": 75,
+          "label": "CJAN-FM"
+        },
+        {
+          "code": 76,
+          "label": "CJDM-FM"
+        },
+        {
+          "code": 77,
+          "label": "CJEB-FM"
+        },
+        {
+          "code": 78,
+          "label": "CJEC-FM"
+        },
+        {
+          "code": 79,
+          "label": "CJFM-FM"
+        },
+        {
+          "code": 80,
+          "label": "CJIT-FM"
+        },
+        {
+          "code": 81,
+          "label": "CJKG-FM"
+        },
+        {
+          "code": 82,
+          "label": "CJLA-FM"
+        },
+        {
+          "code": 83,
+          "label": "CJLM-FM"
+        },
+        {
+          "code": 84,
+          "label": "CJMF-FM"
+        },
+        {
+          "code": 85,
+          "label": "CJMJ-FM"
+        },
+        {
+          "code": 86,
+          "label": "CJMM-FM"
+        },
+        {
+          "code": 87,
+          "label": "CJMS-AM"
+        },
+        {
+          "code": 88,
+          "label": "CJMV-FM"
+        },
+        {
+          "code": 89,
+          "label": "CJOI-FM"
+        },
+        {
+          "code": 90,
+          "label": "CJPX-FM"
+        },
+        {
+          "code": 91,
+          "label": "CJRC 1150"
+        },
+        {
+          "code": 92,
+          "label": "CJRG-FM"
+        },
+        {
+          "code": 93,
+          "label": "CJSO-FM"
+        },
+        {
+          "code": 94,
+          "label": "CKAC 730 AM"
+        },
+        {
+          "code": 95,
+          "label": "CKAJ-FM"
+        },
+        {
+          "code": 96,
+          "label": "CKBY-FM"
+        },
+        {
+          "code": 97,
+          "label": "CKGM"
+        },
+        {
+          "code": 98,
+          "label": "CKKL-FM"
+        },
+        {
+          "code": 99,
+          "label": "CKLX-FM"
+        },
+        {
+          "code": 100,
+          "label": "CKMF-FM"
+        },
+        {
+          "code": 101,
+          "label": "CKMN-FM"
+        },
+        {
+          "code": 102,
+          "label": "CKNU-AM"
+        },
+        {
+          "code": 103,
+          "label": "CKOD-FM"
+        },
+        {
+          "code": 104,
+          "label": "CKOI-FM"
+        },
+        {
+          "code": 105,
+          "label": "CKRS 590"
+        },
+        {
+          "code": 106,
+          "label": "CKTF-FM"
+        },
+        {
+          "code": 107,
+          "label": "CKVM-FM"
+        },
+        {
+          "code": 108,
+          "label": "CKYK-FM"
+        },
+        {
+          "code": 109,
+          "label": "CKYQ-FM"
+        },
+        {
+          "code": 110,
+          "label": "COOL FM"
+        },
+        {
+          "code": 111,
+          "label": "CPAM"
+        },
+        {
+          "code": 112,
+          "label": "G-ROCK-FM"
+        },
+        {
+          "code": 113,
+          "label": "Info 690"
+        },
+        {
+          "code": 114,
+          "label": "INTERNET"
+        },
+        {
+          "code": 115,
+          "label": "MAX TRAX"
+        },
+        {
+          "code": 116,
+          "label": "MIX FM"
+        },
+        {
+          "code": 117,
+          "label": "Off the air"
+        },
+        {
+          "code": 118,
+          "label": "Radio Indienne"
+        },
+        {
+          "code": 119,
+          "label": "RCan"
+        },
+        {
+          "code": 120,
+          "label": "RCanMusique"
+        },
+        {
+          "code": 121,
+          "label": "USA"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}

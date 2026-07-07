@@ -10,6 +10,14 @@ L'orchestrateur (toi) ne code PAS l'extracteur ni l'enrichissement à la main : 
 **valide leur travail** et **ingère**. C'est le rôle de l'orchestrateur d'être le
 garde-fou humain : ne jamais faire confiance aveuglément à un subagent.
 
+## Environnement Python (venv uv)
+
+Le repo a un venv géré par **uv** à `.venv/` (Python 3.13, deps de `pyproject.toml`).
+Il n'y a **pas de `python` global** : toutes les commandes ci-dessous passent par
+`uv run …` (qui utilise le venv automatiquement). Sinon, active-le d'abord :
+`source .venv/bin/activate`. **Rappelle-le aux subagents** dans leur brief : ils
+doivent utiliser `uv run` (ou le venv activé), jamais un `python` nu.
+
 ## Contexte produit
 
 Moteur de recherche de **questions de sondage** au niveau de la question :
