@@ -12,6 +12,8 @@ export interface ResponseOption {
   label: string;
 }
 
+export type Pertinence = 'Exact' | 'Partiel' | 'Faible' | 'Hors-sujet';
+
 export interface SearchResult {
   id: string;
   survey_id: string;
@@ -29,7 +31,10 @@ export interface SearchResult {
   themes: string[];
   tags: string[];
   n_respondents: number | null;
+  pertinence?: Pertinence;
+  score_couverture?: number;
 }
+
 
 export interface SearchResponse {
   results: SearchResult[];

@@ -16,6 +16,8 @@
  */
 
 import type { Handler } from "@netlify/functions";
+import type { Concept, SearchResult } from "../../src/types";
+import { scoreResult } from "../../src/logic/scoring";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -24,7 +26,7 @@ import type { Handler } from "@netlify/functions";
 const INDEX_NAME = "survey-questions";
 const SEARCH_API_VERSION = "2024-07-01";
 const AOAI_API_VERSION = "2024-02-01";
-const MAX_TOP = 50;
+const MAX_TOP = 100;
 
 // Recherche vectorielle pondérée : la requête est comparée à DEUX vecteurs par
 // question — le vecteur QUESTION (content_vector, dominant) et le vecteur
@@ -46,6 +48,7 @@ const CORS_HEADERS: Record<string, string> = {
 
 interface SearchBody {
   query: string;
+  concepts?: Concept[];
   filters?: Record<string, string | number | boolean>;
   top?: number;
 }
@@ -55,7 +58,7 @@ interface AoaiEmbeddingResponse {
 }
 
 interface SearchResponse {
-  value: unknown[];
+  value: any[];
   "@odata.count"?: number;
 }
 
@@ -99,7 +102,7 @@ function buildFilter(filters?: Record<string, string | number | boolean>): strin
 
   if (filters) {
     for (const [field, value] of Object.entries(filters)) {
-      if (value === null || value === undefined) continue;
+      if (value === null || value === undefined || value === "") continue;
       if (typeof value === "string") {
         // Échapper les apostrophes OData
         const escaped = value.replace(/'/g, "''");
@@ -111,6 +114,37 @@ function buildFilter(filters?: Record<string, string | number | boolean>): strin
   }
 
   return clauses.join(" and ");
+}
+
+/**
+ * Échappe les caractères spéciaux Lucene et gère les phrases.
+ */
+function escapeLucene(term: string): string {
+  if (!term) return "";
+  const t = term.trim();
+  if (t.includes(" ")) {
+    return `"${t.replace(/"/g, '\\"')}"`;
+  }
+  return t.replace(/([!*+&|()\[\]{}^"~?:\\/])/g, "\\$1");
+}
+
+/**
+ * Construit une requête Lucene à partir des concepts et leurs synonymes/qualifiers.
+ */
+function buildLuceneQuery(concepts: Concept[]): string {
+  if (!concepts || concepts.length === 0) return "*";
+
+  return concepts
+    .map((c) => {
+      const branches = [
+        `${escapeLucene(c.orig)}^2`,
+        ...(c.syns || []).map((s) => escapeLucene(s)),
+        ...(c.qualifiers || []).map((q) => escapeLucene(q)),
+      ].filter(Boolean);
+
+      return `(${branches.join(" OR ")})`;
+    })
+    .join(" AND ");
 }
 
 // ---------------------------------------------------------------------------
@@ -163,7 +197,7 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  const { query, filters, top = 10 } = body;
+  const { query, concepts, filters, top = 10 } = body;
 
   if (!query || typeof query !== "string" || !query.trim()) {
     return {
@@ -183,7 +217,9 @@ export const handler: Handler = async (event) => {
   try {
     vector = await getEmbedding(trimmedQuery);
     console.log(
-      `[search] embedding OK — dims=${vector.length} query="${trimmedQuery.slice(0, 60)}"`,
+      `[search] embedding OK — dims=${
+        vector.length
+      } query="${trimmedQuery.slice(0, 60)}"`,
     );
   } catch (err) {
     console.error("[search] Embedding generation failed:", err);
@@ -202,8 +238,11 @@ export const handler: Handler = async (event) => {
   const searchUrl = `${searchEndpoint}/indexes/${INDEX_NAME}/docs/search?api-version=${SEARCH_API_VERSION}`;
   const filter = buildFilter(filters);
 
-  const searchPayload = {
-    search: trimmedQuery,
+  const luceneQuery = concepts && concepts.length > 0 ? buildLuceneQuery(concepts) : trimmedQuery;
+
+  const searchPayload: any = {
+    search: luceneQuery,
+    queryType: "full", // Pour supporter la syntaxe Lucene
     vectorQueries: [
       {
         kind: "vector",
@@ -241,10 +280,10 @@ export const handler: Handler = async (event) => {
       "tags",
       "n_respondents",
     ].join(","),
-    top: clampedTop,
+    top: concepts && concepts.length > 0 ? Math.max(clampedTop, 100) : clampedTop,
   };
 
-  console.log(`[search] AI Search — filter="${filter}" top=${clampedTop}`);
+  console.log(`[search] AI Search — query="${luceneQuery}" filter="${filter}" top=${searchPayload.top}`);
 
   let searchResult: SearchResponse;
   try {
@@ -272,7 +311,41 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  const results = searchResult.value ?? [];
+  // -----------------------------------------------------------------------
+  // Étape 3 : Scoring local et tri par pertinence
+  // -----------------------------------------------------------------------
+  let results = (searchResult.value ?? []) as (SearchResult & { "@search.score": number })[];
+
+  if (concepts && concepts.length > 0) {
+    // Calcul de la couverture
+    results = results.map((r) => {
+      const { score, pertinence } = scoreResult(concepts, r);
+      return {
+        ...r,
+        score_couverture: score,
+        pertinence,
+      };
+    });
+
+    // Tri : Palier de pertinence d'abord, puis score Azure
+    const pertinenceOrder: Record<string, number> = {
+      Exact: 4,
+      Partiel: 3,
+      Faible: 2,
+      "Hors-sujet": 1,
+    };
+
+    results.sort((a, b) => {
+      const orderA = pertinenceOrder[a.pertinence || "Hors-sujet"];
+      const orderB = pertinenceOrder[b.pertinence || "Hors-sujet"];
+      if (orderA !== orderB) return orderB - orderA;
+      // Départage par score Azure (@search.score)
+      return (b["@search.score"] || 0) - (a["@search.score"] || 0);
+    });
+
+    // On recoupe au top demandé
+    results = results.slice(0, clampedTop);
+  }
 
   return {
     statusCode: 200,
@@ -280,6 +353,7 @@ export const handler: Handler = async (event) => {
     body: JSON.stringify({
       results,
       count: results.length,
+      luceneQuery, // Pour info/debug
     }),
   };
 };

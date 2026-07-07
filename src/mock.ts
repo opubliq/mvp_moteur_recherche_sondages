@@ -30,6 +30,8 @@ export const MOCK_RESPONSE: SearchResponse = {
       themes: ["institutions", "gouvernance"],
       tags: ["electoral", "provincial", "québec"],
       n_respondents: 1517,
+      pertinence: "Exact",
+      score_couverture: 100,
     },
     {
       id: "eeq_2014__VOTE_INT",
@@ -55,6 +57,8 @@ export const MOCK_RESPONSE: SearchResponse = {
       themes: ["élections", "partis politiques"],
       tags: ["electoral", "provincial", "québec"],
       n_respondents: 1517,
+      pertinence: "Partiel",
+      score_couverture: 67,
     },
     {
       id: "cecd_charte_2013_10__CHARTE_APPUI",
@@ -79,6 +83,8 @@ export const MOCK_RESPONSE: SearchResponse = {
       themes: ["laïcité", "identité"],
       tags: ["charte", "québec", "2013"],
       n_respondents: 1003,
+      pertinence: "Faible",
+      score_couverture: 33,
     },
     {
       id: "cecd_charte_2013_10__AGE",

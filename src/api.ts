@@ -1,4 +1,4 @@
-import type { SearchFilters, SearchResponse, SurveyDetailResponse } from "./types";
+import type { Concept, SearchFilters, SearchResponse, SurveyDetailResponse } from "./types";
 import { MOCK_RESPONSE } from "./mock";
 
 /**
@@ -8,11 +8,31 @@ import { MOCK_RESPONSE } from "./mock";
  */
 const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true";
 
+/** Appelle la Netlify Function `/decompose`. */
+export async function decompose(query: string): Promise<Concept[]> {
+  if (USE_MOCK) return [];
+
+  const res = await fetch("/decompose", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Décomposition échouée (${res.status}): ${body || res.statusText}`);
+  }
+
+  const data = await res.json();
+  return data.concepts;
+}
+
 /** Appelle la Netlify Function `/search`. */
 export async function search(
   query: string,
   filters: SearchFilters,
   top = 30,
+  concepts?: Concept[]
 ): Promise<SearchResponse> {
   if (USE_MOCK) {
     await new Promise((r) => setTimeout(r, 300));
@@ -22,7 +42,7 @@ export async function search(
   const res = await fetch("/search", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query, filters, top }),
+    body: JSON.stringify({ query, filters, top, concepts }),
   });
 
   if (!res.ok) {
