@@ -212,4 +212,30 @@ def extract() -> dict:
 
 if __name__ == "__main__":
     import json
-    print(json.dumps(extract(), indent=2, ensure_ascii=False))
+    data = extract()
+
+    # Validation Pydantic
+    validated = SurveyFile.model_validate(data)
+
+    # Écriture JSON
+    _HERE = Path(__file__).parent
+    REPO_ROOT = _HERE.parent.parent
+    OUT_FILE = REPO_ROOT / "ingestion" / "normalized" / f"{SURVEY_ID}.json"
+    OUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    OUT_FILE.write_text(
+        json.dumps(validated.model_dump(), ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+    n_q = len(validated.questions)
+    n_sd = sum(1 for q in validated.questions if q.is_sociodemo)
+    n_with_opts = sum(1 for q in validated.questions if q.response_options)
+    non_empty_text = sum(1 for q in validated.questions if q.question_text.strip())
+
+    print(f"Sondage   : {validated.survey.survey_id}")
+    print(f"Répondants: {validated.survey.n_respondents}")
+    print(f"Questions : {n_q} total, {n_with_opts} avec options de réponse")
+    print(f"Socio-démo: {n_sd}")
+    print(f"question_text non vides : {non_empty_text}/{n_q}")
+    print(f"Fichier JSON : {OUT_FILE}")
+
