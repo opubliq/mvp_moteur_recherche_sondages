@@ -34,3 +34,6 @@ dist/
 
 # Local Netlify folder
 .netlify
+
+# Bundles de fonctions pré-packagés (ne jamais committer : ils shadowent le .ts)
+netlify/functions/*.zip
