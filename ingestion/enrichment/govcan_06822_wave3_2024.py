@@ -1,0 +1,209 @@
+"""Enrichment authoré — govcan_06822_wave3_2024. Produit par subagent LLM (2026-07-07)."""
+
+SURVEY = {
+    "description": "Wave 3 of the Continuous Survey of Canadians, conducted by the Government of Canada in late 2023. It explores public opinion on trust in institutions, the state of democracy, misinformation, climate change, immigration, and federal services.",
+    "month": 11,
+}
+
+QUESTIONS = {
+    "VOTE_NEXTELEC": {
+        "display_label": "Likelihood of voting in the next federal election",
+        "concepts": ["voting", "political participation", "elections"],
+        "themes": ["democracy"],
+    },
+    "MIS_F_CLI_1": {
+        "display_label": "Belief: Climate change is a conspiracy created by governments",
+        "concepts": ["climate change", "misinformation", "conspiracy theories"],
+        "themes": ["environment", "misinformation"],
+    },
+    "MIS_F_CLI_2": {
+        "display_label": "Belief: NASA scientists admit climate change is caused by Earth's solar orbit",
+        "concepts": ["climate change", "misinformation", "scientific consensus"],
+        "themes": ["environment", "misinformation"],
+    },
+    "MIS_T_CLI_1": {
+        "display_label": "Belief: Oil companies have had evidence of human-caused climate change for decades",
+        "concepts": ["climate change", "fact-checking", "oil industry"],
+        "themes": ["environment"],
+    },
+    "MIS_T_CLI_2": {
+        "display_label": "Belief: Scientific consensus that climate change will contribute to extinctions",
+        "concepts": ["climate change", "scientific consensus", "biodiversity"],
+        "themes": ["environment"],
+    },
+    "TRUST_GOV_CAN": {
+        "display_label": "Trust in the federal government",
+        "concepts": ["trust", "federal government"],
+        "themes": ["governance"],
+    },
+    "TRUST_MEDIA": {
+        "display_label": "Trust in large Canadian news media organizations",
+        "concepts": ["trust", "media", "news"],
+        "themes": ["media"],
+    },
+    "TRUST_FACET_GC_COMPETENT": {
+        "display_label": "Perception of federal government competence",
+        "concepts": ["trust", "competence", "federal government"],
+        "themes": ["governance"],
+    },
+    "TRUST_FACET_GC_PUBCONCERN": {
+        "display_label": "Perception that the federal government listens to public concerns",
+        "concepts": ["trust", "responsiveness", "public opinion"],
+        "themes": ["governance", "democracy"],
+    },
+    "TRUST_GOV_CLIMATE": {
+        "display_label": "Trust in the government regarding climate change",
+        "concepts": ["trust", "climate change", "government action"],
+        "themes": ["environment", "governance"],
+    },
+    "TRUST_GOV_IMMIGRATION": {
+        "display_label": "Trust in the government regarding immigration",
+        "concepts": ["trust", "immigration", "government policy"],
+        "themes": ["immigration", "governance"],
+    },
+    "TRUST_GOV_HOUSING": {
+        "display_label": "Trust in the government regarding housing",
+        "concepts": ["trust", "housing", "government policy"],
+        "themes": ["housing", "governance"],
+    },
+    "FEDGOV_SAT": {
+        "display_label": "Satisfaction with federal government services",
+        "concepts": ["satisfaction", "public services", "federal government"],
+        "themes": ["governance"],
+    },
+    "DEM_SAT": {
+        "display_label": "Satisfaction with the way democracy works in Canada",
+        "concepts": ["satisfaction", "democracy", "political system"],
+        "themes": ["democracy"],
+    },
+    "DEMCAN_INFLUENCE": {
+        "display_label": "Perceived influence on the Canadian political system",
+        "concepts": ["political efficacy", "influence", "democracy"],
+        "themes": ["democracy"],
+    },
+    "DEMCAN_ACCEPTNEXTELEC": {
+        "display_label": "Willingness to accept the outcome of the next election",
+        "concepts": ["electoral integrity", "democracy", "political stability"],
+        "themes": ["democracy"],
+    },
+    "DEMCAN_JUSTSYS": {
+        "display_label": "Perception of equality in the Canadian justice system",
+        "concepts": ["justice", "equality", "legal system"],
+        "themes": ["justice"],
+    },
+    "POLGOVERN1": {
+        "display_label": "Support for a strong leader who does not have to bother with parliament",
+        "concepts": ["authoritarianism", "governance", "leadership"],
+        "themes": ["democracy"],
+    },
+    "POLGOVERN2": {
+        "display_label": "Support for experts making decisions instead of government",
+        "concepts": ["technocracy", "governance", "experts"],
+        "themes": ["democracy"],
+    },
+    "POLGOVERN3": {
+        "display_label": "Support for representative democracy",
+        "concepts": ["representative democracy", "governance", "voting"],
+        "themes": ["democracy"],
+    },
+    "DIVISION1": {
+        "display_label": "Perception of division in Canada",
+        "concepts": ["social cohesion", "polarization", "division"],
+        "themes": ["society"],
+    },
+    "DIVISION_WHAT": {
+        "display_label": "Main issue causing division in Canada",
+        "concepts": ["polarization", "social issues", "division"],
+        "themes": ["society"],
+    },
+    "POLICY_CARBON_TAX": {
+        "display_label": "Support for a national price on carbon pollution (carbon tax)",
+        "concepts": ["carbon tax", "climate policy", "environmental regulation"],
+        "themes": ["environment", "economy"],
+    },
+    "POLICY_IMMIGRATION": {
+        "display_label": "Support for admitting more permanent residents in 2024",
+        "concepts": ["immigration policy", "population growth"],
+        "themes": ["immigration"],
+    },
+    "SOCCOH_TRUST": {
+        "display_label": "Trust in other Canadians to do what is best for the country",
+        "concepts": ["social trust", "social cohesion", "patriotism"],
+        "themes": ["society"],
+    },
+    "ONLINEABUSE_TARGETING": {
+        "display_label": "Frequency of being targeted with online hate speech",
+        "concepts": ["online abuse", "hate speech", "social media"],
+        "themes": ["media", "society"],
+    },
+    "CONSPOP_A": {
+        "display_label": "Belief: Life is controlled by secret plots",
+        "concepts": ["conspiracy theories", "distrust", "secret societies"],
+        "themes": ["misinformation"],
+    },
+    "CONSPOP_G": {
+        "display_label": "Trust in official government accounts of events",
+        "concepts": ["trust", "government communication", "conspiracy theories"],
+        "themes": ["governance", "misinformation"],
+    },
+    "WORRIED_FIN": {
+        "display_label": "Worry about personal and family financial situation",
+        "concepts": ["financial security", "economy", "well-being"],
+        "themes": ["economy"],
+    },
+    "WORRIED_CLIMATE_CHANGE": {
+        "display_label": "Worry about a severe climate emergency",
+        "concepts": ["climate change", "anxiety", "environment"],
+        "themes": ["environment"],
+    },
+    "WORRIED_HOUSING": {
+        "display_label": "Worry about the lack of affordable housing",
+        "concepts": ["housing affordability", "cost of living"],
+        "themes": ["housing", "economy"],
+    },
+    "WORRIED_IMMIGRATION": {
+        "display_label": "Worry about immigrants changing what it means to be Canadian",
+        "concepts": ["immigration", "national identity", "cultural change"],
+        "themes": ["immigration", "identity"],
+    },
+    "PROSPECT_HOPE": {
+        "display_label": "Optimism about Canada's future in ten years",
+        "concepts": ["optimism", "future", "national outlook"],
+        "themes": ["society"],
+    },
+    "POVO1": {
+        "display_label": "Belief that the next election will be free and fair",
+        "concepts": ["electoral integrity", "trust", "democracy"],
+        "themes": ["democracy"],
+    },
+    "POVO3": {
+        "display_label": "Belief that violence may be required to improve the country",
+        "concepts": ["political violence", "radicalization", "political change"],
+        "themes": ["democracy", "society"],
+    },
+    "SYSJUS": {
+        "display_label": "Agreement that major changes are needed to the justice system",
+        "concepts": ["justice reform", "legal system", "systemic change"],
+        "themes": ["justice"],
+    },
+    "TRUST_ELXNCAN": {
+        "display_label": "Trust in Elections Canada",
+        "concepts": ["trust", "elections", "independent agencies"],
+        "themes": ["democracy", "governance"],
+    },
+    "TRUST_POLITICIANS": {
+        "display_label": "General trust in politicians in Canada",
+        "concepts": ["trust", "politicians", "leadership"],
+        "themes": ["governance", "democracy"],
+    },
+    "GENERAL_MENTAL": {
+        "display_label": "Self-rated mental health",
+        "concepts": ["mental health", "well-being"],
+        "themes": ["health"],
+    },
+    "INFO_USE_SOCMED": {
+        "display_label": "Frequency of using social media for information",
+        "concepts": ["media consumption", "social media", "information sources"],
+        "themes": ["media"],
+    },
+}
