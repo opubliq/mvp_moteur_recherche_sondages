@@ -1,0 +1,309 @@
+"""Enrichment authoré — govcan_parca_2024. Produit par subagent LLM (2026-07-07)."""
+
+SURVEY = {
+    "description": "Le Programme de recherche appliquée sur l'action climatique (PARCA) Phase 2, mené par le gouvernement du Canada, explore les attitudes, croyances et comportements des Canadiens liés aux changements climatiques, incluant le soutien aux politiques et les actions personnelles.",
+    "month": 2,  # Terrain effectué début 2024 (février)
+}
+
+QUESTIONS = {
+    "A1": {
+        "display_label": "Année de naissance",
+        "concepts": ["âge"],
+        "themes": ["démographie"],
+    },
+    "A1A": {
+        "display_label": "Catégorie d'âge",
+        "concepts": ["âge"],
+        "themes": ["démographie"],
+    },
+    "A3": {
+        "display_label": "Genre du répondant",
+        "concepts": ["genre"],
+        "themes": ["démographie"],
+    },
+    "A4": {
+        "display_label": "Province ou territoire de résidence",
+        "concepts": ["géographie", "province"],
+        "themes": ["démographie"],
+    },
+    "A6": {
+        "display_label": "Statut d'occupation du logement (propriétaire ou locataire)",
+        "concepts": ["logement"],
+        "themes": ["démographie", "économie"],
+    },
+    "B1_A": {
+        "display_label": "Croyance en la réalité du changement climatique",
+        "concepts": ["croyance", "réchauffement climatique"],
+        "themes": ["environnement"],
+    },
+    "B1_B": {
+        "display_label": "Attribution du changement climatique à l'activité humaine",
+        "concepts": ["responsabilité", "activité humaine", "climat"],
+        "themes": ["environnement"],
+    },
+    "B1_C": {
+        "display_label": "Perception de la gravité des conséquences du changement climatique",
+        "concepts": ["risques", "conséquences", "gravité"],
+        "themes": ["environnement"],
+    },
+    "B1_D": {
+        "display_label": "Perception de l'impact du changement climatique au niveau local",
+        "concepts": ["impact local", "climat"],
+        "themes": ["environnement"],
+    },
+    "B1_E": {
+        "display_label": "Perception de l'imminence des conséquences du changement climatique",
+        "concepts": ["horizon temporel", "urgence"],
+        "themes": ["environnement"],
+    },
+    "B1_J": {
+        "display_label": "Sentiment d'urgence d'agir face au changement climatique",
+        "concepts": ["urgence", "action"],
+        "themes": ["environnement"],
+    },
+    "B2_A": {
+        "display_label": "Niveau d'inquiétude face au changement climatique",
+        "concepts": ["émotion", "inquiétude", "climat"],
+        "themes": ["environnement", "psychologie"],
+    },
+    "B2_B": {
+        "display_label": "Niveau d'espoir face au changement climatique",
+        "concepts": ["émotion", "espoir", "climat"],
+        "themes": ["environnement", "psychologie"],
+    },
+    "B2_C": {
+        "display_label": "Sentiment d'être dépassé par l'enjeu climatique",
+        "concepts": ["émotion", "sentiment d'impuissance"],
+        "themes": ["environnement", "psychologie"],
+    },
+    "B2_D": {
+        "display_label": "Niveau de confusion face au changement climatique",
+        "concepts": ["émotion", "confusion"],
+        "themes": ["environnement", "psychologie"],
+    },
+    "B2_E": {
+        "display_label": "Niveau d'anxiété face au changement climatique",
+        "concepts": ["émotion", "éco-anxiété"],
+        "themes": ["environnement", "psychologie"],
+    },
+    "B2_F": {
+        "display_label": "Niveau de colère face au changement climatique",
+        "concepts": ["émotion", "colère"],
+        "themes": ["environnement", "psychologie"],
+    },
+    "B5_B": {
+        "display_label": "Responsabilité perçue des citoyens canadiens dans la lutte contre le changement climatique",
+        "concepts": ["responsabilité individuelle", "action citoyenne"],
+        "themes": ["environnement", "société"],
+    },
+    "B5_D": {
+        "display_label": "Responsabilité perçue de l'industrie privée dans la lutte contre le changement climatique",
+        "concepts": ["responsabilité des entreprises", "secteur privé"],
+        "themes": ["environnement", "économie"],
+    },
+    "B5_E": {
+        "display_label": "Responsabilité perçue du gouvernement fédéral dans la lutte contre le changement climatique",
+        "concepts": ["responsabilité gouvernementale", "gouvernement fédéral"],
+        "themes": ["environnement", "politique"],
+    },
+    "B5_H": {
+        "display_label": "Responsabilité perçue des organisations internationales dans la lutte contre le changement climatique",
+        "concepts": ["responsabilité internationale", "coopération mondiale"],
+        "themes": ["environnement", "politique"],
+    },
+    "B8BM1": {
+        "display_label": "Expérience personnelle d'inondations (2 derniers mois)",
+        "concepts": ["catastrophe naturelle", "inondation"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM2": {
+        "display_label": "Expérience personnelle de chaleur excessive ou canicule (2 derniers mois)",
+        "concepts": ["canicule", "température"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM3": {
+        "display_label": "Expérience personnelle de sécheresse (2 derniers mois)",
+        "concepts": ["sécheresse", "météo extrême"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM4": {
+        "display_label": "Expérience personnelle de tempêtes de vent violentes (2 derniers mois)",
+        "concepts": ["tempête", "vent"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM5": {
+        "display_label": "Expérience personnelle d'ouragan (2 derniers mois)",
+        "concepts": ["ouragan", "tempête"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM6": {
+        "display_label": "Expérience personnelle de froid excessif ou vague de froid (2 derniers mois)",
+        "concepts": ["vague de froid", "météo"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM7": {
+        "display_label": "Expérience personnelle de feux de forêt (2 derniers mois)",
+        "concepts": ["incendie de forêt", "catastrophe naturelle"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM8": {
+        "display_label": "Expérience personnelle de fumée de feux de forêt (2 derniers mois)",
+        "concepts": ["qualité de l'air", "incendie de forêt"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM9": {
+        "display_label": "Expérience personnelle de glissements de terrain (2 derniers mois)",
+        "concepts": ["glissement de terrain", "météo extrême"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM10": {
+        "display_label": "Expérience personnelle de tornades (2 derniers mois)",
+        "concepts": ["tornade", "tempête"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM11": {
+        "display_label": "Expérience personnelle de tempête de verglas (2 derniers mois)",
+        "concepts": ["verglas", "tempête hivernale"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM12": {
+        "display_label": "Expérience personnelle de pannes de courant liées à la météo (2 derniers mois)",
+        "concepts": ["panne d'électricité", "infrastructure"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "B8BM13": {
+        "display_label": "Expérience personnelle de pénuries de fournitures essentielles liées à la météo (2 derniers mois)",
+        "concepts": ["pénurie", "chaîne d'approvisionnement"],
+        "themes": ["environnement", "expérience vécue"],
+    },
+    "C1_A": {
+        "display_label": "Changements importants déjà adoptés dans le mode de vie pour le climat",
+        "concepts": ["comportement", "changement de mode de vie"],
+        "themes": ["environnement", "mode de vie"],
+    },
+    "C1_B": {
+        "display_label": "Volonté de faire des changements importants dans son mode de vie pour le climat",
+        "concepts": ["volonté d'agir", "comportement futur"],
+        "themes": ["environnement", "mode de vie"],
+    },
+    "C1_C": {
+        "display_label": "Perception de la nécessité de changer de mode de vie",
+        "concepts": ["résistance au changement", "climat"],
+        "themes": ["environnement"],
+    },
+    "C2": {
+        "display_label": "Perception de la volonté des autres Canadiens à changer leur mode de vie pour le climat",
+        "concepts": ["norme sociale", "perception d'autrui"],
+        "themes": ["environnement", "société"],
+    },
+    "C2A_A": {
+        "display_label": "Fréquence des vols long-courriers (plus de 5 heures) au cours des deux derniers mois",
+        "concepts": ["aviation", "transport aérien", "empreinte carbone"],
+        "themes": ["environnement", "transport"],
+    },
+    "C2A_B": {
+        "display_label": "Fréquence des vols court-courriers (moins de 5 heures) au cours des deux derniers mois",
+        "concepts": ["aviation", "transport aérien", "empreinte carbone"],
+        "themes": ["environnement", "transport"],
+    },
+    "C2A_C": {
+        "display_label": "Utilisation des transports en commun au cours des deux derniers mois",
+        "concepts": ["transport collectif", "mobilité"],
+        "themes": ["environnement", "transport"],
+    },
+    "C2A_D": {
+        "display_label": "Utilisation du transport actif (marche, vélo) au cours des deux derniers mois",
+        "concepts": ["transport actif", "santé", "mobilité"],
+        "themes": ["environnement", "transport"],
+    },
+    "C8_G": {
+        "display_label": "Niveau de soutien à la tarification nationale du carbone (taxe carbone)",
+        "concepts": ["taxe carbone", "politique climatique"],
+        "themes": ["environnement", "politique", "économie"],
+    },
+    "C8_I": {
+        "display_label": "Soutien au plafonnement des émissions de gaz à effet de serre du secteur pétrolier et gazier",
+        "concepts": ["émissions GES", "industrie pétrolière"],
+        "themes": ["environnement", "politique", "économie"],
+    },
+    "C8_D": {
+        "display_label": "Soutien à la protection et à la restauration des écosystèmes (forêts, zones humides)",
+        "concepts": ["conservation", "écosystèmes", "biodiversité"],
+        "themes": ["environnement", "politique"],
+    },
+    "C8_H": {
+        "display_label": "Soutien à l'instauration d'un prix mondial du carbone",
+        "concepts": ["coopération internationale", "taxe carbone"],
+        "themes": ["environnement", "politique"],
+    },
+    "C8_K_V1": {
+        "display_label": "Soutien au renforcement de la résilience des infrastructures vitales face au climat",
+        "concepts": ["adaptation", "infrastructure", "résilience"],
+        "themes": ["environnement", "politique"],
+    },
+    "C8_L": {
+        "display_label": "Soutien à l'augmentation des espaces verts dans les villes",
+        "concepts": ["urbanisme", "espaces verts"],
+        "themes": ["environnement", "politique"],
+    },
+    "C8_T": {
+        "display_label": "Soutien au projet de plantation de deux milliards d'arbres au Canada",
+        "concepts": ["reboisement", "séquestration du carbone"],
+        "themes": ["environnement", "politique"],
+    },
+    "C8_AP": {
+        "display_label": "Soutien à l'interdiction des articles en plastique à usage unique",
+        "concepts": ["pollution plastique", "économie circulaire"],
+        "themes": ["environnement", "politique"],
+    },
+    "C8_AE": {
+        "display_label": "Soutien au développement d'un réseau national de bornes de recharge pour véhicules électriques",
+        "concepts": ["véhicules électriques", "infrastructure", "transport"],
+        "themes": ["environnement", "politique", "transport"],
+    },
+    "C8_AC": {
+        "display_label": "Soutien au mandat de vente de véhicules à zéro émission (20% d'ici 2026)",
+        "concepts": ["véhicules électriques", "réglementation", "transport"],
+        "themes": ["environnement", "politique", "transport"],
+    },
+    "C8_M": {
+        "display_label": "Soutien à l'indemnisation des personnes touchées par des catastrophes météorologiques",
+        "concepts": ["adaptation", "assurance", "indemnisation"],
+        "themes": ["environnement", "politique", "social"],
+    },
+    "D6_D": {
+        "display_label": "Confiance envers le gouvernement fédéral pour prendre de bonnes décisions climatiques",
+        "concepts": ["confiance", "gouvernement fédéral"],
+        "themes": ["politique", "environnement"],
+    },
+    "D6_E": {
+        "display_label": "Confiance envers le gouvernement provincial ou territorial pour les décisions climatiques",
+        "concepts": ["confiance", "gouvernement provincial"],
+        "themes": ["politique", "environnement"],
+    },
+    "D6_F": {
+        "display_label": "Confiance envers le gouvernement local pour les décisions climatiques",
+        "concepts": ["confiance", "municipalité"],
+        "themes": ["politique", "environnement"],
+    },
+    "D6_M": {
+        "display_label": "Confiance envers les scientifiques pour les décisions climatiques",
+        "concepts": ["confiance", "science"],
+        "themes": ["société", "environnement"],
+    },
+    "D6_L": {
+        "display_label": "Confiance envers les groupes environnementaux pour les décisions climatiques",
+        "concepts": ["confiance", "ONG"],
+        "themes": ["société", "environnement"],
+    },
+    "D6_I": {
+        "display_label": "Confiance envers les entreprises d'énergies renouvelables pour les décisions climatiques",
+        "concepts": ["confiance", "énergies vertes"],
+        "themes": ["économie", "environnement"],
+    },
+    "D6_H": {
+        "display_label": "Confiance envers les entreprises d'énergies non renouvelables (pétrole, gaz) pour les décisions climatiques",
+        "concepts": ["confiance", "énergies fossiles"],
+        "themes": ["économie", "environnement"],
+    },
+}
