@@ -25,6 +25,7 @@ from __future__ import annotations
 import re
 import unicodedata
 
+from ingestion.canonical import CANONICAL_SOCIODEMO
 from ingestion.models import SurveyFile
 
 
@@ -122,6 +123,15 @@ def find_issues(survey_file: SurveyFile, *, check_labels: bool = True) -> list[s
     """
     issues: list[str] = []
     for q in survey_file.questions:
+        # Whitelist : wording sociodémo canonique (auditable, cf. canonical.py).
+        # Toléré même s'il ressemble au nom de variable, à condition qu'il
+        # corresponde EXACTEMENT à la paire (sociodemo_type, texte) déclarée.
+        if (
+            q.is_sociodemo
+            and q.sociodemo_type in CANONICAL_SOCIODEMO
+            and q.question_text.strip() == CANONICAL_SOCIODEMO[q.sociodemo_type]
+        ):
+            continue
         reason = fabrication_reason(q.variable, q.question_text)
         if reason:
             issues.append(f"[{q.variable}] question_text : {reason}")

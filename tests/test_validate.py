@@ -2,6 +2,7 @@
 
 import pytest
 
+from ingestion.canonical import CANONICAL_SOCIODEMO
 from ingestion.models import SurveyFile
 from ingestion.validate import (
     FabricatedTextError,
@@ -127,3 +128,45 @@ def test_error_message_lists_variable() -> None:
     with pytest.raises(FabricatedTextError) as exc:
         assert_no_fabricated_text(sf)
     assert "REGIO" in str(exc.value)
+
+
+# ---------------------------------------------------------------------------
+# Whitelist sociodémo canonique (cf. ingestion/canonical.py)
+# ---------------------------------------------------------------------------
+
+
+def test_canonical_sociodemo_whitelisted() -> None:
+    """Le wording canonique d'une sociodémo passe le garde-fou."""
+    sf = _survey(
+        [
+            {
+                "variable": "sexe",
+                "question_text": CANONICAL_SOCIODEMO["gender"],
+                "is_sociodemo": True,
+                "sociodemo_type": "gender",
+                "response_options": [
+                    {"code": 1, "label": "Homme"},
+                    {"code": 2, "label": "Femme"},
+                ],
+            }
+        ]
+    )
+    assert find_issues(sf) == []
+    assert_no_fabricated_text(sf)  # ne doit pas lever
+
+
+def test_sociodemo_var_name_still_flagged_when_not_canonical() -> None:
+    """La whitelist est un exact-match, pas un bypass en bloc : un libellé
+    sociodémo dégénéré qui n'est PAS le wording canonique reste rejeté."""
+    sf = _survey(
+        [
+            {
+                "variable": "sexe",
+                "question_text": "sexe",  # = nom de variable, ≠ canonique
+                "is_sociodemo": True,
+                "sociodemo_type": "gender",
+            }
+        ]
+    )
+    with pytest.raises(FabricatedTextError):
+        assert_no_fabricated_text(sf)

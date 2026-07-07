@@ -56,6 +56,35 @@ Deux options, **jamais** l'invention :
    le verdict `nécessite questionnaire`. Le wording devra venir d'un
    questionnaire/codebook externe avant ingestion.
 
+### Exception : sociodémo au libellé dégénéré → wording canonique
+
+Une variable **sociodémographique universelle** (sexe, âge, scolarité, revenu,
+région, langue…) dont le *seul* libellé raw est dégénéré (se réduit au nom de
+variable, p.ex. label SAV « sexe » pour `sexe`) n'a pas à être exclue : lui
+assigner le `question_text` **canonique** versionné dans
+`ingestion/canonical.py` (`CANONICAL_SOCIODEMO[sociodemo_type]`). Ce n'est pas
+une fabrication de question : c'est l'étiquetage standard, auditable et
+whitelisté, d'une variable démographique — les *options de réponse* restant
+verbatim du raw. Le garde-fou (`validate.py`) whiteliste exactement ces paires.
+
+Motif d'extraction (n'appliquer le canonique qu'en **dernier recours**, un
+libellé raw riche reste toujours verbatim) :
+
+```python
+sociodemo_type = SOCIODEMO_VARS.get(col)  # None si non-sociodémo
+if sociodemo_type and (not raw_label or fabrication_reason(col, raw_label)):
+    question_text = canonical_sociodemo_text(sociodemo_type)
+    if question_text is None:
+        continue  # sociodemo_type hors table canonique → exclure
+else:
+    question_text = raw_label
+    if not question_text:
+        continue
+```
+
+Cette exception vaut **uniquement** pour les sociodémo (`is_sociodemo=True`) :
+une variable substantielle au libellé dégénéré reste exclue/bloquante.
+
 ## 3. Garde-fou technique
 
 `ingestion/validate.py` détecte automatiquement les libellés manifestement
