@@ -1,0 +1,6208 @@
+{
+  "survey": {
+    "survey_id": "govcan_06822_wave1_2024",
+    "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+    "survey_description": null,
+    "year": 2024,
+    "survey_month": null,
+    "pollster": "Government of Canada",
+    "language": "en",
+    "n_respondents": 3375,
+    "raw_data_file": "data/govcan_06822_wave1_2024/068-22-wave1-data.csv",
+    "tags": []
+  },
+  "questions": [
+    {
+      "variable": "AGE",
+      "question_text": "In which of the following age categories do you belong?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "18 to 24"
+        },
+        {
+          "code": 2,
+          "label": "25 to 34"
+        },
+        {
+          "code": 3,
+          "label": "35 to 44"
+        },
+        {
+          "code": 4,
+          "label": "45 to 54"
+        },
+        {
+          "code": 5,
+          "label": "55 to 64"
+        },
+        {
+          "code": 6,
+          "label": "65 to 74"
+        },
+        {
+          "code": 7,
+          "label": "75 and older"
+        },
+        {
+          "code": 98,
+          "label": "Under 18"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PROVINCE",
+      "question_text": "In which province or territory do you live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "British Columbia"
+        },
+        {
+          "code": 2,
+          "label": "Alberta"
+        },
+        {
+          "code": 3,
+          "label": "Saskatchewan"
+        },
+        {
+          "code": 4,
+          "label": "Manitoba"
+        },
+        {
+          "code": 5,
+          "label": "Ontario"
+        },
+        {
+          "code": 6,
+          "label": "Quebec"
+        },
+        {
+          "code": 7,
+          "label": "New Brunswick"
+        },
+        {
+          "code": 8,
+          "label": "Nova Scotia"
+        },
+        {
+          "code": 9,
+          "label": "Prince Edward Island"
+        },
+        {
+          "code": 10,
+          "label": "Newfoundland and Labrador"
+        },
+        {
+          "code": 11,
+          "label": "Yukon"
+        },
+        {
+          "code": 12,
+          "label": "Northwest Territories"
+        },
+        {
+          "code": 13,
+          "label": "Nunavut"
+        },
+        {
+          "code": 97,
+          "label": "I live outside Canada"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "HOUSING",
+      "question_text": "Which of the following best describes your housing arrangement?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Owned by you"
+        },
+        {
+          "code": 2,
+          "label": "Owned by a parent/family member"
+        },
+        {
+          "code": 3,
+          "label": "Rented"
+        },
+        {
+          "code": 4,
+          "label": "Other"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "BIRTH_PLACE",
+      "question_text": "Where were you born?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Born in Canada"
+        },
+        {
+          "code": 2,
+          "label": "Born outside Canada (please specify the country)"
+        },
+        {
+          "code": 3,
+          "label": "WESTERN EUROPE"
+        },
+        {
+          "code": 4,
+          "label": "EASTERN/CENTRAL EUROPE"
+        },
+        {
+          "code": 5,
+          "label": "NORTHERN/SCANDANAVIAN EUROPE"
+        },
+        {
+          "code": 6,
+          "label": "SOUTH ASIA"
+        },
+        {
+          "code": 7,
+          "label": "SOUTH EAST ASIAN"
+        },
+        {
+          "code": 8,
+          "label": "LATIN/CENTRAL/SOUTH AMERICA"
+        },
+        {
+          "code": 9,
+          "label": "CARIBBEAN/WEST INDIES"
+        },
+        {
+          "code": 10,
+          "label": "AFRICA/SOUTH AFRICA"
+        },
+        {
+          "code": 12,
+          "label": "U.S.A"
+        },
+        {
+          "code": 14,
+          "label": "WESTERN ASIA"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "IMMIGRATE_YEAR",
+      "question_text": "In what year did you immigrate to Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 7777,
+          "label": "Enter year:"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INDIGENOUS",
+      "question_text": "Are you First Nations, Métis or Inuk (Inuit)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "LGBTQ2",
+      "question_text": "Do you identify as a member of the 2SLGBTQI+ community (two-spirited, lesbian, gay, bisexual, transgender, queer, intersex, or another sexual orientation or gender identity)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "VOTE_LASTELEC",
+      "question_text": "Did you vote in the last Canadian national election in September, 2021?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_1",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_2",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_3",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_4",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_5",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_6",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_7",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_8",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_9",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_10",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_11",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ETHNICITY_12",
+      "question_text": "You may belong to one or more racial or cultural groups on the following list. Are you...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Arab"
+        },
+        {
+          "code": 8,
+          "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Malaysian, Tha"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Iranian, Afghan, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Korean"
+        },
+        {
+          "code": 11,
+          "label": "Japanese"
+        },
+        {
+          "code": 12,
+          "label": "CANADIAN"
+        },
+        {
+          "code": 13,
+          "label": "EUROPEAN (VARIOUS)"
+        },
+        {
+          "code": 14,
+          "label": "INDIGENOUS/FN/METIS/INUIT"
+        },
+        {
+          "code": 16,
+          "label": "JEWISH"
+        },
+        {
+          "code": 77,
+          "label": "Other - (Please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "VACCINE_COVID",
+      "question_text": "Have you received a COVID-19 vaccine?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes, one dose"
+        },
+        {
+          "code": 2,
+          "label": "Yes, two doses"
+        },
+        {
+          "code": 3,
+          "label": "Yes, three doses"
+        },
+        {
+          "code": 4,
+          "label": "Yes, four doses"
+        },
+        {
+          "code": 5,
+          "label": "Yes, five or more doses"
+        },
+        {
+          "code": 6,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "LANGUAGE",
+      "question_text": "Which language do you speak most often at home?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "English"
+        },
+        {
+          "code": 2,
+          "label": "French"
+        },
+        {
+          "code": 3,
+          "label": "Inuktitut"
+        },
+        {
+          "code": 4,
+          "label": "Ojibway"
+        },
+        {
+          "code": 5,
+          "label": "Cree"
+        },
+        {
+          "code": 6,
+          "label": "Oji-Cree"
+        },
+        {
+          "code": 7,
+          "label": "Dene"
+        },
+        {
+          "code": 8,
+          "label": "Montagnais (Innu)"
+        },
+        {
+          "code": 9,
+          "label": "Mi'kmaq"
+        },
+        {
+          "code": 10,
+          "label": "Atikamekw"
+        },
+        {
+          "code": 11,
+          "label": "Mandarin"
+        },
+        {
+          "code": 12,
+          "label": "Cantonese"
+        },
+        {
+          "code": 13,
+          "label": "Punjabi"
+        },
+        {
+          "code": 14,
+          "label": "Tagalog (Pilipino, Filipino)"
+        },
+        {
+          "code": 15,
+          "label": "Spanish"
+        },
+        {
+          "code": 16,
+          "label": "Arabic"
+        },
+        {
+          "code": 17,
+          "label": "Italian"
+        },
+        {
+          "code": 18,
+          "label": "German"
+        },
+        {
+          "code": 19,
+          "label": "Urdu"
+        },
+        {
+          "code": 20,
+          "label": "Portuguese"
+        },
+        {
+          "code": 21,
+          "label": "Persian (Farsi)"
+        },
+        {
+          "code": 22,
+          "label": "Russian"
+        },
+        {
+          "code": 23,
+          "label": "Polish"
+        },
+        {
+          "code": 24,
+          "label": "Vietnamese"
+        },
+        {
+          "code": 25,
+          "label": "Korean"
+        },
+        {
+          "code": 26,
+          "label": "Tamil"
+        },
+        {
+          "code": 27,
+          "label": "Hindi"
+        },
+        {
+          "code": 28,
+          "label": "Gujarati"
+        },
+        {
+          "code": 29,
+          "label": "Greek"
+        },
+        {
+          "code": 30,
+          "label": "Ukrainian"
+        },
+        {
+          "code": 31,
+          "label": "Dutch"
+        },
+        {
+          "code": 32,
+          "label": "Romanian"
+        },
+        {
+          "code": 77,
+          "label": "Other (please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_COV_1",
+      "question_text": "COVID-19 test swabs have been shown to cause cancer.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_COV_1",
+      "question_text": "COVID-19 test swabs have been shown to cause cancer.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_COV_2",
+      "question_text": "New evidence shows that monkeypox is a side effect of the COVID-19 vaccines.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_COV_2",
+      "question_text": "New evidence shows that monkeypox is a side effect of the COVID-19 vaccines.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_COV_3",
+      "question_text": "There is little to no evidence that masks help reduce the spread of COVID-19",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_COV_3",
+      "question_text": "There is little to no evidence that masks help reduce the spread of COVID-19",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_COV_4",
+      "question_text": "To rush COVID-19 vaccines to the market, pharmaceutical companies took shortcuts that compromised the safety of the vaccines.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_COV_4",
+      "question_text": "To rush COVID-19 vaccines to the market, pharmaceutical companies took shortcuts that compromised the safety of the vaccines.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_COV_5",
+      "question_text": "The fatality rate of COVID-19 has been deliberately and greatly exaggerated in the mainstream media.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_COV_5",
+      "question_text": "The fatality rate of COVID-19 has been deliberately and greatly exaggerated in the mainstream media.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_COV_1",
+      "question_text": "Some antiviral medications can reduce the risk of hospitalization in adults infected with COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_COV_1",
+      "question_text": "Some antiviral medications can reduce the risk of hospitalization in adults infected with COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_COV_2",
+      "question_text": "Children can become seriously ill from COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_COV_2",
+      "question_text": "Children can become seriously ill from COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_COV_3",
+      "question_text": "Vitamin and mineral supplements cannot cure COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_COV_3",
+      "question_text": "Vitamin and mineral supplements cannot cure COVID-19.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_COV_4",
+      "question_text": "Both vaccinated and unvaccinated individuals can transmit COVID-19 to others.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_COV_4",
+      "question_text": "Both vaccinated and unvaccinated individuals can transmit COVID-19 to others.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_COV_5",
+      "question_text": "People can be infected with COVID-19 more than once.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_COV_5",
+      "question_text": "People can be infected with COVID-19 more than once.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "WORRIED_COVID_HEALTH",
+      "question_text": "Your personal health and/or well-being",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all worried"
+        },
+        {
+          "code": 2,
+          "label": "Slightly worried"
+        },
+        {
+          "code": 3,
+          "label": "Moderately worried"
+        },
+        {
+          "code": 4,
+          "label": "Very worried"
+        },
+        {
+          "code": 5,
+          "label": "Extremely worried"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "WORRIED_COVID_ECON",
+      "question_text": "Canada's economic growth",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all worried"
+        },
+        {
+          "code": 2,
+          "label": "Slightly worried"
+        },
+        {
+          "code": 3,
+          "label": "Moderately worried"
+        },
+        {
+          "code": 4,
+          "label": "Very worried"
+        },
+        {
+          "code": 5,
+          "label": "Extremely worried"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCON_COVID",
+      "question_text": "Compared to most other people in Canada, my views on COVID-19 are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very similar"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat similar"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat different"
+        },
+        {
+          "code": 4,
+          "label": "Very different"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ATT_COVIDA",
+      "question_text": "To what extent do you agree or disagree with the following statement: The COVID-19 pandemic was overblown.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "POLICY_COVIDA",
+      "question_text": "How much do you support or oppose the following health-related policy: A requirement to wear a mask in indoor public settings if there is another COVID-19 outbreak.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly oppose"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat oppose"
+        },
+        {
+          "code": 3,
+          "label": "Neither oppose nor support"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat support"
+        },
+        {
+          "code": 5,
+          "label": "Strongly support"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "BEHAV_COVID_MASKUSE",
+      "question_text": "In the LAST TWO MONTHS, how often have you worn a face mask in public indoor settings (when it was not mandatory) to avoid getting COVID-19 or to prevent the spread of COVID-19?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Rarely"
+        },
+        {
+          "code": 3,
+          "label": "Sometimes"
+        },
+        {
+          "code": 4,
+          "label": "Often"
+        },
+        {
+          "code": 5,
+          "label": "Always"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOC_COVID",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about COVID-19 that are in the best interest of Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_CLI_1",
+      "question_text": "Climate change is a conspiracy created by governments around the world.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_CLI_1",
+      "question_text": "Climate change is a conspiracy created by governments around the world.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_CLI_2",
+      "question_text": "Global average temperatures haven't increased in the last 20 years.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_CLI_2",
+      "question_text": "Global average temperatures haven't increased in the last 20 years.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_CLI_3",
+      "question_text": "Many NASA scientists admit that climate change is caused by changes in Earth's solar orbit.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_CLI_3",
+      "question_text": "Many NASA scientists admit that climate change is caused by changes in Earth's solar orbit.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_CLI_4",
+      "question_text": "Solar panels emit more greenhouse gases during manufacturing than they end up saving.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_CLI_4",
+      "question_text": "Solar panels emit more greenhouse gases during manufacturing than they end up saving.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_CLI_5",
+      "question_text": "Canada's national carbon price has tripled the cost of gasoline at the pump since 2019.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_CLI_5",
+      "question_text": "Canada's national carbon price has tripled the cost of gasoline at the pump since 2019.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_CLI_1",
+      "question_text": "Canada's annual greenhouse gas emissions have been relatively stable for 20 years.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_CLI_1",
+      "question_text": "Canada's annual greenhouse gas emissions have been relatively stable for 20 years.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_CLI_2",
+      "question_text": "Canada has higher average greenhouse gas emissions per person than China.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_CLI_2",
+      "question_text": "Canada has higher average greenhouse gas emissions per person than China.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_CLI_3",
+      "question_text": "Over half of Canada's electricity comes from renewable sources (like wind, solar, hydro).",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_CLI_3",
+      "question_text": "Over half of Canada's electricity comes from renewable sources (like wind, solar, hydro).",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_CLI_4",
+      "question_text": "The Arctic is warming at a rate almost twice the global average.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_CLI_4",
+      "question_text": "The Arctic is warming at a rate almost twice the global average.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_CLI_5",
+      "question_text": "The scientific consensus is that climate change will contribute to the extinction of a large number of animal species.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_CLI_5",
+      "question_text": "The scientific consensus is that climate change will contribute to the extinction of a large number of animal species.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "WORRIED_CLIM_HEALTH",
+      "question_text": "Your personal health and/or well-being",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all worried"
+        },
+        {
+          "code": 2,
+          "label": "Slightly worried"
+        },
+        {
+          "code": 3,
+          "label": "Moderately worried"
+        },
+        {
+          "code": 4,
+          "label": "Very worried"
+        },
+        {
+          "code": 5,
+          "label": "Extremely worried"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "WORRIED_CLIM_ECON",
+      "question_text": "Canada's economic growth",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all worried"
+        },
+        {
+          "code": 2,
+          "label": "Slightly worried"
+        },
+        {
+          "code": 3,
+          "label": "Moderately worried"
+        },
+        {
+          "code": 4,
+          "label": "Very worried"
+        },
+        {
+          "code": 5,
+          "label": "Extremely worried"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCON_CLIM",
+      "question_text": "Compared to most other people in Canada, my views on climate change are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very similar"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat similar"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat different"
+        },
+        {
+          "code": 4,
+          "label": "Very different"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ATT_CLIM_HUMANCAUSE",
+      "question_text": "To what extent do you agree or disagree with the following statement: The main cause of climate change is human activity.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "POLICY_CLIM_CARBONPRICE",
+      "question_text": "How much do you support or oppose the following environmental policy: Setting a national price on carbon pollution (sometimes referred to as a 'carbon tax') to limit further climate change",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly oppose"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat oppose"
+        },
+        {
+          "code": 3,
+          "label": "Neither oppose nor support"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat support"
+        },
+        {
+          "code": 5,
+          "label": "Strongly support"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "BEHAV_CLIMACTION",
+      "question_text": "In the LAST TWO MONTHS, how often have you taken actions with the specific goal of reducing climate change (e.g., reducing energy use at home, reducing meat intake, driving less often, reducing food waste, etc...)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Rarely"
+        },
+        {
+          "code": 3,
+          "label": "Sometimes"
+        },
+        {
+          "code": 4,
+          "label": "Often"
+        },
+        {
+          "code": 5,
+          "label": "Always"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOC_CLIM",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about climate change that are in the best interest of Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_IMM_1",
+      "question_text": "Most of Canada's immigrants come from the Middle East and North Africa.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_IMM_1",
+      "question_text": "Most of Canada's immigrants come from the Middle East and North Africa.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_IMM_2",
+      "question_text": "Half of Canada's immigrants each year are refugees.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_IMM_2",
+      "question_text": "Half of Canada's immigrants each year are refugees.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_IMM_3",
+      "question_text": "Immigrants who were not yet Canadian citizens were allowed to vote in the last federal election.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_IMM_3",
+      "question_text": "Immigrants who were not yet Canadian citizens were allowed to vote in the last federal election.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_IMM_4",
+      "question_text": "Refugees in Canada receive more money from the government than the average pensioner.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_IMM_4",
+      "question_text": "Refugees in Canada receive more money from the government than the average pensioner.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_F_IMM_5",
+      "question_text": "Across Canadian cities, more immigration is associated with higher crime rates.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_F_IMM_5",
+      "question_text": "Across Canadian cities, more immigration is associated with higher crime rates.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_IMM_1",
+      "question_text": "Immigration makes up almost all of Canada's population growth.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_IMM_1",
+      "question_text": "Immigration makes up almost all of Canada's population growth.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_IMM_2",
+      "question_text": "About a third of Canadian physicians are immigrants.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_IMM_2",
+      "question_text": "About a third of Canadian physicians are immigrants.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_IMM_3",
+      "question_text": "Immigrant workers make up most of Canada's growth in high- and medium-skilled jobs.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_IMM_3",
+      "question_text": "Immigrant workers make up most of Canada's growth in high- and medium-skilled jobs.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_IMM_4",
+      "question_text": "The majority of immigrants to Canada speak English and/or French in their homes.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_IMM_4",
+      "question_text": "The majority of immigrants to Canada speak English and/or French in their homes.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_T_IMM_5",
+      "question_text": "Refugees have to pass a security background and criminal check before receiving refugee status.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Accurate"
+        },
+        {
+          "code": 2,
+          "label": "Inaccurate"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MIS_CONFID_T_IMM_5",
+      "question_text": "Refugees have to pass a security background and criminal check before receiving refugee status.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all confident"
+        },
+        {
+          "code": 2,
+          "label": "Slightly confident"
+        },
+        {
+          "code": 3,
+          "label": "Moderately confident"
+        },
+        {
+          "code": 4,
+          "label": "Very confident"
+        },
+        {
+          "code": 5,
+          "label": "Extremely confident"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "WORRIED_IMM_HEALTH",
+      "question_text": "Your personal health and/or well-being",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all worried"
+        },
+        {
+          "code": 2,
+          "label": "Slightly worried"
+        },
+        {
+          "code": 3,
+          "label": "Moderately worried"
+        },
+        {
+          "code": 4,
+          "label": "Very worried"
+        },
+        {
+          "code": 5,
+          "label": "Extremely worried"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "WORRIED_IMM_ECON",
+      "question_text": "Canada's economic growth",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all worried"
+        },
+        {
+          "code": 2,
+          "label": "Slightly worried"
+        },
+        {
+          "code": 3,
+          "label": "Moderately worried"
+        },
+        {
+          "code": 4,
+          "label": "Very worried"
+        },
+        {
+          "code": 5,
+          "label": "Extremely worried"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCON_IMM",
+      "question_text": "Compared to most other people in Canada, my views on immigration are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very similar"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat similar"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat different"
+        },
+        {
+          "code": 4,
+          "label": "Very different"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ATT_IMM_BETTERPLACE",
+      "question_text": "Is Canada made a worse or a better place to live by people migrating to Canada from other countries?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Worse place to live 1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "Better place to live 10"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "POLICY_IMM_NEWIMM",
+      "question_text": "How much do you support or oppose the following immigration-related policy: Admit 465,000 new permanent residents in Canada in 2023 (405,000 were admitted in 2021)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly oppose"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat oppose"
+        },
+        {
+          "code": 3,
+          "label": "Neither oppose nor support"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat support"
+        },
+        {
+          "code": 5,
+          "label": "Strongly support"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOC_IMM",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about immigration that are in the best interest of Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PROXIMAL_IMM",
+      "question_text": "Have you or someone in your close social circle interacted with Canada's immigration system in the past 10 years (e.g. applied to immigrate to Canada, sponsored someone applying to immigrate, etc.)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOV_CAN",
+      "question_text": "The Government of Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOV_PROVTERR",
+      "question_text": "Your provincial/territorial government",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_GOV_MUNI",
+      "question_text": "Your local or municipal government",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly distrust"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": 3,
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat trust"
+        },
+        {
+          "code": 5,
+          "label": "Strongly trust"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_COMPETENT",
+      "question_text": "The federal government is competent.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_CARE",
+      "question_text": "The federal government listens to what ordinary people think.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_INTEGRITY",
+      "question_text": "The federal government is too influenced by industry.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_OPEN",
+      "question_text": "The federal government provides all relevant information to the public.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "TRUST_FACET_GC_FLIPFLOP",
+      "question_text": "The federal government changes policies without good reasons.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOC_TRUST_FRIENDFAM",
+      "question_text": "Friends and family",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Cannot be trusted at all"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "Can be trusted a lot 5"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOC_TRUST_SCHWORK",
+      "question_text": "People you interact with at work or school, or your neighbourhood",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Cannot be trusted at all"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "Can be trusted a lot 5"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOC_TRUST_IMM",
+      "question_text": "People who recently immigrated to Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Cannot be trusted at all"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "Can be trusted a lot 5"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOC_TRUST_GEN",
+      "question_text": "Other people in Canada, in general",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Cannot be trusted at all"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "Can be trusted a lot 5"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCOH_TRUST",
+      "question_text": "I trust other people in Canada to do what is in the best interests of the country",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Agree"
+        },
+        {
+          "code": 6,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCOH_FAIRTREAT",
+      "question_text": "I am treated fairly as a person in Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Agree"
+        },
+        {
+          "code": 6,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCOH_HELP",
+      "question_text": "I have a responsibility to help other people in Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Agree"
+        },
+        {
+          "code": 6,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_RADIOTVNEWS_CAN",
+      "question_text": "Canadian TV, radio channels, and/or newspapers, including their websites",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_RADIOTVNEWS_INT",
+      "question_text": "Non-Canadian TV, radio channels, and/or newspapers, including their websites",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_GCWEB",
+      "question_text": "Canadian Government briefings and/or websites",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_PROVTERRWEB",
+      "question_text": "Provincial/Territorial government briefings and/or websites",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_SCI",
+      "question_text": "Scientific experts and/or scientific reports",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_FRIENDFAM",
+      "question_text": "Conversation with family, friends, and colleagues",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_SOCMED",
+      "question_text": "Social media platforms",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "INFO_USE_SEARCHENG",
+      "question_text": "My own internet search (e.g. Google)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_FB",
+      "question_text": "Facebook",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_TWI",
+      "question_text": "Twitter",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_INS",
+      "question_text": "Instagram",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_TIK",
+      "question_text": "TikTok",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_RED",
+      "question_text": "Reddit",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCMED_YOU",
+      "question_text": "YouTube",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or a few times a month"
+        },
+        {
+          "code": 3,
+          "label": "Once or a few times a week"
+        },
+        {
+          "code": 4,
+          "label": "Once a day"
+        },
+        {
+          "code": 5,
+          "label": "Multiple times a day"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "POLICY_SOCMED_REGULATE",
+      "question_text": "Government should regulate social media platforms more than they are regulated now.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "POLICY_SOCMED_ACCOUNTABLE",
+      "question_text": "Government should hold social media companies accountable for what appears on their platforms.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ALGORITHM",
+      "question_text": "How do you believe most decisions are made about what stories and links are recommended to people on Facebook and other social media sites?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "At random"
+        },
+        {
+          "code": 2,
+          "label": "By editors and journalists that work for news outlets"
+        },
+        {
+          "code": 3,
+          "label": "By editors and journalists that work for Facebook / other so"
+        },
+        {
+          "code": 4,
+          "label": "By computer analysis of what you interacted with in the past"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCAP_FREQ",
+      "question_text": "How often do you meet socially with friends, relatives, or work colleagues?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once a month"
+        },
+        {
+          "code": 3,
+          "label": "Several times a month"
+        },
+        {
+          "code": 4,
+          "label": "Once a week"
+        },
+        {
+          "code": 5,
+          "label": "Several times a week"
+        },
+        {
+          "code": 6,
+          "label": "Every day"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCAP_POLIFRIEND",
+      "question_text": "Think of all the friends you had contact with in the past month in person, by telephone, or online. Roughly how many share the same political views as you?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "A few"
+        },
+        {
+          "code": 3,
+          "label": "About half"
+        },
+        {
+          "code": 4,
+          "label": "Most"
+        },
+        {
+          "code": 5,
+          "label": "All"
+        },
+        {
+          "code": 98,
+          "label": "Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCAP_BOND_A",
+      "question_text": "There is someone I can turn to for advice about making very important decisions.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCAP_BOND_C",
+      "question_text": "If I needed an emergency loan of $500, I know someone I could turn to.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SOCCAP_BOND_D",
+      "question_text": "I could personally reach out to people in authority positions to help with a problem",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DEMCAN_INFLUENCE",
+      "question_text": "How much would you say the political system in Canada allows people like you to have an influence on politics?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all"
+        },
+        {
+          "code": 2,
+          "label": "Very little"
+        },
+        {
+          "code": 3,
+          "label": "Some"
+        },
+        {
+          "code": 4,
+          "label": "A lot"
+        },
+        {
+          "code": 5,
+          "label": "A great deal"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DEMCAN_ACCEPTELEC",
+      "question_text": "I accept the outcomes of Canadian elections, regardless of who wins.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DEMCAN_EXPPOLI",
+      "question_text": "Individuals in Canada are free to express their personal views on political topics without fear of surveillance or punishment.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DEMCAN_EXPRELIG",
+      "question_text": "Individuals in Canada are free to practise and express their religious faith or nonbelief in public and private.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DEMCAN_FREEASSEMBLE",
+      "question_text": "Individuals can freely assemble in Canada (e.g., freedom to protest peacefully, engage in petitions, organize public events).",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DEMCAN_JUSTSYS",
+      "question_text": "The Canadian justice system treats everyone equally.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "FEDGOV_SERV2",
+      "question_text": "In the past 12 months, approximately how often have you interacted with federal government services (e.g. Service Canada, federal courts, employment insurance, benefits/aids, Indigenous services, etc...).",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Never"
+        },
+        {
+          "code": 2,
+          "label": "Once or twice"
+        },
+        {
+          "code": 3,
+          "label": "Three to six times"
+        },
+        {
+          "code": 4,
+          "label": "More than six times"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "GOV_SURP",
+      "question_text": "If the government had a budget surplus, should it use it to reduce taxes or increase spending on social services?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Reduce taxes 1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "Increase social spending 10"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "LIFE_SATISFACTION",
+      "question_text": "All things considered, how satisfied are you with your life as a whole?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Completely dissatisfied"
+        },
+        {
+          "code": 2,
+          "label": "Mostly dissatisfied"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat dissatisfied"
+        },
+        {
+          "code": 4,
+          "label": "Neither satisfied nor dissatisfied"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat satisfied"
+        },
+        {
+          "code": 6,
+          "label": "Mostly satisfied"
+        },
+        {
+          "code": 7,
+          "label": "Completely satisfied"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "FAKE_NEWS",
+      "question_text": "How concerned are you about the spread of misinformation and disinformation online (i.e. news information about important topics that is verifiably false)?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Not at all concerned"
+        },
+        {
+          "code": 2,
+          "label": "Slightly concerned"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat concerned"
+        },
+        {
+          "code": 4,
+          "label": "Very concerned"
+        },
+        {
+          "code": 5,
+          "label": "Extremely concerned"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_MENT_A",
+      "question_text": "Much of our lives are being controlled by plots hatched in secret places.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CON_MENT_C",
+      "question_text": "The people who really 'run' the country are not known to the voters.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "AOTE_A",
+      "question_text": "It is important to be loyal to your beliefs even when evidence is brought to bear against them.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 6,
+          "label": "Agree"
+        },
+        {
+          "code": 7,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "AOTE_B",
+      "question_text": "Whether something feels true is more important than evidence.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 6,
+          "label": "Agree"
+        },
+        {
+          "code": 7,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PSY_DIST_A",
+      "question_text": "Most of today's science is concerned with solving problems of the distant future.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 6,
+          "label": "Agree"
+        },
+        {
+          "code": 7,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PSY_DIST_B",
+      "question_text": "I rarely interact with scientists in real life.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 6,
+          "label": "Agree"
+        },
+        {
+          "code": 7,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PSY_DIST_C",
+      "question_text": "Scientific knowledge is a reliable way to solve important issues.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 6,
+          "label": "Agree"
+        },
+        {
+          "code": 7,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PSY_DIST_D",
+      "question_text": "Science and scientific research play a big role in my local geographical area.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 2,
+          "label": "Disagree"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 4,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 5,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 6,
+          "label": "Agree"
+        },
+        {
+          "code": 7,
+          "label": "Strongly agree"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "EDUCATION",
+      "question_text": "What is the highest level of formal education that you have completed?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Elementary school or less"
+        },
+        {
+          "code": 2,
+          "label": "Some high school"
+        },
+        {
+          "code": 3,
+          "label": "High school diploma or equivalent"
+        },
+        {
+          "code": 4,
+          "label": "Registered Apprenticeship or other trades certificate or dip"
+        },
+        {
+          "code": 5,
+          "label": "Partial college/university education"
+        },
+        {
+          "code": 6,
+          "label": "College, CEGEP or other non-university certificate or diplom"
+        },
+        {
+          "code": 7,
+          "label": "University certificate or diploma below bachelor's level"
+        },
+        {
+          "code": 8,
+          "label": "Bachelor's degree"
+        },
+        {
+          "code": 9,
+          "label": "Postgraduate degree above bachelor's level"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "COMMUNITY_SIZE",
+      "question_text": "Which of the following best describes the place where you now live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "A large city"
+        },
+        {
+          "code": 2,
+          "label": "A suburb near a large city"
+        },
+        {
+          "code": 3,
+          "label": "A small city or town"
+        },
+        {
+          "code": 4,
+          "label": "A rural area"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT",
+      "question_text": "Are you a parent?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT_U18_1",
+      "question_text": "Do you have any children in the following age groups living in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Under 6 years old"
+        },
+        {
+          "code": 3,
+          "label": "6 to 11 years old"
+        },
+        {
+          "code": 4,
+          "label": "12 to 17 years old"
+        },
+        {
+          "code": 5,
+          "label": "18 years old or older"
+        },
+        {
+          "code": 9,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT_U18_2",
+      "question_text": "Do you have any children in the following age groups living in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Under 6 years old"
+        },
+        {
+          "code": 3,
+          "label": "6 to 11 years old"
+        },
+        {
+          "code": 4,
+          "label": "12 to 17 years old"
+        },
+        {
+          "code": 5,
+          "label": "18 years old or older"
+        },
+        {
+          "code": 9,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT_U18_3",
+      "question_text": "Do you have any children in the following age groups living in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Under 6 years old"
+        },
+        {
+          "code": 3,
+          "label": "6 to 11 years old"
+        },
+        {
+          "code": 4,
+          "label": "12 to 17 years old"
+        },
+        {
+          "code": 5,
+          "label": "18 years old or older"
+        },
+        {
+          "code": 9,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PARENT_U18_4",
+      "question_text": "Do you have any children in the following age groups living in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 2,
+          "label": "Under 6 years old"
+        },
+        {
+          "code": 3,
+          "label": "6 to 11 years old"
+        },
+        {
+          "code": 4,
+          "label": "12 to 17 years old"
+        },
+        {
+          "code": 5,
+          "label": "18 years old or older"
+        },
+        {
+          "code": 9,
+          "label": "No"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "EMPLOYMENT",
+      "question_text": "Which of the following categories best describes your current employment status?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Employed (e.g., for wages, salary) full time, that is 30 or"
+        },
+        {
+          "code": 2,
+          "label": "Employed (e.g., for wages, salary) part-time, that is less t"
+        },
+        {
+          "code": 3,
+          "label": "Self-employed"
+        },
+        {
+          "code": 4,
+          "label": "Unemployed"
+        },
+        {
+          "code": 5,
+          "label": "A student attending school full-time"
+        },
+        {
+          "code": 6,
+          "label": "Retired"
+        },
+        {
+          "code": 7,
+          "label": "Full-time homemaker"
+        },
+        {
+          "code": 8,
+          "label": "Other"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "RESIDENT_STATUS",
+      "question_text": "Which of the following categories best describes your current resident status in Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian Citizen"
+        },
+        {
+          "code": 2,
+          "label": "Permanent Resident of Canada (but not a citizen)"
+        },
+        {
+          "code": 3,
+          "label": "Temporary Foreign Worker program"
+        },
+        {
+          "code": 4,
+          "label": "Other Temporary Work Permit"
+        },
+        {
+          "code": 5,
+          "label": "International Student"
+        },
+        {
+          "code": 6,
+          "label": "Refugee or Protected Person"
+        },
+        {
+          "code": 77,
+          "label": "Other (please specify)"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "HOUSEHOLD_INCOME",
+      "question_text": "Which of the following categories best describes your total household income in 2021? That is, the total income of all persons in your household combined, before taxes.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Under $20,000"
+        },
+        {
+          "code": 2,
+          "label": "$20,000 to just under $40,000"
+        },
+        {
+          "code": 3,
+          "label": "$40,000 to just under $60,000"
+        },
+        {
+          "code": 4,
+          "label": "$60,000 to just under $80,000"
+        },
+        {
+          "code": 5,
+          "label": "$80,000 to just under $100,000"
+        },
+        {
+          "code": 6,
+          "label": "$100,000 to just under $150,000"
+        },
+        {
+          "code": 7,
+          "label": "$150,000 to just under $200,000"
+        },
+        {
+          "code": 8,
+          "label": "$200,000 to just under $250,000"
+        },
+        {
+          "code": 9,
+          "label": "$250,000 and above"
+        },
+        {
+          "code": 9999,
+          "label": "Prefer not to say"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISCOVA",
+      "question_text": "Straightlined the first MIS_COV matrix (accurate/inaccurate)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISCOVB",
+      "question_text": "Straightlined the second MIS_COV matrix (confidence)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISCOV",
+      "question_text": "Straightlined either MIS_COV matrix",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISCLIA",
+      "question_text": "Straightlined the first MIS_CLI matrix (accurate/inaccurate)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISCLIB",
+      "question_text": "Straightlined the second MIS_CLI matrix (confidence)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISCLI",
+      "question_text": "Straightlined either MIS_CLI matrix",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISIMMA",
+      "question_text": "Straightlined the first MIS_IMM matrix (accurate/inaccurate)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISIMMB",
+      "question_text": "Straightlined the second MIS_IMM matrix (confidence)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CALCMISIMM",
+      "question_text": "Straightlined either MIS_IMM matrix",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "FLAGTRUST_FACET",
+      "question_text": "Straightlined the TRUST_FACET matrix",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "FLAGINFO_USE",
+      "question_text": "Straightlined the INFO_USE matrix",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "FLAGSOCMED",
+      "question_text": "Straightlined the SOCMED matrix",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "FLAGDEMCAN_FREE",
+      "question_text": "Straightlined the DEMCAN_FREE matrix",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}
