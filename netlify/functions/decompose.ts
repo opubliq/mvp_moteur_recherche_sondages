@@ -31,48 +31,17 @@ const CORS_HEADERS: Record<string, string> = {
   "Content-Type": "application/json",
 };
 
-const SYSTEM_PROMPT = `Tu es un expert en analyse linguistique et recherche d'information. Ta tâche est de décomposer une requête utilisateur (recherche dans une base de sondages) en concepts indépendants pondérés.
+const SYSTEM_PROMPT = `Tu élargis une requête de recherche dans des questions de sondages citoyens québécois. DÉCOMPOSE la requête en ses CONCEPTS distincts (typiquement une action + un objet, ou un objet + un public cible ; parfois un seul concept). Pour CHAQUE concept, donne le mot original PLUS ses synonymes, quasi-synonymes ET variantes morphologiques (singulier/pluriel, formes verbales) en français québécois. Inclus aussi les termes que les citoyens emploient couramment dans ce contexte, même s'ils sont techniquement distincts (ex. 'librairie' pour 'bibliothèque', 'gazon' pour 'pelouse', 'poubelle' pour 'bac de collecte'). Le moteur ne lemmatise PAS : inclure les variantes (poteau ET poteaux). Chaque synonyme est un terme COURT (1 à 3 mots) cherché comme sous-chaîne littérale dans un texte réel — jamais une paraphrase de plusieurs mots de la requête (mauvais : 'accessibilité des arrêts de bus' ; bon : 'arrêt de bus', 'station de bus', 'sans obstacle'). MAXIMUM 8 synonymes par concept.
 
-STRUCTURE JSON ATTENDUE :
-{
-  "concepts": [
-    {
-      "orig": "terme original",
-      "syns": ["synonyme1", "synonyme2"],
-      "qualifiers": ["adjectif1", "adjectif2"], // optionnel
-      "weight": 0.0-1.0
-    }
-  ]
-}
+RÈGLE CLÉ : un concept distinct doit ouvrir un AXE DE RECHERCHE VRAIMENT INDÉPENDANT — pas juste redire le concept principal autrement. Si un complément (lieu, contexte, ou proposition relative) ne fait que QUALIFIER/REDÉCRIRE l'objet principal sans ajouter d'information cherchable distincte, fusionne-le comme synonyme court du concept principal au lieu d'en faire un concept séparé. Ex. : 'amuseurs dans la rue' -> UN concept {orig:'amuseurs', syns:[...,'artistes de rue']}, PAS un concept 'rue' séparé.
 
-RÈGLES CRITIQUES :
-1. DÉCOMPOSITION : Identifie les axes de recherche RÉELLEMENT INDÉPENDANTS.
-2. SYNONYMES : Courts (1-3 mots), variantes morphologiques. Cherchables comme sous-chaîne. Pas de paraphrases.
-3. QUALIFIERS (Optionnels) : Structure à 2 niveaux. Le nom de base ("orig") doit rester valide seul (ex: "eau" + qualifiers:["potable"]).
-4. POIDS : La somme des poids DOIT être égale à 1.0. 
-   - Poids fort au concept-objet principal.
-   - Poids faible (ex: 0.2 ou 0.3) aux concepts évaluatifs génériques (satisfaction, accès, qualité, état).
-5. DÉDUPLICATION : Ne pas inclure "orig" dans "syns" ou "qualifiers".
-6. LANGUE : La sortie doit être dans la même langue que la requête (généralement Français).
+STRUCTURE À 2 NIVEAUX : si un concept a un NOM DE BASE générique (ex. 'eau') qui peut être précisé par un ADJECTIF/QUALIFICATIF (ex. 'potable', 'à boire', 'buvable'), sépare les deux : 'syns' = variantes du nom de base SEUL (toujours valide tout seul) ; 'qualifiers' = les précisions/adjectifs (liste optionnelle, omets-la si non applicable). NE FUSIONNE PAS le nom de base et l'adjectif en un seul synonyme composé ('eau potable') — le nom de base doit rester cherchable seul, une question qui ne dit que 'eau' reste pertinente (juste moins précise).
 
-EXEMPLE :
-Requête : "satisfaction sur la qualité de l'eau potable"
-Réponse :
-{
-  "concepts": [
-    {
-      "orig": "eau",
-      "syns": ["ressource hydrique"],
-      "qualifiers": ["potable", "à boire"],
-      "weight": 0.7
-    },
-    {
-      "orig": "qualité",
-      "syns": ["satisfaction", "état"],
-      "weight": 0.3
-    }
-  ]
-}`;
+Si un mot évaluatif concret (ex. 'qualité', 'état', 'niveau', 'satisfaction', 'accès') précède 'de'/'envers'/'à' + un objet, c'est en général un CONCEPT À PART ENTIÈRE (souvent littéralement présent dans la question) — PAS un qualificatif à fusionner avec l'objet qui suit. Ex. : 'qualité de l'eau qu'on peut boire' -> DEUX concepts : {orig:'qualité', syns:['qualité'], weight:0.3} ET {orig:'eau', syns:['eau'], qualifiers:['potable','à boire','buvable'], weight:0.7}. PAS un seul concept 'qualité de l'eau potable' répété pour chaque synonyme.
+
+POIDS (weight) : assigne à chaque concept son importance relative (0.0-1.0, tous les poids somment à 1). Concept évaluatif générique (qualité, état, niveau, satisfaction, accès) -> poids faible ; concept-objet principal -> fort. Ex. : 'état des trottoirs' -> {orig:'état',...,weight:0.2} ET {orig:'trottoir',...,weight:0.8}. Requête à concept unique -> weight:1.
+
+Réponds UNIQUEMENT en JSON : {"concepts":[{"orig":"...","syns":["...","..."],"qualifiers":["...","..."],"weight":0.5}, ...]}. "qualifiers" est optionnel (liste vide si non applicable). "weight" est obligatoire (somme = 1).`;
 
 // ---------------------------------------------------------------------------
 // Types

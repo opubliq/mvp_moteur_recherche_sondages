@@ -54,7 +54,6 @@ export default function App() {
   const [filters, setFilters] = useState<SearchFilters>({});
   const [results, setResults] = useState<SearchResult[]>([]);
   const [concepts, setConcepts] = useState<Concept[]>([]);
-  const [rerank, setRerank] = useState(false);
   const [loading, setLoading] = useState(false);
   const [decomposing, setDecomposing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -62,11 +61,11 @@ export default function App() {
   const [selectedSurveyId, setSelectedSurveyId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"search" | "explore">("search");
 
-  async function runSearch(q: string, f: SearchFilters, c?: Concept[], r = rerank) {
+  async function runSearch(q: string, f: SearchFilters, c?: Concept[]) {
     setLoading(true);
     setError(null);
     try {
-      const res = await search(q, f, 30, c, r);
+      const res = await search(q, f, 30, c);
       setResults(res.results);
       setHasSearched(true);
     } catch (err) {
@@ -102,11 +101,6 @@ export default function App() {
   function handleFilterChange(next: SearchFilters) {
     setFilters(next);
     if (query) void runSearch(query, next, concepts);
-  }
-
-  function handleRerankChange(next: boolean) {
-    setRerank(next);
-    if (query) void runSearch(query, filters, concepts, next);
   }
 
   // Changement local des concepts (poids)
@@ -176,18 +170,6 @@ export default function App() {
               <>
                 <div className="mb-6">
                   <SearchBar onSearch={handleSearch} loading={loading || decomposing} />
-                  <div className="mt-2 flex items-center gap-2 px-1">
-                    <input
-                      type="checkbox"
-                      id="rerank-toggle"
-                      className="checkbox checkbox-xs"
-                      checked={rerank}
-                      onChange={(e) => handleRerankChange(e.target.checked)}
-                    />
-                    <label htmlFor="rerank-toggle" className="cursor-pointer text-xs opacity-70">
-                      Activer le reranking Juge LLM (GPT-4o-mini) — Élimine le bruit thématique
-                    </label>
-                  </div>
                 </div>
 
                 {concepts.length > 0 && (
