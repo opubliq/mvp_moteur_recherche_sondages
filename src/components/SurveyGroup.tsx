@@ -51,17 +51,17 @@ export default function SurveyGroup({
         
         <div className="ml-auto flex items-center gap-2 mr-2">
           {stats["Exact"] > 0 && (
-            <div className="badge badge-success badge-sm text-white font-medium" title="Matches Exacts">
+            <div className="badge bg-success text-success-content border-success badge-sm font-medium" title="Matches Exacts">
               {stats["Exact"]} Exact
             </div>
           )}
           {stats["Partiel"] > 0 && (
-            <div className="badge badge-warning badge-sm font-medium" title="Matches Partiels">
+            <div className="badge bg-warning text-warning-content border-warning badge-sm font-medium" title="Matches Partiels">
               {stats["Partiel"]} Partiel
             </div>
           )}
           {stats["Faible"] > 0 && (
-            <div className="badge badge-error badge-sm outline-none font-medium" title="Matches Faibles">
+            <div className="badge bg-error text-error-content border-error badge-sm font-medium" title="Matches Faibles">
               {stats["Faible"]} Faible
             </div>
           )}

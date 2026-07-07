@@ -3,9 +3,9 @@ import type { SearchResult } from "../types";
 /** Carte d'une question : libellé, variable, options de réponse, métadonnées. */
 export default function QuestionCard({ q }: { q: SearchResult }) {
   const pertinenceConfig = {
-    Exact: { color: "badge-success", progressColor: "progress-success", percent: 100, label: "Exact" },
-    Partiel: { color: "badge-warning", progressColor: "progress-warning", percent: 67, label: "Partiel" },
-    Faible: { color: "bg-orange-400 text-orange-950 border-orange-400", progressColor: "[&::-webkit-progress-value]:bg-orange-400 [&::-moz-progress-bar]:bg-orange-400", percent: 33, label: "Faible" },
+    Exact: { color: "bg-success text-success-content border-success", progressColor: "progress-success", percent: 100, label: "Exact" },
+    Partiel: { color: "bg-warning text-warning-content border-warning", progressColor: "progress-warning", percent: 67, label: "Partiel" },
+    Faible: { color: "bg-error text-error-content border-error", progressColor: "progress-error", percent: 33, label: "Faible" },
     "Hors-sujet": { color: "badge-ghost", progressColor: "progress-ghost", percent: 0, label: "Hors-sujet" },
   };
 
