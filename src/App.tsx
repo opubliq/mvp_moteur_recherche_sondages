@@ -52,7 +52,6 @@ function buildFacetOptions(results: SearchResult[]): FacetOptions {
 export default function App() {
   const [query, setQuery] = useState("");
   const [filters, setFilters] = useState<SearchFilters>({});
-  const [themeFilter, setThemeFilter] = useState<string | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [concepts, setConcepts] = useState<Concept[]>([]);
   const [rerank, setRerank] = useState(false);
