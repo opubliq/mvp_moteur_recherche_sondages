@@ -34,6 +34,7 @@ Copier `.env.example` vers `.env` (gitignored) et remplir les valeurs. Variables
 | `AOAI_ENDPOINT` | Endpoint Azure OpenAI |
 | `AOAI_KEY` | Clé Azure OpenAI |
 | `AOAI_EMBED_DEPLOYMENT` | Nom du déploiement d'embeddings (`text-embedding-3-large`, 3072 dims) |
+| `AOAI_CHAT_DEPLOYMENT` | Nom du déploiement chat completion (`gpt-4o`) |
 
 ## Installation
 
@@ -85,6 +86,7 @@ Environment variables) — **uniquement les clés serveur, jamais la clé admin*
 | `AOAI_ENDPOINT` | Endpoint Azure OpenAI |
 | `AOAI_KEY` | Clé Azure OpenAI |
 | `AOAI_EMBED_DEPLOYMENT` | Déploiement d'embeddings (doit matcher celui de l'ingestion) |
+| `AOAI_CHAT_DEPLOYMENT` | Déploiement chat completion (GPT-4o) |
 
 `SEARCH_ADMIN_KEY` ne doit **pas** être configurée sur Netlify : les functions ne font
 que lire. Pousser sur `main` déclenche le build/déploiement.

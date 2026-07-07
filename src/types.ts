@@ -1,3 +1,10 @@
+export interface Concept {
+  orig: string;
+  syns: string[];
+  qualifiers?: string[];
+  weight: number;
+}
+
 /** Contrat de la Netlify Function `/search` (voir netlify/functions/search.ts). */
 
 export interface ResponseOption {

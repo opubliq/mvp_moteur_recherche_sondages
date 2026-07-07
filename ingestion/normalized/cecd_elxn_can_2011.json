@@ -1,0 +1,2180 @@
+{
+  "survey": {
+    "survey_id": "cecd_elxn_can_2011",
+    "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+    "survey_description": null,
+    "year": 2011,
+    "survey_month": null,
+    "pollster": "CROP",
+    "language": "fr",
+    "n_respondents": 715,
+    "raw_data_file": "repondantspost_2011.sav",
+    "tags": [
+      "electoral",
+      "federal",
+      "québec",
+      "panel",
+      "2011"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "reg",
+      "question_text": "S1.  Region :",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Montréal Ile"
+        },
+        {
+          "code": 2,
+          "label": "Montréal reste RMR"
+        },
+        {
+          "code": 3,
+          "label": "Québec RMR"
+        },
+        {
+          "code": 4,
+          "label": "Reste du Québec"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qage",
+      "question_text": "S2.  Auquel des groupes d'âges suivants appartenez-vous?  Est-ce...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "18-24 ans"
+        },
+        {
+          "code": 2,
+          "label": "25-34 ans"
+        },
+        {
+          "code": 3,
+          "label": "35-44 ans"
+        },
+        {
+          "code": 4,
+          "label": "45-54 ans"
+        },
+        {
+          "code": 5,
+          "label": "55-64 ans"
+        },
+        {
+          "code": 6,
+          "label": "65-74 ans"
+        },
+        {
+          "code": 7,
+          "label": "75 ans et plus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qlanf",
+      "question_text": "S3.  Quelle langue parle-t-on le plus souvent dans votre foyer?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 6,
+          "label": "Autre (précisez) :"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qlanm",
+      "question_text": "S4.  Quelle est votre langue maternelle, c'est-à-dire la première langue que vous avez apprise et que vous pouvez encore parler?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 6,
+          "label": "Autre (précisez) :"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sexe",
+      "question_text": "S5.  Êtes-vous un homme ou une femme ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Un homme"
+        },
+        {
+          "code": 2,
+          "label": "Une femme"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "occup",
+      "question_text": "S6.  Laquelle des activités suivantes correspond le mieux à votre situation actuelle?    Êtes-vous...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "travailleur(se) à temps plein (30 hres et +/sem.)"
+        },
+        {
+          "code": 2,
+          "label": "travailleur(se) à temps partiel"
+        },
+        {
+          "code": 3,
+          "label": "chômeur(se), à la recherche d'un emploi"
+        },
+        {
+          "code": 4,
+          "label": "à la maison à temps plein"
+        },
+        {
+          "code": 5,
+          "label": "retraité(e)"
+        },
+        {
+          "code": 6,
+          "label": "étudiant(e)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "p9",
+      "question_text": "S7.  Quelle est habituellement votre occupation principale?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Professionnel"
+        },
+        {
+          "code": 2,
+          "label": "Propriétaire ou administrateur de grande entreprise"
+        },
+        {
+          "code": 3,
+          "label": "Technicien ou semi-professionnel"
+        },
+        {
+          "code": 4,
+          "label": "Propriétaire ou administrateur de petite entreprise"
+        },
+        {
+          "code": 5,
+          "label": "Employé de bureau (col blanc), service, vendeur"
+        },
+        {
+          "code": 6,
+          "label": "Ouvrier de métier, spécialisé, semi-spécialisé ou col bleu"
+        },
+        {
+          "code": 7,
+          "label": "Manoeuvre ou journalier"
+        },
+        {
+          "code": 8,
+          "label": "Agriculture ou pêcherie"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qtras",
+      "question_text": "S8.  Êtes-vous un travailleur salarié ou un travailleur autonome?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Salarié"
+        },
+        {
+          "code": 2,
+          "label": "Autonomne/à son compte"
+        },
+        {
+          "code": 9,
+          "label": "Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qetud",
+      "question_text": "S9.  Quel est le niveau de scolarité le plus élevé que vous avez complété?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Primaire en partie"
+        },
+        {
+          "code": 2,
+          "label": "Primaire complété"
+        },
+        {
+          "code": 3,
+          "label": "Secondaire/école de métiers en partie"
+        },
+        {
+          "code": 4,
+          "label": "Secondaire/école de métiers complété"
+        },
+        {
+          "code": 5,
+          "label": "Collège/cégep en partie"
+        },
+        {
+          "code": 6,
+          "label": "Collège/cégep complété"
+        },
+        {
+          "code": 7,
+          "label": "Université 1er cycle en partie (certificat, baccalauréat)"
+        },
+        {
+          "code": 8,
+          "label": "Université 1er cycle complété (certificat, baccalauréat)"
+        },
+        {
+          "code": 9,
+          "label": "Études universitaires de 2e ou 3e cycle en partie (maîtrise,"
+        },
+        {
+          "code": 10,
+          "label": "Études universitaires de 2e ou 3e cycle complétées (maîtrise"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qreve",
+      "question_text": "S10.  Dans laquelle des catégories suivantes se situe le revenu annuel total, avant impôts et déductions, de tous les membres de votre foyer, en vous incluant?  Est-ce...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "moins de 20 000 $"
+        },
+        {
+          "code": 2,
+          "label": "20 000 $ à 39 999 $"
+        },
+        {
+          "code": 3,
+          "label": "40 000 $ à 59 999 $"
+        },
+        {
+          "code": 4,
+          "label": "60 000 $ à 79 999 $"
+        },
+        {
+          "code": 5,
+          "label": "80 000 $ à 99 999 $"
+        },
+        {
+          "code": 6,
+          "label": "100 000 $ à 149 999 $"
+        },
+        {
+          "code": 7,
+          "label": "150 000 $ et plus"
+        },
+        {
+          "code": 9,
+          "label": "Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qenfa",
+      "question_text": "S11.  Combien de personnes de moins de 18 ans résident en permanence dans votre foyer?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Aucune"
+        },
+        {
+          "code": 2,
+          "label": "1 personne"
+        },
+        {
+          "code": 3,
+          "label": "2 personnes"
+        },
+        {
+          "code": 4,
+          "label": "3 personnes"
+        },
+        {
+          "code": 5,
+          "label": "4 personnes"
+        },
+        {
+          "code": 6,
+          "label": "5 personnes"
+        },
+        {
+          "code": 7,
+          "label": "6 personnes et plus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "you1",
+      "question_text": "1.  Personnellement, comment vous décrivez-vous? Diriez-vous que vous êtes ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Avant tout Québécois"
+        },
+        {
+          "code": 2,
+          "label": "Avant tout Canadien"
+        },
+        {
+          "code": 9,
+          "label": "PR"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "you2",
+      "question_text": "2.  Et vous-même, êtes-vous...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...plutôt favorable à ce que le Québec reste dans le Canada,"
+        },
+        {
+          "code": 2,
+          "label": "...plutôt favorable à ce que le Québec se sépare du Canada,"
+        },
+        {
+          "code": 9,
+          "label": "PR"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "you3",
+      "question_text": "3.  Et êtes-vous...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...fortement en faveur que le Québec reste dans le Canada"
+        },
+        {
+          "code": 2,
+          "label": "...modérément en faveur que le Québec reste dans le Canada"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "you4",
+      "question_text": "4.  Et êtes-vous...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...fortement en faveur que le Québec devienne un pays souver"
+        },
+        {
+          "code": 2,
+          "label": "...modérément en faveur que le Québec devienne un pays souve"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sastp",
+      "question_text": "5.  Diriez-vous que vous êtes très satisfait(e), plutôt satisfait(e), plutôt insatisfait(e) ou très insatisfait(e) du présent gouvernement du Québec?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt satisfait(e)"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt insatisfait(e)"
+        },
+        {
+          "code": 4,
+          "label": "Très insatisfait(e)"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "prov1",
+      "question_text": "PROV1.  S'il y avait des élections provinciales aujourd'hui au Québec, pour lequel des partis suivants voteriez-vous?  Voteriez-vous pour...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...l'Action Démocratique de Gérard Deltell"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral de Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Québec Solidaire de Amir Khadir"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert de Guy Rainville"
+        },
+        {
+          "code": 6,
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "prov2",
+      "question_text": "PROV2.  Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Est-ce...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...l'Action Démocratique de Gérard Deltell"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral de Jean Charest"
+        },
+        {
+          "code": 3,
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Québec Solidaire de Amir Khadir"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert de Guy Rainville"
+        },
+        {
+          "code": 6,
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q9",
+      "question_text": "Q9.  Parmi les chefs de parti suivants, lequel ferait le meilleur premier ministre du Québec?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 2,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 3,
+          "label": "Gérard Deltell"
+        },
+        {
+          "code": 4,
+          "label": "Amir Khadir"
+        },
+        {
+          "code": 5,
+          "label": "Guy Rainville"
+        },
+        {
+          "code": 7,
+          "label": "Aucun"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q10a",
+      "question_text": "Q10.  Pour quel parti avez-vous voté aux dernières élections provinciales du 8 décembre 2008?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": 3,
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "Je n'ai pas voté/j'ai annulé"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "souv1",
+      "question_text": "SOUV1.  Si un référendum avait lieu aujourd'hui vous demandant si vous voulez que le Québec devienne un pays souverain, voteriez-vous Oui ou voteriez-vous Non?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 3,
+          "label": "Je ne voterais pas/annulerais"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "souv2",
+      "question_text": "SOUV2.  Même si vous n'avez peut-être pas encore fait votre choix, s'il y avait un référendum aujourd'hui, seriez-vous tenté(e) de voter Oui ou de voter Non?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 3,
+          "label": "Je ne voterais pas/annulerais"
+        },
+        {
+          "code": 8,
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": 9,
+          "label": "Refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sastf",
+      "question_text": "Q11.    Diriez-vous que vous êtes très satisfait(e), plutôt satisfait(e), plutôt insatisfait(e) ou très insatisfait(e) du présent gouvernement du Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt satisfait(e)"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt insatisfait(e)"
+        },
+        {
+          "code": 4,
+          "label": "Très insatisfait(e)"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "fede1",
+      "question_text": "FEDE1.  Si des élections fédérales avaient lieu maintenant au Canada, pour lequel des partis suivants voteriez-vous? Voteriez-vous pour...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...le Bloc Québécois de Gilles Duceppe"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral du Canada de Michael Ignatieff"
+        },
+        {
+          "code": 3,
+          "label": "...le Nouveau Parti Démocratique de Jack Layton"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Conservateur du Canada de Stephen Harper"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert d'Elizabeth May"
+        },
+        {
+          "code": 6,
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "J'annulerais/ne voterais pas/aucun"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "fede2",
+      "question_text": "FEDE2.  Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Est-ce...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...le Bloc Québécois de Gilles Duceppe"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral du Canada de Michael Ignatieff"
+        },
+        {
+          "code": 3,
+          "label": "...le Nouveau Parti Démocratique de Jack Layton"
+        },
+        {
+          "code": 4,
+          "label": "...le Parti Conservateur du Canada de Stephen Harper"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert d'Elizabeth May"
+        },
+        {
+          "code": 6,
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": 7,
+          "label": "J'annulerais/ne voterais pas/aucun"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q11aa",
+      "question_text": "Q11.  Parmi les chefs de parti suivants, lequel ferait le meilleur premier ministre du Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Stephen Harper"
+        },
+        {
+          "code": 2,
+          "label": "Michael Ignatieff"
+        },
+        {
+          "code": 3,
+          "label": "Jack Layton"
+        },
+        {
+          "code": 4,
+          "label": "Gilles Duceppe"
+        },
+        {
+          "code": 5,
+          "label": "Elizabeth May"
+        },
+        {
+          "code": 7,
+          "label": "Aucun"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "pol1",
+      "question_text": "Q12.  Comme vous le savez peut-être, il y aura des élections fédérales prochainement au Canada. Dans quelle mesure avez l'intention d'aller voter à l'occasion de ces élections fédérales?   Diriez-vous..",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Certainement"
+        },
+        {
+          "code": 2,
+          "label": "Probablement"
+        },
+        {
+          "code": 3,
+          "label": "Probablement pas"
+        },
+        {
+          "code": 4,
+          "label": "Certainement pas"
+        },
+        {
+          "code": 9,
+          "label": "Ne sait pas/refus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "pol2a",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / A)  ...le chef du Parti Libéral, Michael Ignatieff performe",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": 2,
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": 3,
+          "label": "En dessous de vos attentes"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "pol2b",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / B) ...le chef du Parti Conservateur du Canada, Stephen Harper performe",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": 2,
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": 3,
+          "label": "En dessous de vos attentes"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "pol2c",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / C) ...le chef du Nouveau Parti Démocratique, Jack Layton performe",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": 2,
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": 3,
+          "label": "En dessous de vos attentes"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "pol2d",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / D) ...le chef du Parti Vert, Elizabeth May performe",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": 2,
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": 3,
+          "label": "En dessous de vos attentes"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "pol2e",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / E) ...le chef du Bloc Québécois, Gilles Duceppe performe",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": 2,
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": 3,
+          "label": "En dessous de vos attentes"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "pol3",
+      "question_text": "Q14.  Diriez-vous que votre choix pour les prochaines élections fédérales au Canada est définitif ou se peut-il que vous changiez d'avis d'ici le jour de l'élection, soit 2 mai 2011?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Mon choix est définitif"
+        },
+        {
+          "code": 2,
+          "label": "Il se peut que je change d'avis / indécis"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z1",
+      "question_text": "1.  Diriez-vous que vous étiez très intéressé(e), assez intéressé(e), peu intéressé(e) ou pas du tout intéressé(e) à la campagne électorale fédérale qui vient de se terminer au Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très intéressé(e)"
+        },
+        {
+          "code": 2,
+          "label": "Assez intéressé(e)"
+        },
+        {
+          "code": 3,
+          "label": "Peu intéressé(e)"
+        },
+        {
+          "code": 4,
+          "label": "Pas du tout intéressé(e)"
+        },
+        {
+          "code": 9,
+          "label": "PR"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z2",
+      "question_text": "2.  Êtes-vous allé voter lors de l'élection qui vient de se tenir le 2 mai dernier au Canada, que ce soit le jour de l'élection ou par anticipation?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui, le jour même de l'élection (lundi 2 mai)"
+        },
+        {
+          "code": 2,
+          "label": "Oui, par anticipation une semaine avant"
+        },
+        {
+          "code": 3,
+          "label": "Non, je n'ai pas voté"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z3",
+      "question_text": "3.  Durant la semaine qui précédé votre vote, diriez-vous que ...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Vous étiez indécis(e)"
+        },
+        {
+          "code": 2,
+          "label": "Votre idée était déjà faite"
+        },
+        {
+          "code": 9,
+          "label": "PR"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z4",
+      "question_text": "4.  Et pour quel parti avez-vous voté? Est-ce pour...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "le Parti Conservateur du Canada dirigé par Stephen Harper"
+        },
+        {
+          "code": 2,
+          "label": "le Nouveau Parti Démocratique dirigé par Jack Layton"
+        },
+        {
+          "code": 3,
+          "label": "le Parti libéral du Canada dirigé par Michael Ignatieff"
+        },
+        {
+          "code": 4,
+          "label": "le Bloc Québécois dirigé par Gilles Duceppe"
+        },
+        {
+          "code": 5,
+          "label": "le Parti Vert dirigé par Elizabeth May"
+        },
+        {
+          "code": 6,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 7,
+          "label": "J'ai annulé mon vote"
+        },
+        {
+          "code": 9,
+          "label": "Je ne sais pas/ Je préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "O_Q5A",
+      "question_text": "Raison du vote ou du non-vote",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "luentend",
+      "question_text": "6.  Durant la campagne électorale, avez-vous lu ou entendu des résultats de sondages portant sur les élections fédérales?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z7",
+      "question_text": "7.  Et personnellement, diriez-vous que les résultats des sondages ont rendu votre décision...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...plus difficile à prendre"
+        },
+        {
+          "code": 2,
+          "label": "...plus facile à prendre"
+        },
+        {
+          "code": 3,
+          "label": "Ça n'a fait aucune différence"
+        },
+        {
+          "code": 4,
+          "label": "pas lu sondages"
+        },
+        {
+          "code": 9,
+          "label": "PR"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z8",
+      "question_text": "8.  Diriez-vous que les sondages pendant les campagnes électorales sont une très bonne chose, une assez bonne chose, une assez mauvaise chose ou une très mauvaise chose pour les électeurs?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Une très bonne chose"
+        },
+        {
+          "code": 2,
+          "label": "Une assez bonne chose"
+        },
+        {
+          "code": 3,
+          "label": "Une assez mauvaise chose"
+        },
+        {
+          "code": 4,
+          "label": "Une très mauvaise chose"
+        },
+        {
+          "code": 9,
+          "label": "PR"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z9",
+      "question_text": "9.  Si on vous demandait de participer à un sondage et que vous aviez le choix entre un sondage par la poste, un sondage par Internet, un interviewer qui vous appelle par téléphone ou un interviewer qui vient chez vous à la maison, quelle méthode vous plai",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Questionnaire par la poste"
+        },
+        {
+          "code": 2,
+          "label": "Sondage par Internet"
+        },
+        {
+          "code": 3,
+          "label": "Entrevue au téléphone"
+        },
+        {
+          "code": 4,
+          "label": "Entrevue à la maison"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "z10",
+      "question_text": "10.  Pour quel parti avez-vous voté aux élections fédérales du 14 octobre 2008?  Est-ce pour...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "...le Parti Conservateur dirigé par Stephen Harper"
+        },
+        {
+          "code": 2,
+          "label": "...le Parti Libéral du Canada dirigé par Stéphane Dion"
+        },
+        {
+          "code": 3,
+          "label": "...le Bloc Québécois dirigé par Gilles Duceppe"
+        },
+        {
+          "code": 4,
+          "label": "...le Nouveau Parti Démocratique dirigé par Jack Layton"
+        },
+        {
+          "code": 5,
+          "label": "...le Parti Vert dirigé par Elizabeth May"
+        },
+        {
+          "code": 6,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 7,
+          "label": "J'ai annulé mon vote"
+        },
+        {
+          "code": 8,
+          "label": "Je ne suis pas allé voter (mais j'avais le droit de vote)"
+        },
+        {
+          "code": 9,
+          "label": "Je n'avais pas encore le droit de vote"
+        },
+        {
+          "code": 99,
+          "label": "PR"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "code1_num",
+      "question_text": "Code 1",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": 2,
+          "label": "autres"
+        },
+        {
+          "code": 3,
+          "label": "autres raisons"
+        },
+        {
+          "code": 4,
+          "label": "bloquer Harper"
+        },
+        {
+          "code": 5,
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": 6,
+          "label": "bonne équipe"
+        },
+        {
+          "code": 7,
+          "label": "candidat"
+        },
+        {
+          "code": 8,
+          "label": "changement"
+        },
+        {
+          "code": 9,
+          "label": "confiance"
+        },
+        {
+          "code": 10,
+          "label": "confiance négative"
+        },
+        {
+          "code": 11,
+          "label": "confiance positive"
+        },
+        {
+          "code": 12,
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": 13,
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": 14,
+          "label": "Culture, identité"
+        },
+        {
+          "code": 15,
+          "label": "Débat - conférence"
+        },
+        {
+          "code": 16,
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": 17,
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": 18,
+          "label": "Gagnant"
+        },
+        {
+          "code": 19,
+          "label": "habitude"
+        },
+        {
+          "code": 20,
+          "label": "idées du parti"
+        },
+        {
+          "code": 21,
+          "label": "imprévu"
+        },
+        {
+          "code": 22,
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": 23,
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": 24,
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": 25,
+          "label": "le chef"
+        },
+        {
+          "code": 26,
+          "label": "non citoyen"
+        },
+        {
+          "code": 27,
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": 28,
+          "label": "par élimination"
+        },
+        {
+          "code": 29,
+          "label": "parti_gauche"
+        },
+        {
+          "code": 30,
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": 31,
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": 32,
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": 33,
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": 34,
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": 35,
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": 36,
+          "label": "Vote stratégique"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "code2_num",
+      "question_text": "Code 2",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": 2,
+          "label": "autres"
+        },
+        {
+          "code": 3,
+          "label": "autres raisons"
+        },
+        {
+          "code": 4,
+          "label": "bloquer Harper"
+        },
+        {
+          "code": 5,
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": 6,
+          "label": "bonne équipe"
+        },
+        {
+          "code": 7,
+          "label": "candidat"
+        },
+        {
+          "code": 8,
+          "label": "changement"
+        },
+        {
+          "code": 9,
+          "label": "confiance"
+        },
+        {
+          "code": 10,
+          "label": "confiance négative"
+        },
+        {
+          "code": 11,
+          "label": "confiance positive"
+        },
+        {
+          "code": 12,
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": 13,
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": 14,
+          "label": "Culture, identité"
+        },
+        {
+          "code": 15,
+          "label": "Débat - conférence"
+        },
+        {
+          "code": 16,
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": 17,
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": 18,
+          "label": "Gagnant"
+        },
+        {
+          "code": 19,
+          "label": "habitude"
+        },
+        {
+          "code": 20,
+          "label": "idées du parti"
+        },
+        {
+          "code": 21,
+          "label": "imprévu"
+        },
+        {
+          "code": 22,
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": 23,
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": 24,
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": 25,
+          "label": "le chef"
+        },
+        {
+          "code": 26,
+          "label": "non citoyen"
+        },
+        {
+          "code": 27,
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": 28,
+          "label": "par élimination"
+        },
+        {
+          "code": 29,
+          "label": "parti_gauche"
+        },
+        {
+          "code": 30,
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": 31,
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": 32,
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": 33,
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": 34,
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": 35,
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": 36,
+          "label": "Vote stratégique"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "code3_num",
+      "question_text": "Code 3",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": 2,
+          "label": "autres"
+        },
+        {
+          "code": 3,
+          "label": "autres raisons"
+        },
+        {
+          "code": 4,
+          "label": "bloquer Harper"
+        },
+        {
+          "code": 5,
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": 6,
+          "label": "bonne équipe"
+        },
+        {
+          "code": 7,
+          "label": "candidat"
+        },
+        {
+          "code": 8,
+          "label": "changement"
+        },
+        {
+          "code": 9,
+          "label": "confiance"
+        },
+        {
+          "code": 10,
+          "label": "confiance négative"
+        },
+        {
+          "code": 11,
+          "label": "confiance positive"
+        },
+        {
+          "code": 12,
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": 13,
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": 14,
+          "label": "Culture, identité"
+        },
+        {
+          "code": 15,
+          "label": "Débat - conférence"
+        },
+        {
+          "code": 16,
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": 17,
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": 18,
+          "label": "Gagnant"
+        },
+        {
+          "code": 19,
+          "label": "habitude"
+        },
+        {
+          "code": 20,
+          "label": "idées du parti"
+        },
+        {
+          "code": 21,
+          "label": "imprévu"
+        },
+        {
+          "code": 22,
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": 23,
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": 24,
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": 25,
+          "label": "le chef"
+        },
+        {
+          "code": 26,
+          "label": "non citoyen"
+        },
+        {
+          "code": 27,
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": 28,
+          "label": "par élimination"
+        },
+        {
+          "code": 29,
+          "label": "parti_gauche"
+        },
+        {
+          "code": 30,
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": 31,
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": 32,
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": 33,
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": 34,
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": 35,
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": 36,
+          "label": "Vote stratégique"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "code4_num",
+      "question_text": "Code 4",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": 2,
+          "label": "autres"
+        },
+        {
+          "code": 3,
+          "label": "autres raisons"
+        },
+        {
+          "code": 4,
+          "label": "bloquer Harper"
+        },
+        {
+          "code": 5,
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": 6,
+          "label": "bonne équipe"
+        },
+        {
+          "code": 7,
+          "label": "candidat"
+        },
+        {
+          "code": 8,
+          "label": "changement"
+        },
+        {
+          "code": 9,
+          "label": "confiance"
+        },
+        {
+          "code": 10,
+          "label": "confiance négative"
+        },
+        {
+          "code": 11,
+          "label": "confiance positive"
+        },
+        {
+          "code": 12,
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": 13,
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": 14,
+          "label": "Culture, identité"
+        },
+        {
+          "code": 15,
+          "label": "Débat - conférence"
+        },
+        {
+          "code": 16,
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": 17,
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": 18,
+          "label": "Gagnant"
+        },
+        {
+          "code": 19,
+          "label": "habitude"
+        },
+        {
+          "code": 20,
+          "label": "idées du parti"
+        },
+        {
+          "code": 21,
+          "label": "imprévu"
+        },
+        {
+          "code": 22,
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": 23,
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": 24,
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": 25,
+          "label": "le chef"
+        },
+        {
+          "code": 26,
+          "label": "non citoyen"
+        },
+        {
+          "code": 27,
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": 28,
+          "label": "par élimination"
+        },
+        {
+          "code": 29,
+          "label": "parti_gauche"
+        },
+        {
+          "code": 30,
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": 31,
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": 32,
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": 33,
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": 34,
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": 35,
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": 36,
+          "label": "Vote stratégique"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "code5_num",
+      "question_text": "Code 5",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": 2,
+          "label": "autres"
+        },
+        {
+          "code": 3,
+          "label": "autres raisons"
+        },
+        {
+          "code": 4,
+          "label": "bloquer Harper"
+        },
+        {
+          "code": 5,
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": 6,
+          "label": "bonne équipe"
+        },
+        {
+          "code": 7,
+          "label": "candidat"
+        },
+        {
+          "code": 8,
+          "label": "changement"
+        },
+        {
+          "code": 9,
+          "label": "confiance"
+        },
+        {
+          "code": 10,
+          "label": "confiance négative"
+        },
+        {
+          "code": 11,
+          "label": "confiance positive"
+        },
+        {
+          "code": 12,
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": 13,
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": 14,
+          "label": "Culture, identité"
+        },
+        {
+          "code": 15,
+          "label": "Débat - conférence"
+        },
+        {
+          "code": 16,
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": 17,
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": 18,
+          "label": "Gagnant"
+        },
+        {
+          "code": 19,
+          "label": "habitude"
+        },
+        {
+          "code": 20,
+          "label": "idées du parti"
+        },
+        {
+          "code": 21,
+          "label": "imprévu"
+        },
+        {
+          "code": 22,
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": 23,
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": 24,
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": 25,
+          "label": "le chef"
+        },
+        {
+          "code": 26,
+          "label": "non citoyen"
+        },
+        {
+          "code": 27,
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": 28,
+          "label": "par élimination"
+        },
+        {
+          "code": 29,
+          "label": "parti_gauche"
+        },
+        {
+          "code": 30,
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": 31,
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": 32,
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": 33,
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": 34,
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": 35,
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": 36,
+          "label": "Vote stratégique"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Texte",
+      "question_text": "Raisons du changement ou de l'absention",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}

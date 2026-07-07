@@ -163,7 +163,7 @@ export default function App() {
               onThemeChange={setThemeFilter}
             />
 
-            <div className="space-y-8">
+            <div className="space-y-4">
               <p className="text-sm opacity-60">
                 {displayed.length} question{displayed.length > 1 ? "s" : ""} ·{" "}
                 {groups.length} sondage{groups.length > 1 ? "s" : ""}

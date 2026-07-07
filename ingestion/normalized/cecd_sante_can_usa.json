@@ -1,0 +1,4953 @@
+{
+  "survey": {
+    "survey_id": "cecd_sante_can_usa",
+    "survey_name": "Étude sur la santé - Canada-USA",
+    "survey_description": null,
+    "year": 2011,
+    "survey_month": null,
+    "pollster": "Leger Marketing",
+    "language": "en",
+    "n_respondents": 7064,
+    "raw_data_file": "Fichier SPSS - Étude sur la santé - Canada-USA.Sav",
+    "tags": [
+      "health",
+      "canada",
+      "usa",
+      "healthcare systems",
+      "comparison"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "LANG",
+      "question_text": "Would you prefer to complete the survey in English or French? Aimeriez-vous mieux répondre à ce questionnaire en anglais ou en français ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": "EN",
+          "label": "English"
+        },
+        {
+          "code": "FR",
+          "label": "Français"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PROV",
+      "question_text": "In which province or territory do you live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": "AB",
+          "label": "Alberta"
+        },
+        {
+          "code": "BC",
+          "label": "British Columbia"
+        },
+        {
+          "code": "MB",
+          "label": "Manitoba"
+        },
+        {
+          "code": "NB",
+          "label": "New Brunswick"
+        },
+        {
+          "code": "NL",
+          "label": "Newfoundland and Labrador"
+        },
+        {
+          "code": "NS",
+          "label": "Nova Scotia"
+        },
+        {
+          "code": "NT",
+          "label": "Northwest Territories"
+        },
+        {
+          "code": "NU",
+          "label": "Nunavut"
+        },
+        {
+          "code": "ON",
+          "label": "Ontario"
+        },
+        {
+          "code": "PE",
+          "label": "Prince Edward Island"
+        },
+        {
+          "code": "QC",
+          "label": "Quebec"
+        },
+        {
+          "code": "SK",
+          "label": "Saskatchewan"
+        },
+        {
+          "code": "YK",
+          "label": "Yukon"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QAB",
+      "question_text": "In which Alberta area do you live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 61,
+          "label": "Calgary"
+        },
+        {
+          "code": 62,
+          "label": "Edmonton"
+        },
+        {
+          "code": 63,
+          "label": "Other regions of Alberta"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QON",
+      "question_text": "In which Ontario area do you live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 50,
+          "label": "Hamilton - Niagara Peninsula"
+        },
+        {
+          "code": 51,
+          "label": "Kingston - Pembroke"
+        },
+        {
+          "code": 52,
+          "label": "Kitchener - Waterloo - Barrie"
+        },
+        {
+          "code": 53,
+          "label": "Greater London area"
+        },
+        {
+          "code": 54,
+          "label": "Muskoka - Kawarthas"
+        },
+        {
+          "code": 55,
+          "label": "Northeast"
+        },
+        {
+          "code": 56,
+          "label": "Northwest"
+        },
+        {
+          "code": 57,
+          "label": "Greater Ottawa area"
+        },
+        {
+          "code": 58,
+          "label": "Stratford - Bruce Peninsula"
+        },
+        {
+          "code": 59,
+          "label": "Greater Toronto area"
+        },
+        {
+          "code": 60,
+          "label": "Windsor - Sarnia"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QBC",
+      "question_text": "In which British Columbia region do you live ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 70,
+          "label": "Greater Vancouver Area"
+        },
+        {
+          "code": 71,
+          "label": "Other region in British-Columbia"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QQC",
+      "question_text": "In which Quebec area do you live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Bas-Saint-Laurent"
+        },
+        {
+          "code": 2,
+          "label": "Saguenay-Lac-Saint-Jean"
+        },
+        {
+          "code": 3,
+          "label": "Capitale-Nationale"
+        },
+        {
+          "code": 4,
+          "label": "Mauricie"
+        },
+        {
+          "code": 5,
+          "label": "Estrie"
+        },
+        {
+          "code": 6,
+          "label": "Montréal"
+        },
+        {
+          "code": 7,
+          "label": "Outaouais"
+        },
+        {
+          "code": 8,
+          "label": "Abitibi-Témiscamingue"
+        },
+        {
+          "code": 9,
+          "label": "Côte-Nord"
+        },
+        {
+          "code": 10,
+          "label": "Gaspésie/Iles-de-la-Madeleine"
+        },
+        {
+          "code": 11,
+          "label": "Nord-du-Québec"
+        },
+        {
+          "code": 12,
+          "label": "Chaudière-Appalaches"
+        },
+        {
+          "code": 13,
+          "label": "Laval"
+        },
+        {
+          "code": 14,
+          "label": "Lanaudière"
+        },
+        {
+          "code": 15,
+          "label": "Laurentides"
+        },
+        {
+          "code": 16,
+          "label": "Montérégie"
+        },
+        {
+          "code": 17,
+          "label": "Centre-du-Québec"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "STATE",
+      "question_text": "In which state do you live?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Alabama"
+        },
+        {
+          "code": 2,
+          "label": "Alaska"
+        },
+        {
+          "code": 4,
+          "label": "Arizona"
+        },
+        {
+          "code": 5,
+          "label": "Arkansas"
+        },
+        {
+          "code": 6,
+          "label": "California"
+        },
+        {
+          "code": 8,
+          "label": "Colorado"
+        },
+        {
+          "code": 9,
+          "label": "Connecticut"
+        },
+        {
+          "code": 10,
+          "label": "Delaware"
+        },
+        {
+          "code": 11,
+          "label": "District of Columbia"
+        },
+        {
+          "code": 12,
+          "label": "Florida"
+        },
+        {
+          "code": 13,
+          "label": "Georgia"
+        },
+        {
+          "code": 15,
+          "label": "Hawaii"
+        },
+        {
+          "code": 16,
+          "label": "Idaho"
+        },
+        {
+          "code": 17,
+          "label": "Illinois"
+        },
+        {
+          "code": 18,
+          "label": "Indiana"
+        },
+        {
+          "code": 19,
+          "label": "Iowa"
+        },
+        {
+          "code": 20,
+          "label": "Kansas"
+        },
+        {
+          "code": 21,
+          "label": "Kentucky"
+        },
+        {
+          "code": 22,
+          "label": "Louisiana"
+        },
+        {
+          "code": 23,
+          "label": "Maine"
+        },
+        {
+          "code": 24,
+          "label": "Maryland"
+        },
+        {
+          "code": 25,
+          "label": "Massachusetts"
+        },
+        {
+          "code": 26,
+          "label": "Michigan"
+        },
+        {
+          "code": 27,
+          "label": "Minnesota"
+        },
+        {
+          "code": 28,
+          "label": "Mississippi"
+        },
+        {
+          "code": 29,
+          "label": "Missouri"
+        },
+        {
+          "code": 30,
+          "label": "Montana"
+        },
+        {
+          "code": 31,
+          "label": "Nebraska"
+        },
+        {
+          "code": 32,
+          "label": "Nevada"
+        },
+        {
+          "code": 33,
+          "label": "New Hampshire"
+        },
+        {
+          "code": 34,
+          "label": "New Jersey"
+        },
+        {
+          "code": 35,
+          "label": "New Mexico"
+        },
+        {
+          "code": 36,
+          "label": "New York"
+        },
+        {
+          "code": 37,
+          "label": "North Carolina"
+        },
+        {
+          "code": 38,
+          "label": "North Dakota"
+        },
+        {
+          "code": 39,
+          "label": "Ohio"
+        },
+        {
+          "code": 40,
+          "label": "Oklahoma"
+        },
+        {
+          "code": 41,
+          "label": "Oregon"
+        },
+        {
+          "code": 42,
+          "label": "Pennsylvania"
+        },
+        {
+          "code": 44,
+          "label": "Rhode Island"
+        },
+        {
+          "code": 45,
+          "label": "South Carolina"
+        },
+        {
+          "code": 46,
+          "label": "South Dakota"
+        },
+        {
+          "code": 47,
+          "label": "Tennessee"
+        },
+        {
+          "code": 48,
+          "label": "Texas"
+        },
+        {
+          "code": 49,
+          "label": "Utah"
+        },
+        {
+          "code": 50,
+          "label": "Vermont"
+        },
+        {
+          "code": 51,
+          "label": "Virginia"
+        },
+        {
+          "code": 53,
+          "label": "Washington"
+        },
+        {
+          "code": 54,
+          "label": "West Virginia"
+        },
+        {
+          "code": 55,
+          "label": "Wisconsin"
+        },
+        {
+          "code": 56,
+          "label": "Wyoming"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "DIVIS",
+      "question_text": "US DIVISION",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "New England"
+        },
+        {
+          "code": 2,
+          "label": "Middle Atlantic"
+        },
+        {
+          "code": 3,
+          "label": "East North Central"
+        },
+        {
+          "code": 4,
+          "label": "West North Central"
+        },
+        {
+          "code": 5,
+          "label": "South Atlantic"
+        },
+        {
+          "code": 6,
+          "label": "East South Central"
+        },
+        {
+          "code": 7,
+          "label": "West South Central"
+        },
+        {
+          "code": 8,
+          "label": "Mountain"
+        },
+        {
+          "code": 9,
+          "label": "Pacific"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "USREG",
+      "question_text": "US REGION",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Region I: Northeast"
+        },
+        {
+          "code": 2,
+          "label": "Region 2: Midwest"
+        },
+        {
+          "code": 3,
+          "label": "Region 3: South"
+        },
+        {
+          "code": 4,
+          "label": "Region 4: West"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "BIRTH",
+      "question_text": "In what year were you born?",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SEX",
+      "question_text": "What is your gender?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Female"
+        },
+        {
+          "code": 2,
+          "label": "Male"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q1A",
+      "question_text": "What is your weight ? / Please indicate using either pounds or kilos:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pounds"
+        },
+        {
+          "code": 2,
+          "label": "Kilos"
+        },
+        {
+          "code": 9,
+          "label": "I prefer not answering"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q1B1",
+      "question_text": "What is your weight ? / Please insert the number of <q1a>:",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q1B2",
+      "question_text": "What is your weight ? / Please insert the number of <q1a>:",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q2A",
+      "question_text": "What is your height? / Please indicate using feet/inches or centimeters:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Feet/inches"
+        },
+        {
+          "code": 2,
+          "label": "Centimeters"
+        },
+        {
+          "code": 9,
+          "label": "I prefer not answering"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q2B1",
+      "question_text": "What is your height? / Feet:",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q2B2",
+      "question_text": "Inches:",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q2C1",
+      "question_text": "What is your height? / Meters:",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q2C2",
+      "question_text": "Centimeters:",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q3",
+      "question_text": "In general, how would you describe your own health?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Excellent"
+        },
+        {
+          "code": 2,
+          "label": "Very good"
+        },
+        {
+          "code": 3,
+          "label": "Good"
+        },
+        {
+          "code": 4,
+          "label": "Fair"
+        },
+        {
+          "code": 5,
+          "label": "Poor"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q4",
+      "question_text": "Have you had a serious or chronic illness, injury, or disability that has required extensive medical care in the past 2 years?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q5A",
+      "question_text": "Has any doctor ever diagnosed you with or treated you for any of the following health conditions: / Arthritis?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q5B",
+      "question_text": "Has any doctor ever diagnosed you with or treated you for any of the following health conditions: / Heart disease?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q5C",
+      "question_text": "Has any doctor ever diagnosed you with or treated you for any of the following health conditions: / Diabetes?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q5D",
+      "question_text": "Has any doctor ever diagnosed you with or treated you for any of the following health conditions: / Asthma?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q5E",
+      "question_text": "Has any doctor ever diagnosed you with or treated you for any of the following health conditions: / Cancer?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q6",
+      "question_text": "In general, would you say you are very satisfied, fairly satisfied, neither satisfied nor dissatisfied, fairly dissatisfied or very dissatisfied with the way health care runs in your country?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very satisfied"
+        },
+        {
+          "code": 2,
+          "label": "Fairly satisfied"
+        },
+        {
+          "code": 3,
+          "label": "Neither satisfied nor dissatisfied"
+        },
+        {
+          "code": 4,
+          "label": "Fairly dissatisfied"
+        },
+        {
+          "code": 5,
+          "label": "Very dissatisfied"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7",
+      "question_text": "Overall, would you rate the healthcare coverage in your country as excellent, good, only fair, or poor?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Excellent"
+        },
+        {
+          "code": 2,
+          "label": "Good"
+        },
+        {
+          "code": 3,
+          "label": "Only fair"
+        },
+        {
+          "code": 4,
+          "label": "Poor"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q8",
+      "question_text": "Overall, would you rate the quality of healthcare in your country as excellent, good, only fair, or poor?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Excellent"
+        },
+        {
+          "code": 2,
+          "label": "Good"
+        },
+        {
+          "code": 3,
+          "label": "Only fair"
+        },
+        {
+          "code": 4,
+          "label": "Poor"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q9",
+      "question_text": "In your opinion, has the quality of health care in your country over the past two years deteriorated, improved or stayed the same? Please respond using a 5-point scale where 1 means greatly deteriorated, 5 means greatly improved, the mid-point 3 means stay",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1 - greatly deteriorated"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3 - stayed the same"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5 - greatly improved"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q10",
+      "question_text": "In your opinion, has access to health care in your country over the past two years deteriorated, improved or stayed the same? Please respond using a 5-point scale where 1 means greatly deteriorated, 5 means greatly improved, the mid-point 3 means stayed th",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1 - greatly deteriorated"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3 - stayed the same"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5 - greatly improved"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q11",
+      "question_text": "Would you say that the total cost of healthcare is too high, too low, or just about right compared with the country's economy?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Too high"
+        },
+        {
+          "code": 2,
+          "label": "Too low"
+        },
+        {
+          "code": 3,
+          "label": "Just about right"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q12",
+      "question_text": "What approach would you say that this country's health system requires at present: a complete rebuilding from the ground up, some fairly major repairs, some minor tuning up or is everything fine the way it is?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Complete rebuilding"
+        },
+        {
+          "code": 2,
+          "label": "Fairly major repairs"
+        },
+        {
+          "code": 3,
+          "label": "Minor tuning up"
+        },
+        {
+          "code": 4,
+          "label": "Everything's fine"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q13",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / The government should only provide everyone with essential services, such as care for serious diseases, and should encourage people to provide for themselves in other respects.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q14",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / Health costs will continue to rise, but the increase will be manageable due to growth in the economy.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q14A",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / The demand for health care will increase, but we will be able to contain costs by operating the health care system more efficiently.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q15",
+      "question_text": "Overall, how do you rate the quality of medical care that you and your family have received in the past 2 years from your doctor/GP/the place you usually go to?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Excellent"
+        },
+        {
+          "code": 2,
+          "label": "Very good"
+        },
+        {
+          "code": 3,
+          "label": "Fair"
+        },
+        {
+          "code": 4,
+          "label": "Poor"
+        },
+        {
+          "code": 5,
+          "label": "Very poor"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q16A",
+      "question_text": "Have you or a member of your family needed non-emergency or elective surgery in the past 2 years?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q16B1",
+      "question_text": "After it was decided that a surgery was needed, how many days, weeks or months did you or a member of your family have to wait for the non-emergency or elective surgery? / Please specify your unit of measurement:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Days"
+        },
+        {
+          "code": 2,
+          "label": "Weeks"
+        },
+        {
+          "code": 3,
+          "label": "Months"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q16B2",
+      "question_text": "After it was decided that a surgery was needed, how many days, weeks or months did you or a member of your family have to wait for the non-emergency or elective surgery? / Insert the number of <q16b1>:",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17A",
+      "question_text": "How many times have you or a member of your family used a hospital emergency department in the past 2 years?",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17B",
+      "question_text": "The last time that you or a member of your family went to hospital emergency department, how long did you wait before being treated? / Please indicate the number of hours you waited.",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q18",
+      "question_text": "During the past 2 years, was there ever a time when you felt that you or a member of your family needed health care but you didn't receive it?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19",
+      "question_text": "During the past 2 years, was there ever a time you or a member of your family did not receive the care needed because you were unable to afford it?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q20",
+      "question_text": "During the past 2 years, was there ever a time you or a member of your family were unable to receive the most effective drugs you needed?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q21",
+      "question_text": "During the past 2 years, was there ever a time you or a member of your family were unable to receive high quality medical care?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q22",
+      "question_text": "Over the past 2 years, have you or a member of your family had to wait longer than you thought was reasonable to get health care services?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q23",
+      "question_text": "In the past 2 years, did you or a member of your family have any problems paying medical bills or not?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q24",
+      "question_text": "In the coming years, do you think that the risks that you or a member of your family might not be able at one time or another to afford needed health care are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very high"
+        },
+        {
+          "code": 2,
+          "label": "Fairly high"
+        },
+        {
+          "code": 3,
+          "label": "Fairly low"
+        },
+        {
+          "code": 4,
+          "label": "Very low"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q25",
+      "question_text": "In the coming years, do you think that the risks that you or a member of your family may be unable at one time or another to receive the most effective drugs you needed are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very high"
+        },
+        {
+          "code": 2,
+          "label": "Fairly high"
+        },
+        {
+          "code": 3,
+          "label": "Fairly low"
+        },
+        {
+          "code": 4,
+          "label": "Very low"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q26",
+      "question_text": "In the coming years, do you think that the risks that you or a member of your family may be unable to receive high quality medical care are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very high"
+        },
+        {
+          "code": 2,
+          "label": "Fairly high"
+        },
+        {
+          "code": 3,
+          "label": "Fairly low"
+        },
+        {
+          "code": 4,
+          "label": "Very low"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q27",
+      "question_text": "In the coming years, do you think that the risks that you or a member of your family had to wait longer than reasonable to get health care services are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very high"
+        },
+        {
+          "code": 2,
+          "label": "Fairly high"
+        },
+        {
+          "code": 3,
+          "label": "Fairly low"
+        },
+        {
+          "code": 4,
+          "label": "Very low"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28A",
+      "question_text": "How confident are you that if you become seriously ill, you will ...? Are you very confident, somewhat confident, not very confident, or not at all confident? / ...get quality and safe medical care",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "very confident"
+        },
+        {
+          "code": 2,
+          "label": "somewhat confident"
+        },
+        {
+          "code": 3,
+          "label": "not very confident"
+        },
+        {
+          "code": 4,
+          "label": "not at all confident"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28B",
+      "question_text": "How confident are you that if you become seriously ill, you will ...? Are you very confident, somewhat confident, not very confident, or not at all confident? / ...receive the most effective drugs",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "very confident"
+        },
+        {
+          "code": 2,
+          "label": "somewhat confident"
+        },
+        {
+          "code": 3,
+          "label": "not very confident"
+        },
+        {
+          "code": 4,
+          "label": "not at all confident"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28C",
+      "question_text": "How confident are you that if you become seriously ill, you will ...? Are you very confident, somewhat confident, not very confident, or not at all confident? / ...receive the best medical technology",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "very confident"
+        },
+        {
+          "code": 2,
+          "label": "somewhat confident"
+        },
+        {
+          "code": 3,
+          "label": "not very confident"
+        },
+        {
+          "code": 4,
+          "label": "not at all confident"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28D",
+      "question_text": "How confident are you that if you become seriously ill, you will ...? Are you very confident, somewhat confident, not very confident, or not at all confident? / ...be able to afford the care you need",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "very confident"
+        },
+        {
+          "code": 2,
+          "label": "somewhat confident"
+        },
+        {
+          "code": 3,
+          "label": "not very confident"
+        },
+        {
+          "code": 4,
+          "label": "not at all confident"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28E",
+      "question_text": "At the moment, do you have a family doctor?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29",
+      "question_text": "In addition to government funded health services, are you currently covered by any private health insurance such as insurance that is paid by you, your family, your employer, an association or some combination thereof ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30A",
+      "question_text": "Now, we would like to ask you about the different kinds of health plans or health insurance people have, including those provided by the government. For each one, please tell us whether you are currently covered by it, or not. / Health insurance through yo",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30B",
+      "question_text": "Now, we would like to ask you about the different kinds of health plans or health insurance people have, including those provided by the government. For each one, please tell us whether you are currently covered by it, or not. / Medicare, a government plan",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30C",
+      "question_text": "Now, we would like to ask you about the different kinds of health plans or health insurance people have, including those provided by the government. For each one, please tell us whether you are currently covered by it, or not. / Medicaid or other state med",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30D",
+      "question_text": "Now, we would like to ask you about the different kinds of health plans or health insurance people have, including those provided by the government. For each one, please tell us whether you are currently covered by it, or not. / Health insurance you bought",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30E",
+      "question_text": "Now, we would like to ask you about the different kinds of health plans or health insurance people have, including those provided by the government. For each one, please tell us whether you are currently covered by it, or not. / Health insurance from anoth",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q31",
+      "question_text": "When you think about paying for the costs of your medical care and those of your family in the future, including your insurance premiums, would you say that you are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Worried"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat worried"
+        },
+        {
+          "code": 3,
+          "label": "Not very worried"
+        },
+        {
+          "code": 4,
+          "label": "Not worried at all"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q32C",
+      "question_text": "From what you know, would you say that the proportion of the Canadian population that is worried about being able to pay for their medical care and those of their family is higher, lower or about the same as in the United States ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q32A",
+      "question_text": "From what you know, would you say that the proportion of the American population that is worried about being able to pay for their medical care and those of their family is higher, lower or about the same as in Canada ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q33",
+      "question_text": "When you think about the coverage of your health care needs and those of your family in the future, would you say that you are:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Worried"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat worried"
+        },
+        {
+          "code": 3,
+          "label": "Not very worried"
+        },
+        {
+          "code": 4,
+          "label": "Not worried at all"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34C",
+      "question_text": "From what you know, would you say that the proportion of the Canadian population that is worried about the coverage of their health care needs is higher, lower or about the same as in the United States ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34A",
+      "question_text": "From what you know, would you say that the proportion of the American population that is worried about the coverage of their health care needs is higher, lower or about the same as in Canada ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q35",
+      "question_text": "Overall, are you very satisfied, fairly satisfied, fairly dissatisfied or very dissatisfied with your current insurance plan?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very satisfied"
+        },
+        {
+          "code": 2,
+          "label": "Fairly satisfied"
+        },
+        {
+          "code": 3,
+          "label": "Fairly dissatisfied"
+        },
+        {
+          "code": 4,
+          "label": "Very dissatisfied"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q36",
+      "question_text": "In the past 2 years, how many times did you change health insurance companies (or health plans)?",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q37",
+      "question_text": "In the past year, was there ever a time when you did not have any health insurance coverage?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q38A",
+      "question_text": "In your dealing with private health care organizations, have you had any difficulties… / ...obtaining payment exemptions or the right to special rates for health care",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q38B",
+      "question_text": "In your dealing with private health care organizations, have you had any difficulties… / ...completing or filling out applications for health insurance",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q38C",
+      "question_text": "In your dealing with private health care organizations, have you had any difficulties… / ...finding out what benefits you are entitled to from your own health insurance plan",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q38D",
+      "question_text": "In your dealing with private health care organizations, have you had any difficulties… / ...getting reimbursement from a health insurance organization",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q39",
+      "question_text": "Have you or a member of your family ever paid a non-refundable out-of-pocket payment for a medically necessary service such as a consultation with a doctor, a hospital service, a procedure or diagnostic test at a private clinic?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q39B",
+      "question_text": "Would you say that this payment was:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very high"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat high"
+        },
+        {
+          "code": 3,
+          "label": "Somewhat low"
+        },
+        {
+          "code": 4,
+          "label": "Very low"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q40",
+      "question_text": "All things considered, are you very satisfied, fairly satisfied, fairly dissatisfied or very dissatisfied with the total costs you're paying personally to get your medical care and that of your family?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very satisfied"
+        },
+        {
+          "code": 2,
+          "label": "Fairly satisfied"
+        },
+        {
+          "code": 3,
+          "label": "Fairly dissatisfied"
+        },
+        {
+          "code": 4,
+          "label": "Very dissatisfied"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q41",
+      "question_text": "If you had the means, would you pay out-of-pocket to have access to health care services in another country?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42",
+      "question_text": "Some people say that there should be a government insurance plan which would cover all medical and hospital expenses for everyone. Other people say that all medical expenses should be paid by individuals, and through private insurance plans like Blue Cross",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1 - Government insurance plan that covers all expenses for e"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5 - All expenses paid by individuals and through private pla"
+        },
+        {
+          "code": 6,
+          "label": "Haven’t thought much"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q43",
+      "question_text": "Some people say that ensuring that health care is universally available to everyone, regardless of their ability to pay is so important that we must do everything we can to protect these principles. Other people say that ensuring universal access, regardle",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1 - Do everything to protect principles of universal access"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5 - Universal access is too costly and cannot be afforded"
+        },
+        {
+          "code": 6,
+          "label": "Haven’t thought much"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q44",
+      "question_text": "What is your overall impression of the health care system in Canada?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very positive"
+        },
+        {
+          "code": 2,
+          "label": "Moderately positive"
+        },
+        {
+          "code": 3,
+          "label": "Moderately negative"
+        },
+        {
+          "code": 4,
+          "label": "Very negative"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q45",
+      "question_text": "What is your overall impression of the health care system in the United States?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very positive"
+        },
+        {
+          "code": 2,
+          "label": "Moderately positive"
+        },
+        {
+          "code": 3,
+          "label": "Moderately negative"
+        },
+        {
+          "code": 4,
+          "label": "Very negative"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q46",
+      "question_text": "For you personally, do you think that the American health care system is better, worse or much the same as the Canadian health care system?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Better"
+        },
+        {
+          "code": 2,
+          "label": "Worse"
+        },
+        {
+          "code": 3,
+          "label": "Much the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q47",
+      "question_text": "Overall, in your view, which health care system is the most effective, the Canadian or the American?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q48",
+      "question_text": "And which one is fairest in your view, the Canadian or the American?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q49",
+      "question_text": "From what you know, would you say that the proportion of the population unable to afford the care it needs in Canada is higher, lower or about the same as in the United States?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q50",
+      "question_text": "And would you say that the proportion of the population unable to receive the most effective drugs in Canada is higher, lower or about the same as in the United States?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q51",
+      "question_text": "And would you say that the proportion of the population unable to receive high quality medical care in Canada is higher, lower or about the same as in the United States?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q52",
+      "question_text": "And do you think that the proportion of the population that had to wait longer than reasonable to get health care services in Canada is higher, lower or about the same as in the United States?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q52A1",
+      "question_text": "As you may know, currently Canada's health care system is a mixed public and private system. What are the proportions of health expenditures being financed today by the public sector and by the private sector respectively?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "90% financed by the public sector; 10% financed by the priva"
+        },
+        {
+          "code": 2,
+          "label": "80% financed by the public sector; 20% financed by the priva"
+        },
+        {
+          "code": 3,
+          "label": "70% financed by the public sector; 30% financed by the priva"
+        },
+        {
+          "code": 4,
+          "label": "60% financed by the public sector; 40% financed by the priva"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q52A2",
+      "question_text": "As you may know, currently the United States' health care system is a mixed private and public system. What are the proportions of health expenditures being financed today by the private sector and by the public sector respectively?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "95% financed by the private sector; 5% financed by the publi"
+        },
+        {
+          "code": 2,
+          "label": "75% financed by the private sector; 25% financed by the publ"
+        },
+        {
+          "code": 3,
+          "label": "55% financed by the private sector; 45% financed by the publ"
+        },
+        {
+          "code": 4,
+          "label": "35% financed by the private sector; 65% financed by the publ"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q52B1",
+      "question_text": "Do you think that the overall health care costs per inhabitant in Canada are higher, lower, or about the same as in the United States, or you don't you know enough to say?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q52B2",
+      "question_text": "Do you think that the overall health care costs per inhabitant in the United States are higher, lower, or about the same as in Canada, or you don't you know enough to say?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Higher"
+        },
+        {
+          "code": 2,
+          "label": "Lower"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q53A",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / offering you affordable health care",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q53B",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / making available to you the most effective drugs",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q53C",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / offering you high quality medical care",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q53D",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / allowing you quick access to a trained specialist",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q53E",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / allowing you a needed surgery as soon as possible",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q53F",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / allowing you to choose your doctor or hospital",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q53G",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / providing you with a comprehensive, guaranteed and affordable ins",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q54A",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / offering",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q54B",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / offering",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q54C",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / offering",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q54D",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / allowing",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q54E",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / allowing",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q54F",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / allowing",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q54G",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / providin",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Canadian"
+        },
+        {
+          "code": 2,
+          "label": "American"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q55",
+      "question_text": "In your opinion, should the private sector's involvement in delivering health care to Canadians be larger, smaller or about the same as it is now?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Much larger"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat larger"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat smaller"
+        },
+        {
+          "code": 5,
+          "label": "Much smaller"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q56",
+      "question_text": "In your opinion, should the government's involvement in delivering health care to Americans be larger, smaller or about the same as it is now?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Much larger"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat larger"
+        },
+        {
+          "code": 3,
+          "label": "About the same"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat smaller"
+        },
+        {
+          "code": 5,
+          "label": "Much smaller"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q57A",
+      "question_text": "Overall, do you think that more private sector involvement would lead to improvement in: / the quality of healthcare services offered in Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Definitely"
+        },
+        {
+          "code": 2,
+          "label": "Probably"
+        },
+        {
+          "code": 3,
+          "label": "Probably not"
+        },
+        {
+          "code": 4,
+          "label": "Definitely not"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q57B",
+      "question_text": "Overall, do you think that more private sector involvement would lead to improvement in: / access to healthcare services",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Definitely"
+        },
+        {
+          "code": 2,
+          "label": "Probably"
+        },
+        {
+          "code": 3,
+          "label": "Probably not"
+        },
+        {
+          "code": 4,
+          "label": "Definitely not"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q57C",
+      "question_text": "Overall, do you think that more private sector involvement would lead to improvement in: / the overall cost of healthcare?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Definitely"
+        },
+        {
+          "code": 2,
+          "label": "Probably"
+        },
+        {
+          "code": 3,
+          "label": "Probably not"
+        },
+        {
+          "code": 4,
+          "label": "Definitely not"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q58A",
+      "question_text": "Overall, do you think that more government involvement would lead to improvement in: / the quality of healthcare services offered in America",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Definitely"
+        },
+        {
+          "code": 2,
+          "label": "Probably"
+        },
+        {
+          "code": 3,
+          "label": "Probably not"
+        },
+        {
+          "code": 4,
+          "label": "Definitely not"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q58B",
+      "question_text": "Overall, do you think that more government involvement would lead to improvement in: / access to healthcare services",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Definitely"
+        },
+        {
+          "code": 2,
+          "label": "Probably"
+        },
+        {
+          "code": 3,
+          "label": "Probably not"
+        },
+        {
+          "code": 4,
+          "label": "Definitely not"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q58C",
+      "question_text": "Overall, do you think that more government involvement would lead to improvement in: / the overall cost of healthcare?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Definitely"
+        },
+        {
+          "code": 2,
+          "label": "Probably"
+        },
+        {
+          "code": 3,
+          "label": "Probably not"
+        },
+        {
+          "code": 4,
+          "label": "Definitely not"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q58A1",
+      "question_text": "Our society as a whole would be worse-off if a two-tier health care system were to be adopted in Canada.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q58",
+      "question_text": "Working families would be worse-off if a two-tier health care system were to be adopted in Canada.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q59",
+      "question_text": "I personally would be worse-off if a two-tier health care system were to be adopted in Canada.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q60",
+      "question_text": "Our society as a whole would be worse-off if a publicly-funded health care system were to be adopted in America.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q61",
+      "question_text": "Working families would be worse-off if a publicly-funded health care system were to be adopted in America.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q62",
+      "question_text": "I personally would be worse-off if a publicly-funded health care system were to be adopted in America.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q63",
+      "question_text": "Universal publicly-funded health care is part of what it means to be Canadian and reflects our core values.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q64",
+      "question_text": "Market-based health care is part of what it means to be American and reflects our core values.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q65",
+      "question_text": "If you had to choose, would you rather have a universally free and accessible health care system or a universally free and accessible education system?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Universally free and accessible health care system"
+        },
+        {
+          "code": 2,
+          "label": "Universally free and accessible education system"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66",
+      "question_text": "Do you consider the health care system as a unifying symbol of your country and its people?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 98,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66A1",
+      "question_text": "In the future, do you think that the private sector's involvement in the Canadian health system will increase, decrease, or stay the same as now?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Increase"
+        },
+        {
+          "code": 2,
+          "label": "Decrease"
+        },
+        {
+          "code": 3,
+          "label": "Stay the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66A2",
+      "question_text": "In the future, do you think that the government's involvement in the American health system will increase, decrease, or stay the same as now?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Increase"
+        },
+        {
+          "code": 2,
+          "label": "Decrease"
+        },
+        {
+          "code": 3,
+          "label": "Stay the same"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66B",
+      "question_text": "Would you say that, in this country, there currently is a shortage of: / family doctors?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66C",
+      "question_text": "Would you say that, in this country, there currently is a shortage of: / medical specialists?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66D",
+      "question_text": "Would you say that, in this country, there currently is a shortage of: / nurses?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66E",
+      "question_text": "In your opinion, what is the main advantage of the Canadian health care system compared to the American one?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Quicker access to a trained specialist"
+        },
+        {
+          "code": 2,
+          "label": "Higher quality health care"
+        },
+        {
+          "code": 3,
+          "label": "The possibility of choosing your doctor or hospital"
+        },
+        {
+          "code": 4,
+          "label": "More affordable health care"
+        },
+        {
+          "code": 5,
+          "label": "No advantage"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66F",
+      "question_text": "In your opinion, what is the main advantage of the American health care system compared to the Canadian one?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Quicker access to a trained specialist"
+        },
+        {
+          "code": 2,
+          "label": "Higher quality health care"
+        },
+        {
+          "code": 3,
+          "label": "The possibility of choosing your doctor or hospital"
+        },
+        {
+          "code": 4,
+          "label": "More affordable health care"
+        },
+        {
+          "code": 5,
+          "label": "No advantage"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q66G",
+      "question_text": "As you may know, in 2010 the United States' Congress passed President Obama's health care reforms that are to be phased in over the next few years. Overall, do you think that these are good reforms, bad reforms, or don't you know enough to say?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Good reforms"
+        },
+        {
+          "code": 2,
+          "label": "Bad reforms"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q67",
+      "question_text": "Generally speaking, do you usually think of yourself as a Liberal, Conservative, New Democrat, Bloquist, or what?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Liberal"
+        },
+        {
+          "code": 2,
+          "label": "Conservative"
+        },
+        {
+          "code": 3,
+          "label": "New Democrat"
+        },
+        {
+          "code": 4,
+          "label": "Bloquist"
+        },
+        {
+          "code": 5,
+          "label": "***Green"
+        },
+        {
+          "code": 6,
+          "label": "***It varies/ it depends on the candidate/ the issue"
+        },
+        {
+          "code": 95,
+          "label": "***None"
+        },
+        {
+          "code": 96,
+          "label": "Other (specify)"
+        },
+        {
+          "code": 98,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q68",
+      "question_text": "Generally speaking, do you usually think of yourself as a Democrat, a Republican, an Independent, or what?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Democrat"
+        },
+        {
+          "code": 2,
+          "label": "Republican"
+        },
+        {
+          "code": 3,
+          "label": "Independent"
+        },
+        {
+          "code": 4,
+          "label": "***Libertarian"
+        },
+        {
+          "code": 95,
+          "label": "***None"
+        },
+        {
+          "code": 96,
+          "label": "Other (specify)"
+        },
+        {
+          "code": 98,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q69",
+      "question_text": "In politics people sometimes talk of being on the left or the right. Where would you place yourself on the scale below? / (Left=0 to Right=5)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Left"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5 - Right"
+        },
+        {
+          "code": 8,
+          "label": "I'm not sure"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q70",
+      "question_text": "In politics people sometimes talk of being liberal or conservative. Where would you place yourself on the scale below? / (Liberal=0 to Conservative=5)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Liberal"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5 - Conservative"
+        },
+        {
+          "code": 8,
+          "label": "I'm not sure"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q71",
+      "question_text": "Some people say that the government in Ottawa should see to it that every person has a job and a good standard of living. Other people say that the government should just let each person get ahead on his own. And, of course, other people have opinions some",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1-Government sees that every person has a job and a good sta"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5-Government lets each person get ahead on his own"
+        },
+        {
+          "code": 8,
+          "label": "Haven’t thought much"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q71A",
+      "question_text": "Some people say that the government in Washington should see to it that every person has a job and a good standard of living. Other people say that the government should just let each person get ahead on his own. And, of course, other people have opinions",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1-Government sees that every person has a job and a good sta"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5-Government lets each person get ahead on his own"
+        },
+        {
+          "code": 8,
+          "label": "Haven’t thought much"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q72",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / Our society should do whatever is necessary to make sure that everyone has an equal opportunity to succeed.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q73",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / We have gone too far in pushing equal rights in this country.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q74",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / This country would be better off if we worried less about how equal people are.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q75",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / It is not really that big a problem if some people have more of a chance in life than others.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q76",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / If people were treated more equally in this country we would have many fewer problems.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q77",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / One of the big problems in this country is that we don't give everyone an equal chance.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Strongly agree"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat agree"
+        },
+        {
+          "code": 3,
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": 4,
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": 5,
+          "label": "Strongly disagree"
+        },
+        {
+          "code": 8,
+          "label": "I Don't know"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SCOL",
+      "question_text": "What is the highest level of education that you have completed?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Less than elementary school"
+        },
+        {
+          "code": 2,
+          "label": "Elementary school completed"
+        },
+        {
+          "code": 3,
+          "label": "Less than high school"
+        },
+        {
+          "code": 4,
+          "label": "High school completed"
+        },
+        {
+          "code": 5,
+          "label": "Less than college / technical school / pre-university comple"
+        },
+        {
+          "code": 6,
+          "label": "College / technical school / pre-university completed"
+        },
+        {
+          "code": 7,
+          "label": "Less than university completed"
+        },
+        {
+          "code": 8,
+          "label": "University completed"
+        },
+        {
+          "code": 9,
+          "label": "I prefer not to answer"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "JOB",
+      "question_text": "What is your current job?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Government employee"
+        },
+        {
+          "code": 2,
+          "label": "Non-government"
+        },
+        {
+          "code": 3,
+          "label": "Self-employed"
+        },
+        {
+          "code": 4,
+          "label": "Employer"
+        },
+        {
+          "code": 5,
+          "label": "Not working"
+        },
+        {
+          "code": 9,
+          "label": "I prefer not to answer"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "OCCUP",
+      "question_text": "During the last 12 months, what has been your main occupation?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Health Professional (doctor, nurse, etc.)"
+        },
+        {
+          "code": 2,
+          "label": "Other Professional (engineer, teacher, clergy, etc.)"
+        },
+        {
+          "code": 3,
+          "label": "Technician or Associate Professional (inspector, finance dea"
+        },
+        {
+          "code": 4,
+          "label": "Legislator, Senior Official, or Manager"
+        },
+        {
+          "code": 5,
+          "label": "Clerk (secretary, cashier, etc.)"
+        },
+        {
+          "code": 6,
+          "label": "Service or sales worker (cook, travel guide, shop salesperso"
+        },
+        {
+          "code": 7,
+          "label": "Agricultural or fishery worker (vegetable grower, livestock"
+        },
+        {
+          "code": 8,
+          "label": "Craft or trades worker (carpenter, painter, jewelry worker,"
+        },
+        {
+          "code": 9,
+          "label": "Plant/machine operator or assembler (equipment assembler, se"
+        },
+        {
+          "code": 11,
+          "label": "Elementary worker (street food vendor, shoe cleaner, etc.)"
+        },
+        {
+          "code": 12,
+          "label": "Armed forces (government military)"
+        },
+        {
+          "code": 99,
+          "label": "I prefer not to answer"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "OCC2",
+      "question_text": "What is the main reason you are not working for pay?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Homemaker / caring for family"
+        },
+        {
+          "code": 2,
+          "label": "Looked but can’t find a job"
+        },
+        {
+          "code": 3,
+          "label": "Doing unpaid work / voluntary activities"
+        },
+        {
+          "code": 4,
+          "label": "Studies / training"
+        },
+        {
+          "code": 5,
+          "label": "Retired / too old to work"
+        },
+        {
+          "code": 6,
+          "label": "Ill health"
+        },
+        {
+          "code": 7,
+          "label": "Other"
+        },
+        {
+          "code": 9,
+          "label": "I prefer not to answer"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "HOUS",
+      "question_text": "Counting yourself, how many people live in your household?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "ENFAN",
+      "question_text": "And how many of them are under 18?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "no"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "REVEN",
+      "question_text": "And now your last year's total household income before taxes. That includes income from all sources such as savings, pensions, rent, as well as wages. We don't need the exact amount; could you tell me which of these broad categories it falls into:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "less than $20,000"
+        },
+        {
+          "code": 2,
+          "label": "between $20,000 and $30,000($29,999.99)"
+        },
+        {
+          "code": 3,
+          "label": "between $30,000 and $40,000"
+        },
+        {
+          "code": 4,
+          "label": "between $40,000 and $50,000"
+        },
+        {
+          "code": 5,
+          "label": "between $50,000 and $60,000"
+        },
+        {
+          "code": 6,
+          "label": "between $60,000 and $70,000"
+        },
+        {
+          "code": 7,
+          "label": "between $70,000 and $80,000"
+        },
+        {
+          "code": 8,
+          "label": "between $80,000 and $90,000"
+        },
+        {
+          "code": 9,
+          "label": "between $90,000 and $100,000"
+        },
+        {
+          "code": 10,
+          "label": "between $100,000 and $110,00"
+        },
+        {
+          "code": 11,
+          "label": "between $110,000 and $120,000"
+        },
+        {
+          "code": 12,
+          "label": "more than $120,000"
+        },
+        {
+          "code": 99,
+          "label": "I prefer not to answer"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "RELIG",
+      "question_text": "In your life, would you say that religion is:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Very important"
+        },
+        {
+          "code": 2,
+          "label": "Somewhat important"
+        },
+        {
+          "code": 3,
+          "label": "Not very important"
+        },
+        {
+          "code": 4,
+          "label": "Not important at all"
+        },
+        {
+          "code": 9,
+          "label": "I prefer not to answer"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MTONG",
+      "question_text": "What is your mother tongue?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "English"
+        },
+        {
+          "code": 2,
+          "label": "French"
+        },
+        {
+          "code": 3,
+          "label": "Spanish"
+        },
+        {
+          "code": 4,
+          "label": "Turkish"
+        },
+        {
+          "code": 5,
+          "label": "German"
+        },
+        {
+          "code": 6,
+          "label": "Hindi"
+        },
+        {
+          "code": 7,
+          "label": "Chinese"
+        },
+        {
+          "code": 96,
+          "label": "Other (Specify)"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "CANAD",
+      "question_text": "Were you born a Canadian citizen?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 9,
+          "label": "I prefer not to answer"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "AMERI",
+      "question_text": "Were you born an American citizen?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Yes"
+        },
+        {
+          "code": 2,
+          "label": "No"
+        },
+        {
+          "code": 9,
+          "label": "I prefer not to answer"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "YCAN",
+      "question_text": "In what year did you first come to Canada to live?",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "YAMER",
+      "question_text": "In what year did you first come to the United States of America to live?",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "RACE",
+      "question_text": "People living in Canada come from many different cultural and racial backgrounds. Are you:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Chinese"
+        },
+        {
+          "code": 3,
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": 4,
+          "label": "Black"
+        },
+        {
+          "code": 5,
+          "label": "Filipino"
+        },
+        {
+          "code": 6,
+          "label": "Latin American"
+        },
+        {
+          "code": 7,
+          "label": "Southeast Asian (e.g., Cambodian, Indonesian, Laotian, Vietn"
+        },
+        {
+          "code": 8,
+          "label": "Arab"
+        },
+        {
+          "code": 9,
+          "label": "West Asian (e.g., Afghan, Iranian, etc.)"
+        },
+        {
+          "code": 10,
+          "label": "Japanese"
+        },
+        {
+          "code": 11,
+          "label": "Korean"
+        },
+        {
+          "code": 12,
+          "label": "North American Indian, Métis, Inuit (Eskimo)"
+        },
+        {
+          "code": 96,
+          "label": "Other Specify"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "RACE2",
+      "question_text": "Which one of these groups would you say best represents your race?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "White"
+        },
+        {
+          "code": 2,
+          "label": "Black/African American"
+        },
+        {
+          "code": 3,
+          "label": "Native American"
+        },
+        {
+          "code": 4,
+          "label": "Alaska Native"
+        },
+        {
+          "code": 5,
+          "label": "Native Hawaiian"
+        },
+        {
+          "code": 6,
+          "label": "Guamanian"
+        },
+        {
+          "code": 7,
+          "label": "Samoan"
+        },
+        {
+          "code": 8,
+          "label": "Other Pacific Islander"
+        },
+        {
+          "code": 9,
+          "label": "Asian Indian"
+        },
+        {
+          "code": 10,
+          "label": "Chinese"
+        },
+        {
+          "code": 11,
+          "label": "Filipino"
+        },
+        {
+          "code": 12,
+          "label": "Japanese"
+        },
+        {
+          "code": 13,
+          "label": "Korean"
+        },
+        {
+          "code": 14,
+          "label": "Vietnamese"
+        },
+        {
+          "code": 15,
+          "label": "Other Asian"
+        },
+        {
+          "code": 16,
+          "label": "Puerto Rican"
+        },
+        {
+          "code": 17,
+          "label": "Cuban/Cuban American"
+        },
+        {
+          "code": 18,
+          "label": "Dominican (Republic)"
+        },
+        {
+          "code": 19,
+          "label": "Mexican"
+        },
+        {
+          "code": 20,
+          "label": "Mexican American"
+        },
+        {
+          "code": 21,
+          "label": "Central or South American"
+        },
+        {
+          "code": 22,
+          "label": "Other Latin American"
+        },
+        {
+          "code": 23,
+          "label": "Other Hispanic/Latino"
+        },
+        {
+          "code": 96,
+          "label": "Other Specify"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}
