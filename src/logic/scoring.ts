@@ -41,9 +41,9 @@ export function calculateConceptScore(concept: Concept, normalizedContent: strin
 /**
  * Calcule le score de couverture total et détermine le palier de pertinence.
  */
-export function scoreResult(concepts: Concept[], result: SearchResult): { score: number, pertinence: Pertinence } {
+export function scoreResult(concepts: Concept[], result: SearchResult): { score: number, pertinence: Pertinence, matched: string[] } {
   if (!concepts || concepts.length === 0) {
-    return { score: 0, pertinence: 'Hors-sujet' };
+    return { score: 0, pertinence: 'Hors-sujet', matched: [] };
   }
 
   // On concatène les champs de texte pertinents pour la recherche
@@ -51,9 +51,14 @@ export function scoreResult(concepts: Concept[], result: SearchResult): { score:
   const content = normalizeText(`${result.question_text} ${result.survey_name} ${docConcepts}`);
   
   let totalScore = 0;
+  const matched: string[] = [];
+
   for (const concept of concepts) {
     const conceptScore = calculateConceptScore(concept, content);
-    totalScore += concept.weight * conceptScore;
+    if (conceptScore > 0) {
+      totalScore += concept.weight * conceptScore;
+      matched.push(concept.orig);
+    }
   }
 
   let pertinence: Pertinence = 'Hors-sujet';
@@ -66,5 +71,5 @@ export function scoreResult(concepts: Concept[], result: SearchResult): { score:
     pertinence = 'Faible';
   }
 
-  return { score: totalScore, pertinence };
+  return { score: totalScore * 100, pertinence, matched };
 }

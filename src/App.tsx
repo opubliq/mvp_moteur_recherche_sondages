@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
-import { search } from "./api";
-import type { SearchFilters, SearchResult } from "./types";
+import { search, decompose } from "./api";
+import type { SearchFilters, SearchResult, Concept } from "./types";
 import SearchBar from "./components/SearchBar";
 import Facets, { type FacetOptions } from "./components/Facets";
 import SurveyGroup, { type SurveyGroupData } from "./components/SurveyGroup";
 import SurveyDetail from "./components/SurveyDetail";
+import ConceptConsole from "./components/ConceptConsole";
+import { scoreResult } from "./logic/scoring";
 
 /** Regroupe les résultats par sondage, en conservant l'ordre de pertinence. */
 function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
@@ -51,16 +53,19 @@ export default function App() {
   const [filters, setFilters] = useState<SearchFilters>({});
   const [themeFilter, setThemeFilter] = useState<string | null>(null);
   const [results, setResults] = useState<SearchResult[]>([]);
+  const [concepts, setConcepts] = useState<Concept[]>([]);
+  const [rerank, setRerank] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [decomposing, setDecomposing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [selectedSurveyId, setSelectedSurveyId] = useState<string | null>(null);
 
-  async function runSearch(q: string, f: SearchFilters) {
+  async function runSearch(q: string, f: SearchFilters, c?: Concept[], r = rerank) {
     setLoading(true);
     setError(null);
     try {
-      const res = await search(q, f);
+      const res = await search(q, f, 30, c, r);
       setResults(res.results);
       setHasSearched(true);
     } catch (err) {
@@ -72,18 +77,44 @@ export default function App() {
     }
   }
 
-  // Nouvelle requête : on repart de filtres vierges.
-  function handleSearch(q: string) {
+  // Nouvelle requête : on décompose puis on cherche
+  async function handleSearch(q: string) {
     setQuery(q);
     setFilters({});
     setThemeFilter(null);
-    void runSearch(q, {});
+    setDecomposing(true);
+    setError(null);
+
+    try {
+      const nextConcepts = await decompose(q);
+      setConcepts(nextConcepts);
+      await runSearch(q, {}, nextConcepts);
+    } catch (err) {
+      console.error("Decomposition failed", err);
+      // On tente quand même la recherche sans concepts si la décomposition échoue
+      await runSearch(q, {});
+    } finally {
+      setDecomposing(false);
+    }
   }
 
   // Changement de facette serveur (année / sondeur / langue) → re-requête.
   function handleFilterChange(next: SearchFilters) {
     setFilters(next);
-    if (query) void runSearch(query, next);
+    if (query) void runSearch(query, next, concepts);
+  }
+
+  // Changement local des concepts (poids)
+  function handleConceptsChange(nextConcepts: Concept[]) {
+    setConcepts(nextConcepts);
+    // Recalcul local de la pertinence pour chaque résultat
+    const nextResults = results
+      .map((r) => {
+        const { score, pertinence, matched } = scoreResult(nextConcepts, r);
+        return { ...r, score_couverture: score, pertinence, matched_concepts: matched };
+      })
+      .sort((a, b) => (b.score_couverture || 0) - (a.score_couverture || 0));
+    setResults(nextResults);
   }
 
   const facetOptions = useMemo(() => buildFacetOptions(results), [results]);
@@ -127,8 +158,14 @@ export default function App() {
         ) : (
           <>
         <div className="mb-6">
-          <SearchBar onSearch={handleSearch} loading={loading} />
+          <SearchBar onSearch={handleSearch} loading={loading || decomposing} />
         </div>
+
+        {concepts.length > 0 && (
+          <div className="mb-6">
+            <ConceptConsole concepts={concepts} onChange={handleConceptsChange} />
+          </div>
+        )}
 
         {error && (
           <div className="alert alert-error mb-6">

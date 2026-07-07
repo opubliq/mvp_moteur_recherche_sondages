@@ -32,7 +32,8 @@ export async function search(
   query: string,
   filters: SearchFilters,
   top = 30,
-  concepts?: Concept[]
+  concepts?: Concept[],
+  rerank = false
 ): Promise<SearchResponse> {
   if (USE_MOCK) {
     await new Promise((r) => setTimeout(r, 300));
@@ -42,7 +43,7 @@ export async function search(
   const res = await fetch("/search", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query, filters, top, concepts }),
+    body: JSON.stringify({ query, filters, top, concepts, rerank }),
   });
 
   if (!res.ok) {

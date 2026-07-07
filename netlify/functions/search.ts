@@ -51,6 +51,7 @@ interface SearchBody {
   concepts?: Concept[];
   filters?: Record<string, string | number | boolean>;
   top?: number;
+  rerank?: boolean;
 }
 
 interface AoaiEmbeddingResponse {
@@ -147,6 +148,71 @@ function buildLuceneQuery(concepts: Concept[]): string {
     .join(" AND ");
 }
 
+/**
+ * Appelle Azure OpenAI pour confirmer la pertinence topique des résultats.
+ * On lui passe la requête et le top des résultats.
+ */
+async function runLLMJudge(
+  query: string,
+  results: SearchResult[],
+): Promise<Record<string, "Pertinent" | "Hors-sujet">> {
+  if (results.length === 0) return {};
+
+  const endpoint = (process.env.AOAI_ENDPOINT ?? "").replace(/\/$/, "");
+  const deployment = process.env.AOAI_CHAT_DEPLOYMENT ?? "";
+  const key = process.env.AOAI_KEY ?? "";
+  const url = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=${AOAI_API_VERSION}`;
+
+  const questionsList = results
+    .map((r) => `- [ID: ${r.id}] Question: "${r.question_text}" (Sondage: ${r.survey_name})`)
+    .join("\n");
+
+  const systemPrompt = `Tu es un juge expert en pertinence pour un moteur de recherche de sondages.
+Ta tâche est de confirmer si une question de sondage est topiquement pertinente par rapport à la requête de l'utilisateur.
+
+RÈGLES :
+1. Une question est "Pertinent" si elle traite directement du sujet ou d'un aspect étroitement lié.
+2. Une question est "Hors-sujet" si elle utilise des mots similaires mais dans un contexte totalement différent, ou si elle est trop éloignée du sujet central de la requête.
+3. Sois strict mais juste.
+
+Requête utilisateur : "${query}"
+
+Réponds par un objet JSON où chaque clé est l'ID de la question et la valeur est soit "Pertinent" soit "Hors-sujet".`;
+
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": key,
+      },
+      body: JSON.stringify({
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: `Voici les questions à évaluer :\n${questionsList}` },
+        ],
+        temperature: 0,
+        response_format: { type: "json_object" },
+      }),
+    });
+
+    if (!res.ok) {
+      const errBody = await res.text();
+      console.error(`[search] LLM Judge API error ${res.status}: ${errBody}`);
+      return {};
+    }
+
+    const json = (await res.json()) as any;
+    const content = json.choices[0]?.message?.content;
+    if (!content) return {};
+
+    return JSON.parse(content) as Record<string, "Pertinent" | "Hors-sujet">;
+  } catch (err) {
+    console.error("[search] LLM Judge failed:", err);
+    return {};
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Handler principal
 // ---------------------------------------------------------------------------
@@ -172,6 +238,7 @@ export const handler: Handler = async (event) => {
     "AOAI_ENDPOINT",
     "AOAI_KEY",
     "AOAI_EMBED_DEPLOYMENT",
+    "AOAI_CHAT_DEPLOYMENT",
   ] as const;
 
   for (const key of requiredEnv) {
@@ -197,7 +264,7 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  const { query, concepts, filters, top = 10 } = body;
+  const { query, concepts, filters, top = 10, rerank = false } = body;
 
   if (!query || typeof query !== "string" || !query.trim()) {
     return {
@@ -319,11 +386,12 @@ export const handler: Handler = async (event) => {
   if (concepts && concepts.length > 0) {
     // Calcul de la couverture
     results = results.map((r) => {
-      const { score, pertinence } = scoreResult(concepts, r);
+      const { score, pertinence, matched } = scoreResult(concepts, r);
       return {
         ...r,
         score_couverture: score,
         pertinence,
+        matched_concepts: matched,
       };
     });
 
@@ -342,6 +410,36 @@ export const handler: Handler = async (event) => {
       // Départage par score Azure (@search.score)
       return (b["@search.score"] || 0) - (a["@search.score"] || 0);
     });
+
+    // ---------------------------------------------------------------------
+    // Étape 4 : Juge LLM (Reranking final) — Optionnel
+    // ---------------------------------------------------------------------
+    if (rerank) {
+      const topForJudge = results.slice(0, 15);
+      const judgments = await runLLMJudge(trimmedQuery, topForJudge);
+      
+      let countHorsSujet = 0;
+      results = results.map((r) => {
+        if (judgments[r.id] === "Hors-sujet") {
+          countHorsSujet++;
+          return { ...r, pertinence: "Hors-sujet" as const };
+        }
+        return r;
+      });
+
+      console.log(`[search] LLM Judge: ${countHorsSujet} results marked as Hors-sujet among top ${topForJudge.length}`);
+
+      // Re-tri après jugement (pour basculer les nouveaux Hors-sujet à la fin)
+      results.sort((a, b) => {
+        const orderA = pertinenceOrder[a.pertinence || "Hors-sujet"];
+        const orderB = pertinenceOrder[b.pertinence || "Hors-sujet"];
+        if (orderA !== orderB) return orderB - orderA;
+        return (b["@search.score"] || 0) - (a["@search.score"] || 0);
+      });
+
+      // Filtre : on écarte les résultats jugés hors-sujet
+      results = results.filter((r) => r.pertinence !== "Hors-sujet");
+    }
 
     // On recoupe au top demandé
     results = results.slice(0, clampedTop);

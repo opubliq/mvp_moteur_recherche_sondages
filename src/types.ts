@@ -33,6 +33,7 @@ export interface SearchResult {
   n_respondents: number | null;
   pertinence?: Pertinence;
   score_couverture?: number;
+  matched_concepts?: string[];
 }
 
 

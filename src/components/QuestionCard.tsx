@@ -53,6 +53,16 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
         )}
 
         <div className="flex flex-wrap items-center gap-1.5 text-xs">
+          {q.matched_concepts && q.matched_concepts.length > 0 && (
+            <div className="flex gap-1 items-center mr-2">
+              <span className="opacity-50">Match:</span>
+              {q.matched_concepts.map((mc) => (
+                <span key={mc} className="badge badge-success badge-soft badge-xs font-bold">
+                  {mc}
+                </span>
+              ))}
+            </div>
+          )}
           {q.var_type && (
             <span className="badge badge-neutral badge-sm">{q.var_type}</span>
           )}
