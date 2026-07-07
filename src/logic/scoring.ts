@@ -47,7 +47,8 @@ export function scoreResult(concepts: Concept[], result: SearchResult): { score:
   }
 
   // On concatène les champs de texte pertinents pour la recherche
-  const content = normalizeText(`${result.question_text} ${result.survey_name}`);
+  const docConcepts = Array.isArray(result.concepts) ? result.concepts.join(' ') : '';
+  const content = normalizeText(`${result.question_text} ${result.survey_name} ${docConcepts}`);
   
   let totalScore = 0;
   for (const concept of concepts) {

@@ -39,6 +39,7 @@ export interface SearchResult {
 export interface SearchResponse {
   results: SearchResult[];
   count: number;
+  luceneQuery?: string;
 }
 
 /** Filtres facette appliqués en AND côté serveur (`field eq value`). */
