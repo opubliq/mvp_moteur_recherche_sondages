@@ -6,6 +6,7 @@ import Facets, { type FacetOptions } from "./components/Facets";
 import SurveyGroup, { type SurveyGroupData } from "./components/SurveyGroup";
 import SurveyDetail from "./components/SurveyDetail";
 import ConceptConsole from "./components/ConceptConsole";
+import ExplorationView from "./components/ExplorationView";
 import { scoreResult } from "./logic/scoring";
 
 /** Regroupe les résultats par sondage, en conservant l'ordre de pertinence. */
@@ -60,6 +61,7 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [selectedSurveyId, setSelectedSurveyId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"search" | "explore">("search");
 
   async function runSearch(q: string, f: SearchFilters, c?: Concept[], r = rerank) {
     setLoading(true);
@@ -162,79 +164,101 @@ export default function App() {
           />
         ) : (
           <>
-        <div className="mb-6">
-          <SearchBar onSearch={handleSearch} loading={loading || decomposing} />
-          <div className="mt-2 flex items-center gap-2 px-1">
-            <input
-              type="checkbox"
-              id="rerank-toggle"
-              className="checkbox checkbox-xs"
-              checked={rerank}
-              onChange={(e) => handleRerankChange(e.target.checked)}
-            />
-            <label htmlFor="rerank-toggle" className="cursor-pointer text-xs opacity-70">
-              Activer le reranking Juge LLM (GPT-4o-mini) — Élimine le bruit thématique
-            </label>
-          </div>
-        </div>
-
-        {concepts.length > 0 && (
-          <div className="mb-6">
-            <ConceptConsole concepts={concepts} onChange={handleConceptsChange} />
-          </div>
-        )}
-
-        {error && (
-          <div className="alert alert-error mb-6">
-            <span>{error}</span>
-          </div>
-        )}
-
-        {!hasSearched && !loading && (
-          <div className="py-20 text-center opacity-60">
-            <p className="text-lg">
-              Recherchez un concept pour explorer les questions de sondage.
-            </p>
-          </div>
-        )}
-
-        {hasSearched && !loading && results.length === 0 && !error && (
-          <div className="py-20 text-center opacity-60">
-            <p className="text-lg">Aucun résultat pour « {query} ».</p>
-            <p className="mt-1 text-sm">
-              L'index est peut-être encore vide, ou essayez d'autres termes.
-            </p>
-          </div>
-        )}
-
-        {results.length > 0 && (
-          <div className="grid gap-6 lg:grid-cols-[16rem_1fr]">
-            <Facets
-              options={facetOptions}
-              filters={filters}
-              onFilterChange={handleFilterChange}
-              themeFilter={themeFilter}
-              onThemeChange={setThemeFilter}
-            />
-
-            <div className="space-y-4">
-              <p className="text-sm opacity-60">
-                {displayed.length} question{displayed.length > 1 ? "s" : ""} ·{" "}
-                {groups.length} sondage{groups.length > 1 ? "s" : ""}
-              </p>
-              {groups.map((g) => (
-                <SurveyGroup
-                  key={g.survey_id}
-                  group={g}
-                  onOpenSurvey={setSelectedSurveyId}
-                />
-              ))}
+            <div className="tabs tabs-boxed mb-6 bg-base-100 p-1">
+              <button
+                className={`tab flex-1 ${activeTab === "search" ? "tab-active" : ""}`}
+                onClick={() => setActiveTab("search")}
+              >
+                Recherche
+              </button>
+              <button
+                className={`tab flex-1 ${activeTab === "explore" ? "tab-active" : ""}`}
+                onClick={() => setActiveTab("explore")}
+              >
+                Exploration du Corpus
+              </button>
             </div>
-          </div>
-        )}
+
+            {activeTab === "explore" ? (
+              <ExplorationView onOpenSurvey={setSelectedSurveyId} />
+            ) : (
+              <>
+                <div className="mb-6">
+                  <SearchBar onSearch={handleSearch} loading={loading || decomposing} />
+                  <div className="mt-2 flex items-center gap-2 px-1">
+                    <input
+                      type="checkbox"
+                      id="rerank-toggle"
+                      className="checkbox checkbox-xs"
+                      checked={rerank}
+                      onChange={(e) => handleRerankChange(e.target.checked)}
+                    />
+                    <label htmlFor="rerank-toggle" className="cursor-pointer text-xs opacity-70">
+                      Activer le reranking Juge LLM (GPT-4o-mini) — Élimine le bruit thématique
+                    </label>
+                  </div>
+                </div>
+
+                {concepts.length > 0 && (
+                  <div className="mb-6">
+                    <ConceptConsole concepts={concepts} onChange={handleConceptsChange} />
+                  </div>
+                )}
+
+                {error && (
+                  <div className="alert alert-error mb-6">
+                    <span>{error}</span>
+                  </div>
+                )}
+
+                {!hasSearched && !loading && (
+                  <div className="py-20 text-center opacity-60">
+                    <p className="text-lg">
+                      Recherchez un concept pour explorer les questions de sondage.
+                    </p>
+                  </div>
+                )}
+
+                {hasSearched && !loading && results.length === 0 && !error && (
+                  <div className="py-20 text-center opacity-60">
+                    <p className="text-lg">Aucun résultat pour « {query} ».</p>
+                    <p className="mt-1 text-sm">
+                      L'index est peut-être encore vide, ou essayez d'autres termes.
+                    </p>
+                  </div>
+                )}
+
+                {results.length > 0 && (
+                  <div className="grid gap-6 lg:grid-cols-[16rem_1fr]">
+                    <Facets
+                      options={facetOptions}
+                      filters={filters}
+                      onFilterChange={handleFilterChange}
+                      themeFilter={themeFilter}
+                      onThemeChange={setThemeFilter}
+                    />
+
+                    <div className="space-y-4">
+                      <p className="text-sm opacity-60">
+                        {displayed.length} question{displayed.length > 1 ? "s" : ""} ·{" "}
+                        {groups.length} sondage{groups.length > 1 ? "s" : ""}
+                      </p>
+                      {groups.map((g) => (
+                        <SurveyGroup
+                          key={g.survey_id}
+                          group={g}
+                          onOpenSurvey={setSelectedSurveyId}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
           </>
         )}
       </main>
+
     </div>
   );
 }

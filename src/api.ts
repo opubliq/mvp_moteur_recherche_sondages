@@ -1,4 +1,4 @@
-import type { Concept, SearchFilters, SearchResponse, SurveyDetailResponse } from "./types";
+import type { Concept, SearchFilters, SearchResponse, SurveyDetailResponse, SurveyParent } from "./types";
 import { MOCK_RESPONSE } from "./mock";
 
 /**
@@ -7,6 +7,35 @@ import { MOCK_RESPONSE } from "./mock";
  * Azure est vide. Désactivé par défaut.
  */
 const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true";
+
+/** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
+export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
+  if (USE_MOCK) {
+    const surveyIds = new Set(MOCK_RESPONSE.results.map((r) => r.survey_id));
+    const surveys: SurveyParent[] = Array.from(surveyIds).map((id) => {
+      const first = MOCK_RESPONSE.results.find((r) => r.survey_id === id)!;
+      return {
+        id: first.survey_id,
+        survey_id: first.survey_id,
+        survey_name: first.survey_name,
+        survey_year: first.survey_year,
+        pollster: first.pollster,
+        language: first.language,
+        n_respondents: first.n_respondents,
+        tags: first.tags,
+      };
+    });
+    return { surveys, count: surveys.length, total_questions: MOCK_RESPONSE.results.length };
+  }
+
+  const res = await fetch("/surveys");
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Chargement des sondages échoué (${res.status}): ${body || res.statusText}`);
+  }
+
+  return (await res.json()) as { surveys: SurveyParent[]; count: number; total_questions: number };
+}
 
 /** Appelle la Netlify Function `/decompose`. */
 export async function decompose(query: string): Promise<Concept[]> {
