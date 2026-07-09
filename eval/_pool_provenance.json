@@ -1,0 +1,4952 @@
+{
+"q01": {
+"cecd_elxn_can_2011/you1": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"cecd_elxn_can_2011/you2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"cecd_elxn_can_2011/you3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"cecd_elxn_qc_2007/z2q15b": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 27
+},
+"eeq_2014/Q12": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en"
+],
+"hybrid_rank": 55
+},
+"eeq_2014/Q13": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"eeq_2014/Q14A": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"hybrid_fr",
+"sweep:eeq_2014"
+],
+"hybrid_rank": 41
+},
+"eeq_2014/Q14B": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_fr",
+"sweep:eeq_2014"
+],
+"hybrid_rank": 34
+},
+"eeq_2014/Q15": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 17
+},
+"eeq_2014/Q20": {
+"in_top40": false,
+"sources": [
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"eeq_2014/Q21": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+},
+"eeq_2014/Q22": {
+"in_top40": false,
+"sources": [
+"hybrid_en",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"eeq_2014/Q26A": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 14
+},
+"eeq_2014/Q26B": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+},
+"eeq_2014/Q45": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_fr"
+],
+"hybrid_rank": 19
+},
+"eeq_2014/Q49": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+}
+},
+"q02": {
+"cecd_elxn_can_2011/souv1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"cecd_elxn_can_2011/souv2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 23
+},
+"cecd_elxn_can_2011/you4": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 9
+},
+"cecd_elxn_qc_1998/q16a_crop": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 17
+},
+"cecd_elxn_qc_1998/q16b_crop": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 31
+},
+"cecd_elxn_qc_1998/voteref": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 32
+},
+"cecd_elxn_qc_2007/intref1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"cecd_elxn_qc_2007/intref2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 26
+},
+"cecd_elxn_qc_2007/z1abandon": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 24
+},
+"cecd_elxn_qc_2012/intvoteref": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 7
+},
+"cecd_elxn_qc_2018/rts_q7": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"eeq_2014/Q12": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 33
+},
+"eeq_2014/Q16": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 8
+},
+"eeq_2014/Q17": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 45
+},
+"eeq_2014/Q18": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"eeq_2014/Q19": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"eeq_2014/Q20": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 41
+},
+"eeq_2014/Q22": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+},
+"eeq_2014/Q23": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 20
+},
+"eeq_2014/Q24A": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 25
+},
+"eeq_2014/Q24B": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 16
+},
+"eeq_2014/Q24C": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 22
+},
+"eeq_2014/Q25": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 18
+},
+"eeq_2014/Q26A": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 57
+},
+"eeq_2014/Q26B": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 38
+},
+"eeq_2014/Q27A": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+},
+"eeq_2014/Q27B": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"eeq_2014/Q45": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"sweep:eeq_2014"
+],
+"hybrid_rank": null
+},
+"eeq_2014/Q46": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 11
+},
+"eeq_2014/Q47": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 21
+},
+"eeq_2014/Q48": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 13
+},
+"eeq_2014/Q50": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 14
+},
+"eeq_2014/Q53": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+}
+},
+"q03": {
+"cecd_charte_2013_10/intvoteprov": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_charte_2013_10",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+},
+"cecd_charte_2013_10/intvoteprov2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_charte_2013_10",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"cecd_charte_2013_10/prov1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_charte_2013_10",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"cecd_charte_2013_10/prov2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_charte_2013_10",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+},
+"cecd_charte_2013_10/vote1": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_charte_2013_10",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 44
+},
+"cecd_charte_2013_10/vote3": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_charte_2013_10",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 53
+},
+"cecd_elxn_can_2011/prov1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"cecd_elxn_can_2011/prov2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 13
+},
+"cecd_elxn_qc_1998/intvote": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"cecd_elxn_qc_1998/intvote2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 11
+},
+"cecd_elxn_qc_1998/q2post": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_fr"
+],
+"hybrid_rank": 58
+},
+"cecd_elxn_qc_1998/q7a_crop": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 9
+},
+"cecd_elxn_qc_1998/q7b_crop": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 20
+},
+"cecd_elxn_qc_1998/vpl": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"cecd_elxn_qc_2007/defini": {
+"in_top40": false,
+"sources": [
+"sweep:cecd_elxn_qc_2007"
+],
+"hybrid_rank": null
+},
+"cecd_elxn_qc_2007/deuxint": {
+"in_top40": false,
+"sources": [
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2007",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 77
+},
+"cecd_elxn_qc_2007/indecis": {
+"in_top40": false,
+"sources": [
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2007",
+"vector_fr"
+],
+"hybrid_rank": 60
+},
+"cecd_elxn_qc_2007/intvote1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2007",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 10
+},
+"cecd_elxn_qc_2007/intvote2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2007",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 21
+},
+"cecd_elxn_qc_2012/definitif": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2012",
+"vector_fr"
+],
+"hybrid_rank": 87
+},
+"cecd_elxn_qc_2012/indecis2": {
+"in_top40": false,
+"sources": [
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2012",
+"vector_fr"
+],
+"hybrid_rank": 88
+},
+"cecd_elxn_qc_2012/intvoteprov1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2012",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 7
+},
+"cecd_elxn_qc_2012/intvoteprov2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2012",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 19
+},
+"cecd_elxn_qc_2018/rv1a": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 8
+},
+"cecd_elxn_qc_2018/rv1b": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 17
+}
+},
+"q04": {
+"cecd_elxn_can_2011/pol1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 8
+},
+"cecd_elxn_can_2011/z2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_can_2011",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"cecd_elxn_qc_1998/allervo2": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 75
+},
+"cecd_elxn_qc_1998/allervot": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 28
+},
+"cecd_elxn_qc_1998/q1post": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_1998",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 7
+},
+"cecd_elxn_qc_2007/raisannul": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2007",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 25
+},
+"cecd_elxn_qc_2007/voteoui": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2007",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"cecd_elxn_qc_2012/participation": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2012",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"cecd_elxn_qc_2018/q1a": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+},
+"cecd_elxn_qc_2018/q6_01": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 58
+},
+"cecd_elxn_qc_2018/q6_02": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 10
+},
+"cecd_elxn_qc_2018/q6_03": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 44
+},
+"cecd_elxn_qc_2018/q6_04": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 60
+},
+"cecd_elxn_qc_2018/q6_05": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 33
+},
+"cecd_elxn_qc_2018/q6_06": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 26
+},
+"cecd_elxn_qc_2018/q6_08": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 56
+},
+"cecd_elxn_qc_2018/q6_09": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 27
+},
+"cecd_elxn_qc_2018/q6_10": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 52
+},
+"cecd_elxn_qc_2018/qa": {
+"in_top40": false,
+"sources": [
+"hybrid_fr",
+"vector_fr"
+],
+"hybrid_rank": 65
+},
+"cecd_elxn_qc_2018/rts_q1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"cecd_elxn_qc_2018/rts_q4": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 9
+},
+"eeq_2014/Q16": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 24
+},
+"eeq_2014/Q2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+}
+},
+"q05": {
+"cecd_elxn_can_2011/sastf": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_CARE": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_COMPETENT": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_FLIPFLOP": {
+"in_top40": false,
+"sources": [
+"sweep:govcan_06822_wave1_2024"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_INTEGRITY": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 9
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_OPEN": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave1_2024/TRUST_GOC_CLIM": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 7
+},
+"govcan_06822_wave1_2024/TRUST_GOC_COVID": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 8
+},
+"govcan_06822_wave1_2024/TRUST_GOC_IMM": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 10
+},
+"govcan_06822_wave1_2024/TRUST_GOV_CAN": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"govcan_06822_wave1_2024/TRUST_GOV_MUNI": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"sweep:govcan_06822_wave1_2024",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave1_2024/TRUST_GOV_PROVTERR": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 17
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_CARE": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 69
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_COMPETENT": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 53
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_GOODJOB": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 58
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_INTEGRITY": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 87
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_OPEN": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 66
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_PROMISES": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 77
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_PUBCONCERN": {
+"in_top40": false,
+"sources": [
+"hybrid_en",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_SKILLWORKER": {
+"in_top40": false,
+"sources": [
+"sweep:govcan_06822_wave2_2024"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_WELFARE": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 62
+},
+"govcan_06822_wave2_2024/TRUST_GOV_CAN": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 59
+},
+"govcan_06822_wave2_2024/TRUST_GOV_CLIMATE": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 78
+},
+"govcan_06822_wave2_2024/TRUST_GOV_DIG": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave2_2024/TRUST_GOV_PAST": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 64
+},
+"govcan_06822_wave2_2024/TRUST_GOV_PUBHEALTH": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 60
+},
+"govcan_06822_wave3_2024/CONSPOP_G": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"sweep:govcan_06822_wave3_2024",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/FEDGOV_METHOD": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"sweep:govcan_06822_wave3_2024",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/FEDGOV_SAT": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"sweep:govcan_06822_wave3_2024"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/FEDGOV_SERV": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"sweep:govcan_06822_wave3_2024",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/FEDGOV_SERV_COUNT": {
+"in_top40": false,
+"sources": [
+"sweep:govcan_06822_wave3_2024"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/FEDGOV_TIME": {
+"in_top40": false,
+"sources": [
+"sweep:govcan_06822_wave3_2024"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_ELXNCAN": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 71
+},
+"govcan_06822_wave3_2024/TRUST_FACET_GC_COMPETENT": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 50
+},
+"govcan_06822_wave3_2024/TRUST_FACET_GC_OPEN": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"sweep:govcan_06822_wave3_2024",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_FACET_GC_PUBCONCERN": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 63
+},
+"govcan_06822_wave3_2024/TRUST_GOV_CAN": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 49
+},
+"govcan_06822_wave3_2024/TRUST_GOV_CAN_SOCEST": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 61
+},
+"govcan_06822_wave3_2024/TRUST_GOV_CLIMATE": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_HOUSING": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_IMMIGRATION": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 100
+},
+"govcan_06822_wave3_2024/TRUST_GOV_MUNI": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"sweep:govcan_06822_wave3_2024",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_PAST": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 81
+},
+"govcan_06822_wave3_2024/TRUST_GOV_PROVTERR": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 55
+},
+"govcan_06822_wave3_2024/TRUST_GOV_PUBHEALTH": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"sweep:govcan_06822_wave3_2024",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_SOCMED": {
+"in_top40": false,
+"sources": [
+"grep",
+"sweep:govcan_06822_wave3_2024"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_POLITICIANS": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 95
+},
+"govcan_06822_wave3_2024/TRUST_PS": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 82
+},
+"govcan_habit_2024/TRUST_GOOD_GOC": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 56
+},
+"govcan_habit_2024/TRUST_GOOD_LOCAL_HEALTH": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/TRUST_GOOD_PHAC": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 73
+},
+"govcan_habit_2024/TRUST_GOOD_PROV": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 70
+},
+"govcan_habit_2024/TRUST_GOOD_PROV_HEALTH": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 98
+},
+"govcan_parca_2024/D6_D": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"govcan_parca_2024/D6_E": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"govcan_parca_2024/D6_F": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+}
+},
+"q06": {
+"cecd_charte_2013_10/pc1": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_charte_2013_10",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"eeq_2014/Q15": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"eeq_2014/Q41": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_fr"
+],
+"hybrid_rank": 73
+},
+"eeq_2014/Q44A": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"eeq_2014/Q44B": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"eeq_2014/Q54": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+}
+},
+"q07": {
+"cecd_charte_2013_10/pc1": {
+"in_top40": true,
+"sources": [
+"hybrid_fr",
+"sweep:cecd_charte_2013_10",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 16
+},
+"cecd_sante_can_usa/RELIG": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 29
+},
+"eeq_2014/Q41": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 17
+},
+"eeq_2014/Q44A": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 11
+},
+"eeq_2014/Q44B": {
+"in_top40": true,
+"sources": [
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 13
+},
+"eeq_2014/Q54": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+},
+"govcan_06822_wave1_2024/DEMCAN_EXPRELIG": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+},
+"govcan_06822_wave2_2024/SOCMED_DEM_ACCEPTING": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/DEMCAN_EXPRELIG": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 18
+},
+"govcan_habit_2024/DISCRIMINATION_REASONSC5": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+}
+},
+"q08": {
+"cecd_elxn_qc_2018/rts_q6": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 11
+},
+"eeq_2014/Q36E": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 19
+},
+"eeq_2014/Q41": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 17
+},
+"govcan_06822_wave1_2024/ATT_IMM_BETTERPLACE": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"govcan_06822_wave1_2024/MIS_CONFID_F_IMM_1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 36
+},
+"govcan_06822_wave1_2024/MIS_CONFID_F_IMM_2": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 43
+},
+"govcan_06822_wave1_2024/MIS_CONFID_F_IMM_3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 39
+},
+"govcan_06822_wave1_2024/MIS_CONFID_F_IMM_4": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 75
+},
+"govcan_06822_wave1_2024/MIS_CONFID_F_IMM_5": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 20
+},
+"govcan_06822_wave1_2024/MIS_CONFID_T_IMM_1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 7
+},
+"govcan_06822_wave1_2024/MIS_CONFID_T_IMM_2": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 44
+},
+"govcan_06822_wave1_2024/MIS_CONFID_T_IMM_3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 29
+},
+"govcan_06822_wave1_2024/MIS_CONFID_T_IMM_4": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 51
+},
+"govcan_06822_wave1_2024/MIS_CONFID_T_IMM_5": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 47
+},
+"govcan_06822_wave1_2024/MIS_F_IMM_1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 8
+},
+"govcan_06822_wave1_2024/MIS_F_IMM_2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 38
+},
+"govcan_06822_wave1_2024/MIS_F_IMM_3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 40
+},
+"govcan_06822_wave1_2024/MIS_F_IMM_4": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 22
+},
+"govcan_06822_wave1_2024/MIS_F_IMM_5": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"govcan_06822_wave1_2024/MIS_T_IMM_1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"govcan_06822_wave1_2024/MIS_T_IMM_2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 35
+},
+"govcan_06822_wave1_2024/MIS_T_IMM_3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 24
+},
+"govcan_06822_wave1_2024/MIS_T_IMM_4": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 50
+},
+"govcan_06822_wave1_2024/MIS_T_IMM_5": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 18
+},
+"govcan_06822_wave1_2024/POLICY_IMM_NEWIMM": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+},
+"govcan_06822_wave1_2024/PROXIMAL_IMM": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 16
+},
+"govcan_06822_wave1_2024/SOCCON_IMM": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 21
+},
+"govcan_06822_wave1_2024/SOC_TRUST_IMM": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 30
+},
+"govcan_06822_wave1_2024/TRUST_GOC_IMM": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 10
+},
+"govcan_06822_wave1_2024/WORRIED_IMM_ECON": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"govcan_06822_wave3_2024/MIS_F_IMM_1": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 53
+},
+"govcan_06822_wave3_2024/MIS_F_IMM_2": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 46
+},
+"govcan_06822_wave3_2024/MIS_T_IMM_1": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 45
+},
+"govcan_06822_wave3_2024/MIS_T_IMM_2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+},
+"govcan_06822_wave3_2024/POLICY_IMMIGRATION": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+},
+"govcan_06822_wave3_2024/POLICY_IMMIGRATION_CONSENSUS": {
+"in_top40": true,
+"sources": [
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 33
+},
+"govcan_06822_wave3_2024/SOC_TRUST_IMM": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 34
+},
+"govcan_06822_wave3_2024/TRUST_GOV_IMMIGRATION": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"govcan_06822_wave3_2024/WORRIED_IMMIGRATION": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 9
+}
+},
+"q09": {
+"cecd_elxn_qc_2007/z1q15": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 11
+},
+"cecd_sante_can_usa/Q10": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_fr"
+],
+"hybrid_rank": 85
+},
+"cecd_sante_can_usa/Q11": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_fr"
+],
+"hybrid_rank": 63
+},
+"cecd_sante_can_usa/Q12": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_fr"
+],
+"hybrid_rank": 28
+},
+"cecd_sante_can_usa/Q13": {
+"in_top40": false,
+"sources": [
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 79
+},
+"cecd_sante_can_usa/Q29": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"cecd_sante_can_usa/Q30A": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 41
+},
+"cecd_sante_can_usa/Q30B": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 24
+},
+"cecd_sante_can_usa/Q30C": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+},
+"cecd_sante_can_usa/Q30D": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 53
+},
+"cecd_sante_can_usa/Q30E": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 55
+},
+"cecd_sante_can_usa/Q35": {
+"in_top40": false,
+"sources": [
+"grep",
+"sweep:cecd_sante_can_usa"
+],
+"hybrid_rank": null
+},
+"cecd_sante_can_usa/Q42": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"cecd_sante_can_usa/Q44": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 37
+},
+"cecd_sante_can_usa/Q45": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 31
+},
+"cecd_sante_can_usa/Q46": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 60
+},
+"cecd_sante_can_usa/Q47": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 57
+},
+"cecd_sante_can_usa/Q48": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 75
+},
+"cecd_sante_can_usa/Q52A1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"cecd_sante_can_usa/Q52A2": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"cecd_sante_can_usa/Q53A": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 20
+},
+"cecd_sante_can_usa/Q53B": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 36
+},
+"cecd_sante_can_usa/Q53C": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 23
+},
+"cecd_sante_can_usa/Q53D": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 32
+},
+"cecd_sante_can_usa/Q53E": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 47
+},
+"cecd_sante_can_usa/Q53F": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 10
+},
+"cecd_sante_can_usa/Q53G": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 7
+},
+"cecd_sante_can_usa/Q54A": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 34
+},
+"cecd_sante_can_usa/Q54B": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 39
+},
+"cecd_sante_can_usa/Q54C": {
+"in_top40": false,
+"sources": [
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 50
+},
+"cecd_sante_can_usa/Q54D": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 40
+},
+"cecd_sante_can_usa/Q54E": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 45
+},
+"cecd_sante_can_usa/Q54F": {
+"in_top40": true,
+"sources": [
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 35
+},
+"cecd_sante_can_usa/Q54G": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 22
+},
+"cecd_sante_can_usa/Q55": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 14
+},
+"cecd_sante_can_usa/Q56": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 26
+},
+"cecd_sante_can_usa/Q57A": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+},
+"cecd_sante_can_usa/Q57B": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 13
+},
+"cecd_sante_can_usa/Q57C": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 8
+},
+"cecd_sante_can_usa/Q58": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 56
+},
+"cecd_sante_can_usa/Q58A": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 27
+},
+"cecd_sante_can_usa/Q58A1": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 61
+},
+"cecd_sante_can_usa/Q58B": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 25
+},
+"cecd_sante_can_usa/Q58C": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 21
+},
+"cecd_sante_can_usa/Q59": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 43
+},
+"cecd_sante_can_usa/Q6": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_fr"
+],
+"hybrid_rank": 19
+},
+"cecd_sante_can_usa/Q60": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 9
+},
+"cecd_sante_can_usa/Q61": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+},
+"cecd_sante_can_usa/Q62": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 16
+},
+"cecd_sante_can_usa/Q63": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 29
+},
+"cecd_sante_can_usa/Q64": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 33
+},
+"cecd_sante_can_usa/Q65": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 18
+},
+"cecd_sante_can_usa/Q66": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 42
+},
+"cecd_sante_can_usa/Q66A1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 17
+},
+"cecd_sante_can_usa/Q66A2": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 46
+},
+"cecd_sante_can_usa/Q7": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 44
+},
+"cecd_sante_can_usa/Q8": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_fr"
+],
+"hybrid_rank": 64
+},
+"cecd_sante_can_usa/Q9": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_fr"
+],
+"hybrid_rank": 95
+}
+},
+"q10": {
+"govcan_06822_wave3_2024/GENERAL_MENTAL": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"govcan_habit_2024/BESCI_MHEALTHA": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/BESCI_MHEALTHB": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/BESCI_MHEALTHC": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/BESCI_MHEALTHD": {
+"in_top40": false,
+"sources": [
+"grep",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/CLIMATE_HEALTH_ANXIETY": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/DISABILITY_TYPEC8": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/DISCRIMINATION_REASONSC10": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/HEALTH_MENTAL_STATUS": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"govcan_habit_2024/HELPSEEK_PROPENSITY_KNOW": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/HELPSEEK_STIGMA_SHAME": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/HOTLINE_MH_988": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/HOTLINE_MH_KNOW": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/HOTLINE_MH_USE": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/MENTAL_FAMILY_DIAGNOSIS": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/MENTAL_SELF_CONDITION_TREATMENTC3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 10
+},
+"govcan_habit_2024/MENTAL_SELF_DIAGNOSISC1": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/MENTAL_TREAT_PRESCRIBEDC3": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/MH_FORMAL_DIAGNOSISC3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+},
+"govcan_habit_2024/MH_HELPFUL_ACTIVITYC1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"govcan_habit_2024/MH_HELPFUL_ACTIVITYC10": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 97
+},
+"govcan_habit_2024/MH_HELPFUL_ACTIVITYC5": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 8
+},
+"govcan_habit_2024/MH_HELPFUL_ACTIVITYC6": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 47
+},
+"govcan_habit_2024/MH_HELPFUL_ACTIVITYC7": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/MH_STRUGGLE_SELFC3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 27
+},
+"govcan_habit_2024/MH_SUSPECTED_SELFC3": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+},
+"govcan_habit_2024/PHAC_AWARE_INFO_MH": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/POLICY_RANKC1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 19
+},
+"govcan_habit_2024/QUALITY_MHP": {
+"in_top40": false,
+"sources": [
+"grep",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/SERVICE_COVERAGEC6": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 52
+},
+"govcan_habit_2024/SERVICE_HEALTHCAREC4": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 66
+},
+"govcan_habit_2024/SERVICE_HEALTH_MENTAL": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/SERVICE_MH_BARRIERS": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en"
+],
+"hybrid_rank": 46
+},
+"govcan_habit_2024/SERVICE_MH_QUALITY_CRISIS": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/SERVICE_MH_QUALITY_PSYCH": {
+"in_top40": false,
+"sources": [
+"grep"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/SOCCON_MH_CONDITION": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_fr",
+"vector_fr"
+],
+"hybrid_rank": 35
+},
+"govcan_habit_2024/SPECIFIC_HEALTH_THREAT_2": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/SUPPORTERSC13": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 95
+}
+},
+"q11": {
+"eeq_2014/Q60A": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 28
+},
+"eeq_2014/Q60B": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 29
+},
+"eeq_2014/Q60C": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_fr",
+"vector_fr"
+],
+"hybrid_rank": 40
+},
+"eeq_2014/Q60D": {
+"in_top40": false,
+"sources": [
+"grep",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"eeq_2014/Q60E": {
+"in_top40": false,
+"sources": [
+"grep",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave1_2024/HOUSING": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/LIVINGQUARTER_MORTGAGE": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_HOUSING": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 44
+},
+"govcan_06822_wave3_2024/WORRIED_HOUSING": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 25
+},
+"govcan_habit_2024/AFFORDABILITY_HOUSING": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 27
+},
+"govcan_parca_2024/A6": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+}
+},
+"q12": {
+"cecd_elxn_qc_2007/z1q16": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"sweep:cecd_elxn_qc_2007"
+],
+"hybrid_rank": null
+},
+"cecd_elxn_qc_2007/z1q17": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"sweep:cecd_elxn_qc_2007"
+],
+"hybrid_rank": null
+},
+"cecd_elxn_qc_2007/z1q18": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"sweep:cecd_elxn_qc_2007"
+],
+"hybrid_rank": null
+},
+"cecd_elxn_qc_2007/z1q19": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"sweep:cecd_elxn_qc_2007"
+],
+"hybrid_rank": null
+},
+"cecd_elxn_qc_2007/z1q9": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_elxn_qc_2007",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"eeq_2014/Q1": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"eeq_2014/Q18": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+}
+},
+"q13": {
+"cecd_elxn_qc_2018/rts_q8": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+},
+"cecd_sante_can_usa/Q67": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+},
+"cecd_sante_can_usa/Q68": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 11
+},
+"cecd_sante_can_usa/Q69": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 8
+},
+"cecd_sante_can_usa/Q70": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 38
+},
+"cecd_sante_can_usa/Q71": {
+"in_top40": false,
+"sources": [
+"sweep:cecd_sante_can_usa"
+],
+"hybrid_rank": null
+},
+"cecd_sante_can_usa/Q71A": {
+"in_top40": false,
+"sources": [
+"sweep:cecd_sante_can_usa"
+],
+"hybrid_rank": null
+},
+"cecd_sante_can_usa/Q72": {
+"in_top40": false,
+"sources": [
+"sweep:cecd_sante_can_usa"
+],
+"hybrid_rank": null
+},
+"cecd_sante_can_usa/Q73": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"sweep:cecd_sante_can_usa",
+"vector_fr"
+],
+"hybrid_rank": 27
+},
+"cecd_sante_can_usa/Q74": {
+"in_top40": false,
+"sources": [
+"sweep:cecd_sante_can_usa"
+],
+"hybrid_rank": null
+},
+"cecd_sante_can_usa/Q75": {
+"in_top40": false,
+"sources": [
+"sweep:cecd_sante_can_usa"
+],
+"hybrid_rank": null
+},
+"cecd_sante_can_usa/Q76": {
+"in_top40": false,
+"sources": [
+"sweep:cecd_sante_can_usa"
+],
+"hybrid_rank": null
+},
+"cecd_sante_can_usa/Q77": {
+"in_top40": false,
+"sources": [
+"sweep:cecd_sante_can_usa"
+],
+"hybrid_rank": null
+},
+"eeq_2014/Q31A": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 3
+},
+"eeq_2014/Q31B": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 4
+},
+"eeq_2014/Q31C": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"eeq_2014/Q31D": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"eeq_2014/Q31E": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+},
+"eeq_2014/Q31F": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 7
+},
+"eeq_2014/Q32": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 9
+},
+"eeq_2014/Q4": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+},
+"eeq_2014/Q5": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 14
+},
+"eeq_2014/Q55": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 10
+},
+"eeq_2014/Q56": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:eeq_2014",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 13
+}
+},
+"q14": {
+"eeq_2014/Q60A": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 30
+},
+"eeq_2014/Q60B": {
+"in_top40": true,
+"sources": [
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 31
+},
+"eeq_2014/Q60C": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": 48
+},
+"eeq_2014/Q60D": {
+"in_top40": false,
+"sources": [
+"grep",
+"vector_en"
+],
+"hybrid_rank": null
+},
+"eeq_2014/Q60E": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_en",
+"vector_en"
+],
+"hybrid_rank": 78
+},
+"govcan_06822_wave1_2024/HOUSING": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/LIVINGQUARTER_MORTGAGE": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_HOUSING": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 71
+},
+"govcan_06822_wave3_2024/WORRIED_HOUSING": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 27
+},
+"govcan_habit_2024/AFFORDABILITY_HOUSING": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 29
+},
+"govcan_parca_2024/A6": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 2
+}
+},
+"q15": {
+"cecd_sante_can_usa/Q13": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 6
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_CARE": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 12
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_COMPETENT": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 17
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_INTEGRITY": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 21
+},
+"govcan_06822_wave1_2024/TRUST_FACET_GC_OPEN": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave1_2024/TRUST_GOC_CLIM": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 22
+},
+"govcan_06822_wave1_2024/TRUST_GOC_COVID": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 23
+},
+"govcan_06822_wave1_2024/TRUST_GOC_IMM": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 19
+},
+"govcan_06822_wave1_2024/TRUST_GOV_CAN": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 11
+},
+"govcan_06822_wave1_2024/TRUST_GOV_MUNI": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave1_2024/TRUST_GOV_PROVTERR": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave1_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 15
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_COMPETENT": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 70
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_GOODJOB": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 91
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_OPEN": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 93
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_PROMISES": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_PUBCONCERN": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave2_2024/TRUST_FACET_GC_WELFARE": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 87
+},
+"govcan_06822_wave2_2024/TRUST_GOV_CAN": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 95
+},
+"govcan_06822_wave2_2024/TRUST_GOV_CLIMATE": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave2_2024/TRUST_GOV_DIG": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 98
+},
+"govcan_06822_wave2_2024/TRUST_GOV_PAST": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave2_2024/TRUST_GOV_PUBHEALTH": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave2_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 52
+},
+"govcan_06822_wave3_2024/CONSPOP_G": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/FEDGOV_METHOD": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"sweep:govcan_06822_wave3_2024"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/FEDGOV_SAT": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 25
+},
+"govcan_06822_wave3_2024/FEDGOV_SERV": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_fr"
+],
+"hybrid_rank": 85
+},
+"govcan_06822_wave3_2024/FEDGOV_SERV_COUNT": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/FEDGOV_TIME": {
+"in_top40": false,
+"sources": [
+"sweep:govcan_06822_wave3_2024"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_ELXNCAN": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 58
+},
+"govcan_06822_wave3_2024/TRUST_FACET_GC_COMPETENT": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 68
+},
+"govcan_06822_wave3_2024/TRUST_FACET_GC_OPEN": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_FACET_GC_PUBCONCERN": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 66
+},
+"govcan_06822_wave3_2024/TRUST_GOV_CAN": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 53
+},
+"govcan_06822_wave3_2024/TRUST_GOV_CAN_SOCEST": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 99
+},
+"govcan_06822_wave3_2024/TRUST_GOV_CLIMATE": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_HOUSING": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 79
+},
+"govcan_06822_wave3_2024/TRUST_GOV_IMMIGRATION": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 72
+},
+"govcan_06822_wave3_2024/TRUST_GOV_MUNI": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_PROVTERR": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 50
+},
+"govcan_06822_wave3_2024/TRUST_GOV_PUBHEALTH": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_GOV_SOCMED": {
+"in_top40": false,
+"sources": [
+"grep",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_06822_wave3_2024/TRUST_POLITICIANS": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 89
+},
+"govcan_06822_wave3_2024/TRUST_PS": {
+"in_top40": true,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"sweep:govcan_06822_wave3_2024",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 40
+},
+"govcan_habit_2024/SUPPORTERSC5": {
+"in_top40": false,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/TRUST_GOOD_GOC": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 47
+},
+"govcan_habit_2024/TRUST_GOOD_LOCAL_HEALTH": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": null
+},
+"govcan_habit_2024/TRUST_GOOD_PHAC": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 61
+},
+"govcan_habit_2024/TRUST_GOOD_PROV": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 54
+},
+"govcan_habit_2024/TRUST_GOOD_PROV_HEALTH": {
+"in_top40": false,
+"sources": [
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 83
+},
+"govcan_parca_2024/D6_D": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 1
+},
+"govcan_parca_2024/D6_E": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 5
+},
+"govcan_parca_2024/D6_F": {
+"in_top40": true,
+"sources": [
+"bm25_en",
+"bm25_fr",
+"grep",
+"hybrid_en",
+"hybrid_fr",
+"vector_en",
+"vector_fr"
+],
+"hybrid_rank": 10
+}
+}
+}
