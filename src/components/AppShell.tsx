@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { Search, LayoutGrid, Sparkles, MessageSquare, ShoppingCart, Settings } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { fetchAllSurveys } from "../api";
 import { useCart } from "../context/CartContext";
 import ExportDrawer from "./ExportDrawer";
 
 interface ModeDef {
   key: string;
-  ico: string;
+  Ico: LucideIcon;
   label: string;
   to: string;
   soon?: boolean;
 }
 
 const MODES: ModeDef[] = [
-  { key: "recherche", ico: "🔍", label: "Recherche", to: "/recherche" },
-  { key: "corpus", ico: "▤", label: "Exploration corpus", to: "/corpus" },
-  { key: "agent", ico: "✦", label: "Agent analytique", to: "/agent", soon: true },
-  { key: "verbatims", ico: "💬", label: "Verbatims", to: "/verbatims", soon: true },
+  { key: "recherche", Ico: Search, label: "Recherche", to: "/recherche" },
+  { key: "corpus", Ico: LayoutGrid, label: "Exploration corpus", to: "/corpus" },
+  { key: "agent", Ico: Sparkles, label: "Agent analytique", to: "/agent", soon: true },
+  { key: "verbatims", Ico: MessageSquare, label: "Verbatims", to: "/verbatims", soon: true },
 ];
 
 export default function AppShell() {
@@ -42,7 +44,7 @@ export default function AppShell() {
     <div className="app-shell">
       <aside className="rail">
         <div className="rail-brand">
-          <div className="rail-logo" />
+          <img className="rail-logo" src="/opubliq-symbole.png" alt="Opubliq" />
           <div>
             <b>Opubliq</b>
             <span>Moteur de sondages</span>
@@ -56,7 +58,7 @@ export default function AppShell() {
               to={m.to}
               className={({ isActive }) => `rail-item ${isActive ? "active" : ""} ${m.soon ? "soon" : ""}`}
             >
-              <span className="ico">{m.ico}</span>
+              <span className="ico"><m.Ico size={18} strokeWidth={1.75} /></span>
               <span>{m.label}</span>
               {m.soon && <span className="soon-tag">bientôt</span>}
             </NavLink>
@@ -79,16 +81,12 @@ export default function AppShell() {
 
       <div className="main-col">
         <header className="topbar">
-          <div className="gsearch">
-            <span>🔍</span>
-            <span>Recherche rapide dans le corpus…</span>
-          </div>
           <div className="flex-1" />
-          <button className="btn btn-ghost btn-sm" onClick={() => setDrawerOpen(true)}>
-            🛒 Export {size > 0 && <span className="cart-count">{size}</span>}
+          <button className="btn btn-ghost btn-sm gap-1.5" onClick={() => setDrawerOpen(true)}>
+            <ShoppingCart size={16} strokeWidth={1.75} /> Export {size > 0 && <span className="cart-count">{size}</span>}
           </button>
           <button className="btn btn-ghost btn-sm" title="Réglages" aria-label="Réglages">
-            ⚙︎
+            <Settings size={16} strokeWidth={1.75} />
           </button>
         </header>
 

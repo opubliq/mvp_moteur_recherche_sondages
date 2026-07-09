@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { X, Download } from "lucide-react";
 import { useCart, cartKey, type CartItem } from "../context/CartContext";
 import { exportCart, type ExportFormat } from "../lib/exportCart";
 
@@ -32,7 +33,7 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
             Panier d'export · {size} question{size > 1 ? "s" : ""}
           </b>
           <button className="btn btn-ghost btn-sm" onClick={onClose} aria-label="Fermer">
-            ✕
+            <X size={18} strokeWidth={1.75} />
           </button>
         </div>
 
@@ -55,7 +56,7 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
                       onClick={() => remove(cartKey(it.survey_id, it.variable))}
                       aria-label="Retirer"
                     >
-                      ✕
+                      <X size={15} strokeWidth={1.75} />
                     </button>
                   </div>
                 ))}
@@ -74,8 +75,8 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
               <option value="csv-large">Format : CSV</option>
               <option value="json">Format : JSON</option>
             </select>
-            <button className="btn btn-primary w-full" onClick={() => exportCart(items, format)}>
-              ⬇ Exporter {size} question{size > 1 ? "s" : ""}
+            <button className="btn btn-primary w-full gap-1.5" onClick={() => exportCart(items, format)}>
+              <Download size={16} strokeWidth={1.75} /> Exporter {size} question{size > 1 ? "s" : ""}
             </button>
             <button className="btn btn-ghost btn-sm mt-2 w-full" onClick={clear}>
               Vider le panier

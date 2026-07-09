@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Check, Plus, Download } from "lucide-react";
 import { fetchSurvey } from "../api";
 import type { SearchResult, SurveyParent } from "../types";
 import { useCart, toCartItem } from "../context/CartContext";
@@ -109,13 +110,13 @@ export default function QuestionDashboard() {
           </div>
           <div className="flex shrink-0 flex-col gap-2">
             <button
-              className={`btn btn-sm ${inCart ? "btn-outline" : "btn-primary"}`}
+              className={`btn btn-sm gap-1.5 ${inCart ? "btn-outline" : "btn-primary"}`}
               onClick={() => toggle(toCartItem(q))}
             >
-              {inCart ? "✓ Dans l'export" : "＋ Ajouter à l'export"}
+              {inCart ? <><Check size={16} strokeWidth={2} /> Dans l'export</> : <><Plus size={16} strokeWidth={2} /> Ajouter à l'export</>}
             </button>
-            <button className="btn btn-outline btn-sm" disabled>
-              ⬇ Données brutes
+            <button className="btn btn-outline btn-sm gap-1.5" disabled>
+              <Download size={16} strokeWidth={1.75} /> Données brutes
             </button>
           </div>
         </div>

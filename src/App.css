@@ -175,7 +175,7 @@
   display: flex; flex-direction: column; padding: 0.9rem 0.7rem;
 }
 .rail-brand { display: flex; align-items: center; gap: 0.55rem; padding: 0.35rem 0.5rem 1rem; }
-.rail-logo { width: 1.85rem; height: 1.85rem; border-radius: 0.55rem; flex: none; background: linear-gradient(135deg, var(--color-primary), var(--op-accent-soft)); }
+.rail-logo { width: 1.85rem; height: 1.85rem; flex: none; object-fit: contain; }
 .rail-brand b { font-weight: 600; letter-spacing: -0.01em; }
 .rail-brand span { display: block; font-size: 0.68rem; opacity: 0.55; }
 
@@ -192,7 +192,7 @@
   background: color-mix(in oklch, var(--color-primary) 12%, transparent);
   color: color-mix(in oklch, var(--color-primary) 88%, black 8%); font-weight: 600;
 }
-.rail-item .ico { width: 1.15rem; text-align: center; font-size: 1rem; }
+.rail-item .ico { width: 1.15rem; display: inline-flex; align-items: center; justify-content: center; }
 .rail-item.soon { opacity: 0.5; }
 .rail-item .soon-tag {
   margin-left: auto; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em;

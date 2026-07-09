@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { BarChart3, ArrowRight } from "lucide-react";
 import type { SearchResult } from "../types";
 import { useCart, toCartItem } from "../context/CartContext";
 
@@ -79,7 +80,8 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
           ))}
 
           <span className="op-cta ml-auto flex items-center gap-1 font-semibold text-primary">
-            📊 Explorer les données <span className="op-cta-arrow" aria-hidden>→</span>
+            <BarChart3 size={15} strokeWidth={1.75} /> Explorer les données
+            <span className="op-cta-arrow" aria-hidden><ArrowRight size={15} strokeWidth={1.75} /></span>
           </span>
         </div>
       </div>

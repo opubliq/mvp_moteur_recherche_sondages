@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Plus, Download } from "lucide-react";
 import { fetchSurvey } from "../api";
 import type { SearchResult, SurveyParent } from "../types";
 import QuestionCard from "./QuestionCard";
@@ -78,18 +79,18 @@ export default function SurveyDetail({ surveyId }: { surveyId: string }) {
           </div>
           <div className="flex shrink-0 flex-col gap-2">
             <button
-              className="btn btn-primary btn-sm"
+              className="btn btn-primary btn-sm gap-1.5"
               onClick={() => nonSociodemo.forEach((q) => add(toCartItem(q)))}
               disabled={nonSociodemo.length === 0}
             >
-              ＋ Tout ajouter à l'export
+              <Plus size={16} strokeWidth={2} /> Tout ajouter à l'export
             </button>
             <button
-              className="btn btn-outline btn-sm"
+              className="btn btn-outline btn-sm gap-1.5"
               onClick={() => exportCart(nonSociodemo.map(toCartItem), "csv-large")}
               disabled={nonSociodemo.length === 0}
             >
-              ⬇ Télécharger le sondage
+              <Download size={16} strokeWidth={1.75} /> Télécharger le sondage
             </button>
           </div>
         </div>

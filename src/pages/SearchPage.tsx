@@ -68,8 +68,6 @@ export default function SearchPage() {
 
   return (
     <>
-      <p className="op-kicker mb-3">Recherche de questions</p>
-
       <div className="mb-3">
         <SearchBar onSearch={handleSearch} loading={loading || decomposing} />
       </div>
