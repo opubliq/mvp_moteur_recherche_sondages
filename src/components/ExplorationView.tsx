@@ -277,7 +277,7 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
       <div className="divider"></div>
 
       {/* Exploration thématique : filtre par thème / concept → questions */}
-      <ThemeExplorer onOpenSurvey={onOpenSurvey} />
+      <ThemeExplorer />
     </div>
   );
 }

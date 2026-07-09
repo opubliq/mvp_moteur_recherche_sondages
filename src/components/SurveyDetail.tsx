@@ -1,23 +1,16 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { fetchSurvey } from "../api";
 import type { SearchResult, SurveyParent } from "../types";
 import QuestionCard from "./QuestionCard";
-
-interface SurveyDetailProps {
-  surveyId: string;
-  /** Métadonnées déjà connues depuis la recherche (fallback d'en-tête). */
-  fallbackName?: string;
-  onBack: () => void;
-}
+import { useCart, toCartItem } from "../context/CartContext";
+import { exportCart } from "../lib/exportCart";
 
 const LANG_LABELS: Record<string, string> = { fr: "Français", en: "Anglais" };
 
-/** Vue détail d'un sondage : en-tête + liste exhaustive de ses questions. */
-export default function SurveyDetail({
-  surveyId,
-  fallbackName,
-  onBack,
-}: SurveyDetailProps) {
+/** Vue détail d'un sondage : en-tête + actions + liste exhaustive des questions. */
+export default function SurveyDetail({ surveyId }: { surveyId: string }) {
+  const { add } = useCart();
   const [survey, setSurvey] = useState<SurveyParent | null>(null);
   const [questions, setQuestions] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(true);
@@ -45,41 +38,61 @@ export default function SurveyDetail({
     };
   }, [surveyId]);
 
-  const title = survey?.survey_name ?? fallbackName ?? surveyId;
+  const title = survey?.survey_name ?? surveyId;
   const meta = survey
     ? [
         survey.pollster,
         survey.survey_year != null ? String(survey.survey_year) : null,
-        survey.language ? (LANG_LABELS[survey.language] ?? survey.language) : null,
-        survey.n_respondents != null ? `n = ${survey.n_respondents}` : null,
+        survey.language ? LANG_LABELS[survey.language] ?? survey.language : null,
+        survey.n_respondents != null ? `N = ${survey.n_respondents.toLocaleString("fr-CA")}` : null,
       ].filter(Boolean)
     : [];
 
-  return (
-    <div className="space-y-6">
-      <button type="button" className="btn btn-ghost btn-sm" onClick={onBack}>
-        ← Retour à la recherche
-      </button>
+  const nonSociodemo = questions.filter((q) => !q.is_sociodemo);
 
-      <header className="space-y-2 border-b border-base-content/10 pb-4">
-        <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
-        {meta.length > 0 && (
-          <p className="text-sm text-base-content/60">{meta.join(" · ")}</p>
-        )}
-        {survey && survey.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {survey.tags.map((t) => (
-              <span key={t} className="badge badge-ghost badge-sm">
-                {t}
-              </span>
-            ))}
+  return (
+    <div className="space-y-5">
+      <div className="crumbs">
+        <Link to="/recherche">Recherche</Link>
+        <span className="sep">/</span>
+        <span className="text-base-content/60">{title}</span>
+      </div>
+
+      <header className="op-card">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="max-w-2xl">
+            <h1 className="text-2xl font-semibold leading-snug tracking-tight">{title}</h1>
+            {meta.length > 0 && <p className="mt-2 text-sm text-base-content/60">{meta.join(" · ")}</p>}
+            {survey?.survey_description && (
+              <p className="mt-3 leading-snug text-base-content/70">{survey.survey_description}</p>
+            )}
+            {survey && survey.tags.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {survey.tags.map((t) => (
+                  <span key={t} className="badge badge-ghost badge-sm">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-        )}
-        {!loading && !error && (
-          <p className="text-sm text-base-content/60">
-            {questions.length} question{questions.length > 1 ? "s" : ""}
-          </p>
-        )}
+          <div className="flex shrink-0 flex-col gap-2">
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={() => nonSociodemo.forEach((q) => add(toCartItem(q)))}
+              disabled={nonSociodemo.length === 0}
+            >
+              ＋ Tout ajouter à l'export
+            </button>
+            <button
+              className="btn btn-outline btn-sm"
+              onClick={() => exportCart(nonSociodemo.map(toCartItem), "csv-large")}
+              disabled={nonSociodemo.length === 0}
+            >
+              ⬇ Télécharger le sondage
+            </button>
+          </div>
+        </div>
       </header>
 
       {loading && (
@@ -95,11 +108,16 @@ export default function SurveyDetail({
       )}
 
       {!loading && !error && (
-        <div className="grid gap-3 md:grid-cols-2">
-          {questions.map((q) => (
-            <QuestionCard key={q.id} q={q} />
-          ))}
-        </div>
+        <>
+          <h2 className="text-lg font-semibold">
+            {questions.length} question{questions.length > 1 ? "s" : ""}
+          </h2>
+          <div className="overflow-hidden rounded-2xl border border-base-content/10 bg-base-100">
+            {questions.map((q) => (
+              <QuestionCard key={q.id} q={q} />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

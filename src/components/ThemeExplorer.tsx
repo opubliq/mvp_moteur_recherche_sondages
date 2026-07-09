@@ -3,10 +3,6 @@ import { fetchQuestionsByTag, fetchThemeFacets } from "../api";
 import type { ConceptCount, SearchResult } from "../types";
 import SurveyGroup, { type SurveyGroupData } from "./SurveyGroup";
 
-interface ThemeExplorerProps {
-  onOpenSurvey: (surveyId: string) => void;
-}
-
 type Dim = "theme" | "concept";
 
 // Les concepts sont très nombreux (~300) : on n'affiche que les plus fréquents.
@@ -32,7 +28,7 @@ function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
   return [...byId.values()].sort((a, b) => (b.survey_year ?? 0) - (a.survey_year ?? 0));
 }
 
-export default function ThemeExplorer({ onOpenSurvey }: ThemeExplorerProps) {
+export default function ThemeExplorer() {
   const [facets, setFacets] = useState<{ themes: ConceptCount[]; concepts: ConceptCount[] }>({
     themes: [],
     concepts: [],
@@ -173,7 +169,7 @@ export default function ThemeExplorer({ onOpenSurvey }: ThemeExplorerProps) {
 
               <div className="space-y-3">
                 {groups.map((g) => (
-                  <SurveyGroup key={g.survey_id} group={g} onOpenSurvey={onOpenSurvey} />
+                  <SurveyGroup key={g.survey_id} group={g} />
                 ))}
               </div>
             </>

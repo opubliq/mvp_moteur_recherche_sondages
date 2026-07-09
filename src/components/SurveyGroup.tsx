@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import type { SearchResult } from "../types";
 import QuestionCard from "./QuestionCard";
 
@@ -11,13 +12,7 @@ export interface SurveyGroupData {
 }
 
 /** Un sondage = un en-tête + ses questions correspondantes. */
-export default function SurveyGroup({
-  group,
-  onOpenSurvey,
-}: {
-  group: SurveyGroupData;
-  onOpenSurvey: (surveyId: string) => void;
-}) {
+export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const meta = [
@@ -70,20 +65,17 @@ export default function SurveyGroup({
           </span>
         </div>
 
-        <button
-          type="button"
+        <Link
+          to={`/sondage/${group.survey_id}`}
           className="btn btn-outline btn-xs relative z-10"
-          onClick={(e) => {
-            e.stopPropagation();
-            onOpenSurvey(group.survey_id);
-          }}
+          onClick={(e) => e.stopPropagation()}
         >
           Voir le sondage
-        </button>
+        </Link>
       </div>
 
-      <div className="collapse-content">
-        <div className="grid gap-3 pt-4 md:grid-cols-2">
+      <div className="collapse-content !px-0 !pb-0">
+        <div className="border-t border-base-content/10">
           {group.questions.map((q) => (
             <QuestionCard key={q.id} q={q} />
           ))}
