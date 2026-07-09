@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { Search, LayoutGrid, Sparkles, MessageSquare, ShoppingCart, Settings } from "lucide-react";
+import { Search, LayoutGrid, Sparkles, MessageSquare, ShoppingCart } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { fetchAllSurveys } from "../api";
 import { useCart } from "../context/CartContext";
@@ -84,9 +84,6 @@ export default function AppShell() {
           <div className="flex-1" />
           <button className="btn btn-ghost btn-sm gap-1.5" onClick={() => setDrawerOpen(true)}>
             <ShoppingCart size={16} strokeWidth={1.75} /> Export {size > 0 && <span className="cart-count">{size}</span>}
-          </button>
-          <button className="btn btn-ghost btn-sm" title="Réglages" aria-label="Réglages">
-            <Settings size={16} strokeWidth={1.75} />
           </button>
         </header>
 
