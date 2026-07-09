@@ -1,10 +1,18 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchState } from "../context/SearchContext";
 import SearchBar from "../components/SearchBar";
 import ConceptChips from "../components/ConceptChips";
 import Facets, { type FacetOptions } from "../components/Facets";
 import SurveyGroup, { type SurveyGroupData } from "../components/SurveyGroup";
-import type { SearchResult } from "../types";
+import RelevanceTimeline from "../components/RelevanceTimeline";
+import type { SearchResult, Pertinence } from "../types";
+
+const PERT_LEVELS: Pertinence[] = ["Exact", "Partiel", "Faible"];
+const PERT_BADGE: Record<string, string> = {
+  Exact: "op-badge-exact",
+  Partiel: "op-badge-partiel",
+  Faible: "op-badge-faible",
+};
 
 /** Regroupe les résultats par sondage, en conservant l'ordre de pertinence. */
 function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
@@ -51,8 +59,30 @@ export default function SearchPage() {
     handleSearch, handleFilterChange, handleConceptsChange,
   } = useSearchState();
 
+  // Filtre de pertinence piloté par les badges du header (vide = tout afficher).
+  const [activePertinences, setActivePertinences] = useState<Set<Pertinence>>(new Set());
+
+  // Nouvelle recherche → on réinitialise le filtre.
+  useEffect(() => setActivePertinences(new Set()), [results]);
+
+  const togglePertinence = (p: Pertinence) =>
+    setActivePertinences((prev) => {
+      const next = new Set(prev);
+      if (next.has(p)) next.delete(p);
+      else next.add(p);
+      return next;
+    });
+
+  const visibleResults = useMemo(
+    () =>
+      activePertinences.size === 0
+        ? results
+        : results.filter((r) => r.pertinence && activePertinences.has(r.pertinence)),
+    [results, activePertinences],
+  );
+
   const facetOptions = useMemo(() => buildFacetOptions(results), [results]);
-  const groups = useMemo(() => groupBySurvey(results), [results]);
+  const groups = useMemo(() => groupBySurvey(visibleResults), [visibleResults]);
 
   const relevanceStats = useMemo(
     () =>
@@ -107,27 +137,38 @@ export default function SearchPage() {
             onThemeChange={(t) => handleFilterChange({ ...filters, themes: t ? [t] : undefined })}
           />
 
-          <div className="space-y-4">
+          <div className="min-w-0 space-y-4">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
               <p className="text-sm text-base-content/60">
-                {results.length} question{results.length > 1 ? "s" : ""} · {groups.length} sondage
+                {visibleResults.length} question{visibleResults.length > 1 ? "s" : ""} · {groups.length} sondage
                 {groups.length > 1 ? "s" : ""}
               </p>
               <div className="flex items-center gap-2">
-                {relevanceStats["Exact"] > 0 && (
-                  <span className="op-badge op-badge-exact">{relevanceStats["Exact"]} Exact</span>
-                )}
-                {relevanceStats["Partiel"] > 0 && (
-                  <span className="op-badge op-badge-partiel">{relevanceStats["Partiel"]} Partiel</span>
-                )}
-                {relevanceStats["Faible"] > 0 && (
-                  <span className="op-badge op-badge-faible">{relevanceStats["Faible"]} Faible</span>
-                )}
+                {PERT_LEVELS.map((p) => {
+                  const count = relevanceStats[p] || 0;
+                  if (count === 0) return null;
+                  const active = activePertinences.size === 0 || activePertinences.has(p);
+                  return (
+                    <button
+                      key={p}
+                      type="button"
+                      onClick={() => togglePertinence(p)}
+                      className={`op-badge ${PERT_BADGE[p]} cursor-pointer transition ${
+                        active ? "" : "opacity-35 grayscale"
+                      }`}
+                      title={active ? `Filtrer : masquer ${p}` : `Filtrer : afficher ${p}`}
+                    >
+                      {count} {p}
+                    </button>
+                  );
+                })}
               </div>
             </div>
             {groups.map((g) => (
               <SurveyGroup key={g.survey_id} group={g} />
             ))}
+
+            <RelevanceTimeline results={visibleResults} />
           </div>
         </div>
       )}
