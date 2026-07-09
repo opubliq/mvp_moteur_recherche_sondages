@@ -52,15 +52,25 @@ export interface SearchFilters {
 }
 
 /** Doc parent (doc_type=survey) renvoyé par la Netlify Function `/survey`. */
+/** Un concept dominant d'un sondage avec sa fréquence (nombre de questions). */
+export interface ConceptCount {
+  value: string;
+  count: number;
+}
+
 export interface SurveyParent {
   id: string;
   survey_id: string;
   survey_name: string;
   survey_year: number | null;
+  survey_month?: number | null;
   pollster: string | null;
   language: string | null;
   n_respondents: number | null;
+  survey_description?: string | null;
   tags: string[];
+  /** Concepts dominants (facette `concepts`), triés par fréquence décroissante. */
+  top_concepts?: ConceptCount[];
 }
 
 /** Contrat de la Netlify Function `/survey` (voir netlify/functions/survey.ts). */

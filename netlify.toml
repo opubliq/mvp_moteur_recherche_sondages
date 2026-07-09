@@ -31,6 +31,18 @@
   to = "/.netlify/functions/survey"
   status = 200
 
+# Expose la function sous /surveys (liste macro pour l'onglet Exploration)
+[[redirects]]
+  from = "/surveys"
+  to = "/.netlify/functions/surveys"
+  status = 200
+
+# Expose la function sous /themes (exploration thématique : facettes + browse)
+[[redirects]]
+  from = "/themes"
+  to = "/.netlify/functions/themes"
+  status = 200
+
 # Fallback SPA
 [[redirects]]
   from = "/*"

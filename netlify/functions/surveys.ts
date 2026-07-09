@@ -25,11 +25,41 @@ const SELECT_FIELDS = [
   "survey_id",
   "survey_name",
   "survey_year",
+  "survey_month",
   "pollster",
   "language",
   "n_respondents",
+  "survey_description",
   "tags",
 ].join(",");
+
+// Nombre de concepts dominants remontés par sondage (facette, tri décroissant).
+const TOP_CONCEPTS = 6;
+
+/**
+ * Concepts dominants d'un sondage : facette `concepts` sur ses questions,
+ * triée par fréquence décroissante. Renvoie [] en cas d'échec (non bloquant).
+ */
+async function fetchTopConcepts(
+  searchUrl: string,
+  searchKey: string,
+  surveyId: string,
+): Promise<{ value: string; count: number }[]> {
+  const res = await fetch(searchUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "api-key": searchKey },
+    body: JSON.stringify({
+      search: "*",
+      filter: `doc_type eq 'question' and survey_id eq '${surveyId}'`,
+      top: 0,
+      facets: [`concepts,count:${TOP_CONCEPTS}`],
+    }),
+  });
+  if (!res.ok) return [];
+  const data = await res.json();
+  const facet = data["@search.facets"]?.concepts ?? [];
+  return facet.map((f: { value: string; count: number }) => ({ value: f.value, count: f.count }));
+}
 
 export const handler: Handler = async (event) => {
   if (event.httpMethod === "OPTIONS") {
@@ -107,12 +137,20 @@ export const handler: Handler = async (event) => {
       totalQuestions = countData["@odata.count"] || 0;
     }
 
+    // Concepts dominants par sondage (facettes en parallèle, une par survey_id).
+    const surveysWithConcepts = await Promise.all(
+      surveys.map(async (s: { survey_id: string }) => ({
+        ...s,
+        top_concepts: await fetchTopConcepts(searchUrl, searchKey, s.survey_id),
+      })),
+    );
+
     return {
       statusCode: 200,
       headers: CORS_HEADERS,
       body: JSON.stringify({
-        surveys,
-        count: surveys.length,
+        surveys: surveysWithConcepts,
+        count: surveysWithConcepts.length,
         total_questions: totalQuestions,
       }),
     };

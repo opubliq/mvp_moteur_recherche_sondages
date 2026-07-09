@@ -1,4 +1,4 @@
-import type { Concept, SearchFilters, SearchResponse, SurveyDetailResponse, SurveyParent } from "./types";
+import type { Concept, ConceptCount, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent } from "./types";
 import { MOCK_RESPONSE } from "./mock";
 
 /**
@@ -115,4 +115,37 @@ export async function fetchSurvey(surveyId: string): Promise<SurveyDetailRespons
   }
 
   return (await res.json()) as SurveyDetailResponse;
+}
+
+/**
+ * Appelle `/themes` (sans param) : facettes thèmes + concepts du corpus,
+ * chacune triée par nombre de questions décroissant.
+ */
+export async function fetchThemeFacets(): Promise<{ themes: ConceptCount[]; concepts: ConceptCount[] }> {
+  const res = await fetch("/themes");
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Chargement des thèmes échoué (${res.status}): ${body || res.statusText}`);
+  }
+  return (await res.json()) as { themes: ConceptCount[]; concepts: ConceptCount[] };
+}
+
+/**
+ * Appelle `/themes?theme=…` ou `?concept=…` : questions taggées, cross-sondage.
+ * `year` optionnel pour restreindre à une année.
+ */
+export async function fetchQuestionsByTag(
+  dim: "theme" | "concept",
+  value: string,
+  year?: number,
+): Promise<SearchResult[]> {
+  const params = new URLSearchParams({ [dim]: value });
+  if (year != null) params.set("year", String(year));
+  const res = await fetch(`/themes?${params.toString()}`);
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Chargement des questions échoué (${res.status}): ${body || res.statusText}`);
+  }
+  const data = (await res.json()) as { results: SearchResult[] };
+  return data.results;
 }

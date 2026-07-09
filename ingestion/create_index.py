@@ -87,11 +87,13 @@ def build_index(name: str, dims: int) -> SearchIndex:
             facetable=True,
         ),
         # Nom du sondage : affiché dans l'UI (cartes groupées par sondage) et
-        # recherchable. Présent sur parent + child (dénormalisé).
+        # recherchable. Présent sur parent + child (dénormalisé). Sortable pour
+        # permettre $orderby côté Azure (onglet Exploration : tri par nom).
         SearchableField(
             name="survey_name",
             type=SearchFieldDataType.String,
             analyzer_name=FRENCH_ANALYZER,
+            sortable=True,
         ),
         # Résumé authoré du sondage (parent) : recherchable, dénormalisé nulle part.
         SearchableField(
