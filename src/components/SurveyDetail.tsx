@@ -61,10 +61,10 @@ export default function SurveyDetail({
         ← Retour à la recherche
       </button>
 
-      <header className="space-y-2 border-b border-base-300 pb-4">
-        <h2 className="text-2xl font-bold">{title}</h2>
+      <header className="space-y-2 border-b border-base-content/10 pb-4">
+        <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
         {meta.length > 0 && (
-          <p className="text-sm opacity-60">{meta.join(" · ")}</p>
+          <p className="text-sm text-base-content/60">{meta.join(" · ")}</p>
         )}
         {survey && survey.tags.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
@@ -76,7 +76,7 @@ export default function SurveyDetail({
           </div>
         )}
         {!loading && !error && (
-          <p className="text-sm opacity-60">
+          <p className="text-sm text-base-content/60">
             {questions.length} question{questions.length > 1 ? "s" : ""}
           </p>
         )}

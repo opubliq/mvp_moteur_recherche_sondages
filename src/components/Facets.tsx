@@ -36,9 +36,8 @@ export default function Facets({
   if (!hasAny) return null;
 
   return (
-    <aside className="card border border-base-300 bg-base-100">
-      <div className="card-body gap-4 p-4">
-        <h2 className="text-sm font-semibold uppercase tracking-wide opacity-60">
+    <aside className="op-card flex flex-col gap-4 self-start">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-base-content/55">
           Filtres
         </h2>
 
@@ -133,7 +132,6 @@ export default function Facets({
             </div>
           </div>
         )}
-      </div>
     </aside>
   );
 }

@@ -10,31 +10,33 @@ export default function SearchBar({ onSearch, loading }: SearchBarProps) {
   const [value, setValue] = useState("");
 
   return (
-    <form
-      className="flex gap-2"
-      onSubmit={(e) => {
-        e.preventDefault();
-        if (value.trim()) onSearch(value.trim());
-      }}
-    >
-      <input
-        type="search"
-        className="input input-bordered flex-1"
-        placeholder="Rechercher un concept, un thème, une question…"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <button
-        type="submit"
-        className="btn btn-primary"
-        disabled={loading || !value.trim()}
+    <div className="op-card">
+      <form
+        className="flex gap-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (value.trim()) onSearch(value.trim());
+        }}
       >
-        {loading ? (
-          <span className="loading loading-spinner loading-sm" />
-        ) : (
-          "Rechercher"
-        )}
-      </button>
-    </form>
+        <input
+          type="search"
+          className="input input-bordered flex-1"
+          placeholder="Rechercher un concept, un thème, une question…"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="btn btn-primary"
+          disabled={loading || !value.trim()}
+        >
+          {loading ? (
+            <span className="loading loading-spinner loading-sm" />
+          ) : (
+            "Rechercher"
+          )}
+        </button>
+      </form>
+    </div>
   );
 }

@@ -143,17 +143,20 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-base-200">
-      <header className="navbar bg-base-100 shadow-sm">
-        <div className="mx-auto w-full max-w-6xl px-4">
-          <span className="text-xl font-bold">Opubliq</span>
-          <span className="ml-2 text-sm opacity-60">
+    <div className="op-page min-h-screen">
+      <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
+        <header className="op-hero mb-6">
+          <p className="op-kicker">Opubliq · Moteur de recherche</p>
+          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
             Catalogue de questions de sondage
-          </span>
-        </div>
-      </header>
+          </h1>
+          <p className="max-w-2xl text-sm text-base-content/60">
+            Recherchez un concept dans le corpus de sondages et explorez les
+            questions par niveau de pertinence.
+          </p>
+        </header>
 
-      <main className="mx-auto w-full max-w-6xl px-4 py-6">
+        <main>
         {selectedSurveyId ? (
           <SurveyDetail
             surveyId={selectedSurveyId}
@@ -162,15 +165,17 @@ export default function App() {
           />
         ) : (
           <>
-            <div className="tabs tabs-boxed mb-6 bg-base-100 p-1">
+            <div className="op-switch mb-6" role="tablist" aria-label="Vues">
               <button
-                className={`tab flex-1 ${activeTab === "search" ? "tab-active" : ""}`}
+                type="button"
+                className={`btn btn-sm ${activeTab === "search" ? "btn-primary" : "btn-ghost"}`}
                 onClick={() => setActiveTab("search")}
               >
                 Recherche
               </button>
               <button
-                className={`tab flex-1 ${activeTab === "explore" ? "tab-active" : ""}`}
+                type="button"
+                className={`btn btn-sm ${activeTab === "explore" ? "btn-primary" : "btn-ghost"}`}
                 onClick={() => setActiveTab("explore")}
               >
                 Exploration du Corpus
@@ -198,7 +203,7 @@ export default function App() {
                 )}
 
                 {!hasSearched && !loading && (
-                  <div className="py-20 text-center opacity-60">
+                  <div className="py-20 text-center text-base-content/50">
                     <p className="text-lg">
                       Recherchez un concept pour explorer les questions de sondage.
                     </p>
@@ -206,7 +211,7 @@ export default function App() {
                 )}
 
                 {hasSearched && !loading && results.length === 0 && !error && (
-                  <div className="py-20 text-center opacity-60">
+                  <div className="py-20 text-center text-base-content/50">
                     <p className="text-lg">Aucun résultat pour « {query} ».</p>
                     <p className="mt-1 text-sm">
                       L'index est peut-être encore vide, ou essayez d'autres termes.
@@ -226,25 +231,25 @@ export default function App() {
 
                     <div className="space-y-4">
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                        <p className="text-sm opacity-60">
+                        <p className="text-sm text-base-content/60">
                           {results.length} question{results.length > 1 ? "s" : ""} ·{" "}
                           {groups.length} sondage{groups.length > 1 ? "s" : ""}
                         </p>
                         <div className="flex items-center gap-2">
                           {relevanceStats["Exact"] > 0 && (
-                            <div className="badge bg-success text-success-content border-success badge-sm font-medium" title="Matches Exacts">
+                            <span className="op-badge op-badge-exact" title="Matches Exacts">
                               {relevanceStats["Exact"]} Exact
-                            </div>
+                            </span>
                           )}
                           {relevanceStats["Partiel"] > 0 && (
-                            <div className="badge bg-warning text-warning-content border-warning badge-sm font-medium" title="Matches Partiels">
+                            <span className="op-badge op-badge-partiel" title="Matches Partiels">
                               {relevanceStats["Partiel"]} Partiel
-                            </div>
+                            </span>
                           )}
                           {relevanceStats["Faible"] > 0 && (
-                            <div className="badge bg-error text-error-content border-error badge-sm font-medium" title="Matches Faibles">
+                            <span className="op-badge op-badge-faible" title="Matches Faibles">
                               {relevanceStats["Faible"]} Faible
-                            </div>
+                            </span>
                           )}
                         </div>
                       </div>
@@ -262,7 +267,8 @@ export default function App() {
             )}
           </>
         )}
-      </main>
+        </main>
+      </div>
     </div>
   );
 }

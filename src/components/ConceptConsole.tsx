@@ -13,14 +13,13 @@ export default function ConceptConsole({ concepts, onChange }: ConceptConsolePro
   };
 
   return (
-    <div className="card bg-base-100 shadow-sm border border-base-300">
-      <div className="card-body p-4">
-        <h2 className="card-title text-sm uppercase tracking-widest opacity-70 mb-2">
+    <div className="op-card">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-widest text-base-content/55">
           Console de Concepts
         </h2>
         <div className="flex flex-wrap gap-4">
           {concepts.map((c, i) => (
-            <div key={i} className="flex flex-col gap-2 p-3 bg-base-200 rounded-lg min-w-[200px]">
+            <div key={i} className="flex min-w-[200px] flex-col gap-2 rounded-xl border border-base-content/10 bg-base-200/50 p-3">
               <div className="flex justify-between items-start">
                 <span className="font-bold text-primary">{c.orig}</span>
                 <div className="badge badge-sm badge-outline opacity-50">
@@ -59,7 +58,6 @@ export default function ConceptConsole({ concepts, onChange }: ConceptConsolePro
             </div>
           ))}
         </div>
-      </div>
     </div>
   );
 }

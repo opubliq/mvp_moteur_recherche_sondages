@@ -35,7 +35,7 @@ export default function SurveyGroup({
   );
 
   return (
-    <section className="collapse collapse-arrow bg-base-100 shadow-sm border border-base-300">
+    <section className="collapse collapse-arrow rounded-2xl border border-base-content/10 bg-base-100 shadow-sm">
       <input
         type="checkbox"
         checked={isExpanded}
@@ -46,26 +46,26 @@ export default function SurveyGroup({
           {group.survey_name}
         </span>
         {meta.length > 0 && (
-          <span className="text-sm opacity-60">{meta.join(" · ")}</span>
+          <span className="text-sm text-base-content/60">{meta.join(" · ")}</span>
         )}
-        
-        <div className="ml-auto flex items-center gap-2 mr-2">
+
+        <div className="ml-auto mr-2 flex items-center gap-2">
           {stats["Exact"] > 0 && (
-            <div className="badge bg-success text-success-content border-success badge-sm font-medium" title="Matches Exacts">
+            <span className="op-badge op-badge-exact" title="Matches Exacts">
               {stats["Exact"]} Exact
-            </div>
+            </span>
           )}
           {stats["Partiel"] > 0 && (
-            <div className="badge bg-warning text-warning-content border-warning badge-sm font-medium" title="Matches Partiels">
+            <span className="op-badge op-badge-partiel" title="Matches Partiels">
               {stats["Partiel"]} Partiel
-            </div>
+            </span>
           )}
           {stats["Faible"] > 0 && (
-            <div className="badge bg-error text-error-content border-error badge-sm font-medium" title="Matches Faibles">
+            <span className="op-badge op-badge-faible" title="Matches Faibles">
               {stats["Faible"]} Faible
-            </div>
+            </span>
           )}
-          <span className="text-xs opacity-40 ml-1">
+          <span className="ml-1 text-xs text-base-content/40">
             ({group.questions.length})
           </span>
         </div>

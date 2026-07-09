@@ -1,2 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 17px;
+}
+
+/* Identité Opubliq (version claire) — accent teal foncé pour contraste sur blanc,
+   coral en secondaire/erreur. Le teal clair du simulator sert de tint pour les glows. */
+[data-theme="light"],
+:root {
+  --color-primary: oklch(0.58 0.10 196.4);
+  --color-primary-content: oklch(0.99 0 0);
+  --color-secondary: #f0695a;
+  --color-secondary-content: #2a0f0b;
+  --color-accent: oklch(0.803 0.089 196.4);
+  --color-accent-content: oklch(0.18 0.03 196.4);
+  --color-error: #e23b2e;
+  --color-error-content: #fff;
+
+  /* Teal clair du simulator, réservé aux glows / fonds subtils */
+  --op-accent-soft: #56d1d7;
+
+  /* Couleurs de pertinence (docs/ui_voulu.md) : Exact vert, Partiel jaune, Faible orange */
+  --op-exact: #15a34a;
+  --op-partiel: #d69e00;
+  --op-faible: #f97316;
+}
