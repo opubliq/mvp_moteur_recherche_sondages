@@ -39,17 +39,30 @@ export interface SearchResult {
 }
 
 
+export interface FacetEntry {
+  value: string;
+  count: number;
+}
+
+export interface SearchFacets {
+  years: FacetEntry[];
+  pollsters: FacetEntry[];
+  languages: FacetEntry[];
+}
+
 export interface SearchResponse {
   results: SearchResult[];
   count: number;
+  facets?: SearchFacets;
   luceneQuery?: string;
 }
 
-/** Filtres facette appliqués en AND côté serveur (`field eq value`). */
+/** Filtres facette appliqués en AND côté serveur. */
 export interface SearchFilters {
-  survey_year?: number;
-  pollster?: string;
-  language?: string;
+  year_min?: number;
+  year_max?: number;
+  pollsters?: string[];
+  languages?: string[];
   themes?: string[];
 }
 

@@ -1,0 +1,5400 @@
+{
+  "id": "q11",
+  "query": "accès au logement et abordabilité",
+  "concepts": [
+    {
+      "orig": "logement",
+      "syns": [
+        "logements",
+        "habitation",
+        "appartement",
+        "appart",
+        "maison",
+        "résidence",
+        "housing",
+        "home"
+      ],
+      "qualifiers": [
+        "abordable",
+        "social",
+        "public",
+        "locatif",
+        "subventionné",
+        "étudiant",
+        "seniors",
+        "à louer"
+      ],
+      "weight": 0.6
+    },
+    {
+      "orig": "accès",
+      "syns": [
+        "access",
+        "accessibilité",
+        "accessibility",
+        "accéder",
+        "acceder",
+        "avoir accès"
+      ],
+      "weight": 0.2
+    },
+    {
+      "orig": "abordabilité",
+      "syns": [
+        "abordable",
+        "affordable",
+        "affordability",
+        "prix abordable",
+        "pas cher",
+        "loyer abordable",
+        "coût",
+        "cost"
+      ],
+      "weight": 0.2
+    }
+  ],
+  "candidates": [
+    {
+      "@search.score": 0.01717139221727848,
+      "id": "cecd_sante_can_usa__Q43",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q43",
+      "question_text": "Some people say that ensuring that health care is universally available to everyone, regardless of their ability to pay is so important that we must do everything we can to protect these principles. Other people say that ensuring universal access, regardle",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "accès_universel",
+        "équité",
+        "coût_de_la_santé"
+      ],
+      "themes": [
+        "politique",
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "1 - Do everything to protect principles of universal access"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5 - Universal access is too costly and cannot be afforded"
+        },
+        {
+          "code": "6",
+          "label": "Haven’t thought much"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01666666753590107,
+      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM1",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM1",
+      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Easy access to services/health professionals / availability"
+        },
+        {
+          "code": "2",
+          "label": "I received good medical care / good/quality service/care"
+        },
+        {
+          "code": "3",
+          "label": "I always get help / helpful staff"
+        },
+        {
+          "code": "4",
+          "label": "I have a local hospital / hospital/walk in clinic is close to home"
+        },
+        {
+          "code": "5",
+          "label": "I have a family doctor / enough family doctor"
+        },
+        {
+          "code": "6",
+          "label": "I have a specialist"
+        },
+        {
+          "code": "7",
+          "label": "I have a good doctor / doctors are good / competent health professionals"
+        },
+        {
+          "code": "8",
+          "label": "Good hospitals/medical facilities"
+        },
+        {
+          "code": "9",
+          "label": "Appropriate wait times / fast service"
+        },
+        {
+          "code": "10",
+          "label": "All my needs are met / It provides the needed services / never had any issues"
+        },
+        {
+          "code": "11",
+          "label": "Good / great / OK"
+        },
+        {
+          "code": "12",
+          "label": "Free services / affordability"
+        },
+        {
+          "code": "13",
+          "label": "Long wait times (for services, in ER, etc.)"
+        },
+        {
+          "code": "14",
+          "label": "Lack of doctors/family doctors/staff"
+        },
+        {
+          "code": "15",
+          "label": "Lack of specialists"
+        },
+        {
+          "code": "16",
+          "label": "Need more funding"
+        },
+        {
+          "code": "17",
+          "label": "Need more hospitals/clinics/beds"
+        },
+        {
+          "code": "18",
+          "label": "Missing/Limited services (various)"
+        },
+        {
+          "code": "96",
+          "label": "Other"
+        },
+        {
+          "code": "97",
+          "label": "Nothing / none / always need for improvement"
+        },
+        {
+          "code": "98",
+          "label": "Don't know / refusal"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01666666753590107,
+      "id": "govcan_parca_2024__A6",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "A6",
+      "question_text": "Are your living quarters...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "logement"
+      ],
+      "themes": [
+        "démographie",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Owned by you or a member of your household (even if it is still being paid for)?"
+        },
+        {
+          "code": "2",
+          "label": "Rented (even if no cash rent is paid)?"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.016393441706895828,
+      "id": "govcan_06822_wave3_2024__WORRIED_HOUSING",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "WORRIED_HOUSING",
+      "question_text": "...the lack of affordable housing",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "housing affordability",
+        "cost of living"
+      ],
+      "themes": [
+        "housing",
+        "economy"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Not at all worried"
+        },
+        {
+          "code": "2",
+          "label": "Slightly worried"
+        },
+        {
+          "code": "3",
+          "label": "Moderately worried"
+        },
+        {
+          "code": "4",
+          "label": "Very worried"
+        },
+        {
+          "code": "5",
+          "label": "Extremely worried"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.016393441706895828,
+      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM4",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM4",
+      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Easy access to services/health professionals / availability"
+        },
+        {
+          "code": "2",
+          "label": "I received good medical care / good/quality service/care"
+        },
+        {
+          "code": "3",
+          "label": "I always get help / helpful staff"
+        },
+        {
+          "code": "4",
+          "label": "I have a local hospital / hospital/walk in clinic is close to home"
+        },
+        {
+          "code": "5",
+          "label": "I have a family doctor / enough family doctor"
+        },
+        {
+          "code": "6",
+          "label": "I have a specialist"
+        },
+        {
+          "code": "7",
+          "label": "I have a good doctor / doctors are good / competent health professionals"
+        },
+        {
+          "code": "8",
+          "label": "Good hospitals/medical facilities"
+        },
+        {
+          "code": "9",
+          "label": "Appropriate wait times / fast service"
+        },
+        {
+          "code": "10",
+          "label": "All my needs are met / It provides the needed services / never had any issues"
+        },
+        {
+          "code": "11",
+          "label": "Good / great / OK"
+        },
+        {
+          "code": "12",
+          "label": "Free services / affordability"
+        },
+        {
+          "code": "13",
+          "label": "Long wait times (for services, in ER, etc.)"
+        },
+        {
+          "code": "14",
+          "label": "Lack of doctors/family doctors/staff"
+        },
+        {
+          "code": "15",
+          "label": "Lack of specialists"
+        },
+        {
+          "code": "16",
+          "label": "Need more funding"
+        },
+        {
+          "code": "17",
+          "label": "Need more hospitals/clinics/beds"
+        },
+        {
+          "code": "18",
+          "label": "Missing/Limited services (various)"
+        },
+        {
+          "code": "96",
+          "label": "Other"
+        },
+        {
+          "code": "97",
+          "label": "Nothing / none / always need for improvement"
+        },
+        {
+          "code": "98",
+          "label": "Don't know / refusal"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.016129031777381897,
+      "id": "cecd_sante_can_usa__Q19",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q19",
+      "question_text": "During the past 2 years, was there ever a time you or a member of your family did not receive the care needed because you were unable to afford it?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "abordabilité",
+        "accès_aux_soins"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.016129031777381897,
+      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM3",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM3",
+      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Easy access to services/health professionals / availability"
+        },
+        {
+          "code": "2",
+          "label": "I received good medical care / good/quality service/care"
+        },
+        {
+          "code": "3",
+          "label": "I always get help / helpful staff"
+        },
+        {
+          "code": "4",
+          "label": "I have a local hospital / hospital/walk in clinic is close to home"
+        },
+        {
+          "code": "5",
+          "label": "I have a family doctor / enough family doctor"
+        },
+        {
+          "code": "6",
+          "label": "I have a specialist"
+        },
+        {
+          "code": "7",
+          "label": "I have a good doctor / doctors are good / competent health professionals"
+        },
+        {
+          "code": "8",
+          "label": "Good hospitals/medical facilities"
+        },
+        {
+          "code": "9",
+          "label": "Appropriate wait times / fast service"
+        },
+        {
+          "code": "10",
+          "label": "All my needs are met / It provides the needed services / never had any issues"
+        },
+        {
+          "code": "11",
+          "label": "Good / great / OK"
+        },
+        {
+          "code": "12",
+          "label": "Free services / affordability"
+        },
+        {
+          "code": "13",
+          "label": "Long wait times (for services, in ER, etc.)"
+        },
+        {
+          "code": "14",
+          "label": "Lack of doctors/family doctors/staff"
+        },
+        {
+          "code": "15",
+          "label": "Lack of specialists"
+        },
+        {
+          "code": "16",
+          "label": "Need more funding"
+        },
+        {
+          "code": "17",
+          "label": "Need more hospitals/clinics/beds"
+        },
+        {
+          "code": "18",
+          "label": "Missing/Limited services (various)"
+        },
+        {
+          "code": "96",
+          "label": "Other"
+        },
+        {
+          "code": "97",
+          "label": "Nothing / none / always need for improvement"
+        },
+        {
+          "code": "98",
+          "label": "Don't know / refusal"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01587301678955555,
+      "id": "govcan_habit_2024__AFFORDABILITY_HOUSING",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "AFFORDABILITY_HOUSING",
+      "question_text": "Housing - Think about your financial expenses over the last 12 months. During that time, how affordable or unaffordable were the following expenses?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Very unaffordable"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat unaffordable"
+        },
+        {
+          "code": "3",
+          "label": "Neither affordable nor unaffordable"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat affordable"
+        },
+        {
+          "code": "5",
+          "label": "Very affordable"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01587301678955555,
+      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM2",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM2",
+      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Easy access to services/health professionals / availability"
+        },
+        {
+          "code": "2",
+          "label": "I received good medical care / good/quality service/care"
+        },
+        {
+          "code": "3",
+          "label": "I always get help / helpful staff"
+        },
+        {
+          "code": "4",
+          "label": "I have a local hospital / hospital/walk in clinic is close to home"
+        },
+        {
+          "code": "5",
+          "label": "I have a family doctor / enough family doctor"
+        },
+        {
+          "code": "6",
+          "label": "I have a specialist"
+        },
+        {
+          "code": "7",
+          "label": "I have a good doctor / doctors are good / competent health professionals"
+        },
+        {
+          "code": "8",
+          "label": "Good hospitals/medical facilities"
+        },
+        {
+          "code": "9",
+          "label": "Appropriate wait times / fast service"
+        },
+        {
+          "code": "10",
+          "label": "All my needs are met / It provides the needed services / never had any issues"
+        },
+        {
+          "code": "11",
+          "label": "Good / great / OK"
+        },
+        {
+          "code": "12",
+          "label": "Free services / affordability"
+        },
+        {
+          "code": "13",
+          "label": "Long wait times (for services, in ER, etc.)"
+        },
+        {
+          "code": "14",
+          "label": "Lack of doctors/family doctors/staff"
+        },
+        {
+          "code": "15",
+          "label": "Lack of specialists"
+        },
+        {
+          "code": "16",
+          "label": "Need more funding"
+        },
+        {
+          "code": "17",
+          "label": "Need more hospitals/clinics/beds"
+        },
+        {
+          "code": "18",
+          "label": "Missing/Limited services (various)"
+        },
+        {
+          "code": "96",
+          "label": "Other"
+        },
+        {
+          "code": "97",
+          "label": "Nothing / none / always need for improvement"
+        },
+        {
+          "code": "98",
+          "label": "Don't know / refusal"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.015625,
+      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM5",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM5",
+      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Easy access to services/health professionals / availability"
+        },
+        {
+          "code": "2",
+          "label": "I received good medical care / good/quality service/care"
+        },
+        {
+          "code": "3",
+          "label": "I always get help / helpful staff"
+        },
+        {
+          "code": "4",
+          "label": "I have a local hospital / hospital/walk in clinic is close to home"
+        },
+        {
+          "code": "5",
+          "label": "I have a family doctor / enough family doctor"
+        },
+        {
+          "code": "6",
+          "label": "I have a specialist"
+        },
+        {
+          "code": "7",
+          "label": "I have a good doctor / doctors are good / competent health professionals"
+        },
+        {
+          "code": "8",
+          "label": "Good hospitals/medical facilities"
+        },
+        {
+          "code": "9",
+          "label": "Appropriate wait times / fast service"
+        },
+        {
+          "code": "10",
+          "label": "All my needs are met / It provides the needed services / never had any issues"
+        },
+        {
+          "code": "11",
+          "label": "Good / great / OK"
+        },
+        {
+          "code": "12",
+          "label": "Free services / affordability"
+        },
+        {
+          "code": "13",
+          "label": "Long wait times (for services, in ER, etc.)"
+        },
+        {
+          "code": "14",
+          "label": "Lack of doctors/family doctors/staff"
+        },
+        {
+          "code": "15",
+          "label": "Lack of specialists"
+        },
+        {
+          "code": "16",
+          "label": "Need more funding"
+        },
+        {
+          "code": "17",
+          "label": "Need more hospitals/clinics/beds"
+        },
+        {
+          "code": "18",
+          "label": "Missing/Limited services (various)"
+        },
+        {
+          "code": "96",
+          "label": "Other"
+        },
+        {
+          "code": "97",
+          "label": "Nothing / none / always need for improvement"
+        },
+        {
+          "code": "98",
+          "label": "Don't know / refusal"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.015384615398943424,
+      "id": "eeq_2014__Q60A",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q60A",
+      "question_text": "Aujourd'hui, êtes-vous propriétaire : / De votre résidence principale?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "immobilier"
+      ],
+      "themes": [
+        "économie personnelle"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01515151560306549,
+      "id": "eeq_2014__Q60B",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q60B",
+      "question_text": "Aujourd'hui, êtes-vous propriétaire : / D'une résidence secondaire (maison de campagne, chalet, etc.)?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "immobilier"
+      ],
+      "themes": [
+        "économie personnelle"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014925372786819935,
+      "id": "cecd_sante_can_usa__Q31",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q31",
+      "question_text": "When you think about paying for the costs of your medical care and those of your family in the future, including your insurance premiums, would you say that you are:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "abordabilité",
+        "inquiétude"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Worried"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat worried"
+        },
+        {
+          "code": "3",
+          "label": "Not very worried"
+        },
+        {
+          "code": "4",
+          "label": "Not worried at all"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014705882407724857,
+      "id": "cecd_elxn_qc_2007__reg",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "reg",
+      "question_text": "RÉGION",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "MONTRÉAL ILE"
+        },
+        {
+          "code": "2",
+          "label": "MONTRÉAL RESTE RMR"
+        },
+        {
+          "code": "3",
+          "label": "RESTE DU QUÉBEC"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014492753893136978,
+      "id": "cecd_sante_can_usa__Q53A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q53A",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / offering you affordable health care",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "abordabilité",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014285714365541935,
+      "id": "cecd_sante_can_usa__Q39",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q39",
+      "question_text": "Have you or a member of your family ever paid a non-refundable out-of-pocket payment for a medically necessary service such as a consultation with a doctor, a hospital service, a procedure or diagnostic test at a private clinic?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "abordabilité",
+        "coût_de_la_santé"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014177490025758743,
+      "id": "cecd_sante_can_usa__Q54A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q54A",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / offering",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "abordabilité",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé",
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014084506779909134,
+      "id": "cecd_charte_2013_10__reglang",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "reglang",
+      "question_text": "Croisement des variables de région et de langue",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Franco-RDQ"
+        },
+        {
+          "code": "2",
+          "label": "Franco-MTL"
+        },
+        {
+          "code": "3",
+          "label": "Anglo-allo"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013888888992369175,
+      "id": "cecd_sante_can_usa__Q39B",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q39B",
+      "question_text": "Would you say that this payment was:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "abordabilité",
+        "perception"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Very high"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat high"
+        },
+        {
+          "code": "3",
+          "label": "Somewhat low"
+        },
+        {
+          "code": "4",
+          "label": "Very low"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013698630034923553,
+      "id": "eeq_2014__Q60C",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q60C",
+      "question_text": "Aujourd'hui, êtes-vous propriétaire : / D'autres biens immobiliers ou de propriétés que vous louez (duplex, etc.)?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "immobilier"
+      ],
+      "themes": [
+        "économie personnelle"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013513513840734959,
+      "id": "cecd_sante_can_usa__Q24",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q24",
+      "question_text": "In the coming years, do you think that the risks that you or a member of your family might not be able at one time or another to afford needed health care are:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "abordabilité",
+        "risque_futur"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Very high"
+        },
+        {
+          "code": "2",
+          "label": "Fairly high"
+        },
+        {
+          "code": "3",
+          "label": "Fairly low"
+        },
+        {
+          "code": "4",
+          "label": "Very low"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013333333656191826,
+      "id": "cecd_elxn_qc_2007__z1q19",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1q19",
+      "question_text": "19. En ce qui a trait au projet de développement du Mont-Orford, êtes-vous favorable ou défavorable à la privatisation d'une partie des terrains du Mont-Orford?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "environnement",
+        "développement",
+        "bien public"
+      ],
+      "themes": [
+        "politiques publiques",
+        "enjeux électoraux"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Favorable"
+        },
+        {
+          "code": "2",
+          "label": "Défavorable"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013179645873606205,
+      "id": "cecd_sante_can_usa__Q38A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q38A",
+      "question_text": "In your dealing with private health care organizations, have you had any difficulties… / ...obtaining payment exemptions or the right to special rates for health care",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "expérience_patient",
+        "coût_de_la_santé"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01315789483487606,
+      "id": "govcan_06822_wave3_2024__TRUST_GOV_HOUSING",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_HOUSING",
+      "question_text": "Housing",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "housing",
+        "government policy"
+      ],
+      "themes": [
+        "housing",
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012987012974917889,
+      "id": "eeq_2014__Q36A",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q36A",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Notre société doit faire tout ce qui est nécessaire pour s'assurer que chacun ait une chance égale de réussir.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "égalité",
+        "justice sociale"
+      ],
+      "themes": [
+        "politique sociale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": "4",
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012820512987673283,
+      "id": "cecd_elxn_qc_2007__reg2",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "reg2",
+      "question_text": "Sous-région",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "ABITIBI-TÉMISCAMINGUE"
+        },
+        {
+          "code": "2",
+          "label": "BAS-ST-LAURENT"
+        },
+        {
+          "code": "3",
+          "label": "CHAUDIÈRE-APPALACHES (RA EXCL. RMR)"
+        },
+        {
+          "code": "4",
+          "label": "CHAUDIÈRE-APPALACHES (RMR-RA)"
+        },
+        {
+          "code": "5",
+          "label": "CÔTE-NORD DU QUÉBEC"
+        },
+        {
+          "code": "6",
+          "label": "ESTRIE"
+        },
+        {
+          "code": "7",
+          "label": "GASPÉSIE-ÎLES-DE-LA-MADELEINE"
+        },
+        {
+          "code": "8",
+          "label": "LANAUDIÈRE (EXCL.)"
+        },
+        {
+          "code": "9",
+          "label": "LAURENTIDES (EXCL.)"
+        },
+        {
+          "code": "10",
+          "label": "MAURICIE"
+        },
+        {
+          "code": "11",
+          "label": "MONTÉRÉGIE (EXCL.)"
+        },
+        {
+          "code": "12",
+          "label": "MONTRÉAL (RMR)-LANAUDIÈRE RA"
+        },
+        {
+          "code": "13",
+          "label": "MONTRÉAL (RMR)-LAURENTIDES RA"
+        },
+        {
+          "code": "14",
+          "label": "MONTRÉAL (RMR)-LAVAL RA"
+        },
+        {
+          "code": "15",
+          "label": "MONTRÉAL (RMR)-MONTÉRÉGIE RA"
+        },
+        {
+          "code": "16",
+          "label": "MONTRÉAL (RMR)-MONTRÉAL RA"
+        },
+        {
+          "code": "17",
+          "label": "NORD DU QUÉBEC"
+        },
+        {
+          "code": "18",
+          "label": "OUTAOUAIS"
+        },
+        {
+          "code": "19",
+          "label": "QUÉBEC (RA SANS QUÉBEC RMR)"
+        },
+        {
+          "code": "20",
+          "label": "QUÉBEC (RMR-RA)"
+        },
+        {
+          "code": "21",
+          "label": "SAGUENAY-LAC-ST-JEAN"
+        },
+        {
+          "code": "22",
+          "label": "CENTRE DU QUÉBEC"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012658228166401386,
+      "id": "cecd_charte_2013_10__reg",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "reg",
+      "question_text": "REG. Région",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "région",
+        "géographie"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "MONTRÉAL ÎLE"
+        },
+        {
+          "code": "2",
+          "label": "MONTRÉAL RESTE RMR RIVE-SUD"
+        },
+        {
+          "code": "3",
+          "label": "MONTRÉAL RESTE RMR RIVE-NORD"
+        },
+        {
+          "code": "4",
+          "label": "QUÉBEC RMR"
+        },
+        {
+          "code": "5",
+          "label": "RESTE QUÉBEC"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012500000186264515,
+      "id": "cecd_elxn_qc_2018__fsa_tabl",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "fsa_tabl",
+      "question_text": "Regions",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie",
+        "région"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Region - Île de Montréal"
+        },
+        {
+          "code": "2",
+          "label": "Region - Couronne"
+        },
+        {
+          "code": "3",
+          "label": "Region - Région de Québec"
+        },
+        {
+          "code": "4",
+          "label": "Region - Régions du Sud"
+        },
+        {
+          "code": "5",
+          "label": "Region - Régions du Nord"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012474368326365948,
+      "id": "cecd_sante_can_usa__Q77",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q77",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / One of the big problems in this country is that we don't give everyone an equal chance.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "problèmes_sociaux"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012345679104328156,
+      "id": "cecd_elxn_qc_2007__z1q16",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1q16",
+      "question_text": "16. En ce qui concerne les frais de scolarité à l'université, quelle option préférez-vous parmi les suivantes?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "éducation",
+        "politique publique"
+      ],
+      "themes": [
+        "politiques publiques",
+        "enjeux électoraux"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Doubler les frais de scolarité dès l¹an prochain"
+        },
+        {
+          "code": "2",
+          "label": "Augmenter les frais de scolarité de 50 $ par session (soit u"
+        },
+        {
+          "code": "3",
+          "label": "Geler les frais de scolarité"
+        },
+        {
+          "code": "4",
+          "label": "* Rendre l¹université gratuite"
+        },
+        {
+          "code": "6",
+          "label": "* Autre (précisez) :"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012195121496915817,
+      "id": "eeq_2014__Q40",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q40",
+      "question_text": "Certaines personnes disent que les gouvernements devraient s'assurer que chaque personne ait un emploi et une bonne qualité de vie. D'autres personnes disent que les gouvernements devraient plutôt laisser chaque personne se débrouiller par elle-même. Et d'",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "interventionnisme",
+        "filet social"
+      ],
+      "themes": [
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "1: Les gouvernements devraient s'assurer que chaque personne a un emploi et une bonne qualité de vie"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5: Les gouvernements devraient laisser chaque personne se débrouiller par elle-même"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012048192322254181,
+      "id": "cecd_sante_can_usa__Q23",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q23",
+      "question_text": "In the past 2 years, did you or a member of your family have any problems paying medical bills or not?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "coût_de_la_santé",
+        "difficultés_financières"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01190862711519003,
+      "id": "cecd_sante_can_usa__Q21",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q21",
+      "question_text": "During the past 2 years, was there ever a time you or a member of your family were unable to receive high quality medical care?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "qualité_des_soins",
+        "accès_aux_soins"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0117647061124444,
+      "id": "cecd_sante_can_usa__Q72",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q72",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / Our society should do whatever is necessary to make sure that everyone has an equal opportunity to succeed.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "égalité_des_chances"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011724372394382954,
+      "id": "cecd_sante_can_usa__HOUS",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "HOUS",
+      "question_text": "Counting yourself, how many people live in your household?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "composition_familiale"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "1"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011627906933426857,
+      "id": "cecd_sante_can_usa__Q28D",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q28D",
+      "question_text": "How confident are you that if you become seriously ill, you will ...? Are you very confident, somewhat confident, not very confident, or not at all confident? / ...be able to afford the care you need",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "abordabilité"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "very confident"
+        },
+        {
+          "code": "2",
+          "label": "somewhat confident"
+        },
+        {
+          "code": "3",
+          "label": "not very confident"
+        },
+        {
+          "code": "4",
+          "label": "not at all confident"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011363636702299118,
+      "id": "cecd_elxn_qc_2012__reg",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "reg",
+      "question_text": "REGION",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Montreal Island"
+        },
+        {
+          "code": "2",
+          "label": "Rest of Montreal CMA"
+        },
+        {
+          "code": "3",
+          "label": "Quebec CMA"
+        },
+        {
+          "code": "4",
+          "label": "Rest of Quebec"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01123595517128706,
+      "id": "cecd_sante_can_usa__Q49",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q49",
+      "question_text": "From what you know, would you say that the proportion of the population unable to afford the care it needs in Canada is higher, lower or about the same as in the United States?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "comparaison_internationale",
+        "abordabilité"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Higher"
+        },
+        {
+          "code": "2",
+          "label": "Lower"
+        },
+        {
+          "code": "3",
+          "label": "About the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011192810721695423,
+      "id": "cecd_sante_can_usa__Q65",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q65",
+      "question_text": "If you had to choose, would you rather have a universally free and accessible health care system or a universally free and accessible education system?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "priorités_sociales",
+        "services_publics"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Universally free and accessible health care system"
+        },
+        {
+          "code": "2",
+          "label": "Universally free and accessible education system"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011111111380159855,
+      "id": "cecd_sante_can_usa__Q20",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q20",
+      "question_text": "During the past 2 years, was there ever a time you or a member of your family were unable to receive the most effective drugs you needed?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "médicaments",
+        "accès_aux_soins"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010989011265337467,
+      "id": "cecd_sante_can_usa__Q54G",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q54G",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / providin",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "assurance_maladie",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé",
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010869565419852734,
+      "id": "eeq_2014__Q42G",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q42G",
+      "question_text": "Quel parti est le meilleur pour combattre la pauvreté?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "compétence partisane",
+        "pauvreté"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": "2",
+          "label": "Parti québécois"
+        },
+        {
+          "code": "3",
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": "4",
+          "label": "Québec solidaire"
+        },
+        {
+          "code": "5",
+          "label": "Option nationale"
+        },
+        {
+          "code": "6",
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": "96",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01075268816202879,
+      "id": "cecd_sante_can_usa__Q40",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q40",
+      "question_text": "All things considered, are you very satisfied, fairly satisfied, fairly dissatisfied or very dissatisfied with the total costs you're paying personally to get your medical care and that of your family?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "satisfaction",
+        "abordabilité"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Very satisfied"
+        },
+        {
+          "code": "2",
+          "label": "Fairly satisfied"
+        },
+        {
+          "code": "3",
+          "label": "Fairly dissatisfied"
+        },
+        {
+          "code": "4",
+          "label": "Very dissatisfied"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010638297535479069,
+      "id": "eeq_2014__QENFAN",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "QENFAN",
+      "question_text": "Y a-t-il des enfants de moins de 18 ans vivant dans votre ménage?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "famille"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010416666977107525,
+      "id": "govcan_habit_2024__AFFORDABILITY_HEALTH",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "AFFORDABILITY_HEALTH",
+      "question_text": "Health care (e.g., prescriptions/medications, tests, non-publicly funded healthcare services) - Think about your financial expenses over the last 12 months. During that time, how affordable or unaffordabl",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "affordability",
+        "healthcare_costs"
+      ],
+      "themes": [
+        "economy",
+        "health"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Very unaffordable"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat unaffordable"
+        },
+        {
+          "code": "3",
+          "label": "Neither affordable nor unaffordable"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat affordable"
+        },
+        {
+          "code": "5",
+          "label": "Very affordable"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010101010091602802,
+      "id": "cecd_elxn_qc_2007__raischang",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "raischang",
+      "question_text": "4a.   Quelle est la principale raison pour laquelle vous avez voté pour <Q3>?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "96",
+          "label": "Raison (précisez) :"
+        },
+        {
+          "code": "99",
+          "label": "NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009999999776482582,
+      "id": "eeq_2014__Q36C",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q36C",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Sans l'action du gouvernement, il y aurait beaucoup plus de pauvreté dans nos sociétés. \"",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "pauvreté",
+        "responsabilité gouvernementale"
+      ],
+      "themes": [
+        "politique sociale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": "4",
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009900989942252636,
+      "id": "cecd_elxn_qc_2007__revenu",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "revenu",
+      "question_text": "32. Dans laquelle des catégories suivantes se situe le revenu annuel total, avant impôts et déductions, de tous les membres de votre foyer, en vous incluant? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [
+        "revenu",
+        "statut économique"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...moins de 20 000 $"
+        },
+        {
+          "code": "2",
+          "label": "...20 000 $ à 39 999 $"
+        },
+        {
+          "code": "3",
+          "label": "...40 000 $ à 59 999 $"
+        },
+        {
+          "code": "4",
+          "label": "...60 000 $ à 79 999 $"
+        },
+        {
+          "code": "5",
+          "label": "...ou 80 000 $ et plus?"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009708737954497337,
+      "id": "cecd_sante_can_usa__Q57B",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q57B",
+      "question_text": "Overall, do you think that more private sector involvement would lead to improvement in: / access to healthcare services",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "système_privé",
+        "accès_aux_soins"
+      ],
+      "themes": [
+        "santé",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Definitely"
+        },
+        {
+          "code": "2",
+          "label": "Probably"
+        },
+        {
+          "code": "3",
+          "label": "Probably not"
+        },
+        {
+          "code": "4",
+          "label": "Definitely not"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009615384973585606,
+      "id": "govcan_06822_wave1_2024__MIS_F_IMM_4",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "MIS_F_IMM_4",
+      "question_text": "Refugees in Canada receive more money from the government than the average pensioner.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "immigration",
+        "réfugiés",
+        "désinformation",
+        "économie"
+      ],
+      "themes": [
+        "immigration",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Accurate"
+        },
+        {
+          "code": "2",
+          "label": "Inaccurate"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009523809887468815,
+      "id": "cecd_sante_can_usa__Q18",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q18",
+      "question_text": "During the past 2 years, was there ever a time when you felt that you or a member of your family needed health care but you didn't receive it?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "accès_aux_soins",
+        "besoins_non_comblés"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009433962404727936,
+      "id": "cecd_charte_2013_10__qreve",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qreve",
+      "question_text": "QREVE. Dans laquelle des catégories suivantes se situe le revenu annuel total, avant impôts et déductions, de tous les membres de votre foyer, en vous incluant? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [
+        "revenu",
+        "situation économique"
+      ],
+      "themes": [
+        "profil",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "moins de 20 000 $"
+        },
+        {
+          "code": "2",
+          "label": "20 000 $ à 39 999 $"
+        },
+        {
+          "code": "3",
+          "label": "40 000 $ à 59 999 $"
+        },
+        {
+          "code": "4",
+          "label": "60 000 $ à 79 999 $"
+        },
+        {
+          "code": "5",
+          "label": "80 000 $ à 99 999 $"
+        },
+        {
+          "code": "6",
+          "label": "100 000 $ à 149 999 $"
+        },
+        {
+          "code": "7",
+          "label": "150 000 $ et plus"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009345794096589088,
+      "id": "eeq_2014__Q38",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q38",
+      "question_text": "Êtes-vous pour ou contre le mariage entre personnes de même sexe?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "droits LGBTQ+"
+      ],
+      "themes": [
+        "valeurs sociales"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pour"
+        },
+        {
+          "code": "2",
+          "label": "Contre"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009259259328246117,
+      "id": "cecd_sante_can_usa__Q66E",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q66E",
+      "question_text": "In your opinion, what is the main advantage of the Canadian health care system compared to the American one?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "comparaison_internationale",
+        "avantage"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Quicker access to a trained specialist"
+        },
+        {
+          "code": "2",
+          "label": "Higher quality health care"
+        },
+        {
+          "code": "3",
+          "label": "The possibility of choosing your doctor or hospital"
+        },
+        {
+          "code": "4",
+          "label": "More affordable health care"
+        },
+        {
+          "code": "5",
+          "label": "No advantage"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.00917431153357029,
+      "id": "cecd_sante_can_usa__Q37",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q37",
+      "question_text": "In the past year, was there ever a time when you did not have any health insurance coverage?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "assurance_maladie",
+        "accès_aux_soins"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002500000176951289,
+      "id": "cecd_sante_can_usa__DIVIS",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "DIVIS",
+      "question_text": "US DIVISION",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "New England"
+        },
+        {
+          "code": "2",
+          "label": "Middle Atlantic"
+        },
+        {
+          "code": "3",
+          "label": "East North Central"
+        },
+        {
+          "code": "4",
+          "label": "West North Central"
+        },
+        {
+          "code": "5",
+          "label": "South Atlantic"
+        },
+        {
+          "code": "6",
+          "label": "East South Central"
+        },
+        {
+          "code": "7",
+          "label": "West South Central"
+        },
+        {
+          "code": "8",
+          "label": "Mountain"
+        },
+        {
+          "code": "9",
+          "label": "Pacific"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0024590163957327604,
+      "id": "cecd_sante_can_usa__Q5A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q5A",
+      "question_text": "Has any doctor ever diagnosed you with or treated you for any of the following health conditions: / Arthritis?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "santé_personnelle",
+        "diagnostic"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002419354859739542,
+      "id": "cecd_sante_can_usa__Q30A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q30A",
+      "question_text": "Now, we would like to ask you about the different kinds of health plans or health insurance people have, including those provided by the government. For each one, please tell us whether you are currently covered by it, or not. / Health insurance through yo",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "assurance_maladie",
+        "emploi"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023809527046978474,
+      "id": "cecd_sante_can_usa__Q46",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q46",
+      "question_text": "For you personally, do you think that the American health care system is better, worse or much the same as the Canadian health care system?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "comparaison_internationale",
+        "préférence"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Better"
+        },
+        {
+          "code": "2",
+          "label": "Worse"
+        },
+        {
+          "code": "3",
+          "label": "Much the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023437500931322575,
+      "id": "cecd_sante_can_usa__Q53F",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q53F",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / allowing you to choose your doctor or hospital",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "liberté_de_choix",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023076923098415136,
+      "id": "cecd_sante_can_usa__Q53G",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q53G",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / providing you with a comprehensive, guaranteed and affordable ins",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "assurance_maladie",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002238806104287505,
+      "id": "cecd_sante_can_usa__Q54D",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q54D",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / allowing",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "accès_aux_soins",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé",
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002205882454290986,
+      "id": "cecd_sante_can_usa__Q66A2",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q66A2",
+      "question_text": "In the future, do you think that the government's involvement in the American health system will increase, decrease, or stay the same as now?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évolution",
+        "système_public"
+      ],
+      "themes": [
+        "santé",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Increase"
+        },
+        {
+          "code": "2",
+          "label": "Decrease"
+        },
+        {
+          "code": "3",
+          "label": "Stay the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002173913177102804,
+      "id": "cecd_sante_can_usa__Q66G",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q66G",
+      "question_text": "As you may know, in 2010 the United States' Congress passed President Obama's health care reforms that are to be phased in over the next few years. Overall, do you think that these are good reforms, bad reforms, or don't you know enough to say?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "réforme",
+        "obamacare"
+      ],
+      "themes": [
+        "politique",
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Good reforms"
+        },
+        {
+          "code": "2",
+          "label": "Bad reforms"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0021428572945296764,
+      "id": "cecd_sante_can_usa__OCCUP",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "OCCUP",
+      "question_text": "During the last 12 months, what has been your main occupation?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [
+        "profession"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Health Professional (doctor, nurse, etc.)"
+        },
+        {
+          "code": "2",
+          "label": "Other Professional (engineer, teacher, clergy, etc.)"
+        },
+        {
+          "code": "3",
+          "label": "Technician or Associate Professional (inspector, finance dea"
+        },
+        {
+          "code": "4",
+          "label": "Legislator, Senior Official, or Manager"
+        },
+        {
+          "code": "5",
+          "label": "Clerk (secretary, cashier, etc.)"
+        },
+        {
+          "code": "6",
+          "label": "Service or sales worker (cook, travel guide, shop salesperso"
+        },
+        {
+          "code": "7",
+          "label": "Agricultural or fishery worker (vegetable grower, livestock"
+        },
+        {
+          "code": "8",
+          "label": "Craft or trades worker (carpenter, painter, jewelry worker,"
+        },
+        {
+          "code": "9",
+          "label": "Plant/machine operator or assembler (equipment assembler, se"
+        },
+        {
+          "code": "11",
+          "label": "Elementary worker (street food vendor, shoe cleaner, etc.)"
+        },
+        {
+          "code": "12",
+          "label": "Armed forces (government military)"
+        },
+        {
+          "code": "99",
+          "label": "I prefer not to answer"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0021126761566847563,
+      "id": "cecd_sante_can_usa__Q11",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q11",
+      "question_text": "Would you say that the total cost of healthcare is too high, too low, or just about right compared with the country's economy?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "coût_de_la_santé",
+        "économie"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Too high"
+        },
+        {
+          "code": "2",
+          "label": "Too low"
+        },
+        {
+          "code": "3",
+          "label": "Just about right"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0020833334419876337,
+      "id": "cecd_sante_can_usa__Q25",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q25",
+      "question_text": "In the coming years, do you think that the risks that you or a member of your family may be unable at one time or another to receive the most effective drugs you needed are:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "médicaments",
+        "risque_futur"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Very high"
+        },
+        {
+          "code": "2",
+          "label": "Fairly high"
+        },
+        {
+          "code": "3",
+          "label": "Fairly low"
+        },
+        {
+          "code": "4",
+          "label": "Very low"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002054794691503048,
+      "id": "cecd_sante_can_usa__Q32A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q32A",
+      "question_text": "From what you know, would you say that the proportion of the American population that is worried about being able to pay for their medical care and those of their family is higher, lower or about the same as in Canada ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "comparaison_internationale",
+        "perception",
+        "abordabilité"
+      ],
+      "themes": [
+        "santé",
+        "opinion_publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Higher"
+        },
+        {
+          "code": "2",
+          "label": "Lower"
+        },
+        {
+          "code": "3",
+          "label": "About the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002027027076110244,
+      "id": "cecd_sante_can_usa__Q34C",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q34C",
+      "question_text": "From what you know, would you say that the proportion of the Canadian population that is worried about the coverage of their health care needs is higher, lower or about the same as in the United States ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "comparaison_internationale",
+        "perception",
+        "couverture_santé"
+      ],
+      "themes": [
+        "santé",
+        "opinion_publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Higher"
+        },
+        {
+          "code": "2",
+          "label": "Lower"
+        },
+        {
+          "code": "3",
+          "label": "About the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0020000000949949026,
+      "id": "cecd_sante_can_usa__Q52",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q52",
+      "question_text": "And do you think that the proportion of the population that had to wait longer than reasonable to get health care services in Canada is higher, lower or about the same as in the United States?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "comparaison_internationale",
+        "délais_d_attente"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Higher"
+        },
+        {
+          "code": "2",
+          "label": "Lower"
+        },
+        {
+          "code": "3",
+          "label": "About the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001973684411495924,
+      "id": "cecd_sante_can_usa__Q64",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q64",
+      "question_text": "Market-based health care is part of what it means to be American and reflects our core values.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "identité_nationale",
+        "valeurs",
+        "système_privé"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0019230770412832499,
+      "id": "cecd_sante_can_usa__REVEN",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "REVEN",
+      "question_text": "And now your last year's total household income before taxes. That includes income from all sources such as savings, pensions, rent, as well as wages. We don't need the exact amount; could you tell me which of these broad categories it falls into:",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [
+        "revenu"
+      ],
+      "themes": [
+        "démographie",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "less than $20,000"
+        },
+        {
+          "code": "2",
+          "label": "between $20,000 and $30,000($29,999.99)"
+        },
+        {
+          "code": "3",
+          "label": "between $30,000 and $40,000"
+        },
+        {
+          "code": "4",
+          "label": "between $40,000 and $50,000"
+        },
+        {
+          "code": "5",
+          "label": "between $50,000 and $60,000"
+        },
+        {
+          "code": "6",
+          "label": "between $60,000 and $70,000"
+        },
+        {
+          "code": "7",
+          "label": "between $70,000 and $80,000"
+        },
+        {
+          "code": "8",
+          "label": "between $80,000 and $90,000"
+        },
+        {
+          "code": "9",
+          "label": "between $90,000 and $100,000"
+        },
+        {
+          "code": "10",
+          "label": "between $100,000 and $110,00"
+        },
+        {
+          "code": "11",
+          "label": "between $110,000 and $120,000"
+        },
+        {
+          "code": "12",
+          "label": "more than $120,000"
+        },
+        {
+          "code": "99",
+          "label": "I prefer not to answer"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018987342482432723,
+      "id": "cecd_sante_can_usa__MTONG",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "MTONG",
+      "question_text": "What is your mother tongue?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [
+        "langue"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "English"
+        },
+        {
+          "code": "2",
+          "label": "French"
+        },
+        {
+          "code": "3",
+          "label": "Spanish"
+        },
+        {
+          "code": "4",
+          "label": "Turkish"
+        },
+        {
+          "code": "5",
+          "label": "German"
+        },
+        {
+          "code": "6",
+          "label": "Hindi"
+        },
+        {
+          "code": "7",
+          "label": "Chinese"
+        },
+        {
+          "code": "96",
+          "label": "Other (Specify)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001875000074505806,
+      "id": "cecd_sante_can_usa__BIRTH",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "BIRTH",
+      "question_text": "In what year were you born?",
+      "var_type": "continuous",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [
+        "âge"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.0018518519354984164,
+      "id": "cecd_sante_can_usa__Q2A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q2A",
+      "question_text": "What is your height? / Please indicate using feet/inches or centimeters:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "santé_personnelle",
+        "taille"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Feet/inches"
+        },
+        {
+          "code": "2",
+          "label": "Centimeters"
+        },
+        {
+          "code": "9",
+          "label": "I prefer not answering"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018292682943865657,
+      "id": "cecd_sante_can_usa__STATE",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "STATE",
+      "question_text": "In which state do you live?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Alabama"
+        },
+        {
+          "code": "2",
+          "label": "Alaska"
+        },
+        {
+          "code": "4",
+          "label": "Arizona"
+        },
+        {
+          "code": "5",
+          "label": "Arkansas"
+        },
+        {
+          "code": "6",
+          "label": "California"
+        },
+        {
+          "code": "8",
+          "label": "Colorado"
+        },
+        {
+          "code": "9",
+          "label": "Connecticut"
+        },
+        {
+          "code": "10",
+          "label": "Delaware"
+        },
+        {
+          "code": "11",
+          "label": "District of Columbia"
+        },
+        {
+          "code": "12",
+          "label": "Florida"
+        },
+        {
+          "code": "13",
+          "label": "Georgia"
+        },
+        {
+          "code": "15",
+          "label": "Hawaii"
+        },
+        {
+          "code": "16",
+          "label": "Idaho"
+        },
+        {
+          "code": "17",
+          "label": "Illinois"
+        },
+        {
+          "code": "18",
+          "label": "Indiana"
+        },
+        {
+          "code": "19",
+          "label": "Iowa"
+        },
+        {
+          "code": "20",
+          "label": "Kansas"
+        },
+        {
+          "code": "21",
+          "label": "Kentucky"
+        },
+        {
+          "code": "22",
+          "label": "Louisiana"
+        },
+        {
+          "code": "23",
+          "label": "Maine"
+        },
+        {
+          "code": "24",
+          "label": "Maryland"
+        },
+        {
+          "code": "25",
+          "label": "Massachusetts"
+        },
+        {
+          "code": "26",
+          "label": "Michigan"
+        },
+        {
+          "code": "27",
+          "label": "Minnesota"
+        },
+        {
+          "code": "28",
+          "label": "Mississippi"
+        },
+        {
+          "code": "29",
+          "label": "Missouri"
+        },
+        {
+          "code": "30",
+          "label": "Montana"
+        },
+        {
+          "code": "31",
+          "label": "Nebraska"
+        },
+        {
+          "code": "32",
+          "label": "Nevada"
+        },
+        {
+          "code": "33",
+          "label": "New Hampshire"
+        },
+        {
+          "code": "34",
+          "label": "New Jersey"
+        },
+        {
+          "code": "35",
+          "label": "New Mexico"
+        },
+        {
+          "code": "36",
+          "label": "New York"
+        },
+        {
+          "code": "37",
+          "label": "North Carolina"
+        },
+        {
+          "code": "38",
+          "label": "North Dakota"
+        },
+        {
+          "code": "39",
+          "label": "Ohio"
+        },
+        {
+          "code": "40",
+          "label": "Oklahoma"
+        },
+        {
+          "code": "41",
+          "label": "Oregon"
+        },
+        {
+          "code": "42",
+          "label": "Pennsylvania"
+        },
+        {
+          "code": "44",
+          "label": "Rhode Island"
+        },
+        {
+          "code": "45",
+          "label": "South Carolina"
+        },
+        {
+          "code": "46",
+          "label": "South Dakota"
+        },
+        {
+          "code": "47",
+          "label": "Tennessee"
+        },
+        {
+          "code": "48",
+          "label": "Texas"
+        },
+        {
+          "code": "49",
+          "label": "Utah"
+        },
+        {
+          "code": "50",
+          "label": "Vermont"
+        },
+        {
+          "code": "51",
+          "label": "Virginia"
+        },
+        {
+          "code": "53",
+          "label": "Washington"
+        },
+        {
+          "code": "54",
+          "label": "West Virginia"
+        },
+        {
+          "code": "55",
+          "label": "Wisconsin"
+        },
+        {
+          "code": "56",
+          "label": "Wyoming"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018072288949042559,
+      "id": "cecd_sante_can_usa__Q5C",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q5C",
+      "question_text": "Has any doctor ever diagnosed you with or treated you for any of the following health conditions: / Diabetes?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "santé_personnelle",
+        "diagnostic"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017857144121080637,
+      "id": "cecd_sante_can_usa__Q5D",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q5D",
+      "question_text": "Has any doctor ever diagnosed you with or treated you for any of the following health conditions: / Asthma?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "santé_personnelle",
+        "diagnostic"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017647059867158532,
+      "id": "cecd_sante_can_usa__Q7",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q7",
+      "question_text": "Overall, would you rate the healthcare coverage in your country as excellent, good, only fair, or poor?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "satisfaction",
+        "couverture_santé"
+      ],
+      "themes": [
+        "santé",
+        "services_publics"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Excellent"
+        },
+        {
+          "code": "2",
+          "label": "Good"
+        },
+        {
+          "code": "3",
+          "label": "Only fair"
+        },
+        {
+          "code": "4",
+          "label": "Poor"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017441861564293504,
+      "id": "cecd_sante_can_usa__Q14",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q14",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / Health costs will continue to rise, but the increase will be manageable due to growth in the economy.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "coût_de_la_santé",
+        "croissance_économique"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017241380410268903,
+      "id": "cecd_sante_can_usa__Q14A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q14A",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / The demand for health care will increase, but we will be able to contain costs by operating the health care system more efficiently.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "coût_de_la_santé",
+        "efficacité"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016666668234393,
+      "id": "cecd_sante_can_usa__Q52B1",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q52B1",
+      "question_text": "Do you think that the overall health care costs per inhabitant in Canada are higher, lower, or about the same as in the United States, or you don't you know enough to say?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "coût_de_la_santé",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Higher"
+        },
+        {
+          "code": "2",
+          "label": "Lower"
+        },
+        {
+          "code": "3",
+          "label": "About the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016483517829328775,
+      "id": "cecd_sante_can_usa__Q66A1",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q66A1",
+      "question_text": "In the future, do you think that the private sector's involvement in the Canadian health system will increase, decrease, or stay the same as now?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évolution",
+        "système_privé"
+      ],
+      "themes": [
+        "santé",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Increase"
+        },
+        {
+          "code": "2",
+          "label": "Decrease"
+        },
+        {
+          "code": "3",
+          "label": "Stay the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016304348828271031,
+      "id": "cecd_sante_can_usa__Q67",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q67",
+      "question_text": "Generally speaking, do you usually think of yourself as a Liberal, Conservative, New Democrat, Bloquist, or what?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "partisanerie"
+      ],
+      "themes": [
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Liberal"
+        },
+        {
+          "code": "2",
+          "label": "Conservative"
+        },
+        {
+          "code": "3",
+          "label": "New Democrat"
+        },
+        {
+          "code": "4",
+          "label": "Bloquist"
+        },
+        {
+          "code": "5",
+          "label": "***Green"
+        },
+        {
+          "code": "6",
+          "label": "***It varies/ it depends on the candidate/ the issue"
+        },
+        {
+          "code": "95",
+          "label": "***None"
+        },
+        {
+          "code": "96",
+          "label": "Other (specify)"
+        },
+        {
+          "code": "98",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016129033174365759,
+      "id": "cecd_sante_can_usa__RACE",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "RACE",
+      "question_text": "People living in Canada come from many different cultural and racial backgrounds. Are you:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "ethnicité"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "White"
+        },
+        {
+          "code": "2",
+          "label": "Chinese"
+        },
+        {
+          "code": "3",
+          "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
+        },
+        {
+          "code": "4",
+          "label": "Black"
+        },
+        {
+          "code": "5",
+          "label": "Filipino"
+        },
+        {
+          "code": "6",
+          "label": "Latin American"
+        },
+        {
+          "code": "7",
+          "label": "Southeast Asian (e.g., Cambodian, Indonesian, Laotian, Vietn"
+        },
+        {
+          "code": "8",
+          "label": "Arab"
+        },
+        {
+          "code": "9",
+          "label": "West Asian (e.g., Afghan, Iranian, etc.)"
+        },
+        {
+          "code": "10",
+          "label": "Japanese"
+        },
+        {
+          "code": "11",
+          "label": "Korean"
+        },
+        {
+          "code": "12",
+          "label": "North American Indian, Métis, Inuit (Eskimo)"
+        },
+        {
+          "code": "96",
+          "label": "Other Specify"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015957447467371821,
+      "id": "cecd_sante_can_usa__Q26",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q26",
+      "question_text": "In the coming years, do you think that the risks that you or a member of your family may be unable to receive high quality medical care are:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "qualité_des_soins",
+        "risque_futur"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Very high"
+        },
+        {
+          "code": "2",
+          "label": "Fairly high"
+        },
+        {
+          "code": "3",
+          "label": "Fairly low"
+        },
+        {
+          "code": "4",
+          "label": "Very low"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015789475291967392,
+      "id": "cecd_sante_can_usa__Q33",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q33",
+      "question_text": "When you think about the coverage of your health care needs and those of your family in the future, would you say that you are:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "couverture_santé",
+        "inquiétude"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Worried"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat worried"
+        },
+        {
+          "code": "3",
+          "label": "Not very worried"
+        },
+        {
+          "code": "4",
+          "label": "Not worried at all"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015625001396983862,
+      "id": "cecd_sante_can_usa__Q34A",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q34A",
+      "question_text": "From what you know, would you say that the proportion of the American population that is worried about the coverage of their health care needs is higher, lower or about the same as in Canada ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "comparaison_internationale",
+        "perception",
+        "couverture_santé"
+      ],
+      "themes": [
+        "santé",
+        "opinion_publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Higher"
+        },
+        {
+          "code": "2",
+          "label": "Lower"
+        },
+        {
+          "code": "3",
+          "label": "About the same"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015306122368201613,
+      "id": "cecd_sante_can_usa__Q47",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q47",
+      "question_text": "Overall, in your view, which health care system is the most effective, the Canadian or the American?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "comparaison_internationale",
+        "efficacité"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015151515835896134,
+      "id": "cecd_sante_can_usa__Q53B",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q53B",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / making available to you the most effective drugs",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "médicaments",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001500000013038516,
+      "id": "cecd_sante_can_usa__Q53E",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q53E",
+      "question_text": "Suppose you or a member of your family become sick today. From what you know, which health care system would be better at dealing with the following problems, the Canadian or the American? / allowing you a needed surgery as soon as possible",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "accès_aux_soins",
+        "comparaison_internationale",
+        "délais_d_attente"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014851485611870885,
+      "id": "cecd_sante_can_usa__Q54B",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q54B",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / offering",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "médicaments",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé",
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001470588380470872,
+      "id": "cecd_sante_can_usa__Q54F",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q54F",
+      "question_text": "Now, not thinking about yourself and your family but about the population in general. From what you know, which healthcare system would be better at dealing with the following problems for everybody (rich and poor), the Canadian or the American? / allowing",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "liberté_de_choix",
+        "comparaison_internationale"
+      ],
+      "themes": [
+        "santé",
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Canadian"
+        },
+        {
+          "code": "2",
+          "label": "American"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014563107397407293,
+      "id": "cecd_sante_can_usa__Q56",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q56",
+      "question_text": "In your opinion, should the government's involvement in delivering health care to Americans be larger, smaller or about the same as it is now?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "système_public",
+        "rôle_de_l_état"
+      ],
+      "themes": [
+        "politique",
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Much larger"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat larger"
+        },
+        {
+          "code": "3",
+          "label": "About the same"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat smaller"
+        },
+        {
+          "code": "5",
+          "label": "Much smaller"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014423078391700983,
+      "id": "cecd_sante_can_usa__Q70",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q70",
+      "question_text": "In politics people sometimes talk of being liberal or conservative. Where would you place yourself on the scale below? / (Liberal=0 to Conservative=5)",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "idéologie",
+        "libéral_conservateur"
+      ],
+      "themes": [
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "0 - Liberal"
+        },
+        {
+          "code": "1",
+          "label": "1"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5 - Conservative"
+        },
+        {
+          "code": "8",
+          "label": "I'm not sure"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001428571529686451,
+      "id": "cecd_sante_can_usa__Q74",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q74",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / This country would be better off if we worried less about how equal people are.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "égalité",
+        "valeurs"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014018691144883633,
+      "id": "cecd_sante_can_usa__Q60",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q60",
+      "question_text": "Our society as a whole would be worse-off if a publicly-funded health care system were to be adopted in America.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "système_public",
+        "impact_social"
+      ],
+      "themes": [
+        "santé",
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0013761467998847365,
+      "id": "cecd_sante_can_usa__Q66C",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q66C",
+      "question_text": "Would you say that, in this country, there currently is a shortage of: / medical specialists?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "accès_aux_soins",
+        "pénurie_de_personnel"
+      ],
+      "themes": [
+        "santé"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Yes"
+        },
+        {
+          "code": "2",
+          "label": "No"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    }
+  ]
+}

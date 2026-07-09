@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchState } from "../context/SearchContext";
 import SearchBar from "../components/SearchBar";
 import ConceptChips from "../components/ConceptChips";
-import Facets, { type FacetOptions } from "../components/Facets";
+import Facets from "../components/Facets";
 import SurveyGroup, { type SurveyGroupData } from "../components/SurveyGroup";
 import RelevanceTimeline from "../components/RelevanceTimeline";
 import type { SearchResult, Pertinence } from "../types";
@@ -34,28 +34,9 @@ function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
   return [...groups.values()];
 }
 
-function buildFacetOptions(results: SearchResult[]): FacetOptions {
-  const years = new Set<number>();
-  const pollsters = new Set<string>();
-  const languages = new Set<string>();
-  const themes = new Set<string>();
-  for (const r of results) {
-    if (r.survey_year != null) years.add(r.survey_year);
-    if (r.pollster) pollsters.add(r.pollster);
-    if (r.language) languages.add(r.language);
-    for (const t of r.themes) themes.add(t);
-  }
-  return {
-    years: [...years].sort((a, b) => b - a),
-    pollsters: [...pollsters].sort(),
-    languages: [...languages].sort(),
-    themes: [...themes].sort(),
-  };
-}
-
 export default function SearchPage() {
   const {
-    query, filters, concepts, results, loading, decomposing, error, hasSearched,
+    query, filters, concepts, results, facets, globalFacets, loading, decomposing, error, hasSearched,
     handleSearch, handleFilterChange, handleConceptsChange,
   } = useSearchState();
 
@@ -81,7 +62,14 @@ export default function SearchPage() {
     [results, activePertinences],
   );
 
-  const facetOptions = useMemo(() => buildFacetOptions(results), [results]);
+  const themes = useMemo(() => {
+    const set = new Set<string>();
+    for (const r of results) {
+      for (const t of r.themes) set.add(t);
+    }
+    return [...set].sort();
+  }, [results]);
+
   const groups = useMemo(() => groupBySurvey(visibleResults), [visibleResults]);
 
   const relevanceStats = useMemo(
@@ -130,11 +118,11 @@ export default function SearchPage() {
       {results.length > 0 && (
         <div className="grid-facets">
           <Facets
-            options={facetOptions}
+            facets={facets}
+            globalFacets={globalFacets}
+            themes={themes}
             filters={filters}
             onFilterChange={handleFilterChange}
-            themeFilter={filters.themes?.[0] || null}
-            onThemeChange={(t) => handleFilterChange({ ...filters, themes: t ? [t] : undefined })}
           />
 
           <div className="min-w-0 space-y-4">

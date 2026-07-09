@@ -1,0 +1,6664 @@
+{
+  "id": "q12",
+  "query": "enjeux les plus importants de la campagne",
+  "concepts": [
+    {
+      "orig": "enjeux",
+      "syns": [
+        "enjeu",
+        "issue",
+        "issues",
+        "sujet",
+        "sujets",
+        "problème",
+        "problèmes",
+        "campagne électorale",
+        "election campaign"
+      ],
+      "weight": 0.75
+    },
+    {
+      "orig": "importance",
+      "syns": [
+        "important",
+        "importants",
+        "plus important",
+        "les plus importants",
+        "priorité",
+        "priorités",
+        "most important",
+        "priority",
+        "priorities"
+      ],
+      "weight": 0.25
+    }
+  ],
+  "candidates": [
+    {
+      "@search.score": 0.035208337008953094,
+      "id": "cecd_elxn_qc_2007__z1q9",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1q9",
+      "question_text": "9. Selon vous, quel sera l'enjeu le plus important de la présente campagne électorale? Est-ce….",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "enjeux électoraux",
+        "saillance"
+      ],
+      "themes": [
+        "élections",
+        "enjeux publics"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "L'environnement"
+        },
+        {
+          "code": "2",
+          "label": "Le déséquilibre fiscal"
+        },
+        {
+          "code": "3",
+          "label": "La santé"
+        },
+        {
+          "code": "4",
+          "label": "L'éducation"
+        },
+        {
+          "code": "5",
+          "label": "L'emploi"
+        },
+        {
+          "code": "6",
+          "label": "Les accommodements raisonnables"
+        },
+        {
+          "code": "7",
+          "label": "La défense des intérêts du Québec"
+        },
+        {
+          "code": "8",
+          "label": "* Plusieurs ou toutes ces réponses"
+        },
+        {
+          "code": "96",
+          "label": "* autre (précisez) :"
+        },
+        {
+          "code": "99",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.032786883413791656,
+      "id": "eeq_2014__Q1",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q1",
+      "question_text": "Parmi les enjeux suivants, lequel était, pour vous personnellement, le plus important lors de l'élection provinciale du 7 avril dernier?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "enjeux électoraux"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "L'économie"
+        },
+        {
+          "code": "2",
+          "label": "La santé"
+        },
+        {
+          "code": "3",
+          "label": "L'environnement"
+        },
+        {
+          "code": "4",
+          "label": "L'éducation"
+        },
+        {
+          "code": "5",
+          "label": "L'aide aux familles"
+        },
+        {
+          "code": "6",
+          "label": "La pauvreté"
+        },
+        {
+          "code": "7",
+          "label": "L'intégrité"
+        },
+        {
+          "code": "8",
+          "label": "Les taxes et les finances publiques"
+        },
+        {
+          "code": "9",
+          "label": "La souveraineté du Québec"
+        },
+        {
+          "code": "10",
+          "label": "La charte de la laïcité"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.025562994182109833,
+      "id": "eeq_2014__Q18",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q18",
+      "question_text": "À quel point l'enjeu de l'indépendance politique du Québec est-il important pour vous, personnellement?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très important"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt important"
+        },
+        {
+          "code": "3",
+          "label": "Pas très important"
+        },
+        {
+          "code": "4",
+          "label": "Pas du tout important"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.017424242570996284,
+      "id": "cecd_elxn_qc_2007__interet",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "interet",
+      "question_text": "1. Personnellement, vous intéressez-vous beaucoup, assez, peu ou pas du tout à la présente campagne électorale au Québec?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "engagement politique",
+        "intérêt électoral"
+      ],
+      "themes": [
+        "engagement civique",
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "beaucoup"
+        },
+        {
+          "code": "2",
+          "label": "assez"
+        },
+        {
+          "code": "3",
+          "label": "peu"
+        },
+        {
+          "code": "4",
+          "label": "pas du tout"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.017307693138718605,
+      "id": "cecd_elxn_qc_2007__z1q2",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1q2",
+      "question_text": "2. Selon vous, lequel des 5 chefs a fait la meilleure campagne jusqu'à maintenant?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation des chefs",
+        "campagne électorale"
+      ],
+      "themes": [
+        "leadership politique",
+        "communication politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "André Boisclair (PQ)"
+        },
+        {
+          "code": "2",
+          "label": "Jean Charest (PLQ)"
+        },
+        {
+          "code": "3",
+          "label": "Françoise David (PQS)"
+        },
+        {
+          "code": "4",
+          "label": "Mario Dumont (ADQ)"
+        },
+        {
+          "code": "5",
+          "label": "Scott Mckay (PV)"
+        },
+        {
+          "code": "6",
+          "label": "* les 5 également"
+        },
+        {
+          "code": "7",
+          "label": "* aucun des cinq"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.016649510711431503,
+      "id": "cecd_elxn_qc_2007__raischang",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "raischang",
+      "question_text": "4a.   Quelle est la principale raison pour laquelle vous avez voté pour <Q3>?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "96",
+          "label": "Raison (précisez) :"
+        },
+        {
+          "code": "99",
+          "label": "NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.016129031777381897,
+      "id": "cecd_elxn_qc_1998__q4m1",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "q4m1",
+      "question_text": "Q4 Quelle est la principale raison pour laquelle vous avez fait votre choix",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "justification électorale",
+        "raison du vote"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Vote strategique"
+        },
+        {
+          "code": "2",
+          "label": "Pour le changement"
+        },
+        {
+          "code": "3",
+          "label": "Menage dans sante"
+        },
+        {
+          "code": "4",
+          "label": "Rencontre candidat"
+        },
+        {
+          "code": "5",
+          "label": "A cause du chef"
+        },
+        {
+          "code": "6",
+          "label": "Contre la separation, le referendum"
+        },
+        {
+          "code": "7",
+          "label": "A cause du programme"
+        },
+        {
+          "code": "8",
+          "label": "Aime pas autres partis"
+        },
+        {
+          "code": "9",
+          "label": "Pour la continuite, 2ieme chance"
+        },
+        {
+          "code": "10",
+          "label": "A cause du debat"
+        },
+        {
+          "code": "11",
+          "label": "Menage dans finances (reduct"
+        },
+        {
+          "code": "12",
+          "label": "Confiance dans ce parti"
+        },
+        {
+          "code": "13",
+          "label": "Ont tenu promesses"
+        },
+        {
+          "code": "14",
+          "label": "Pour la separation"
+        },
+        {
+          "code": "15",
+          "label": "Semblait le meilleur parti"
+        },
+        {
+          "code": "16",
+          "label": "Conseil famille/amis"
+        },
+        {
+          "code": "17",
+          "label": "A cause de campagne"
+        },
+        {
+          "code": "90",
+          "label": "Autres (PRECISER)"
+        },
+        {
+          "code": "99",
+          "label": "Nsp/Nrp"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01587301678955555,
+      "id": "eeq_2014__Q8",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q8",
+      "question_text": "Vos préférences partisanes mises à part, quel parti a selon vous mené la meilleure campagne ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "campagnes électorales"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": "2",
+          "label": "Parti québécois"
+        },
+        {
+          "code": "3",
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": "4",
+          "label": "Québec solidaire"
+        },
+        {
+          "code": "5",
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": "6",
+          "label": "Option nationale"
+        },
+        {
+          "code": "96",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01587301678955555,
+      "id": "govcan_06822_wave1_2024__PSY_DIST_C",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "PSY_DIST_C",
+      "question_text": "Scientific knowledge is a reliable way to solve important issues.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "science",
+        "confiance"
+      ],
+      "themes": [
+        "science",
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Disagree"
+        },
+        {
+          "code": "3",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "4",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "5",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "6",
+          "label": "Agree"
+        },
+        {
+          "code": "7",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.015625,
+      "id": "cecd_elxn_qc_1998__raison1",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "raison1",
+      "question_text": "Première raison invoquée",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivation électorale",
+        "raison du vote"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "100",
+          "label": "Gouvernement"
+        },
+        {
+          "code": "110",
+          "label": "Changement/ stabilité du gouvernement"
+        },
+        {
+          "code": "120",
+          "label": "Satisfait ou non du gouvernement"
+        },
+        {
+          "code": "121",
+          "label": "Satisfait ou non du gouv: santé"
+        },
+        {
+          "code": "122",
+          "label": "Satisfait du gouv: fonction publique"
+        },
+        {
+          "code": "130",
+          "label": "Gouv. a respecté ou non promesses"
+        },
+        {
+          "code": "200",
+          "label": "Les paris"
+        },
+        {
+          "code": "210",
+          "label": "Confiance ou non"
+        },
+        {
+          "code": "211",
+          "label": "Confiance dans le programme du parti"
+        },
+        {
+          "code": "212",
+          "label": "Confiance dans le parti"
+        },
+        {
+          "code": "220",
+          "label": "Identification partisane"
+        },
+        {
+          "code": "300",
+          "label": "les députés"
+        },
+        {
+          "code": "310",
+          "label": "Respect ou no de leurs promesses"
+        },
+        {
+          "code": "330",
+          "label": "Rencontre avec le candidat"
+        },
+        {
+          "code": "400",
+          "label": "les chefs"
+        },
+        {
+          "code": "410",
+          "label": "Satisfait ou non du chef"
+        },
+        {
+          "code": "420",
+          "label": "Aime la personnalité du chef"
+        },
+        {
+          "code": "500",
+          "label": "Politiques"
+        },
+        {
+          "code": "510",
+          "label": "Pour/contre la souveraineté (question nationale)"
+        },
+        {
+          "code": "520",
+          "label": "Pour un ménage dans les finances publiques"
+        },
+        {
+          "code": "521",
+          "label": "Pour un ménage dans la santé"
+        },
+        {
+          "code": "600",
+          "label": "Autres"
+        },
+        {
+          "code": "610",
+          "label": "Vote de protestation (contre un(des) parti(s)"
+        },
+        {
+          "code": "620",
+          "label": "Vote de sympathie"
+        },
+        {
+          "code": "630",
+          "label": "Vote stratégique (Pq pas trop fort)"
+        },
+        {
+          "code": "640",
+          "label": "Devoir d'aller voter"
+        },
+        {
+          "code": "650",
+          "label": "À cause du débat"
+        },
+        {
+          "code": "660",
+          "label": "Conseils des amis, familles"
+        },
+        {
+          "code": "670",
+          "label": "À cause de la campagne en général"
+        },
+        {
+          "code": "680",
+          "label": "Indécis"
+        },
+        {
+          "code": "997",
+          "label": "Incompréhensible"
+        },
+        {
+          "code": "998",
+          "label": "NSP/NRP"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.015625,
+      "id": "cecd_elxn_qc_2012__prochgouv",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "prochgouv",
+      "question_text": "Q19 - Et selon vous, quel devrait être la principale qualité du prochain gouvernement du Québec... (LIRE LA LISTE. SÉLECTIONNER UNE SEULE MENTION.)",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "priorités gouvernementales",
+        "enjeux électoraux"
+      ],
+      "themes": [
+        "démocratie",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Maintenir la stabilité économique"
+        },
+        {
+          "code": "2",
+          "label": "Être intègre"
+        },
+        {
+          "code": "3",
+          "label": "Apporter du changement"
+        },
+        {
+          "code": "4",
+          "label": "Être responsable"
+        },
+        {
+          "code": "99",
+          "label": "Ne sait pas / Refus de répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.015384615398943424,
+      "id": "govcan_parca_2024__J4A_10_TEXT",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "J4A_10_TEXT",
+      "question_text": "Below are some potential positive effects of planting more trees in cities, towns, and other communities. Please rate how import - Other (please specify)",
+      "var_type": "open",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Limiting climate change"
+        },
+        {
+          "code": "2",
+          "label": "Improving residents' mental health"
+        },
+        {
+          "code": "3",
+          "label": "Cooling and providing shade"
+        },
+        {
+          "code": "4",
+          "label": "Providing more food and shelter for plants and animals"
+        },
+        {
+          "code": "5",
+          "label": "Improving local air quality"
+        },
+        {
+          "code": "6",
+          "label": "Increasing property values"
+        },
+        {
+          "code": "7",
+          "label": "Improving water filtration and storage"
+        },
+        {
+          "code": "8",
+          "label": "Reducing runoff (water running accross the ground) from flooding and storms"
+        },
+        {
+          "code": "9",
+          "label": "Providing food (fruits, nuts) for people"
+        },
+        {
+          "code": "10",
+          "label": "Beauty"
+        },
+        {
+          "code": "11",
+          "label": "Improves quality of life"
+        },
+        {
+          "code": "49",
+          "label": "Good / It is important to plant trees / Plant more trees"
+        },
+        {
+          "code": "50",
+          "label": "Other specify:"
+        },
+        {
+          "code": "51",
+          "label": "Irrelevant / Focus on other issues (e.g. economy, housing, wages, etc.)"
+        },
+        {
+          "code": "88",
+          "label": "Other (Final)"
+        },
+        {
+          "code": "97",
+          "label": "No / None / Refused"
+        },
+        {
+          "code": "98",
+          "label": "Refused / Prefer not to say"
+        },
+        {
+          "code": "99",
+          "label": "Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014963369816541672,
+      "id": "cecd_elxn_qc_2007__q4a_verb",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "q4a_verb",
+      "question_text": "Quelle est la principale raison pour laquelle vous avez voté pour...",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.014705882407724857,
+      "id": "cecd_elxn_qc_1998__q4m2",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "q4m2",
+      "question_text": "Q4 Quelle est la principale raison pour laquelle vous avez fait votre choix",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "justification électorale",
+        "raison du vote"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Vote strategique"
+        },
+        {
+          "code": "2",
+          "label": "Pour le changement"
+        },
+        {
+          "code": "3",
+          "label": "Pour menage dans sante"
+        },
+        {
+          "code": "4",
+          "label": "Rencontre candidat"
+        },
+        {
+          "code": "5",
+          "label": "A cause du chef"
+        },
+        {
+          "code": "6",
+          "label": "Contre la separation, le referendum"
+        },
+        {
+          "code": "7",
+          "label": "A cause du programme"
+        },
+        {
+          "code": "8",
+          "label": "N'aimait pas les deux autres partis"
+        },
+        {
+          "code": "9",
+          "label": "Pour la continuite, 2ieme chance"
+        },
+        {
+          "code": "10",
+          "label": "A cause du debat"
+        },
+        {
+          "code": "11",
+          "label": "Pour menage dans finances (reduct"
+        },
+        {
+          "code": "12",
+          "label": "Confiance dans ce parti"
+        },
+        {
+          "code": "13",
+          "label": "Ont tenu promesses"
+        },
+        {
+          "code": "14",
+          "label": "Pour la separation"
+        },
+        {
+          "code": "15",
+          "label": "Me semblait le meilleur parti"
+        },
+        {
+          "code": "16",
+          "label": "Conseils famille, amis"
+        },
+        {
+          "code": "17",
+          "label": "A cause de la campagne"
+        },
+        {
+          "code": "90",
+          "label": "Autres (PRECISER)"
+        },
+        {
+          "code": "99",
+          "label": "Nsp/Nrp"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014492753893136978,
+      "id": "cecd_elxn_qc_2018__rts_q3a",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "rts_q3a",
+      "question_text": "rts_q3a.  Quelle est la principale raison pour laquelle vous avez voté pour",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
+        },
+        {
+          "code": "2",
+          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
+        },
+        {
+          "code": "3",
+          "label": "Finances/ (bonne) performance économique"
+        },
+        {
+          "code": "4",
+          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
+        },
+        {
+          "code": "5",
+          "label": "Environnement/ durabilité"
+        },
+        {
+          "code": "6",
+          "label": "Immigration"
+        },
+        {
+          "code": "7",
+          "label": "Soins de santé"
+        },
+        {
+          "code": "8",
+          "label": "Bénéfices pour la famille"
+        },
+        {
+          "code": "9",
+          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
+        },
+        {
+          "code": "10",
+          "label": "Tendance plus à gauche (incl. socialiste)"
+        },
+        {
+          "code": "11",
+          "label": "Tendance plus à droite (incl. conservateur)"
+        },
+        {
+          "code": "12",
+          "label": "Parti séparatiste/ pour un Québec indépendant"
+        },
+        {
+          "code": "13",
+          "label": "J'aimais le candidat (local)"
+        },
+        {
+          "code": "14",
+          "label": "J'aimais le parti/ chef de parti"
+        },
+        {
+          "code": "15",
+          "label": "J'aimais les Libéraux/ Philippe Couillard"
+        },
+        {
+          "code": "16",
+          "label": "J'aimais la CAQ/ François Legault"
+        },
+        {
+          "code": "17",
+          "label": "J'aimais Québec solidaire"
+        },
+        {
+          "code": "18",
+          "label": "Pour chasser les Libéraux du pouvoir"
+        },
+        {
+          "code": "19",
+          "label": "Je n'aimais pas la CAQ/ François Legault"
+        },
+        {
+          "code": "20",
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": "21",
+          "label": "Le meilleur candidat/ parti/ choix possible"
+        },
+        {
+          "code": "22",
+          "label": "Le moins pire/ n'a pas aimé les autres options"
+        },
+        {
+          "code": "23",
+          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
+        },
+        {
+          "code": "24",
+          "label": "Stabilité/ continuité"
+        },
+        {
+          "code": "25",
+          "label": "Confiance/ honnêteté"
+        },
+        {
+          "code": "26",
+          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
+        },
+        {
+          "code": "27",
+          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
+        },
+        {
+          "code": "28",
+          "label": "Rien"
+        },
+        {
+          "code": "29",
+          "label": "Autre"
+        },
+        {
+          "code": "30",
+          "label": "Ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014285714365541935,
+      "id": "cecd_elxn_qc_2018__q3a_verb",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q3a_verb",
+      "question_text": "Verbatim-rts_q3a.  Quelle est la principale raison pour laquelle vous avez voté pour",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.014084506779909134,
+      "id": "eeq_2014__Q7C",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q7C",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / Le/la chef du parti",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "facteurs de vote"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pas du tout important"
+        },
+        {
+          "code": "2",
+          "label": "Pas très important"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt important"
+        },
+        {
+          "code": "4",
+          "label": "Très important"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013888888992369175,
+      "id": "cecd_elxn_qc_2018__q3a2",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q3a2",
+      "question_text": "2e raison pour le vote",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
+        },
+        {
+          "code": "2",
+          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
+        },
+        {
+          "code": "3",
+          "label": "Finances/ (bonne) performance économique"
+        },
+        {
+          "code": "4",
+          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
+        },
+        {
+          "code": "5",
+          "label": "Environnement/ durabilité"
+        },
+        {
+          "code": "6",
+          "label": "Immigration"
+        },
+        {
+          "code": "7",
+          "label": "Soins de santé"
+        },
+        {
+          "code": "8",
+          "label": "Bénéfices pour la famille"
+        },
+        {
+          "code": "9",
+          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
+        },
+        {
+          "code": "10",
+          "label": "Tendance plus à gauche (incl. socialiste)"
+        },
+        {
+          "code": "11",
+          "label": "Tendance plus à droite (incl. conservateur)"
+        },
+        {
+          "code": "12",
+          "label": "Parti séparatiste/ pour un Québec indépendant"
+        },
+        {
+          "code": "13",
+          "label": "J'aimais le candidat (local)"
+        },
+        {
+          "code": "14",
+          "label": "J'aimais le parti/ chef de parti"
+        },
+        {
+          "code": "15",
+          "label": "J'aimais les Libéraux/ Philippe Couillard"
+        },
+        {
+          "code": "16",
+          "label": "J'aimais la CAQ/ François Legault"
+        },
+        {
+          "code": "17",
+          "label": "J'aimais Québec solidaire"
+        },
+        {
+          "code": "18",
+          "label": "Pour chasser les Libéraux du pouvoir"
+        },
+        {
+          "code": "19",
+          "label": "Je n'aimais pas la CAQ/ François Legault"
+        },
+        {
+          "code": "20",
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": "21",
+          "label": "Le meilleur candidat/ parti/ choix possible"
+        },
+        {
+          "code": "22",
+          "label": "Le moins pire/ n'a pas aimé les autres options"
+        },
+        {
+          "code": "23",
+          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
+        },
+        {
+          "code": "24",
+          "label": "Stabilité/ continuité"
+        },
+        {
+          "code": "25",
+          "label": "Confiance/ honnêteté"
+        },
+        {
+          "code": "26",
+          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
+        },
+        {
+          "code": "27",
+          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
+        },
+        {
+          "code": "28",
+          "label": "Rien"
+        },
+        {
+          "code": "29",
+          "label": "Autre"
+        },
+        {
+          "code": "30",
+          "label": "Ne sais pas"
+        },
+        {
+          "code": "31",
+          "label": "valeurs"
+        },
+        {
+          "code": "32",
+          "label": "debat"
+        },
+        {
+          "code": "33",
+          "label": "laicité-religion"
+        },
+        {
+          "code": "34",
+          "label": "promesses"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013698630034923553,
+      "id": "eeq_2014__Q7F",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q7F",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / La probabilité que le parti forme un gouvernement",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "facteurs de vote",
+        "viabilité électorale"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pas du tout important"
+        },
+        {
+          "code": "2",
+          "label": "Pas très important"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt important"
+        },
+        {
+          "code": "4",
+          "label": "Très important"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013513513840734959,
+      "id": "cecd_elxn_qc_2018__q2a",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q2a",
+      "question_text": "q2a. Selon vous, quel chef de parti a fait la meilleure campagne électorale jusqu’à présent?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation des chefs",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Philippe Couillard, from the Liberal Party of Quebec (PLQ)"
+        },
+        {
+          "code": "2",
+          "label": "Jean-François Lisée, du Parti Québécois (PQ)"
+        },
+        {
+          "code": "3",
+          "label": "François Legault, de la Coalition Avenir Québec (CAQ)"
+        },
+        {
+          "code": "4",
+          "label": "Manon Massé, de Québec solidaire (QS)"
+        },
+        {
+          "code": "5",
+          "label": "Un autre chef de parti"
+        },
+        {
+          "code": "6",
+          "label": "Aucun"
+        },
+        {
+          "code": "7",
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013333333656191826,
+      "id": "eeq_2014__Q7A",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q7A",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / Les positions politiques du parti",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "facteurs de vote"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pas du tout important"
+        },
+        {
+          "code": "2",
+          "label": "Pas très important"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt important"
+        },
+        {
+          "code": "4",
+          "label": "Très important"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013165906071662903,
+      "id": "cecd_elxn_qc_2007__libgagne",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "libgagne",
+      "question_text": "Pensez-vous que le parti libéral va gagner",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "attentes électorales"
+      ],
+      "themes": [
+        "prévisions électorales"
+      ],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "non"
+        },
+        {
+          "code": "1",
+          "label": "oui"
+        },
+        {
+          "code": "9",
+          "label": "NSP"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01315789483487606,
+      "id": "eeq_2014__Q7B",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q7B",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / La qualité du/de la candidat(e) local(e)",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "facteurs de vote"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pas du tout important"
+        },
+        {
+          "code": "2",
+          "label": "Pas très important"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt important"
+        },
+        {
+          "code": "4",
+          "label": "Très important"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012987012974917889,
+      "id": "cecd_elxn_can_2011__z1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z1",
+      "question_text": "1.  Diriez-vous que vous étiez très intéressé(e), assez intéressé(e), peu intéressé(e) ou pas du tout intéressé(e) à la campagne électorale fédérale qui vient de se terminer au Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intérêt politique",
+        "campagne électorale"
+      ],
+      "themes": [
+        "engagement civique",
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très intéressé(e)"
+        },
+        {
+          "code": "2",
+          "label": "Assez intéressé(e)"
+        },
+        {
+          "code": "3",
+          "label": "Peu intéressé(e)"
+        },
+        {
+          "code": "4",
+          "label": "Pas du tout intéressé(e)"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012658228166401386,
+      "id": "eeq_2014__Q7D",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q7D",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / La capacité du parti à défendre les intérêts actuels et futurs du Québec",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "facteurs de vote",
+        "intérêts québécois"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pas du tout important"
+        },
+        {
+          "code": "2",
+          "label": "Pas très important"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt important"
+        },
+        {
+          "code": "4",
+          "label": "Très important"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012511773966252804,
+      "id": "cecd_elxn_qc_2007__z2q9",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z2q9",
+      "question_text": "9. Avez-vous décidé d'appuyer ce parti avant le début de la campagne électorale, pendant la présente campagne électorale ou après le débat des chefs à la télévision?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "timing de décision",
+        "campagne électorale"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "avant la campagne"
+        },
+        {
+          "code": "2",
+          "label": "pendant la campagne"
+        },
+        {
+          "code": "3",
+          "label": "après le débat à la télévision"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012500000186264515,
+      "id": "cecd_elxn_qc_1998__raison2",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "raison2",
+      "question_text": "Deuxième raison invoquée",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivation électorale",
+        "raison du vote"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "100",
+          "label": "Gouvernement"
+        },
+        {
+          "code": "110",
+          "label": "Changement/ stabilité du gouvernement"
+        },
+        {
+          "code": "120",
+          "label": "Satisfait ou non du gouvernement"
+        },
+        {
+          "code": "121",
+          "label": "Satisfait ou non du gouv: santé"
+        },
+        {
+          "code": "122",
+          "label": "Satisfait du gouv: fonction publique"
+        },
+        {
+          "code": "200",
+          "label": "Les paris"
+        },
+        {
+          "code": "210",
+          "label": "Confiance ou non"
+        },
+        {
+          "code": "211",
+          "label": "Confiance dans le programme du parti"
+        },
+        {
+          "code": "212",
+          "label": "Confiance dans le parti"
+        },
+        {
+          "code": "220",
+          "label": "Identification partisane"
+        },
+        {
+          "code": "300",
+          "label": "les députés"
+        },
+        {
+          "code": "310",
+          "label": "Respect ou no de leurs promesses"
+        },
+        {
+          "code": "330",
+          "label": "Rencontre avec le candidat"
+        },
+        {
+          "code": "400",
+          "label": "les chefs"
+        },
+        {
+          "code": "410",
+          "label": "Satisfait ou non du chef"
+        },
+        {
+          "code": "420",
+          "label": "Aime la personnalité du chef"
+        },
+        {
+          "code": "500",
+          "label": "Politiques"
+        },
+        {
+          "code": "510",
+          "label": "Pour/contre la souveraineté (question nationale)"
+        },
+        {
+          "code": "520",
+          "label": "Pour un ménage dans les finances publiques"
+        },
+        {
+          "code": "521",
+          "label": "Pour un ménage dans la santé"
+        },
+        {
+          "code": "600",
+          "label": "Autres"
+        },
+        {
+          "code": "610",
+          "label": "Vote de protestation (contre un(des) parti(s)"
+        },
+        {
+          "code": "620",
+          "label": "Vote de sympathie"
+        },
+        {
+          "code": "630",
+          "label": "Vote stratégique (Pq pas trop fort)"
+        },
+        {
+          "code": "640",
+          "label": "Devoir d'aller voter"
+        },
+        {
+          "code": "650",
+          "label": "À cause du débat"
+        },
+        {
+          "code": "660",
+          "label": "Conseils des amis, familles"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012345679104328156,
+      "id": "eeq_2014__Q9",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q9",
+      "question_text": "Et quel parti a selon vous mené la moins bonne campagne?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "campagnes électorales"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": "2",
+          "label": "Parti québécois"
+        },
+        {
+          "code": "3",
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": "4",
+          "label": "Québec solidaire"
+        },
+        {
+          "code": "5",
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": "6",
+          "label": "Option nationale"
+        },
+        {
+          "code": "96",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012195121496915817,
+      "id": "cecd_elxn_can_2011__code5_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code5_num",
+      "question_text": "Code 5",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012048192322254181,
+      "id": "cecd_elxn_can_2011__code1_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code1_num",
+      "question_text": "Code 1",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012040166184306145,
+      "id": "cecd_elxn_qc_2007__z2q3",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z2q3",
+      "question_text": "3. Selon vous, lequel des trois chefs a été le plus convaincant? LIRE",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation des chefs",
+        "débat électoral"
+      ],
+      "themes": [
+        "leadership politique",
+        "communication politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "André Boisclair"
+        },
+        {
+          "code": "2",
+          "label": "Jean Charest"
+        },
+        {
+          "code": "3",
+          "label": "Mario Dumont"
+        },
+        {
+          "code": "4",
+          "label": "* les 3 également"
+        },
+        {
+          "code": "5",
+          "label": "* aucun des trois"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011904762126505375,
+      "id": "cecd_elxn_qc_2018__rts_q2a",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "rts_q2a",
+      "question_text": "rts_q2a. À quel moment de la campagne avez-vous fait votre choix final?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "timing de décision",
+        "campagne électorale"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Avant le début de la campagne"
+        },
+        {
+          "code": "2",
+          "label": "Vers le début de la campagne"
+        },
+        {
+          "code": "3",
+          "label": "Après les débats des chefs"
+        },
+        {
+          "code": "4",
+          "label": "Durant la dernière fin de semaine"
+        },
+        {
+          "code": "5",
+          "label": "À la toute fin, dans le bureau de scrutin"
+        },
+        {
+          "code": "6",
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0117647061124444,
+      "id": "cecd_elxn_can_2011__code4_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code4_num",
+      "question_text": "Code 4",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011627906933426857,
+      "id": "cecd_elxn_qc_2007__sondbons",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "sondbons",
+      "question_text": "28a. Diriez-vous que les sondages pendant les campagnes électorales sont une très bonne chose, une assez bonne chose, une assez mauvaise chose, ou une très mauvaise chose pour les électeurs?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "opinion sur les sondages",
+        "jugement normatif"
+      ],
+      "themes": [
+        "opinion publique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "une très bonne chose"
+        },
+        {
+          "code": "2",
+          "label": "une assez bonne chose"
+        },
+        {
+          "code": "3",
+          "label": "une assez mauvaise chose"
+        },
+        {
+          "code": "4",
+          "label": "une très mauvaise chose"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01149425283074379,
+      "id": "cecd_elxn_qc_2012__sondbons",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "sondbons",
+      "question_text": "Diriez-vous que les sondages pendant les campagnes électorales sont une très bonne chose, une assez bonne chose, une assez mauvaise chose, ou une très mauvaise chose pour les électeurs ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "opinion sur les sondages",
+        "sondages"
+      ],
+      "themes": [
+        "opinion publique",
+        "communication politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "une très bonne chose"
+        },
+        {
+          "code": "2",
+          "label": "une assez bonne chose"
+        },
+        {
+          "code": "3",
+          "label": "une assez mauvaise chose"
+        },
+        {
+          "code": "4",
+          "label": "une très mauvaise chose"
+        },
+        {
+          "code": "9",
+          "label": "NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011363636702299118,
+      "id": "cecd_elxn_qc_2012__vudebat_m1",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "vudebat_m1",
+      "question_text": "Dans le cadre de la campagne électorale qui est en cours actuellement au Québec, quatre débats télévisés ont été présentés mettant en vedette les chefs des différents partis politiques provinciaux. Quel(s) débat(s) parmi les suivants avez-vous regardé?",
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "débats électoraux",
+        "exposition médiatique"
+      ],
+      "themes": [
+        "communication politique",
+        "campagne électorale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Le débat entre les 4 chefs principaux diffusé à 20h à Radio-"
+        },
+        {
+          "code": "2",
+          "label": "Le face à face entre Jean Charest et Pauline Marois diffusé"
+        },
+        {
+          "code": "3",
+          "label": "Le face à face entre Jean Charest et François Legault diffus"
+        },
+        {
+          "code": "4",
+          "label": "Le face à face entre François Legault et Pauline Marois diff"
+        },
+        {
+          "code": "8",
+          "label": "Aucun d'entre-eux"
+        },
+        {
+          "code": "9",
+          "label": "NSP/Refus de répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01123595517128706,
+      "id": "cecd_elxn_can_2011__code2_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code2_num",
+      "question_text": "Code 2",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010989011265337467,
+      "id": "cecd_elxn_qc_2012__vudebat_m3",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "vudebat_m3",
+      "question_text": "Dans le cadre de la campagne électorale qui est en cours actuellement au Québec, quatre débats télévisés ont été présentés mettant en vedette les chefs des différents partis politiques provinciaux. Quel(s) débat(s) parmi les suivants avez-vous regardé?",
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "débats électoraux",
+        "exposition médiatique"
+      ],
+      "themes": [
+        "communication politique",
+        "campagne électorale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Le débat entre les 4 chefs principaux diffusé à 20h à Radio-"
+        },
+        {
+          "code": "2",
+          "label": "Le face à face entre Jean Charest et Pauline Marois diffusé"
+        },
+        {
+          "code": "3",
+          "label": "Le face à face entre Jean Charest et François Legault diffus"
+        },
+        {
+          "code": "4",
+          "label": "Le face à face entre François Legault et Pauline Marois diff"
+        },
+        {
+          "code": "8",
+          "label": "Aucun d'entre-eux"
+        },
+        {
+          "code": "9",
+          "label": "NSP/Refus de répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010869565419852734,
+      "id": "cecd_elxn_qc_2018__rts_q5",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "rts_q5",
+      "question_text": "rts_q5. Avez-vous lu ou entendu parler des sondages durant la campagne électorale ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "exposition médiatique",
+        "sondages"
+      ],
+      "themes": [
+        "opinion publique",
+        "communication politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "3",
+          "label": "No answer"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01075268816202879,
+      "id": "cecd_elxn_qc_2012__vudebat_m2",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "vudebat_m2",
+      "question_text": "Dans le cadre de la campagne électorale qui est en cours actuellement au Québec, quatre débats télévisés ont été présentés mettant en vedette les chefs des différents partis politiques provinciaux. Quel(s) débat(s) parmi les suivants avez-vous regardé?",
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "débats électoraux",
+        "exposition médiatique"
+      ],
+      "themes": [
+        "communication politique",
+        "campagne électorale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Le débat entre les 4 chefs principaux diffusé à 20h à Radio-"
+        },
+        {
+          "code": "2",
+          "label": "Le face à face entre Jean Charest et Pauline Marois diffusé"
+        },
+        {
+          "code": "3",
+          "label": "Le face à face entre Jean Charest et François Legault diffus"
+        },
+        {
+          "code": "4",
+          "label": "Le face à face entre François Legault et Pauline Marois diff"
+        },
+        {
+          "code": "8",
+          "label": "Aucun d'entre-eux"
+        },
+        {
+          "code": "9",
+          "label": "NSP/Refus de répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010526316240429878,
+      "id": "eeq_2014__Q7G",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q7G",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / Les préférences constitutionnelles du parti",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "facteurs de vote",
+        "constitution"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pas du tout important"
+        },
+        {
+          "code": "2",
+          "label": "Pas très important"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt important"
+        },
+        {
+          "code": "4",
+          "label": "Très important"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010416666977107525,
+      "id": "cecd_elxn_qc_1998__allervo2",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "allervo2",
+      "question_text": "Intention d'aller voter - regroupé",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "très prob,sur"
+        },
+        {
+          "code": "2",
+          "label": "assez prob"
+        },
+        {
+          "code": "3",
+          "label": "peu pas sur"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010309278033673763,
+      "id": "cecd_elxn_qc_2012__vudebat_m4",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "vudebat_m4",
+      "question_text": "Dans le cadre de la campagne électorale qui est en cours actuellement au Québec, quatre débats télévisés ont été présentés mettant en vedette les chefs des différents partis politiques provinciaux. Quel(s) débat(s) parmi les suivants avez-vous regardé?",
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "débats électoraux",
+        "exposition médiatique"
+      ],
+      "themes": [
+        "communication politique",
+        "campagne électorale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Le débat entre les 4 chefs principaux diffusé à 20h à Radio-"
+        },
+        {
+          "code": "2",
+          "label": "Le face à face entre Jean Charest et Pauline Marois diffusé"
+        },
+        {
+          "code": "3",
+          "label": "Le face à face entre Jean Charest et François Legault diffus"
+        },
+        {
+          "code": "4",
+          "label": "Le face à face entre François Legault et Pauline Marois diff"
+        },
+        {
+          "code": "8",
+          "label": "Aucun d'entre-eux"
+        },
+        {
+          "code": "9",
+          "label": "NSP/Refus de répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010101010091602802,
+      "id": "eeq_2014__Q7E",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q7E",
+      "question_text": "Lorsque vous avez voté à l' élection provinciale du 7 avril dernier , quelle a été l'importance de chacun des facteurs suivants dans votre décision? / La capacité du parti à comprendre l'histoire et la culture du Québec",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "facteurs de vote",
+        "identité québécoise"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pas du tout important"
+        },
+        {
+          "code": "2",
+          "label": "Pas très important"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt important"
+        },
+        {
+          "code": "4",
+          "label": "Très important"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009999999776482582,
+      "id": "cecd_elxn_can_2011__luentend",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "luentend",
+      "question_text": "6.  Durant la campagne électorale, avez-vous lu ou entendu des résultats de sondages portant sur les élections fédérales?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "exposition médiatique",
+        "sondages"
+      ],
+      "themes": [
+        "opinion publique",
+        "communication politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009900989942252636,
+      "id": "cecd_elxn_can_2011__code3_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code3_num",
+      "question_text": "Code 3",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009803921915590763,
+      "id": "cecd_elxn_qc_2018__rts_q4",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "rts_q4",
+      "question_text": "rts_q4. Quelle est la principale raison pour laquelle vous n’êtes pas allé voter?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "abstention",
+        "raisons de non-participation"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Aucun intérêt/ Apathie/ N'a pas suivi la campagne électorale"
+        },
+        {
+          "code": "2",
+          "label": "Tous les partis/ candidats sont les mêmes"
+        },
+        {
+          "code": "3",
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": "4",
+          "label": "Je ne fais pas confiance aux politiciens/ grands parleurs, p"
+        },
+        {
+          "code": "5",
+          "label": "Ne savais pas pour qui voter/ N'arrivais pas à choisir"
+        },
+        {
+          "code": "6",
+          "label": "Aucun candidat (parti) n'a répondu à mes préoccupations/ bes"
+        },
+        {
+          "code": "7",
+          "label": "Cela ne fait aucune différence/ Cela ne changerait rien (peu"
+        },
+        {
+          "code": "8",
+          "label": "J'étais malade"
+        },
+        {
+          "code": "9",
+          "label": "Invalidité/mobilité réduite (incl. blessures/ douleurs physi"
+        },
+        {
+          "code": "10",
+          "label": "J'étais au travail"
+        },
+        {
+          "code": "11",
+          "label": "Je n'ai pas eu le temps de changer mon adresse depuis mon dé"
+        },
+        {
+          "code": "12",
+          "label": "Problème de transport (p. ex. voiture non disponible)"
+        },
+        {
+          "code": "13",
+          "label": "Trop loin du bureau de vote"
+        },
+        {
+          "code": "14",
+          "label": "Je n'ai pas reçu mon bulletin de vote par la poste/ Je n'éta"
+        },
+        {
+          "code": "15",
+          "label": "Rien"
+        },
+        {
+          "code": "16",
+          "label": "Autre"
+        },
+        {
+          "code": "17",
+          "label": "Ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009708737954497337,
+      "id": "cecd_elxn_can_2011__z8",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z8",
+      "question_text": "8.  Diriez-vous que les sondages pendant les campagnes électorales sont une très bonne chose, une assez bonne chose, une assez mauvaise chose ou une très mauvaise chose pour les électeurs?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "perception des sondages",
+        "opinion sur sondages"
+      ],
+      "themes": [
+        "opinion publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Une très bonne chose"
+        },
+        {
+          "code": "2",
+          "label": "Une assez bonne chose"
+        },
+        {
+          "code": "3",
+          "label": "Une assez mauvaise chose"
+        },
+        {
+          "code": "4",
+          "label": "Une très mauvaise chose"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009615384973585606,
+      "id": "cecd_elxn_qc_2018__q2b",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q2b",
+      "question_text": "q2b. Et selon vous, quel parti est le plus susceptible de remporter l’élection du 1er octobre?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "attentes électorales",
+        "préférences électorales"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Le Parti libéral du Québec (PLQ)"
+        },
+        {
+          "code": "2",
+          "label": "Le Parti Québécois (PQ)"
+        },
+        {
+          "code": "3",
+          "label": "La Coalition Avenir Québec (CAQ)"
+        },
+        {
+          "code": "4",
+          "label": "Québec solidaire (QS)"
+        },
+        {
+          "code": "5",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "6",
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009523809887468815,
+      "id": "cecd_elxn_qc_2018__q6_11",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q6_11",
+      "question_text": "q6_11. [Il y a des choses dans la société ou dans ma vie personnelle qui me rappellent l'importance de voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "rappel social du vote",
+        "saillance électorale"
+      ],
+      "themes": [
+        "engagement civique",
+        "participation électorale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5"
+        },
+        {
+          "code": "6",
+          "label": "6"
+        },
+        {
+          "code": "7",
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": "8",
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009345794096589088,
+      "id": "cecd_elxn_qc_2012__indecis2",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "indecis2",
+      "question_text": "Q3. Durant la semaine qui a précédé l'élection, diriez-vous que vous étiez indécis(e) ou que votre idée était déjà faite?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "indécision",
+        "volatilité électorale"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Indécis(e)"
+        },
+        {
+          "code": "2",
+          "label": "Idée déjà faite"
+        },
+        {
+          "code": "3",
+          "label": "NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009259259328246117,
+      "id": "cecd_elxn_qc_1998__allervot",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "allervot",
+      "question_text": "Intention d'aller voter",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "participation",
+        "mobilisation électorale"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "certain,très"
+        },
+        {
+          "code": "2",
+          "label": "prob, assez"
+        },
+        {
+          "code": "3",
+          "label": "prob pas, peu prob."
+        },
+        {
+          "code": "4",
+          "label": "sure pas, pas prob."
+        }
+      ]
+    },
+    {
+      "@search.score": 0.00917431153357029,
+      "id": "cecd_elxn_qc_1998__typo",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "typo",
+      "question_text": "Typologie intention - vote déclaré",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.002500000176951289,
+      "id": "cecd_elxn_qc_2007__reg2_pst",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "reg2_pst",
+      "question_text": "sous-région post",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "ABITIBI-TÉMISCAMINGUE"
+        },
+        {
+          "code": "2",
+          "label": "BAS-ST-LAURENT"
+        },
+        {
+          "code": "3",
+          "label": "CHAUDIÈRE-APPALACHES (RA EXCL. RMR)"
+        },
+        {
+          "code": "4",
+          "label": "CHAUDIÈRE-APPALACHES (RMR-RA)"
+        },
+        {
+          "code": "5",
+          "label": "CÔTE-NORD DU QUÉBEC"
+        },
+        {
+          "code": "6",
+          "label": "ESTRIE"
+        },
+        {
+          "code": "7",
+          "label": "GASPÉSIE-ÎLES-DE-LA-MADELEINE"
+        },
+        {
+          "code": "8",
+          "label": "LANAUDIÈRE (EXCL.)"
+        },
+        {
+          "code": "9",
+          "label": "LAURENTIDES (EXCL.)"
+        },
+        {
+          "code": "10",
+          "label": "MAURICIE"
+        },
+        {
+          "code": "11",
+          "label": "MONTÉRÉGIE (EXCL.)"
+        },
+        {
+          "code": "12",
+          "label": "MONTRÉAL (RMR)-LANAUDIÈRE RA"
+        },
+        {
+          "code": "13",
+          "label": "MONTRÉAL (RMR)-LAURENTIDES RA"
+        },
+        {
+          "code": "14",
+          "label": "MONTRÉAL (RMR)-LAVAL RA"
+        },
+        {
+          "code": "15",
+          "label": "MONTRÉAL (RMR)-MONTÉRÉGIE RA"
+        },
+        {
+          "code": "16",
+          "label": "MONTRÉAL (RMR)-MONTRÉAL RA"
+        },
+        {
+          "code": "17",
+          "label": "NORD DU QUÉBEC"
+        },
+        {
+          "code": "18",
+          "label": "OUTAOUAIS"
+        },
+        {
+          "code": "19",
+          "label": "QUÉBEC (RA SANS QUÉBEC RMR)"
+        },
+        {
+          "code": "20",
+          "label": "QUÉBEC (RMR-RA)"
+        },
+        {
+          "code": "21",
+          "label": "SAGUENAY-LAC-ST-JEAN"
+        },
+        {
+          "code": "22",
+          "label": "CENTRE DU QUÉBEC"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0024590163957327604,
+      "id": "cecd_elxn_qc_2007__z1abandon",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1abandon",
+      "question_text": "12 Si le Parti québécois était élu lors des prochaines élections pour former le prochain gouvernement, croyez-vous que le PQ devrait abandonner son projet de tenir un référendum sur la souveraineté dans le prochain mandat ou qu'il devrait maintenir cet en",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté",
+        "référendum",
+        "politique identitaire"
+      ],
+      "themes": [
+        "question nationale",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Abandonner son projet de référendum dans prochain mandat"
+        },
+        {
+          "code": "2",
+          "label": "Maintenir son projet de référendum"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002419354859739542,
+      "id": "cecd_elxn_qc_2007__q24ar2",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "q24ar2",
+      "question_text": "Raisons pour lesquelles les sondages ne sont pas justes - 2",
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "10",
+          "label": "Lib. pas \"bons\""
+        },
+        {
+          "code": "20",
+          "label": "Lib. \"bons\""
+        },
+        {
+          "code": "30",
+          "label": "Autres partis pas \"bons\""
+        },
+        {
+          "code": "40",
+          "label": "Autres partis \"bons\""
+        },
+        {
+          "code": "50",
+          "label": "Sondages pas fiables/Lib + efficaces"
+        },
+        {
+          "code": "60",
+          "label": "Vote volatil"
+        },
+        {
+          "code": "70",
+          "label": "Impression"
+        },
+        {
+          "code": "80",
+          "label": "Autres"
+        },
+        {
+          "code": "90",
+          "label": "Sondages sont ok"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023809527046978474,
+      "id": "cecd_elxn_qc_2007__z2q2",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z2q2",
+      "question_text": "2. Avez-vous regardé, en entier ou en partie, le débat télévisé entre André Boisclair, Jean Charest et Mario Dumont (le mardi 13 mars)?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "débat des chefs",
+        "exposition médiatique",
+        "participation"
+      ],
+      "themes": [
+        "communication politique",
+        "campagne électorale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "oui, en entier"
+        },
+        {
+          "code": "2",
+          "label": "oui, en partie"
+        },
+        {
+          "code": "3",
+          "label": "non, n'a pas regardé"
+        },
+        {
+          "code": "9",
+          "label": "* Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023437500931322575,
+      "id": "cecd_elxn_qc_2007__z2q6",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z2q6",
+      "question_text": "6. À l'heure actuelle, seriez-vous plutôt favorable à continuer avec le gouvernement Charest ou seriez-vous plutôt favorable à un changement de gouvernement au Québec?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation gouvernementale",
+        "enjeu électoral"
+      ],
+      "themes": [
+        "gouvernance",
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Favorable à continuer avec le gouvernement Charest"
+        },
+        {
+          "code": "2",
+          "label": "Favorable à un changement de gouvernement au Qc"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002238806104287505,
+      "id": "cecd_elxn_qc_2007__intref1",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "intref1",
+      "question_text": "13. Si un référendum avait lieu aujourd'hui sur la même question que celle qui a été posée lors du dernier référendum de 1995, c'est-à-dire sur la souveraineté accompagnée d'une offre de partenariat au reste du Canada, voteriez-vous Oui ou voteriez-vous N",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté",
+        "référendum",
+        "nationalisme"
+      ],
+      "themes": [
+        "question nationale",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "OUI"
+        },
+        {
+          "code": "2",
+          "label": "NON"
+        },
+        {
+          "code": "3",
+          "label": "* ne voterait pas/annulerait"
+        },
+        {
+          "code": "8",
+          "label": "* NSP"
+        },
+        {
+          "code": "9",
+          "label": "* refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002205882454290986,
+      "id": "cecd_elxn_qc_2007__z1q15",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1q15",
+      "question_text": "15. Diriez-vous que l'accès au système de santé au Québec est meilleur, pire ou semblable à ce qu'il était il y a quatre ans ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "santé publique",
+        "évaluation gouvernementale"
+      ],
+      "themes": [
+        "politiques publiques",
+        "gouvernance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Meilleur"
+        },
+        {
+          "code": "2",
+          "label": "Pire"
+        },
+        {
+          "code": "3",
+          "label": "Semblable à ce qu'il était il y a quatre ans"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002173913177102804,
+      "id": "cecd_elxn_qc_2007__vote",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "vote",
+      "question_text": "3.  Et pour quel parti avez-vous voté?   NE PAS LIRE",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "vote",
+        "comportement électoral"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "n'a pas voté"
+        },
+        {
+          "code": "1",
+          "label": "L'Action Démocratique du Québec/ADQ"
+        },
+        {
+          "code": "2",
+          "label": "Le Parti libéral du Québec"
+        },
+        {
+          "code": "3",
+          "label": "Le Parti Québecois"
+        },
+        {
+          "code": "4",
+          "label": "Québec Solidaire"
+        },
+        {
+          "code": "5",
+          "label": "Le Parti Vert"
+        },
+        {
+          "code": "6",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "7",
+          "label": "A annulé son vote"
+        },
+        {
+          "code": "9",
+          "label": "Refus"
+        },
+        {
+          "code": "10",
+          "label": "non rejoint"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0021126761566847563,
+      "id": "cecd_elxn_qc_2007__sondtrop",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "sondtrop",
+      "question_text": "5.  Diriez-vous que, pendant la dernière campagne électorale, il y a eu...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "saturation médiatique",
+        "sondages"
+      ],
+      "themes": [
+        "communication politique",
+        "opinion publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...trop de sondages"
+        },
+        {
+          "code": "2",
+          "label": "...juste assez de sondages"
+        },
+        {
+          "code": "3",
+          "label": "...pas assez de sondages"
+        },
+        {
+          "code": "9",
+          "label": "NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0020833334419876337,
+      "id": "cecd_elxn_qc_2007__reg2",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "reg2",
+      "question_text": "Sous-région",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "ABITIBI-TÉMISCAMINGUE"
+        },
+        {
+          "code": "2",
+          "label": "BAS-ST-LAURENT"
+        },
+        {
+          "code": "3",
+          "label": "CHAUDIÈRE-APPALACHES (RA EXCL. RMR)"
+        },
+        {
+          "code": "4",
+          "label": "CHAUDIÈRE-APPALACHES (RMR-RA)"
+        },
+        {
+          "code": "5",
+          "label": "CÔTE-NORD DU QUÉBEC"
+        },
+        {
+          "code": "6",
+          "label": "ESTRIE"
+        },
+        {
+          "code": "7",
+          "label": "GASPÉSIE-ÎLES-DE-LA-MADELEINE"
+        },
+        {
+          "code": "8",
+          "label": "LANAUDIÈRE (EXCL.)"
+        },
+        {
+          "code": "9",
+          "label": "LAURENTIDES (EXCL.)"
+        },
+        {
+          "code": "10",
+          "label": "MAURICIE"
+        },
+        {
+          "code": "11",
+          "label": "MONTÉRÉGIE (EXCL.)"
+        },
+        {
+          "code": "12",
+          "label": "MONTRÉAL (RMR)-LANAUDIÈRE RA"
+        },
+        {
+          "code": "13",
+          "label": "MONTRÉAL (RMR)-LAURENTIDES RA"
+        },
+        {
+          "code": "14",
+          "label": "MONTRÉAL (RMR)-LAVAL RA"
+        },
+        {
+          "code": "15",
+          "label": "MONTRÉAL (RMR)-MONTÉRÉGIE RA"
+        },
+        {
+          "code": "16",
+          "label": "MONTRÉAL (RMR)-MONTRÉAL RA"
+        },
+        {
+          "code": "17",
+          "label": "NORD DU QUÉBEC"
+        },
+        {
+          "code": "18",
+          "label": "OUTAOUAIS"
+        },
+        {
+          "code": "19",
+          "label": "QUÉBEC (RA SANS QUÉBEC RMR)"
+        },
+        {
+          "code": "20",
+          "label": "QUÉBEC (RMR-RA)"
+        },
+        {
+          "code": "21",
+          "label": "SAGUENAY-LAC-ST-JEAN"
+        },
+        {
+          "code": "22",
+          "label": "CENTRE DU QUÉBEC"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002027027076110244,
+      "id": "cecd_elxn_qc_2007__radio",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "radio",
+      "question_text": "Information concernant les habitudes d'écoute de la radio des répondants.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "96",
+          "label": "* NSP/Refus"
+        },
+        {
+          "code": "97",
+          "label": "N'écoute pas la radio"
+        },
+        {
+          "code": "98",
+          "label": "Écoute plusieurs postes"
+        },
+        {
+          "code": "99",
+          "label": "Écoute ne sais pas quel poste"
+        },
+        {
+          "code": "999",
+          "label": "Information disponible"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0020000000949949026,
+      "id": "cecd_elxn_qc_2007__reg",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "reg",
+      "question_text": "RÉGION",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "MONTRÉAL ILE"
+        },
+        {
+          "code": "2",
+          "label": "MONTRÉAL RESTE RMR"
+        },
+        {
+          "code": "3",
+          "label": "RESTE DU QUÉBEC"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001973684411495924,
+      "id": "cecd_elxn_qc_2007__age",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "age",
+      "question_text": "29. Auquel des groupes d'âges suivants appartenez-vous?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [
+        "âge"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "18-24 ans"
+        },
+        {
+          "code": "2",
+          "label": "25-34 ans"
+        },
+        {
+          "code": "3",
+          "label": "35-44 ans"
+        },
+        {
+          "code": "4",
+          "label": "45-54 ans"
+        },
+        {
+          "code": "5",
+          "label": "55-64 ans"
+        },
+        {
+          "code": "6",
+          "label": "ou 65 ans et plus?"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0019480519695207477,
+      "id": "cecd_elxn_qc_2007__occup",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "occup",
+      "question_text": "30. occupation principale",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [
+        "emploi",
+        "occupation"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...travailleur(se) à temps plein (30 hres et +/sem.)"
+        },
+        {
+          "code": "2",
+          "label": "...travailleur(se) à temps partiel"
+        },
+        {
+          "code": "3",
+          "label": "...chômeur(se), à la recherche d'un emploi"
+        },
+        {
+          "code": "4",
+          "label": "...à la maison à temps plein (ménagère, B.S.)"
+        },
+        {
+          "code": "5",
+          "label": "...retraité(e)"
+        },
+        {
+          "code": "6",
+          "label": "...étudiant(e)"
+        },
+        {
+          "code": "9",
+          "label": "* refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018987342482432723,
+      "id": "cecd_elxn_qc_2007__intvote1",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "intvote1",
+      "question_text": "4. S'il y avait des élections provinciales aujourd'hui au Québec, pour lequel des partis suivants voteriez-vous? Voteriez-vous pour...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "préférences électorales"
+      ],
+      "themes": [
+        "démocratie",
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": "3",
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": "6",
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "* annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018518519354984164,
+      "id": "cecd_elxn_qc_2007__intref2",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "intref2",
+      "question_text": "14. Même si vous n'avez peut-être pas encore fait votre choix, s'il y avait un référendum aujourd'hui sur cette question, seriez-vous tenté(e) de voter Oui ou de voter Non?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté",
+        "référendum"
+      ],
+      "themes": [
+        "question nationale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "OUI"
+        },
+        {
+          "code": "2",
+          "label": "NON"
+        },
+        {
+          "code": "3",
+          "label": "* ne voterait pas/annulerait"
+        },
+        {
+          "code": "8",
+          "label": "* NSP"
+        },
+        {
+          "code": "9",
+          "label": "* refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018292682943865657,
+      "id": "cecd_elxn_qc_2007__q28br1",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "q28br1",
+      "question_text": "Raisons pour lesquelles les sondages sont une bonne ou une mauvaise chose pour les électeurs-1",
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "10",
+          "label": "Sondages ont une influence positive"
+        },
+        {
+          "code": "20",
+          "label": "Sondages donnent une information fiable"
+        },
+        {
+          "code": "50",
+          "label": "Sondages ont une influence négative"
+        },
+        {
+          "code": "60",
+          "label": "Sondages donnent information non fiable"
+        },
+        {
+          "code": "99",
+          "label": "autres,  nsp"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018072288949042559,
+      "id": "cecd_elxn_qc_2007__gagne",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "gagne",
+      "question_text": "11. D'après vous, indépendamment de votre préférence personnelle, quel parti va gagner les prochaines élections au Québec ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "attentes électorales",
+        "prévisions électorales"
+      ],
+      "themes": [
+        "comportement électoral",
+        "prévisions électorales"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": "3",
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": "6",
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017857144121080637,
+      "id": "cecd_elxn_qc_2007__z1q17",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1q17",
+      "question_text": "17. Pour ce qui est des frais de garderie, quelle option préférez-vous parmi les suivantes?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "garde d'enfants",
+        "politique familiale"
+      ],
+      "themes": [
+        "politiques publiques",
+        "enjeux électoraux"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Créer de nouvelles places en garderie à 7 $"
+        },
+        {
+          "code": "2",
+          "label": "Verser 100 $ par semaine par enfant aux parents qui n¹envoie"
+        },
+        {
+          "code": "3",
+          "label": "Ne pas dépenser davantage pour les garderies"
+        },
+        {
+          "code": "6",
+          "label": "* Autre (précisez) :"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017647059867158532,
+      "id": "cecd_elxn_qc_2007__posadq",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "posadq",
+      "question_text": "25. possible ou impossible ... c) Que vous votiez pour l'ADQ - l'Action démocratique du Québec ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Possible"
+        },
+        {
+          "code": "2",
+          "label": "Impossible"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017441861564293504,
+      "id": "cecd_elxn_qc_2007__z2q13",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z2q13",
+      "question_text": "13. Selon vous, le prochain gouvernement du Québec sera-t-il majoritaire ou minoritaire?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "attentes électorales",
+        "structure gouvernementale"
+      ],
+      "themes": [
+        "élections",
+        "gouvernance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Majoritaire"
+        },
+        {
+          "code": "2",
+          "label": "Minoritaire"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017045455751940608,
+      "id": "cecd_elxn_qc_2007__raisannul",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "raisannul",
+      "question_text": "4b.  Quelle est la principale raison pour laquelle vous avez (annulé votre vote ou n'êtes pas allé voter) ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "abstention partielle",
+        "raison du non-vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "96",
+          "label": "Raison (précisez) :"
+        },
+        {
+          "code": "99",
+          "label": "NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016853933921083808,
+      "id": "cecd_elxn_qc_2007__lmat",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "lmat",
+      "question_text": "33. Quelle est votre langue maternelle, c'est-à-dire la première langue que vous avez apprise et que vous pouvez encore parler?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [
+        "langue maternelle"
+      ],
+      "themes": [
+        "démographie",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Français"
+        },
+        {
+          "code": "2",
+          "label": "Anglais"
+        },
+        {
+          "code": "6",
+          "label": "Autre (préciser) :"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016666668234393,
+      "id": "cecd_elxn_qc_2007__lmat_ouv",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "lmat_ouv",
+      "question_text": "Langue maternelle autre",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.0016483517829328775,
+      "id": "cecd_elxn_qc_2007__nbms18",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "nbms18",
+      "question_text": "35. Combien de personnes de moins de 18 ans résident en permanence dans votre foyer?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "composition familiale"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "aucune"
+        },
+        {
+          "code": "1",
+          "label": "1 personne"
+        },
+        {
+          "code": "2",
+          "label": "2 personnes"
+        },
+        {
+          "code": "3",
+          "label": "3 personnes"
+        },
+        {
+          "code": "4",
+          "label": "4 personnes"
+        },
+        {
+          "code": "5",
+          "label": "5 personnes"
+        },
+        {
+          "code": "6",
+          "label": "6 personnes et plus"
+        },
+        {
+          "code": "9",
+          "label": "* refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016304348828271031,
+      "id": "cecd_elxn_qc_2007__apte",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "apte",
+      "question_text": "8. Lequel des cinq leaders politiques suivants estimez-vous le plus apte à diriger le prochain gouvernement du Québec : LIRE",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation des chefs",
+        "leadership",
+        "compétence"
+      ],
+      "themes": [
+        "leadership politique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "André Boisclair (PQ)"
+        },
+        {
+          "code": "2",
+          "label": "Jean Charest (PLQ)"
+        },
+        {
+          "code": "3",
+          "label": "Françoise David (PQS)"
+        },
+        {
+          "code": "4",
+          "label": "Mario Dumont (ADQ)"
+        },
+        {
+          "code": "5",
+          "label": "Scott Mckay (PV)"
+        },
+        {
+          "code": "6",
+          "label": "* aucun"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016129033174365759,
+      "id": "cecd_elxn_qc_2007__z1q18",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1q18",
+      "question_text": "18. En ce qui concerne la durée de la journée scolaire au niveau primaire, quelle option préférez-vous parmi les suivantes ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "éducation",
+        "politique publique"
+      ],
+      "themes": [
+        "politiques publiques",
+        "enjeux électoraux"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Ajouter une heure d¹école par jour en art ou en sport"
+        },
+        {
+          "code": "2",
+          "label": "Ajouter une heure par jour en français"
+        },
+        {
+          "code": "3",
+          "label": "Ajouter une heure d'aide aux devoirs"
+        },
+        {
+          "code": "4",
+          "label": "Ne pas allonger la journée d¹école"
+        },
+        {
+          "code": "5",
+          "label": "* Autre (précisez) :"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015957447467371821,
+      "id": "cecd_elxn_qc_2007__beaucoup",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "beaucoup",
+      "question_text": "22. Est-ce que le <Q21> est beaucoup en avance ou un peu en avance?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "sondages",
+        "perception des écarts"
+      ],
+      "themes": [
+        "opinion publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Beaucoup en avance"
+        },
+        {
+          "code": "2",
+          "label": "Un peu en avance"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015789475291967392,
+      "id": "cecd_elxn_qc_2007__voteprec",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "voteprec",
+      "question_text": "15a. Pour quel parti avez-vous voté aux dernières élections provinciales d'avril 2003? LIRE",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "historique électoral"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "L'Action démocratique du Québec"
+        },
+        {
+          "code": "2",
+          "label": "Le Parti libéral du Québec"
+        },
+        {
+          "code": "3",
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": "4",
+          "label": "ou un autre parti? (précisez):"
+        },
+        {
+          "code": "6",
+          "label": "* n'a pas voté"
+        },
+        {
+          "code": "8",
+          "label": "* NSP/ne se souvient pas"
+        },
+        {
+          "code": "9",
+          "label": "* Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015625001396983862,
+      "id": "cecd_elxn_qc_2007__siglenum",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "siglenum",
+      "question_text": "Appelation des postes radio - numerique",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "2",
+          "label": "BOOMER AM"
+        },
+        {
+          "code": "3",
+          "label": "CBC"
+        },
+        {
+          "code": "4",
+          "label": "CFDA-FM"
+        },
+        {
+          "code": "5",
+          "label": "CFEI-FM"
+        },
+        {
+          "code": "6",
+          "label": "CFEL-FM"
+        },
+        {
+          "code": "7",
+          "label": "CFGE-FM"
+        },
+        {
+          "code": "8",
+          "label": "CFGL"
+        },
+        {
+          "code": "9",
+          "label": "CFGR-FM"
+        },
+        {
+          "code": "10",
+          "label": "CFIM-FM"
+        },
+        {
+          "code": "11",
+          "label": "CFIX-FM"
+        },
+        {
+          "code": "12",
+          "label": "CFJM-FM"
+        },
+        {
+          "code": "13",
+          "label": "CFJO-FM"
+        },
+        {
+          "code": "14",
+          "label": "CFLO-FM"
+        },
+        {
+          "code": "15",
+          "label": "CFLX-FM"
+        },
+        {
+          "code": "16",
+          "label": "CFNJ-FM"
+        },
+        {
+          "code": "17",
+          "label": "CFNJ"
+        },
+        {
+          "code": "18",
+          "label": "CFNO-FM"
+        },
+        {
+          "code": "19",
+          "label": "CFOM-FM"
+        },
+        {
+          "code": "20",
+          "label": "CFOM"
+        },
+        {
+          "code": "21",
+          "label": "CFOU-FM"
+        },
+        {
+          "code": "22",
+          "label": "CFQR-FM"
+        },
+        {
+          "code": "23",
+          "label": "CFVM"
+        },
+        {
+          "code": "24",
+          "label": "CFXM-FM"
+        },
+        {
+          "code": "25",
+          "label": "CFZZ-FM"
+        },
+        {
+          "code": "26",
+          "label": "CHCN-AM 610"
+        },
+        {
+          "code": "27",
+          "label": "CHEQ-FM"
+        },
+        {
+          "code": "28",
+          "label": "CHEY-FM"
+        },
+        {
+          "code": "29",
+          "label": "CHGA-FM"
+        },
+        {
+          "code": "30",
+          "label": "CHIC-FM"
+        },
+        {
+          "code": "31",
+          "label": "CHIK-FM"
+        },
+        {
+          "code": "32",
+          "label": "CHIZ-FM"
+        },
+        {
+          "code": "33",
+          "label": "CHJM-FM"
+        },
+        {
+          "code": "34",
+          "label": "CHLC-FM"
+        },
+        {
+          "code": "35",
+          "label": "CHLN 550 AM"
+        },
+        {
+          "code": "36",
+          "label": "CHLT 630 630 AM"
+        },
+        {
+          "code": "37",
+          "label": "CHLX-FM"
+        },
+        {
+          "code": "38",
+          "label": "CHMP-FM"
+        },
+        {
+          "code": "39",
+          "label": "CHNC-AM"
+        },
+        {
+          "code": "40",
+          "label": "CHOA-FM"
+        },
+        {
+          "code": "41",
+          "label": "CHOE-FM"
+        },
+        {
+          "code": "42",
+          "label": "CHOI-FM"
+        },
+        {
+          "code": "43",
+          "label": "CHOM-FM"
+        },
+        {
+          "code": "44",
+          "label": "CHOX-FM"
+        },
+        {
+          "code": "45",
+          "label": "CHRC 80"
+        },
+        {
+          "code": "46",
+          "label": "CHRD-FM"
+        },
+        {
+          "code": "47",
+          "label": "CHRL-FM"
+        },
+        {
+          "code": "48",
+          "label": "CHRM-FM"
+        },
+        {
+          "code": "49",
+          "label": "CHUM-FM"
+        },
+        {
+          "code": "50",
+          "label": "CHVD-FM"
+        },
+        {
+          "code": "51",
+          "label": "CHYZ-FM"
+        },
+        {
+          "code": "52",
+          "label": "CIBM-FM"
+        },
+        {
+          "code": "53",
+          "label": "CIEL-FM"
+        },
+        {
+          "code": "54",
+          "label": "CIEU-FM"
+        },
+        {
+          "code": "55",
+          "label": "CIGB-FM"
+        },
+        {
+          "code": "56",
+          "label": "CIGR-FM"
+        },
+        {
+          "code": "57",
+          "label": "CIHO-FM"
+        },
+        {
+          "code": "58",
+          "label": "CIHT-FM"
+        },
+        {
+          "code": "59",
+          "label": "CIKI-FM"
+        },
+        {
+          "code": "60",
+          "label": "CILE-FM"
+        },
+        {
+          "code": "61",
+          "label": "CIMB-FM"
+        },
+        {
+          "code": "62",
+          "label": "CIME-FM"
+        },
+        {
+          "code": "63",
+          "label": "CIMF-FM"
+        },
+        {
+          "code": "64",
+          "label": "CIMO-FM"
+        },
+        {
+          "code": "65",
+          "label": "CINW"
+        },
+        {
+          "code": "66",
+          "label": "CION-FM"
+        },
+        {
+          "code": "67",
+          "label": "CIPC-FM"
+        },
+        {
+          "code": "68",
+          "label": "CIRA-FM"
+        },
+        {
+          "code": "69",
+          "label": "CISM-FM"
+        },
+        {
+          "code": "70",
+          "label": "CISS-FM"
+        },
+        {
+          "code": "71",
+          "label": "CITE-FM"
+        },
+        {
+          "code": "72",
+          "label": "CITF-FM"
+        },
+        {
+          "code": "73",
+          "label": "CJAB-FM"
+        },
+        {
+          "code": "74",
+          "label": "CJAD 800"
+        },
+        {
+          "code": "75",
+          "label": "CJAN-FM"
+        },
+        {
+          "code": "76",
+          "label": "CJDM-FM"
+        },
+        {
+          "code": "77",
+          "label": "CJEB-FM"
+        },
+        {
+          "code": "78",
+          "label": "CJEC-FM"
+        },
+        {
+          "code": "79",
+          "label": "CJFM-FM"
+        },
+        {
+          "code": "80",
+          "label": "CJIT-FM"
+        },
+        {
+          "code": "81",
+          "label": "CJKG-FM"
+        },
+        {
+          "code": "82",
+          "label": "CJLA-FM"
+        },
+        {
+          "code": "83",
+          "label": "CJLM-FM"
+        },
+        {
+          "code": "84",
+          "label": "CJMF-FM"
+        },
+        {
+          "code": "85",
+          "label": "CJMJ-FM"
+        },
+        {
+          "code": "86",
+          "label": "CJMM-FM"
+        },
+        {
+          "code": "87",
+          "label": "CJMS-AM"
+        },
+        {
+          "code": "88",
+          "label": "CJMV-FM"
+        },
+        {
+          "code": "89",
+          "label": "CJOI-FM"
+        },
+        {
+          "code": "90",
+          "label": "CJPX-FM"
+        },
+        {
+          "code": "91",
+          "label": "CJRC 1150"
+        },
+        {
+          "code": "92",
+          "label": "CJRG-FM"
+        },
+        {
+          "code": "93",
+          "label": "CJSO-FM"
+        },
+        {
+          "code": "94",
+          "label": "CKAC 730 AM"
+        },
+        {
+          "code": "95",
+          "label": "CKAJ-FM"
+        },
+        {
+          "code": "96",
+          "label": "CKBY-FM"
+        },
+        {
+          "code": "97",
+          "label": "CKGM"
+        },
+        {
+          "code": "98",
+          "label": "CKKL-FM"
+        },
+        {
+          "code": "99",
+          "label": "CKLX-FM"
+        },
+        {
+          "code": "100",
+          "label": "CKMF-FM"
+        },
+        {
+          "code": "101",
+          "label": "CKMN-FM"
+        },
+        {
+          "code": "102",
+          "label": "CKNU-AM"
+        },
+        {
+          "code": "103",
+          "label": "CKOD-FM"
+        },
+        {
+          "code": "104",
+          "label": "CKOI-FM"
+        },
+        {
+          "code": "105",
+          "label": "CKRS 590"
+        },
+        {
+          "code": "106",
+          "label": "CKTF-FM"
+        },
+        {
+          "code": "107",
+          "label": "CKVM-FM"
+        },
+        {
+          "code": "108",
+          "label": "CKYK-FM"
+        },
+        {
+          "code": "109",
+          "label": "CKYQ-FM"
+        },
+        {
+          "code": "110",
+          "label": "COOL FM"
+        },
+        {
+          "code": "111",
+          "label": "CPAM"
+        },
+        {
+          "code": "112",
+          "label": "G-ROCK-FM"
+        },
+        {
+          "code": "113",
+          "label": "Info 690"
+        },
+        {
+          "code": "114",
+          "label": "INTERNET"
+        },
+        {
+          "code": "115",
+          "label": "MAX TRAX"
+        },
+        {
+          "code": "116",
+          "label": "MIX FM"
+        },
+        {
+          "code": "117",
+          "label": "Off the air"
+        },
+        {
+          "code": "118",
+          "label": "Radio Indienne"
+        },
+        {
+          "code": "119",
+          "label": "RCan"
+        },
+        {
+          "code": "120",
+          "label": "RCanMusique"
+        },
+        {
+          "code": "121",
+          "label": "USA"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015463917516171932,
+      "id": "cecd_elxn_qc_2007__sexe",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "sexe",
+      "question_text": "Sexe du répondant",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [
+        "sexe"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "HOMME"
+        },
+        {
+          "code": "2",
+          "label": "FEMME"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015306122368201613,
+      "id": "cecd_elxn_qc_2007__scol",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "scol",
+      "question_text": "31. Combien d'années d'études avez-vous complétées?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [
+        "éducation",
+        "scolarité"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...7 années ou moins (primaire)"
+        },
+        {
+          "code": "2",
+          "label": "...8 à 12 années (secondaire)"
+        },
+        {
+          "code": "3",
+          "label": "...13 à 15 années (Cegep/collège, école technique)"
+        },
+        {
+          "code": "4",
+          "label": "...ou 16 années ou plus? (Université)"
+        },
+        {
+          "code": "9",
+          "label": "* refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015151515835896134,
+      "id": "cecd_elxn_qc_2007__revenu",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "revenu",
+      "question_text": "32. Dans laquelle des catégories suivantes se situe le revenu annuel total, avant impôts et déductions, de tous les membres de votre foyer, en vous incluant? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [
+        "revenu",
+        "statut économique"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...moins de 20 000 $"
+        },
+        {
+          "code": "2",
+          "label": "...20 000 $ à 39 999 $"
+        },
+        {
+          "code": "3",
+          "label": "...40 000 $ à 59 999 $"
+        },
+        {
+          "code": "4",
+          "label": "...60 000 $ à 79 999 $"
+        },
+        {
+          "code": "5",
+          "label": "...ou 80 000 $ et plus?"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001500000013038516,
+      "id": "cecd_elxn_qc_2007__satisf",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "satisf",
+      "question_text": "3. Diriez-vous que vous êtes très satisfait(e), plutôt satisfait(e), plutôt insatisfait(e) ou très insatisfait(e) du présent gouvernement du Québec?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "satisfaction gouvernementale",
+        "évaluation gouvernementale"
+      ],
+      "themes": [
+        "leadership politique",
+        "gouvernance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt satisfait(e)"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt insatisfait(e)"
+        },
+        {
+          "code": "4",
+          "label": "Très insatisfait(e)"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014851485611870885,
+      "id": "cecd_elxn_qc_2007__intvote2",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "intvote2",
+      "question_text": "5. Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Serait-pour...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "préférences électorales"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...L'Action Démocratique du Québec"
+        },
+        {
+          "code": "2",
+          "label": "...Le Parti Libéral du Québec"
+        },
+        {
+          "code": "3",
+          "label": "...Le Parti Québécois"
+        },
+        {
+          "code": "4",
+          "label": "...Le Parti Québec Solidaire"
+        },
+        {
+          "code": "5",
+          "label": "...Le Parti Vert du Québec"
+        },
+        {
+          "code": "6",
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "* annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001470588380470872,
+      "id": "cecd_elxn_qc_2007__defini",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "defini",
+      "question_text": "6. Diriez-vous que votre choix est définitif ou y a-t-il une possibilité que vous changiez d'idée d'ici les élections?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "certitude électorale",
+        "indécision"
+      ],
+      "themes": [
+        "comportement électoral",
+        "volatilité électorale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Définitif"
+        },
+        {
+          "code": "2",
+          "label": "Peut changer d'idée"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014563107397407293,
+      "id": "cecd_elxn_qc_2007__deuxint",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "deuxint",
+      "question_text": "7. Quel parti serait votre 2e choix si vous deviez changer d'idée?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intentions flexibles",
+        "vote secondaire"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": "3",
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": "6",
+          "label": "...OU un autre parti? (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "* Aucun"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014423078391700983,
+      "id": "cecd_elxn_qc_2007__posqspv",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "posqspv",
+      "question_text": "25. possible ou impossible ... d) Que vous votiez pour un autre parti comme Québec solidaire ou le Parti Vert?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Possible"
+        },
+        {
+          "code": "2",
+          "label": "Impossible"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001428571529686451,
+      "id": "cecd_elxn_qc_2007__lusage_ouv",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "lusage_ouv",
+      "question_text": "Langue d'usage autre",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.0014150943607091904,
+      "id": "cecd_elxn_qc_2007__pospq",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "pospq",
+      "question_text": "25. possible ou impossible ... b) Que vous votiez pour le Parti Québécois?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Possible"
+        },
+        {
+          "code": "2",
+          "label": "Impossible"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0013888889225199819,
+      "id": "cecd_elxn_qc_2007__z2q14",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z2q14",
+      "question_text": "14. Est-ce que la perspective d'un gouvernement minoritaire vous inquiète?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "stabilité gouvernementale",
+        "préoccupations"
+      ],
+      "themes": [
+        "gouvernance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0013761467998847365,
+      "id": "cecd_elxn_qc_2007__genre_post",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "genre_post",
+      "question_text": "Sexe du répondant",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Homme"
+        },
+        {
+          "code": "2",
+          "label": "Femme"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6143 @@
+{
+  "id": "q06",
+  "query": "charte des valeurs et laïcité",
+  "concepts": [
+    {
+      "orig": "charte",
+      "syns": [
+        "chartes",
+        "charte des valeurs",
+        "charte québécoise",
+        "charter",
+        "charters",
+        "charter of values",
+        "values charter",
+        "Quebec charter"
+      ],
+      "qualifiers": [
+        "valeurs",
+        "des valeurs",
+        "québécoise",
+        "québécoises"
+      ],
+      "weight": 0.5
+    },
+    {
+      "orig": "laïcité",
+      "syns": [
+        "laicite",
+        "laïque",
+        "sécularité",
+        "sécularisation",
+        "secularism",
+        "secular",
+        "neutralité religieuse",
+        "religious neutrality",
+        "séparation Église-État"
+      ],
+      "weight": 0.5
+    }
+  ],
+  "candidates": [
+    {
+      "@search.score": 0.03333333507180214,
+      "id": "eeq_2014__Q54",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q54",
+      "question_text": "Et sur la même échelle, quelle est l'importance d'adopter une charte de la laïcité?",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "laïcité"
+      ],
+      "themes": [
+        "valeurs sociales"
+      ],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "0: Pas du tout important"
+        },
+        {
+          "code": "1",
+          "label": "1"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5"
+        },
+        {
+          "code": "6",
+          "label": "6"
+        },
+        {
+          "code": "7",
+          "label": "7"
+        },
+        {
+          "code": "8",
+          "label": "8"
+        },
+        {
+          "code": "9",
+          "label": "9"
+        },
+        {
+          "code": "10",
+          "label": "10: Très important"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.032786883413791656,
+      "id": "eeq_2014__Q44A",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q44A",
+      "question_text": "Concernant le projet de charte de la laïcité proposée par le gouvernement l'automne dernier, diriez-vous que vous êtes fortement d'accord avec cette charte, plutôt d'accord, plutôt en désaccord ou fortement en désaccord?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "laïcité",
+        "religion"
+      ],
+      "themes": [
+        "valeurs sociales"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": "4",
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.029286926612257957,
+      "id": "eeq_2014__Q1",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q1",
+      "question_text": "Parmi les enjeux suivants, lequel était, pour vous personnellement, le plus important lors de l'élection provinciale du 7 avril dernier?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "enjeux électoraux"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "L'économie"
+        },
+        {
+          "code": "2",
+          "label": "La santé"
+        },
+        {
+          "code": "3",
+          "label": "L'environnement"
+        },
+        {
+          "code": "4",
+          "label": "L'éducation"
+        },
+        {
+          "code": "5",
+          "label": "L'aide aux familles"
+        },
+        {
+          "code": "6",
+          "label": "La pauvreté"
+        },
+        {
+          "code": "7",
+          "label": "L'intégrité"
+        },
+        {
+          "code": "8",
+          "label": "Les taxes et les finances publiques"
+        },
+        {
+          "code": "9",
+          "label": "La souveraineté du Québec"
+        },
+        {
+          "code": "10",
+          "label": "La charte de la laïcité"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.029206350445747375,
+      "id": "cecd_elxn_qc_2018__q3a2",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q3a2",
+      "question_text": "2e raison pour le vote",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
+        },
+        {
+          "code": "2",
+          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
+        },
+        {
+          "code": "3",
+          "label": "Finances/ (bonne) performance économique"
+        },
+        {
+          "code": "4",
+          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
+        },
+        {
+          "code": "5",
+          "label": "Environnement/ durabilité"
+        },
+        {
+          "code": "6",
+          "label": "Immigration"
+        },
+        {
+          "code": "7",
+          "label": "Soins de santé"
+        },
+        {
+          "code": "8",
+          "label": "Bénéfices pour la famille"
+        },
+        {
+          "code": "9",
+          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
+        },
+        {
+          "code": "10",
+          "label": "Tendance plus à gauche (incl. socialiste)"
+        },
+        {
+          "code": "11",
+          "label": "Tendance plus à droite (incl. conservateur)"
+        },
+        {
+          "code": "12",
+          "label": "Parti séparatiste/ pour un Québec indépendant"
+        },
+        {
+          "code": "13",
+          "label": "J'aimais le candidat (local)"
+        },
+        {
+          "code": "14",
+          "label": "J'aimais le parti/ chef de parti"
+        },
+        {
+          "code": "15",
+          "label": "J'aimais les Libéraux/ Philippe Couillard"
+        },
+        {
+          "code": "16",
+          "label": "J'aimais la CAQ/ François Legault"
+        },
+        {
+          "code": "17",
+          "label": "J'aimais Québec solidaire"
+        },
+        {
+          "code": "18",
+          "label": "Pour chasser les Libéraux du pouvoir"
+        },
+        {
+          "code": "19",
+          "label": "Je n'aimais pas la CAQ/ François Legault"
+        },
+        {
+          "code": "20",
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": "21",
+          "label": "Le meilleur candidat/ parti/ choix possible"
+        },
+        {
+          "code": "22",
+          "label": "Le moins pire/ n'a pas aimé les autres options"
+        },
+        {
+          "code": "23",
+          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
+        },
+        {
+          "code": "24",
+          "label": "Stabilité/ continuité"
+        },
+        {
+          "code": "25",
+          "label": "Confiance/ honnêteté"
+        },
+        {
+          "code": "26",
+          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
+        },
+        {
+          "code": "27",
+          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
+        },
+        {
+          "code": "28",
+          "label": "Rien"
+        },
+        {
+          "code": "29",
+          "label": "Autre"
+        },
+        {
+          "code": "30",
+          "label": "Ne sais pas"
+        },
+        {
+          "code": "31",
+          "label": "valeurs"
+        },
+        {
+          "code": "32",
+          "label": "debat"
+        },
+        {
+          "code": "33",
+          "label": "laicité-religion"
+        },
+        {
+          "code": "34",
+          "label": "promesses"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01821676641702652,
+      "id": "cecd_charte_2013_10__pc1",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "pc1",
+      "question_text": "PC1. Le gouvernement du Parti Québécois de Pauline Marois vient de déposer un projet de Charte des valeurs québécoises. De façon générale, vous-même, êtes-vous favorable ou défavorable à ce projet?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "charte des valeurs",
+        "politique gouvernementale",
+        "opinion"
+      ],
+      "themes": [
+        "politique",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très favorable"
+        },
+        {
+          "code": "2",
+          "label": "Assez favorable"
+        },
+        {
+          "code": "3",
+          "label": "Assez défavorable"
+        },
+        {
+          "code": "4",
+          "label": "Très défavorable"
+        },
+        {
+          "code": "9",
+          "label": "Je n'ai pas d'opinion ou je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.016129031777381897,
+      "id": "eeq_2014__Q44B",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q44B",
+      "question_text": "Concernant le projet de charte des valeurs proposée par le gouvernement l'automne dernier, diriez-vous que vous êtes fortement d'accord avec cette charte, plutôt d'accord, plutôt en désaccord ou fortement en désaccord?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "charte des valeurs"
+      ],
+      "themes": [
+        "valeurs sociales"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": "4",
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.015625,
+      "id": "eeq_2014__Q15",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q15",
+      "question_text": "Certaines personnes croient que les Québécois ont des valeurs et priorités qui les rendent distincts au sein du Canada. D'autres croient que les Québécois ont les mêmes valeurs et priorités que les autres Canadiens. Et d'autres se situent entre ces deux po",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "identité québécoise",
+        "distinctivité"
+      ],
+      "themes": [
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "0: Valeurs distinctes"
+        },
+        {
+          "code": "1",
+          "label": "1"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5"
+        },
+        {
+          "code": "6",
+          "label": "6"
+        },
+        {
+          "code": "7",
+          "label": "7"
+        },
+        {
+          "code": "8",
+          "label": "8"
+        },
+        {
+          "code": "9",
+          "label": "9"
+        },
+        {
+          "code": "10",
+          "label": "10: Mêmes valeurs"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.015384615398943424,
+      "id": "cecd_sante_can_usa__Q63",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q63",
+      "question_text": "Universal publicly-funded health care is part of what it means to be Canadian and reflects our core values.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "identité_nationale",
+        "valeurs",
+        "système_public"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01515151560306549,
+      "id": "cecd_sante_can_usa__Q76",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q76",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / If people were treated more equally in this country we would have many fewer problems.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "égalité",
+        "valeurs"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014925372786819935,
+      "id": "cecd_sante_can_usa__Q74",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q74",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / This country would be better off if we worried less about how equal people are.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "égalité",
+        "valeurs"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014705882407724857,
+      "id": "cecd_elxn_can_2011__you1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "you1",
+      "question_text": "1.  Personnellement, comment vous décrivez-vous? Diriez-vous que vous êtes ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "identité nationale",
+        "nationalisme"
+      ],
+      "themes": [
+        "identité",
+        "question nationale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Avant tout Québécois"
+        },
+        {
+          "code": "2",
+          "label": "Avant tout Canadien"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014492753893136978,
+      "id": "cecd_sante_can_usa__Q73",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q73",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / We have gone too far in pushing equal rights in this country.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "droits_égaux",
+        "valeurs"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014285714365541935,
+      "id": "cecd_sante_can_usa__Q75",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q75",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / It is not really that big a problem if some people have more of a chance in life than others.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "valeurs"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014084506779909134,
+      "id": "cecd_elxn_qc_2012__honnete",
+      "survey_id": "cecd_elxn_qc_2012",
+      "survey_year": 2012,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2012 - volet postélectoral (CECD)",
+      "n_respondents": 844,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2012"
+      ],
+      "variable": "honnete",
+      "question_text": "Je vais maintenant vous lire une série d'affirmations. Pour chacune d'elles, dites-moi à quel chef l'affirmation s'applique le mieux. Honnête",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intégrité",
+        "confiance",
+        "évaluation des chefs"
+      ],
+      "themes": [
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "François Legault"
+        },
+        {
+          "code": "2",
+          "label": "Jean Charest"
+        },
+        {
+          "code": "3",
+          "label": "Pauline Marois"
+        },
+        {
+          "code": "4",
+          "label": "Amir Khadir et Françoise David"
+        },
+        {
+          "code": "5",
+          "label": "Claude Sabourin"
+        },
+        {
+          "code": "6",
+          "label": "Jean-Martin Aussant"
+        },
+        {
+          "code": "7",
+          "label": "Aucun de ces chefs"
+        },
+        {
+          "code": "9",
+          "label": "Ne sait pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013888888992369175,
+      "id": "eeq_2014__Q21",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q21",
+      "question_text": "Et si un référendum avait lieu vous demandant si vous voulez que l'Assemblée nationale du Québec signe la Constitution canadienne de 1982, voteriez-vous OUI ou voteriez-vous NON?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "constitution"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013698630034923553,
+      "id": "eeq_2014__Q42B",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q42B",
+      "question_text": "Quel parti est le meilleur pour défendre l'identité et la culture québécoise?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "compétence partisane",
+        "identité québécoise"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": "2",
+          "label": "Parti québécois"
+        },
+        {
+          "code": "3",
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": "4",
+          "label": "Québec solidaire"
+        },
+        {
+          "code": "5",
+          "label": "Option nationale"
+        },
+        {
+          "code": "6",
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": "96",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013513513840734959,
+      "id": "eeq_2014__Q24A",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q24A",
+      "question_text": "Classez, par ordre de préférence personnelle, les trois options constitutionnelles suivantes. / Premier choix",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "constitution"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": "2",
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": "3",
+          "label": "Indépendance"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012987012974917889,
+      "id": "cecd_elxn_qc_1998__q3post2",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "q3post2",
+      "question_text": "Vote déclaré",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "ADQ"
+        },
+        {
+          "code": "3",
+          "label": "Lib."
+        },
+        {
+          "code": "4",
+          "label": "Pq"
+        },
+        {
+          "code": "5",
+          "label": "autres"
+        },
+        {
+          "code": "6",
+          "label": "pas voté"
+        },
+        {
+          "code": "9",
+          "label": "refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012820512987673283,
+      "id": "eeq_2014__Q17",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q17",
+      "question_text": "Pour quelle option avez-vous voté?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté",
+        "historique"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012658228166401386,
+      "id": "cecd_sante_can_usa__Q72",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q72",
+      "question_text": "Please indicate whether you agree or disagree with the following statement: / Our society should do whatever is necessary to make sure that everyone has an equal opportunity to succeed.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "équité",
+        "égalité_des_chances"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012500000186264515,
+      "id": "cecd_sante_can_usa__Q64",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "Q64",
+      "question_text": "Market-based health care is part of what it means to be American and reflects our core values.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "identité_nationale",
+        "valeurs",
+        "système_privé"
+      ],
+      "themes": [
+        "société",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly agree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "8",
+          "label": "I Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012345679104328156,
+      "id": "eeq_2014__Q24B",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q24B",
+      "question_text": "Classez, par ordre de préférence personnelle, les trois options constitutionnelles suivantes. / Deuxième choix",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "constitution"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": "2",
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": "3",
+          "label": "Indépendance"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012195121496915817,
+      "id": "govcan_06822_wave1_2024__SOCCOH_TRUST",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "SOCCOH_TRUST",
+      "question_text": "I trust other people in Canada to do what is in the best interests of the country",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "cohésion-sociale",
+        "patriotisme"
+      ],
+      "themes": [
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Disagree"
+        },
+        {
+          "code": "3",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Agree"
+        },
+        {
+          "code": "6",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012048192322254181,
+      "id": "eeq_2014__Q13",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q13",
+      "question_text": "Et quel est votre degré d'attachement au Canada ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "identité canadienne",
+        "attachement"
+      ],
+      "themes": [
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très attaché(e)"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt attaché(e)"
+        },
+        {
+          "code": "3",
+          "label": "Pas très attaché(e)"
+        },
+        {
+          "code": "4",
+          "label": "Pas du tout attaché(e)"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011904762126505375,
+      "id": "eeq_2014__Q24C",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q24C",
+      "question_text": "Classez, par ordre de préférence personnelle, les trois options constitutionnelles suivantes. / Troisième choix",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "constitution"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": "2",
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": "3",
+          "label": "Indépendance"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0117647061124444,
+      "id": "cecd_elxn_qc_2007__raischang",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "raischang",
+      "question_text": "4a.   Quelle est la principale raison pour laquelle vous avez voté pour <Q3>?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "96",
+          "label": "Raison (précisez) :"
+        },
+        {
+          "code": "99",
+          "label": "NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011627906933426857,
+      "id": "eeq_2014__Q36A",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q36A",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Notre société doit faire tout ce qui est nécessaire pour s'assurer que chacun ait une chance égale de réussir.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "égalité",
+        "justice sociale"
+      ],
+      "themes": [
+        "politique sociale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": "4",
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01149425283074379,
+      "id": "cecd_elxn_qc_1998__q1post",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "q1post",
+      "question_text": "A voté ou non",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "vote",
+        "participation"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "oui"
+        },
+        {
+          "code": "2",
+          "label": "non"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011363636702299118,
+      "id": "eeq_2014__Q22",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q22",
+      "question_text": "Et s'il y avait un référendum vous demandant de choisir parmi les trois options suivantes. Voteriez-vous pour: signer la Constitution de 1982, avoir plus de pouvoirs pour le Québec, ou l'indépendance?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "constitution"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": "2",
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": "3",
+          "label": "Indépendance"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01123595517128706,
+      "id": "eeq_2014__Q12",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q12",
+      "question_text": "Quel est votre degré d'attachement au Québec ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "identité québécoise",
+        "attachement"
+      ],
+      "themes": [
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très attaché(e)"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt attaché(e)"
+        },
+        {
+          "code": "3",
+          "label": "Pas très attaché(e)"
+        },
+        {
+          "code": "4",
+          "label": "Pas du tout attaché(e)"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011111111380159855,
+      "id": "cecd_elxn_qc_2018__q6_03",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q6_03",
+      "question_text": "q6_03. [J'ai un devoir de voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "devoir civique",
+        "norme électorale"
+      ],
+      "themes": [
+        "démocratie",
+        "engagement civique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5"
+        },
+        {
+          "code": "6",
+          "label": "6"
+        },
+        {
+          "code": "7",
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": "8",
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010989011265337467,
+      "id": "eeq_2014__Q30B",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q30B",
+      "question_text": "Selon vous, lequel des chefs de parti est le plus honnête?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intégrité",
+        "leadership"
+      ],
+      "themes": [
+        "politiciens"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Philippe Couillard"
+        },
+        {
+          "code": "2",
+          "label": "Pauline Marois"
+        },
+        {
+          "code": "3",
+          "label": "François Legault"
+        },
+        {
+          "code": "4",
+          "label": "Françoise David"
+        },
+        {
+          "code": "5",
+          "label": "Sol Zanetti"
+        },
+        {
+          "code": "6",
+          "label": "Alex Tyrrell"
+        },
+        {
+          "code": "95",
+          "label": "Tous"
+        },
+        {
+          "code": "97",
+          "label": "Aucun"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010869565419852734,
+      "id": "cecd_elxn_qc_1998__typo",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "typo",
+      "question_text": "Typologie intention - vote déclaré",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.01075268816202879,
+      "id": "eeq_2014__Q23",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q23",
+      "question_text": "Si l'option <Q22> était rejetée par une majorité de la population, quelle serait alors votre deuxième préférence?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "constitution"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": "2",
+          "label": "Avoir plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": "3",
+          "label": "Indépendance"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010638297535479069,
+      "id": "eeq_2014__Q63",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q63",
+      "question_text": "À quelle religion appartenez-vous?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "religion_type",
+      "concepts": [
+        "religion"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Christianisme (Catholicisme)"
+        },
+        {
+          "code": "2",
+          "label": "Christianisme (Protestant)"
+        },
+        {
+          "code": "3",
+          "label": "Christianisme (autre)"
+        },
+        {
+          "code": "4",
+          "label": "Judaïsme"
+        },
+        {
+          "code": "5",
+          "label": "Islam"
+        },
+        {
+          "code": "6",
+          "label": "Autre"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010526316240429878,
+      "id": "cecd_elxn_qc_1998__q3post3",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "q3post3",
+      "question_text": "Vote déclaré - ADQ+autres groupés",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "ADQ + autres"
+        },
+        {
+          "code": "3",
+          "label": "Lib."
+        },
+        {
+          "code": "4",
+          "label": "Pq"
+        },
+        {
+          "code": "6",
+          "label": "pas voté"
+        },
+        {
+          "code": "9",
+          "label": " refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010416666977107525,
+      "id": "eeq_2014__Q25",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q25",
+      "question_text": "Parmi les trois questions suivantes, laquelle préféreriez-vous voir posée dans un référendum?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "constitution"
+      ],
+      "themes": [
+        "constitution"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Signer la Constitution de 1982"
+        },
+        {
+          "code": "2",
+          "label": "Demander plus de pouvoirs pour le Québec"
+        },
+        {
+          "code": "3",
+          "label": "Faire l'indépendance du Québec"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010309278033673763,
+      "id": "eeq_2014__Q42H",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q42H",
+      "question_text": "Quel parti est le meilleur pour lutter contre la corruption?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "compétence partisane",
+        "intégrité"
+      ],
+      "themes": [
+        "élections"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": "2",
+          "label": "Parti québécois"
+        },
+        {
+          "code": "3",
+          "label": "Coalition avenir Québec"
+        },
+        {
+          "code": "4",
+          "label": "Québec solidaire"
+        },
+        {
+          "code": "5",
+          "label": "Option nationale"
+        },
+        {
+          "code": "6",
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": "96",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010204081423580647,
+      "id": "cecd_elxn_qc_2018__rts_q3a",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "rts_q3a",
+      "question_text": "rts_q3a.  Quelle est la principale raison pour laquelle vous avez voté pour",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
+        },
+        {
+          "code": "2",
+          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
+        },
+        {
+          "code": "3",
+          "label": "Finances/ (bonne) performance économique"
+        },
+        {
+          "code": "4",
+          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
+        },
+        {
+          "code": "5",
+          "label": "Environnement/ durabilité"
+        },
+        {
+          "code": "6",
+          "label": "Immigration"
+        },
+        {
+          "code": "7",
+          "label": "Soins de santé"
+        },
+        {
+          "code": "8",
+          "label": "Bénéfices pour la famille"
+        },
+        {
+          "code": "9",
+          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
+        },
+        {
+          "code": "10",
+          "label": "Tendance plus à gauche (incl. socialiste)"
+        },
+        {
+          "code": "11",
+          "label": "Tendance plus à droite (incl. conservateur)"
+        },
+        {
+          "code": "12",
+          "label": "Parti séparatiste/ pour un Québec indépendant"
+        },
+        {
+          "code": "13",
+          "label": "J'aimais le candidat (local)"
+        },
+        {
+          "code": "14",
+          "label": "J'aimais le parti/ chef de parti"
+        },
+        {
+          "code": "15",
+          "label": "J'aimais les Libéraux/ Philippe Couillard"
+        },
+        {
+          "code": "16",
+          "label": "J'aimais la CAQ/ François Legault"
+        },
+        {
+          "code": "17",
+          "label": "J'aimais Québec solidaire"
+        },
+        {
+          "code": "18",
+          "label": "Pour chasser les Libéraux du pouvoir"
+        },
+        {
+          "code": "19",
+          "label": "Je n'aimais pas la CAQ/ François Legault"
+        },
+        {
+          "code": "20",
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": "21",
+          "label": "Le meilleur candidat/ parti/ choix possible"
+        },
+        {
+          "code": "22",
+          "label": "Le moins pire/ n'a pas aimé les autres options"
+        },
+        {
+          "code": "23",
+          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
+        },
+        {
+          "code": "24",
+          "label": "Stabilité/ continuité"
+        },
+        {
+          "code": "25",
+          "label": "Confiance/ honnêteté"
+        },
+        {
+          "code": "26",
+          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
+        },
+        {
+          "code": "27",
+          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
+        },
+        {
+          "code": "28",
+          "label": "Rien"
+        },
+        {
+          "code": "29",
+          "label": "Autre"
+        },
+        {
+          "code": "30",
+          "label": "Ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010101010091602802,
+      "id": "cecd_elxn_can_2011__code5_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code5_num",
+      "question_text": "Code 5",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009999999776482582,
+      "id": "cecd_elxn_can_2011__you2",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "you2",
+      "question_text": "2.  Et vous-même, êtes-vous...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté",
+        "fédéralisme"
+      ],
+      "themes": [
+        "question nationale",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...plutôt favorable à ce que le Québec reste dans le Canada,"
+        },
+        {
+          "code": "2",
+          "label": "...plutôt favorable à ce que le Québec se sépare du Canada,"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009900989942252636,
+      "id": "eeq_2014__Q31C",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q31C",
+      "question_text": "En politique, les gens parlent de la « gauche » et de la « droite ». Sur une échelle allant de 0 à 10, où 0 est le plus à gauche et 10 est le plus à droite, où placeriez-vous chacun des partis politiques suivants? / Coalition avenir Québec",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "idéologie",
+        "positionnement partisan"
+      ],
+      "themes": [
+        "idéologie"
+      ],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "0 Le plus à gauche"
+        },
+        {
+          "code": "1",
+          "label": "1"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5"
+        },
+        {
+          "code": "6",
+          "label": "6"
+        },
+        {
+          "code": "7",
+          "label": "7"
+        },
+        {
+          "code": "8",
+          "label": "8"
+        },
+        {
+          "code": "9",
+          "label": "9"
+        },
+        {
+          "code": "10",
+          "label": "10 Le plus à droite"
+        },
+        {
+          "code": "98",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "99",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009803921915590763,
+      "id": "cecd_elxn_qc_1998__voteref",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "voteref",
+      "question_text": "Intention de vote référendaire",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté",
+        "référendum",
+        "partenariat"
+      ],
+      "themes": [
+        "enjeux nationaux"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "oui"
+        },
+        {
+          "code": "2",
+          "label": "non"
+        },
+        {
+          "code": "3",
+          "label": "annule,nvp"
+        },
+        {
+          "code": "8",
+          "label": "nsp"
+        },
+        {
+          "code": "9",
+          "label": "refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009708737954497337,
+      "id": "eeq_2014__Q38",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q38",
+      "question_text": "Êtes-vous pour ou contre le mariage entre personnes de même sexe?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "droits LGBTQ+"
+      ],
+      "themes": [
+        "valeurs sociales"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Pour"
+        },
+        {
+          "code": "2",
+          "label": "Contre"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009615384973585606,
+      "id": "govcan_06822_wave1_2024__DEMCAN_JUSTSYS",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "DEMCAN_JUSTSYS",
+      "question_text": "The Canadian justice system treats everyone equally.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "justice",
+        "égalité"
+      ],
+      "themes": [
+        "démocratie",
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009523809887468815,
+      "id": "cecd_elxn_qc_2018__rts_q8",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "rts_q8",
+      "question_text": "rts_q8. On utilise souvent un axe gauche-droite pour situer les opinions politiques des gens. Sur une échelle de 0",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "idéologie",
+        "gauche-droite"
+      ],
+      "themes": [
+        "idéologie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "0"
+        },
+        {
+          "code": "2",
+          "label": "1"
+        },
+        {
+          "code": "3",
+          "label": "2"
+        },
+        {
+          "code": "4",
+          "label": "3"
+        },
+        {
+          "code": "5",
+          "label": "4"
+        },
+        {
+          "code": "6",
+          "label": "5"
+        },
+        {
+          "code": "7",
+          "label": "6"
+        },
+        {
+          "code": "8",
+          "label": "7"
+        },
+        {
+          "code": "9",
+          "label": "8"
+        },
+        {
+          "code": "10",
+          "label": "9"
+        },
+        {
+          "code": "11",
+          "label": "10"
+        },
+        {
+          "code": "12",
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009433962404727936,
+      "id": "cecd_elxn_qc_1998__q3post",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "q3post",
+      "question_text": "Vote déclaré",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "vote",
+        "parti politique",
+        "choix électoral"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "L'ADQ"
+        },
+        {
+          "code": "2",
+          "label": "* Le Parti égalité"
+        },
+        {
+          "code": "3",
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": "4",
+          "label": "Le Parti québécois"
+        },
+        {
+          "code": "5",
+          "label": "un autre parti"
+        },
+        {
+          "code": "6",
+          "label": "* a annulé son vote"
+        },
+        {
+          "code": "8",
+          "label": "n'a pas voté"
+        },
+        {
+          "code": "9",
+          "label": "* Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009345794096589088,
+      "id": "cecd_elxn_qc_2007__z1q9",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z1q9",
+      "question_text": "9. Selon vous, quel sera l'enjeu le plus important de la présente campagne électorale? Est-ce….",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "enjeux électoraux",
+        "saillance"
+      ],
+      "themes": [
+        "élections",
+        "enjeux publics"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "L'environnement"
+        },
+        {
+          "code": "2",
+          "label": "Le déséquilibre fiscal"
+        },
+        {
+          "code": "3",
+          "label": "La santé"
+        },
+        {
+          "code": "4",
+          "label": "L'éducation"
+        },
+        {
+          "code": "5",
+          "label": "L'emploi"
+        },
+        {
+          "code": "6",
+          "label": "Les accommodements raisonnables"
+        },
+        {
+          "code": "7",
+          "label": "La défense des intérêts du Québec"
+        },
+        {
+          "code": "8",
+          "label": "* Plusieurs ou toutes ces réponses"
+        },
+        {
+          "code": "96",
+          "label": "* autre (précisez) :"
+        },
+        {
+          "code": "99",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009259259328246117,
+      "id": "eeq_2014__Q41",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q41",
+      "question_text": "Il existe des opinions différentes à propos de ceux qui viennent de l'extérieur du Québec, qui apportent souvent avec eux leurs propres coutumes, religions et traditions. Croyez-vous qu'il vaut mieux que ces nouveaux arrivants essaient de s'adapter et de s",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "immigration",
+        "intégration"
+      ],
+      "themes": [
+        "immigration"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Les nouveaux arrivants devraient s'adapter et s'intégrer"
+        },
+        {
+          "code": "2",
+          "label": "Les nouveaux arrivants devraient rester différents et contribuer à la diversité des coutumes et traditions"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.00917431153357029,
+      "id": "cecd_elxn_qc_2018__q6_12",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q6_12",
+      "question_text": "q6_12. [Mes amis et ma famille croient en l'importance du vote] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "norme sociale",
+        "environnement social"
+      ],
+      "themes": [
+        "engagement civique",
+        "participation électorale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "5"
+        },
+        {
+          "code": "6",
+          "label": "6"
+        },
+        {
+          "code": "7",
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": "8",
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002500000176951289,
+      "id": "cecd_charte_2013_10__reg",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "reg",
+      "question_text": "REG. Région",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "région",
+        "géographie"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "MONTRÉAL ÎLE"
+        },
+        {
+          "code": "2",
+          "label": "MONTRÉAL RESTE RMR RIVE-SUD"
+        },
+        {
+          "code": "3",
+          "label": "MONTRÉAL RESTE RMR RIVE-NORD"
+        },
+        {
+          "code": "4",
+          "label": "QUÉBEC RMR"
+        },
+        {
+          "code": "5",
+          "label": "RESTE QUÉBEC"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0024590163957327604,
+      "id": "cecd_charte_2013_10__lanm",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "lanm",
+      "question_text": "Langue maternelle recodée",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Français"
+        },
+        {
+          "code": "2",
+          "label": "Anglais + Autre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002419354859739542,
+      "id": "cecd_charte_2013_10__qmatr",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qmatr",
+      "question_text": "QMATR. Êtes-vous...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "marital_status",
+      "concepts": [
+        "état civil",
+        "vie conjugale"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Marié(e)"
+        },
+        {
+          "code": "2",
+          "label": "Vivant en couple (union libre)"
+        },
+        {
+          "code": "3",
+          "label": "Célibataire"
+        },
+        {
+          "code": "4",
+          "label": "Veuf(ve)"
+        },
+        {
+          "code": "5",
+          "label": "Séparé(e)"
+        },
+        {
+          "code": "6",
+          "label": "Divorcé(e)"
+        },
+        {
+          "code": "7",
+          "label": "Monoparental(e)"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023809527046978474,
+      "id": "cecd_charte_2013_10__prov2",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "prov2",
+      "question_text": "PROV2. Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "élection provinciale"
+      ],
+      "themes": [
+        "politique",
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Parti Libéral de Philippe Couillard"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": "3",
+          "label": "...Québec Solidaire de Françoise David"
+        },
+        {
+          "code": "4",
+          "label": "...la Coalition Avenir Québec de François Legault"
+        },
+        {
+          "code": "5",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "6",
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "7",
+          "label": "Parti vert"
+        },
+        {
+          "code": "8",
+          "label": "...l'Option Nationale de Nathaly Dufour (chef par interim)"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023076923098415136,
+      "id": "cecd_charte_2013_10__sexe",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "sexe",
+      "question_text": "SEXE. Êtes-vous un homme ou une femme ?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [
+        "sexe"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Un homme"
+        },
+        {
+          "code": "2",
+          "label": "Une femme"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002272727433592081,
+      "id": "cecd_charte_2013_10__agerec",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "agerec",
+      "question_text": "Âge recodé en 3 groupes",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "18-34 ans"
+        },
+        {
+          "code": "3",
+          "label": "35-54 ans"
+        },
+        {
+          "code": "5",
+          "label": "55 ans et plus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002238806104287505,
+      "id": "cecd_charte_2013_10__qenfa",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qenfa",
+      "question_text": "QENFA. Combien de personnes de moins de 18 ans résident en permanence dans votre foyer?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "household",
+      "concepts": [
+        "enfants",
+        "famille",
+        "ménage"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "Aucune"
+        },
+        {
+          "code": "1",
+          "label": "1 personne"
+        },
+        {
+          "code": "2",
+          "label": "2 personnes"
+        },
+        {
+          "code": "3",
+          "label": "3 personnes"
+        },
+        {
+          "code": "4",
+          "label": "4 personnes"
+        },
+        {
+          "code": "5",
+          "label": "5 personnes"
+        },
+        {
+          "code": "6",
+          "label": "6 personnes et plus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002205882454290986,
+      "id": "cecd_charte_2013_10__reg2",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "reg2",
+      "question_text": "Région recodée en 2 groupes",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Montréal RMR"
+        },
+        {
+          "code": "2",
+          "label": "Reste du Québec"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002173913177102804,
+      "id": "cecd_charte_2013_10__qage",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qage",
+      "question_text": "QAGE. Auquel des groupes d'âge suivants appartenez-vous? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [
+        "âge"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "18-24 ans"
+        },
+        {
+          "code": "2",
+          "label": "25-34 ans"
+        },
+        {
+          "code": "3",
+          "label": "35-44 ans"
+        },
+        {
+          "code": "4",
+          "label": "45-54 ans"
+        },
+        {
+          "code": "5",
+          "label": "55-64 ans"
+        },
+        {
+          "code": "6",
+          "label": "65-74 ans"
+        },
+        {
+          "code": "7",
+          "label": "75 ans et plus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0021428572945296764,
+      "id": "cecd_charte_2013_10__vote3",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "vote3",
+      "question_text": "PROV1+2. S'il y avait des élections provinciales aujourd'hui au Québec, pour lequel des partis suivants voteriez-vous?  Voteriez-vous pour... / Après relance, après répartition",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Parti Libéral de Philippe Couillard"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": "3",
+          "label": "...Québec Solidaire de Françoise David"
+        },
+        {
+          "code": "4",
+          "label": "... la Coalition Avenir Québec de François Legault"
+        },
+        {
+          "code": "5",
+          "label": "...l'Option Nationale de Nathaly Dufour (chef par interim)"
+        },
+        {
+          "code": "6",
+          "label": "...un autre parti (précisez) :"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0021126761566847563,
+      "id": "cecd_charte_2013_10__intvoteprov",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "intvoteprov",
+      "question_text": "Intention de vote provinciale + relance",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Parti Libéral de Philippe Couillard"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": "3",
+          "label": "...Québec Solidaire de Françoise David"
+        },
+        {
+          "code": "4",
+          "label": "... la Coalition Avenir Québec de François Legault"
+        },
+        {
+          "code": "5",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "6",
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "7",
+          "label": "Parti vert"
+        },
+        {
+          "code": "8",
+          "label": "...l'Option Nationale de Nathaly Dufour (chef par interim)"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0020833334419876337,
+      "id": "cecd_charte_2013_10__qlanf",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qlanf",
+      "question_text": "QLANF. Quelle langue parle-t-on le plus souvent dans votre foyer?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [
+        "langue",
+        "usage linguistique"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Français"
+        },
+        {
+          "code": "2",
+          "label": "Anglais"
+        },
+        {
+          "code": "6",
+          "label": "Autre (précisez) :"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002054794691503048,
+      "id": "cecd_charte_2013_10__qetud",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qetud",
+      "question_text": "QETUD. Quel est le niveau de scolarité le plus élevé que vous avez complété?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [
+        "éducation",
+        "scolarité"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Primaire en partie"
+        },
+        {
+          "code": "2",
+          "label": "Primaire complété"
+        },
+        {
+          "code": "3",
+          "label": "Secondaire/école de métiers en partie"
+        },
+        {
+          "code": "4",
+          "label": "Secondaire/école de métiers complété"
+        },
+        {
+          "code": "5",
+          "label": "Collège/cégep en partie"
+        },
+        {
+          "code": "6",
+          "label": "Collège/cégep complété"
+        },
+        {
+          "code": "7",
+          "label": "Université 1er cycle en partie (certificat, baccalauréat)"
+        },
+        {
+          "code": "8",
+          "label": "Université 1er cycle complété (certificat, baccalauréat)"
+        },
+        {
+          "code": "9",
+          "label": "Études universitaires de 2e ou 3e cycle en partie (maîtrise,"
+        },
+        {
+          "code": "10",
+          "label": "Études universitaires de 2e ou 3e cycle complétées (maîtrise"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002027027076110244,
+      "id": "cecd_charte_2013_10__vote1",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "vote1",
+      "question_text": "PROV1+2. S'il y avait des élections provinciales aujourd'hui au Québec, pour lequel des partis suivants voteriez-vous?  Voteriez-vous pour... / Après relance, avant répartition",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Parti Libéral de Philippe Couillard"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": "3",
+          "label": "...Québec Solidaire de Françoise David"
+        },
+        {
+          "code": "4",
+          "label": "... la Coalition Avenir Québec de François Legault"
+        },
+        {
+          "code": "5",
+          "label": "...l'Option Nationale de Nathaly Dufour (chef par interim)"
+        },
+        {
+          "code": "6",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0020000000949949026,
+      "id": "cecd_charte_2013_10__lanf",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "lanf",
+      "question_text": "Langue d'usage recodée",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Français"
+        },
+        {
+          "code": "2",
+          "label": "Anglais + Autre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001973684411495924,
+      "id": "cecd_charte_2013_10__qreve",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qreve",
+      "question_text": "QREVE. Dans laquelle des catégories suivantes se situe le revenu annuel total, avant impôts et déductions, de tous les membres de votre foyer, en vous incluant? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [
+        "revenu",
+        "situation économique"
+      ],
+      "themes": [
+        "profil",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "moins de 20 000 $"
+        },
+        {
+          "code": "2",
+          "label": "20 000 $ à 39 999 $"
+        },
+        {
+          "code": "3",
+          "label": "40 000 $ à 59 999 $"
+        },
+        {
+          "code": "4",
+          "label": "60 000 $ à 79 999 $"
+        },
+        {
+          "code": "5",
+          "label": "80 000 $ à 99 999 $"
+        },
+        {
+          "code": "6",
+          "label": "100 000 $ à 149 999 $"
+        },
+        {
+          "code": "7",
+          "label": "150 000 $ et plus"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0019480519695207477,
+      "id": "cecd_charte_2013_10__prov1",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "prov1",
+      "question_text": "PROV1. S'il y avait des élections provinciales aujourd'hui au Québec, pour lequel des partis suivants voteriez-vous? Voteriez-vous pour...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "élection provinciale"
+      ],
+      "themes": [
+        "politique",
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Parti Libéral de Philippe Couillard"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": "3",
+          "label": "...Québec Solidaire de Françoise David"
+        },
+        {
+          "code": "4",
+          "label": "...la Coalition Avenir Québec de François Legault"
+        },
+        {
+          "code": "5",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "6",
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "7",
+          "label": "Parti vert"
+        },
+        {
+          "code": "8",
+          "label": "...l'Option Nationale de Nathaly Dufour (chef par interim)"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0019230770412832499,
+      "id": "cecd_charte_2013_10__qlanm",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qlanm",
+      "question_text": "QLANM. Quelle est votre langue maternelle, c'est-à-dire la première langue que vous avez apprise et que vous pouvez encore parler?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [
+        "langue maternelle"
+      ],
+      "themes": [
+        "profil"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Français"
+        },
+        {
+          "code": "2",
+          "label": "Anglais"
+        },
+        {
+          "code": "6",
+          "label": "Autre (précisez) :"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018987342482432723,
+      "id": "cecd_charte_2013_10__reglang",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "reglang",
+      "question_text": "Croisement des variables de région et de langue",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Franco-RDQ"
+        },
+        {
+          "code": "2",
+          "label": "Franco-MTL"
+        },
+        {
+          "code": "3",
+          "label": "Anglo-allo"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001875000074505806,
+      "id": "cecd_charte_2013_10__qtrav",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "qtrav",
+      "question_text": "QTRAV. Laquelle des activités suivantes correspond le mieux à votre situation actuelle? Êtes-vous...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "employment",
+      "concepts": [
+        "emploi",
+        "activité professionnelle"
+      ],
+      "themes": [
+        "profil",
+        "économie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "travailleur(se) à temps plein (30 h et +/sem.)"
+        },
+        {
+          "code": "2",
+          "label": "travailleur(se) à temps partiel"
+        },
+        {
+          "code": "3",
+          "label": "chômeur(se), à la recherche d'un emploi"
+        },
+        {
+          "code": "4",
+          "label": "à la maison à temps plein"
+        },
+        {
+          "code": "5",
+          "label": "retraité(e)"
+        },
+        {
+          "code": "6",
+          "label": "étudiant(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018518519354984164,
+      "id": "cecd_charte_2013_10__intvoteprov2",
+      "survey_id": "cecd_charte_2013_10",
+      "survey_year": 2013,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Sondage CROP sur la Charte des valeurs québécoises (octobre 2013)",
+      "n_respondents": 1000,
+      "tags": [
+        "charte",
+        "valeurs",
+        "identité",
+        "Québec",
+        "PQ",
+        "CROP"
+      ],
+      "variable": "intvoteprov2",
+      "question_text": "Intention de vote provinciale + relance recodée",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "PLQ"
+        },
+        {
+          "code": "2",
+          "label": "PQ"
+        },
+        {
+          "code": "3",
+          "label": "autres"
+        },
+        {
+          "code": "4",
+          "label": "CAQ"
+        },
+        {
+          "code": "6",
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018292682943865657,
+      "id": "cecd_elxn_can_2011__sexe",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "sexe",
+      "question_text": "S5.  Êtes-vous un homme ou une femme ?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [
+        "sexe",
+        "genre"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Un homme"
+        },
+        {
+          "code": "2",
+          "label": "Une femme"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018072288949042559,
+      "id": "cecd_elxn_can_2011__qtras",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qtras",
+      "question_text": "S8.  Êtes-vous un travailleur salarié ou un travailleur autonome?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "statut d'emploi",
+        "travail"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Salarié"
+        },
+        {
+          "code": "2",
+          "label": "Autonomne/à son compte"
+        },
+        {
+          "code": "9",
+          "label": "Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017857144121080637,
+      "id": "cecd_elxn_can_2011__pol1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol1",
+      "question_text": "Q12.  Comme vous le savez peut-être, il y aura des élections fédérales prochainement au Canada. Dans quelle mesure avez l'intention d'aller voter à l'occasion de ces élections fédérales?   Diriez-vous..",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "certitude de voter",
+        "participation électorale"
+      ],
+      "themes": [
+        "comportement électoral",
+        "engagement civique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Certainement"
+        },
+        {
+          "code": "2",
+          "label": "Probablement"
+        },
+        {
+          "code": "3",
+          "label": "Probablement pas"
+        },
+        {
+          "code": "4",
+          "label": "Certainement pas"
+        },
+        {
+          "code": "9",
+          "label": "Ne sait pas/refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017647059867158532,
+      "id": "cecd_elxn_can_2011__qetud",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qetud",
+      "question_text": "S9.  Quel est le niveau de scolarité le plus élevé que vous avez complété?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [
+        "éducation",
+        "scolarité"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Primaire en partie"
+        },
+        {
+          "code": "2",
+          "label": "Primaire complété"
+        },
+        {
+          "code": "3",
+          "label": "Secondaire/école de métiers en partie"
+        },
+        {
+          "code": "4",
+          "label": "Secondaire/école de métiers complété"
+        },
+        {
+          "code": "5",
+          "label": "Collège/cégep en partie"
+        },
+        {
+          "code": "6",
+          "label": "Collège/cégep complété"
+        },
+        {
+          "code": "7",
+          "label": "Université 1er cycle en partie (certificat, baccalauréat)"
+        },
+        {
+          "code": "8",
+          "label": "Université 1er cycle complété (certificat, baccalauréat)"
+        },
+        {
+          "code": "9",
+          "label": "Études universitaires de 2e ou 3e cycle en partie (maîtrise,"
+        },
+        {
+          "code": "10",
+          "label": "Études universitaires de 2e ou 3e cycle complétées (maîtrise"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017441861564293504,
+      "id": "cecd_elxn_can_2011__you3",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "you3",
+      "question_text": "3.  Et êtes-vous...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "fédéralisme",
+        "intensité"
+      ],
+      "themes": [
+        "question nationale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...fortement en faveur que le Québec reste dans le Canada"
+        },
+        {
+          "code": "2",
+          "label": "...modérément en faveur que le Québec reste dans le Canada"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017241380410268903,
+      "id": "cecd_elxn_can_2011__z7",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z7",
+      "question_text": "7.  Et personnellement, diriez-vous que les résultats des sondages ont rendu votre décision...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "influence des sondages",
+        "prédiction électorale"
+      ],
+      "themes": [
+        "opinion publique",
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...plus difficile à prendre"
+        },
+        {
+          "code": "2",
+          "label": "...plus facile à prendre"
+        },
+        {
+          "code": "3",
+          "label": "Ça n'a fait aucune différence"
+        },
+        {
+          "code": "4",
+          "label": "pas lu sondages"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017045455751940608,
+      "id": "cecd_elxn_can_2011__code3_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code3_num",
+      "question_text": "Code 3",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016853933921083808,
+      "id": "cecd_elxn_can_2011__Texte",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "Texte",
+      "question_text": "Raisons du changement ou de l'absention",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "changement de vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.0016666668234393,
+      "id": "cecd_elxn_can_2011__qreve",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qreve",
+      "question_text": "S10.  Dans laquelle des catégories suivantes se situe le revenu annuel total, avant impôts et déductions, de tous les membres de votre foyer, en vous incluant?  Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [
+        "revenu",
+        "statut économique"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "moins de 20 000 $"
+        },
+        {
+          "code": "2",
+          "label": "20 000 $ à 39 999 $"
+        },
+        {
+          "code": "3",
+          "label": "40 000 $ à 59 999 $"
+        },
+        {
+          "code": "4",
+          "label": "60 000 $ à 79 999 $"
+        },
+        {
+          "code": "5",
+          "label": "80 000 $ à 99 999 $"
+        },
+        {
+          "code": "6",
+          "label": "100 000 $ à 149 999 $"
+        },
+        {
+          "code": "7",
+          "label": "150 000 $ et plus"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016483517829328775,
+      "id": "cecd_elxn_can_2011__q11aa",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "q11aa",
+      "question_text": "Q11.  Parmi les chefs de parti suivants, lequel ferait le meilleur premier ministre du Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation des chefs",
+        "leadership fédéral"
+      ],
+      "themes": [
+        "leadership politique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Stephen Harper"
+        },
+        {
+          "code": "2",
+          "label": "Michael Ignatieff"
+        },
+        {
+          "code": "3",
+          "label": "Jack Layton"
+        },
+        {
+          "code": "4",
+          "label": "Gilles Duceppe"
+        },
+        {
+          "code": "5",
+          "label": "Elizabeth May"
+        },
+        {
+          "code": "7",
+          "label": "Aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016304348828271031,
+      "id": "cecd_elxn_can_2011__pol2b",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol2b",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / B) ...le chef du Parti Conservateur du Canada, Stephen Harper performe",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation du chef",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": "2",
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": "3",
+          "label": "En dessous de vos attentes"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016129033174365759,
+      "id": "cecd_elxn_can_2011__pol2c",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol2c",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / C) ...le chef du Nouveau Parti Démocratique, Jack Layton performe",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation du chef",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": "2",
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": "3",
+          "label": "En dessous de vos attentes"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015957447467371821,
+      "id": "cecd_elxn_can_2011__z3",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z3",
+      "question_text": "3.  Durant la semaine qui précédé votre vote, diriez-vous que ...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "certitude électorale",
+        "indécision"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Vous étiez indécis(e)"
+        },
+        {
+          "code": "2",
+          "label": "Votre idée était déjà faite"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015789475291967392,
+      "id": "cecd_elxn_can_2011__O_Q5A",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "O_Q5A",
+      "question_text": "Raison du vote ou du non-vote",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.0015625001396983862,
+      "id": "cecd_elxn_can_2011__sastp",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "sastp",
+      "question_text": "5.  Diriez-vous que vous êtes très satisfait(e), plutôt satisfait(e), plutôt insatisfait(e) ou très insatisfait(e) du présent gouvernement du Québec?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "satisfaction gouvernementale",
+        "évaluation provinciale"
+      ],
+      "themes": [
+        "leadership politique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt satisfait(e)"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt insatisfait(e)"
+        },
+        {
+          "code": "4",
+          "label": "Très insatisfait(e)"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015463917516171932,
+      "id": "cecd_elxn_can_2011__pol2e",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol2e",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / E) ...le chef du Bloc Québécois, Gilles Duceppe performe",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation du chef",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": "2",
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": "3",
+          "label": "En dessous de vos attentes"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015306122368201613,
+      "id": "cecd_elxn_can_2011__z9",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z9",
+      "question_text": "9.  Si on vous demandait de participer à un sondage et que vous aviez le choix entre un sondage par la poste, un sondage par Internet, un interviewer qui vous appelle par téléphone ou un interviewer qui vient chez vous à la maison, quelle méthode vous plai",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "préférence méthodologique",
+        "méthodes de sondage"
+      ],
+      "themes": [
+        "opinion publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Questionnaire par la poste"
+        },
+        {
+          "code": "2",
+          "label": "Sondage par Internet"
+        },
+        {
+          "code": "3",
+          "label": "Entrevue au téléphone"
+        },
+        {
+          "code": "4",
+          "label": "Entrevue à la maison"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015151515835896134,
+      "id": "cecd_elxn_can_2011__code1_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code1_num",
+      "question_text": "Code 1",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001500000013038516,
+      "id": "cecd_elxn_can_2011__code2_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code2_num",
+      "question_text": "Code 2",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014851485611870885,
+      "id": "cecd_elxn_can_2011__reg",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "reg",
+      "question_text": "S1.  Region :",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie",
+        "région"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Montréal Ile"
+        },
+        {
+          "code": "2",
+          "label": "Montréal reste RMR"
+        },
+        {
+          "code": "3",
+          "label": "Québec RMR"
+        },
+        {
+          "code": "4",
+          "label": "Reste du Québec"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001470588380470872,
+      "id": "cecd_elxn_can_2011__qage",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qage",
+      "question_text": "S2.  Auquel des groupes d'âges suivants appartenez-vous?  Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [
+        "âge"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "18-24 ans"
+        },
+        {
+          "code": "2",
+          "label": "25-34 ans"
+        },
+        {
+          "code": "3",
+          "label": "35-44 ans"
+        },
+        {
+          "code": "4",
+          "label": "45-54 ans"
+        },
+        {
+          "code": "5",
+          "label": "55-64 ans"
+        },
+        {
+          "code": "6",
+          "label": "65-74 ans"
+        },
+        {
+          "code": "7",
+          "label": "75 ans et plus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014563107397407293,
+      "id": "cecd_elxn_can_2011__qlanf",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qlanf",
+      "question_text": "S3.  Quelle langue parle-t-on le plus souvent dans votre foyer?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "langue parlée",
+        "usage linguistique"
+      ],
+      "themes": [
+        "démographie",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Français"
+        },
+        {
+          "code": "2",
+          "label": "Anglais"
+        },
+        {
+          "code": "6",
+          "label": "Autre (précisez) :"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014423078391700983,
+      "id": "cecd_elxn_can_2011__souv1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "souv1",
+      "question_text": "SOUV1.  Si un référendum avait lieu aujourd'hui vous demandant si vous voulez que le Québec devienne un pays souverain, voteriez-vous Oui ou voteriez-vous Non?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "référendum",
+        "souveraineté"
+      ],
+      "themes": [
+        "question nationale",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "3",
+          "label": "Je ne voterais pas/annulerais"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001428571529686451,
+      "id": "cecd_elxn_can_2011__pol3",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol3",
+      "question_text": "Q14.  Diriez-vous que votre choix pour les prochaines élections fédérales au Canada est définitif ou se peut-il que vous changiez d'avis d'ici le jour de l'élection, soit 2 mai 2011?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "certitude électorale",
+        "indécision"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Mon choix est définitif"
+        },
+        {
+          "code": "2",
+          "label": "Il se peut que je change d'avis / indécis"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014150943607091904,
+      "id": "cecd_elxn_can_2011__z4",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z4",
+      "question_text": "4.  Et pour quel parti avez-vous voté? Est-ce pour...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "vote",
+        "comportement électoral"
+      ],
+      "themes": [
+        "démocratie",
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "le Parti Conservateur du Canada dirigé par Stephen Harper"
+        },
+        {
+          "code": "2",
+          "label": "le Nouveau Parti Démocratique dirigé par Jack Layton"
+        },
+        {
+          "code": "3",
+          "label": "le Parti libéral du Canada dirigé par Michael Ignatieff"
+        },
+        {
+          "code": "4",
+          "label": "le Bloc Québécois dirigé par Gilles Duceppe"
+        },
+        {
+          "code": "5",
+          "label": "le Parti Vert dirigé par Elizabeth May"
+        },
+        {
+          "code": "6",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "7",
+          "label": "J'ai annulé mon vote"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas/ Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014018691144883633,
+      "id": "cecd_elxn_can_2011__code4_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code4_num",
+      "question_text": "Code 4",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0013888889225199819,
+      "id": "cecd_elxn_can_2011__fede2",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "fede2",
+      "question_text": "FEDE2.  Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "vote hésitant"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Bloc Québécois de Gilles Duceppe"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral du Canada de Michael Ignatieff"
+        },
+        {
+          "code": "3",
+          "label": "...le Nouveau Parti Démocratique de Jack Layton"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Conservateur du Canada de Stephen Harper"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert d'Elizabeth May"
+        },
+        {
+          "code": "6",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "J'annulerais/ne voterais pas/aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0013761467998847365,
+      "id": "cecd_elxn_can_2011__z8",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z8",
+      "question_text": "8.  Diriez-vous que les sondages pendant les campagnes électorales sont une très bonne chose, une assez bonne chose, une assez mauvaise chose ou une très mauvaise chose pour les électeurs?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "perception des sondages",
+        "opinion sur sondages"
+      ],
+      "themes": [
+        "opinion publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Une très bonne chose"
+        },
+        {
+          "code": "2",
+          "label": "Une assez bonne chose"
+        },
+        {
+          "code": "3",
+          "label": "Une assez mauvaise chose"
+        },
+        {
+          "code": "4",
+          "label": "Une très mauvaise chose"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    }
+  ]
+}

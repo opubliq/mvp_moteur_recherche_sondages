@@ -18,7 +18,7 @@
  * globalement) pour que le harness offline puisse les fournir librement.
  */
 
-import type { Concept, SearchResult } from "../types";
+import type { Concept, SearchFilters, SearchResult } from "../types";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -51,7 +51,7 @@ export interface RetrieveEnv {
 
 /** Options facultatives de la récupération (filtres facette + taille du pool). */
 export interface RetrieveOptions {
-  filters?: Record<string, string | number | boolean>;
+  filters?: SearchFilters;
   top?: number;
 }
 
@@ -64,6 +64,7 @@ export type RawCandidate = SearchResult & { "@search.score": number };
 /** Résultat de `retrieve()` : les candidats bruts + la requête Lucene utilisée. */
 export interface RetrieveResult {
   candidates: RawCandidate[];
+  facets?: Record<string, Array<{ value: any; count: number }>>;
   luceneQuery: string;
 }
 
@@ -88,6 +89,7 @@ interface AoaiEmbeddingResponse {
 interface AzureSearchResponse {
   value: any[];
   "@odata.count"?: number;
+  "@search.facets"?: Record<string, Array<{ value: any; count: number }>>;
 }
 
 // ---------------------------------------------------------------------------
@@ -123,29 +125,38 @@ async function getEmbedding(text: string, env: RetrieveEnv): Promise<number[]> {
 /**
  * Construit la clause OData $filter.
  * Le filtre `doc_type eq 'question'` est TOUJOURS inclus en premier.
- * Les filtres additionnels sont ANDés uniquement pour les types scalaires sûrs.
  */
-function buildFilter(filters?: Record<string, string | number | boolean>): string {
+function buildFilter(filters?: SearchFilters): string {
   const clauses: string[] = ["doc_type eq 'question'"];
 
   if (filters) {
-    for (const [field, value] of Object.entries(filters)) {
-      if (value === null || value === undefined || value === "") continue;
-      if (typeof value === "string") {
-        // Échapper les apostrophes OData
-        const escaped = value.replace(/'/g, "''");
-        clauses.push(`${field} eq '${escaped}'`);
-      } else if (typeof value === "number" || typeof value === "boolean") {
-        clauses.push(`${field} eq ${value}`);
-      }
+    if (filters.year_min != null) {
+      clauses.push(`survey_year ge ${filters.year_min}`);
     }
-  }
+    if (filters.year_max != null) {
+      clauses.push(`survey_year le ${filters.year_max}`);
+    }
 
-  // Support du filtre par thèmes (collection)
-  if (filters && filters.themes && Array.isArray(filters.themes)) {
-    for (const theme of filters.themes) {
-      const escaped = theme.replace(/'/g, "''");
-      clauses.push(`themes/any(t: t eq '${escaped}')`);
+    if (filters.pollsters && filters.pollsters.length > 0) {
+      // search.in(pollster, 'Sondeur 1|Sondeur 2', '|')
+      const joined = filters.pollsters
+        .map((p) => p.replace(/'/g, "''"))
+        .join("|");
+      clauses.push(`search.in(pollster, '${joined}', '|')`);
+    }
+
+    if (filters.languages && filters.languages.length > 0) {
+      const joined = filters.languages
+        .map((l) => l.replace(/'/g, "''"))
+        .join("|");
+      clauses.push(`search.in(language, '${joined}', '|')`);
+    }
+
+    if (filters.themes && filters.themes.length > 0) {
+      for (const theme of filters.themes) {
+        const escaped = theme.replace(/'/g, "''");
+        clauses.push(`themes/any(t: t eq '${escaped}')`);
+      }
     }
   }
 
@@ -305,5 +316,6 @@ export async function retrieve(
   }
 
   const candidates = (searchResult.value ?? []) as RawCandidate[];
-  return { candidates, luceneQuery };
+  const facets = searchResult["@search.facets"];
+  return { candidates, facets, luceneQuery };
 }

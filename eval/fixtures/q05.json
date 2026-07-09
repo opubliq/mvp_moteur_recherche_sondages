@@ -1,0 +1,6044 @@
+{
+  "id": "q05",
+  "query": "confiance envers le gouvernement fédéral",
+  "concepts": [
+    {
+      "orig": "gouvernement fédéral",
+      "syns": [
+        "gouvernement du Canada",
+        "gouvernement canadien",
+        "gouvernement",
+        "fédéral",
+        "federal",
+        "federal government",
+        "Government of Canada",
+        "Ottawa",
+        "gouv fédéral"
+      ],
+      "weight": 0.7
+    },
+    {
+      "orig": "confiance",
+      "syns": [
+        "confiance envers",
+        "confiance dans",
+        "confiant",
+        "méfiance",
+        "trust",
+        "trust in",
+        "confidence",
+        "confidence in",
+        "distrust"
+      ],
+      "weight": 0.3
+    }
+  ],
+  "candidates": [
+    {
+      "@search.score": 0.03226646035909653,
+      "id": "govcan_06822_wave1_2024__TRUST_GOV_CAN",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_CAN",
+      "question_text": "The Government of Canada",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.03177805617451668,
+      "id": "govcan_06822_wave1_2024__TRUST_GOC_CLIM",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOC_CLIM",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about climate change that are in the best interest of Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "climat"
+      ],
+      "themes": [
+        "environnement",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0317540317773819,
+      "id": "govcan_06822_wave1_2024__TRUST_GOC_COVID",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOC_COVID",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about COVID-19 that are in the best interest of Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "covid-19"
+      ],
+      "themes": [
+        "santé",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.031159421429038048,
+      "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_COMPETENT",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_COMPETENT",
+      "question_text": "The federal government is competent.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "compétence"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.031159421429038048,
+      "id": "govcan_parca_2024__D6_D",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "D6_D",
+      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - The Government of Canada",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement fédéral"
+      ],
+      "themes": [
+        "politique",
+        "environnement"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Completely Distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither Trust nor Distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Trust"
+        },
+        {
+          "code": "5",
+          "label": "Completely Trust"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.031054403632879257,
+      "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_CARE",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_CARE",
+      "question_text": "The federal government listens to what ordinary people think.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "écoute"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.03053613007068634,
+      "id": "govcan_06822_wave1_2024__TRUST_GOC_IMM",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOC_IMM",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about immigration that are in the best interest of Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "immigration"
+      ],
+      "themes": [
+        "immigration",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02943722903728485,
+      "id": "govcan_06822_wave3_2024__TRUST_GOV_CAN",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_CAN",
+      "question_text": "The federal government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02921108715236187,
+      "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_INTEGRITY",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_INTEGRITY",
+      "question_text": "The federal government is too influenced by industry.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "intégrité",
+        "lobbying"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.028218695893883705,
+      "id": "govcan_06822_wave1_2024__TRUST_GOV_PROVTERR",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_PROVTERR",
+      "question_text": "Your provincial/territorial government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-provincial"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02752639539539814,
+      "id": "govcan_06822_wave2_2024__TRUST_GOV_CAN",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_CAN",
+      "question_text": "In general, how much do you CURRENTLY trust or distrust the federal government to make good decisions in the best interest of the public?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02741784043610096,
+      "id": "govcan_habit_2024__TRUST_GOOD_GOC",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "TRUST_GOOD_GOC",
+      "question_text": "Government of Canada - In general, how much do you trust or distrust the following public institutions to make good decisions about public healthcare:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "government"
+      ],
+      "themes": [
+        "society"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.027397260069847107,
+      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_COMPETENT",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_COMPETENT",
+      "question_text": "The federal government is competent.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "competence"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02711925283074379,
+      "id": "govcan_06822_wave2_2024__TRUST_GOV_PAST",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_PAST",
+      "question_text": "In general, how much did you trust or distrust the federal government to make good decisions in the best interest of the public BEFORE the COVID-19 pandemic?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "historical comparison"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02704678475856781,
+      "id": "govcan_06822_wave3_2024__TRUST_FACET_GC_COMPETENT",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_COMPETENT",
+      "question_text": "The federal government is competent.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "competence",
+        "federal government"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.026875901967287064,
+      "id": "govcan_parca_2024__D6_E",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "D6_E",
+      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - Your provincial/territorial government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement provincial"
+      ],
+      "themes": [
+        "politique",
+        "environnement"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Completely Distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither Trust nor Distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Trust"
+        },
+        {
+          "code": "5",
+          "label": "Completely Trust"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.025978408753871918,
+      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_GOODJOB",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_GOODJOB",
+      "question_text": "The federal government is doing a good job.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "performance"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.025645241141319275,
+      "id": "govcan_06822_wave2_2024__TRUST_GOV_PUBHEALTH",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_PUBHEALTH",
+      "question_text": "Public health",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "public health"
+      ],
+      "themes": [
+        "governance",
+        "health"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.025418275967240334,
+      "id": "govcan_parca_2024__D6_F",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "D6_F",
+      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - Your local or municipal government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "municipalité"
+      ],
+      "themes": [
+        "politique",
+        "environnement"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Completely Distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither Trust nor Distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Trust"
+        },
+        {
+          "code": "5",
+          "label": "Completely Trust"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.023812897503376007,
+      "id": "govcan_06822_wave3_2024__TRUST_FACET_GC_PUBCONCERN",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_PUBCONCERN",
+      "question_text": "The federal government listens to concerns raised by the public.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "responsiveness",
+        "public opinion"
+      ],
+      "themes": [
+        "governance",
+        "democracy"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02354244515299797,
+      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_WELFARE",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_WELFARE",
+      "question_text": "The federal government is concerned with my welfare.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "social welfare"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.023128341883420944,
+      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_OPEN",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_OPEN",
+      "question_text": "The federal government provides all relevant information to the public.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "transparency"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.023064687848091125,
+      "id": "govcan_06822_wave3_2024__TRUST_ELXNCAN",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_ELXNCAN",
+      "question_text": "Elections Canada (the non-partisan agency responsible for administering Canadian federal elections)",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "elections",
+        "independent agencies"
+      ],
+      "themes": [
+        "democracy",
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02301587350666523,
+      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_CARE",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_CARE",
+      "question_text": "The federal government listens to what ordinary people think.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "responsiveness"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02296750620007515,
+      "id": "govcan_06822_wave2_2024__TRUST_GOV_CLIMATE",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_CLIMATE",
+      "question_text": "Climate change",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "climate change"
+      ],
+      "themes": [
+        "governance",
+        "environment"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.022857144474983215,
+      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_INTEGRITY",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_INTEGRITY",
+      "question_text": "The federal government is too influenced by industry.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "integrity",
+        "lobbying"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.022611789405345917,
+      "id": "govcan_06822_wave3_2024__TRUST_GOV_CAN_SOCEST",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_CAN_SOCEST",
+      "question_text": "Approximately what percentage of adults in Canada do you think trust (i.e., they \"somewhat\" or \"strongly\" trust) the federal government to make good decisions in the best interest of the public? Note: here, we are not asking about how much YOU trust...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "0"
+        },
+        {
+          "code": "2",
+          "label": "0.1"
+        },
+        {
+          "code": "3",
+          "label": "0.2"
+        },
+        {
+          "code": "4",
+          "label": "0.3"
+        },
+        {
+          "code": "5",
+          "label": "0.4"
+        },
+        {
+          "code": "6",
+          "label": "0.5"
+        },
+        {
+          "code": "7",
+          "label": "0.6"
+        },
+        {
+          "code": "8",
+          "label": "0.7"
+        },
+        {
+          "code": "9",
+          "label": "0.8"
+        },
+        {
+          "code": "10",
+          "label": "0.9"
+        },
+        {
+          "code": "11",
+          "label": "1"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.021336644887924194,
+      "id": "govcan_parca_2024__D6_V2_D",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "D6_V2_D",
+      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - The Government of Canada",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly Distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither Trust nor Distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly Trust"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.020627327263355255,
+      "id": "govcan_06822_wave3_2024__TRUST_GOV_PAST",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_PAST",
+      "question_text": "BEFORE the COVID-19 pandemic (i.e., before March 2020), to what extent did you trust or distrust the federal government to make good decisions in the best interest of the public?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrusted"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrusted"
+        },
+        {
+          "code": "3",
+          "label": "Neither trusted nor distrusted"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trusted"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trusted"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.015599658712744713,
+      "id": "cecd_elxn_can_2011__sastf",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "sastf",
+      "question_text": "Q11.    Diriez-vous que vous êtes très satisfait(e), plutôt satisfait(e), plutôt insatisfait(e) ou très insatisfait(e) du présent gouvernement du Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "satisfaction gouvernementale",
+        "évaluation fédérale"
+      ],
+      "themes": [
+        "leadership politique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt satisfait(e)"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt insatisfait(e)"
+        },
+        {
+          "code": "4",
+          "label": "Très insatisfait(e)"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.014705882407724857,
+      "id": "govcan_06822_wave1_2024__SOCCOH_TRUST",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "SOCCOH_TRUST",
+      "question_text": "I trust other people in Canada to do what is in the best interests of the country",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "cohésion-sociale",
+        "patriotisme"
+      ],
+      "themes": [
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Disagree"
+        },
+        {
+          "code": "3",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Agree"
+        },
+        {
+          "code": "6",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013513513840734959,
+      "id": "govcan_06822_wave3_2024__TRUST_GOV_PROVTERR",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_PROVTERR",
+      "question_text": "Your provincial/territorial government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013059163466095924,
+      "id": "cecd_elxn_can_2011__code1_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code1_num",
+      "question_text": "Code 1",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012912088073790073,
+      "id": "cecd_elxn_can_2011__code2_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code2_num",
+      "question_text": "Code 2",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012911025434732437,
+      "id": "cecd_elxn_can_2011__code3_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code3_num",
+      "question_text": "Code 3",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012554958462715149,
+      "id": "cecd_elxn_can_2011__code5_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code5_num",
+      "question_text": "Code 5",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012517394497990608,
+      "id": "cecd_elxn_can_2011__code4_num",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "code4_num",
+      "question_text": "Code 4",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "raison du vote",
+        "codification"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "apprécie Harper_ bon dernier mandat"
+        },
+        {
+          "code": "2",
+          "label": "autres"
+        },
+        {
+          "code": "3",
+          "label": "autres raisons"
+        },
+        {
+          "code": "4",
+          "label": "bloquer Harper"
+        },
+        {
+          "code": "5",
+          "label": "bloquer_le_bloc"
+        },
+        {
+          "code": "6",
+          "label": "bonne équipe"
+        },
+        {
+          "code": "7",
+          "label": "candidat"
+        },
+        {
+          "code": "8",
+          "label": "changement"
+        },
+        {
+          "code": "9",
+          "label": "confiance"
+        },
+        {
+          "code": "10",
+          "label": "confiance négative"
+        },
+        {
+          "code": "11",
+          "label": "confiance positive"
+        },
+        {
+          "code": "12",
+          "label": "Contre les libéraux"
+        },
+        {
+          "code": "13",
+          "label": "contre souv - contre référendum"
+        },
+        {
+          "code": "14",
+          "label": "Culture, identité"
+        },
+        {
+          "code": "15",
+          "label": "Débat - conférence"
+        },
+        {
+          "code": "16",
+          "label": "défendre intérêts Québec"
+        },
+        {
+          "code": "17",
+          "label": "Difficulté trouver lieu de vote"
+        },
+        {
+          "code": "18",
+          "label": "Gagnant"
+        },
+        {
+          "code": "19",
+          "label": "habitude"
+        },
+        {
+          "code": "20",
+          "label": "idées du parti"
+        },
+        {
+          "code": "21",
+          "label": "imprévu"
+        },
+        {
+          "code": "22",
+          "label": "indécision, insatisfaction choix"
+        },
+        {
+          "code": "23",
+          "label": "insatisafction du gvt"
+        },
+        {
+          "code": "24",
+          "label": "je suis souverainiste"
+        },
+        {
+          "code": "25",
+          "label": "le chef"
+        },
+        {
+          "code": "26",
+          "label": "non citoyen"
+        },
+        {
+          "code": "27",
+          "label": "Opposition forte - gvt mino"
+        },
+        {
+          "code": "28",
+          "label": "par élimination"
+        },
+        {
+          "code": "29",
+          "label": "parti_gauche"
+        },
+        {
+          "code": "30",
+          "label": "Pas le temps, travail, enfants"
+        },
+        {
+          "code": "31",
+          "label": "Pas voté, pas intéressé"
+        },
+        {
+          "code": "32",
+          "label": "pour défaire un candidat"
+        },
+        {
+          "code": "33",
+          "label": "Problèmes techniques"
+        },
+        {
+          "code": "34",
+          "label": "tanné des élections_stabilité"
+        },
+        {
+          "code": "35",
+          "label": "tanné du négatif-veut positif"
+        },
+        {
+          "code": "36",
+          "label": "Vote stratégique"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012500000186264515,
+      "id": "cecd_elxn_qc_1998__satisf",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "satisf",
+      "question_text": "Satisfaction face au gouvernement",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "satisfaction gouvernementale",
+        "approbation"
+      ],
+      "themes": [
+        "attitudes politiques"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "très satisf"
+        },
+        {
+          "code": "2",
+          "label": "plutot satisf"
+        },
+        {
+          "code": "3",
+          "label": "plutot insatisf"
+        },
+        {
+          "code": "4",
+          "label": "tres insatisf"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012500000186264515,
+      "id": "govcan_06822_wave2_2024__TRUST_GOV_DIG",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_DIG",
+      "question_text": "Digital technologies (e.g., social media, artificial intelligence)",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "digital technology",
+        "artificial intelligence"
+      ],
+      "themes": [
+        "governance",
+        "digital life"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012345679104328156,
+      "id": "cecd_elxn_qc_2007__z2q14",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "z2q14",
+      "question_text": "14. Est-ce que la perspective d'un gouvernement minoritaire vous inquiète?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "stabilité gouvernementale",
+        "préoccupations"
+      ],
+      "themes": [
+        "gouvernance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012320345267653465,
+      "id": "cecd_elxn_can_2011__pol1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol1",
+      "question_text": "Q12.  Comme vous le savez peut-être, il y aura des élections fédérales prochainement au Canada. Dans quelle mesure avez l'intention d'aller voter à l'occasion de ces élections fédérales?   Diriez-vous..",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "certitude de voter",
+        "participation électorale"
+      ],
+      "themes": [
+        "comportement électoral",
+        "engagement civique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Certainement"
+        },
+        {
+          "code": "2",
+          "label": "Probablement"
+        },
+        {
+          "code": "3",
+          "label": "Probablement pas"
+        },
+        {
+          "code": "4",
+          "label": "Certainement pas"
+        },
+        {
+          "code": "9",
+          "label": "Ne sait pas/refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011627906933426857,
+      "id": "govcan_06822_wave1_2024__SOC_TRUST_GEN",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "SOC_TRUST_GEN",
+      "question_text": "Other people in Canada, in general",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "cohésion-sociale"
+      ],
+      "themes": [
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Cannot be trusted at all"
+        },
+        {
+          "code": "2",
+          "label": "2"
+        },
+        {
+          "code": "3",
+          "label": "3"
+        },
+        {
+          "code": "4",
+          "label": "4"
+        },
+        {
+          "code": "5",
+          "label": "Can be trusted a lot 5"
+        },
+        {
+          "code": "98",
+          "label": "Don't know"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01151806116104126,
+      "id": "cecd_elxn_can_2011__you3",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "you3",
+      "question_text": "3.  Et êtes-vous...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "fédéralisme",
+        "intensité"
+      ],
+      "themes": [
+        "question nationale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...fortement en faveur que le Québec reste dans le Canada"
+        },
+        {
+          "code": "2",
+          "label": "...modérément en faveur que le Québec reste dans le Canada"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011363636702299118,
+      "id": "cecd_elxn_qc_1998__raison1",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "raison1",
+      "question_text": "Première raison invoquée",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivation électorale",
+        "raison du vote"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "100",
+          "label": "Gouvernement"
+        },
+        {
+          "code": "110",
+          "label": "Changement/ stabilité du gouvernement"
+        },
+        {
+          "code": "120",
+          "label": "Satisfait ou non du gouvernement"
+        },
+        {
+          "code": "121",
+          "label": "Satisfait ou non du gouv: santé"
+        },
+        {
+          "code": "122",
+          "label": "Satisfait du gouv: fonction publique"
+        },
+        {
+          "code": "130",
+          "label": "Gouv. a respecté ou non promesses"
+        },
+        {
+          "code": "200",
+          "label": "Les paris"
+        },
+        {
+          "code": "210",
+          "label": "Confiance ou non"
+        },
+        {
+          "code": "211",
+          "label": "Confiance dans le programme du parti"
+        },
+        {
+          "code": "212",
+          "label": "Confiance dans le parti"
+        },
+        {
+          "code": "220",
+          "label": "Identification partisane"
+        },
+        {
+          "code": "300",
+          "label": "les députés"
+        },
+        {
+          "code": "310",
+          "label": "Respect ou no de leurs promesses"
+        },
+        {
+          "code": "330",
+          "label": "Rencontre avec le candidat"
+        },
+        {
+          "code": "400",
+          "label": "les chefs"
+        },
+        {
+          "code": "410",
+          "label": "Satisfait ou non du chef"
+        },
+        {
+          "code": "420",
+          "label": "Aime la personnalité du chef"
+        },
+        {
+          "code": "500",
+          "label": "Politiques"
+        },
+        {
+          "code": "510",
+          "label": "Pour/contre la souveraineté (question nationale)"
+        },
+        {
+          "code": "520",
+          "label": "Pour un ménage dans les finances publiques"
+        },
+        {
+          "code": "521",
+          "label": "Pour un ménage dans la santé"
+        },
+        {
+          "code": "600",
+          "label": "Autres"
+        },
+        {
+          "code": "610",
+          "label": "Vote de protestation (contre un(des) parti(s)"
+        },
+        {
+          "code": "620",
+          "label": "Vote de sympathie"
+        },
+        {
+          "code": "630",
+          "label": "Vote stratégique (Pq pas trop fort)"
+        },
+        {
+          "code": "640",
+          "label": "Devoir d'aller voter"
+        },
+        {
+          "code": "650",
+          "label": "À cause du débat"
+        },
+        {
+          "code": "660",
+          "label": "Conseils des amis, familles"
+        },
+        {
+          "code": "670",
+          "label": "À cause de la campagne en général"
+        },
+        {
+          "code": "680",
+          "label": "Indécis"
+        },
+        {
+          "code": "997",
+          "label": "Incompréhensible"
+        },
+        {
+          "code": "998",
+          "label": "NSP/NRP"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011286286637187004,
+      "id": "cecd_elxn_can_2011__sastp",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "sastp",
+      "question_text": "5.  Diriez-vous que vous êtes très satisfait(e), plutôt satisfait(e), plutôt insatisfait(e) ou très insatisfait(e) du présent gouvernement du Québec?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "satisfaction gouvernementale",
+        "évaluation provinciale"
+      ],
+      "themes": [
+        "leadership politique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt satisfait(e)"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt insatisfait(e)"
+        },
+        {
+          "code": "4",
+          "label": "Très insatisfait(e)"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01123595517128706,
+      "id": "cecd_elxn_qc_1998__raison2",
+      "survey_id": "cecd_elxn_qc_1998",
+      "survey_year": 1998,
+      "pollster": "Createc / CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 1998 (CECD)",
+      "n_respondents": 1483,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "1998"
+      ],
+      "variable": "raison2",
+      "question_text": "Deuxième raison invoquée",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivation électorale",
+        "raison du vote"
+      ],
+      "themes": [
+        "élection"
+      ],
+      "response_options": [
+        {
+          "code": "100",
+          "label": "Gouvernement"
+        },
+        {
+          "code": "110",
+          "label": "Changement/ stabilité du gouvernement"
+        },
+        {
+          "code": "120",
+          "label": "Satisfait ou non du gouvernement"
+        },
+        {
+          "code": "121",
+          "label": "Satisfait ou non du gouv: santé"
+        },
+        {
+          "code": "122",
+          "label": "Satisfait du gouv: fonction publique"
+        },
+        {
+          "code": "200",
+          "label": "Les paris"
+        },
+        {
+          "code": "210",
+          "label": "Confiance ou non"
+        },
+        {
+          "code": "211",
+          "label": "Confiance dans le programme du parti"
+        },
+        {
+          "code": "212",
+          "label": "Confiance dans le parti"
+        },
+        {
+          "code": "220",
+          "label": "Identification partisane"
+        },
+        {
+          "code": "300",
+          "label": "les députés"
+        },
+        {
+          "code": "310",
+          "label": "Respect ou no de leurs promesses"
+        },
+        {
+          "code": "330",
+          "label": "Rencontre avec le candidat"
+        },
+        {
+          "code": "400",
+          "label": "les chefs"
+        },
+        {
+          "code": "410",
+          "label": "Satisfait ou non du chef"
+        },
+        {
+          "code": "420",
+          "label": "Aime la personnalité du chef"
+        },
+        {
+          "code": "500",
+          "label": "Politiques"
+        },
+        {
+          "code": "510",
+          "label": "Pour/contre la souveraineté (question nationale)"
+        },
+        {
+          "code": "520",
+          "label": "Pour un ménage dans les finances publiques"
+        },
+        {
+          "code": "521",
+          "label": "Pour un ménage dans la santé"
+        },
+        {
+          "code": "600",
+          "label": "Autres"
+        },
+        {
+          "code": "610",
+          "label": "Vote de protestation (contre un(des) parti(s)"
+        },
+        {
+          "code": "620",
+          "label": "Vote de sympathie"
+        },
+        {
+          "code": "630",
+          "label": "Vote stratégique (Pq pas trop fort)"
+        },
+        {
+          "code": "640",
+          "label": "Devoir d'aller voter"
+        },
+        {
+          "code": "650",
+          "label": "À cause du débat"
+        },
+        {
+          "code": "660",
+          "label": "Conseils des amis, familles"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01123595517128706,
+      "id": "cecd_elxn_qc_2018__q2",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q2",
+      "question_text": "q2. Selon vous, devrait-on garder le même gouvernement en place lors des prochaines élections provinciales, ou est-il temps de changer de gouvernement?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation gouvernementale",
+        "enjeux électoraux"
+      ],
+      "themes": [
+        "leadership politique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Garder le gouvernement en place"
+        },
+        {
+          "code": "2",
+          "label": "Changer de gouvernement"
+        },
+        {
+          "code": "3",
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010989011265337467,
+      "id": "govcan_habit_2024__TRUST_GOOD_PROV",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "TRUST_GOOD_PROV",
+      "question_text": "My provincial/territorial government ([REGION]) - In general, how much do you trust or distrust the following public institutions to make good decisions about public healthcare:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01075268816202879,
+      "id": "govcan_habit_2024__TRUST_GOOD_PHAC",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "TRUST_GOOD_PHAC",
+      "question_text": "The Public Health Agency of Canada - In general, how much do you trust or distrust the following public institutions to make good decisions about public healthcare:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "government_agencies",
+        "public_health"
+      ],
+      "themes": [
+        "society"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010638297535479069,
+      "id": "govcan_parca_2024__B5_E",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "B5_E",
+      "question_text": "To what extent do you think each of the following groups should be doing more or less to help limit climate cha - The Government of Canada",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "responsabilité gouvernementale",
+        "gouvernement fédéral"
+      ],
+      "themes": [
+        "environnement",
+        "politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "A Lot Less"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Less"
+        },
+        {
+          "code": "3",
+          "label": "Neither More nor Less"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat More"
+        },
+        {
+          "code": "5",
+          "label": "A Lot More"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010526316240429878,
+      "id": "eeq_2014__Q34A",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q34A",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" C'est la responsabilité du gouvernement de garantir que les besoins fondamentaux sont satisfaits pour tous. \"",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "responsabilité gouvernementale",
+        "filet social"
+      ],
+      "themes": [
+        "politique sociale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": "4",
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010416666977107525,
+      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_PROMISES",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_PROMISES",
+      "question_text": "The federal government keeps its promises.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010309278033673763,
+      "id": "cecd_elxn_qc_2018__rts_q3a",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "rts_q3a",
+      "question_text": "rts_q3a.  Quelle est la principale raison pour laquelle vous avez voté pour",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
+        },
+        {
+          "code": "2",
+          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
+        },
+        {
+          "code": "3",
+          "label": "Finances/ (bonne) performance économique"
+        },
+        {
+          "code": "4",
+          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
+        },
+        {
+          "code": "5",
+          "label": "Environnement/ durabilité"
+        },
+        {
+          "code": "6",
+          "label": "Immigration"
+        },
+        {
+          "code": "7",
+          "label": "Soins de santé"
+        },
+        {
+          "code": "8",
+          "label": "Bénéfices pour la famille"
+        },
+        {
+          "code": "9",
+          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
+        },
+        {
+          "code": "10",
+          "label": "Tendance plus à gauche (incl. socialiste)"
+        },
+        {
+          "code": "11",
+          "label": "Tendance plus à droite (incl. conservateur)"
+        },
+        {
+          "code": "12",
+          "label": "Parti séparatiste/ pour un Québec indépendant"
+        },
+        {
+          "code": "13",
+          "label": "J'aimais le candidat (local)"
+        },
+        {
+          "code": "14",
+          "label": "J'aimais le parti/ chef de parti"
+        },
+        {
+          "code": "15",
+          "label": "J'aimais les Libéraux/ Philippe Couillard"
+        },
+        {
+          "code": "16",
+          "label": "J'aimais la CAQ/ François Legault"
+        },
+        {
+          "code": "17",
+          "label": "J'aimais Québec solidaire"
+        },
+        {
+          "code": "18",
+          "label": "Pour chasser les Libéraux du pouvoir"
+        },
+        {
+          "code": "19",
+          "label": "Je n'aimais pas la CAQ/ François Legault"
+        },
+        {
+          "code": "20",
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": "21",
+          "label": "Le meilleur candidat/ parti/ choix possible"
+        },
+        {
+          "code": "22",
+          "label": "Le moins pire/ n'a pas aimé les autres options"
+        },
+        {
+          "code": "23",
+          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
+        },
+        {
+          "code": "24",
+          "label": "Stabilité/ continuité"
+        },
+        {
+          "code": "25",
+          "label": "Confiance/ honnêteté"
+        },
+        {
+          "code": "26",
+          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
+        },
+        {
+          "code": "27",
+          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
+        },
+        {
+          "code": "28",
+          "label": "Rien"
+        },
+        {
+          "code": "29",
+          "label": "Autre"
+        },
+        {
+          "code": "30",
+          "label": "Ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010204081423580647,
+      "id": "cecd_elxn_qc_2018__q3a2",
+      "survey_id": "cecd_elxn_qc_2018",
+      "survey_year": 2018,
+      "pollster": "Ipsos",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 1250,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2018"
+      ],
+      "variable": "q3a2",
+      "question_text": "2e raison pour le vote",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
+        },
+        {
+          "code": "2",
+          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
+        },
+        {
+          "code": "3",
+          "label": "Finances/ (bonne) performance économique"
+        },
+        {
+          "code": "4",
+          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
+        },
+        {
+          "code": "5",
+          "label": "Environnement/ durabilité"
+        },
+        {
+          "code": "6",
+          "label": "Immigration"
+        },
+        {
+          "code": "7",
+          "label": "Soins de santé"
+        },
+        {
+          "code": "8",
+          "label": "Bénéfices pour la famille"
+        },
+        {
+          "code": "9",
+          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
+        },
+        {
+          "code": "10",
+          "label": "Tendance plus à gauche (incl. socialiste)"
+        },
+        {
+          "code": "11",
+          "label": "Tendance plus à droite (incl. conservateur)"
+        },
+        {
+          "code": "12",
+          "label": "Parti séparatiste/ pour un Québec indépendant"
+        },
+        {
+          "code": "13",
+          "label": "J'aimais le candidat (local)"
+        },
+        {
+          "code": "14",
+          "label": "J'aimais le parti/ chef de parti"
+        },
+        {
+          "code": "15",
+          "label": "J'aimais les Libéraux/ Philippe Couillard"
+        },
+        {
+          "code": "16",
+          "label": "J'aimais la CAQ/ François Legault"
+        },
+        {
+          "code": "17",
+          "label": "J'aimais Québec solidaire"
+        },
+        {
+          "code": "18",
+          "label": "Pour chasser les Libéraux du pouvoir"
+        },
+        {
+          "code": "19",
+          "label": "Je n'aimais pas la CAQ/ François Legault"
+        },
+        {
+          "code": "20",
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": "21",
+          "label": "Le meilleur candidat/ parti/ choix possible"
+        },
+        {
+          "code": "22",
+          "label": "Le moins pire/ n'a pas aimé les autres options"
+        },
+        {
+          "code": "23",
+          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
+        },
+        {
+          "code": "24",
+          "label": "Stabilité/ continuité"
+        },
+        {
+          "code": "25",
+          "label": "Confiance/ honnêteté"
+        },
+        {
+          "code": "26",
+          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
+        },
+        {
+          "code": "27",
+          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
+        },
+        {
+          "code": "28",
+          "label": "Rien"
+        },
+        {
+          "code": "29",
+          "label": "Autre"
+        },
+        {
+          "code": "30",
+          "label": "Ne sais pas"
+        },
+        {
+          "code": "31",
+          "label": "valeurs"
+        },
+        {
+          "code": "32",
+          "label": "debat"
+        },
+        {
+          "code": "33",
+          "label": "laicité-religion"
+        },
+        {
+          "code": "34",
+          "label": "promesses"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.010204081423580647,
+      "id": "eeq_2014__Q34C",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q34C",
+      "question_text": "Veuillez indiquer si vous êtes fortement d'accord, plutôt d'accord, plutôt en désaccord, ou fortement en désaccord avec les énoncés suivants: / \" Les gens comme moi n'ont rien à dire sur ce que fait le gouvernement provincial à Québec. \"",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "efficacité politique"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Fortement d'accord"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt d'accord"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt en désaccord"
+        },
+        {
+          "code": "4",
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009999999776482582,
+      "id": "govcan_06822_wave3_2024__TRUST_PS",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_PS",
+      "question_text": "To what extent do you trust or distrust public servants (e.g., non-political employees at Service Canada, statisticians working on the census, etc.)?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009803921915590763,
+      "id": "cecd_elxn_qc_2007__satisf",
+      "survey_id": "cecd_elxn_qc_2007",
+      "survey_year": 2007,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral du Québec 2007 - vagues de campagne et postélectorale (CECD)",
+      "n_respondents": 2442,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "panel",
+        "2007"
+      ],
+      "variable": "satisf",
+      "question_text": "3. Diriez-vous que vous êtes très satisfait(e), plutôt satisfait(e), plutôt insatisfait(e) ou très insatisfait(e) du présent gouvernement du Québec?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "satisfaction gouvernementale",
+        "évaluation gouvernementale"
+      ],
+      "themes": [
+        "leadership politique",
+        "gouvernance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très satisfait(e)"
+        },
+        {
+          "code": "2",
+          "label": "Plutôt satisfait(e)"
+        },
+        {
+          "code": "3",
+          "label": "Plutôt insatisfait(e)"
+        },
+        {
+          "code": "4",
+          "label": "Très insatisfait(e)"
+        },
+        {
+          "code": "9",
+          "label": "* NSP/refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009615384973585606,
+      "id": "govcan_06822_wave3_2024__SOCCOH_TRUST",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "SOCCOH_TRUST",
+      "question_text": "I trust other people in Canada to do what is in the best interests of the country",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "social trust",
+        "social cohesion",
+        "patriotism"
+      ],
+      "themes": [
+        "society"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009433962404727936,
+      "id": "govcan_habit_2024__GOC_COMPETENT",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "GOC_COMPETENT",
+      "question_text": "The federal government is competent. - How much do you agree or disagree with the following statements?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009345794096589088,
+      "id": "eeq_2014__Q33",
+      "survey_id": "eeq_2014",
+      "survey_year": 2014,
+      "pollster": "Université McGill",
+      "language": "fr",
+      "survey_name": "Étude électorale québécoise 2014 (EEQ)",
+      "n_respondents": 1517,
+      "tags": [
+        "electoral",
+        "provincial",
+        "québec",
+        "2014",
+        "eeq"
+      ],
+      "variable": "Q33",
+      "question_text": "Diriez-vous que l'on peut faire confiance à la plupart des gens ou qu'on n'est jamais trop prudent dans nos relations avec les autres?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance interpersonnelle"
+      ],
+      "themes": [
+        "société"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "On peut faire confiance à la plupart des gens"
+        },
+        {
+          "code": "2",
+          "label": "On n'est jamais trop prudent dans nos relations avec les autres"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002500000176951289,
+      "id": "cecd_elxn_can_2011__sexe",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "sexe",
+      "question_text": "S5.  Êtes-vous un homme ou une femme ?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [
+        "sexe",
+        "genre"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Un homme"
+        },
+        {
+          "code": "2",
+          "label": "Une femme"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0024590163957327604,
+      "id": "cecd_elxn_can_2011__qtras",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qtras",
+      "question_text": "S8.  Êtes-vous un travailleur salarié ou un travailleur autonome?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "statut d'emploi",
+        "travail"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Salarié"
+        },
+        {
+          "code": "2",
+          "label": "Autonomne/à son compte"
+        },
+        {
+          "code": "9",
+          "label": "Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023809527046978474,
+      "id": "cecd_elxn_can_2011__qetud",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qetud",
+      "question_text": "S9.  Quel est le niveau de scolarité le plus élevé que vous avez complété?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [
+        "éducation",
+        "scolarité"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Primaire en partie"
+        },
+        {
+          "code": "2",
+          "label": "Primaire complété"
+        },
+        {
+          "code": "3",
+          "label": "Secondaire/école de métiers en partie"
+        },
+        {
+          "code": "4",
+          "label": "Secondaire/école de métiers complété"
+        },
+        {
+          "code": "5",
+          "label": "Collège/cégep en partie"
+        },
+        {
+          "code": "6",
+          "label": "Collège/cégep complété"
+        },
+        {
+          "code": "7",
+          "label": "Université 1er cycle en partie (certificat, baccalauréat)"
+        },
+        {
+          "code": "8",
+          "label": "Université 1er cycle complété (certificat, baccalauréat)"
+        },
+        {
+          "code": "9",
+          "label": "Études universitaires de 2e ou 3e cycle en partie (maîtrise,"
+        },
+        {
+          "code": "10",
+          "label": "Études universitaires de 2e ou 3e cycle complétées (maîtrise"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0023076923098415136,
+      "id": "cecd_elxn_can_2011__z7",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z7",
+      "question_text": "7.  Et personnellement, diriez-vous que les résultats des sondages ont rendu votre décision...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "influence des sondages",
+        "prédiction électorale"
+      ],
+      "themes": [
+        "opinion publique",
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...plus difficile à prendre"
+        },
+        {
+          "code": "2",
+          "label": "...plus facile à prendre"
+        },
+        {
+          "code": "3",
+          "label": "Ça n'a fait aucune différence"
+        },
+        {
+          "code": "4",
+          "label": "pas lu sondages"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002238806104287505,
+      "id": "cecd_elxn_can_2011__Texte",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "Texte",
+      "question_text": "Raisons du changement ou de l'absention",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "changement de vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.002205882454290986,
+      "id": "cecd_elxn_can_2011__qreve",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qreve",
+      "question_text": "S10.  Dans laquelle des catégories suivantes se situe le revenu annuel total, avant impôts et déductions, de tous les membres de votre foyer, en vous incluant?  Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [
+        "revenu",
+        "statut économique"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "moins de 20 000 $"
+        },
+        {
+          "code": "2",
+          "label": "20 000 $ à 39 999 $"
+        },
+        {
+          "code": "3",
+          "label": "40 000 $ à 59 999 $"
+        },
+        {
+          "code": "4",
+          "label": "60 000 $ à 79 999 $"
+        },
+        {
+          "code": "5",
+          "label": "80 000 $ à 99 999 $"
+        },
+        {
+          "code": "6",
+          "label": "100 000 $ à 149 999 $"
+        },
+        {
+          "code": "7",
+          "label": "150 000 $ et plus"
+        },
+        {
+          "code": "9",
+          "label": "Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002173913177102804,
+      "id": "cecd_elxn_can_2011__q11aa",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "q11aa",
+      "question_text": "Q11.  Parmi les chefs de parti suivants, lequel ferait le meilleur premier ministre du Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation des chefs",
+        "leadership fédéral"
+      ],
+      "themes": [
+        "leadership politique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Stephen Harper"
+        },
+        {
+          "code": "2",
+          "label": "Michael Ignatieff"
+        },
+        {
+          "code": "3",
+          "label": "Jack Layton"
+        },
+        {
+          "code": "4",
+          "label": "Gilles Duceppe"
+        },
+        {
+          "code": "5",
+          "label": "Elizabeth May"
+        },
+        {
+          "code": "7",
+          "label": "Aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0021428572945296764,
+      "id": "cecd_elxn_can_2011__pol2b",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol2b",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / B) ...le chef du Parti Conservateur du Canada, Stephen Harper performe",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation du chef",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": "2",
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": "3",
+          "label": "En dessous de vos attentes"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0021126761566847563,
+      "id": "cecd_elxn_can_2011__pol2c",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol2c",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / C) ...le chef du Nouveau Parti Démocratique, Jack Layton performe",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation du chef",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": "2",
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": "3",
+          "label": "En dessous de vos attentes"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0020833334419876337,
+      "id": "cecd_elxn_can_2011__z3",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z3",
+      "question_text": "3.  Durant la semaine qui précédé votre vote, diriez-vous que ...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "certitude électorale",
+        "indécision"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Vous étiez indécis(e)"
+        },
+        {
+          "code": "2",
+          "label": "Votre idée était déjà faite"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.002054794691503048,
+      "id": "cecd_elxn_can_2011__O_Q5A",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "O_Q5A",
+      "question_text": "Raison du vote ou du non-vote",
+      "var_type": "continuous",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "motivations électorales",
+        "raison du vote"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": []
+    },
+    {
+      "@search.score": 0.0020000000949949026,
+      "id": "cecd_elxn_can_2011__pol2e",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol2e",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / E) ...le chef du Bloc Québécois, Gilles Duceppe performe",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation du chef",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": "2",
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": "3",
+          "label": "En dessous de vos attentes"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001973684411495924,
+      "id": "cecd_elxn_can_2011__z9",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z9",
+      "question_text": "9.  Si on vous demandait de participer à un sondage et que vous aviez le choix entre un sondage par la poste, un sondage par Internet, un interviewer qui vous appelle par téléphone ou un interviewer qui vient chez vous à la maison, quelle méthode vous plai",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "préférence méthodologique",
+        "méthodes de sondage"
+      ],
+      "themes": [
+        "opinion publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Questionnaire par la poste"
+        },
+        {
+          "code": "2",
+          "label": "Sondage par Internet"
+        },
+        {
+          "code": "3",
+          "label": "Entrevue au téléphone"
+        },
+        {
+          "code": "4",
+          "label": "Entrevue à la maison"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018987342482432723,
+      "id": "cecd_elxn_can_2011__reg",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "reg",
+      "question_text": "S1.  Region :",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie",
+        "région"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Montréal Ile"
+        },
+        {
+          "code": "2",
+          "label": "Montréal reste RMR"
+        },
+        {
+          "code": "3",
+          "label": "Québec RMR"
+        },
+        {
+          "code": "4",
+          "label": "Reste du Québec"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001875000074505806,
+      "id": "cecd_elxn_can_2011__qage",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qage",
+      "question_text": "S2.  Auquel des groupes d'âges suivants appartenez-vous?  Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [
+        "âge"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "18-24 ans"
+        },
+        {
+          "code": "2",
+          "label": "25-34 ans"
+        },
+        {
+          "code": "3",
+          "label": "35-44 ans"
+        },
+        {
+          "code": "4",
+          "label": "45-54 ans"
+        },
+        {
+          "code": "5",
+          "label": "55-64 ans"
+        },
+        {
+          "code": "6",
+          "label": "65-74 ans"
+        },
+        {
+          "code": "7",
+          "label": "75 ans et plus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018518519354984164,
+      "id": "cecd_elxn_can_2011__qlanf",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qlanf",
+      "question_text": "S3.  Quelle langue parle-t-on le plus souvent dans votre foyer?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "langue parlée",
+        "usage linguistique"
+      ],
+      "themes": [
+        "démographie",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Français"
+        },
+        {
+          "code": "2",
+          "label": "Anglais"
+        },
+        {
+          "code": "6",
+          "label": "Autre (précisez) :"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018292682943865657,
+      "id": "cecd_elxn_can_2011__souv1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "souv1",
+      "question_text": "SOUV1.  Si un référendum avait lieu aujourd'hui vous demandant si vous voulez que le Québec devienne un pays souverain, voteriez-vous Oui ou voteriez-vous Non?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "référendum",
+        "souveraineté"
+      ],
+      "themes": [
+        "question nationale",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "3",
+          "label": "Je ne voterais pas/annulerais"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0018072288949042559,
+      "id": "cecd_elxn_can_2011__pol3",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol3",
+      "question_text": "Q14.  Diriez-vous que votre choix pour les prochaines élections fédérales au Canada est définitif ou se peut-il que vous changiez d'avis d'ici le jour de l'élection, soit 2 mai 2011?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "certitude électorale",
+        "indécision"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Mon choix est définitif"
+        },
+        {
+          "code": "2",
+          "label": "Il se peut que je change d'avis / indécis"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017857144121080637,
+      "id": "cecd_elxn_can_2011__z4",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z4",
+      "question_text": "4.  Et pour quel parti avez-vous voté? Est-ce pour...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "vote",
+        "comportement électoral"
+      ],
+      "themes": [
+        "démocratie",
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "le Parti Conservateur du Canada dirigé par Stephen Harper"
+        },
+        {
+          "code": "2",
+          "label": "le Nouveau Parti Démocratique dirigé par Jack Layton"
+        },
+        {
+          "code": "3",
+          "label": "le Parti libéral du Canada dirigé par Michael Ignatieff"
+        },
+        {
+          "code": "4",
+          "label": "le Bloc Québécois dirigé par Gilles Duceppe"
+        },
+        {
+          "code": "5",
+          "label": "le Parti Vert dirigé par Elizabeth May"
+        },
+        {
+          "code": "6",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "7",
+          "label": "J'ai annulé mon vote"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas/ Je préfère ne pas répondre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017441861564293504,
+      "id": "cecd_elxn_can_2011__fede2",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "fede2",
+      "question_text": "FEDE2.  Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "vote hésitant"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Bloc Québécois de Gilles Duceppe"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral du Canada de Michael Ignatieff"
+        },
+        {
+          "code": "3",
+          "label": "...le Nouveau Parti Démocratique de Jack Layton"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Conservateur du Canada de Stephen Harper"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert d'Elizabeth May"
+        },
+        {
+          "code": "6",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "J'annulerais/ne voterais pas/aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017241380410268903,
+      "id": "cecd_elxn_can_2011__z8",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z8",
+      "question_text": "8.  Diriez-vous que les sondages pendant les campagnes électorales sont une très bonne chose, une assez bonne chose, une assez mauvaise chose ou une très mauvaise chose pour les électeurs?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "perception des sondages",
+        "opinion sur sondages"
+      ],
+      "themes": [
+        "opinion publique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Une très bonne chose"
+        },
+        {
+          "code": "2",
+          "label": "Une assez bonne chose"
+        },
+        {
+          "code": "3",
+          "label": "Une assez mauvaise chose"
+        },
+        {
+          "code": "4",
+          "label": "Une très mauvaise chose"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0017045455751940608,
+      "id": "cecd_elxn_can_2011__z10",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z10",
+      "question_text": "10.  Pour quel parti avez-vous voté aux élections fédérales du 14 octobre 2008?  Est-ce pour...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "vote précédent",
+        "comportement électoral passé"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Parti Conservateur dirigé par Stephen Harper"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral du Canada dirigé par Stéphane Dion"
+        },
+        {
+          "code": "3",
+          "label": "...le Bloc Québécois dirigé par Gilles Duceppe"
+        },
+        {
+          "code": "4",
+          "label": "...le Nouveau Parti Démocratique dirigé par Jack Layton"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert dirigé par Elizabeth May"
+        },
+        {
+          "code": "6",
+          "label": "Un autre parti"
+        },
+        {
+          "code": "7",
+          "label": "J'ai annulé mon vote"
+        },
+        {
+          "code": "8",
+          "label": "Je ne suis pas allé voter (mais j'avais le droit de vote)"
+        },
+        {
+          "code": "9",
+          "label": "Je n'avais pas encore le droit de vote"
+        },
+        {
+          "code": "99",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016666668234393,
+      "id": "cecd_elxn_can_2011__qenfa",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qenfa",
+      "question_text": "S11.  Combien de personnes de moins de 18 ans résident en permanence dans votre foyer?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "composition familiale",
+        "enfants"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Aucune"
+        },
+        {
+          "code": "2",
+          "label": "1 personne"
+        },
+        {
+          "code": "3",
+          "label": "2 personnes"
+        },
+        {
+          "code": "4",
+          "label": "3 personnes"
+        },
+        {
+          "code": "5",
+          "label": "4 personnes"
+        },
+        {
+          "code": "6",
+          "label": "5 personnes"
+        },
+        {
+          "code": "7",
+          "label": "6 personnes et plus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016483517829328775,
+      "id": "cecd_elxn_can_2011__you4",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "you4",
+      "question_text": "4.  Et êtes-vous...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté",
+        "intensité"
+      ],
+      "themes": [
+        "question nationale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...fortement en faveur que le Québec devienne un pays souver"
+        },
+        {
+          "code": "2",
+          "label": "...modérément en faveur que le Québec devienne un pays souve"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016304348828271031,
+      "id": "cecd_elxn_can_2011__prov1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "prov1",
+      "question_text": "PROV1.  S'il y avait des élections provinciales aujourd'hui au Québec, pour lequel des partis suivants voteriez-vous?  Voteriez-vous pour...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "préférences électorales provinciales"
+      ],
+      "themes": [
+        "comportement électoral",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...l'Action Démocratique de Gérard Deltell"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral de Jean Charest"
+        },
+        {
+          "code": "3",
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Québec Solidaire de Amir Khadir"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert de Guy Rainville"
+        },
+        {
+          "code": "6",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0016129033174365759,
+      "id": "cecd_elxn_can_2011__q9",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "q9",
+      "question_text": "Q9.  Parmi les chefs de parti suivants, lequel ferait le meilleur premier ministre du Québec?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation des chefs",
+        "leadership provincial"
+      ],
+      "themes": [
+        "leadership politique",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Jean Charest"
+        },
+        {
+          "code": "2",
+          "label": "Pauline Marois"
+        },
+        {
+          "code": "3",
+          "label": "Gérard Deltell"
+        },
+        {
+          "code": "4",
+          "label": "Amir Khadir"
+        },
+        {
+          "code": "5",
+          "label": "Guy Rainville"
+        },
+        {
+          "code": "7",
+          "label": "Aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015957447467371821,
+      "id": "cecd_elxn_can_2011__pol2d",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol2d",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / D) ...le chef du Parti Vert, Elizabeth May performe",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation du chef",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": "2",
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": "3",
+          "label": "En dessous de vos attentes"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015789475291967392,
+      "id": "cecd_elxn_can_2011__occup",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "occup",
+      "question_text": "S6.  Laquelle des activités suivantes correspond le mieux à votre situation actuelle?    Êtes-vous...",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "occupation",
+      "concepts": [
+        "emploi",
+        "occupation"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "travailleur(se) à temps plein (30 hres et +/sem.)"
+        },
+        {
+          "code": "2",
+          "label": "travailleur(se) à temps partiel"
+        },
+        {
+          "code": "3",
+          "label": "chômeur(se), à la recherche d'un emploi"
+        },
+        {
+          "code": "4",
+          "label": "à la maison à temps plein"
+        },
+        {
+          "code": "5",
+          "label": "retraité(e)"
+        },
+        {
+          "code": "6",
+          "label": "étudiant(e)"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015625001396983862,
+      "id": "cecd_elxn_can_2011__p9",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "p9",
+      "question_text": "S7.  Quelle est habituellement votre occupation principale?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "profession",
+        "emploi détaillé"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Professionnel"
+        },
+        {
+          "code": "2",
+          "label": "Propriétaire ou administrateur de grande entreprise"
+        },
+        {
+          "code": "3",
+          "label": "Technicien ou semi-professionnel"
+        },
+        {
+          "code": "4",
+          "label": "Propriétaire ou administrateur de petite entreprise"
+        },
+        {
+          "code": "5",
+          "label": "Employé de bureau (col blanc), service, vendeur"
+        },
+        {
+          "code": "6",
+          "label": "Ouvrier de métier, spécialisé, semi-spécialisé ou col bleu"
+        },
+        {
+          "code": "7",
+          "label": "Manoeuvre ou journalier"
+        },
+        {
+          "code": "8",
+          "label": "Agriculture ou pêcherie"
+        },
+        {
+          "code": "96",
+          "label": "Autre"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015463917516171932,
+      "id": "cecd_elxn_can_2011__you1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "you1",
+      "question_text": "1.  Personnellement, comment vous décrivez-vous? Diriez-vous que vous êtes ?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "identité nationale",
+        "nationalisme"
+      ],
+      "themes": [
+        "identité",
+        "question nationale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Avant tout Québécois"
+        },
+        {
+          "code": "2",
+          "label": "Avant tout Canadien"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0015306122368201613,
+      "id": "cecd_elxn_can_2011__you2",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "you2",
+      "question_text": "2.  Et vous-même, êtes-vous...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "souveraineté",
+        "fédéralisme"
+      ],
+      "themes": [
+        "question nationale",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...plutôt favorable à ce que le Québec reste dans le Canada,"
+        },
+        {
+          "code": "2",
+          "label": "...plutôt favorable à ce que le Québec se sépare du Canada,"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001500000013038516,
+      "id": "cecd_elxn_can_2011__luentend",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "luentend",
+      "question_text": "6.  Durant la campagne électorale, avez-vous lu ou entendu des résultats de sondages portant sur les élections fédérales?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "exposition médiatique",
+        "sondages"
+      ],
+      "themes": [
+        "opinion publique",
+        "communication politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014851485611870885,
+      "id": "cecd_elxn_can_2011__souv2",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "souv2",
+      "question_text": "SOUV2.  Même si vous n'avez peut-être pas encore fait votre choix, s'il y avait un référendum aujourd'hui, seriez-vous tenté(e) de voter Oui ou de voter Non?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "référendum",
+        "vote hésitant"
+      ],
+      "themes": [
+        "question nationale"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui"
+        },
+        {
+          "code": "2",
+          "label": "Non"
+        },
+        {
+          "code": "3",
+          "label": "Je ne voterais pas/annulerais"
+        },
+        {
+          "code": "8",
+          "label": "Je ne sais pas"
+        },
+        {
+          "code": "9",
+          "label": "Refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001470588380470872,
+      "id": "cecd_elxn_can_2011__fede1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "fede1",
+      "question_text": "FEDE1.  Si des élections fédérales avaient lieu maintenant au Canada, pour lequel des partis suivants voteriez-vous? Voteriez-vous pour...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "préférences électorales fédérales"
+      ],
+      "themes": [
+        "comportement électoral",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...le Bloc Québécois de Gilles Duceppe"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral du Canada de Michael Ignatieff"
+        },
+        {
+          "code": "3",
+          "label": "...le Nouveau Parti Démocratique de Jack Layton"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Conservateur du Canada de Stephen Harper"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert d'Elizabeth May"
+        },
+        {
+          "code": "6",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "J'annulerais/ne voterais pas/aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014563107397407293,
+      "id": "cecd_elxn_can_2011__pol2a",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "pol2a",
+      "question_text": "Q13.  Dans la campagne électorale fédérale qui est en cours, diriez-vous que... / A)  ...le chef du Parti Libéral, Michael Ignatieff performe",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "évaluation du chef",
+        "campagne électorale"
+      ],
+      "themes": [
+        "communication politique",
+        "leadership politique"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Au-delà de vos attentes"
+        },
+        {
+          "code": "2",
+          "label": "Conformément à vos attentes"
+        },
+        {
+          "code": "3",
+          "label": "En dessous de vos attentes"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014423078391700983,
+      "id": "cecd_elxn_can_2011__z1",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z1",
+      "question_text": "1.  Diriez-vous que vous étiez très intéressé(e), assez intéressé(e), peu intéressé(e) ou pas du tout intéressé(e) à la campagne électorale fédérale qui vient de se terminer au Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intérêt politique",
+        "campagne électorale"
+      ],
+      "themes": [
+        "engagement civique",
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Très intéressé(e)"
+        },
+        {
+          "code": "2",
+          "label": "Assez intéressé(e)"
+        },
+        {
+          "code": "3",
+          "label": "Peu intéressé(e)"
+        },
+        {
+          "code": "4",
+          "label": "Pas du tout intéressé(e)"
+        },
+        {
+          "code": "9",
+          "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.001428571529686451,
+      "id": "cecd_elxn_can_2011__z2",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "z2",
+      "question_text": "2.  Êtes-vous allé voter lors de l'élection qui vient de se tenir le 2 mai dernier au Canada, que ce soit le jour de l'élection ou par anticipation?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "participation électorale",
+        "abstention"
+      ],
+      "themes": [
+        "comportement électoral",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Oui, le jour même de l'élection (lundi 2 mai)"
+        },
+        {
+          "code": "2",
+          "label": "Oui, par anticipation une semaine avant"
+        },
+        {
+          "code": "3",
+          "label": "Non, je n'ai pas voté"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014150943607091904,
+      "id": "cecd_elxn_can_2011__qlanm",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "qlanm",
+      "question_text": "S4.  Quelle est votre langue maternelle, c'est-à-dire la première langue que vous avez apprise et que vous pouvez encore parler?",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [
+        "langue maternelle"
+      ],
+      "themes": [
+        "démographie",
+        "identité"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Français"
+        },
+        {
+          "code": "2",
+          "label": "Anglais"
+        },
+        {
+          "code": "6",
+          "label": "Autre (précisez) :"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0014018691144883633,
+      "id": "cecd_elxn_can_2011__prov2",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "prov2",
+      "question_text": "PROV2.  Peut-être n'êtes-vous pas complètement décidé(e), mais actuellement pour lequel de ces partis seriez-vous tenté(e) de voter? Est-ce...",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "intention de vote",
+        "vote hésitant"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...l'Action Démocratique de Gérard Deltell"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral de Jean Charest"
+        },
+        {
+          "code": "3",
+          "label": "...le Parti Québécois de Pauline Marois"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Québec Solidaire de Amir Khadir"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert de Guy Rainville"
+        },
+        {
+          "code": "6",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "Annulerait/ne voterait pas/aucun"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0013888889225199819,
+      "id": "cecd_elxn_can_2011__q10a",
+      "survey_id": "cecd_elxn_can_2011",
+      "survey_year": 2011,
+      "pollster": "CROP",
+      "language": "fr",
+      "survey_name": "Panel électoral fédéral canadien 2011 - vagues pré/post-électorales (CECD)",
+      "n_respondents": 715,
+      "tags": [
+        "electoral",
+        "federal",
+        "québec",
+        "panel",
+        "2011"
+      ],
+      "variable": "q10a",
+      "question_text": "Q10.  Pour quel parti avez-vous voté aux dernières élections provinciales du 8 décembre 2008?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "vote précédent",
+        "comportement électoral passé"
+      ],
+      "themes": [
+        "comportement électoral"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "...l'Action Démocratique du Québec"
+        },
+        {
+          "code": "2",
+          "label": "...le Parti Libéral du Québec"
+        },
+        {
+          "code": "3",
+          "label": "...le Parti Québécois"
+        },
+        {
+          "code": "4",
+          "label": "...le Parti Québec Solidaire"
+        },
+        {
+          "code": "5",
+          "label": "...le Parti Vert du Québec"
+        },
+        {
+          "code": "6",
+          "label": "...un autre parti (précisez) :"
+        },
+        {
+          "code": "7",
+          "label": "Je n'ai pas voté/j'ai annulé"
+        },
+        {
+          "code": "9",
+          "label": "Je ne sais pas"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0013761467998847365,
+      "id": "cecd_sante_can_usa__DIVIS",
+      "survey_id": "cecd_sante_can_usa",
+      "survey_year": 2011,
+      "pollster": "Leger Marketing",
+      "language": "en",
+      "survey_name": "Étude sur la santé - Canada-USA",
+      "n_respondents": 7064,
+      "tags": [
+        "health",
+        "canada",
+        "usa",
+        "healthcare systems",
+        "comparison"
+      ],
+      "variable": "DIVIS",
+      "question_text": "US DIVISION",
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [
+        "géographie"
+      ],
+      "themes": [
+        "démographie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "New England"
+        },
+        {
+          "code": "2",
+          "label": "Middle Atlantic"
+        },
+        {
+          "code": "3",
+          "label": "East North Central"
+        },
+        {
+          "code": "4",
+          "label": "West North Central"
+        },
+        {
+          "code": "5",
+          "label": "South Atlantic"
+        },
+        {
+          "code": "6",
+          "label": "East South Central"
+        },
+        {
+          "code": "7",
+          "label": "West South Central"
+        },
+        {
+          "code": "8",
+          "label": "Mountain"
+        },
+        {
+          "code": "9",
+          "label": "Pacific"
+        }
+      ]
+    }
+  ]
+}

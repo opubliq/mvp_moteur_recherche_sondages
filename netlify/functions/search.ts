@@ -16,7 +16,7 @@
  */
 
 import type { Handler } from "@netlify/functions";
-import type { Concept, SearchResult } from "../../src/types";
+import type { Concept, SearchResult, SearchFilters, SearchFacets } from "../../src/types";
 import { scoreResult } from "../../src/logic/scoring";
 import { retrieve, RetrieveError } from "../../src/logic/retrieve";
 import type { RetrieveEnv, RawCandidate } from "../../src/logic/retrieve";
@@ -41,7 +41,7 @@ const CORS_HEADERS: Record<string, string> = {
 interface SearchBody {
   query: string;
   concepts?: Concept[];
-  filters?: Record<string, string | number | boolean>;
+  filters?: SearchFilters;
   top?: number;
   rerank?: boolean;
 }
@@ -189,14 +189,17 @@ export const handler: Handler = async (event) => {
   // -----------------------------------------------------------------------
   // Étapes 1 & 2 : Récupération hybride (via module partagé)
   // -----------------------------------------------------------------------
-  let results: RawCandidate[];
+  let results: (SearchResult & { "@search.score": number })[];
   let luceneQuery: string;
+  let rawFacets: Record<string, Array<{ value: any; count: number }>> | undefined;
 
   try {
     const result = await retrieve(trimmedQuery, concepts, env, { filters, top });
     results = result.candidates;
     luceneQuery = result.luceneQuery;
+    rawFacets = result.facets;
   } catch (err) {
+
     if (err instanceof RetrieveError) {
       console.error(`[search] Retrieval failed at stage ${err.stage}:`, err.message);
       return {
@@ -285,6 +288,11 @@ export const handler: Handler = async (event) => {
     body: JSON.stringify({
       results,
       count: results.length,
+      facets: rawFacets ? {
+        years: (rawFacets.survey_year || []).map(f => ({ value: String(f.value), count: f.count })),
+        pollsters: (rawFacets.pollster || []).map(f => ({ value: String(f.value), count: f.count })),
+        languages: (rawFacets.language || []).map(f => ({ value: String(f.value), count: f.count })),
+      } : undefined,
       luceneQuery, // Pour info/debug
     }),
   };
