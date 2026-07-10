@@ -1,0 +1,429 @@
+<title>Baseline scoring — moteur sondages</title>
+<style>
+  :root {
+    --paper: #f5f7f7;
+    --panel: #ffffff;
+    --ink: #14201f;
+    --ink-soft: #4a5a58;
+    --ink-faint: #7c8b89;
+    --line: #dde5e4;
+    --line-strong: #c3cfcd;
+    --accent: #0d7d7a;
+    --accent-soft: #d5e8e6;
+    --exact: #3f9d5a;
+    --partiel: #c9a227;
+    --faible: #d1762e;
+    --hors: #8b9997;
+    --bad: #c0453b;
+    --bad-soft: #f4dcd9;
+    --heat-0: #f5f7f7;
+    --shadow: 0 1px 2px rgba(20,32,31,.06), 0 6px 20px rgba(20,32,31,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #0e1514;
+      --panel: #16201f;
+      --ink: #e7eeec;
+      --ink-soft: #a7b6b3;
+      --ink-faint: #74847f;
+      --line: #263230;
+      --line-strong: #33413e;
+      --accent: #2fb3ad;
+      --accent-soft: #123534;
+      --exact: #4fb56a;
+      --partiel: #d8b23a;
+      --faible: #e08843;
+      --hors: #7c8b88;
+      --bad: #e0655a;
+      --bad-soft: #3a1f1c;
+      --heat-0: #16201f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0e1514; --panel: #16201f; --ink: #e7eeec; --ink-soft: #a7b6b3;
+    --ink-faint: #74847f; --line: #263230; --line-strong: #33413e; --accent: #2fb3ad;
+    --accent-soft: #123534; --exact: #4fb56a; --partiel: #d8b23a; --faible: #e08843;
+    --hors: #7c8b88; --bad: #e0655a; --bad-soft: #3a1f1c; --heat-0: #16201f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.3);
+  }
+  :root[data-theme="light"] {
+    --paper: #f5f7f7; --panel: #ffffff; --ink: #14201f; --ink-soft: #4a5a58;
+    --ink-faint: #7c8b89; --line: #dde5e4; --line-strong: #c3cfcd; --accent: #0d7d7a;
+    --accent-soft: #d5e8e6; --exact: #3f9d5a; --partiel: #c9a227; --faible: #d1762e;
+    --hors: #8b9997; --bad: #c0453b; --bad-soft: #f4dcd9; --heat-0: #f5f7f7;
+    --shadow: 0 1px 2px rgba(20,32,31,.06), 0 6px 20px rgba(20,32,31,.05);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* Header */
+  header { margin-bottom: 36px; }
+  .eyebrow {
+    font-family: ui-monospace, monospace; font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 10px;
+  }
+  h1 {
+    font-size: clamp(28px, 4vw, 40px); line-height: 1.1; margin: 0 0 12px;
+    text-wrap: balance; letter-spacing: -.02em; font-weight: 700;
+  }
+  .subtitle { color: var(--ink-soft); font-size: 16px; max-width: 62ch; margin: 0; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 16px;
+    font-family: ui-monospace, monospace; font-size: 12.5px; color: var(--ink-faint);
+  }
+  .meta b { color: var(--ink-soft); font-weight: 600; }
+
+  h2 {
+    font-size: 20px; margin: 52px 0 6px; letter-spacing: -.01em; font-weight: 700;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  h2 .tag {
+    font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;
+    color: var(--accent); letter-spacing: .1em; text-transform: uppercase;
+  }
+  .lead { color: var(--ink-soft); margin: 0 0 22px; max-width: 68ch; font-size: 15px; }
+
+  /* KPI row */
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .kpi {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 22px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+  }
+  .kpi::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: var(--k, var(--accent));
+  }
+  .kpi .label {
+    font-family: ui-monospace, monospace; font-size: 11.5px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--ink-faint); margin: 0 0 8px;
+  }
+  .kpi .value { font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: -.03em; }
+  .kpi .value small { font-size: 20px; color: var(--ink-faint); font-weight: 600; }
+  .kpi .detail { font-family: ui-monospace, monospace; font-size: 12.5px; color: var(--ink-soft); margin-top: 8px; }
+  .kpi.bad { --k: var(--bad); }
+  .kpi.warn { --k: var(--partiel); }
+  .kpi.good { --k: var(--accent); }
+
+  /* Panels */
+  .panel {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 24px; box-shadow: var(--shadow);
+  }
+
+  /* Confusion matrix */
+  .cm-scroll { overflow-x: auto; }
+  table.cm { border-collapse: collapse; font-family: ui-monospace, monospace; margin: 0 auto; }
+  table.cm th, table.cm td { padding: 0; }
+  table.cm .corner { text-align: right; padding: 6px 12px; }
+  table.cm .colh {
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+    padding: 8px 6px; text-align: center; color: var(--ink-soft); white-space: nowrap;
+  }
+  table.cm .rowh {
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em;
+    padding: 6px 14px 6px 0; text-align: right; color: var(--ink-soft); white-space: nowrap;
+  }
+  table.cm .cell {
+    width: 92px; height: 62px; text-align: center; vertical-align: middle;
+    border-radius: 8px; font-size: 19px; font-variant-numeric: tabular-nums;
+    border: 1.5px solid transparent; position: relative;
+  }
+  table.cm .cell.diag { border-color: var(--accent); font-weight: 700; }
+  table.cm .cell .pct { display: block; font-size: 10.5px; color: var(--ink-faint); margin-top: 2px; }
+  .cm-note { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 18px; font-size: 13px; color: var(--ink-soft); }
+  .cm-note .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+  .cm-axis { text-align: center; font-size: 12.5px; color: var(--ink-faint); font-family: ui-monospace, monospace; margin-top: 4px; }
+
+  /* Tables */
+  .tbl-scroll { overflow-x: auto; margin-top: 4px; }
+  table.data { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  table.data th {
+    font-family: ui-monospace, monospace; font-size: 11px; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--ink-faint); font-weight: 600; text-align: left;
+    padding: 10px 12px; border-bottom: 2px solid var(--line-strong); white-space: nowrap;
+  }
+  table.data th.r, table.data td.r { text-align: right; }
+  table.data td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  table.data tr:last-child td { border-bottom: none; }
+  table.data td.mono, table.data td.r { font-family: ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  table.data .var { font-family: ui-monospace, monospace; font-size: 12.5px; color: var(--accent); white-space: nowrap; }
+  table.data .qtext { color: var(--ink-soft); }
+  .score-pill {
+    font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;
+    background: var(--bad-soft); color: var(--bad); padding: 2px 8px; border-radius: 20px;
+  }
+
+  /* mini bars in per-query table */
+  .bar { display: flex; align-items: center; gap: 8px; min-width: 120px; }
+  .bar .track { flex: 1; height: 7px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .bar .fill { height: 100%; border-radius: 4px; }
+  .bar .pv { font-family: ui-monospace, monospace; font-size: 12px; width: 46px; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* Bug panel */
+  .bug { border-left: 4px solid var(--bad); }
+  .surveyname {
+    font-family: ui-monospace, monospace; font-size: 14px; background: var(--bad-soft);
+    color: var(--ink); padding: 12px 16px; border-radius: 8px; margin: 16px 0;
+    line-height: 1.7; word-break: break-word;
+  }
+  .surveyname mark { background: transparent; color: var(--bad); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .bug-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 14px; margin: 18px 0; }
+  .bug-stat { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .bug-stat .n { font-size: 30px; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+  .bug-stat .n.bad { color: var(--bad); }
+  .bug-stat .t { font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; }
+  .tier {
+    display: inline-block; font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;
+    padding: 1px 8px; border-radius: 20px; letter-spacing: .03em;
+  }
+  .tier.partiel { background: color-mix(in srgb, var(--partiel) 20%, transparent); color: var(--partiel); }
+  .tier.exact { background: color-mix(in srgb, var(--exact) 20%, transparent); color: var(--exact); }
+  .callout {
+    margin-top: 20px; font-size: 13.5px; color: var(--ink-soft); background: var(--accent-soft);
+    border-radius: 10px; padding: 14px 18px; line-height: 1.6;
+  }
+  .callout b { color: var(--ink); }
+
+  /* causes */
+  .causes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 16px; }
+  .cause { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; box-shadow: var(--shadow); }
+  .cause .idx { font-family: ui-monospace, monospace; font-size: 12px; color: var(--accent); font-weight: 700; }
+  .cause h3 { font-size: 15.5px; margin: 8px 0 8px; letter-spacing: -.01em; }
+  .cause p { margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+
+  footer {
+    margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-family: ui-monospace, monospace; font-size: 12px; color: var(--ink-faint);
+  }
+  a { color: var(--accent); }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Baseline d'évaluation · 9gf.10.4</p>
+    <h1>Scoring de pertinence — état de référence</h1>
+    <p class="subtitle">Mesure objective du classement Exact / Partiel / Faible / Hors-sujet produit à 100 % par <span class="mono">src/logic/scoring.ts</span> (matching littéral de sous-chaîne). Scoring non modifié — on chiffre l'existant avant correctif.</p>
+    <div class="meta">
+      <span><b>Date</b> 2026-07-10</span>
+      <span><b>Golden set</b> 15 requêtes · 410 items pertinents</span>
+      <span><b>Harness</b> eval/run.ts + eval/breakdown.ts</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="kpis">
+      <div class="kpi bad">
+        <p class="label">Precision @ Exact</p>
+        <div class="value num">11,0<small>%</small></div>
+        <p class="detail">103 corrects / 933 prédits</p>
+      </div>
+      <div class="kpi bad">
+        <p class="label">Faux-positifs Exact</p>
+        <div class="value num">830</div>
+        <p class="detail">89 % des Exact sont faux</p>
+      </div>
+      <div class="kpi warn">
+        <p class="label">Recall des pertinents</p>
+        <div class="value num">77,1<small>%</small></div>
+        <p class="detail">316 / 410 non Hors-sujet</p>
+      </div>
+      <div class="kpi good">
+        <p class="label">Pertinents perdus</p>
+        <div class="value num">94</div>
+        <p class="detail">classés Hors-sujet / non retrouvés</p>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:22px;">Le palier <b>Exact</b> est inexploitable : neuf prédictions Exact sur dix sont fausses. Le scoring gonfle la pertinence — la classe Hors-sujet déborde massivement vers Exact et Partiel.</p>
+  </section>
+
+  <h2>Matrice de confusion <span class="tag">attendu × assigné</span></h2>
+  <p class="lead">Lignes = grade attendu (golden), colonnes = grade assigné par le moteur. La diagonale (cerclée teal) = bonnes réponses. La ligne <b>Hors-sujet</b> qui fuit vers Exact (771) et Partiel (746) concentre l'erreur.</p>
+  <div class="panel">
+    <div class="cm-scroll">
+      <table class="cm" id="cm"></table>
+    </div>
+    <p class="cm-axis">→ assigné par le moteur</p>
+    <div class="cm-note">
+      <span><span class="swatch" style="background:var(--accent)"></span>Diagonale = correct</span>
+      <span><span class="swatch" style="background:var(--bad)"></span>Intensité rouge = volume d'erreur</span>
+      <span>771 Hors-sujet → Exact · 746 Hors-sujet → Partiel</span>
+    </div>
+  </div>
+
+  <h2>Le bug — q01 « soutien au fédéralisme canadien » <span class="tag">reproduit</span></h2>
+  <p class="lead">Concepts de q01 : <span class="mono">soutien</span> (0.3) + <span class="mono">fédéralisme</span> (0.7, synonymes incl. « fédéral »/« federal », qualifiers « canadien »/« Canada »). <span class="mono">scoreResult()</span> matche sur <span class="mono">question_text + survey_name + concepts</span> concaténés.</p>
+  <div class="panel bug">
+    <p style="margin:0 0 4px; font-size:14px; color:var(--ink-soft);">Le sondage <span class="mono">cecd_elxn_can_2011</span> porte le nom :</p>
+    <div class="surveyname">« Panel électoral <mark>fédéral</mark> <mark>canadien</mark> 2011 - vagues pré/post-électorales (CECD) »</div>
+    <p style="margin:0; font-size:14px; color:var(--ink-soft);">Ce nom seul valide le concept <b>fédéralisme</b> (0.7) → <b>chaque</b> question du sondage franchit le seuil Partiel, quel que soit son contenu réel (intention de vote, participation, sociodémo).</p>
+
+    <div class="bug-stats">
+      <div class="bug-stat"><div class="n">49<span style="font-size:16px;color:var(--ink-faint)">/49</span></div><div class="t">questions du panel 2011 classées Partiel (70/100)</div></div>
+      <div class="bug-stat"><div class="n bad">46</div><div class="t">faux-positifs — hors-sujet dans le golden</div></div>
+      <div class="bug-stat"><div class="n">3</div><div class="t">réellement pertinents (you1, you2, you3)</div></div>
+    </div>
+
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr><th>Variable</th><th>Assigné</th><th class="r">Score</th><th>Attendu</th><th>Question (tronquée)</th></tr></thead>
+        <tbody id="bugrows"></tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <b>Précision vs. l'énoncé de l'épic.</b> L'épic annonçait ces items « en Exact » ; la mesure montre qu'ils sortent en <span class="tier partiel">Partiel 70</span> — seul <span class="mono">fédéralisme</span> (0.7) est déclenché via le <span class="mono">survey_name</span>, il manque <span class="mono">soutien</span> (0.3) pour atteindre le seuil Exact (≥ 0.99). Le bug est néanmoins bien reproduit : ces questions sont rankées <b>pertinentes à tort</b>. Les seuls <span class="tier exact">Exact</span> fautifs de q01 viennent de sondages govcan (net-zéro, bureaux fédéraux) où <span class="mono">support</span>/<span class="mono">favor</span> + <span class="mono">federal</span>/<span class="mono">Canada</span> matchent fortuitement. Cause racine identique : <b>survey_name à poids plein</b>.
+    </div>
+  </div>
+
+  <h2>Top faux-positifs Exact <span class="tag">score 100/100</span></h2>
+  <p class="lead">Items classés Exact alors qu'ils sont Hors-sujet dans le golden — matching de sous-chaînes sur du contenu sans rapport.</p>
+  <div class="panel">
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr><th>Query</th><th>Variable</th><th>Texte (tronqué)</th><th class="r">Score</th></tr></thead>
+        <tbody id="fprows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>Chiffres par requête <span class="tag">15 requêtes</span></h2>
+  <p class="lead">Deux régimes d'échec : sur-classement Exact massif (q02, q04, q09, q10) et silence total sur Exact (q07, q11, q13, q14) malgré un recall partiel.</p>
+  <div class="panel">
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr>
+          <th>ID</th><th>Requête</th><th class="r">Pert.</th><th class="r">Cand.</th>
+          <th class="r">Exact préd.</th><th>Precision @ Exact</th><th>Recall</th>
+        </tr></thead>
+        <tbody id="pqrows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>Où le scoring se casse <span class="tag">causes racines</span></h2>
+  <div class="causes">
+    <div class="cause"><div class="idx">C1</div><h3>survey_name à poids plein</h3><p>Le nom du sondage est concaténé au texte de la question sans distinction. Un nom descriptif fait matcher un concept sur toutes ses questions — 46 faux-positifs d'un coup en q01.</p></div>
+    <div class="cause"><div class="idx">C2</div><h3>Sous-chaînes courtes littérales</h3><p><span class="mono">includes()</span> sur « fédéral » dans « élections fédérales », « federal » dans « Federal Government ». Aucune frontière de mot, proximité, ni rôle syntaxique.</p></div>
+    <div class="cause"><div class="idx">C3</div><h3>Concept dominant → Exact auto</h3><p>Un concept unique à poids élevé matché par sous-chaîne, plus un second trivialement présent, franchit le seuil Exact (≥ 0.99). D'où 830 faux-positifs Exact.</p></div>
+    <div class="cause"><div class="idx">C4</div><h3>Qualifiers permissifs</h3><p>Le qualifier ne fait que confirmer un concept déjà matché, sans exiger de co-occurrence locale. « Canada » n'importe où dans le texte suffit à valider « fédéralisme canadien ».</p></div>
+  </div>
+
+  <footer>
+    Généré par eval/run.ts (métriques agrégées) + eval/breakdown.ts (breakdown par requête & dump q01). Scoring src/logic/scoring.ts non modifié. Correctif = tâche 9gf.10.5.
+  </footer>
+</div>
+
+<script>
+  // --- Confusion matrix ---
+  const grades = ['exact','partiel','faible','hors-sujet'];
+  const cm = {
+    exact:      {exact:103, partiel:32,  faible:31,  'hors-sujet':10},
+    partiel:    {exact:36,  partiel:49,  faible:19,  'hors-sujet':16},
+    faible:     {exact:23,  partiel:21,  faible:2,   'hors-sujet':11},
+    'hors-sujet':{exact:771, partiel:746, faible:226, 'hors-sujet':2288},
+  };
+  let maxErr = 0;
+  for (const e of grades) for (const a of grades) if (e!==a) maxErr = Math.max(maxErr, cm[e][a]);
+  const heat = (v, isDiag) => {
+    if (isDiag) return 'var(--accent-soft)';
+    if (v === 0) return 'var(--heat-0)';
+    const t = Math.pow(v / maxErr, 0.45); // perceptual boost for small cells
+    return `color-mix(in srgb, var(--bad) ${Math.round(t*78)}%, var(--panel))`;
+  };
+  const rowTotals = {}; grades.forEach(e => rowTotals[e] = grades.reduce((s,a)=>s+cm[e][a],0));
+  let html = '<tr><td class="corner"></td>';
+  grades.forEach(a => html += `<th class="colh">${a}</th>`);
+  html += '<th class="colh" style="color:var(--ink-faint)">Σ</th></tr>';
+  grades.forEach(e => {
+    html += `<tr><th class="rowh">${e}</th>`;
+    grades.forEach(a => {
+      const v = cm[e][a]; const isDiag = e===a;
+      const pct = rowTotals[e] ? Math.round(v/rowTotals[e]*100) : 0;
+      const txtDark = !isDiag && v > maxErr*0.34;
+      html += `<td class="cell${isDiag?' diag':''}" style="background:${heat(v,isDiag)};${txtDark?'color:#fff;':''}">`
+            + `<span class="num">${v.toLocaleString('fr')}</span><span class="pct" ${txtDark?'style="color:rgba(255,255,255,.75)"':''}>${pct}%</span></td>`;
+    });
+    html += `<td class="cell" style="color:var(--ink-faint)"><span class="num">${rowTotals[e].toLocaleString('fr')}</span></td></tr>`;
+  });
+  document.getElementById('cm').innerHTML = html;
+
+  // --- q01 bug rows ---
+  const bug = [
+    ['fede1','70','Si des élections fédérales avaient lieu maintenant… (intention de vote)'],
+    ['fede2','70',"Peut-être n'êtes-vous pas complètement décidé(e)… (relance de vote)"],
+    ['z2','70',"Êtes-vous allé voter lors de l'élection… (participation)"],
+    ['sastf','70','Diriez-vous que vous êtes très satisfait(e)… (satisfaction)'],
+    ['z10','70','Pour quel parti avez-vous voté aux élections fédérales…'],
+    ['prov1','70',"S'il y avait des élections provinciales aujourd'hui…"],
+    ['prov2','70',"Peut-être n'êtes-vous pas complètement décidé(e)… (provincial)"],
+  ];
+  document.getElementById('bugrows').innerHTML = bug.map(r =>
+    `<tr><td class="var">${r[0]}</td><td><span class="tier partiel">Partiel</span></td>`
+    + `<td class="r">${r[1]}</td><td class="mono" style="color:var(--hors)">Hors-sujet</td>`
+    + `<td class="qtext">${r[2]}</td></tr>`).join('');
+
+  // --- top false positives ---
+  const fp = [
+    ['q01','govcan_parca_2024/I6_E','Achieving "net-zero emissions"… Canada\'s energy transition…'],
+    ['q01','govcan_habit_2024/SOCSUP_ACCESSIBLEC4','Federal Government locations (Service Canada, CRA)…'],
+    ['q01','govcan_parca_2024/I6_C','Achieving "net-zero emissions"… Canada\'s energy transition…'],
+    ['q02','eeq_2014/Q22',"Et s'il y avait un référendum… Voteriez-vous…"],
+    ['q02','eeq_2014/Q48','Si le Québec devenait un pays indépendant… dollar canadien…'],
+    ['q02','cecd_elxn_can_2011/you2','2. Et vous-même, êtes-vous…'],
+    ['q02','eeq_2014/Q46','Si le Québec devenait un pays indépendant… économie…'],
+    ['q02','eeq_2014/Q16','Avez-vous voté lors du référendum de 1995 sur la souveraineté…'],
+    ['q02','eeq_2014/Q42A','Quel parti est le meilleur pour défendre les intérêts du Québec ?'],
+    ['q02','eeq_2014/Q27A','Une majorité claire dans un référendum sur l\'indépendance…'],
+  ];
+  document.getElementById('fprows').innerHTML = fp.map(r =>
+    `<tr><td class="mono" style="color:var(--ink-soft)">${r[0]}</td><td class="var">${r[1]}</td>`
+    + `<td class="qtext">${r[2]}</td><td class="r"><span class="score-pill">100</span></td></tr>`).join('');
+
+  // --- per query ---
+  const pq = [
+    ['q01','soutien au fédéralisme canadien',16,180,3,0,43.8],
+    ['q02','souveraineté et indépendance du Québec',33,388,340,3.5,97.0],
+    ['q03','intentions de vote provinciales',25,391,27,40.7,88.0],
+    ['q04','participation électorale (avez-vous voté)',23,172,126,6.3,100],
+    ['q05','confiance envers le gouvernement fédéral',56,101,29,82.8,60.7],
+    ['q06','charte des valeurs et laïcité',6,99,2,100,66.7],
+    ['q07','accommodements raisonnables / signes religieux',10,96,0,null,0],
+    ['q08','immigration',39,325,5,60,92.3],
+    ['q09','système de santé public ou privé',58,1000,194,8.2,100],
+    ['q10','santé mentale',39,844,201,11.9,84.6],
+    ['q11','accès au logement et abordabilité',11,98,0,null,54.5],
+    ['q12','enjeux les plus importants de la campagne',7,95,5,40,42.9],
+    ['q13','identification partisane gauche-droite',24,94,0,null,50],
+    ['q14','housing affordability',11,204,0,null,54.5],
+    ['q15','trust in government services',52,297,1,100,76.9],
+  ];
+  const barColor = (v, kind) => {
+    if (v === null) return 'var(--line-strong)';
+    if (kind === 'prec') return v >= 60 ? 'var(--exact)' : v >= 30 ? 'var(--partiel)' : 'var(--bad)';
+    return v >= 80 ? 'var(--exact)' : v >= 50 ? 'var(--partiel)' : 'var(--faible)';
+  };
+  const bar = (v, kind) => {
+    const label = v === null ? '—' : v.toFixed(1).replace('.',',') + '%';
+    const w = v === null ? 0 : v;
+    return `<div class="bar"><div class="track"><div class="fill" style="width:${w}%;background:${barColor(v,kind)}"></div></div><span class="pv">${label}</span></div>`;
+  };
+  document.getElementById('pqrows').innerHTML = pq.map(r =>
+    `<tr><td class="mono" style="color:var(--accent)">${r[0]}</td>`
+    + `<td class="qtext">${r[1]}</td>`
+    + `<td class="r">${r[2]}</td><td class="r">${r[3].toLocaleString('fr')}</td>`
+    + `<td class="r">${r[4]}</td>`
+    + `<td>${bar(r[5],'prec')}</td><td>${bar(r[6],'rec')}</td></tr>`).join('');
+</script>
