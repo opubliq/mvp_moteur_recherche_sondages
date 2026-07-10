@@ -46,8 +46,11 @@ export default function Facets({
   }, [globalFacets?.pollsters, facets?.pollsters, pollsterQuery]);
 
   const yearOptions = useMemo(() => {
-    if (!globalFacets?.years) return [];
-    return globalFacets.years;
+    if (!globalFacets?.years?.length) return [];
+    const values = globalFacets.years.map((y) => Number(y.value));
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    return Array.from({ length: max - min + 1 }, (_, i) => min + i);
   }, [globalFacets?.years]);
 
   const toggleItem = (field: keyof SearchFilters, value: string) => {
@@ -108,8 +111,8 @@ export default function Facets({
             >
               <option value="">De</option>
               {yearOptions.map((y) => (
-                <option key={y.value} value={y.value}>
-                  {y.value}
+                <option key={y} value={y}>
+                  {y}
                 </option>
               ))}
             </select>
@@ -121,8 +124,8 @@ export default function Facets({
             >
               <option value="">À</option>
               {yearOptions.map((y) => (
-                <option key={y.value} value={y.value}>
-                  {y.value}
+                <option key={y} value={y}>
+                  {y}
                 </option>
               ))}
             </select>
