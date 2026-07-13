@@ -3,39 +3,29 @@
   "query": "charte des valeurs et laïcité",
   "concepts": [
     {
-      "orig": "charte",
+      "orig": "charte des valeurs",
       "syns": [
-        "chartes",
-        "charte des valeurs",
-        "charte québécoise",
-        "charter",
-        "charters",
-        "charter of values",
-        "values charter",
-        "Quebec charter"
-      ],
-      "qualifiers": [
+        "charte",
         "valeurs",
-        "des valeurs",
-        "québécoise",
-        "québécoises"
+        "charter",
+        "charter of values",
+        "values charter"
       ],
-      "weight": 0.5
+      "weight": 0.7
     },
     {
       "orig": "laïcité",
       "syns": [
-        "laicite",
-        "laïque",
+        "laicité",
+        "séparation Église-État",
+        "séparation eglise-etat",
+        "sécularisme",
         "sécularité",
-        "sécularisation",
+        "laicism",
         "secularism",
-        "secular",
-        "neutralité religieuse",
-        "religious neutrality",
-        "séparation Église-État"
+        "secularity"
       ],
-      "weight": 0.5
+      "weight": 0.3
     }
   ],
   "candidates": [

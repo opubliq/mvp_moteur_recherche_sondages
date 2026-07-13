@@ -3,45 +3,33 @@
   "query": "accommodements raisonnables et signes religieux",
   "concepts": [
     {
-      "orig": "accommodement",
+      "orig": "accommodements raisonnables",
       "syns": [
+        "accommodement",
         "accommodements",
-        "accommodation",
-        "accommodations",
-        "aménagement",
-        "aménagements",
-        "ajustement",
-        "ajustements",
-        "adaptation",
-        "adaptations"
+        "reasonable accommodation",
+        "reasonable accommodations",
+        "reasonable accommodation(s)",
+        "aménagement raisonnable",
+        "aménagements raisonnables",
+        "adjustment raisonnable"
       ],
-      "qualifiers": [
-        "raisonnable",
-        "raisonnables",
-        "reasonable"
-      ],
-      "weight": 0.5
+      "weight": 0.6
     },
     {
-      "orig": "signe",
+      "orig": "signes religieux",
       "syns": [
-        "signes",
-        "symbole",
-        "symbol",
-        "vêtement",
-        "voile",
-        "hijab",
-        "kippa",
-        "turban",
-        "crucifix"
+        "signe religieux",
+        "symbole religieux",
+        "symboles religieux",
+        "religious sign",
+        "religious signs",
+        "symbol religious",
+        "religious symbol",
+        "religious symbols",
+        "marque religieuse"
       ],
-      "qualifiers": [
-        "religieux",
-        "religieuse",
-        "religious",
-        "religionnel"
-      ],
-      "weight": 0.5
+      "weight": 0.4
     }
   ],
   "candidates": [

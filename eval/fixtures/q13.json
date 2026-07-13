@@ -3,62 +3,32 @@
   "query": "identification partisane gauche-droite",
   "concepts": [
     {
-      "orig": "identification",
+      "orig": "identification partisane",
       "syns": [
-        "affiliation",
-        "appartenance",
-        "s'identifie",
-        "s'identifier",
-        "partisan identification",
+        "identification politique",
+        "affiliation politique",
+        "affiliation partisane",
+        "appartenance politique",
         "party identification",
-        "party id",
-        "identify"
+        "partisan identification",
+        "political affiliation",
+        "party affiliation",
+        "political identification"
       ],
-      "weight": 0.2
+      "weight": 0.6
     },
     {
-      "orig": "parti",
+      "orig": "gauche-droite",
       "syns": [
-        "partisan",
-        "partisane",
-        "parti politique",
-        "parties",
-        "party",
-        "political party",
-        "political parties"
-      ],
-      "weight": 0.3
-    },
-    {
-      "orig": "position politique",
-      "syns": [
-        "position",
-        "positionnement",
-        "placement",
-        "orientation",
-        "political orientation",
-        "political position",
-        "orientation politique"
-      ],
-      "qualifiers": [
         "gauche",
         "droite",
-        "left",
-        "right",
         "centre",
-        "center",
-        "centre-gauche",
-        "centre-droit",
-        "center-left",
-        "center-right",
-        "extrême droite",
-        "extrême gauche",
-        "extreme right",
-        "extreme left",
-        "left-right",
-        "gauche-droite"
+        "centre-left",
+        "centre-right",
+        "left",
+        "right"
       ],
-      "weight": 0.5
+      "weight": 0.4
     }
   ],
   "candidates": [

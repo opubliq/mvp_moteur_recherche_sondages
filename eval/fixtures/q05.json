@@ -3,178 +3,26 @@
   "query": "confiance envers le gouvernement fédéral",
   "concepts": [
     {
-      "orig": "gouvernement fédéral",
-      "syns": [
-        "gouvernement du Canada",
-        "gouvernement canadien",
-        "gouvernement",
-        "fédéral",
-        "federal",
-        "federal government",
-        "Government of Canada",
-        "Ottawa",
-        "gouv fédéral"
-      ],
-      "weight": 0.7
-    },
-    {
       "orig": "confiance",
       "syns": [
-        "confiance envers",
-        "confiance dans",
-        "confiant",
-        "méfiance",
-        "trust",
-        "trust in",
-        "confidence",
-        "confidence in",
-        "distrust"
+        "trust"
       ],
       "weight": 0.3
+    },
+    {
+      "orig": "gouvernement fédéral",
+      "syns": [
+        "fédéral",
+        "federal government",
+        "federal",
+        "Ottawa"
+      ],
+      "weight": 0.7
     }
   ],
   "candidates": [
     {
-      "@search.score": 0.03226646035909653,
-      "id": "govcan_06822_wave1_2024__TRUST_GOV_CAN",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_GOV_CAN",
-      "question_text": "The Government of Canada",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "confiance",
-        "gouvernement-fédéral"
-      ],
-      "themes": [
-        "démocratie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.03177805617451668,
-      "id": "govcan_06822_wave1_2024__TRUST_GOC_CLIM",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_GOC_CLIM",
-      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about climate change that are in the best interest of Canada?",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "confiance",
-        "gouvernement-fédéral",
-        "climat"
-      ],
-      "themes": [
-        "environnement",
-        "démocratie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.0317540317773819,
-      "id": "govcan_06822_wave1_2024__TRUST_GOC_COVID",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_GOC_COVID",
-      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about COVID-19 that are in the best interest of Canada?",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "confiance",
-        "gouvernement-fédéral",
-        "covid-19"
-      ],
-      "themes": [
-        "santé",
-        "démocratie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.031159421429038048,
+      "@search.score": 0.03279569745063782,
       "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_COMPETENT",
       "survey_id": "govcan_06822_wave1_2024",
       "survey_year": 2024,
@@ -192,6 +40,52 @@
         "confiance",
         "gouvernement-fédéral",
         "compétence"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.032522473484277725,
+      "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_CARE",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_CARE",
+      "question_text": "The federal government listens to what ordinary people think.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "écoute"
       ],
       "themes": [
         "démocratie"
@@ -275,145 +169,7 @@
       ]
     },
     {
-      "@search.score": 0.031054403632879257,
-      "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_CARE",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_FACET_GC_CARE",
-      "question_text": "The federal government listens to what ordinary people think.",
-      "var_type": "scale",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "confiance",
-        "gouvernement-fédéral",
-        "écoute"
-      ],
-      "themes": [
-        "démocratie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither agree nor disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.03053613007068634,
-      "id": "govcan_06822_wave1_2024__TRUST_GOC_IMM",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_GOC_IMM",
-      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about immigration that are in the best interest of Canada?",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "confiance",
-        "gouvernement-fédéral",
-        "immigration"
-      ],
-      "themes": [
-        "immigration",
-        "démocratie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.02943722903728485,
-      "id": "govcan_06822_wave3_2024__TRUST_GOV_CAN",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_GOV_CAN",
-      "question_text": "The federal government",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "trust",
-        "federal government"
-      ],
-      "themes": [
-        "governance"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.02921108715236187,
+      "@search.score": 0.03079839050769806,
       "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_INTEGRITY",
       "survey_id": "govcan_06822_wave1_2024",
       "survey_year": 2024,
@@ -460,8 +216,8 @@
       ]
     },
     {
-      "@search.score": 0.028218695893883705,
-      "id": "govcan_06822_wave1_2024__TRUST_GOV_PROVTERR",
+      "@search.score": 0.030117753893136978,
+      "id": "govcan_06822_wave1_2024__TRUST_GOC_COVID",
       "survey_id": "govcan_06822_wave1_2024",
       "survey_year": 2024,
       "pollster": "Government of Canada",
@@ -469,14 +225,61 @@
       "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
       "n_respondents": 3375,
       "tags": [],
-      "variable": "TRUST_GOV_PROVTERR",
-      "question_text": "Your provincial/territorial government",
+      "variable": "TRUST_GOC_COVID",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about COVID-19 that are in the best interest of Canada?",
       "var_type": "single",
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [
         "confiance",
-        "gouvernement-provincial"
+        "gouvernement-fédéral",
+        "covid-19"
+      ],
+      "themes": [
+        "santé",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.03009207174181938,
+      "id": "govcan_06822_wave1_2024__TRUST_GOV_CAN",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_CAN",
+      "question_text": "The Government of Canada",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral"
       ],
       "themes": [
         "démocratie"
@@ -505,7 +308,192 @@
       ]
     },
     {
-      "@search.score": 0.02752639539539814,
+      "@search.score": 0.03009049780666828,
+      "id": "govcan_06822_wave1_2024__TRUST_GOC_CLIM",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOC_CLIM",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about climate change that are in the best interest of Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "climat"
+      ],
+      "themes": [
+        "environnement",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.02967032976448536,
+      "id": "govcan_06822_wave3_2024__TRUST_GOV_CAN",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_CAN",
+      "question_text": "The federal government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.029236022382974625,
+      "id": "govcan_06822_wave1_2024__TRUST_GOC_IMM",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOC_IMM",
+      "question_text": "To what extent do you trust or distrust the Government of Canada to make decisions about immigration that are in the best interest of Canada?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-fédéral",
+        "immigration"
+      ],
+      "themes": [
+        "immigration",
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.028624001890420914,
+      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_COMPETENT",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_FACET_GC_COMPETENT",
+      "question_text": "The federal government is competent.",
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "competence"
+      ],
+      "themes": [
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither agree nor disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.0279720276594162,
       "id": "govcan_06822_wave2_2024__TRUST_GOV_CAN",
       "survey_id": "govcan_06822_wave2_2024",
       "survey_year": 2024,
@@ -550,58 +538,13 @@
       ]
     },
     {
-      "@search.score": 0.02741784043610096,
-      "id": "govcan_habit_2024__TRUST_GOOD_GOC",
-      "survey_id": "govcan_habit_2024",
-      "survey_year": 2024,
-      "pollster": "Health Canada / PHAC",
-      "language": "en",
-      "survey_name": "HABIT Phase II",
-      "n_respondents": 6106,
-      "tags": [],
-      "variable": "TRUST_GOOD_GOC",
-      "question_text": "Government of Canada - In general, how much do you trust or distrust the following public institutions to make good decisions about public healthcare:",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "trust",
-        "government"
-      ],
-      "themes": [
-        "society"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.027397260069847107,
-      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_COMPETENT",
-      "survey_id": "govcan_06822_wave2_2024",
+      "@search.score": 0.02777777798473835,
+      "id": "govcan_06822_wave3_2024__TRUST_FACET_GC_COMPETENT",
+      "survey_id": "govcan_06822_wave3_2024",
       "survey_year": 2024,
       "pollster": "Government of Canada",
       "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
       "n_respondents": 3375,
       "tags": [],
       "variable": "TRUST_FACET_GC_COMPETENT",
@@ -611,8 +554,8 @@
       "sociodemo_type": null,
       "concepts": [
         "trust",
-        "federal government",
-        "competence"
+        "competence",
+        "federal government"
       ],
       "themes": [
         "governance"
@@ -687,108 +630,7 @@
       ]
     },
     {
-      "@search.score": 0.02704678475856781,
-      "id": "govcan_06822_wave3_2024__TRUST_FACET_GC_COMPETENT",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_FACET_GC_COMPETENT",
-      "question_text": "The federal government is competent.",
-      "var_type": "scale",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "trust",
-        "competence",
-        "federal government"
-      ],
-      "themes": [
-        "governance"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither agree nor disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.026875901967287064,
-      "id": "govcan_parca_2024__D6_E",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "D6_E",
-      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - Your provincial/territorial government",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "confiance",
-        "gouvernement provincial"
-      ],
-      "themes": [
-        "politique",
-        "environnement"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Completely Distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither Trust nor Distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Trust"
-        },
-        {
-          "code": "5",
-          "label": "Completely Trust"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.025978408753871918,
+      "@search.score": 0.026671409606933594,
       "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_GOODJOB",
       "survey_id": "govcan_06822_wave2_2024",
       "survey_year": 2024,
@@ -834,7 +676,7 @@
       ]
     },
     {
-      "@search.score": 0.025645241141319275,
+      "@search.score": 0.025316456332802773,
       "id": "govcan_06822_wave2_2024__TRUST_GOV_PUBHEALTH",
       "survey_id": "govcan_06822_wave2_2024",
       "survey_year": 2024,
@@ -881,62 +723,7 @@
       ]
     },
     {
-      "@search.score": 0.025418275967240334,
-      "id": "govcan_parca_2024__D6_F",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "D6_F",
-      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - Your local or municipal government",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "confiance",
-        "municipalité"
-      ],
-      "themes": [
-        "politique",
-        "environnement"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Completely Distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither Trust nor Distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Trust"
-        },
-        {
-          "code": "5",
-          "label": "Completely Trust"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.023812897503376007,
+      "@search.score": 0.0250980406999588,
       "id": "govcan_06822_wave3_2024__TRUST_FACET_GC_PUBCONCERN",
       "survey_id": "govcan_06822_wave3_2024",
       "survey_year": 2024,
@@ -983,7 +770,7 @@
       ]
     },
     {
-      "@search.score": 0.02354244515299797,
+      "@search.score": 0.02486870437860489,
       "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_WELFARE",
       "survey_id": "govcan_06822_wave2_2024",
       "survey_year": 2024,
@@ -1029,7 +816,7 @@
       ]
     },
     {
-      "@search.score": 0.023128341883420944,
+      "@search.score": 0.02435065060853958,
       "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_OPEN",
       "survey_id": "govcan_06822_wave2_2024",
       "survey_year": 2024,
@@ -1075,54 +862,7 @@
       ]
     },
     {
-      "@search.score": 0.023064687848091125,
-      "id": "govcan_06822_wave3_2024__TRUST_ELXNCAN",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_ELXNCAN",
-      "question_text": "Elections Canada (the non-partisan agency responsible for administering Canadian federal elections)",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "trust",
-        "elections",
-        "independent agencies"
-      ],
-      "themes": [
-        "democracy",
-        "governance"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.02301587350666523,
+      "@search.score": 0.02426900714635849,
       "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_CARE",
       "survey_id": "govcan_06822_wave2_2024",
       "survey_year": 2024,
@@ -1168,54 +908,7 @@
       ]
     },
     {
-      "@search.score": 0.02296750620007515,
-      "id": "govcan_06822_wave2_2024__TRUST_GOV_CLIMATE",
-      "survey_id": "govcan_06822_wave2_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_GOV_CLIMATE",
-      "question_text": "Climate change",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "trust",
-        "federal government",
-        "climate change"
-      ],
-      "themes": [
-        "governance",
-        "environment"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.022857144474983215,
+      "@search.score": 0.02380952425301075,
       "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_INTEGRITY",
       "survey_id": "govcan_06822_wave2_2024",
       "survey_year": 2024,
@@ -1262,7 +955,7 @@
       ]
     },
     {
-      "@search.score": 0.022611789405345917,
+      "@search.score": 0.02343107759952545,
       "id": "govcan_06822_wave3_2024__TRUST_GOV_CAN_SOCEST",
       "survey_id": "govcan_06822_wave3_2024",
       "survey_year": 2024,
@@ -1326,56 +1019,101 @@
       ]
     },
     {
-      "@search.score": 0.021336644887924194,
-      "id": "govcan_parca_2024__D6_V2_D",
-      "survey_id": "govcan_parca_2024",
+      "@search.score": 0.022809278219938278,
+      "id": "govcan_06822_wave2_2024__TRUST_GOV_CLIMATE",
+      "survey_id": "govcan_06822_wave2_2024",
       "survey_year": 2024,
       "pollster": "Government of Canada",
       "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "D6_V2_D",
-      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - The Government of Canada",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_CLIMATE",
+      "question_text": "Climate change",
       "var_type": "single",
       "is_sociodemo": false,
       "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
+      "concepts": [
+        "trust",
+        "federal government",
+        "climate change"
+      ],
+      "themes": [
+        "governance",
+        "environment"
+      ],
       "response_options": [
         {
           "code": "1",
-          "label": "Strongly Distrust"
+          "label": "Strongly distrust"
         },
         {
           "code": "2",
-          "label": "Somewhat Distrust"
+          "label": "Somewhat distrust"
         },
         {
           "code": "3",
-          "label": "Neither Trust nor Distrust"
+          "label": "Neither trust nor distrust"
         },
         {
           "code": "4",
-          "label": "Somewhat Trust"
+          "label": "Somewhat trust"
         },
         {
           "code": "5",
-          "label": "Strongly Trust"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
+          "label": "Strongly trust"
         }
       ]
     },
     {
-      "@search.score": 0.020627327263355255,
+      "@search.score": 0.022363819181919098,
+      "id": "govcan_06822_wave3_2024__TRUST_ELXNCAN",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_ELXNCAN",
+      "question_text": "Elections Canada (the non-partisan agency responsible for administering Canadian federal elections)",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "elections",
+        "independent agencies"
+      ],
+      "themes": [
+        "democracy",
+        "governance"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.021464645862579346,
       "id": "govcan_06822_wave3_2024__TRUST_GOV_PAST",
       "survey_id": "govcan_06822_wave3_2024",
       "survey_year": 2024,
@@ -1411,6 +1149,51 @@
         {
           "code": "5",
           "label": "Strongly trusted"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01587301678955555,
+      "id": "govcan_06822_wave1_2024__TRUST_GOV_PROVTERR",
+      "survey_id": "govcan_06822_wave1_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_PROVTERR",
+      "question_text": "Your provincial/territorial government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement-provincial"
+      ],
+      "themes": [
+        "démocratie"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
         }
       ]
     },
@@ -1517,47 +1300,7 @@
       ]
     },
     {
-      "@search.score": 0.013513513840734959,
-      "id": "govcan_06822_wave3_2024__TRUST_GOV_PROVTERR",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_GOV_PROVTERR",
-      "question_text": "Your provincial/territorial government",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.013059163466095924,
+      "@search.score": 0.014293731190264225,
       "id": "cecd_elxn_can_2011__code1_num",
       "survey_id": "cecd_elxn_can_2011",
       "survey_year": 2011,
@@ -1732,7 +1475,7 @@
       ]
     },
     {
-      "@search.score": 0.012912088073790073,
+      "@search.score": 0.014118198305368423,
       "id": "cecd_elxn_can_2011__code2_num",
       "survey_id": "cecd_elxn_can_2011",
       "survey_year": 2011,
@@ -1907,7 +1650,7 @@
       ]
     },
     {
-      "@search.score": 0.012911025434732437,
+      "@search.score": 0.01390063390135765,
       "id": "cecd_elxn_can_2011__code3_num",
       "survey_id": "cecd_elxn_can_2011",
       "survey_year": 2011,
@@ -2082,7 +1825,7 @@
       ]
     },
     {
-      "@search.score": 0.012554958462715149,
+      "@search.score": 0.013733585365116596,
       "id": "cecd_elxn_can_2011__code5_num",
       "survey_id": "cecd_elxn_can_2011",
       "survey_year": 2011,
@@ -2257,7 +2000,7 @@
       ]
     },
     {
-      "@search.score": 0.012517394497990608,
+      "@search.score": 0.01352941244840622,
       "id": "cecd_elxn_can_2011__code4_num",
       "survey_id": "cecd_elxn_can_2011",
       "survey_year": 2011,
@@ -2432,6 +2175,146 @@
       ]
     },
     {
+      "@search.score": 0.013513513840734959,
+      "id": "govcan_06822_wave3_2024__TRUST_GOV_PROVTERR",
+      "survey_id": "govcan_06822_wave3_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_PROVTERR",
+      "question_text": "Your provincial/territorial government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.013333333656191826,
+      "id": "govcan_habit_2024__TRUST_GOOD_GOC",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "TRUST_GOOD_GOC",
+      "question_text": "Government of Canada - In general, how much do you trust or distrust the following public institutions to make good decisions about public healthcare:",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "government"
+      ],
+      "themes": [
+        "society"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.012987012974917889,
+      "id": "govcan_parca_2024__D6_E",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "D6_E",
+      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - Your provincial/territorial government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "gouvernement provincial"
+      ],
+      "themes": [
+        "politique",
+        "environnement"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Completely Distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither Trust nor Distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Trust"
+        },
+        {
+          "code": "5",
+          "label": "Completely Trust"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
       "@search.score": 0.012500000186264515,
       "id": "cecd_elxn_qc_1998__satisf",
       "survey_id": "cecd_elxn_qc_1998",
@@ -2475,54 +2358,6 @@
         {
           "code": "4",
           "label": "tres insatisf"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.012500000186264515,
-      "id": "govcan_06822_wave2_2024__TRUST_GOV_DIG",
-      "survey_id": "govcan_06822_wave2_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_GOV_DIG",
-      "question_text": "Digital technologies (e.g., social media, artificial intelligence)",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "trust",
-        "federal government",
-        "digital technology",
-        "artificial intelligence"
-      ],
-      "themes": [
-        "governance",
-        "digital life"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly distrust"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat distrust"
-        },
-        {
-          "code": "3",
-          "label": "Neither trust nor distrust"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat trust"
-        },
-        {
-          "code": "5",
-          "label": "Strongly trust"
         }
       ]
     },
@@ -2622,6 +2457,109 @@
       ]
     },
     {
+      "@search.score": 0.011904762126505375,
+      "id": "govcan_06822_wave2_2024__TRUST_GOV_DIG",
+      "survey_id": "govcan_06822_wave2_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
+      "n_respondents": 3375,
+      "tags": [],
+      "variable": "TRUST_GOV_DIG",
+      "question_text": "Digital technologies (e.g., social media, artificial intelligence)",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "trust",
+        "federal government",
+        "digital technology",
+        "artificial intelligence"
+      ],
+      "themes": [
+        "governance",
+        "digital life"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither trust nor distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly trust"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.011904762126505375,
+      "id": "govcan_parca_2024__D6_F",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "D6_F",
+      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - Your local or municipal government",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [
+        "confiance",
+        "municipalité"
+      ],
+      "themes": [
+        "politique",
+        "environnement"
+      ],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Completely Distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither Trust nor Distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Trust"
+        },
+        {
+          "code": "5",
+          "label": "Completely Trust"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
       "@search.score": 0.011627906933426857,
       "id": "govcan_06822_wave1_2024__SOC_TRUST_GEN",
       "survey_id": "govcan_06822_wave1_2024",
@@ -2710,165 +2648,6 @@
       ]
     },
     {
-      "@search.score": 0.011363636702299118,
-      "id": "cecd_elxn_qc_1998__raison1",
-      "survey_id": "cecd_elxn_qc_1998",
-      "survey_year": 1998,
-      "pollster": "Createc / CROP",
-      "language": "fr",
-      "survey_name": "Panel électoral du Québec 1998 (CECD)",
-      "n_respondents": 1483,
-      "tags": [
-        "electoral",
-        "provincial",
-        "québec",
-        "panel",
-        "1998"
-      ],
-      "variable": "raison1",
-      "question_text": "Première raison invoquée",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "motivation électorale",
-        "raison du vote"
-      ],
-      "themes": [
-        "élection"
-      ],
-      "response_options": [
-        {
-          "code": "100",
-          "label": "Gouvernement"
-        },
-        {
-          "code": "110",
-          "label": "Changement/ stabilité du gouvernement"
-        },
-        {
-          "code": "120",
-          "label": "Satisfait ou non du gouvernement"
-        },
-        {
-          "code": "121",
-          "label": "Satisfait ou non du gouv: santé"
-        },
-        {
-          "code": "122",
-          "label": "Satisfait du gouv: fonction publique"
-        },
-        {
-          "code": "130",
-          "label": "Gouv. a respecté ou non promesses"
-        },
-        {
-          "code": "200",
-          "label": "Les paris"
-        },
-        {
-          "code": "210",
-          "label": "Confiance ou non"
-        },
-        {
-          "code": "211",
-          "label": "Confiance dans le programme du parti"
-        },
-        {
-          "code": "212",
-          "label": "Confiance dans le parti"
-        },
-        {
-          "code": "220",
-          "label": "Identification partisane"
-        },
-        {
-          "code": "300",
-          "label": "les députés"
-        },
-        {
-          "code": "310",
-          "label": "Respect ou no de leurs promesses"
-        },
-        {
-          "code": "330",
-          "label": "Rencontre avec le candidat"
-        },
-        {
-          "code": "400",
-          "label": "les chefs"
-        },
-        {
-          "code": "410",
-          "label": "Satisfait ou non du chef"
-        },
-        {
-          "code": "420",
-          "label": "Aime la personnalité du chef"
-        },
-        {
-          "code": "500",
-          "label": "Politiques"
-        },
-        {
-          "code": "510",
-          "label": "Pour/contre la souveraineté (question nationale)"
-        },
-        {
-          "code": "520",
-          "label": "Pour un ménage dans les finances publiques"
-        },
-        {
-          "code": "521",
-          "label": "Pour un ménage dans la santé"
-        },
-        {
-          "code": "600",
-          "label": "Autres"
-        },
-        {
-          "code": "610",
-          "label": "Vote de protestation (contre un(des) parti(s)"
-        },
-        {
-          "code": "620",
-          "label": "Vote de sympathie"
-        },
-        {
-          "code": "630",
-          "label": "Vote stratégique (Pq pas trop fort)"
-        },
-        {
-          "code": "640",
-          "label": "Devoir d'aller voter"
-        },
-        {
-          "code": "650",
-          "label": "À cause du débat"
-        },
-        {
-          "code": "660",
-          "label": "Conseils des amis, familles"
-        },
-        {
-          "code": "670",
-          "label": "À cause de la campagne en général"
-        },
-        {
-          "code": "680",
-          "label": "Indécis"
-        },
-        {
-          "code": "997",
-          "label": "Incompréhensible"
-        },
-        {
-          "code": "998",
-          "label": "NSP/NRP"
-        }
-      ]
-    },
-    {
       "@search.score": 0.011286286637187004,
       "id": "cecd_elxn_can_2011__sastp",
       "survey_id": "cecd_elxn_can_2011",
@@ -2917,145 +2696,6 @@
         {
           "code": "9",
           "label": "Je ne sais pas"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.01123595517128706,
-      "id": "cecd_elxn_qc_1998__raison2",
-      "survey_id": "cecd_elxn_qc_1998",
-      "survey_year": 1998,
-      "pollster": "Createc / CROP",
-      "language": "fr",
-      "survey_name": "Panel électoral du Québec 1998 (CECD)",
-      "n_respondents": 1483,
-      "tags": [
-        "electoral",
-        "provincial",
-        "québec",
-        "panel",
-        "1998"
-      ],
-      "variable": "raison2",
-      "question_text": "Deuxième raison invoquée",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "motivation électorale",
-        "raison du vote"
-      ],
-      "themes": [
-        "élection"
-      ],
-      "response_options": [
-        {
-          "code": "100",
-          "label": "Gouvernement"
-        },
-        {
-          "code": "110",
-          "label": "Changement/ stabilité du gouvernement"
-        },
-        {
-          "code": "120",
-          "label": "Satisfait ou non du gouvernement"
-        },
-        {
-          "code": "121",
-          "label": "Satisfait ou non du gouv: santé"
-        },
-        {
-          "code": "122",
-          "label": "Satisfait du gouv: fonction publique"
-        },
-        {
-          "code": "200",
-          "label": "Les paris"
-        },
-        {
-          "code": "210",
-          "label": "Confiance ou non"
-        },
-        {
-          "code": "211",
-          "label": "Confiance dans le programme du parti"
-        },
-        {
-          "code": "212",
-          "label": "Confiance dans le parti"
-        },
-        {
-          "code": "220",
-          "label": "Identification partisane"
-        },
-        {
-          "code": "300",
-          "label": "les députés"
-        },
-        {
-          "code": "310",
-          "label": "Respect ou no de leurs promesses"
-        },
-        {
-          "code": "330",
-          "label": "Rencontre avec le candidat"
-        },
-        {
-          "code": "400",
-          "label": "les chefs"
-        },
-        {
-          "code": "410",
-          "label": "Satisfait ou non du chef"
-        },
-        {
-          "code": "420",
-          "label": "Aime la personnalité du chef"
-        },
-        {
-          "code": "500",
-          "label": "Politiques"
-        },
-        {
-          "code": "510",
-          "label": "Pour/contre la souveraineté (question nationale)"
-        },
-        {
-          "code": "520",
-          "label": "Pour un ménage dans les finances publiques"
-        },
-        {
-          "code": "521",
-          "label": "Pour un ménage dans la santé"
-        },
-        {
-          "code": "600",
-          "label": "Autres"
-        },
-        {
-          "code": "610",
-          "label": "Vote de protestation (contre un(des) parti(s)"
-        },
-        {
-          "code": "620",
-          "label": "Vote de sympathie"
-        },
-        {
-          "code": "630",
-          "label": "Vote stratégique (Pq pas trop fort)"
-        },
-        {
-          "code": "640",
-          "label": "Devoir d'aller voter"
-        },
-        {
-          "code": "650",
-          "label": "À cause du débat"
-        },
-        {
-          "code": "660",
-          "label": "Conseils des amis, familles"
         }
       ]
     },
@@ -3340,324 +2980,6 @@
       ]
     },
     {
-      "@search.score": 0.010309278033673763,
-      "id": "cecd_elxn_qc_2018__rts_q3a",
-      "survey_id": "cecd_elxn_qc_2018",
-      "survey_year": 2018,
-      "pollster": "Ipsos",
-      "language": "fr",
-      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
-      "n_respondents": 1250,
-      "tags": [
-        "electoral",
-        "provincial",
-        "québec",
-        "panel",
-        "2018"
-      ],
-      "variable": "rts_q3a",
-      "question_text": "rts_q3a.  Quelle est la principale raison pour laquelle vous avez voté pour",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "motivations électorales",
-        "raison du vote"
-      ],
-      "themes": [
-        "comportement électoral"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
-        },
-        {
-          "code": "2",
-          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
-        },
-        {
-          "code": "3",
-          "label": "Finances/ (bonne) performance économique"
-        },
-        {
-          "code": "4",
-          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
-        },
-        {
-          "code": "5",
-          "label": "Environnement/ durabilité"
-        },
-        {
-          "code": "6",
-          "label": "Immigration"
-        },
-        {
-          "code": "7",
-          "label": "Soins de santé"
-        },
-        {
-          "code": "8",
-          "label": "Bénéfices pour la famille"
-        },
-        {
-          "code": "9",
-          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
-        },
-        {
-          "code": "10",
-          "label": "Tendance plus à gauche (incl. socialiste)"
-        },
-        {
-          "code": "11",
-          "label": "Tendance plus à droite (incl. conservateur)"
-        },
-        {
-          "code": "12",
-          "label": "Parti séparatiste/ pour un Québec indépendant"
-        },
-        {
-          "code": "13",
-          "label": "J'aimais le candidat (local)"
-        },
-        {
-          "code": "14",
-          "label": "J'aimais le parti/ chef de parti"
-        },
-        {
-          "code": "15",
-          "label": "J'aimais les Libéraux/ Philippe Couillard"
-        },
-        {
-          "code": "16",
-          "label": "J'aimais la CAQ/ François Legault"
-        },
-        {
-          "code": "17",
-          "label": "J'aimais Québec solidaire"
-        },
-        {
-          "code": "18",
-          "label": "Pour chasser les Libéraux du pouvoir"
-        },
-        {
-          "code": "19",
-          "label": "Je n'aimais pas la CAQ/ François Legault"
-        },
-        {
-          "code": "20",
-          "label": "Je n'aimais aucun parti/ candidat"
-        },
-        {
-          "code": "21",
-          "label": "Le meilleur candidat/ parti/ choix possible"
-        },
-        {
-          "code": "22",
-          "label": "Le moins pire/ n'a pas aimé les autres options"
-        },
-        {
-          "code": "23",
-          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
-        },
-        {
-          "code": "24",
-          "label": "Stabilité/ continuité"
-        },
-        {
-          "code": "25",
-          "label": "Confiance/ honnêteté"
-        },
-        {
-          "code": "26",
-          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
-        },
-        {
-          "code": "27",
-          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
-        },
-        {
-          "code": "28",
-          "label": "Rien"
-        },
-        {
-          "code": "29",
-          "label": "Autre"
-        },
-        {
-          "code": "30",
-          "label": "Ne sais pas"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.010204081423580647,
-      "id": "cecd_elxn_qc_2018__q3a2",
-      "survey_id": "cecd_elxn_qc_2018",
-      "survey_year": 2018,
-      "pollster": "Ipsos",
-      "language": "fr",
-      "survey_name": "Panel électoral du Québec 2018 - vagues pré/post-électorales (CECD)",
-      "n_respondents": 1250,
-      "tags": [
-        "electoral",
-        "provincial",
-        "québec",
-        "panel",
-        "2018"
-      ],
-      "variable": "q3a2",
-      "question_text": "2e raison pour le vote",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "motivations électorales",
-        "raison du vote"
-      ],
-      "themes": [
-        "comportement électoral"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
-        },
-        {
-          "code": "2",
-          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
-        },
-        {
-          "code": "3",
-          "label": "Finances/ (bonne) performance économique"
-        },
-        {
-          "code": "4",
-          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
-        },
-        {
-          "code": "5",
-          "label": "Environnement/ durabilité"
-        },
-        {
-          "code": "6",
-          "label": "Immigration"
-        },
-        {
-          "code": "7",
-          "label": "Soins de santé"
-        },
-        {
-          "code": "8",
-          "label": "Bénéfices pour la famille"
-        },
-        {
-          "code": "9",
-          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
-        },
-        {
-          "code": "10",
-          "label": "Tendance plus à gauche (incl. socialiste)"
-        },
-        {
-          "code": "11",
-          "label": "Tendance plus à droite (incl. conservateur)"
-        },
-        {
-          "code": "12",
-          "label": "Parti séparatiste/ pour un Québec indépendant"
-        },
-        {
-          "code": "13",
-          "label": "J'aimais le candidat (local)"
-        },
-        {
-          "code": "14",
-          "label": "J'aimais le parti/ chef de parti"
-        },
-        {
-          "code": "15",
-          "label": "J'aimais les Libéraux/ Philippe Couillard"
-        },
-        {
-          "code": "16",
-          "label": "J'aimais la CAQ/ François Legault"
-        },
-        {
-          "code": "17",
-          "label": "J'aimais Québec solidaire"
-        },
-        {
-          "code": "18",
-          "label": "Pour chasser les Libéraux du pouvoir"
-        },
-        {
-          "code": "19",
-          "label": "Je n'aimais pas la CAQ/ François Legault"
-        },
-        {
-          "code": "20",
-          "label": "Je n'aimais aucun parti/ candidat"
-        },
-        {
-          "code": "21",
-          "label": "Le meilleur candidat/ parti/ choix possible"
-        },
-        {
-          "code": "22",
-          "label": "Le moins pire/ n'a pas aimé les autres options"
-        },
-        {
-          "code": "23",
-          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
-        },
-        {
-          "code": "24",
-          "label": "Stabilité/ continuité"
-        },
-        {
-          "code": "25",
-          "label": "Confiance/ honnêteté"
-        },
-        {
-          "code": "26",
-          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
-        },
-        {
-          "code": "27",
-          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
-        },
-        {
-          "code": "28",
-          "label": "Rien"
-        },
-        {
-          "code": "29",
-          "label": "Autre"
-        },
-        {
-          "code": "30",
-          "label": "Ne sais pas"
-        },
-        {
-          "code": "31",
-          "label": "valeurs"
-        },
-        {
-          "code": "32",
-          "label": "debat"
-        },
-        {
-          "code": "33",
-          "label": "laicité-religion"
-        },
-        {
-          "code": "34",
-          "label": "promesses"
-        }
-      ]
-    },
-    {
       "@search.score": 0.010204081423580647,
       "id": "eeq_2014__Q34C",
       "survey_id": "eeq_2014",
@@ -3800,6 +3122,55 @@
         {
           "code": "9",
           "label": "* NSP/refus"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.009708737954497337,
+      "id": "govcan_parca_2024__D6_V2_D",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "D6_V2_D",
+      "question_text": "To what extent do you trust or distrust the following people/groups to make good decisions about climate change? - The Government of Canada",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly Distrust"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Distrust"
+        },
+        {
+          "code": "3",
+          "label": "Neither Trust nor Distrust"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Trust"
+        },
+        {
+          "code": "5",
+          "label": "Strongly Trust"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
         }
       ]
     },

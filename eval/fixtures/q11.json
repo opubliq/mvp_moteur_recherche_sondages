@@ -5,24 +5,14 @@
     {
       "orig": "logement",
       "syns": [
-        "logements",
         "habitation",
         "appartement",
-        "appart",
         "maison",
         "résidence",
         "housing",
-        "home"
-      ],
-      "qualifiers": [
-        "abordable",
-        "social",
-        "public",
-        "locatif",
-        "subventionné",
-        "étudiant",
-        "seniors",
-        "à louer"
+        "home",
+        "apartment",
+        "house"
       ],
       "weight": 0.6
     },
@@ -30,27 +20,24 @@
       "orig": "accès",
       "syns": [
         "access",
-        "accessibilité",
-        "accessibility",
-        "accéder",
-        "acceder",
-        "avoir accès"
+        "disponibilité",
+        "availability"
       ],
-      "weight": 0.2
+      "weight": 0.15
     },
     {
       "orig": "abordabilité",
       "syns": [
-        "abordable",
+        "accessible",
+        "affordabilité",
         "affordable",
-        "affordability",
         "prix abordable",
-        "pas cher",
-        "loyer abordable",
         "coût",
-        "cost"
+        "coûts",
+        "cost",
+        "affordable housing"
       ],
-      "weight": 0.2
+      "weight": 0.25
     }
   ],
   "candidates": [
@@ -112,110 +99,6 @@
         {
           "code": "8",
           "label": "I Don't know"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.01666666753590107,
-      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM1",
-      "survey_id": "govcan_habit_2024",
-      "survey_year": 2024,
-      "pollster": "Health Canada / PHAC",
-      "language": "en",
-      "survey_name": "HABIT Phase II",
-      "n_respondents": 6106,
-      "tags": [],
-      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM1",
-      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Easy access to services/health professionals / availability"
-        },
-        {
-          "code": "2",
-          "label": "I received good medical care / good/quality service/care"
-        },
-        {
-          "code": "3",
-          "label": "I always get help / helpful staff"
-        },
-        {
-          "code": "4",
-          "label": "I have a local hospital / hospital/walk in clinic is close to home"
-        },
-        {
-          "code": "5",
-          "label": "I have a family doctor / enough family doctor"
-        },
-        {
-          "code": "6",
-          "label": "I have a specialist"
-        },
-        {
-          "code": "7",
-          "label": "I have a good doctor / doctors are good / competent health professionals"
-        },
-        {
-          "code": "8",
-          "label": "Good hospitals/medical facilities"
-        },
-        {
-          "code": "9",
-          "label": "Appropriate wait times / fast service"
-        },
-        {
-          "code": "10",
-          "label": "All my needs are met / It provides the needed services / never had any issues"
-        },
-        {
-          "code": "11",
-          "label": "Good / great / OK"
-        },
-        {
-          "code": "12",
-          "label": "Free services / affordability"
-        },
-        {
-          "code": "13",
-          "label": "Long wait times (for services, in ER, etc.)"
-        },
-        {
-          "code": "14",
-          "label": "Lack of doctors/family doctors/staff"
-        },
-        {
-          "code": "15",
-          "label": "Lack of specialists"
-        },
-        {
-          "code": "16",
-          "label": "Need more funding"
-        },
-        {
-          "code": "17",
-          "label": "Need more hospitals/clinics/beds"
-        },
-        {
-          "code": "18",
-          "label": "Missing/Limited services (various)"
-        },
-        {
-          "code": "96",
-          "label": "Other"
-        },
-        {
-          "code": "97",
-          "label": "Nothing / none / always need for improvement"
-        },
-        {
-          "code": "98",
-          "label": "Don't know / refusal"
         }
       ]
     },
@@ -308,110 +191,6 @@
       ]
     },
     {
-      "@search.score": 0.016393441706895828,
-      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM4",
-      "survey_id": "govcan_habit_2024",
-      "survey_year": 2024,
-      "pollster": "Health Canada / PHAC",
-      "language": "en",
-      "survey_name": "HABIT Phase II",
-      "n_respondents": 6106,
-      "tags": [],
-      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM4",
-      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Easy access to services/health professionals / availability"
-        },
-        {
-          "code": "2",
-          "label": "I received good medical care / good/quality service/care"
-        },
-        {
-          "code": "3",
-          "label": "I always get help / helpful staff"
-        },
-        {
-          "code": "4",
-          "label": "I have a local hospital / hospital/walk in clinic is close to home"
-        },
-        {
-          "code": "5",
-          "label": "I have a family doctor / enough family doctor"
-        },
-        {
-          "code": "6",
-          "label": "I have a specialist"
-        },
-        {
-          "code": "7",
-          "label": "I have a good doctor / doctors are good / competent health professionals"
-        },
-        {
-          "code": "8",
-          "label": "Good hospitals/medical facilities"
-        },
-        {
-          "code": "9",
-          "label": "Appropriate wait times / fast service"
-        },
-        {
-          "code": "10",
-          "label": "All my needs are met / It provides the needed services / never had any issues"
-        },
-        {
-          "code": "11",
-          "label": "Good / great / OK"
-        },
-        {
-          "code": "12",
-          "label": "Free services / affordability"
-        },
-        {
-          "code": "13",
-          "label": "Long wait times (for services, in ER, etc.)"
-        },
-        {
-          "code": "14",
-          "label": "Lack of doctors/family doctors/staff"
-        },
-        {
-          "code": "15",
-          "label": "Lack of specialists"
-        },
-        {
-          "code": "16",
-          "label": "Need more funding"
-        },
-        {
-          "code": "17",
-          "label": "Need more hospitals/clinics/beds"
-        },
-        {
-          "code": "18",
-          "label": "Missing/Limited services (various)"
-        },
-        {
-          "code": "96",
-          "label": "Other"
-        },
-        {
-          "code": "97",
-          "label": "Nothing / none / always need for improvement"
-        },
-        {
-          "code": "98",
-          "label": "Don't know / refusal"
-        }
-      ]
-    },
-    {
       "@search.score": 0.016129031777381897,
       "id": "cecd_sante_can_usa__Q19",
       "survey_id": "cecd_sante_can_usa",
@@ -452,110 +231,6 @@
       ]
     },
     {
-      "@search.score": 0.016129031777381897,
-      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM3",
-      "survey_id": "govcan_habit_2024",
-      "survey_year": 2024,
-      "pollster": "Health Canada / PHAC",
-      "language": "en",
-      "survey_name": "HABIT Phase II",
-      "n_respondents": 6106,
-      "tags": [],
-      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM3",
-      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Easy access to services/health professionals / availability"
-        },
-        {
-          "code": "2",
-          "label": "I received good medical care / good/quality service/care"
-        },
-        {
-          "code": "3",
-          "label": "I always get help / helpful staff"
-        },
-        {
-          "code": "4",
-          "label": "I have a local hospital / hospital/walk in clinic is close to home"
-        },
-        {
-          "code": "5",
-          "label": "I have a family doctor / enough family doctor"
-        },
-        {
-          "code": "6",
-          "label": "I have a specialist"
-        },
-        {
-          "code": "7",
-          "label": "I have a good doctor / doctors are good / competent health professionals"
-        },
-        {
-          "code": "8",
-          "label": "Good hospitals/medical facilities"
-        },
-        {
-          "code": "9",
-          "label": "Appropriate wait times / fast service"
-        },
-        {
-          "code": "10",
-          "label": "All my needs are met / It provides the needed services / never had any issues"
-        },
-        {
-          "code": "11",
-          "label": "Good / great / OK"
-        },
-        {
-          "code": "12",
-          "label": "Free services / affordability"
-        },
-        {
-          "code": "13",
-          "label": "Long wait times (for services, in ER, etc.)"
-        },
-        {
-          "code": "14",
-          "label": "Lack of doctors/family doctors/staff"
-        },
-        {
-          "code": "15",
-          "label": "Lack of specialists"
-        },
-        {
-          "code": "16",
-          "label": "Need more funding"
-        },
-        {
-          "code": "17",
-          "label": "Need more hospitals/clinics/beds"
-        },
-        {
-          "code": "18",
-          "label": "Missing/Limited services (various)"
-        },
-        {
-          "code": "96",
-          "label": "Other"
-        },
-        {
-          "code": "97",
-          "label": "Nothing / none / always need for improvement"
-        },
-        {
-          "code": "98",
-          "label": "Don't know / refusal"
-        }
-      ]
-    },
-    {
       "@search.score": 0.01587301678955555,
       "id": "govcan_habit_2024__AFFORDABILITY_HOUSING",
       "survey_id": "govcan_habit_2024",
@@ -592,214 +267,6 @@
         {
           "code": "5",
           "label": "Very affordable"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.01587301678955555,
-      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM2",
-      "survey_id": "govcan_habit_2024",
-      "survey_year": 2024,
-      "pollster": "Health Canada / PHAC",
-      "language": "en",
-      "survey_name": "HABIT Phase II",
-      "n_respondents": 6106,
-      "tags": [],
-      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM2",
-      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Easy access to services/health professionals / availability"
-        },
-        {
-          "code": "2",
-          "label": "I received good medical care / good/quality service/care"
-        },
-        {
-          "code": "3",
-          "label": "I always get help / helpful staff"
-        },
-        {
-          "code": "4",
-          "label": "I have a local hospital / hospital/walk in clinic is close to home"
-        },
-        {
-          "code": "5",
-          "label": "I have a family doctor / enough family doctor"
-        },
-        {
-          "code": "6",
-          "label": "I have a specialist"
-        },
-        {
-          "code": "7",
-          "label": "I have a good doctor / doctors are good / competent health professionals"
-        },
-        {
-          "code": "8",
-          "label": "Good hospitals/medical facilities"
-        },
-        {
-          "code": "9",
-          "label": "Appropriate wait times / fast service"
-        },
-        {
-          "code": "10",
-          "label": "All my needs are met / It provides the needed services / never had any issues"
-        },
-        {
-          "code": "11",
-          "label": "Good / great / OK"
-        },
-        {
-          "code": "12",
-          "label": "Free services / affordability"
-        },
-        {
-          "code": "13",
-          "label": "Long wait times (for services, in ER, etc.)"
-        },
-        {
-          "code": "14",
-          "label": "Lack of doctors/family doctors/staff"
-        },
-        {
-          "code": "15",
-          "label": "Lack of specialists"
-        },
-        {
-          "code": "16",
-          "label": "Need more funding"
-        },
-        {
-          "code": "17",
-          "label": "Need more hospitals/clinics/beds"
-        },
-        {
-          "code": "18",
-          "label": "Missing/Limited services (various)"
-        },
-        {
-          "code": "96",
-          "label": "Other"
-        },
-        {
-          "code": "97",
-          "label": "Nothing / none / always need for improvement"
-        },
-        {
-          "code": "98",
-          "label": "Don't know / refusal"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.015625,
-      "id": "govcan_habit_2024__OPENTEXT_LOCAL_SERVICES_POSITIVEM5",
-      "survey_id": "govcan_habit_2024",
-      "survey_year": 2024,
-      "pollster": "Health Canada / PHAC",
-      "language": "en",
-      "survey_name": "HABIT Phase II",
-      "n_respondents": 6106,
-      "tags": [],
-      "variable": "OPENTEXT_LOCAL_SERVICES_POSITIVEM5",
-      "question_text": "You indicated that you are somewhat or very satisfied with the quality of health services in your local area. In a few words, please tell us why. [CODED]",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Easy access to services/health professionals / availability"
-        },
-        {
-          "code": "2",
-          "label": "I received good medical care / good/quality service/care"
-        },
-        {
-          "code": "3",
-          "label": "I always get help / helpful staff"
-        },
-        {
-          "code": "4",
-          "label": "I have a local hospital / hospital/walk in clinic is close to home"
-        },
-        {
-          "code": "5",
-          "label": "I have a family doctor / enough family doctor"
-        },
-        {
-          "code": "6",
-          "label": "I have a specialist"
-        },
-        {
-          "code": "7",
-          "label": "I have a good doctor / doctors are good / competent health professionals"
-        },
-        {
-          "code": "8",
-          "label": "Good hospitals/medical facilities"
-        },
-        {
-          "code": "9",
-          "label": "Appropriate wait times / fast service"
-        },
-        {
-          "code": "10",
-          "label": "All my needs are met / It provides the needed services / never had any issues"
-        },
-        {
-          "code": "11",
-          "label": "Good / great / OK"
-        },
-        {
-          "code": "12",
-          "label": "Free services / affordability"
-        },
-        {
-          "code": "13",
-          "label": "Long wait times (for services, in ER, etc.)"
-        },
-        {
-          "code": "14",
-          "label": "Lack of doctors/family doctors/staff"
-        },
-        {
-          "code": "15",
-          "label": "Lack of specialists"
-        },
-        {
-          "code": "16",
-          "label": "Need more funding"
-        },
-        {
-          "code": "17",
-          "label": "Need more hospitals/clinics/beds"
-        },
-        {
-          "code": "18",
-          "label": "Missing/Limited services (various)"
-        },
-        {
-          "code": "96",
-          "label": "Other"
-        },
-        {
-          "code": "97",
-          "label": "Nothing / none / always need for improvement"
-        },
-        {
-          "code": "98",
-          "label": "Don't know / refusal"
         }
       ]
     },

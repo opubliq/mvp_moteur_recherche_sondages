@@ -213,13 +213,14 @@
 
 <div class="wrap">
   <header>
-    <p class="eyebrow">Baseline d'évaluation · 9gf.10.4</p>
+    <p class="eyebrow">Baseline d'évaluation · 9gf.10.4 → révisé 9gf.10.8</p>
     <h1>Scoring de pertinence — état de référence</h1>
     <p class="subtitle">Mesure objective du classement Exact / Partiel / Faible / Hors-sujet produit à 100 % par <span class="mono">src/logic/scoring.ts</span> (matching littéral de sous-chaîne). Scoring non modifié — on chiffre l'existant avant correctif.</p>
     <div class="meta">
       <span><b>Date</b> 2026-07-10</span>
       <span><b>Golden set</b> 15 requêtes · 410 items pertinents</span>
       <span><b>Harness</b> eval/run.ts + eval/breakdown.ts</span>
+      <span><b>Expansion</b> prod-fidèle · reasoning_effort minimal</span>
     </div>
   </header>
 
@@ -227,30 +228,49 @@
     <div class="kpis">
       <div class="kpi bad">
         <p class="label">Precision @ Exact</p>
-        <div class="value num">11,0<small>%</small></div>
-        <p class="detail">103 corrects / 933 prédits</p>
+        <div class="value num">23,9<small>%</small></div>
+        <p class="detail">92 corrects / 385 prédits</p>
       </div>
       <div class="kpi bad">
         <p class="label">Faux-positifs Exact</p>
-        <div class="value num">830</div>
-        <p class="detail">89 % des Exact sont faux</p>
+        <div class="value num">293</div>
+        <p class="detail">76 % des Exact sont faux</p>
       </div>
       <div class="kpi warn">
         <p class="label">Recall des pertinents</p>
-        <div class="value num">77,1<small>%</small></div>
-        <p class="detail">316 / 410 non Hors-sujet</p>
+        <div class="value num">74,1<small>%</small></div>
+        <p class="detail">304 / 410 non Hors-sujet</p>
       </div>
       <div class="kpi good">
         <p class="label">Pertinents perdus</p>
-        <div class="value num">94</div>
+        <div class="value num">106</div>
         <p class="detail">classés Hors-sujet / non retrouvés</p>
       </div>
     </div>
-    <p class="lead" style="margin-top:22px;">Le palier <b>Exact</b> est inexploitable : neuf prédictions Exact sur dix sont fausses. Le scoring gonfle la pertinence — la classe Hors-sujet déborde massivement vers Exact et Partiel.</p>
+    <p class="lead" style="margin-top:22px;">Le palier <b>Exact</b> reste inexploitable : trois prédictions Exact sur quatre sont fausses. Le scoring gonfle la pertinence — la classe Hors-sujet déborde vers Exact et Partiel. Chiffres <b>prod-fidèles</b> (voir « Correction de validité ») : l'ampleur est plus modérée que la première mesure (830 → 293 FP) parce que la prod réelle retrouve un pool plus serré, pas parce que le scoring s'est amélioré.</p>
   </section>
 
+  <h2>Correction de validité <span class="tag">bug reasoning_effort</span></h2>
+  <p class="lead">Les fixtures étaient capturées avec une expansion plus riche que la prod : <span class="mono">eval/capture.ts</span> recopiait la décomposition depuis <span class="mono">/decompose</span> en <b>omettant</b> <span class="mono">reasoning_effort: "minimal"</span>. Le baseline mesurait donc le scoring sur une entrée plus propre que le vrai système. Corrigé en extrayant la logique dans <span class="mono">src/logic/decompose.ts</span>, désormais importé par la prod <b>et</b> la capture — fixtures re-capturées prod-fidèles.</p>
+  <div class="panel">
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr><th>Métrique</th><th class="r">Avant (biaisé)</th><th class="r">Après (prod-fidèle)</th><th class="r">Δ</th></tr></thead>
+        <tbody>
+          <tr><td>Precision @ Exact</td><td class="r">11,0 % <span style="color:var(--ink-faint)">(103/933)</span></td><td class="r"><b>23,9 %</b> <span style="color:var(--ink-faint)">(92/385)</span></td><td class="r" style="color:var(--exact)">+12,9 pts</td></tr>
+          <tr><td>Faux-positifs Exact</td><td class="r">830</td><td class="r"><b>293</b></td><td class="r" style="color:var(--exact)">−537 (−65 %)</td></tr>
+          <tr><td>Recall des pertinents</td><td class="r">77,1 % <span style="color:var(--ink-faint)">(316/410)</span></td><td class="r"><b>74,1 %</b> <span style="color:var(--ink-faint)">(304/410)</span></td><td class="r" style="color:var(--bad)">−3,0 pts</td></tr>
+          <tr><td>Total paires évaluées</td><td class="r">4 384</td><td class="r"><b>1 781</b></td><td class="r" style="color:var(--ink-faint)">−2 603</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <b>Comment lire ce delta.</b> La précision « monte » et les faux-positifs « chutent » surtout parce que la prod réelle retrouve un <b>pool bien plus petit</b> (1 781 paires vs 4 384) : moins de candidats hors-sujet entrent dans le tri. Ce n'est <b>pas</b> une amélioration du scoring (inchangé). L'expansion prod-fidèle est plus maigre : <b>les qualifiers disparaissent</b> (0 vs 6–12 par concept), certaines listes de synonymes s'amincissent (<span class="mono">confiance</span> 9 → 1), et les pools s'effondrent (q09 1000 → 104, q10 844 → 402, q02 388 → 92). Contrepartie : le recall baisse (77,1 → 74,1 %). La première mesure surestimait <b>à la fois</b> les faux-positifs <b>et</b> le recall.
+    </div>
+  </div>
+
   <h2>Matrice de confusion <span class="tag">attendu × assigné</span></h2>
-  <p class="lead">Lignes = grade attendu (golden), colonnes = grade assigné par le moteur. La diagonale (cerclée teal) = bonnes réponses. La ligne <b>Hors-sujet</b> qui fuit vers Exact (771) et Partiel (746) concentre l'erreur.</p>
+  <p class="lead">Lignes = grade attendu (golden), colonnes = grade assigné par le moteur. La diagonale (cerclée teal) = bonnes réponses. La ligne <b>Hors-sujet</b> qui fuit vers Exact (240) et Partiel (213) concentre l'erreur.</p>
   <div class="panel">
     <div class="cm-scroll">
       <table class="cm" id="cm"></table>
@@ -259,16 +279,16 @@
     <div class="cm-note">
       <span><span class="swatch" style="background:var(--accent)"></span>Diagonale = correct</span>
       <span><span class="swatch" style="background:var(--bad)"></span>Intensité rouge = volume d'erreur</span>
-      <span>771 Hors-sujet → Exact · 746 Hors-sujet → Partiel</span>
+      <span>240 Hors-sujet → Exact · 213 Hors-sujet → Partiel</span>
     </div>
   </div>
 
   <h2>Le bug — q01 « soutien au fédéralisme canadien » <span class="tag">reproduit</span></h2>
-  <p class="lead">Concepts de q01 : <span class="mono">soutien</span> (0.3) + <span class="mono">fédéralisme</span> (0.7, synonymes incl. « fédéral »/« federal », qualifiers « canadien »/« Canada »). <span class="mono">scoreResult()</span> matche sur <span class="mono">question_text + survey_name + concepts</span> concaténés.</p>
+  <p class="lead">Concepts de q01 (expansion prod-fidèle) : <span class="mono">soutien</span> (0.35) + <span class="mono">fédéralisme</span> (0.5, synonymes incl. « fédéral »/« federal ») + <span class="mono">Canada</span> (0.15, synonymes « canadien »/« canadienne »). <span class="mono">scoreResult()</span> matche sur <span class="mono">question_text + survey_name + concepts</span> concaténés.</p>
   <div class="panel bug">
     <p style="margin:0 0 4px; font-size:14px; color:var(--ink-soft);">Le sondage <span class="mono">cecd_elxn_can_2011</span> porte le nom :</p>
     <div class="surveyname">« Panel électoral <mark>fédéral</mark> <mark>canadien</mark> 2011 - vagues pré/post-électorales (CECD) »</div>
-    <p style="margin:0; font-size:14px; color:var(--ink-soft);">Ce nom seul valide le concept <b>fédéralisme</b> (0.7) → <b>chaque</b> question du sondage franchit le seuil Partiel, quel que soit son contenu réel (intention de vote, participation, sociodémo).</p>
+    <p style="margin:0; font-size:14px; color:var(--ink-soft);">Ce nom seul valide les concepts <b>fédéralisme</b> (0.5) <b>et</b> <b>Canada</b> (0.15) → <b>chaque</b> question du sondage franchit le seuil Partiel (couverture 0.65), quel que soit son contenu réel (intention de vote, participation, sociodémo).</p>
 
     <div class="bug-stats">
       <div class="bug-stat"><div class="n">49<span style="font-size:16px;color:var(--ink-faint)">/49</span></div><div class="t">questions du panel 2011 classées Partiel (70/100)</div></div>
@@ -284,7 +304,7 @@
     </div>
 
     <div class="callout">
-      <b>Précision vs. l'énoncé de l'épic.</b> L'épic annonçait ces items « en Exact » ; la mesure montre qu'ils sortent en <span class="tier partiel">Partiel 70</span> — seul <span class="mono">fédéralisme</span> (0.7) est déclenché via le <span class="mono">survey_name</span>, il manque <span class="mono">soutien</span> (0.3) pour atteindre le seuil Exact (≥ 0.99). Le bug est néanmoins bien reproduit : ces questions sont rankées <b>pertinentes à tort</b>. Les seuls <span class="tier exact">Exact</span> fautifs de q01 viennent de sondages govcan (net-zéro, bureaux fédéraux) où <span class="mono">support</span>/<span class="mono">favor</span> + <span class="mono">federal</span>/<span class="mono">Canada</span> matchent fortuitement. Cause racine identique : <b>survey_name à poids plein</b>.
+      <b>Intact sur l'expansion prod-fidèle.</b> Ces items sortent en <span class="tier partiel">Partiel 70</span> — <span class="mono">fédéralisme</span> (0.5) + <span class="mono">Canada</span> (0.15) sont déclenchés via le <span class="mono">survey_name</span>, il manque <span class="mono">soutien</span> (0.35) pour atteindre le seuil Exact (≥ 0.99). Ces questions sont rankées <b>pertinentes à tort</b>. Les seuls <span class="tier exact">Exact</span> fautifs de q01 (3) viennent de sondages govcan (net-zéro, bureaux fédéraux) où <span class="mono">support</span>/<span class="mono">federal</span> + <span class="mono">Canada</span> matchent fortuitement. Cause racine identique et confirmée : <b>survey_name à poids plein</b>.
     </div>
   </div>
 
@@ -300,7 +320,7 @@
   </div>
 
   <h2>Chiffres par requête <span class="tag">15 requêtes</span></h2>
-  <p class="lead">Deux régimes d'échec : sur-classement Exact massif (q02, q04, q09, q10) et silence total sur Exact (q07, q11, q13, q14) malgré un recall partiel.</p>
+  <p class="lead">Deux régimes d'échec : sur-classement Exact massif (q04, q08, q09, q10) et silence total sur Exact (q07, q11, q13) malgré un recall partiel. Avec le pool prod-fidèle plus petit, q10 (santé mentale, 402 candidats) reste le plus gros foyer de faux-positifs Exact.</p>
   <div class="panel">
     <div class="tbl-scroll">
       <table class="data">
@@ -330,10 +350,10 @@
   // --- Confusion matrix ---
   const grades = ['exact','partiel','faible','hors-sujet'];
   const cm = {
-    exact:      {exact:103, partiel:32,  faible:31,  'hors-sujet':10},
-    partiel:    {exact:36,  partiel:49,  faible:19,  'hors-sujet':16},
-    faible:     {exact:23,  partiel:21,  faible:2,   'hors-sujet':11},
-    'hors-sujet':{exact:771, partiel:746, faible:226, 'hors-sujet':2288},
+    exact:      {exact:92,  partiel:63,  faible:9,   'hors-sujet':7},
+    partiel:    {exact:37,  partiel:53,  faible:16,  'hors-sujet':11},
+    faible:     {exact:16,  partiel:12,  faible:6,   'hors-sujet':16},
+    'hors-sujet':{exact:240, partiel:213, faible:139, 'hors-sujet':851},
   };
   let maxErr = 0;
   for (const e of grades) for (const a of grades) if (e!==a) maxErr = Math.max(maxErr, cm[e][a]);
@@ -377,16 +397,16 @@
 
   // --- top false positives ---
   const fp = [
-    ['q01','govcan_parca_2024/I6_E','Achieving "net-zero emissions"… Canada\'s energy transition…'],
+    ['q01','govcan_parca_2024/I6_E','Achieving "net-zero emissions"… The federal government should increase funding…'],
+    ['q01','govcan_parca_2024/I6_C','Achieving "net-zero emissions"… electric grid modernization…'],
     ['q01','govcan_habit_2024/SOCSUP_ACCESSIBLEC4','Federal Government locations (Service Canada, CRA)…'],
-    ['q01','govcan_parca_2024/I6_C','Achieving "net-zero emissions"… Canada\'s energy transition…'],
-    ['q02','eeq_2014/Q22',"Et s'il y avait un référendum… Voteriez-vous…"],
-    ['q02','eeq_2014/Q48','Si le Québec devenait un pays indépendant… dollar canadien…'],
-    ['q02','cecd_elxn_can_2011/you2','2. Et vous-même, êtes-vous…'],
-    ['q02','eeq_2014/Q46','Si le Québec devenait un pays indépendant… économie…'],
-    ['q02','eeq_2014/Q16','Avez-vous voté lors du référendum de 1995 sur la souveraineté…'],
-    ['q02','eeq_2014/Q42A','Quel parti est le meilleur pour défendre les intérêts du Québec ?'],
-    ['q02','eeq_2014/Q27A','Une majorité claire dans un référendum sur l\'indépendance…'],
+    ['q02','eeq_2014/Q27A',"Une majorité claire dans un référendum sur l'indépendance du Québec…"],
+    ['q04','eeq_2014/Q3','Pour quel parti avez-vous voté ?'],
+    ['q04','cecd_elxn_qc_2012/voteprov','Q2. Et pour quel parti avez-vous voté ?'],
+    ['q04','eeq_2014/Q16','Avez-vous voté lors du référendum de 1995 sur la souveraineté…'],
+    ['q04','cecd_elxn_qc_2007/vote','3. Et pour quel parti avez-vous voté ?'],
+    ['q04','cecd_elxn_qc_1998/allervot',"Intention d'aller voter"],
+    ['q04','cecd_elxn_qc_2007/voteprec','15a. Pour quel parti avez-vous voté aux dernières élections…'],
   ];
   document.getElementById('fprows').innerHTML = fp.map(r =>
     `<tr><td class="mono" style="color:var(--ink-soft)">${r[0]}</td><td class="var">${r[1]}</td>`
@@ -394,21 +414,21 @@
 
   // --- per query ---
   const pq = [
-    ['q01','soutien au fédéralisme canadien',16,180,3,0,43.8],
-    ['q02','souveraineté et indépendance du Québec',33,388,340,3.5,97.0],
-    ['q03','intentions de vote provinciales',25,391,27,40.7,88.0],
-    ['q04','participation électorale (avez-vous voté)',23,172,126,6.3,100],
-    ['q05','confiance envers le gouvernement fédéral',56,101,29,82.8,60.7],
-    ['q06','charte des valeurs et laïcité',6,99,2,100,66.7],
+    ['q01','soutien au fédéralisme canadien',16,95,3,0,56.3],
+    ['q02','souveraineté et indépendance du Québec',33,92,5,80,63.6],
+    ['q03','intentions de vote provinciales',25,94,9,100,80],
+    ['q04','participation électorale (avez-vous voté)',23,97,31,3.2,100],
+    ['q05','confiance envers le gouvernement fédéral',56,97,25,92,60.7],
+    ['q06','charte des valeurs et laïcité',6,99,2,100,83.3],
     ['q07','accommodements raisonnables / signes religieux',10,96,0,null,0],
-    ['q08','immigration',39,325,5,60,92.3],
-    ['q09','système de santé public ou privé',58,1000,194,8.2,100],
-    ['q10','santé mentale',39,844,201,11.9,84.6],
-    ['q11','accès au logement et abordabilité',11,98,0,null,54.5],
-    ['q12','enjeux les plus importants de la campagne',7,95,5,40,42.9],
-    ['q13','identification partisane gauche-droite',24,94,0,null,50],
-    ['q14','housing affordability',11,204,0,null,54.5],
-    ['q15','trust in government services',52,297,1,100,76.9],
+    ['q08','immigration',39,122,41,19.5,89.7],
+    ['q09','système de santé public ou privé',58,104,40,40,82.8],
+    ['q10','santé mentale',39,402,221,11.3,87.2],
+    ['q11','accès au logement et abordabilité',11,93,0,null,54.5],
+    ['q12','enjeux les plus importants de la campagne',7,103,6,33.3,100],
+    ['q13','identification partisane gauche-droite',24,94,0,null,41.7],
+    ['q14','housing affordability',11,100,1,100,63.6],
+    ['q15','trust in government services',52,93,1,100,86.5],
   ];
   const barColor = (v, kind) => {
     if (v === null) return 'var(--line-strong)';

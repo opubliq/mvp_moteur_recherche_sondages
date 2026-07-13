@@ -5,326 +5,43 @@
     {
       "orig": "soutien",
       "syns": [
-        "soutiens",
         "appui",
-        "appuyer",
-        "approbation",
         "support",
         "supporter",
-        "approval",
-        "favor",
-        "favour"
+        "soutenir",
+        "appuyer",
+        "favoriser",
+        "favoris",
+        "favour",
+        "backing",
+        "endorsement"
       ],
-      "weight": 0.3
+      "weight": 0.35
     },
     {
       "orig": "fédéralisme",
       "syns": [
+        "federalisme",
         "federalism",
         "fédéral",
         "federal",
-        "fédération",
-        "federation",
-        "fédéraux"
+        "système fédéral",
+        "système fédéraliste"
       ],
-      "qualifiers": [
+      "weight": 0.5
+    },
+    {
+      "orig": "Canada",
+      "syns": [
         "canadien",
         "canadienne",
-        "Canada",
-        "canadian",
-        "du Canada",
-        "au Canada"
+        "canadiens",
+        "canadiennes"
       ],
-      "weight": 0.7
+      "weight": 0.15
     }
   ],
   "candidates": [
-    {
-      "@search.score": 0.02911604568362236,
-      "id": "govcan_06822_wave1_2024__POLICY_IMM_NEWIMM",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLICY_IMM_NEWIMM",
-      "question_text": "How much do you support or oppose the following immigration-related policy: Admit 465,000 new permanent residents in Canada in 2023 (405,000 were admitted in 2021)",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "immigration",
-        "politique-publique",
-        "seuils-immigration"
-      ],
-      "themes": [
-        "immigration",
-        "démocratie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither oppose nor support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly support"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.02857143059372902,
-      "id": "govcan_parca_2024__C8_T",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_T",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Planting two billion trees in the next ten years to increase Canada´s forest cover.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "reboisement",
-        "séquestration du carbone"
-      ],
-      "themes": [
-        "environnement",
-        "politique"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.027887694537639618,
-      "id": "govcan_parca_2024__C8_D",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_D",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Protecting and restoring ecosystems in Canada (e.g., forests, wetlands, coasts).",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "conservation",
-        "écosystèmes",
-        "biodiversité"
-      ],
-      "themes": [
-        "environnement",
-        "politique"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.02618229389190674,
-      "id": "govcan_parca_2024__C8_I",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_I",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Limiting overall greenhouse gas emissions that come from the production of oil and gas in Canada.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "émissions GES",
-        "industrie pétrolière"
-      ],
-      "themes": [
-        "environnement",
-        "politique",
-        "économie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.024877149611711502,
-      "id": "govcan_parca_2024__C8_G",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_G",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Setting a national price on carbon pollution (sometimes referred to as a 'carbon tax') for industries and households in Canad",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "taxe carbone",
-        "politique climatique"
-      ],
-      "themes": [
-        "environnement",
-        "politique",
-        "économie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
     {
       "@search.score": 0.01901041716337204,
       "id": "cecd_elxn_can_2011__you3",
@@ -405,6 +122,55 @@
         {
           "code": "9",
           "label": "PR"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.01666666753590107,
+      "id": "govcan_parca_2024__I6_E",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "I6_E",
+      "question_text": "Achieving “ net-zero emissions ” (also called a “ net-zero energy transition ”) means that Canada’ - The federal government should increase funding to support energy innovation.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly Disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither Agree nor Disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly Agree"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
         }
       ]
     },
@@ -536,6 +302,55 @@
       ]
     },
     {
+      "@search.score": 0.016393441706895828,
+      "id": "govcan_parca_2024__I6_C",
+      "survey_id": "govcan_parca_2024",
+      "survey_year": 2024,
+      "pollster": "Government of Canada",
+      "language": "en",
+      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
+      "n_respondents": 13771,
+      "tags": [
+        "environment",
+        "climate change",
+        "canada",
+        "awareness"
+      ],
+      "variable": "I6_C",
+      "question_text": "Achieving “ net-zero emissions ” (also called a “ net-zero energy transition ”) means that Canada’ - The federal government should increase funding to support electric grid modernization.",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "1",
+          "label": "Strongly Disagree"
+        },
+        {
+          "code": "2",
+          "label": "Somewhat Disagree"
+        },
+        {
+          "code": "3",
+          "label": "Neither Agree nor Disagree"
+        },
+        {
+          "code": "4",
+          "label": "Somewhat Agree"
+        },
+        {
+          "code": "5",
+          "label": "Strongly Agree"
+        },
+        {
+          "code": "9999",
+          "label": "Prefer not to say"
+        }
+      ]
+    },
+    {
       "@search.score": 0.016129031777381897,
       "id": "govcan_06822_wave1_2024__SOCCOH_TRUST",
       "survey_id": "govcan_06822_wave1_2024",
@@ -582,6 +397,34 @@
         {
           "code": "6",
           "label": "Strongly agree"
+        }
+      ]
+    },
+    {
+      "@search.score": 0.016129031777381897,
+      "id": "govcan_habit_2024__SOCSUP_ACCESSIBLEC4",
+      "survey_id": "govcan_habit_2024",
+      "survey_year": 2024,
+      "pollster": "Health Canada / PHAC",
+      "language": "en",
+      "survey_name": "HABIT Phase II",
+      "n_respondents": 6106,
+      "tags": [],
+      "variable": "SOCSUP_ACCESSIBLEC4",
+      "question_text": "Federal Government locations (i.e. Service Canada, Canadian Revenue Agency) - Are any of the following types of supports, services, or amenities available in your local area?",
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": [],
+      "response_options": [
+        {
+          "code": "0",
+          "label": "No"
+        },
+        {
+          "code": "1",
+          "label": "Yes"
         }
       ]
     },
@@ -732,67 +575,6 @@
       ]
     },
     {
-      "@search.score": 0.015625,
-      "id": "govcan_parca_2024__C8_M",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_M",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Compensating people affected by weather-related disasters (e.g., farmers, homeowners, businesses, etc.).",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "adaptation",
-        "assurance",
-        "indemnisation"
-      ],
-      "themes": [
-        "environnement",
-        "politique",
-        "social"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.015388128347694874,
       "id": "cecd_elxn_can_2011__O_Q5A",
       "survey_id": "cecd_elxn_can_2011",
@@ -868,126 +650,6 @@
       ]
     },
     {
-      "@search.score": 0.015384615398943424,
-      "id": "govcan_parca_2024__C8_AP",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_AP",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Banning the sale of single-use plastic items like checkout bags, takeout containers, straws, stir sticks, and cutlery.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "pollution plastique",
-        "économie circulaire"
-      ],
-      "themes": [
-        "environnement",
-        "politique"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.01515151560306549,
-      "id": "govcan_parca_2024__C8_AE",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_AE",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Building a national network of charging stations for electric vehicles.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "véhicules électriques",
-        "infrastructure",
-        "transport"
-      ],
-      "themes": [
-        "environnement",
-        "politique",
-        "transport"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.014925372786819935,
       "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_COMPETENT",
       "survey_id": "govcan_06822_wave1_2024",
@@ -1030,162 +692,6 @@
         {
           "code": "5",
           "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.014925372786819935,
-      "id": "govcan_parca_2024__C8_K_V1",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_K_V1",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Helping make vital infrastructure (e.g., the electrical grid, cell phone towers, highways, drinking water systems) more resis",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "adaptation",
-        "infrastructure",
-        "résilience"
-      ],
-      "themes": [
-        "environnement",
-        "politique"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.014705882407724857,
-      "id": "govcan_06822_wave1_2024__POLICY_CLIM_CARBONPRICE",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLICY_CLIM_CARBONPRICE",
-      "question_text": "How much do you support or oppose the following environmental policy: Setting a national price on carbon pollution (sometimes referred to as a 'carbon tax') to limit further climate change",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "climat",
-        "prix-carbone",
-        "politique-publique"
-      ],
-      "themes": [
-        "environnement",
-        "économie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither oppose nor support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly support"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.014492753893136978,
-      "id": "govcan_parca_2024__C9_H",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_H",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Nuclear energy",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -1236,52 +742,6 @@
       ]
     },
     {
-      "@search.score": 0.014285714365541935,
-      "id": "govcan_06822_wave2_2024__TRUST_FACET_GC_GOODJOB",
-      "survey_id": "govcan_06822_wave2_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "TRUST_FACET_GC_GOODJOB",
-      "question_text": "The federal government is doing a good job.",
-      "var_type": "scale",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "trust",
-        "federal government",
-        "performance"
-      ],
-      "themes": [
-        "governance"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither agree nor disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly agree"
-        }
-      ]
-    },
-    {
       "@search.score": 0.014084506779909134,
       "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_CARE",
       "survey_id": "govcan_06822_wave1_2024",
@@ -1324,65 +784,6 @@
         {
           "code": "5",
           "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.014084506779909134,
-      "id": "govcan_parca_2024__C8_H",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_H",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Setting a global price on carbon pollution (sometimes referred to as a \"carbon tax\") that would apply equally to the largest-",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "coopération internationale",
-        "taxe carbone"
-      ],
-      "themes": [
-        "environnement",
-        "politique"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -1436,65 +837,6 @@
         {
           "code": "5",
           "label": "Ne sais pas/Pas certain(e)"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.013888888992369175,
-      "id": "govcan_parca_2024__C8_L",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_L",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Increasing the amount of greenspace in cities and towns.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "urbanisme",
-        "espaces verts"
-      ],
-      "themes": [
-        "environnement",
-        "politique"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -1554,51 +896,6 @@
       ]
     },
     {
-      "@search.score": 0.013698630034923553,
-      "id": "govcan_06822_wave3_2024__POLICY_IMMIGRATION",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLICY_IMMIGRATION",
-      "question_text": "Admit more new permanent residents in Canada in 2024 than were admitted in 2023.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "immigration policy",
-        "population growth"
-      ],
-      "themes": [
-        "immigration"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither oppose nor support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly support"
-        }
-      ]
-    },
-    {
       "@search.score": 0.013513513840734959,
       "id": "eeq_2014__Q26A",
       "survey_id": "eeq_2014",
@@ -1641,55 +938,6 @@
         {
           "code": "9",
           "label": "Je préfère ne pas répondre"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.013333333656191826,
-      "id": "govcan_parca_2024__C9_B",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_B",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Wind energy",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -1739,77 +987,28 @@
       ]
     },
     {
-      "@search.score": 0.01315789483487606,
-      "id": "govcan_parca_2024__C9_E",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_E",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Coal",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.012987012974917889,
-      "id": "govcan_06822_wave3_2024__POLICY_CARBON_TAX",
-      "survey_id": "govcan_06822_wave3_2024",
+      "id": "govcan_06822_wave1_2024__POLICY_IMM_NEWIMM",
+      "survey_id": "govcan_06822_wave1_2024",
       "survey_year": 2024,
       "pollster": "Government of Canada",
       "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
+      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
       "n_respondents": 3375,
       "tags": [],
-      "variable": "POLICY_CARBON_TAX",
-      "question_text": "Setting a national price on carbon pollution (sometimes referred to as a 'carbon tax') for industries and households in Canada that increases the cost of climate-unfriendly products and services.",
+      "variable": "POLICY_IMM_NEWIMM",
+      "question_text": "How much do you support or oppose the following immigration-related policy: Admit 465,000 new permanent residents in Canada in 2023 (405,000 were admitted in 2021)",
       "var_type": "single",
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [
-        "carbon tax",
-        "climate policy",
-        "environmental regulation"
+        "immigration",
+        "politique-publique",
+        "seuils-immigration"
       ],
       "themes": [
-        "environment",
-        "economy"
+        "immigration",
+        "démocratie"
       ],
       "response_options": [
         {
@@ -1892,55 +1091,6 @@
       ]
     },
     {
-      "@search.score": 0.012820512987673283,
-      "id": "govcan_parca_2024__C9_I",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_I",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Geothermal energy",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.012658228166401386,
       "id": "govcan_06822_wave1_2024__TRUST_FACET_GC_INTEGRITY",
       "survey_id": "govcan_06822_wave1_2024",
@@ -1988,55 +1138,6 @@
       ]
     },
     {
-      "@search.score": 0.012658228166401386,
-      "id": "govcan_parca_2024__C9_K",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_K",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Hydrogen fuel",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.012500000186264515,
       "id": "cecd_elxn_qc_2007__z2q14",
       "survey_id": "cecd_elxn_qc_2007",
@@ -2076,67 +1177,6 @@
         {
           "code": "9",
           "label": "* NSP/Refus"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.012500000186264515,
-      "id": "govcan_parca_2024__C8_AC",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_AC",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Creating a sales mandate to ensure that by 2026, at least 20% of new cars and light-duty trucks sold will be zero-emission ve",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "véhicules électriques",
-        "réglementation",
-        "transport"
-      ],
-      "themes": [
-        "environnement",
-        "politique",
-        "transport"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -2195,55 +1235,6 @@
       ]
     },
     {
-      "@search.score": 0.012345679104328156,
-      "id": "govcan_parca_2024__C9_A",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_A",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Solar energy",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.012195121496915817,
       "id": "govcan_06822_wave1_2024__DEMCAN_ACCEPTELEC",
       "survey_id": "govcan_06822_wave1_2024",
@@ -2286,55 +1277,6 @@
         {
           "code": "5",
           "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.012195121496915817,
-      "id": "govcan_parca_2024__C9_F",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_F",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Oil",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -2406,57 +1348,8 @@
       ]
     },
     {
-      "@search.score": 0.012048192322254181,
-      "id": "govcan_parca_2024__C9_G",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_G",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Natural gas",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.011904762126505375,
-      "id": "govcan_parca_2024__C9_C",
+      "id": "govcan_parca_2024__C8_T",
       "survey_id": "govcan_parca_2024",
       "survey_year": 2024,
       "pollster": "Government of Canada",
@@ -2469,13 +1362,19 @@
         "canada",
         "awareness"
       ],
-      "variable": "C9_C",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Hydro energy (e.g., hydroelectric dams)",
+      "variable": "C8_T",
+      "question_text": "How much do you support or oppose the following environmental policies ? - Planting two billion trees in the next ten years to increase Canada´s forest cover.",
       "var_type": "single",
       "is_sociodemo": false,
       "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
+      "concepts": [
+        "reboisement",
+        "séquestration du carbone"
+      ],
+      "themes": [
+        "environnement",
+        "politique"
+      ],
       "response_options": [
         {
           "code": "1",
@@ -2496,6 +1395,10 @@
         {
           "code": "5",
           "label": "Strongly Support"
+        },
+        {
+          "code": "99",
+          "label": "I’m not familiar with this kind of policy"
         },
         {
           "code": "9999",
@@ -2550,55 +1453,6 @@
         {
           "code": "9",
           "label": "Je préfère ne pas répondre"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.0117647061124444,
-      "id": "govcan_parca_2024__H5_2",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "H5_2",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada. - Nuclear energy using small modular reactors (SMRs)",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -2681,57 +1535,8 @@
       ]
     },
     {
-      "@search.score": 0.011627906933426857,
-      "id": "govcan_parca_2024__C9_D",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C9_D",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Bioenergy (e.g., ethanol, biodiesel, wood pellets)",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.01149425283074379,
-      "id": "govcan_parca_2024__C9_J",
+      "id": "govcan_parca_2024__C8_D",
       "survey_id": "govcan_parca_2024",
       "survey_year": 2024,
       "pollster": "Government of Canada",
@@ -2744,13 +1549,20 @@
         "canada",
         "awareness"
       ],
-      "variable": "C9_J",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada.< - Ocean energy (e.g., waves, tides)",
+      "variable": "C8_D",
+      "question_text": "How much do you support or oppose the following environmental policies ? - Protecting and restoring ecosystems in Canada (e.g., forests, wetlands, coasts).",
       "var_type": "single",
       "is_sociodemo": false,
       "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
+      "concepts": [
+        "conservation",
+        "écosystèmes",
+        "biodiversité"
+      ],
+      "themes": [
+        "environnement",
+        "politique"
+      ],
       "response_options": [
         {
           "code": "1",
@@ -2771,6 +1583,10 @@
         {
           "code": "5",
           "label": "Strongly Support"
+        },
+        {
+          "code": "99",
+          "label": "I’m not familiar with this kind of policy"
         },
         {
           "code": "9999",
@@ -2780,7 +1596,7 @@
     },
     {
       "@search.score": 0.011363636702299118,
-      "id": "govcan_parca_2024__H5_1",
+      "id": "govcan_parca_2024__C8_G",
       "survey_id": "govcan_parca_2024",
       "survey_year": 2024,
       "pollster": "Government of Canada",
@@ -2793,13 +1609,20 @@
         "canada",
         "awareness"
       ],
-      "variable": "H5_1",
-      "question_text": "Please indicate whether you support or oppose further development of the following energy resources in Canada. - Nuclear energy using conventional nuclear power plants",
+      "variable": "C8_G",
+      "question_text": "How much do you support or oppose the following environmental policies ? - Setting a national price on carbon pollution (sometimes referred to as a 'carbon tax') for industries and households in Canad",
       "var_type": "single",
       "is_sociodemo": false,
       "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
+      "concepts": [
+        "taxe carbone",
+        "politique climatique"
+      ],
+      "themes": [
+        "environnement",
+        "politique",
+        "économie"
+      ],
       "response_options": [
         {
           "code": "1",
@@ -2820,6 +1643,10 @@
         {
           "code": "5",
           "label": "Strongly Support"
+        },
+        {
+          "code": "99",
+          "label": "I’m not familiar with this kind of policy"
         },
         {
           "code": "9999",
@@ -2878,55 +1705,6 @@
       ]
     },
     {
-      "@search.score": 0.01123595517128706,
-      "id": "govcan_parca_2024__I6_E",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "I6_E",
-      "question_text": "Achieving “ net-zero emissions ” (also called a “ net-zero energy transition ”) means that Canada’ - The federal government should increase funding to support energy innovation.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither Agree nor Disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Agree"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.011111111380159855,
       "id": "govcan_06822_wave1_2024__TRUST_GOC_CLIM",
       "survey_id": "govcan_06822_wave1_2024",
@@ -2970,34 +1748,6 @@
         {
           "code": "5",
           "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.011111111380159855,
-      "id": "govcan_habit_2024__SOCSUP_ACCESSIBLEC4",
-      "survey_id": "govcan_habit_2024",
-      "survey_year": 2024,
-      "pollster": "Health Canada / PHAC",
-      "language": "en",
-      "survey_name": "HABIT Phase II",
-      "n_respondents": 6106,
-      "tags": [],
-      "variable": "SOCSUP_ACCESSIBLEC4",
-      "question_text": "Federal Government locations (i.e. Service Canada, Canadian Revenue Agency) - Are any of the following types of supports, services, or amenities available in your local area?",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
         }
       ]
     },
@@ -3104,59 +1854,6 @@
       ]
     },
     {
-      "@search.score": 0.010989011265337467,
-      "id": "govcan_parca_2024__C8_V2B_I",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2B_I",
-      "question_text": "How much do you support or oppose the following environmental policies? - Limiting overall greenhouse gas emissions that come from the production of oil and gas in Canada.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.010869565419852734,
       "id": "eeq_2014__Q42A",
       "survey_id": "eeq_2014",
@@ -3224,59 +1921,6 @@
       ]
     },
     {
-      "@search.score": 0.010869565419852734,
-      "id": "govcan_parca_2024__C8_V2A_I",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2A_I",
-      "question_text": "How much do you support or oppose the following economic development policies that promote clean energy? - Limiting overall greenhouse gas emissions that come from the production of oil and gas in Canada.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.01075268816202879,
       "id": "eeq_2014__Q51",
       "survey_id": "eeq_2014",
@@ -3324,53 +1968,6 @@
       ]
     },
     {
-      "@search.score": 0.01075268816202879,
-      "id": "govcan_06822_wave1_2024__POLICY_COVIDA",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLICY_COVIDA",
-      "question_text": "How much do you support or oppose the following health-related policy: A requirement to wear a mask in indoor public settings if there is another COVID-19 outbreak.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "covid-19",
-        "masques",
-        "politique-publique"
-      ],
-      "themes": [
-        "santé",
-        "démocratie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither oppose nor support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly support"
-        }
-      ]
-    },
-    {
       "@search.score": 0.010638297535479069,
       "id": "govcan_06822_wave1_2024__TRUST_GOC_IMM",
       "survey_id": "govcan_06822_wave1_2024",
@@ -3414,59 +2011,6 @@
         {
           "code": "5",
           "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.010638297535479069,
-      "id": "govcan_parca_2024__C8_AH",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_AH",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Generating all electricity in Canada from energy sources (like wind, hydro, nuclear) that do not directly produce greenhouse",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -3543,59 +2087,6 @@
       ]
     },
     {
-      "@search.score": 0.010526316240429878,
-      "id": "govcan_parca_2024__C8_V2A_AH",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2A_AH",
-      "question_text": "How much do you support or oppose the following economic development policies that promote clean energy? - Generating all electricity in Canada from energy sources (like wind or hydro) that do not directly produce greenhouse gases,",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.010416666977107525,
       "id": "eeq_2014__Q55",
       "survey_id": "eeq_2014",
@@ -3662,8 +2153,8 @@
       ]
     },
     {
-      "@search.score": 0.010416666977107525,
-      "id": "govcan_parca_2024__C8_V2B_AH",
+      "@search.score": 0.010309278033673763,
+      "id": "govcan_parca_2024__C8_I",
       "survey_id": "govcan_parca_2024",
       "survey_year": 2024,
       "pollster": "Government of Canada",
@@ -3676,13 +2167,20 @@
         "canada",
         "awareness"
       ],
-      "variable": "C8_V2B_AH",
-      "question_text": "How much do you support or oppose the following environmental policies? - Generating all electricity in Canada from energy sources (like wind or hydro) that do not directly produce greenhouse gases,",
+      "variable": "C8_I",
+      "question_text": "How much do you support or oppose the following environmental policies ? - Limiting overall greenhouse gas emissions that come from the production of oil and gas in Canada.",
       "var_type": "single",
       "is_sociodemo": false,
       "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
+      "concepts": [
+        "émissions GES",
+        "industrie pétrolière"
+      ],
+      "themes": [
+        "environnement",
+        "politique",
+        "économie"
+      ],
       "response_options": [
         {
           "code": "1",
@@ -3705,57 +2203,8 @@
           "label": "Strongly Support"
         },
         {
-          "code": "9997",
+          "code": "99",
           "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.010309278033673763,
-      "id": "govcan_parca_2024__I6_C",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "I6_C",
-      "question_text": "Achieving “ net-zero emissions ” (also called a “ net-zero energy transition ”) means that Canada’ - The federal government should increase funding to support electric grid modernization.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither Agree nor Disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Agree"
         },
         {
           "code": "9999",
@@ -3819,59 +2268,6 @@
       ]
     },
     {
-      "@search.score": 0.010204081423580647,
-      "id": "govcan_parca_2024__C8_AM",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_AM",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Funding wildfire prevention and mitigation efforts in the communities most vulnerable to wildfires (e.g., rural areas, remote",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.010101010091602802,
       "id": "cecd_elxn_qc_2007__intref1",
       "survey_id": "cecd_elxn_qc_2007",
@@ -3925,92 +2321,6 @@
       ]
     },
     {
-      "@search.score": 0.010101010091602802,
-      "id": "govcan_parca_2024__C8_BuyClean1",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_BuyClean1",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Requiring the use of greener construction materials and designs (meaning they have a lower environmental impact, including lo",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.009999999776482582,
-      "id": "govcan_parca_2024__C8C_10",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_10",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 10 = Reducing taxes",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
       "@search.score": 0.009900989942252636,
       "id": "govcan_06822_wave1_2024__TRUST_GOC_COVID",
       "survey_id": "govcan_06822_wave1_2024",
@@ -4054,46 +2364,6 @@
         {
           "code": "5",
           "label": "Strongly trust"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.009900989942252636,
-      "id": "govcan_06822_wave3_2024__POLICY_SM",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLICY_SM",
-      "question_text": "Requiring social media platforms to stop collecting and permanently delete all of my personal information if I no longer want them to have it.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither oppose nor support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly support"
         }
       ]
     },
@@ -4148,55 +2418,6 @@
       ]
     },
     {
-      "@search.score": 0.009803921915590763,
-      "id": "govcan_parca_2024__J5",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J5",
-      "question_text": "Thinking about the potential effects that you just rated, please indicate whether you support or oppose planting more trees within cities, towns, and other communities.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
       "@search.score": 0.009708737954497337,
       "id": "eeq_2014__Q25",
       "survey_id": "eeq_2014",
@@ -4243,59 +2464,6 @@
         {
           "code": "9",
           "label": "Je préfère ne pas répondre"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.009708737954497337,
-      "id": "govcan_parca_2024__C8_BuyClean3",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_BuyClean3",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Using greener construction materials and designs (meaning they have a lower environmental impact, including lower greenhouse",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -4467,72 +2635,6 @@
       ]
     },
     {
-      "@search.score": 0.009615384973585606,
-      "id": "govcan_parca_2024__C8C_1",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_1",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 01 = Limiting further climate change",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.009523809887468815,
-      "id": "govcan_parca_2024__C8C_5",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_5",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 05 = Reducing the cost of living",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
       "@search.score": 0.009433962404727936,
       "id": "cecd_elxn_qc_2018__rts_q3a",
       "survey_id": "cecd_elxn_qc_2018",
@@ -4684,39 +2786,6 @@
       ]
     },
     {
-      "@search.score": 0.009433962404727936,
-      "id": "govcan_parca_2024__C8C_2",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_2",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 02 = Adapting to the impacts of climate change, like extreme weather",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
       "@search.score": 0.009345794096589088,
       "id": "cecd_elxn_qc_2007__z1q19",
       "survey_id": "cecd_elxn_qc_2007",
@@ -4758,59 +2827,6 @@
         {
           "code": "9",
           "label": "* NSP/Refus"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.009345794096589088,
-      "id": "govcan_parca_2024__C8_AO",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_AO",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Creating a regulation that requires all new lawn and garden equipment with motors (e.g., lawnmowers, leaf blowers) to be elec",
-      "var_type": "open",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -4865,59 +2881,6 @@
         {
           "code": "9",
           "label": "Je préfère ne pas répondre"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.009259259328246117,
-      "id": "govcan_parca_2024__C8_P",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_P",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Funding large-scale projects that capture carbon emissions from oil production and store it underground or use it in other in",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
         }
       ]
     },
@@ -5001,2141 +2964,6 @@
         {
           "code": "99",
           "label": "Je préfère ne pas répondre"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.00917431153357029,
-      "id": "govcan_parca_2024__C8CM2",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8CM2",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five .",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Limiting further climate change"
-        },
-        {
-          "code": "2",
-          "label": "Adapting to the impacts of climate change, like extreme weather"
-        },
-        {
-          "code": "3",
-          "label": "Protecting and restoring nature"
-        },
-        {
-          "code": "4",
-          "label": "Growing Canada’s economy"
-        },
-        {
-          "code": "5",
-          "label": "Reducing the cost of living"
-        },
-        {
-          "code": "6",
-          "label": "Strengthening the health care system"
-        },
-        {
-          "code": "7",
-          "label": "Creating jobs"
-        },
-        {
-          "code": "8",
-          "label": "Advancing Indigenous reconciliation"
-        },
-        {
-          "code": "9",
-          "label": "Fighting COVID-19"
-        },
-        {
-          "code": "10",
-          "label": "Reducing taxes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.00909090880304575,
-      "id": "govcan_parca_2024__C8_BuyClean2",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_BuyClean2",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Using greener construction materials and designs (meaning they have a lower environmental impact, including lower greenhouse",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.009009009227156639,
-      "id": "govcan_parca_2024__C8_V2B_AB",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2B_AB",
-      "question_text": "How much do you support or oppose the following environmental policies? - Subsidizing large oil and gas producers to purchase energy-efficient equipment that reduces their carbon footprint.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008928571827709675,
-      "id": "govcan_parca_2024__C8_N",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_N",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Compensating developing countries for losses and damage created by climate change.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008849557489156723,
-      "id": "govcan_parca_2024__C8_V2B_C",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2B_C",
-      "question_text": "How much do you support or oppose the following environmental policies? - Supporting workers and their communities in transitioning local economies away from coal, oil, and gas production.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008771929889917374,
-      "id": "govcan_parca_2024__C8_X",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_X",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Creating a 'right to repair' law that requires manufacturers to supply manuals and spare parts so that products (e.g., cars,",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008695651777088642,
-      "id": "govcan_parca_2024__C8_V2A_AB",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2A_AB",
-      "question_text": "How much do you support or oppose the following economic development policies that promote clean energy? - Subsidizing large oil and gas producers to purchase energy-efficient equipment that reduces their carbon footprint.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008620689623057842,
-      "id": "govcan_parca_2024__C8CM1",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8CM1",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five .",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Limiting further climate change"
-        },
-        {
-          "code": "2",
-          "label": "Adapting to the impacts of climate change, like extreme weather"
-        },
-        {
-          "code": "3",
-          "label": "Protecting and restoring nature"
-        },
-        {
-          "code": "4",
-          "label": "Growing Canada’s economy"
-        },
-        {
-          "code": "5",
-          "label": "Reducing the cost of living"
-        },
-        {
-          "code": "6",
-          "label": "Strengthening the health care system"
-        },
-        {
-          "code": "7",
-          "label": "Creating jobs"
-        },
-        {
-          "code": "8",
-          "label": "Advancing Indigenous reconciliation"
-        },
-        {
-          "code": "9",
-          "label": "Fighting COVID-19"
-        },
-        {
-          "code": "10",
-          "label": "Reducing taxes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008547008968889713,
-      "id": "govcan_parca_2024__J3B_1",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_1",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Using the materials left over from tree harvesting (e.g., branches) to produce bioenergy (e.g., by burning in a generator or",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008474576286971569,
-      "id": "govcan_parca_2024__C8CM4",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8CM4",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five .",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Limiting further climate change"
-        },
-        {
-          "code": "2",
-          "label": "Adapting to the impacts of climate change, like extreme weather"
-        },
-        {
-          "code": "3",
-          "label": "Protecting and restoring nature"
-        },
-        {
-          "code": "4",
-          "label": "Growing Canada’s economy"
-        },
-        {
-          "code": "5",
-          "label": "Reducing the cost of living"
-        },
-        {
-          "code": "6",
-          "label": "Strengthening the health care system"
-        },
-        {
-          "code": "7",
-          "label": "Creating jobs"
-        },
-        {
-          "code": "8",
-          "label": "Advancing Indigenous reconciliation"
-        },
-        {
-          "code": "9",
-          "label": "Fighting COVID-19"
-        },
-        {
-          "code": "10",
-          "label": "Reducing taxes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008403361774981022,
-      "id": "govcan_parca_2024__C8CM5",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8CM5",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five .",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Limiting further climate change"
-        },
-        {
-          "code": "2",
-          "label": "Adapting to the impacts of climate change, like extreme weather"
-        },
-        {
-          "code": "3",
-          "label": "Protecting and restoring nature"
-        },
-        {
-          "code": "4",
-          "label": "Growing Canada’s economy"
-        },
-        {
-          "code": "5",
-          "label": "Reducing the cost of living"
-        },
-        {
-          "code": "6",
-          "label": "Strengthening the health care system"
-        },
-        {
-          "code": "7",
-          "label": "Creating jobs"
-        },
-        {
-          "code": "8",
-          "label": "Advancing Indigenous reconciliation"
-        },
-        {
-          "code": "9",
-          "label": "Fighting COVID-19"
-        },
-        {
-          "code": "10",
-          "label": "Reducing taxes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008333333767950535,
-      "id": "govcan_parca_2024__C8C_4",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_4",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 04 = Growing Canada’s economy",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.00826446246355772,
-      "id": "govcan_parca_2024__C8C_6",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_6",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 06 = Strengthening the health care system",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008196720853447914,
-      "id": "govcan_parca_2024__C8C_7",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_7",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 07 = Creating jobs",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008130080997943878,
-      "id": "govcan_parca_2024__C8C_3",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_3",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 03 = Protecting and restoring nature",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.008064515888690948,
-      "id": "govcan_parca_2024__C8_AF",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_AF",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Increasing the national price on carbon pollution (sometimes referred to as a 'carbon tax') each year to limit further climat",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.00800000037997961,
-      "id": "govcan_parca_2024__C8_V2A_C",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2A_C",
-      "question_text": "How much do you support or oppose the following economic development policies that promote clean energy? - Supporting workers and their communities in transitioning local economies away from coal, oil, and gas production.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007936508394777775,
-      "id": "govcan_parca_2024__C8_V2A_K_V2",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2A_K_V2",
-      "question_text": "How much do you support or oppose the following economic development policies that promote clean energy? - Investing in upgrades that make the electrical grid more resistant to extreme weather and events (e.g., flooding, forest fire",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007874015718698502,
-      "id": "govcan_parca_2024__J3B_4",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_4",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Developing improved seeds that help trees grow faster.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.0078125,
-      "id": "govcan_parca_2024__C8C_8",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_8",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 08 = Advancing Indigenous reconciliation",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007751937955617905,
-      "id": "govcan_parca_2024__C8C_9",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8C_9",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five . 09 = Fighting COVID-19",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007692307699471712,
-      "id": "govcan_06822_wave3_2024__POLICY_INFEC",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLICY_INFEC",
-      "question_text": "Investing more in infectious disease surveillance and management.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither oppose nor support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly support"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007633587811142206,
-      "id": "govcan_parca_2024__C8CM3",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8CM3",
-      "question_text": "If the Government of Canada were to support the following goals, which of them would you prioritize? Please select up to five .",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Limiting further climate change"
-        },
-        {
-          "code": "2",
-          "label": "Adapting to the impacts of climate change, like extreme weather"
-        },
-        {
-          "code": "3",
-          "label": "Protecting and restoring nature"
-        },
-        {
-          "code": "4",
-          "label": "Growing Canada’s economy"
-        },
-        {
-          "code": "5",
-          "label": "Reducing the cost of living"
-        },
-        {
-          "code": "6",
-          "label": "Strengthening the health care system"
-        },
-        {
-          "code": "7",
-          "label": "Creating jobs"
-        },
-        {
-          "code": "8",
-          "label": "Advancing Indigenous reconciliation"
-        },
-        {
-          "code": "9",
-          "label": "Fighting COVID-19"
-        },
-        {
-          "code": "10",
-          "label": "Reducing taxes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007575757801532745,
-      "id": "govcan_parca_2024__C8_O",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_O",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Strengthening partnerships with First Nations, Inuit, and Metis to protect nature and respect their traditional knowledge.",
-      "var_type": "open",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007518797181546688,
-      "id": "govcan_parca_2024__C8_Y",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_Y",
-      "question_text": "How much do you support or oppose the following environmental policies ? - Funding the development of technologies to ‘engineer’ the Earth’s climate as a last-resort option to limit further climate ch",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "99",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007462686393409967,
-      "id": "govcan_parca_2024__C8_V2B_K_V2",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C8_V2B_K_V2",
-      "question_text": "How much do you support or oppose the following environmental policies? - Investing in upgrades that make the electrical grid more resistant to extreme weather and events (e.g., flooding, forest fire",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "9997",
-          "label": "I’m not familiar with this kind of policy"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007407407276332378,
-      "id": "govcan_habit_2024__SOCSUP_ACCESSIBLEC2",
-      "survey_id": "govcan_habit_2024",
-      "survey_year": 2024,
-      "pollster": "Health Canada / PHAC",
-      "language": "en",
-      "survey_name": "HABIT Phase II",
-      "n_respondents": 6106,
-      "tags": [],
-      "variable": "SOCSUP_ACCESSIBLEC2",
-      "question_text": "Courts of Justice (i.e. municipal, provincial, or federal) - Are any of the following types of supports, services, or amenities available in your local area?",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007352941203862429,
-      "id": "govcan_06822_wave3_2024__POLGOVERN3",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLGOVERN3",
-      "question_text": "Having a representative democracy where citizens vote to elect their representatives that make decisions on their behalf.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "representative democracy",
-        "governance",
-        "voting"
-      ],
-      "themes": [
-        "democracy"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Very bad"
-        },
-        {
-          "code": "2",
-          "label": "Bad"
-        },
-        {
-          "code": "3",
-          "label": "Good"
-        },
-        {
-          "code": "4",
-          "label": "Very good"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007299270015209913,
-      "id": "govcan_06822_wave2_2024__DIGICHARTER_WITHDRAW",
-      "survey_id": "govcan_06822_wave2_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "DIGICHARTER_WITHDRAW",
-      "question_text": "Stop collecting and permanently delete all of my personal information if I no longer want them to have it.",
-      "var_type": "scale",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "digital charter",
-        "privacy",
-        "data protection",
-        "right to be forgotten"
-      ],
-      "themes": [
-        "governance",
-        "digital life"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither agree nor disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007246376946568489,
-      "id": "govcan_parca_2024__J3B_5",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_5",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Planting tree species that grow faster.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007194244768470526,
-      "id": "govcan_parca_2024__J3B_2",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_2",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Reducing the forest area that may be harvested (i.e., logged) each year.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.0071428571827709675,
-      "id": "govcan_parca_2024__J3B_3",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_3",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Harvesting (i.e., logging) forests damaged by insects and wildfire first, before harvesting healthy forests, even if this mea",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007092198356986046,
-      "id": "govcan_parca_2024__J3B_9",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_9",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Planting trees in areas recently affected by insects and wildfires.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.007042253389954567,
-      "id": "govcan_parca_2024__J3B_6",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_6",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Applying fertilizer to help trees grow faster.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.00699300691485405,
-      "id": "govcan_06822_wave2_2024__DIGICHARTER_ALGO",
-      "survey_id": "govcan_06822_wave2_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "DIGICHARTER_ALGO",
-      "question_text": "Disclose why each post and advertisement was recommended to me.",
-      "var_type": "scale",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "digital charter",
-        "algorithms",
-        "transparency",
-        "social media"
-      ],
-      "themes": [
-        "governance",
-        "digital life"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither agree nor disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.0069444444961845875,
-      "id": "govcan_06822_wave2_2024__DIGICHARTER_MINORS",
-      "survey_id": "govcan_06822_wave2_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "DIGICHARTER_MINORS",
-      "question_text": "Limit how much information they are able to collect about minors (i.e., younger than 18 years old).",
-      "var_type": "scale",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "digital charter",
-        "privacy",
-        "minors",
-        "data protection"
-      ],
-      "themes": [
-        "governance",
-        "digital life"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither agree nor disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.006896551698446274,
-      "id": "govcan_parca_2024__J3B_7",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_7",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Using harvested (i.e., logged) trees for wood products that will last longer (like lumber and wood panels for use in construc",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.006849315017461777,
-      "id": "govcan_parca_2024__J3B_8",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "J3B_8",
-      "question_text": "Forest scientists have identified each of the following forest management strategies as potentially helping to limit further cli - Preventing tree harvesting (i.e., logging) in old-growth forests.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly Oppose"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat Oppose"
-        },
-        {
-          "code": "3",
-          "label": "Neither Oppose nor Support"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat Support"
-        },
-        {
-          "code": "5",
-          "label": "Strongly Support"
-        },
-        {
-          "code": "98",
-          "label": "Don’t know"
-        },
-        {
-          "code": "9999",
-          "label": "Prefer not to say"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.006802720949053764,
-      "id": "govcan_06822_wave1_2024__POLICY_SOCMED_REGULATE",
-      "survey_id": "govcan_06822_wave1_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 1, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLICY_SOCMED_REGULATE",
-      "question_text": "Government should regulate social media platforms more than they are regulated now.",
-      "var_type": "scale",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "médias-sociaux",
-        "régulation",
-        "politique-publique"
-      ],
-      "themes": [
-        "technologie",
-        "démocratie"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither agree nor disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.006756756920367479,
-      "id": "govcan_06822_wave3_2024__POLGOVERN2",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLGOVERN2",
-      "question_text": "Having experts, not government, make decisions according to what they think is best for the country.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "technocracy",
-        "governance",
-        "experts"
-      ],
-      "themes": [
-        "democracy"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Very bad"
-        },
-        {
-          "code": "2",
-          "label": "Bad"
-        },
-        {
-          "code": "3",
-          "label": "Good"
-        },
-        {
-          "code": "4",
-          "label": "Very good"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.00671140942722559,
-      "id": "govcan_06822_wave2_2024__DIGICHARTER_DISCLOSE",
-      "survey_id": "govcan_06822_wave2_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 2, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "DIGICHARTER_DISCLOSE",
-      "question_text": "Openly and clearly disclose what personal data they are tracking.",
-      "var_type": "scale",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "digital charter",
-        "privacy",
-        "data protection",
-        "transparency"
-      ],
-      "themes": [
-        "governance",
-        "digital life"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Strongly disagree"
-        },
-        {
-          "code": "2",
-          "label": "Somewhat disagree"
-        },
-        {
-          "code": "3",
-          "label": "Neither agree nor disagree"
-        },
-        {
-          "code": "4",
-          "label": "Somewhat agree"
-        },
-        {
-          "code": "5",
-          "label": "Strongly agree"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.006666666828095913,
-      "id": "govcan_06822_wave3_2024__POLGOVERN1",
-      "survey_id": "govcan_06822_wave3_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Continuous Survey of Canadians (Wave 3, 2024)",
-      "n_respondents": 3375,
-      "tags": [],
-      "variable": "POLGOVERN1",
-      "question_text": "Having a strong leader who does not have to bother with parliament and elections.",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [
-        "authoritarianism",
-        "governance",
-        "leadership"
-      ],
-      "themes": [
-        "democracy"
-      ],
-      "response_options": [
-        {
-          "code": "1",
-          "label": "Very bad"
-        },
-        {
-          "code": "2",
-          "label": "Bad"
-        },
-        {
-          "code": "3",
-          "label": "Good"
-        },
-        {
-          "code": "4",
-          "label": "Very good"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.0066225165501236916,
-      "id": "govcan_parca_2024__C4_3",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "C4_3",
-      "question_text": "In the LAST TWO MONTHS , have you done any of the following things? Select all that apply 0002 = Looked for support from a friend, family member, or trained professional for help in dealing with negative emotions related t",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
-        }
-      ]
-    },
-    {
-      "@search.score": 0.00657894741743803,
-      "id": "govcan_parca_2024__I9_7",
-      "survey_id": "govcan_parca_2024",
-      "survey_year": 2024,
-      "pollster": "Government of Canada",
-      "language": "en",
-      "survey_name": "Public Awareness, Readiness and Capacity Survey (PARCA) - Phase 2",
-      "n_respondents": 13771,
-      "tags": [
-        "environment",
-        "climate change",
-        "canada",
-        "awareness"
-      ],
-      "variable": "I9_7",
-      "question_text": "Which of the following items limit your ability to transition your home to be net-zero (e.g., by making energy-efficient upgrades to your home)? Please select the top 3 reasons that apply most to you 07 = My energy provider has not provided enough support",
-      "var_type": "single",
-      "is_sociodemo": false,
-      "sociodemo_type": null,
-      "concepts": [],
-      "themes": [],
-      "response_options": [
-        {
-          "code": "0",
-          "label": "No"
-        },
-        {
-          "code": "1",
-          "label": "Yes"
         }
       ]
     },
