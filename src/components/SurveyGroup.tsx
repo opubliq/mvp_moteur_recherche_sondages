@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SearchResult } from "../types";
 import QuestionCard from "./QuestionCard";
+import { scoreColorVars } from "../lib/scoreColor";
 
 export interface SurveyGroupData {
   survey_id: string;
@@ -26,6 +27,7 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
     .map((q) => q.score_pertinence)
     .filter((s): s is number => s !== undefined);
   const bestScore = scores.length > 0 ? Math.max(...scores) : null;
+  const bestScoreVars = bestScore !== null ? scoreColorVars(bestScore) : undefined;
 
   return (
     <section className="collapse collapse-arrow rounded-2xl border border-base-content/10 bg-base-100 shadow-sm">
@@ -44,7 +46,11 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
 
         <div className="ml-auto mr-2 flex items-center gap-2">
           {bestScore !== null && (
-            <span className="op-badge op-badge-plain tabular-nums" title="Meilleur score de pertinence du sondage (0-100)">
+            <span
+              className="op-badge op-badge-score tabular-nums"
+              style={bestScoreVars}
+              title="Meilleur score de pertinence du sondage (0-100, échelle absolue)"
+            >
               {bestScore}
             </span>
           )}

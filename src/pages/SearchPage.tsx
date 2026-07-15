@@ -6,6 +6,7 @@ import Facets from "../components/Facets";
 import SurveyGroup, { type SurveyGroupData } from "../components/SurveyGroup";
 import RelevanceTimeline from "../components/RelevanceTimeline";
 import type { SearchResult } from "../types";
+import { scoreColorVars } from "../lib/scoreColor";
 
 /**
  * Regroupe les résultats par sondage, en conservant l'ordre de pertinence.
@@ -112,8 +113,11 @@ export default function SearchPage() {
                 {groups.length > 1 ? "s" : ""}
               </p>
               {scoreRange && (
-                <p className="text-sm tabular-nums text-base-content/60">
-                  Score de pertinence&nbsp;: {scoreRange.max} → {scoreRange.min}
+                <p className="flex items-center gap-1.5 text-sm tabular-nums text-base-content/60">
+                  Score de pertinence&nbsp;:
+                  <span className="op-score-dot" style={scoreColorVars(scoreRange.max)} />
+                  {scoreRange.max} → {scoreRange.min}
+                  <span className="op-score-dot" style={scoreColorVars(scoreRange.min)} />
                 </p>
               )}
             </div>

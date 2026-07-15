@@ -25,8 +25,9 @@
   /* Teal clair du simulator, réservé aux glows / fonds subtils */
   --op-accent-soft: #56d1d7;
 
-  /* Couleurs de pertinence (docs/ui_voulu.md) : Exact vert, Partiel jaune, Faible orange */
-  --op-exact: #15a34a;
-  --op-partiel: #d69e00;
-  --op-faible: #f97316;
+  /* Les tokens de palier (--op-exact vert / --op-partiel jaune / --op-faible
+     orange) sont SUPPRIMÉS : les paliers Exact/Partiel/Faible n'existent plus
+     (bead 9gf.12 — aucun seuil ne les séparait proprement). La pertinence est
+     un score continu 0-100 dont la couleur est calculée par
+     src/lib/scoreColor.ts (gradient divergent coral -> gris clair -> sarcelle). */
 }

@@ -17,7 +17,7 @@ export default function AgentPage() {
           J'ai trouvé <b>3 questions comparables</b> (2022, 2023, 2024). Chez les 55&nbsp;ans et plus, la satisfaction
           envers la qualité de l'eau passe de 61&nbsp;% à 75&nbsp;%…
           <div className="mt-2 flex gap-2">
-            <span className="op-badge op-badge-exact">3 questions</span>
+            <span className="op-badge op-badge-plain">3 questions</span>
             <span className="op-badge op-badge-plain">rapport md</span>
           </div>
         </div>

@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import { BarChart3, ArrowRight } from "lucide-react";
 import type { SearchResult } from "../types";
 import { useCart, toCartItem } from "../context/CartContext";
+import { scoreColorVars } from "../lib/scoreColor";
 
 /** Une question = une rangée pleine largeur, cliquable → dashboard de données. */
 export default function QuestionCard({ q }: { q: SearchResult }) {
   const { has, toggle } = useCart();
   const inCart = has(q.survey_id, q.variable);
 
-  // Score Cohere 0-100, absolu et continu (bead 9gf.12). Affichage volontairement
-  // brut : le gradient coral→sarcelle et le design final sont la bead 9gf.15.
+  // Score Cohere 0-100, absolu et continu (bead 9gf.12). Couleur = gradient
+  // divergent coral->sarcelle, fonction continue de `score` (bead 9gf.15).
   const score = q.score_pertinence;
+  const scoreVars = score !== undefined ? scoreColorVars(score) : undefined;
 
   return (
     <Link to={`/sondage/${q.survey_id}/q/${encodeURIComponent(q.variable)}`} className="op-qrow">
@@ -31,7 +33,11 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
           <h4 className="font-medium leading-snug">{q.question_text}</h4>
           <div className="flex shrink-0 items-center gap-2">
             {score !== undefined && (
-              <span className="op-badge op-badge-plain tabular-nums" title="Score de pertinence (0-100)">
+              <span
+                className="op-badge op-badge-score tabular-nums"
+                style={scoreVars}
+                title="Score de pertinence (0-100, échelle absolue)"
+              >
                 {score}
               </span>
             )}
@@ -40,7 +46,7 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
         </div>
 
         {score !== undefined && (
-          <progress className="op-bar w-full" value={score} max="100"></progress>
+          <progress className="op-bar op-bar-score w-full" style={scoreVars} value={score} max="100"></progress>
         )}
 
         {q.response_options.length > 0 && (

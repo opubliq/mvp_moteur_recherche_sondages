@@ -105,23 +105,34 @@
   border: 1px solid transparent;
   white-space: nowrap;
 }
-.op-badge-exact {
-  color: color-mix(in oklch, var(--op-exact) 88%, black 12%);
-  background: color-mix(in oklch, var(--op-exact) 14%, white);
-  border-color: color-mix(in oklch, var(--op-exact) 35%, transparent);
+/* Score de pertinence continu (bead 9gf.15) : gradient divergent coral->sarcelle
+   calculé en JS (src/lib/scoreColor.ts) et passé via la variable --score-c sur
+   l'élément. Pas de palier ici : une seule règle CSS pour tout le spectre 0-100.
+
+   Les CHIFFRES restent en encre normale, jamais dans la couleur du score : le
+   score dérivé du gradient passe par le gris central, donc des chiffres teintés
+   deviennent illisibles (mesuré : 2.0-2.8:1 sur toute la plage réelle 39-59).
+   C'est la pastille + la barre qui portent la couleur, le nombre reste lisible. */
+.op-badge-score {
+  color: color-mix(in oklch, var(--color-base-content) 88%, transparent);
+  background: color-mix(in oklch, var(--score-c) 20%, white);
+  border-color: color-mix(in oklch, var(--score-c) 60%, transparent);
 }
-.op-badge-partiel {
-  color: color-mix(in oklch, var(--op-partiel) 82%, black 18%);
-  background: color-mix(in oklch, var(--op-partiel) 16%, white);
-  border-color: color-mix(in oklch, var(--op-partiel) 38%, transparent);
-}
-.op-badge-faible {
-  color: color-mix(in oklch, var(--op-faible) 85%, black 12%);
-  background: color-mix(in oklch, var(--op-faible) 14%, white);
-  border-color: color-mix(in oklch, var(--op-faible) 35%, transparent);
+/* La pastille pleine : c'est elle qui porte la couleur à pleine force.
+   L'anneau (25% noir) garantit >= 3:1 sur blanc sur tout le spectre : au
+   milieu du gradient le remplissage est pâle par construction, l'anneau
+   maintient la silhouette lisible. */
+.op-badge-score::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--score-c);
+  border: 1px solid color-mix(in oklch, var(--score-c) 75%, black 25%);
+  flex: none;
 }
 
-/* Barre de pertinence : piste grise + remplissage coloré selon le niveau */
+/* Barre de pertinence : piste grise + remplissage pris sur le gradient continu */
 .op-bar {
   appearance: none;
   -webkit-appearance: none;
@@ -140,12 +151,18 @@
 .op-bar::-moz-progress-bar {
   border-radius: 999px;
 }
-.op-bar-exact::-webkit-progress-value { background: var(--op-exact); }
-.op-bar-exact::-moz-progress-bar { background: var(--op-exact); }
-.op-bar-partiel::-webkit-progress-value { background: var(--op-partiel); }
-.op-bar-partiel::-moz-progress-bar { background: var(--op-partiel); }
-.op-bar-faible::-webkit-progress-value { background: var(--op-faible); }
-.op-bar-faible::-moz-progress-bar { background: var(--op-faible); }
+.op-bar-score::-webkit-progress-value { background: var(--score-c); }
+.op-bar-score::-moz-progress-bar { background: var(--score-c); }
+
+/* Pastille de couleur seule (résumé d'étendue de score, en-tête de liste). */
+.op-score-dot {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--score-c);
+  border: 1px solid color-mix(in oklch, var(--score-c) 75%, black 25%);
+}
 
 /* Badge neutre (variable, métadonnées) */
 .op-badge-plain {
