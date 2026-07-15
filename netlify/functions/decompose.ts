@@ -7,17 +7,18 @@
  * POST { query: string }
  *
  * Flux :
- *   1. Appel Azure OpenAI (GPT-4o) avec un prompt système structuré.
+ *   1. Appel Azure AI Foundry (Mistral-Large-3, temperature 0) avec un prompt
+ *      système structuré.
  *   2. Normalisation des poids (somme = 1.0).
  *   3. Nettoyage des doublons (syns/qualifiers).
  *
- * La logique de décomposition (prompt, call AOAI, normalisation) vit dans le
+ * La logique de décomposition (prompt, call Foundry, normalisation) vit dans le
  * module partagé `src/logic/decompose.ts` — réutilisé tel quel par le harness
  * d'éval offline pour garantir une expansion prod-fidèle. Cette fonction ne fait
  * qu'encapsuler l'HTTP (CORS, validation du body, gestion d'erreurs).
  *
  * Vars d'env requises :
- *   AOAI_ENDPOINT, AOAI_KEY, AOAI_CHAT_DEPLOYMENT
+ *   FOUNDRY_CHAT_ENDPOINT, FOUNDRY_CHAT_KEY, FOUNDRY_CHAT_DEPLOYMENT
  */
 
 import type { Handler } from "@netlify/functions";
@@ -61,7 +62,7 @@ export const handler: Handler = async (event) => {
   }
 
   // Vérification des vars d'env
-  const requiredEnv = ["AOAI_ENDPOINT", "AOAI_KEY", "AOAI_CHAT_DEPLOYMENT"] as const;
+  const requiredEnv = ["FOUNDRY_CHAT_ENDPOINT", "FOUNDRY_CHAT_KEY", "FOUNDRY_CHAT_DEPLOYMENT"] as const;
   for (const key of requiredEnv) {
     if (!process.env[key]) {
       console.error(`[decompose] Missing env var: ${key}`);
@@ -96,9 +97,9 @@ export const handler: Handler = async (event) => {
 
   // Décomposition via le module partagé (prompt + call AOAI + normalisation)
   const env: DecomposeEnv = {
-    AOAI_ENDPOINT: process.env.AOAI_ENDPOINT ?? "",
-    AOAI_KEY: process.env.AOAI_KEY ?? "",
-    AOAI_CHAT_DEPLOYMENT: process.env.AOAI_CHAT_DEPLOYMENT ?? "",
+    FOUNDRY_CHAT_ENDPOINT: process.env.FOUNDRY_CHAT_ENDPOINT ?? "",
+    FOUNDRY_CHAT_KEY: process.env.FOUNDRY_CHAT_KEY ?? "",
+    FOUNDRY_CHAT_DEPLOYMENT: process.env.FOUNDRY_CHAT_DEPLOYMENT ?? "",
   };
 
   try {

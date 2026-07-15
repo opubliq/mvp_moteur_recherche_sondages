@@ -3,19 +3,31 @@
  *
  * Extrait la logique « décomposition » de la Netlify Function `/decompose` pour
  * la réutiliser telle quelle dans le harness d'évaluation offline, sans
- * dupliquer le prompt système ni les paramètres du call Azure OpenAI (même
- * patron que `retrieve.ts` / `RetrieveEnv`).
+ * dupliquer le prompt système ni les paramètres du call.
  *
  * `decomposeQuery()` transforme une requête utilisateur brute en concepts
  * pondérés (action + objet, objet + public cible, ou concept unique) pour
- * enrichir la recherche. Le comportement est STRICTEMENT identique à la prod :
- *   - même `SYSTEM_PROMPT`
- *   - même endpoint Chat Completions (api-version 2024-02-01)
- *   - `reasoning_effort: "minimal"` (gpt-5-mini est un modèle reasoning)
+ * enrichir la recherche.
+ *
+ * MODÈLE : Mistral-Large-3 (Azure AI Foundry, route Chat Completions
+ * compatible OpenAI), PAS gpt-5-mini. gpt-5-mini est un modèle *reasoning*
+ * bloqué à `temperature: 1` (400 sur `temperature:0`, 400 sur `top_p`, `seed`
+ * best-effort seulement) : mesuré 3 décompositions différentes sur 5 appels
+ * identiques ("satisfaction envers la qualité de l'eau"), ce qui rend le pool
+ * de candidats non-déterministe (même utilisateur, même requête, résultats
+ * différents). Mistral-Large-3 accepte `temperature: 0` et est stable 5/5 sur
+ * les concepts (mesuré) — voir vérifications dans le rapport de la tâche qui a
+ * introduit ce changement. `rerank_query` peut encore varier légèrement (MoE,
+ * pas de déterminisme total) : acceptable, le pool ne bouge plus.
+ *
+ * Comportement identique à la prod :
+ *   - même `SYSTEM_PROMPT` (NE PAS y toucher sans re-mesurer — réglé par
+ *     ailleurs pour la reformulation de query et la règle "un seul concept
+ *     intention de vote")
  *   - `response_format: { type: "json_object" }`
  *   - même normalisation des concepts (dédoublonnage + somme des poids = 1)
  *
- * Les clés/endpoints Azure sont injectés via le paramètre `env` (jamais lus
+ * Les clés/endpoints Foundry sont injectés via le paramètre `env` (jamais lus
  * globalement) pour que le harness offline puisse les fournir librement.
  */
 
@@ -25,7 +37,7 @@ import type { Concept } from "../types";
 // Constantes
 // ---------------------------------------------------------------------------
 
-const AOAI_API_VERSION = "2024-02-01"; // Version pour Chat Completion
+const FOUNDRY_API_VERSION = "2024-05-01-preview"; // Route Chat Completions Foundry (confirmée compatible OpenAI)
 
 export const SYSTEM_PROMPT = `Tu élargis une requête de recherche dans des questions de sondages citoyens québécois. DÉCOMPOSE la requête en ses CONCEPTS distincts (typiquement une action + un objet, ou un objet + un public cible ; parfois un seul concept).
 
@@ -71,11 +83,11 @@ Réponds UNIQUEMENT en JSON : {"concepts":[{"orig":"...","syns":["...","..."],"q
 // Types
 // ---------------------------------------------------------------------------
 
-/** Endpoints + clés Azure OpenAI requis par la décomposition, injectés explicitement. */
+/** Endpoint + clé + déploiement Azure AI Foundry (Mistral-Large-3) requis par la décomposition, injectés explicitement. */
 export interface DecomposeEnv {
-  AOAI_ENDPOINT: string;
-  AOAI_KEY: string;
-  AOAI_CHAT_DEPLOYMENT: string;
+  FOUNDRY_CHAT_ENDPOINT: string;
+  FOUNDRY_CHAT_KEY: string;
+  FOUNDRY_CHAT_DEPLOYMENT: string;
 }
 
 interface DecomposeResponse {
@@ -97,7 +109,7 @@ export interface DecomposeResult {
   rerankQuery: string;
 }
 
-interface AoaiChatResponse {
+interface FoundryChatResponse {
   choices: Array<{
     message: {
       content: string;
@@ -147,51 +159,53 @@ export function normalizeConcepts(concepts: Concept[]): Concept[] {
 // ---------------------------------------------------------------------------
 
 /**
- * Décompose une requête utilisateur brute en concepts pondérés via Azure OpenAI.
+ * Décompose une requête utilisateur brute en concepts pondérés via Mistral-Large-3
+ * (Azure AI Foundry, route Chat Completions compatible OpenAI).
  *
- * Comportement STRICTEMENT identique à la prod (`netlify/functions/decompose.ts`) :
- * même prompt, `reasoning_effort: "minimal"`, `response_format: json_object`,
- * puis normalisation (dédoublonnage + somme des poids = 1).
+ * Même prompt que la prod, `temperature: 0` (pool de candidats déterministe —
+ * voir note en tête de fichier), `response_format: json_object`, puis
+ * normalisation (dédoublonnage + somme des poids = 1).
  *
  * @param query Requête utilisateur brute (sera trim()).
- * @param env   Endpoints/clé + deployment chat Azure OpenAI injectés.
+ * @param env   Endpoint/clé + deployment chat Foundry injectés.
  * @returns     Concepts normalisés + requête reformulée pour le reranker.
- * @throws {Error} Si l'appel AOAI échoue ou renvoie un contenu vide.
+ * @throws {Error} Si l'appel Foundry échoue ou renvoie un contenu vide.
  */
 export async function decomposeQuery(query: string, env: DecomposeEnv): Promise<DecomposeResult> {
-  const endpoint = (env.AOAI_ENDPOINT ?? "").replace(/\/$/, "");
-  const deployment = env.AOAI_CHAT_DEPLOYMENT ?? "";
-  const key = env.AOAI_KEY ?? "";
-  const url = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=${AOAI_API_VERSION}`;
+  const endpoint = (env.FOUNDRY_CHAT_ENDPOINT ?? "").replace(/\/$/, "");
+  const model = env.FOUNDRY_CHAT_DEPLOYMENT ?? "";
+  const key = env.FOUNDRY_CHAT_KEY ?? "";
+  const url = `${endpoint}/models/chat/completions?api-version=${FOUNDRY_API_VERSION}`;
 
   const res = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "api-key": key,
+      Authorization: `Bearer ${key}`,
     },
     body: JSON.stringify({
+      model,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
         { role: "user", content: query.trim() },
       ],
-      // gpt-5-mini est un modèle reasoning : temperature doit rester à 1 (défaut),
-      // reasoning_effort "minimal" garde la latence basse pour le hot path.
-      reasoning_effort: "minimal",
+      // Mistral-Large-3 n'est PAS un modèle reasoning : temperature: 0 est accepté
+      // et mesuré stable 5/5 sur les concepts (contrairement à gpt-5-mini).
+      temperature: 0,
       response_format: { type: "json_object" },
     }),
   });
 
   if (!res.ok) {
     const errBody = await res.text();
-    throw new Error(`AOAI chat error ${res.status}: ${errBody}`);
+    throw new Error(`Foundry chat error ${res.status}: ${errBody}`);
   }
 
-  const json = (await res.json()) as AoaiChatResponse;
+  const json = (await res.json()) as FoundryChatResponse;
   const content = json.choices[0]?.message?.content;
 
   if (!content) {
-    throw new Error("Empty response from AOAI");
+    throw new Error("Empty response from Foundry chat");
   }
 
   const parsed = JSON.parse(content) as DecomposeResponse;
