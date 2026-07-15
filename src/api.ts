@@ -38,8 +38,14 @@ export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; coun
 }
 
 /** Appelle la Netlify Function `/decompose`. */
-export async function decompose(query: string): Promise<Concept[]> {
-  if (USE_MOCK) return [];
+export interface DecomposeResponse {
+  concepts: Concept[];
+  /** Reformulation pour le reranker ; vide = retomber sur la requête brute. */
+  rerankQuery: string;
+}
+
+export async function decompose(query: string): Promise<DecomposeResponse> {
+  if (USE_MOCK) return { concepts: [], rerankQuery: "" };
 
   const res = await fetch("/decompose", {
     method: "POST",
@@ -53,7 +59,7 @@ export async function decompose(query: string): Promise<Concept[]> {
   }
 
   const data = await res.json();
-  return data.concepts;
+  return { concepts: data.concepts, rerankQuery: data.rerank_query ?? "" };
 }
 
 /** Appelle la Netlify Function `/search`. */
@@ -62,7 +68,8 @@ export async function search(
   filters: SearchFilters,
   top = 30,
   concepts?: Concept[],
-  rerank = false
+  rerank = false,
+  rerankQuery?: string,
 ): Promise<SearchResponse> {
   if (USE_MOCK) {
     await new Promise((r) => setTimeout(r, 300));
@@ -72,7 +79,7 @@ export async function search(
   const res = await fetch("/search", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query, filters, top, concepts, rerank }),
+    body: JSON.stringify({ query, filters, top, concepts, rerank, rerank_query: rerankQuery }),
   });
 
   if (!res.ok) {

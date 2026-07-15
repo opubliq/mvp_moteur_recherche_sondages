@@ -45,6 +45,11 @@ interface SearchBody {
   filters?: SearchFilters;
   top?: number;
   rerank?: boolean;
+  /**
+   * Requête reformulée par `/decompose`, destinée au reranker Cohere. Optionnel :
+   * si absente ou vide, on retombe sur la requête brute.
+   */
+  rerank_query?: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -170,7 +175,7 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  const { query, concepts, filters, top = 10, rerank = false } = body;
+  const { query, concepts, filters, top = 10, rerank = false, rerank_query } = body;
 
   if (!query || typeof query !== "string" || !query.trim()) {
     return {
@@ -181,6 +186,16 @@ export const handler: Handler = async (event) => {
   }
 
   const trimmedQuery = query.trim();
+
+  // Requête envoyée à Cohere. `/decompose` produit une reformulation destinée au
+  // reranker (énoncé de recherche + levée d'ambiguïté) ; on retombe sur la requête
+  // brute si elle manque, pour qu'un appel direct à /search reste valide.
+  //
+  // Ça compte : sur « intention de vote », la requête brute fait classer
+  // « Intention d'ALLER voter » (participation) devant « Intention de vote »
+  // (choix de parti) — deux mots quasi identiques, deux questions différentes.
+  // La reformulation ('...pour un parti politique') corrige le classement.
+  const rerankQuery = (rerank_query ?? "").trim() || trimmedQuery;
 
   const env: RetrieveEnv = {
     SEARCH_ENDPOINT: process.env.SEARCH_ENDPOINT!,
@@ -234,7 +249,7 @@ export const handler: Handler = async (event) => {
   // DE TRI PRIMAIRE des résultats. La query envoyée à Cohere est la query
   // utilisateur BRUTE (pas les concepts).
   try {
-    results = await rerankCandidates(trimmedQuery, results, rerankEnv);
+    results = await rerankCandidates(rerankQuery, results, rerankEnv);
   } catch (err) {
     if (err instanceof RerankError) {
       console.error("[search] Cohere rerank failed:", err.message);

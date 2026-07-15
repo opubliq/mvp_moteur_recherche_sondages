@@ -27,6 +27,9 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const [facets, setFacets] = useState<SearchFacets | null>(null);
   const [globalFacets, setGlobalFacets] = useState<SearchFacets | null>(null);
   const [concepts, setConcepts] = useState<Concept[]>([]);
+  // Reformulation produite par /decompose pour le reranker (voir src/logic/decompose.ts).
+  // Conservée pour être renvoyée telle quelle lors des re-requêtes d'affinage.
+  const [rerankQuery, setRerankQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [decomposing, setDecomposing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -71,11 +74,11 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     void loadGlobal();
   }, []);
 
-  async function runSearch(q: string, f: SearchFilters, c?: Concept[]) {
+  async function runSearch(q: string, f: SearchFilters, c?: Concept[], rq?: string) {
     setLoading(true);
     setError(null);
     try {
-      const res = await search(q, f, 30, c);
+      const res = await search(q, f, 30, c, false, rq);
       setResults(res.results);
       if (res.facets) setFacets(res.facets);
       setHasSearched(true);
@@ -101,14 +104,18 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     // pendant la re-requête y est le bon comportement.
     setResults([]);
     setConcepts([]);
+    setRerankQuery("");
     setFacets(null);
     setDecomposing(true);
     setError(null);
     try {
-      const nextConcepts = await decompose(q);
+      const { concepts: nextConcepts, rerankQuery: nextRerankQuery } = await decompose(q);
       setConcepts(nextConcepts);
-      await runSearch(q, {}, nextConcepts);
+      setRerankQuery(nextRerankQuery);
+      await runSearch(q, {}, nextConcepts, nextRerankQuery);
     } catch (err) {
+      // Décomposition échouée → recherche sans concepts NI reformulation : le
+      // serveur retombera sur la requête brute pour le rerank.
       console.error("Decomposition failed", err);
       await runSearch(q, {});
     } finally {
@@ -117,9 +124,11 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   }
 
   // Changement de facette serveur (année / sondeur / langue) → re-requête.
+  // On repasse la reformulation : affiner des facettes ne change pas ce que
+  // l'utilisateur cherche, le rerank doit rester identique.
   function handleFilterChange(next: SearchFilters) {
     setFilters(next);
-    if (query) void runSearch(query, next, concepts);
+    if (query) void runSearch(query, next, concepts, rerankQuery);
   }
 
   // Changement des concepts (poids) → re-requête serveur.
@@ -134,7 +143,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   // son ordre. La seule réponse honnête est de relancer la recherche.
   function handleConceptsChange(nextConcepts: Concept[]) {
     setConcepts(nextConcepts);
-    if (query) void runSearch(query, filters, nextConcepts);
+    if (query) void runSearch(query, filters, nextConcepts, rerankQuery);
   }
 
   const value = useMemo<SearchContextValue>(

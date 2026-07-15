@@ -102,13 +102,16 @@ export const handler: Handler = async (event) => {
   };
 
   try {
-    const normalized = await decomposeQuery(query, env);
+    const { concepts, rerankQuery } = await decomposeQuery(query, env);
 
     return {
       statusCode: 200,
       headers: CORS_HEADERS,
       body: JSON.stringify({
-        concepts: normalized,
+        concepts,
+        // Reformulation destinée au reranker sémantique (voir decompose.ts).
+        // Le client la renvoie telle quelle à /search.
+        rerank_query: rerankQuery,
       }),
     };
   } catch (err) {
