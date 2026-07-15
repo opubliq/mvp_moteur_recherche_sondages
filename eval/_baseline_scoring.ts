@@ -1,4 +1,27 @@
-import type { Concept, SearchResult, Pertinence } from '../types';
+/**
+ * BASELINE GELÉE — scoring lexical par sous-chaîne (ex-`src/logic/scoring.ts`).
+ *
+ * Ce module n'est PLUS du code produit. Il a été retiré du pipeline par la bead
+ * 9gf.12 : le score de pertinence vient désormais de Cohere Rerank
+ * (`relevance_score` 0-1 → `score_pertinence` 0-100, absolu, sans palier).
+ *
+ * Il est conservé ICI, sous `eval/`, UNIQUEMENT comme implémentation de
+ * référence de la baseline mesurée sur le golden set (15 requêtes / 410 items,
+ * P@Exact 23.9 %) — pour que `eval/run.ts`, `eval/breakdown.ts` et les scripts
+ * de comparaison puissent continuer à rejouer et à chiffrer l'ancien scoring
+ * face au nouveau. Ne le réimporte JAMAIS depuis `src/` ou `netlify/`.
+ *
+ * Corps IDENTIQUE à l'original (copié tel quel depuis git) : toute modification
+ * invaliderait la comparaison avec les rapports de baseline déjà publiés.
+ *
+ * Les paliers Exact/Partiel/Faible/Hors-sujet n'existent plus dans le produit :
+ * le type `Pertinence` est donc défini localement ici, et pas dans `src/types`.
+ */
+
+import type { Concept, SearchResult } from '../src/types';
+
+/** Paliers de l'ancienne baseline. Abandonnés côté produit (gradient continu). */
+export type Pertinence = 'Exact' | 'Partiel' | 'Faible' | 'Hors-sujet';
 
 /**
  * Normalise le texte pour faciliter le matching (accents, apostrophes, casse).

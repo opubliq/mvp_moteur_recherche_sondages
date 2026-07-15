@@ -17,7 +17,6 @@
 
 import type { Handler } from "@netlify/functions";
 import type { Concept, SearchResult, SearchFilters, SearchFacets } from "../../src/types";
-import { scoreResult } from "../../src/logic/scoring";
 import { retrieve, RetrieveError } from "../../src/logic/retrieve";
 import type { RetrieveEnv, RawCandidate } from "../../src/logic/retrieve";
 import { rerankCandidates, RerankError } from "../../src/logic/rerank";
@@ -254,51 +253,34 @@ export const handler: Handler = async (event) => {
   }
 
   // -----------------------------------------------------------------------
-  // Étape 4 : Scoring local LEGACY (bead .12 le retirera)
+  // Étape 4 : Score de pertinence affichable (bead 9gf.12)
   // -----------------------------------------------------------------------
-  // Conservé UNIQUEMENT pour ne pas casser le contrat frontend (champs
-  // `pertinence` / `score_couverture` / `matched_concepts`). Il n'est plus
-  // utilisé ni pour trier ni pour filtrer : l'ordre est dicté par le
-  // `relevance_score` Cohere.
+  // Le scoring lexical par sous-chaîne est SUPPRIMÉ (baseline P@Exact 23.9 %,
+  // gelée dans `eval/_baseline_scoring.ts` à seule fin de comparaison). Le score
+  // est désormais le `relevance_score` Cohere ×100, arrondi.
   //
-  // CHOIX 9gf.11 : le filtre « Hors-sujet » par substring est DÉSACTIVÉ tant
-  // que le rerank Cohere est actif. Ce filtre substring écartait des résultats
-  // que Cohere juge pertinents (matching lexical ≠ pertinence sémantique) — le
-  // conserver saboterait le rerank. Le tri/filtrage sémantique est désormais
-  // la responsabilité de Cohere (paliers de pertinence refaits en .12).
-  if (concepts && concepts.length > 0) {
-    results = results.map((r) => {
-      const { score, pertinence, matched } = scoreResult(concepts, r);
-      return {
-        ...r,
-        score_couverture: score,
-        pertinence,
-        matched_concepts: matched,
-      };
-    });
-  }
+  // ABSOLU : aucune normalisation par requête. CONTINU : plus aucun palier
+  // Exact/Partiel/Faible — aucun seuil ne les séparait proprement sur le golden.
+  // Les résultats sortent déjà triés par `relevance_score` décroissant
+  // (`rerankCandidates`), donc l'ordre du tableau EST l'ordre de pertinence.
+  results = results.map((r) => ({
+    ...r,
+    score_pertinence: Math.round((r.relevance_score ?? 0) * 100),
+  }));
 
-  // Juge LLM optionnel (opt-in via body.rerank) — gate topique explicite,
-  // conservé tel quel. Opère désormais sur le top reranké par Cohere et
-  // préserve l'ordre Cohere parmi les survivants (pas de re-tri par palier).
+  // Juge LLM optionnel (opt-in via body.rerank) — gate topique explicite.
+  // Il ne teinte plus aucun champ de palier : il ne fait que retirer du pool
+  // les résultats jugés hors-sujet, en préservant l'ordre Cohere des survivants.
   if (concepts && concepts.length > 0 && rerank) {
     const topForJudge = results.slice(0, 15);
     const judgments = await runLLMJudge(trimmedQuery, topForJudge);
 
-    let countHorsSujet = 0;
-    results = results.map((r) => {
-      if (judgments[r.id] === "Hors-sujet") {
-        countHorsSujet++;
-        return { ...r, pertinence: "Hors-sujet" as const };
-      }
-      return r;
-    });
+    const before = results.length;
+    results = results.filter((r) => judgments[r.id] !== "Hors-sujet");
 
     console.log(
-      `[search] LLM Judge: ${countHorsSujet} results marked as Hors-sujet among top ${topForJudge.length}`,
+      `[search] LLM Judge: ${before - results.length} results filtered as Hors-sujet among top ${topForJudge.length}`,
     );
-
-    results = results.filter((r) => r.pertinence !== "Hors-sujet");
   }
 
   return {

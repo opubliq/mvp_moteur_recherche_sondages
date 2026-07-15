@@ -12,8 +12,6 @@ export interface ResponseOption {
   label: string;
 }
 
-export type Pertinence = 'Exact' | 'Partiel' | 'Faible' | 'Hors-sujet';
-
 export interface SearchResult {
   id: string;
   survey_id: string;
@@ -31,11 +29,18 @@ export interface SearchResult {
   themes: string[];
   tags: string[];
   n_respondents: number | null;
-  pertinence?: Pertinence;
-  score_couverture?: number;
-  matched_concepts?: string[];
   /** Score de pertinence sémantique Cohere Rerank (0-1), attaché par le rerank. */
   relevance_score?: number;
+  /**
+   * Score de pertinence affichable, 0-100 = `relevance_score` × 100 arrondi.
+   *
+   * ABSOLU : aucune normalisation par requête (pas de min-max, pas de rescale
+   * sur le max de la requête). Un 40 veut dire la même chose d'une requête à
+   * l'autre. Gradient CONTINU : il n'existe plus de palier Exact/Partiel/Faible
+   * — aucun seuil ne les séparait proprement (6/14 requêtes au mieux sur le
+   * golden), le chevauchement est assumé (bead 9gf.12).
+   */
+  score_pertinence?: number;
   /** Question ouverte (réponse libre) — dérivé de var_type quand présent. */
   is_open?: boolean;
 }

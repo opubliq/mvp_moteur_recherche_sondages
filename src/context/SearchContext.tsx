@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { search, decompose, fetchAllSurveys } from "../api";
-import { scoreResult } from "../logic/scoring";
 import type { Concept, SearchFilters, SearchResult, SearchFacets, FacetEntry } from "../types";
 
 interface SearchContextValue {
@@ -113,16 +112,19 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     if (query) void runSearch(query, next, concepts);
   }
 
-  // Changement local des concepts (poids) → recalcul de pertinence côté client.
+  // Changement des concepts (poids) → re-requête serveur.
+  //
+  // Avant la bead 9gf.12, ce handler recalculait la pertinence CÔTÉ CLIENT
+  // (`scoreResult`) puis re-triait localement. C'est structurellement impossible
+  // avec Cohere : le score de pertinence est produit par le reranker côté
+  // serveur, à partir du pool de candidats Azure — il n'est pas recalculable
+  // depuis les seuls résultats déjà affichés. Les concepts ne servent d'ailleurs
+  // plus au scoring du tout : ils pilotent la requête Lucene de récupération
+  // (`buildLuceneQuery`), donc en changer les poids change le POOL, pas juste
+  // son ordre. La seule réponse honnête est de relancer la recherche.
   function handleConceptsChange(nextConcepts: Concept[]) {
     setConcepts(nextConcepts);
-    const nextResults = results
-      .map((r) => {
-        const { score, pertinence, matched } = scoreResult(nextConcepts, r);
-        return { ...r, score_couverture: score, pertinence, matched_concepts: matched };
-      })
-      .sort((a, b) => (b.score_couverture || 0) - (a.score_couverture || 0));
-    setResults(nextResults);
+    if (query) void runSearch(query, filters, nextConcepts);
   }
 
   const value = useMemo<SearchContextValue>(

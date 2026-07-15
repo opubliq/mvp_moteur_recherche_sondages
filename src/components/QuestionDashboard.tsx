@@ -6,12 +6,6 @@ import type { SearchResult, SurveyParent } from "../types";
 import { useCart, toCartItem } from "../context/CartContext";
 import { mockDistribution, mockCrossTab } from "../lib/mockDist";
 
-const PERT_CLASS: Record<string, string> = {
-  Exact: "op-badge-exact",
-  Partiel: "op-badge-partiel",
-  Faible: "op-badge-faible",
-};
-
 const SOCIODEMO_FILTERS: Record<string, string[]> = {
   Âge: ["18-34", "35-54", "55+"],
   Genre: ["Femme", "Homme"],
@@ -101,9 +95,8 @@ export default function QuestionDashboard() {
           <div className="max-w-2xl">
             <div className="mb-2 flex items-center gap-2">
               <span className="op-badge op-badge-plain font-mono">{q.variable}</span>
-              {q.pertinence && PERT_CLASS[q.pertinence] && (
-                <span className={`op-badge ${PERT_CLASS[q.pertinence]}`}>{q.pertinence}</span>
-              )}
+              {/* Pas de badge de pertinence ici : cette vue vient de /survey,
+                  qui ne reranke pas — il n'y a donc aucun score Cohere à montrer. */}
               {open && <span className="op-badge op-badge-plain">question ouverte</span>}
             </div>
             <h1 className="text-xl font-semibold leading-snug">{q.question_text}</h1>

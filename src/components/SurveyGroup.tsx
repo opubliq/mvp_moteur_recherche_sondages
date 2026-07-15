@@ -20,14 +20,12 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
     group.survey_year != null ? String(group.survey_year) : null,
   ].filter(Boolean);
 
-  // Calcul des statistiques de pertinence pour ce groupe
-  const stats = group.questions.reduce(
-    (acc, q) => {
-      if (q.pertinence) acc[q.pertinence] = (acc[q.pertinence] || 0) + 1;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+  // Sans paliers (bead 9gf.12), le résumé d'un sondage n'est plus un décompte
+  // par niveau mais son meilleur score de pertinence (0-100).
+  const scores = group.questions
+    .map((q) => q.score_pertinence)
+    .filter((s): s is number => s !== undefined);
+  const bestScore = scores.length > 0 ? Math.max(...scores) : null;
 
   return (
     <section className="collapse collapse-arrow rounded-2xl border border-base-content/10 bg-base-100 shadow-sm">
@@ -45,19 +43,9 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
         )}
 
         <div className="ml-auto mr-2 flex items-center gap-2">
-          {stats["Exact"] > 0 && (
-            <span className="op-badge op-badge-exact" title="Matches Exacts">
-              {stats["Exact"]} Exact
-            </span>
-          )}
-          {stats["Partiel"] > 0 && (
-            <span className="op-badge op-badge-partiel" title="Matches Partiels">
-              {stats["Partiel"]} Partiel
-            </span>
-          )}
-          {stats["Faible"] > 0 && (
-            <span className="op-badge op-badge-faible" title="Matches Faibles">
-              {stats["Faible"]} Faible
+          {bestScore !== null && (
+            <span className="op-badge op-badge-plain tabular-nums" title="Meilleur score de pertinence du sondage (0-100)">
+              {bestScore}
             </span>
           )}
           <span className="ml-1 text-xs text-base-content/40">

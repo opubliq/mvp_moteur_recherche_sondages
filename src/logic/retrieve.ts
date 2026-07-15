@@ -6,8 +6,10 @@
  * la requête hybride).
  *
  * `retrieve()` produit les CANDIDATS BRUTS renvoyés par Azure — les documents
- * + leur `@search.score` — AVANT tout scoring local (`scoreResult`) et AVANT le
- * filtre « Hors-sujet ». Aucun palier de pertinence n'est assigné ici.
+ * + leur `@search.score` — AVANT le rerank sémantique Cohere. Aucun score de
+ * pertinence (`relevance_score` / `score_pertinence`) n'est assigné ici : c'est
+ * le rôle de `rerank.ts`. Cette séparation permet au harness offline d'appeler
+ * `retrieve()` sans jamais déclencher d'appel Cohere.
  *
  * Le flux :
  *   1. Embedding de la requête via Azure OpenAI (text-embedding-3-large, 3072 dims)
@@ -61,7 +63,7 @@ export interface RetrieveOptions {
 
 /**
  * Candidat brut renvoyé par Azure AI Search : le document + son score hybride
- * (`@search.score`), sans aucun palier de pertinence assigné.
+ * (`@search.score`), sans aucun score de pertinence sémantique assigné.
  */
 export type RawCandidate = SearchResult & { "@search.score": number };
 
