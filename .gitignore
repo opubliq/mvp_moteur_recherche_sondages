@@ -5,6 +5,8 @@
 .beads/
 AGENTS.md
 
+eval/
+
 # Secrets / env
 *.env
 aws_keys.env

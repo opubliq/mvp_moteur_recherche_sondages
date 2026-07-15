@@ -2,8 +2,8 @@
 // Non-destructive: does not modify run.ts. Emits JSON to stdout for report building.
 import * as fs from 'fs';
 import * as path from 'path';
-import { scoreResult } from '../src/logic/scoring';
-import { Concept, Pertinence } from '../src/types';
+import { scoreResult, type Pertinence } from './_baseline_scoring';
+import { Concept } from '../src/types';
 
 interface GoldenItem { survey_id: string; variable: string; grade: string; question_text: string; }
 interface GoldenQuery { id: string; query: string; relevant: GoldenItem[]; }

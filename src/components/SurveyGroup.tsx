@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import type { SearchResult } from "../types";
 import QuestionCard from "./QuestionCard";
-import { scoreColorVars } from "../lib/scoreColor";
+import ScoreMiniDist from "./ScoreMiniDist";
 
 export interface SurveyGroupData {
   survey_id: string;
@@ -21,13 +21,12 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
     group.survey_year != null ? String(group.survey_year) : null,
   ].filter(Boolean);
 
-  // Sans paliers (bead 9gf.12), le résumé d'un sondage n'est plus un décompte
-  // par niveau mais son meilleur score de pertinence (0-100).
+  // Le résumé d'un sondage est sa mini-distribution (bead 9gf.16) : elle montre
+  // déjà où se situe le meilleur score, donc le badge « meilleur score » qui
+  // vivait ici faisait doublon.
   const scores = group.questions
     .map((q) => q.score_pertinence)
     .filter((s): s is number => s !== undefined);
-  const bestScore = scores.length > 0 ? Math.max(...scores) : null;
-  const bestScoreVars = bestScore !== null ? scoreColorVars(bestScore) : undefined;
 
   return (
     <section className="collapse collapse-arrow rounded-2xl border border-base-content/10 bg-base-100 shadow-sm">
@@ -45,15 +44,7 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
         )}
 
         <div className="ml-auto mr-2 flex items-center gap-2">
-          {bestScore !== null && (
-            <span
-              className="op-badge op-badge-score tabular-nums"
-              style={bestScoreVars}
-              title="Meilleur score de pertinence du sondage (0-100, échelle absolue)"
-            >
-              {bestScore}
-            </span>
-          )}
+          <ScoreMiniDist scores={scores} />
           <span className="ml-1 text-xs text-base-content/40">
             ({group.questions.length})
           </span>

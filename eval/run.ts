@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { scoreResult } from '../src/logic/scoring';
-import { Concept, Pertinence } from '../src/types';
+import { scoreResult, type Pertinence } from './_baseline_scoring';
+import { Concept } from '../src/types';
 
 interface GoldenItem {
   survey_id: string;

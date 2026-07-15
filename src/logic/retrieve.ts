@@ -131,9 +131,27 @@ async function getEmbedding(text: string, env: RetrieveEnv): Promise<number[]> {
 /**
  * Construit la clause OData $filter.
  * Le filtre `doc_type eq 'question'` est TOUJOURS inclus en premier.
+ *
+ * Les questions SOCIODÉMO sont exclues de la recherche. Ce sont les batteries
+ * signalétiques standard (revenu, âge, scolarité, genre...) présentes dans
+ * presque tous les sondages : elles matchent fort en sémantique sur beaucoup de
+ * sujets sans jamais être ce qu'on cherche. Ex. « impôts riches » fait remonter
+ * « Quel est votre revenu annuel ? », qui parle bien de richesse mais n'est
+ * qu'un classificateur de répondant, pas une question de contenu. Les écarter
+ * au retrieval plutôt qu'au scoring évite qu'elles occupent la fenêtre de
+ * rerank au détriment de vraies questions.
+ *
+ * Elles restent accessibles par la vue détail d'un sondage (`/survey`), qui
+ * n'utilise pas cette fonction.
+ *
+ * `is_sociodemo eq null` est conservé volontairement : un document dont le
+ * drapeau manque ne doit pas disparaître silencieusement de la recherche.
  */
 function buildFilter(filters?: SearchFilters): string {
-  const clauses: string[] = ["doc_type eq 'question'"];
+  const clauses: string[] = [
+    "doc_type eq 'question'",
+    "(is_sociodemo eq false or is_sociodemo eq null)",
+  ];
 
   if (filters) {
     if (filters.year_min != null) {
