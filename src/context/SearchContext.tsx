@@ -92,6 +92,16 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   async function handleSearch(q: string) {
     setQuery(q);
     setFilters({});
+    // Purge de l'état de la recherche précédente. Sans ça, les résultats et les
+    // concepts de l'ancienne requête restent affichés pendant ~2,6 s (décompo +
+    // rerank Cohere), ce qui donne une page figée qui saute d'un coup — et pire,
+    // laisse lire des résultats qui ne correspondent plus à ce qui est tapé.
+    // On ne purge QUE dans handleSearch : un changement de facette ou de poids
+    // (runSearch direct) affine la recherche courante, garder l'affichage
+    // pendant la re-requête y est le bon comportement.
+    setResults([]);
+    setConcepts([]);
+    setFacets(null);
     setDecomposing(true);
     setError(null);
     try {

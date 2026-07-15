@@ -103,7 +103,10 @@ export default function SearchPage() {
         </div>
       )}
 
-      {hasSearched && !loading && results.length === 0 && !error && (
+      {/* `!decomposing` autant que `!loading` : la décomposition précède la
+          recherche, et l'état est déjà purgé à ce moment-là — sans ce garde,
+          « Aucun résultat » clignoterait pendant la phase de décomposition. */}
+      {hasSearched && !loading && !decomposing && results.length === 0 && !error && (
         <div className="py-20 text-center text-base-content/50">
           <p className="text-lg">Aucun résultat pour « {query} ».</p>
           <p className="mt-1 text-sm">L'index est peut-être encore vide, ou essayez d'autres termes.</p>
@@ -121,25 +124,23 @@ export default function SearchPage() {
           />
 
           <div className="min-w-0 space-y-4">
-            {/* Le décompte et le filtre partagent une rangée : le filtre est un
-                contrôle, pas le sujet de la page — il n'occupe que ~40 % de la
-                largeur et laisse les sondages respirer. */}
-            <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
-              <p className="text-sm text-base-content/60">
-                {visibleResults.length} question{visibleResults.length > 1 ? "s" : ""} · {groups.length} sondage
-                {groups.length > 1 ? "s" : ""}
-                {visibleResults.length !== results.length && (
-                  <> (sur {results.length} avant filtre)</>
-                )}
-              </p>
+            <p className="text-sm text-base-content/60">
+              {visibleResults.length} question{visibleResults.length > 1 ? "s" : ""} · {groups.length} sondage
+              {groups.length > 1 ? "s" : ""}
+              {visibleResults.length !== results.length && (
+                <> (sur {results.length} avant filtre)</>
+              )}
+            </p>
 
-              <div className="w-full min-w-0 sm:w-2/5">
-                <ScoreDistribution
-                  results={results}
-                  threshold={scoreThreshold}
-                  onThresholdChange={setScoreThreshold}
-                />
-              </div>
+            {/* Le filtre est un contrôle, pas le sujet de la page : ~40 % de la
+                largeur, aligné à gauche, pour laisser les sondages dominer.
+                Pleine largeur sous `sm`, sinon l'histogramme devient illisible. */}
+            <div className="w-full min-w-0 sm:w-2/5">
+              <ScoreDistribution
+                results={results}
+                threshold={scoreThreshold}
+                onThresholdChange={setScoreThreshold}
+              />
             </div>
 
             {groups.map((g) => (

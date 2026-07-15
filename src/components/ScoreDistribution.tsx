@@ -37,7 +37,6 @@ export default function ScoreDistribution({ results, threshold, onThresholdChang
 
   const bins = useMemo(() => buildScoreBins(scores, BIN_WIDTH), [scores]);
   const maxCount = Math.max(1, ...bins.map((b) => b.count));
-  const visibleCount = scores.filter((s) => s >= threshold).length;
 
   if (scores.length === 0) return null;
 
@@ -88,11 +87,13 @@ export default function ScoreDistribution({ results, threshold, onThresholdChang
         </div>
       </div>
 
-      <div className="shrink-0 text-xs leading-tight">
-        <div className="font-semibold tabular-nums">≥ {threshold}</div>
-        <div className="tabular-nums text-base-content/50">
-          {visibleCount}/{scores.length}
-        </div>
+      {/* Le libellé est collé au seuil pour se lire d'un trait — « Score de
+          pertinence ≥ 30 » — plutôt qu'en titre détaché : sans lui, rien ne dit
+          sur QUOI porte le filtre. Pas de décompte ici : le compteur de la page
+          affiche déjà « N questions (sur M avant filtre) ». */}
+      <div className="shrink-0 text-xs">
+        <span className="text-base-content/60">Score de pertinence</span>{" "}
+        <span className="font-semibold tabular-nums">≥ {threshold}</span>
       </div>
     </div>
   );

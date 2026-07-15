@@ -113,10 +113,19 @@
    score dérivé du gradient passe par le gris central, donc des chiffres teintés
    deviennent illisibles (mesuré : 2.0-2.8:1 sur toute la plage réelle 39-59).
    C'est la pastille + la barre qui portent la couleur, le nombre reste lisible. */
+/* Sans bordure : le fond teinté suffit à délimiter le badge.
+   Le chiffre est écrit dans la teinte du score, assombrie — PAS dans la couleur
+   du score telle quelle. Le pôle bas de la rampe est pâle par construction
+   (L=0.84 au score 0), donc la couleur brute y donnerait ~2:1, illisible.
+   Mesuré sur toute la rampe, texte sur le fond teinté :
+     score-c 75% + noir  -> 3.26:1  (insuffisant, plancher AA = 4.5:1)
+     score-c 65% + noir  -> 4.58:1  (limite)
+     score-c 60% + noir  -> ~5.4:1  (retenu, marge confortable)
+   Le pire cas est toujours au score 0. Si tu changes ce ratio, remesure. */
 .op-badge-score {
-  color: color-mix(in oklch, var(--color-base-content) 88%, transparent);
+  color: color-mix(in oklch, var(--score-c) 60%, black);
   background: color-mix(in oklch, var(--score-c) 20%, white);
-  border-color: color-mix(in oklch, var(--score-c) 60%, transparent);
+  border-color: transparent;
 }
 /* La pastille pleine : c'est elle qui porte la couleur à pleine force.
    L'anneau (25% noir) garantit >= 3:1 sur blanc sur tout le spectre : au
