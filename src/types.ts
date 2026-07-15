@@ -34,6 +34,8 @@ export interface SearchResult {
   pertinence?: Pertinence;
   score_couverture?: number;
   matched_concepts?: string[];
+  /** Score de pertinence sémantique Cohere Rerank (0-1), attaché par le rerank. */
+  relevance_score?: number;
   /** Question ouverte (réponse libre) — dérivé de var_type quand présent. */
   is_open?: boolean;
 }

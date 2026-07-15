@@ -20,6 +20,8 @@ import type { Concept, SearchResult, SearchFilters, SearchFacets } from "../../s
 import { scoreResult } from "../../src/logic/scoring";
 import { retrieve, RetrieveError } from "../../src/logic/retrieve";
 import type { RetrieveEnv, RawCandidate } from "../../src/logic/retrieve";
+import { rerankCandidates, RerankError } from "../../src/logic/rerank";
+import type { RerankEnv } from "../../src/logic/rerank";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -141,6 +143,9 @@ export const handler: Handler = async (event) => {
     "AOAI_KEY",
     "AOAI_EMBED_DEPLOYMENT",
     "AOAI_CHAT_DEPLOYMENT",
+    "COHERE_RERANK_ENDPOINT",
+    "COHERE_RERANK_DEPLOYMENT",
+    "COHERE_RERANK_KEY",
   ] as const;
 
   for (const key of requiredEnv) {
@@ -186,6 +191,12 @@ export const handler: Handler = async (event) => {
     AOAI_EMBED_DEPLOYMENT: process.env.AOAI_EMBED_DEPLOYMENT!,
   };
 
+  const rerankEnv: RerankEnv = {
+    COHERE_RERANK_ENDPOINT: process.env.COHERE_RERANK_ENDPOINT!,
+    COHERE_RERANK_DEPLOYMENT: process.env.COHERE_RERANK_DEPLOYMENT!,
+    COHERE_RERANK_KEY: process.env.COHERE_RERANK_KEY!,
+  };
+
   // -----------------------------------------------------------------------
   // Étapes 1 & 2 : Récupération hybride (via module partagé)
   // -----------------------------------------------------------------------
@@ -217,10 +228,45 @@ export const handler: Handler = async (event) => {
   }
 
   // -----------------------------------------------------------------------
-  // Étape 3 : Scoring local et tri par pertinence
+  // Étape 3 : Rerank sémantique Cohere (bead 9gf.11)
   // -----------------------------------------------------------------------
+  // Reranke la fenêtre top-150 (triée par @search.score) via Cohere Rerank et
+  // attache un `relevance_score` 0-1 à chaque candidat. C'est désormais l'ORDRE
+  // DE TRI PRIMAIRE des résultats. La query envoyée à Cohere est la query
+  // utilisateur BRUTE (pas les concepts).
+  try {
+    results = await rerankCandidates(trimmedQuery, results, rerankEnv);
+  } catch (err) {
+    if (err instanceof RerankError) {
+      console.error("[search] Cohere rerank failed:", err.message);
+      return {
+        statusCode: 502,
+        headers: CORS_HEADERS,
+        body: JSON.stringify({ error: err.message }),
+      };
+    }
+    console.error("[search] Unexpected error during rerank:", err);
+    return {
+      statusCode: 500,
+      headers: CORS_HEADERS,
+      body: JSON.stringify({ error: "Internal server error during rerank" }),
+    };
+  }
+
+  // -----------------------------------------------------------------------
+  // Étape 4 : Scoring local LEGACY (bead .12 le retirera)
+  // -----------------------------------------------------------------------
+  // Conservé UNIQUEMENT pour ne pas casser le contrat frontend (champs
+  // `pertinence` / `score_couverture` / `matched_concepts`). Il n'est plus
+  // utilisé ni pour trier ni pour filtrer : l'ordre est dicté par le
+  // `relevance_score` Cohere.
+  //
+  // CHOIX 9gf.11 : le filtre « Hors-sujet » par substring est DÉSACTIVÉ tant
+  // que le rerank Cohere est actif. Ce filtre substring écartait des résultats
+  // que Cohere juge pertinents (matching lexical ≠ pertinence sémantique) — le
+  // conserver saboterait le rerank. Le tri/filtrage sémantique est désormais
+  // la responsabilité de Cohere (paliers de pertinence refaits en .12).
   if (concepts && concepts.length > 0) {
-    // Calcul de la couverture
     results = results.map((r) => {
       const { score, pertinence, matched } = scoreResult(concepts, r);
       return {
@@ -230,55 +276,28 @@ export const handler: Handler = async (event) => {
         matched_concepts: matched,
       };
     });
+  }
 
-    // Tri : Palier de pertinence d'abord, puis score Azure
-    const pertinenceOrder: Record<string, number> = {
-      Exact: 4,
-      Partiel: 3,
-      Faible: 2,
-      "Hors-sujet": 1,
-    };
+  // Juge LLM optionnel (opt-in via body.rerank) — gate topique explicite,
+  // conservé tel quel. Opère désormais sur le top reranké par Cohere et
+  // préserve l'ordre Cohere parmi les survivants (pas de re-tri par palier).
+  if (concepts && concepts.length > 0 && rerank) {
+    const topForJudge = results.slice(0, 15);
+    const judgments = await runLLMJudge(trimmedQuery, topForJudge);
 
-    results.sort((a, b) => {
-      const orderA = pertinenceOrder[a.pertinence || "Hors-sujet"];
-      const orderB = pertinenceOrder[b.pertinence || "Hors-sujet"];
-      if (orderA !== orderB) return orderB - orderA;
-      // Départage par score Azure (@search.score)
-      return (b["@search.score"] || 0) - (a["@search.score"] || 0);
+    let countHorsSujet = 0;
+    results = results.map((r) => {
+      if (judgments[r.id] === "Hors-sujet") {
+        countHorsSujet++;
+        return { ...r, pertinence: "Hors-sujet" as const };
+      }
+      return r;
     });
 
-    // ---------------------------------------------------------------------
-    // Étape 4 : Juge LLM (Reranking final) — Optionnel
-    // ---------------------------------------------------------------------
-    if (rerank) {
-      const topForJudge = results.slice(0, 15);
-      const judgments = await runLLMJudge(trimmedQuery, topForJudge);
-      
-      let countHorsSujet = 0;
-      results = results.map((r) => {
-        if (judgments[r.id] === "Hors-sujet") {
-          countHorsSujet++;
-          return { ...r, pertinence: "Hors-sujet" as const };
-        }
-        return r;
-      });
+    console.log(
+      `[search] LLM Judge: ${countHorsSujet} results marked as Hors-sujet among top ${topForJudge.length}`,
+    );
 
-      console.log(`[search] LLM Judge: ${countHorsSujet} results marked as Hors-sujet among top ${topForJudge.length}`);
-
-      // Re-tri après jugement (pour basculer les nouveaux Hors-sujet à la fin)
-      results.sort((a, b) => {
-        const orderA = pertinenceOrder[a.pertinence || "Hors-sujet"];
-        const orderB = pertinenceOrder[b.pertinence || "Hors-sujet"];
-        if (orderA !== orderB) return orderB - orderA;
-        return (b["@search.score"] || 0) - (a["@search.score"] || 0);
-      });
-
-      // Filtre : on écarte les résultats jugés hors-sujet
-      results = results.filter((r) => r.pertinence !== "Hors-sujet");
-    }
-
-    // On garde tout ce qui est pertinent (Exact / Partiel / Faible), sans
-    // plafond de nombre : seuls les Hors-sujet sont écartés.
     results = results.filter((r) => r.pertinence !== "Hors-sujet");
   }
 

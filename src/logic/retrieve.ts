@@ -36,6 +36,10 @@ const MAX_TOP = 100;
 const CONTENT_VECTOR_WEIGHT = 1.0;
 const SURVEY_VECTOR_WEIGHT = 0.15;
 
+// Nombre de voisins kNN récupérés par vectorQuery. Bumpé de 50 à 200 pour
+// alimenter un pool profond en amont du rerank sémantique Cohere (bead 9gf.11).
+const VECTOR_K = 200;
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -253,7 +257,7 @@ export async function retrieve(
         kind: "vector",
         vector,
         fields: "content_vector",
-        k: 50,
+        k: VECTOR_K,
         exhaustive: false,
         weight: CONTENT_VECTOR_WEIGHT,
       },
@@ -261,7 +265,7 @@ export async function retrieve(
         kind: "vector",
         vector,
         fields: "survey_vector",
-        k: 50,
+        k: VECTOR_K,
         exhaustive: false,
         weight: SURVEY_VECTOR_WEIGHT,
       },
