@@ -3,11 +3,16 @@ import { BarChart3, ArrowRight } from "lucide-react";
 import type { SearchResult } from "../types";
 import { useCart, toCartItem } from "../context/CartContext";
 import { scoreColorVars } from "../lib/scoreColor";
+import { HighlightedText } from "../lib/highlight";
+import { useSearchState } from "../context/SearchContext";
 
 /** Une question = une rangée pleine largeur, cliquable → dashboard de données. */
 export default function QuestionCard({ q }: { q: SearchResult }) {
   const { has, toggle } = useCart();
   const inCart = has(q.survey_id, q.variable);
+  // Termes de la query expansion (orig/syns/qualifiers), pour surlignage lexical
+  // pur affichage (bead 9gf.19) — jamais utilisés pour trier/scorer/filtrer.
+  const { concepts } = useSearchState();
 
   // Score Cohere 0-100, absolu et continu (bead 9gf.12). Couleur = gradient
   // divergent coral->sarcelle, fonction continue de `score` (bead 9gf.15).
@@ -30,7 +35,9 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
 
       <div className="flex min-w-0 flex-1 flex-col gap-2">
         <div className="flex items-start justify-between gap-3">
-          <h4 className="font-medium leading-snug">{q.question_text}</h4>
+          <h4 className="font-medium leading-snug">
+            <HighlightedText text={q.question_text} concepts={concepts} />
+          </h4>
           <div className="flex shrink-0 items-center gap-2">
             {score !== undefined && (
               <span

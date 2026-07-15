@@ -56,6 +56,16 @@
 .op-qrow:first-child { border-top: none; }
 .op-qrow:hover { background: color-mix(in oklch, var(--color-primary) 4%, transparent); }
 
+/* Surlignage lexical des termes de la query expansion (bead 9gf.19). NEUTRE
+   à dessein : ne code aucune couleur de concept, pour ne jamais concurrencer
+   le gradient de score coral->sarcelle (op-badge-score / op-bar-score). */
+.op-highlight {
+  background: color-mix(in oklch, var(--color-base-content) 16%, transparent);
+  color: inherit;
+  border-radius: 0.2rem;
+  padding: 0 0.05em;
+}
+
 .op-kicker {
   width: fit-content;
   border: 1px solid color-mix(in oklch, var(--color-primary) 35%, transparent);
