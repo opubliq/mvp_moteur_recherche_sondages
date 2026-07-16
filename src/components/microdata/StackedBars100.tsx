@@ -71,10 +71,11 @@ export default function StackedBars100({
 
       <div className="space-y-2">
         {groups.map((g) => (
-          <div key={g.code} className="grid items-center gap-2" style={{ gridTemplateColumns: "8rem 1fr" }}>
-            <span className="truncate text-sm" title={g.label}>
-              {g.label} <span className="text-base-content/40">· {formatN(g.raw)}</span>
-            </span>
+          <div key={g.code} className="grid items-center gap-2" style={{ gridTemplateColumns: "10rem 1fr" }}>
+            <div className="text-sm leading-tight">
+              <div>{g.label}</div>
+              <div className="text-xs text-base-content/40">n = {formatN(g.raw)}</div>
+            </div>
             <div className="flex h-6 overflow-hidden rounded" style={{ gap: 2 }}>
               {cats.map((c) => {
                 const share = g.shares.get(c.code) ?? 0;

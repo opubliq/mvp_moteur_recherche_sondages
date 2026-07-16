@@ -58,16 +58,14 @@ export default function QuestionDashboard() {
 
   const q = useMemo(() => questions.find((x) => x.variable === variable), [questions, variable]);
 
-  // Dimensions de croisement : sociodémo fermées du sondage (repli : toute
-  // question fermée) autres que la question courante, classées par qualité de
-  // dimension. Une variable à <2 modalités cataloguées cache des valeurs brutes
-  // (ex. année de naissance → 76 valeurs) et fait un mauvais défaut ; >20
-  // modalités est trop granulaire. On privilégie la bande utile [2,20], puis un
-  // ordre de type sociodémo lisible.
-  const dims = useMemo(() => {
+  // Dimensions de croisement : TOUTES les variables fermées du sondage autres que
+  // la question courante, mais sociodémo (dimensions comparables) séparées des
+  // autres questions dans le menu. Classées par qualité : une variable à <2
+  // modalités cataloguées cache des valeurs brutes (ex. année de naissance → 76
+  // valeurs) et fait un mauvais défaut ; >20 modalités = trop granulaire. On
+  // privilégie la bande utile [2,20], puis un ordre de type sociodémo lisible.
+  const { socioDims, otherDims } = useMemo(() => {
     const closed = questions.filter((x) => x.variable !== variable && x.response_options.length > 0);
-    const socio = closed.filter((x) => x.is_sociodemo);
-    const pool = socio.length > 0 ? socio : closed;
     const TYPE_ORDER = ["age", "gender", "region", "education", "income", "language", "occupation"];
     const score = (x: SearchResult): [number, number, number] => {
       const n = x.response_options.length;
@@ -75,11 +73,15 @@ export default function QuestionDashboard() {
       const ti = x.sociodemo_type ? TYPE_ORDER.indexOf(x.sociodemo_type) : -1;
       return [band, ti === -1 ? TYPE_ORDER.length : ti, n];
     };
-    return [...pool].sort((a, b) => {
+    const byScore = (a: SearchResult, b: SearchResult) => {
       const sa = score(a);
       const sb = score(b);
       return sa[0] - sb[0] || sa[1] - sb[1] || sa[2] - sb[2];
-    });
+    };
+    return {
+      socioDims: closed.filter((x) => x.is_sociodemo).sort(byScore),
+      otherDims: closed.filter((x) => !x.is_sociodemo).sort(byScore),
+    };
   }, [questions, variable]);
 
   if (loading) return <div className="py-20 text-center"><span className="loading loading-spinner loading-lg" /></div>;
@@ -129,7 +131,7 @@ export default function QuestionDashboard() {
           ) : (
             <>
               <Univariate q={q} kind={kind} />
-              <Crossing q={q} kind={kind} dims={dims} />
+              <Crossing q={q} kind={kind} socioDims={socioDims} otherDims={otherDims} />
             </>
           )}
         </div>
@@ -232,7 +234,18 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
 /* --------------------------------------------------------------------------
  * Bivarié — croisement par dimension sociodémo
  * ------------------------------------------------------------------------ */
-function Crossing({ q, kind, dims }: { q: SearchResult; kind: Kind; dims: SearchResult[] }) {
+function Crossing({
+  q,
+  kind,
+  socioDims,
+  otherDims,
+}: {
+  q: SearchResult;
+  kind: Kind;
+  socioDims: SearchResult[];
+  otherDims: SearchResult[];
+}) {
+  const dims = useMemo(() => [...socioDims, ...otherDims], [socioDims, otherDims]);
   const [dimVar, setDimVar] = useState<string>(dims[0]?.variable ?? "");
   const [mode, setMode] = useState<"mean" | "stacked">("mean");
   const [includeRefusal, setIncludeRefusal] = useState(false);
@@ -308,11 +321,24 @@ function Crossing({ q, kind, dims }: { q: SearchResult; kind: Kind; dims: Search
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <select className="select select-bordered select-sm max-w-xs" value={dimVar} onChange={(e) => setDimVar(e.target.value)}>
-          {dims.map((d) => (
-            <option key={d.variable} value={d.variable}>
-              {d.is_sociodemo && d.sociodemo_type ? `${d.sociodemo_type} — ` : ""}{d.question_text.slice(0, 60)}
-            </option>
-          ))}
+          {socioDims.length > 0 && (
+            <optgroup label="Sociodémographiques">
+              {socioDims.map((d) => (
+                <option key={d.variable} value={d.variable}>
+                  {d.sociodemo_type ? `${d.sociodemo_type} — ` : ""}{d.question_text.slice(0, 55)}
+                </option>
+              ))}
+            </optgroup>
+          )}
+          {otherDims.length > 0 && (
+            <optgroup label="Autres questions">
+              {otherDims.map((d) => (
+                <option key={d.variable} value={d.variable}>
+                  {d.variable} — {d.question_text.slice(0, 55)}
+                </option>
+              ))}
+            </optgroup>
+          )}
         </select>
         {numeric && effMode === "mean" && (
           <label className="label cursor-pointer gap-2 text-xs">
