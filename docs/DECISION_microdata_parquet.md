@@ -374,4 +374,12 @@ Container: survey-responses
   colonnes techniques stockent déjà du **texte** (`Device`="Smartphone", `ResLanguage`="fr").
   Raw-first : on garde tel quel (string dictionary) ; le catalogue n'aura pas de table
   code→label pour elles — le UI affiche alors la valeur brute, qui est déjà lisible.
-- **Infra Blob à créer** : aucun compte/clé Blob dans `.env` — dépendance pour v33.2.
+- ~~**Infra Blob à créer**~~ : fait (v33.2). Compte `opubliqsondagesdata` + container privé
+  `survey-responses` (canadaeast, Standard_LRS/hot) ; `AZURE_STORAGE_*` dans `.env`, doc dans
+  le README (§ Infra Azure).
+- **Dictionary sur colonne entière non restauré à la relecture** (constaté au smoke test v33.2) :
+  une colonne `int8` écrite dictionary-encoded revient en `int8` simple via
+  `pyarrow.parquet.read_table` (les colonnes `string` reviennent bien en `dictionary`). Sans
+  conséquence : l'encodage dictionary est bien appliqué **sur disque** (compacité) et les
+  **valeurs sont identiques** ; seul le type in-memory diffère. Ne pas s'en alarmer en v33.3 —
+  utiliser `read_dictionary=[...]` seulement si un consommateur exige le type dictionary.

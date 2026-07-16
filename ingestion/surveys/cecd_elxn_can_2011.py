@@ -40,6 +40,7 @@ _HERE = Path(__file__).parent
 REPO_ROOT = _HERE.parent.parent
 DATA_DIR = REPO_ROOT / "data" / "cecd_elxn_can_2011"
 SAV_FILE = DATA_DIR / "repondantspost_2011.sav"
+WEIGHT_VAR = "poids_census_post"  # poids fourni → weight_source='provided' (v33.3)
 OUT_FILE = REPO_ROOT / "ingestion" / "normalized" / "cecd_elxn_can_2011.json"
 
 # ---------------------------------------------------------------------------

@@ -20,6 +20,7 @@ LANGUAGE = "en"
 
 DATA_DIR = Path("data") / SURVEY_ID
 CSV_FILE = DATA_DIR / "068-22-wave2-data.csv"
+WEIGHT_VAR = "WGT1"  # poids fourni → weight_source='provided' (v33.3)
 XLSX_FILE = DATA_DIR / "068-22-wave2-data-dictionary.xlsx"
 
 EXCLUDED_VARS = {

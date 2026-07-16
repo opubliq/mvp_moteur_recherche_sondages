@@ -38,6 +38,12 @@ OUT_FILE = REPO_ROOT / "ingestion" / "normalized" / "eeq_2014.json"
 # Constantes du sondage
 # ---------------------------------------------------------------------------
 
+# Rail microdonnées (v33.3) — déclaratif, lu en LECTURE SEULE par
+# ingestion/microdata.py. N'affecte PAS l'extraction catalogue (extract()
+# ne les référence pas).
+WEIGHT_VAR = "POND"  # poids fourni par la maison de sondage → weight_source='provided'
+RESPONDENT_ID_VAR = "QUEST"  # numéro de questionnaire RAW = identité de ligne
+
 SURVEY_ID = "eeq_2014"
 SURVEY_NAME = "Étude électorale québécoise 2014 (EEQ)"
 YEAR = 2014

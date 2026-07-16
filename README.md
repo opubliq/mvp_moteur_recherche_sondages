@@ -35,6 +35,9 @@ Copier `.env.example` vers `.env` (gitignored) et remplir les valeurs. Variables
 | `AOAI_KEY` | Clé Azure OpenAI |
 | `AOAI_EMBED_DEPLOYMENT` | Nom du déploiement d'embeddings (`text-embedding-3-large`, 3072 dims) |
 | `AOAI_CHAT_DEPLOYMENT` | Nom du déploiement chat completion (`gpt-4o`) |
+| `AZURE_STORAGE_ACCOUNT` | Compte Blob des microdonnées Parquet (`opubliqsondagesdata`) |
+| `AZURE_STORAGE_KEY` | Clé du compte Blob — **serveur uniquement** |
+| `AZURE_STORAGE_CONTAINER` | Container des Parquet répondant (`survey-responses`) |
 
 ## Installation
 
@@ -87,6 +90,9 @@ Environment variables) — **uniquement les clés serveur, jamais la clé admin*
 | `AOAI_KEY` | Clé Azure OpenAI |
 | `AOAI_EMBED_DEPLOYMENT` | Déploiement d'embeddings (doit matcher celui de l'ingestion) |
 | `AOAI_CHAT_DEPLOYMENT` | Déploiement chat completion (GPT-4o) |
+| `AZURE_STORAGE_ACCOUNT` | Compte Blob des Parquet répondant (lecture par la Function DuckDB) |
+| `AZURE_STORAGE_KEY` | Clé du compte Blob (serveur uniquement — jamais exposée au client) |
+| `AZURE_STORAGE_CONTAINER` | Container des Parquet (`survey-responses`) |
 
 `SEARCH_ADMIN_KEY` ne doit **pas** être configurée sur Netlify : les functions ne font
 que lire. Pousser sur `main` déclenche le build/déploiement.
@@ -117,18 +123,39 @@ Provisionnée dans l'abonnement « Azure subscription 1 », région **canadaeast
 | Ressource | Nom | Tier |
 |-----------|-----|------|
 | Resource group | `rg-opubliq-sondages` | — |
-| Azure AI Search | `opubliq-sondages-728c` | **Free** (0 $/mois ; 50 MB, 3 index, ~10k docs, pas de semantic ranker) |
-| Azure OpenAI | `opubliq-sondages-aoai-728c` | S0 (facturé au token) |
+| Azure AI Search | `opubliq-sondages-search` | **Basic** (50 index, 2 GB/partition) |
+| Azure OpenAI | `opubliq-sondages-aoai` | S0 (facturé au token) |
 | Déploiement embeddings | `text-embedding-3-large` (v1, 3072 dims) | Standard |
+| Storage Account | `opubliqsondagesdata` | Standard_LRS, accès Hot |
+| Container Blob | `survey-responses` | privé (aucun accès public anonyme) |
+
+Le rerank (Cohere) et la décomposition de requête (Mistral) vivent sur une ressource
+AI Foundry distincte (`info-4552-resource`, **eastus2** — seule région offrant Cohere
+v4.0 pro) ; voir `.env.example`.
 
 Recréer les clés / endpoints au besoin :
 
 ```bash
 RG=rg-opubliq-sondages
-az search admin-key show   --service-name opubliq-sondages-728c -g $RG --query primaryKey -o tsv
-az search query-key list   --service-name opubliq-sondages-728c -g $RG --query "[0].key" -o tsv
-az cognitiveservices account keys list -n opubliq-sondages-aoai-728c -g $RG --query key1 -o tsv
+az search admin-key show   --service-name opubliq-sondages-search -g $RG --query primaryKey -o tsv
+az search query-key list   --service-name opubliq-sondages-search -g $RG --query "[0].key" -o tsv
+az cognitiveservices account keys list -n opubliq-sondages-aoai -g $RG --query key1 -o tsv
+az storage account keys list -n opubliqsondagesdata -g $RG --query "[0].value" -o tsv
 ```
 
-> Le tier Free de AI Search suffit pour le proto. Passer à **Basic** (~75 $/mois) seulement si
-> on dépasse 50 MB / 10k docs ou qu'on a besoin du semantic ranker.
+### Blob : microdonnées répondant (Parquet)
+
+Le container `survey-responses` porte les microdonnées répondant-niveau (epic v33). Contrat
+complet : [`docs/DECISION_microdata_parquet.md`](docs/DECISION_microdata_parquet.md).
+
+```
+survey-responses/
+  {survey_id}.parquet   ← 1 fichier par sondage (eeq_2014.parquet, …)
+  _manifest.json        ← index : quels sondages ont des microdonnées + poids / ID répondant
+```
+
+- **Pas de partition Hive** : la granularité est le fichier ; `survey_id` est la clé de
+  jointure avec le catalogue AI Search.
+- **Accès serveur uniquement.** Le container n'a aucun accès public anonyme : la clé
+  (`AZURE_STORAGE_KEY`) reste côté ingestion / Netlify Function, jamais côté client. La
+  Function relaie les agrégats DuckDB — le Parquet n'est jamais exposé directement.

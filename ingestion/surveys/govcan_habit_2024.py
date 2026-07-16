@@ -13,6 +13,13 @@ from ingestion.canonical import canonical_sociodemo_text
 from ingestion.models import Question, SurveyFile
 from ingestion.validate import fabrication_reason
 
+# Rail microdonnées (v33.3) — déclaratif, lu en LECTURE SEULE par
+# ingestion/microdata.py. N'affecte PAS l'extraction catalogue (extract()
+# ne les référence pas). habit a deux poids identiques (WEIGHTMERGED / WEIGHT_FIN) ;
+# on déclare WEIGHTMERGED.
+WEIGHT_VAR = "WEIGHTMERGED"  # → weight_source='provided'
+RESPONDENT_ID_VAR = "record"  # identité de ligne RAW
+
 SURVEY_ID = "govcan_habit_2024"
 SURVEY_NAME = "HABIT Phase II"
 SURVEY_YEAR = 2024

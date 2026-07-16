@@ -31,6 +31,7 @@ _HERE = Path(__file__).parent
 REPO_ROOT = _HERE.parent.parent
 DATA_DIR = REPO_ROOT / "data" / "govcan_parca_2024"
 RAW_FILE = DATA_DIR / "PARCA-Phase2-Final-Merged-Data(1).csv"
+WEIGHT_VAR = "WeightNEW"  # poids fourni → weight_source='provided' (v33.3)
 DICT_FILE = DATA_DIR / "PARCA-Phase2-Final-Data-Dictionary.xlsx"
 OUT_FILE = REPO_ROOT / "ingestion" / "normalized" / "govcan_parca_2024.json"
 

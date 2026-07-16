@@ -28,6 +28,7 @@ _HERE = Path(__file__).parent
 REPO_ROOT = _HERE.parent.parent
 DATA_DIR = REPO_ROOT / "data" / "cecd_sante_can_usa"
 SAV_FILE = DATA_DIR / "Fichier SPSS - Étude sur la santé - Canada-USA.Sav"
+WEIGHT_VAR = "POND"  # poids fourni → weight_source='provided' (v33.3)
 OUT_FILE = REPO_ROOT / "ingestion" / "normalized" / "cecd_sante_can_usa.json"
 
 # ---------------------------------------------------------------------------

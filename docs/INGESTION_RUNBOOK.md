@@ -121,6 +121,64 @@ Attendu : `1 parent + N questions`. Puis lancer 2-3 requêtes sémantiques (voir
 snippet de recherche pondérée dans l'historique / `netlify/functions/search.ts`)
 pour confirmer que le sondage remonte en cross-sondage sur ses thèmes.
 
+### Étape 4 — Microdonnées répondant (rail séparé, optionnel mais recommandé)
+
+Volet **indépendant** du catalogue AI Search (Étapes 1–3). Il lit les **données
+brutes** du sondage et écrit un **Parquet répondant-niveau** dans le Blob Azure
+`survey-responses` (1 ligne = 1 répondant, colonnes = IDs de variable RAW +
+`__respondent_id`/`__survey_id`/`__weight`), puis met à jour `_manifest.json`.
+Sert les distributions/crosstabs DuckDB (v33.4). Contrat :
+`docs/DECISION_microdata_parquet.md`. Aucune ré-ingestion AI Search n'est requise
+— les deux rails tournent séparément, dans n'importe quel ordre.
+
+```bash
+uv run python -m ingestion.run_microdata <survey_id>      # un sondage
+uv run python -m ingestion.run_microdata s1 s2 s3         # plusieurs
+uv run python -m ingestion.run_microdata --all            # backfill : tous ceux ayant data/ local
+```
+
+- **Idempotent** : ré-écriture du `{survey_id}.parquet` par `overwrite=True`, entrée
+  de manifest remplacée (pas de doublon). Relancer est sûr.
+- **Poids** : déclaré, jamais deviné. Ajouter dans `ingestion/surveys/<survey_id>.py`
+  (constantes additives, ignorées par le rail catalogue) :
+  `WEIGHT_VAR = "POND"` → `weight_source='provided'`. Absent → `__weight=1.0`
+  partout, `weight_source='uniform'` (honnête, pas de prétention statistique).
+  Optionnel : `RESPONDENT_ID_VAR = "QUEST"` (utilisé seulement s'il est numérique
+  **et unique**, sinon index de ligne).
+  - **Choix du poids** quand plusieurs variantes existent (fréquent sur les
+    sondages électoraux : brut / post-strat / census / par vote) : préférer le
+    poids **général plein-échantillon** à couverture complète (`nnull=0`), en
+    favorisant la **post-stratification/census** aux poids de sous-groupe.
+  - **Nulls résiduels** d'un poids déclaré : imputés automatiquement à la
+    **moyenne** des poids observés (neutre quelle que soit l'échelle — `1.0`
+    n'est neutre que pour un poids déjà à moyenne 1). Compté dans le manifest
+    (`weight_imputed_n`). Si le poids est *entièrement* nul → le rail échoue et
+    remonte (déclarer une autre variable). `__weight` reste toujours non-nullable.
+- **NE PAS** réutiliser `EXCLUDED_VARS` ici : le Parquet capte au contraire poids
+  et ID répondant. Le rail lit `WEIGHT_VAR`/`RESPONDENT_ID_VAR` en LECTURE SEULE.
+- **Formats** gérés : SAV/DTA (pyreadstat, `apply_value_formats=False`), CSV
+  (pandas, détection d'encodage utf-8 → cp1252 → latin-1 pour les CSV govcan).
+
+Vérifier la relecture depuis le Blob :
+```bash
+uv run python - <<'EOF'
+import io, json
+import pyarrow.parquet as pq
+from ingestion.microdata import container_client
+c = container_client()
+t = pq.read_table(io.BytesIO(c.get_blob_client("<survey_id>.parquet").download_blob().readall()))
+df = t.to_pandas()
+print("rows x cols:", t.num_rows, "x", t.num_columns)
+print("__weight nulls:", df['__weight'].isna().sum())
+print(json.loads(c.get_blob_client("_manifest.json").download_blob().readall()))
+EOF
+```
+
+**Backfill des sondages déjà indexés** : `uv run python -m ingestion.run_microdata --all`
+traite tous les `survey_id` ayant un dossier `data/<survey_id>/` local (13 au
+16-07-2026). Sûr à relancer (idempotent). Un sondage sans fichier de données local
+échoue proprement sans bloquer les autres.
+
 ## Quality gates de fin de session
 
 ```bash

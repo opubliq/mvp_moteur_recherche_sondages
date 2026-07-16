@@ -24,6 +24,7 @@ import pyreadstat  # type: ignore[import]
 
 SURVEY_ID = "cecd_charte_2013_10"
 SAV_FILE = "Charte_CROP_2013-10.sav"
+WEIGHT_VAR = "pond"  # poids fourni → weight_source='provided' (v33.3)
 
 # Variables sans value labels (admin / pondération) : exclure des questions
 _SKIP_VARS: set[str] = {"quest", "pond"}
