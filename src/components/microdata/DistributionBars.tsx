@@ -2,26 +2,32 @@ import type { DistributionRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, formatPct, labelMap } from "../../lib/microdataFormat";
 
 /**
- * Distribution univariée — barres horizontales pondérées.
- * `single` : ordonné par part décroissante. `scale` : ordonné par code (l'ordre
- * porte le sens). Une seule série → couleur primary, pas de légende (le titre
- * nomme la variable). Hover = n brut (fiabilité de la cellule).
+ * Distribution univariée — barres horizontales pondérées (une seule série →
+ * couleur primary, pas de légende ; le titre nomme la variable). Hover = n brut.
+ *
+ * Ordre : ORDINAL → suit l'ordre du tableau `response_options` (l'ordre des
+ * niveaux porte le sens) ; NOMINAL → part décroissante.
  */
 export default function DistributionBars({
   rows,
   options,
-  orderBy = "share",
+  ordinal = false,
 }: {
   rows: DistributionRow[];
   options: ResponseOption[];
-  orderBy?: "share" | "code";
+  ordinal?: boolean;
 }) {
   const map = labelMap(options);
-  const sorted = [...rows].sort((a, b) =>
-    orderBy === "code"
-      ? Number(a.target_code) - Number(b.target_code)
-      : b.share - a.share,
-  );
+  // Index d'ordre ordinal = position dans response_options.
+  const optIndex = new Map(options.map((o, i) => [String(o.code), i]));
+  const sorted = [...rows].sort((a, b) => {
+    if (ordinal) {
+      const ia = optIndex.get(String(a.target_code)) ?? Number.MAX_SAFE_INTEGER;
+      const ib = optIndex.get(String(b.target_code)) ?? Number.MAX_SAFE_INTEGER;
+      return ia - ib;
+    }
+    return b.share - a.share;
+  });
   const maxShare = Math.max(0.01, ...sorted.map((r) => r.share));
 
   return (

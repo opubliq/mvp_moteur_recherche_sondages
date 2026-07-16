@@ -29,3 +29,21 @@ export const MAX_CATEGORIES = CATEGORICAL.length;
 export function categoryColor(index: number): string {
   return index < CATEGORICAL.length ? CATEGORICAL[index] : OTHER_COLOR;
 }
+
+/**
+ * Rampe SÉQUENTIELLE (une teinte, clair→foncé) pour les variables ORDINALES
+ * (Likert, échelle) : l'ampleur perçue suit l'ordre des niveaux, pas des couleurs
+ * catégorielles arbitraires. Teinte teal Opubliq, chroma constant, clarté
+ * monotone décroissante. `n` = nombre de niveaux (hors refus/NSP, gérés en gris).
+ */
+export function sequentialRamp(n: number): string[] {
+  const H = 196.4;
+  const C = 0.108;
+  if (n <= 1) return [`oklch(0.58 ${C} ${H})`];
+  const Lhi = 0.86; // niveau le plus clair (premier niveau de l'échelle)
+  const Llo = 0.44; // niveau le plus foncé (dernier niveau)
+  return Array.from({ length: n }, (_, i) => {
+    const L = Lhi + (Llo - Lhi) * (i / (n - 1));
+    return `oklch(${L.toFixed(3)} ${C} ${H})`;
+  });
+}

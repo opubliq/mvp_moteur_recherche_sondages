@@ -7,9 +7,9 @@ import type { SearchResult } from "../../types";
  * Un <select> natif ne peut pas filtrer ; combobox léger, options groupées
  * Sociodémographiques / Autres questions.
  */
+/** Libellé affiché = question propre (sans le nom de variable). */
 function optionLabel(d: SearchResult): string {
-  const prefix = d.is_sociodemo && d.sociodemo_type ? `${d.sociodemo_type} — ` : `${d.variable} — `;
-  return prefix + d.question_text;
+  return d.question_text;
 }
 
 /** Filtre : essaie la regex (insensible à la casse), repli sur sous-chaîne. */
@@ -126,8 +126,7 @@ function Group({
         <button
           key={d.variable}
           type="button"
-          className={`block w-full truncate px-3 py-1.5 text-left text-sm hover:bg-primary/8 ${d.variable === value ? "text-primary" : ""}`}
-          title={optionLabel(d)}
+          className={`block w-full whitespace-normal px-3 py-1.5 text-left text-sm leading-snug hover:bg-primary/8 ${d.variable === value ? "text-primary" : ""}`}
           onClick={() => onPick(d.variable)}
         >
           {optionLabel(d)}

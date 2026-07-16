@@ -221,7 +221,7 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
       {kind === "continuous" ? (
         <Histogram rows={dist} mean={stat?.mean} />
       ) : (
-        <DistributionBars rows={dist} options={q.response_options} orderBy={kind === "scale" ? "code" : "share"} />
+        <DistributionBars rows={dist} options={q.response_options} ordinal={q.is_ordinal || kind === "scale"} />
       )}
 
       <p className="mt-3 text-xs text-base-content/45">
@@ -350,15 +350,21 @@ function Crossing({
             </p>
           );
         }
+        const shortTarget = q.question_text.length > 52 ? q.question_text.slice(0, 52) + "…" : q.question_text;
+        const shortDim = dimQ.question_text.length > 52 ? dimQ.question_text.slice(0, 52) + "…" : dimQ.question_text;
         return (
           <>
             {numeric && effMode === "mean" && means && domain ? (
               <MeanByGroup rows={means} dimOptions={dimQ.response_options} domainMin={domain.min} domainMax={domain.max} overallMean={domain.overall} />
             ) : cross ? (
-              <StackedBars100 rows={cross} targetOptions={q.response_options} dimOptions={dimQ.response_options} />
+              <StackedBars100 rows={cross} targetOptions={q.response_options} dimOptions={dimQ.response_options} ordinal={q.is_ordinal || kind === "scale"} />
             ) : null}
-            <p className="mt-2 text-xs text-base-content/45">
-              {numeric && effMode === "mean" ? "Moyenne pondérée par sous-groupe" : "Répartition en % par sous-groupe (pondérée)"}
+            <p className="mt-2 text-xs leading-snug text-base-content/45">
+              {numeric && effMode === "mean" ? (
+                <>Axe horizontal = moyenne de « {shortTarget} » · une ligne par sous-groupe de « {shortDim} »</>
+              ) : (
+                <>Une barre par sous-groupe de « {shortDim} » · couleurs = « {shortTarget} » (% pondéré par sous-groupe)</>
+              )}
             </p>
           </>
         );

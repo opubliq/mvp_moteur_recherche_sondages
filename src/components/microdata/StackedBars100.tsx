@@ -1,53 +1,90 @@
 import { useMemo } from "react";
 import type { CrosstabRow, ResponseOption } from "../../types";
-import { codeLabel, formatN, formatPct, labelMap } from "../../lib/microdataFormat";
-import { categoryColor, MAX_CATEGORIES, OTHER_COLOR } from "../../lib/vizPalette";
+import { codeLabel, formatN, formatPct, labelMap, refusalCodes } from "../../lib/microdataFormat";
+import { categoryColor, MAX_CATEGORIES, OTHER_COLOR, sequentialRamp } from "../../lib/vizPalette";
 
 /**
- * Croisement cible catégorielle × dimension sociodémo → barres empilées 100 %.
- * Une barre par groupe de dimension ; segments = catégories de la cible, part
- * normalisée PAR groupe (col_share). Couleur = rang FIXE de la catégorie (jamais
- * son ampleur) ; au-delà de 6 catégories → repli « Autre » gris. Gap 2px entre
- * fills + légende + labels directs sur les segments larges (encodage secondaire
- * exigé par la faible séparation CVD de la paire teal/coral).
+ * Croisement cible catégorielle × dimension → barres empilées 100 %. Une barre
+ * par groupe de dimension ; segments = catégories de la cible, part normalisée
+ * PAR groupe (col_share). Gap 2px entre fills + légende + labels directs.
+ *
+ * ORDINAL (Likert/échelle) : gradient SÉQUENTIEL suivant l'ordre des
+ * response_options (l'ordre porte le sens), refus/NSP en gris À LA FIN, et AUCUN
+ * repli « Autre » (tous les niveaux gardés). NOMINAL : palette catégorielle à rang
+ * fixe, au-delà de 6 modalités → repli « Autre » gris.
  */
 const OTHER = "__other__";
+
+interface Cat {
+  code: string;
+  color: string;
+  label: string;
+  dark: boolean; // texte foncé (segment clair) vs blanc
+}
 
 export default function StackedBars100({
   rows,
   targetOptions,
   dimOptions,
+  ordinal = false,
 }: {
   rows: CrosstabRow[];
   targetOptions: ResponseOption[];
   dimOptions: ResponseOption[];
+  ordinal?: boolean;
 }) {
   const tMap = labelMap(targetOptions);
   const dMap = labelMap(dimOptions);
 
   const { cats, groups } = useMemo(() => {
-    // Poids total par catégorie cible → garder les plus grosses, replier le reste.
-    const totals = new Map<string, number>();
-    for (const r of rows) {
-      const k = String(r.target_code);
-      totals.set(k, (totals.get(k) ?? 0) + r.weighted_n);
-    }
-    const ranked = [...totals.keys()].sort((a, b) => (totals.get(b)! - totals.get(a)!));
-    const kept = ranked.slice(0, MAX_CATEGORIES - (ranked.length > MAX_CATEGORIES ? 1 : 0));
-    const keptSet = new Set(kept);
-    const cats = kept
-      .sort((a, b) => Number(a) - Number(b))
-      .map((code, i) => ({ code, color: categoryColor(i), label: codeLabel(tMap, code) }));
-    if (ranked.length > kept.length) cats.push({ code: OTHER, color: OTHER_COLOR, label: "Autre" });
+    const present = new Set(rows.map((r) => String(r.target_code)));
+    let cats: Cat[];
+    let catOf: (code: string) => string;
 
-    // Regrouper par dimension → part par catégorie (repli inclus).
+    if (ordinal) {
+      // Ordre = response_options (la rampe). Refus/NSP sortis en gris à la fin.
+      const refusal = new Set(refusalCodes(targetOptions).map(String));
+      const ordered = targetOptions.map((o) => String(o.code));
+      const scaleCodes = ordered.filter((c) => !refusal.has(c) && present.has(c));
+      const refusalPresent = ordered.filter((c) => refusal.has(c) && present.has(c));
+      const extras = [...present].filter((c) => !ordered.includes(c)).sort((a, b) => Number(a) - Number(b));
+      const ramp = sequentialRamp(scaleCodes.length);
+      const n = scaleCodes.length;
+      cats = [
+        ...scaleCodes.map((code, i) => {
+          // clarté décroissante ; texte foncé sur les niveaux clairs.
+          const L = n <= 1 ? 0.58 : 0.86 + (0.44 - 0.86) * (i / (n - 1));
+          return { code, color: ramp[i], label: codeLabel(tMap, code), dark: L > 0.62 };
+        }),
+        ...refusalPresent.map((code) => ({ code, color: OTHER_COLOR, label: codeLabel(tMap, code), dark: true })),
+        ...extras.map((code) => ({ code, color: OTHER_COLOR, label: codeLabel(tMap, code), dark: true })),
+      ];
+      catOf = (code) => code; // aucun repli : chaque niveau reste distinct
+    } else {
+      // Nominal : rang par poids total, repli « Autre » au-delà de 6.
+      const totals = new Map<string, number>();
+      for (const r of rows) {
+        const k = String(r.target_code);
+        totals.set(k, (totals.get(k) ?? 0) + r.weighted_n);
+      }
+      const ranked = [...totals.keys()].sort((a, b) => totals.get(b)! - totals.get(a)!);
+      const kept = ranked.slice(0, MAX_CATEGORIES - (ranked.length > MAX_CATEGORIES ? 1 : 0));
+      const keptSet = new Set(kept);
+      cats = kept
+        .sort((a, b) => Number(a) - Number(b))
+        .map((code, i) => ({ code, color: categoryColor(i), label: codeLabel(tMap, code), dark: false }));
+      if (ranked.length > kept.length) cats.push({ code: OTHER, color: OTHER_COLOR, label: "Autre", dark: true });
+      catOf = (code) => (keptSet.has(code) ? code : OTHER);
+    }
+
+    // Agrégation par groupe de dimension.
     const byDim = new Map<string, { raw: number; shares: Map<string, number> }>();
     for (const r of rows) {
       const dk = String(r.dim_code);
       if (!byDim.has(dk)) byDim.set(dk, { raw: 0, shares: new Map() });
       const g = byDim.get(dk)!;
       g.raw += r.raw_n;
-      const cat = keptSet.has(String(r.target_code)) ? String(r.target_code) : OTHER;
+      const cat = catOf(String(r.target_code));
       g.shares.set(cat, (g.shares.get(cat) ?? 0) + r.col_share);
     }
     const groups = [...byDim.entries()]
@@ -55,7 +92,7 @@ export default function StackedBars100({
       .map(([code, g]) => ({ code, label: codeLabel(dMap, code), raw: g.raw, shares: g.shares }));
 
     return { cats, groups };
-  }, [rows, tMap, dMap]);
+  }, [rows, tMap, dMap, ordinal, targetOptions]);
 
   return (
     <div>
@@ -84,8 +121,8 @@ export default function StackedBars100({
                 return (
                   <div
                     key={c.code}
-                    className="flex items-center justify-center overflow-hidden text-[11px] font-medium text-white"
-                    style={{ flexGrow: share, flexBasis: 0, background: c.color }}
+                    className="flex items-center justify-center overflow-hidden text-[11px] font-medium"
+                    style={{ flexGrow: share, flexBasis: 0, background: c.color, color: c.dark ? "oklch(0.28 0.02 196)" : "white" }}
                     title={`${g.label} · ${c.label} : ${formatPct(share, 1)}`}
                   >
                     {wide ? formatPct(share) : ""}
