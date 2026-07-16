@@ -30,20 +30,29 @@ export function categoryColor(index: number): string {
   return index < CATEGORICAL.length ? CATEGORICAL[index] : OTHER_COLOR;
 }
 
+export interface RampStep {
+  color: string;
+  dark: boolean; // texte foncé requis (segment clair)
+}
+
 /**
  * Rampe SÉQUENTIELLE (une teinte, clair→foncé) pour les variables ORDINALES
  * (Likert, échelle) : l'ampleur perçue suit l'ordre des niveaux, pas des couleurs
- * catégorielles arbitraires. Teinte teal Opubliq, chroma constant, clarté
- * monotone décroissante. `n` = nombre de niveaux (hors refus/NSP, gérés en gris).
+ * catégorielles arbitraires. Teinte teal Opubliq. Plage de clarté LARGE + chroma
+ * qui monte vers le foncé pour bien distinguer les niveaux. Renvoie aussi le flag
+ * `dark` (texte foncé sur les paliers clairs, pour le contraste).
  */
-export function sequentialRamp(n: number): string[] {
+export function sequentialRamp(n: number): RampStep[] {
   const H = 196.4;
-  const C = 0.108;
-  if (n <= 1) return [`oklch(0.58 ${C} ${H})`];
-  const Lhi = 0.86; // niveau le plus clair (premier niveau de l'échelle)
-  const Llo = 0.44; // niveau le plus foncé (dernier niveau)
+  const Lhi = 0.92; // niveau le plus clair (premier niveau de l'échelle)
+  const Llo = 0.36; // niveau le plus foncé (dernier niveau)
+  const Chi = 0.05; // chroma au clair
+  const Clo = 0.14; // chroma au foncé
+  if (n <= 1) return [{ color: `oklch(0.58 0.11 ${H})`, dark: false }];
   return Array.from({ length: n }, (_, i) => {
-    const L = Lhi + (Llo - Lhi) * (i / (n - 1));
-    return `oklch(${L.toFixed(3)} ${C} ${H})`;
+    const t = i / (n - 1);
+    const L = Lhi + (Llo - Lhi) * t;
+    const C = Chi + (Clo - Chi) * t;
+    return { color: `oklch(${L.toFixed(3)} ${C.toFixed(3)} ${H})`, dark: L > 0.6 };
   });
 }

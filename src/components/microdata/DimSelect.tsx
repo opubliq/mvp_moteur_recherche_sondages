@@ -68,7 +68,7 @@ export default function DimSelect({
   };
 
   return (
-    <div ref={boxRef} className="relative max-w-md">
+    <div ref={boxRef} className="relative w-full max-w-2xl">
       <button
         type="button"
         className="select select-bordered select-sm flex w-full items-center justify-between gap-2 text-left"

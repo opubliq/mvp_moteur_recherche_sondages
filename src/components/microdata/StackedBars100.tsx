@@ -27,11 +27,15 @@ export default function StackedBars100({
   targetOptions,
   dimOptions,
   ordinal = false,
+  targetName,
+  dimName,
 }: {
   rows: CrosstabRow[];
   targetOptions: ResponseOption[];
   dimOptions: ResponseOption[];
   ordinal?: boolean;
+  targetName?: string;
+  dimName?: string;
 }) {
   const tMap = labelMap(targetOptions);
   const dMap = labelMap(dimOptions);
@@ -49,13 +53,13 @@ export default function StackedBars100({
       const refusalPresent = ordered.filter((c) => refusal.has(c) && present.has(c));
       const extras = [...present].filter((c) => !ordered.includes(c)).sort((a, b) => Number(a) - Number(b));
       const ramp = sequentialRamp(scaleCodes.length);
-      const n = scaleCodes.length;
       cats = [
-        ...scaleCodes.map((code, i) => {
-          // clarté décroissante ; texte foncé sur les niveaux clairs.
-          const L = n <= 1 ? 0.58 : 0.86 + (0.44 - 0.86) * (i / (n - 1));
-          return { code, color: ramp[i], label: codeLabel(tMap, code), dark: L > 0.62 };
-        }),
+        ...scaleCodes.map((code, i) => ({
+          code,
+          color: ramp[i].color,
+          label: codeLabel(tMap, code),
+          dark: ramp[i].dark,
+        })),
         ...refusalPresent.map((code) => ({ code, color: OTHER_COLOR, label: codeLabel(tMap, code), dark: true })),
         ...extras.map((code) => ({ code, color: OTHER_COLOR, label: codeLabel(tMap, code), dark: true })),
       ];
@@ -96,6 +100,12 @@ export default function StackedBars100({
 
   return (
     <div>
+      {/* Titre de la couleur = variable cible (quel axe = quelle variable). */}
+      {targetName && (
+        <div className="mb-1 text-xs font-semibold text-base-content/70">
+          Couleurs = réponses à « {targetName} »
+        </div>
+      )}
       {/* Légende (identité jamais portée par la couleur seule) */}
       <ul className="mb-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs">
         {cats.map((c) => (
@@ -106,6 +116,9 @@ export default function StackedBars100({
         ))}
       </ul>
 
+      {dimName && (
+        <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = sous-groupes de « {dimName} »</div>
+      )}
       <div className="space-y-2">
         {groups.map((g) => (
           <div key={g.code} className="grid items-center gap-2" style={{ gridTemplateColumns: "10rem 1fr" }}>
@@ -113,7 +126,7 @@ export default function StackedBars100({
               <div>{g.label}</div>
               <div className="text-xs text-base-content/40">n = {formatN(g.raw)}</div>
             </div>
-            <div className="flex h-6 overflow-hidden rounded" style={{ gap: 2 }}>
+            <div className="flex h-6 overflow-hidden rounded" style={{ gap: 1 }}>
               {cats.map((c) => {
                 const share = g.shares.get(c.code) ?? 0;
                 if (share <= 0) return null;

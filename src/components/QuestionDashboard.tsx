@@ -168,23 +168,27 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
   const [state, setState] = useState<"loading" | "ok" | "none" | "error">("loading");
 
   const numeric = kind === "scale" || kind === "continuous";
-  const exclude = useMemo(() => (numeric ? refusalCodes(q.response_options) : []), [q, numeric]);
+  const refusal = useMemo(() => refusalCodes(q.response_options), [q]);
+  // Masquer refus/NSP dans la distribution (option). Continu : toujours exclus du
+  // binning (sinon l'axe se dilate). Catégoriel/échelle : à la demande.
+  const [hideRefusal, setHideRefusal] = useState(false);
+  const canToggleRefusal = kind !== "continuous" && refusal.length > 0;
 
   useEffect(() => {
     let cancelled = false;
     setState("loading");
     setDist(null);
     setStat(null);
-    // continuous : on exclut les refus du binning pour ne pas dilater l'axe.
-    const distExclude = kind === "continuous" ? exclude : [];
+    const distExclude = kind === "continuous" ? refusal : hideRefusal ? refusal : [];
     const jobs: Promise<unknown>[] = [
       fetchMicrodata<DistributionRow>({ surveyId: q.survey_id, target: q.variable, exclude: distExclude }).then(
         (r) => !cancelled && setDist(r.rows),
       ),
     ];
     if (numeric) {
+      // La moyenne exclut TOUJOURS les refus (sinon un 99 la fait exploser).
       jobs.push(
-        fetchMicrodata<MeanRow>({ surveyId: q.survey_id, target: q.variable, agg: "mean", exclude }).then(
+        fetchMicrodata<MeanRow>({ surveyId: q.survey_id, target: q.variable, agg: "mean", exclude: refusal }).then(
           (r) => !cancelled && setStat(r.rows[0] ?? null),
         ),
       );
@@ -198,7 +202,7 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
     return () => {
       cancelled = true;
     };
-  }, [q, kind, numeric, exclude]);
+  }, [q, kind, numeric, refusal, hideRefusal]);
 
   if (state === "none") return <NoMicrodata />;
   if (state === "error") return <div className="op-card"><p className="text-sm text-error">Échec du chargement des microdonnées.</p></div>;
@@ -208,14 +212,22 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
 
   return (
     <div className="op-card">
-      <div className="mb-3 flex items-baseline justify-between gap-3">
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
         <h3 className="font-semibold">Distribution des réponses</h3>
-        {stat && (
-          <span className="text-sm text-base-content/70">
-            moyenne <b className="text-base-content">{formatMean(stat.mean)}</b>
-            <span className="text-base-content/45"> · {stat.min}–{stat.max}</span>
-          </span>
-        )}
+        <div className="flex items-center gap-3">
+          {canToggleRefusal && (
+            <label className="label cursor-pointer gap-1.5 text-xs">
+              <input type="checkbox" className="checkbox checkbox-xs" checked={hideRefusal} onChange={(e) => setHideRefusal(e.target.checked)} />
+              masquer refus/NSP
+            </label>
+          )}
+          {stat && (
+            <span className="text-sm text-base-content/70">
+              moyenne <b className="text-base-content">{formatMean(stat.mean)}</b>
+              <span className="text-base-content/45"> · {stat.min}–{stat.max}</span>
+            </span>
+          )}
+        </div>
       </div>
 
       {kind === "continuous" ? (
@@ -226,7 +238,7 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
 
       <p className="mt-3 text-xs text-base-content/45">
         Base : {formatN(totalRaw)} répondants · pondéré
-        {kind === "continuous" && exclude.length > 0 ? " · refus/NSP exclus" : ""}
+        {kind === "continuous" && refusal.length > 0 ? " · refus/NSP exclus" : ""}
       </p>
     </div>
   );
@@ -249,7 +261,8 @@ function Crossing({
   const dims = useMemo(() => [...socioDims, ...otherDims], [socioDims, otherDims]);
   const [dimVar, setDimVar] = useState<string>(dims[0]?.variable ?? "");
   const [mode, setMode] = useState<"mean" | "stacked">("mean");
-  const [includeRefusal, setIncludeRefusal] = useState(false);
+  const [includeRefusal, setIncludeRefusal] = useState(false); // mode moyenne
+  const [hideRefusal, setHideRefusal] = useState(false); // mode empilé (distribution)
   const [cross, setCross] = useState<CrosstabRow[] | null>(null);
   const [means, setMeans] = useState<MeanByGroupRow[] | null>(null);
   const [domain, setDomain] = useState<{ min: number; max: number; overall?: number } | null>(null);
@@ -259,10 +272,16 @@ function Crossing({
   const dimQ = useMemo(() => dims.find((d) => d.variable === dimVar), [dims, dimVar]);
   // continuous : moyenne uniquement (empilé 100% d'un continu n'a pas de sens).
   const effMode: "mean" | "stacked" = kind === "continuous" ? "mean" : mode;
-  const exclude = useMemo(
-    () => (numeric && !includeRefusal ? refusalCodes(q.response_options) : []),
-    [q, numeric, includeRefusal],
-  );
+  // Le graphe est un empilé dès que ce n'est pas une moyenne numérique (un `single`
+  // non-numérique reste sur mode="mean" par défaut mais rend un empilé).
+  const isStacked = !(numeric && effMode === "mean");
+  const refusal = useMemo(() => refusalCodes(q.response_options), [q]);
+  // Moyenne : refus exclus par défaut (sinon 99 fait exploser la moyenne).
+  // Empilé : refus affichés par défaut, option pour les masquer.
+  const exclude = useMemo(() => {
+    if (!isStacked) return includeRefusal ? [] : refusal;
+    return hideRefusal ? refusal : [];
+  }, [isStacked, includeRefusal, hideRefusal, refusal]);
 
   useEffect(() => {
     if (!dimVar) return;
@@ -286,7 +305,7 @@ function Crossing({
         })
         .catch(() => !cancelled && setState("error"));
     } else {
-      fetchMicrodata<CrosstabRow>({ surveyId: q.survey_id, target: q.variable, dim: dimVar })
+      fetchMicrodata<CrosstabRow>({ surveyId: q.survey_id, target: q.variable, dim: dimVar, exclude })
         .then((r) => {
           if (cancelled) return;
           setCross(r.rows);
@@ -322,10 +341,16 @@ function Crossing({
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <DimSelect socioDims={socioDims} otherDims={otherDims} value={dimVar} onChange={setDimVar} />
-        {numeric && effMode === "mean" && (
+        {!isStacked && (
           <label className="label cursor-pointer gap-2 text-xs">
             <input type="checkbox" className="checkbox checkbox-xs" checked={includeRefusal} onChange={(e) => setIncludeRefusal(e.target.checked)} />
             inclure refus/NSP
+          </label>
+        )}
+        {isStacked && refusal.length > 0 && (
+          <label className="label cursor-pointer gap-2 text-xs">
+            <input type="checkbox" className="checkbox checkbox-xs" checked={hideRefusal} onChange={(e) => setHideRefusal(e.target.checked)} />
+            masquer refus/NSP
           </label>
         )}
       </div>
@@ -350,22 +375,16 @@ function Crossing({
             </p>
           );
         }
-        const shortTarget = q.question_text.length > 52 ? q.question_text.slice(0, 52) + "…" : q.question_text;
-        const shortDim = dimQ.question_text.length > 52 ? dimQ.question_text.slice(0, 52) + "…" : dimQ.question_text;
+        const shortTarget = q.question_text.length > 60 ? q.question_text.slice(0, 60) + "…" : q.question_text;
+        const shortDim = dimQ.question_text.length > 48 ? dimQ.question_text.slice(0, 48) + "…" : dimQ.question_text;
         return (
           <>
             {numeric && effMode === "mean" && means && domain ? (
-              <MeanByGroup rows={means} dimOptions={dimQ.response_options} domainMin={domain.min} domainMax={domain.max} overallMean={domain.overall} />
+              <MeanByGroup rows={means} dimOptions={dimQ.response_options} domainMin={domain.min} domainMax={domain.max} overallMean={domain.overall} targetName={shortTarget} dimName={shortDim} />
             ) : cross ? (
-              <StackedBars100 rows={cross} targetOptions={q.response_options} dimOptions={dimQ.response_options} ordinal={q.is_ordinal || kind === "scale"} />
+              <StackedBars100 rows={cross} targetOptions={q.response_options} dimOptions={dimQ.response_options} ordinal={q.is_ordinal || kind === "scale"} targetName={shortTarget} dimName={shortDim} />
             ) : null}
-            <p className="mt-2 text-xs leading-snug text-base-content/45">
-              {numeric && effMode === "mean" ? (
-                <>Axe horizontal = moyenne de « {shortTarget} » · une ligne par sous-groupe de « {shortDim} »</>
-              ) : (
-                <>Une barre par sous-groupe de « {shortDim} » · couleurs = « {shortTarget} » (% pondéré par sous-groupe)</>
-              )}
-            </p>
+            <p className="mt-2 text-xs text-base-content/45">% pondéré par sous-groupe.</p>
           </>
         );
       })()}
