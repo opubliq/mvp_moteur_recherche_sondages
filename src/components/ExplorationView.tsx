@@ -145,8 +145,15 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
             : "Nombre de sondages par année. Clique une année pour voir ses sondages."}
         </p>
 
-        <div className="overflow-x-auto pb-4">
-          <div className="flex min-w-max items-stretch border-b-2 border-base-content/15">
+        {/* En vue d'ensemble, les colonnes se partagent la largeur : tout l'axe
+            doit tenir sans scroll. Une année dépliée fait 32rem à elle seule et
+            ne peut pas tenir — c'est le seul cas qui repasse en `min-w-max`. */}
+        <div className={`pb-4 ${selectedKey ? "overflow-x-auto" : ""}`}>
+          <div
+            className={`flex items-stretch border-b-2 border-base-content/15 ${
+              selectedKey ? "min-w-max" : ""
+            }`}
+          >
             {columns.map((col) => {
               const count = col.surveys.length;
               const selected = col.key === selectedKey;
@@ -249,16 +256,16 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
               return (
                 <button
                   key={col.key}
-                  className={`flex w-16 shrink-0 flex-col items-center border-l border-base-content/10 pb-2 transition hover:bg-base-200/60 ${
-                    count === 0 ? "opacity-50" : "cursor-pointer"
-                  }`}
+                  className={`flex flex-col items-center border-l border-base-content/10 pb-2 transition hover:bg-base-200/60 ${
+                    selectedKey ? "w-16 shrink-0" : "min-w-0 flex-1"
+                  } ${count === 0 ? "opacity-50" : "cursor-pointer"}`}
                   onClick={() => count > 0 && setSelectedKey(col.key)}
                   disabled={count === 0}
                 >
                   <div className="flex h-32 w-full items-end justify-center px-2 pt-3">
                     {count > 0 && (
                       <div
-                        className="w-7 rounded-t bg-primary/70"
+                        className="w-full max-w-7 rounded-t bg-primary/70"
                         style={{ height: `${(count / maxCount) * 100}%` }}
                       />
                     )}
@@ -266,7 +273,9 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
                   <div className="h-4 text-xs font-bold tabular-nums text-primary">
                     {count > 0 ? count : ""}
                   </div>
-                  <div className="mt-1 text-xs tabular-nums opacity-60">{col.label}</div>
+                  <div className="mt-1 w-full truncate px-0.5 text-center text-xs tabular-nums opacity-60">
+                    {col.label}
+                  </div>
                 </button>
               );
             })}
