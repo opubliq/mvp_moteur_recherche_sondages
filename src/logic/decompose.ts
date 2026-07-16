@@ -9,16 +9,23 @@
  * pondérés (action + objet, objet + public cible, ou concept unique) pour
  * enrichir la recherche.
  *
- * MODÈLE : Mistral-Large-3 (Azure AI Foundry, route Chat Completions
- * compatible OpenAI), PAS gpt-5-mini. gpt-5-mini est un modèle *reasoning*
- * bloqué à `temperature: 1` (400 sur `temperature:0`, 400 sur `top_p`, `seed`
- * best-effort seulement) : mesuré 3 décompositions différentes sur 5 appels
- * identiques ("satisfaction envers la qualité de l'eau"), ce qui rend le pool
- * de candidats non-déterministe (même utilisateur, même requête, résultats
- * différents). Mistral-Large-3 accepte `temperature: 0` et est stable 5/5 sur
- * les concepts (mesuré) — voir vérifications dans le rapport de la tâche qui a
- * introduit ce changement. `rerank_query` peut encore varier légèrement (MoE,
- * pas de déterminisme total) : acceptable, le pool ne bouge plus.
+ * MODÈLE : gpt-5.4-mini (Azure AI Foundry, route Chat Completions compatible
+ * OpenAI). PAS gpt-5-mini — celui-là est un modèle *reasoning* bloqué à
+ * `temperature: 1` (400 sur `temperature:0`) : mesuré 3 décompositions
+ * différentes sur 5 appels identiques ("satisfaction envers la qualité de
+ * l'eau"), donc pool de candidats non-déterministe. gpt-5.4-mini accepte
+ * `temperature: 0` (vérifié) et est stable 5/5 sur les concepts ET sur
+ * `rerank_query` pour cette même requête ; seule la queue des synonymes varie
+ * (ancres principales stables 5/5, périphérie type 'potable'/'à boire' 1/5),
+ * ce qui fait légèrement bouger le pool sans en changer la structure.
+ *
+ * Mistral-Large-3 occupait ce rôle avant (temperature 0, stable 5/5 sur les
+ * concepts) mais son serving Azure s'est effondré — hang sans réponse en
+ * GlobalStandard, `no healthy upstream` en DataZoneStandard, sur toutes les
+ * routes et depuis le playground Azure lui-même. Rien à corriger de notre
+ * côté : recréer le déploiement ne change rien (en GlobalStandard c'est une
+ * entrée de routage, pas un conteneur à nous). Éval golden au moment de la
+ * bascule : recall 82,7 % -> 84,1 %, filet plus large (voir eval/run.ts).
  *
  * Comportement identique à la prod :
  *   - même `SYSTEM_PROMPT` (NE PAS y toucher sans re-mesurer — réglé par
@@ -38,6 +45,15 @@ import type { Concept } from "../types";
 // ---------------------------------------------------------------------------
 
 const FOUNDRY_API_VERSION = "2024-05-01-preview"; // Route Chat Completions Foundry (confirmée compatible OpenAI)
+
+/**
+ * Plafond sur l'appel Foundry. Sans lui, une panne du fournisseur ne se
+ * manifeste pas par une erreur mais par un silence : mesuré, Mistral-Large-3 a
+ * cessé de répondre sans jamais fermer la connexion (0 octet, aucun header),
+ * jusqu'à ce que Node abandonne de lui-même après 5 minutes — bien au-delà du
+ * budget de la Netlify Function, qui rendait un 500 opaque.
+ */
+const FOUNDRY_TIMEOUT_MS = 8000;
 
 export const SYSTEM_PROMPT = `Tu élargis une requête de recherche dans des questions de sondages citoyens québécois. DÉCOMPOSE la requête en ses CONCEPTS distincts (typiquement une action + un objet, ou un objet + un public cible ; parfois un seul concept).
 
@@ -194,6 +210,7 @@ export async function decomposeQuery(query: string, env: DecomposeEnv): Promise<
       temperature: 0,
       response_format: { type: "json_object" },
     }),
+    signal: AbortSignal.timeout(FOUNDRY_TIMEOUT_MS),
   });
 
   if (!res.ok) {

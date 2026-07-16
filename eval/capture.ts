@@ -31,11 +31,11 @@ const env: RetrieveEnv = {
 
 // La décomposition passe par le module partagé src/logic/decompose.ts (le MÊME
 // que la prod /decompose), pour capturer une expansion prod-fidèle — prompt +
-// reasoning_effort "minimal" + response_format json_object inclus.
+// Mistral-Large-3 temperature:0 + response_format json_object inclus.
 const decomposeEnv: DecomposeEnv = {
-  AOAI_ENDPOINT: process.env.AOAI_ENDPOINT || '',
-  AOAI_KEY: process.env.AOAI_KEY || '',
-  AOAI_CHAT_DEPLOYMENT: process.env.AOAI_CHAT_DEPLOYMENT || '',
+  FOUNDRY_CHAT_ENDPOINT: process.env.FOUNDRY_CHAT_ENDPOINT || '',
+  FOUNDRY_CHAT_KEY: process.env.FOUNDRY_CHAT_KEY || '',
+  FOUNDRY_CHAT_DEPLOYMENT: process.env.FOUNDRY_CHAT_DEPLOYMENT || '',
 };
 
 async function main() {
@@ -53,7 +53,7 @@ async function main() {
     console.log(`Processing ${item.id}: "${item.query}"`);
 
     try {
-      const concepts = await decomposeQuery(item.query, decomposeEnv);
+      const { concepts } = await decomposeQuery(item.query, decomposeEnv);
       console.log(`  Concepts: ${concepts.map(c => c.orig).join(', ')}`);
 
       const { candidates } = await retrieve(item.query, concepts, env);
