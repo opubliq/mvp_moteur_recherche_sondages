@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import type { CrosstabRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, formatPct, labelMap, refusalCodes } from "../../lib/microdataFormat";
-import { categoryColor, MAX_CATEGORIES, OTHER_COLOR, sequentialRamp } from "../../lib/vizPalette";
+import { categoryColor, divergingRamp, MAX_CATEGORIES, OTHER_COLOR } from "../../lib/vizPalette";
 
 /**
  * Croisement cible catégorielle × dimension → barres empilées 100 %. Une barre
@@ -52,7 +52,8 @@ export default function StackedBars100({
       const scaleCodes = ordered.filter((c) => !refusal.has(c) && present.has(c));
       const refusalPresent = ordered.filter((c) => refusal.has(c) && present.has(c));
       const extras = [...present].filter((c) => !ordered.includes(c)).sort((a, b) => Number(a) - Number(b));
-      const ramp = sequentialRamp(scaleCodes.length);
+      // Ordinal → toujours DIVERGENT depuis le centre (teal ↔ coral).
+      const ramp = divergingRamp(scaleCodes.length);
       cats = [
         ...scaleCodes.map((code, i) => ({
           code,

@@ -36,6 +36,29 @@ export interface RampStep {
 }
 
 /**
+ * Rampe DIVERGENTE pour les ordinaux : part du CENTRE (clair/neutre) vers deux
+ * pôles — teal à gauche (1ers niveaux, ex. accord), coral à droite (derniers, ex.
+ * désaccord). Intensité croissante vers les extrêmes. Point milieu à (n-1)/2 :
+ * n impair → niveau central gris neutre ; n pair (ex. 4) → milieu à 2.5, pas de
+ * niveau gris. `n` = niveaux hors refus/NSP.
+ */
+export function divergingRamp(n: number): RampStep[] {
+  const HA = 210; // pôle « gauche » (bleu-teal)
+  const HB = 25; // pôle « droite » (coral/rouge)
+  if (n <= 1) return [{ color: "oklch(0.80 0.02 240)", dark: true }];
+  const center = (n - 1) / 2;
+  return Array.from({ length: n }, (_, i) => {
+    const d = i - center;
+    if (Math.abs(d) < 1e-9) return { color: "oklch(0.82 0.02 240)", dark: true }; // neutre central
+    const t = Math.abs(d) / center; // 0 (centre) → 1 (extrême)
+    const H = d < 0 ? HA : HB;
+    const L = 0.88 + (0.42 - 0.88) * t; // clair au centre → foncé aux extrêmes
+    const C = 0.03 + (0.16 - 0.03) * t; // peu saturé au centre → saturé aux extrêmes
+    return { color: `oklch(${L.toFixed(3)} ${C.toFixed(3)} ${H})`, dark: L > 0.6 };
+  });
+}
+
+/**
  * Rampe SÉQUENTIELLE (une teinte, clair→foncé) pour les variables ORDINALES
  * (Likert, échelle) : l'ampleur perçue suit l'ordre des niveaux, pas des couleurs
  * catégorielles arbitraires. Teinte teal Opubliq. Plage de clarté LARGE + chroma
