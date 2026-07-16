@@ -3,6 +3,7 @@ import { useSearchState } from "../context/SearchContext";
 import SearchBar from "../components/SearchBar";
 import ConceptChips from "../components/ConceptChips";
 import Facets from "../components/Facets";
+import SearchProgress from "../components/SearchProgress";
 import SurveyGroup, { type SurveyGroupData } from "../components/SurveyGroup";
 import RelevanceTimeline from "../components/RelevanceTimeline";
 import ScoreDistribution from "../components/ScoreDistribution";
@@ -40,7 +41,7 @@ function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
 
 export default function SearchPage() {
   const {
-    query, filters, concepts, results, facets, globalFacets, loading, decomposing, error, hasSearched,
+    query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
     handleSearch, handleFilterChange, handleConceptsChange,
   } = useSearchState();
 
@@ -85,10 +86,21 @@ export default function SearchPage() {
         <SearchBar onSearch={handleSearch} loading={loading || decomposing} />
       </div>
 
-      {concepts.length > 0 && (
+      {/* Panneau d'étapes UNIQUEMENT sur une nouvelle recherche — reconnaissable
+          au fait que `handleSearch` a purgé les résultats. Un affinage (facette
+          ou poids) passe aussi par `phase = retrieve` mais garde volontairement
+          ses résultats à l'écran : y insérer le panneau ferait sauter la page
+          pour une re-requête que l'utilisateur suit déjà via le bouton. */}
+      {phase !== "idle" && results.length === 0 ? (
         <div className="mb-5">
-          <ConceptChips concepts={concepts} onChange={handleConceptsChange} />
+          <SearchProgress phase={phase} concepts={concepts} />
         </div>
+      ) : (
+        concepts.length > 0 && (
+          <div className="mb-5">
+            <ConceptChips concepts={concepts} onChange={handleConceptsChange} />
+          </div>
+        )
       )}
 
       {error && (

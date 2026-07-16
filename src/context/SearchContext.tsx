@@ -2,6 +2,15 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { search, decompose, fetchAllSurveys } from "../api";
 import type { Concept, SearchFilters, SearchResult, SearchFacets, FacetEntry } from "../types";
 
+/**
+ * Phase courante de la recherche, telle qu'on peut HONNÊTEMENT l'observer depuis
+ * le client. Il n'y en a que deux : `/decompose` et `/search` sont deux fetchs
+ * distincts, mais la récupération Azure et le rerank Cohere vivent tous les deux
+ * à l'intérieur de `/search` — impossible de les séparer sans streamer la
+ * fonction. On ne prétend donc pas les distinguer.
+ */
+export type SearchPhase = "idle" | "decompose" | "retrieve";
+
 interface SearchContextValue {
   query: string;
   filters: SearchFilters;
@@ -11,6 +20,7 @@ interface SearchContextValue {
   globalFacets: SearchFacets | null;
   loading: boolean;
   decomposing: boolean;
+  phase: SearchPhase;
   error: string | null;
   hasSearched: boolean;
   handleSearch: (q: string) => Promise<void>;
@@ -32,6 +42,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const [rerankQuery, setRerankQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [decomposing, setDecomposing] = useState(false);
+  const [phase, setPhase] = useState<SearchPhase>("idle");
   const [error, setError] = useState<string | null>(null);
   const [hasSearched, setHasSearched] = useState(false);
 
@@ -76,6 +87,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
   async function runSearch(q: string, f: SearchFilters, c?: Concept[], rq?: string) {
     setLoading(true);
+    setPhase("retrieve");
     setError(null);
     try {
       const res = await search(q, f, 30, c, false, rq);
@@ -88,6 +100,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
       setHasSearched(true);
     } finally {
       setLoading(false);
+      setPhase("idle");
     }
   }
 
@@ -107,6 +120,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     setRerankQuery("");
     setFacets(null);
     setDecomposing(true);
+    setPhase("decompose");
     setError(null);
     try {
       const { concepts: nextConcepts, rerankQuery: nextRerankQuery } = await decompose(q);
@@ -148,11 +162,11 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<SearchContextValue>(
     () => ({
-      query, filters, concepts, results, facets, globalFacets, loading, decomposing, error, hasSearched,
+      query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
       handleSearch, handleFilterChange, handleConceptsChange,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [query, filters, concepts, results, facets, globalFacets, loading, decomposing, error, hasSearched],
+    [query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched],
   );
 
   return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;
