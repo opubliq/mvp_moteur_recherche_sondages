@@ -16,6 +16,7 @@ import DistributionBars from "./microdata/DistributionBars";
 import Histogram from "./microdata/Histogram";
 import StackedBars100 from "./microdata/StackedBars100";
 import MeanByGroup from "./microdata/MeanByGroup";
+import DimSelect from "./microdata/DimSelect";
 
 type Kind = "single" | "scale" | "continuous" | "open" | "multiple";
 
@@ -320,26 +321,7 @@ function Crossing({
       </div>
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
-        <select className="select select-bordered select-sm max-w-xs" value={dimVar} onChange={(e) => setDimVar(e.target.value)}>
-          {socioDims.length > 0 && (
-            <optgroup label="Sociodémographiques">
-              {socioDims.map((d) => (
-                <option key={d.variable} value={d.variable}>
-                  {d.sociodemo_type ? `${d.sociodemo_type} — ` : ""}{d.question_text.slice(0, 55)}
-                </option>
-              ))}
-            </optgroup>
-          )}
-          {otherDims.length > 0 && (
-            <optgroup label="Autres questions">
-              {otherDims.map((d) => (
-                <option key={d.variable} value={d.variable}>
-                  {d.variable} — {d.question_text.slice(0, 55)}
-                </option>
-              ))}
-            </optgroup>
-          )}
-        </select>
+        <DimSelect socioDims={socioDims} otherDims={otherDims} value={dimVar} onChange={setDimVar} />
         {numeric && effMode === "mean" && (
           <label className="label cursor-pointer gap-2 text-xs">
             <input type="checkbox" className="checkbox checkbox-xs" checked={includeRefusal} onChange={(e) => setIncludeRefusal(e.target.checked)} />
