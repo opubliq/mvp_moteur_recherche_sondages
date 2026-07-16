@@ -15,6 +15,7 @@ QUESTIONS = {
         "display_label": "Groupe d'âge du répondant",
         "concepts": ["âge"],
         "themes": ["profil"],
+        "is_ordinal": True,
     },
     "qlanf": {
         "display_label": "Langue d'usage principal à la maison",
@@ -45,16 +46,19 @@ QUESTIONS = {
         "display_label": "Niveau de scolarité le plus élevé complété",
         "concepts": ["éducation", "scolarité"],
         "themes": ["profil"],
+        "is_ordinal": True,
     },
     "qreve": {
         "display_label": "Revenu annuel total du ménage",
         "concepts": ["revenu", "situation économique"],
         "themes": ["profil", "économie"],
+        "is_ordinal": True,
     },
     "qenfa": {
         "display_label": "Nombre de personnes de moins de 18 ans au foyer",
         "concepts": ["enfants", "famille", "ménage"],
         "themes": ["profil"],
+        "is_ordinal": True,
     },
     "prov1": {
         "display_label": "Intention de vote provincial — question initiale",
@@ -70,5 +74,6 @@ QUESTIONS = {
         "display_label": "Opinion sur le projet de Charte des valeurs québécoises",
         "concepts": ["charte des valeurs", "politique gouvernementale", "opinion"],
         "themes": ["politique", "identité"],
+        "is_ordinal": True,
     },
 }

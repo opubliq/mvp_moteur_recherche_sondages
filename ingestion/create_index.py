@@ -184,6 +184,15 @@ def build_index(name: str, dims: int) -> SearchIndex:
             filterable=True,
             facetable=True,
         ),
+        # Ordinalité des catégories : true si les niveaux ont un ordre intrinsèque
+        # (Likert, satisfaction, fréquence…). Orthogonal à var_type. Consommé par
+        # le front microdonnées (gradient séquentiel + ordre des response_options).
+        SimpleField(
+            name="is_ordinal",
+            type=SearchFieldDataType.Boolean,
+            filterable=True,
+            facetable=True,
+        ),
         SimpleField(
             name="has_verbatims",
             type=SearchFieldDataType.Boolean,

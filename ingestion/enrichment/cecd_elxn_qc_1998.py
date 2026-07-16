@@ -16,11 +16,13 @@ QUESTIONS = {
         "display_label": "Groupe d'âge",
         "concepts": ["âge", "cohorte"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "scol": {
         "display_label": "Niveau de scolarité",
         "concepts": ["éducation", "scolarité"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "occup": {
         "display_label": "Occupation professionnelle",
@@ -53,6 +55,7 @@ QUESTIONS = {
         "display_label": "Intention d'aller voter",
         "concepts": ["participation", "mobilisation électorale"],
         "themes": ["élection"],
+        "is_ordinal": True,
     },
 
     # Raisons du vote
@@ -82,6 +85,7 @@ QUESTIONS = {
         "display_label": "Satisfaction face au gouvernement sortant",
         "concepts": ["satisfaction gouvernementale", "approbation"],
         "themes": ["attitudes politiques"],
+        "is_ordinal": True,
     },
     "meilpm": {
         "display_label": "Meilleur premier ministre pour diriger le Québec",

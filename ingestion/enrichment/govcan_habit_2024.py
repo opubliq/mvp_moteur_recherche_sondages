@@ -10,16 +10,19 @@ QUESTIONS = {
         "display_label": "Self-rated physical health status",
         "concepts": ["physical_health", "self_assessment"],
         "themes": ["health"],
+        "is_ordinal": True,
     },
     "HEALTH_MENTAL_STATUS": {
         "display_label": "Self-rated mental health status",
         "concepts": ["mental_health", "self_assessment"],
         "themes": ["mental_health"],
+        "is_ordinal": True,
     },
     "DIET2": {
         "display_label": "Overall healthiness of diet",
         "concepts": ["nutrition", "lifestyle"],
         "themes": ["lifestyle"],
+        "is_ordinal": True,
     },
     "PA_DAYS": {
         "display_label": "Frequency of moderate-to-vigorous physical activity (days per week)",
@@ -40,6 +43,7 @@ QUESTIONS = {
         "display_label": "Overall quality of sleep",
         "concepts": ["sleep"],
         "themes": ["lifestyle"],
+        "is_ordinal": True,
     },
     "SCREEN_TIME": {
         "display_label": "Daily average screen time",
@@ -50,26 +54,31 @@ QUESTIONS = {
         "display_label": "Overall life satisfaction",
         "concepts": ["wellbeing", "happiness"],
         "themes": ["mental_health"],
+        "is_ordinal": True,
     },
     "VAX_BELIEF_RISKS": {
         "display_label": "Belief: Risks of vaccination outweigh benefits",
         "concepts": ["vaccination", "risk_perception", "beliefs"],
         "themes": ["health"],
+        "is_ordinal": True,
     },
     "VAX_BELIEF_LIFESTYLE": {
         "display_label": "Belief: Healthy lifestyle can replace vaccination",
         "concepts": ["vaccination", "alternative_medicine", "beliefs"],
         "themes": ["health"],
+        "is_ordinal": True,
     },
     "VAX_BELIEF_MANDATORY": {
         "display_label": "Belief: Vaccination should not be mandatory",
         "concepts": ["vaccination", "public_policy", "freedom"],
         "themes": ["society"],
+        "is_ordinal": True,
     },
     "VAX_BELIEF_IMMUN": {
         "display_label": "Belief: Natural immunity is better for adults",
         "concepts": ["vaccination", "immunity", "beliefs"],
         "themes": ["health"],
+        "is_ordinal": True,
     },
     "ANTIBIOTIC_TF_FLU": {
         "display_label": "Knowledge: Effectiveness of antibiotics against colds and flu",
@@ -90,6 +99,7 @@ QUESTIONS = {
         "display_label": "Concern about antibiotic resistance",
         "concepts": ["antibiotics", "risk_perception"],
         "themes": ["health"],
+        "is_ordinal": True,
     },
     "MH_STRUGGLE_SELFC3": {
         "display_label": "Mental health struggle in the past 12 months",
@@ -100,6 +110,7 @@ QUESTIONS = {
         "display_label": "Stigma: Burden of shame associated with mental illness",
         "concepts": ["mental_health", "stigma"],
         "themes": ["mental_health"],
+        "is_ordinal": True,
     },
     "SERVICE_MH_BARRIERS": {
         "display_label": "Presence of barriers to accessing mental health services",
@@ -110,11 +121,13 @@ QUESTIONS = {
         "display_label": "Belief: The Canadian health care system is in crisis",
         "concepts": ["healthcare_system", "public_opinion"],
         "themes": ["society"],
+        "is_ordinal": True,
     },
     "AFFORDABILITY_HEALTH": {
         "display_label": "Impact of health care costs on finances",
         "concepts": ["affordability", "healthcare_costs"],
         "themes": ["economy", "health"],
+        "is_ordinal": True,
     },
     "FOOD_SECURITYC3": {
         "display_label": "Household ran out of food due to lack of money",
@@ -125,26 +138,31 @@ QUESTIONS = {
         "display_label": "Belief: Climate change is real",
         "concepts": ["climate_change", "beliefs"],
         "themes": ["environment"],
+        "is_ordinal": True,
     },
     "CLIMATE_HEALTH_ANXIETY": {
         "display_label": "Anxiety about climate change impacts on health",
         "concepts": ["climate_change", "mental_health", "eco_anxiety"],
         "themes": ["environment", "mental_health"],
+        "is_ordinal": True,
     },
     "HEAT_SELF_EFFICACY": {
         "display_label": "Self-efficacy in preparing for extreme heat events",
         "concepts": ["climate_change", "adaptation", "self_efficacy"],
         "themes": ["environment", "health"],
+        "is_ordinal": True,
     },
     "TRUST_GOOD_PHAC": {
         "display_label": "Trust in the Public Health Agency of Canada",
         "concepts": ["trust", "government_agencies", "public_health"],
         "themes": ["society"],
+        "is_ordinal": True,
     },
     "TRUST_GOOD_GOC": {
         "display_label": "Trust in the Government of Canada",
         "concepts": ["trust", "government"],
         "themes": ["society"],
+        "is_ordinal": True,
     },
     "AGE": {
         "display_label": "Year of birth",
@@ -185,16 +203,19 @@ QUESTIONS = {
         "display_label": "Familiarity with the role of PHAC",
         "concepts": ["public_health", "government_agencies", "awareness"],
         "themes": ["society"],
+        "is_ordinal": True,
     },
     "HC_AWARE": {
         "display_label": "Familiarity with the role of Health Canada",
         "concepts": ["public_health", "government_agencies", "awareness"],
         "themes": ["society"],
+        "is_ordinal": True,
     },
     "ANTIBIOTIC_PRESCRIBE_USE": {
         "display_label": "Frequency of prescribed oral antibiotic use (past 12 months)",
         "concepts": ["antibiotics", "medical_treatment"],
         "themes": ["health"],
+        "is_ordinal": True,
     },
     "MH_HELPFUL_ACTIVITYC5": {
         "display_label": "Effect of sleep on mental health maintenance",
@@ -250,10 +271,12 @@ QUESTIONS = {
         "display_label": "Frequency of wearing a mask when sick (since September 2023)",
         "concepts": ["health_measures", "preventive_behavior", "respiratory_illness"],
         "themes": ["health"],
+        "is_ordinal": True,
     },
     "HEALTH_MEASURES_RECENT_3": {
         "display_label": "Frequency of staying home when sick (since September 2023)",
         "concepts": ["health_measures", "preventive_behavior", "respiratory_illness"],
         "themes": ["health"],
+        "is_ordinal": True,
     },
 }

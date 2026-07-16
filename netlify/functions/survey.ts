@@ -50,6 +50,7 @@ const SELECT_FIELDS = [
   "response_options",
   "var_type",
   "is_sociodemo",
+  "is_ordinal",
   "sociodemo_type",
   "concepts",
   "themes",

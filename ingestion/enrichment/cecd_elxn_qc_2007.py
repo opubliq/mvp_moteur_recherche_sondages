@@ -25,6 +25,7 @@ QUESTIONS = {
         "display_label": "Groupe d'âge du répondant",
         "concepts": ["âge"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "occup": {
         "display_label": "Occupation principale du répondant",
@@ -35,11 +36,13 @@ QUESTIONS = {
         "display_label": "Nombre d'années d'études complétées",
         "concepts": ["éducation", "scolarité"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "revenu": {
         "display_label": "Revenu annuel total du foyer avant impôts",
         "concepts": ["revenu", "statut économique"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "lmat": {
         "display_label": "Langue maternelle du répondant",
@@ -60,6 +63,7 @@ QUESTIONS = {
         "display_label": "Intérêt personnel pour la campagne électorale",
         "concepts": ["engagement politique", "intérêt électoral"],
         "themes": ["engagement civique", "comportement électoral"],
+        "is_ordinal": True,
     },
     "z1q2": {
         "display_label": "Lequel des 5 chefs a fait la meilleure campagne jusqu'à maintenant (première vague)",
@@ -70,6 +74,7 @@ QUESTIONS = {
         "display_label": "Satisfaction envers le gouvernement du Québec",
         "concepts": ["satisfaction gouvernementale", "évaluation gouvernementale"],
         "themes": ["leadership politique", "gouvernance"],
+        "is_ordinal": True,
     },
     "intvote1": {
         "display_label": "Intention de vote provincial si élection aujourd'hui (première mention)",
@@ -155,6 +160,7 @@ QUESTIONS = {
         "display_label": "Opinion sur la privatisation partielle du Mont-Orford",
         "concepts": ["environnement", "développement", "bien public"],
         "themes": ["politiques publiques", "enjeux électoraux"],
+        "is_ordinal": True,
     },
     "luentend": {
         "display_label": "Exposition à la lecture ou audition de résultats de sondages électoraux",
@@ -170,6 +176,7 @@ QUESTIONS = {
         "display_label": "Ampleur de l'avance du parti en tête dans les sondages : beaucoup ou peu en avance",
         "concepts": ["sondages", "perception des écarts"],
         "themes": ["opinion publique"],
+        "is_ordinal": True,
     },
     "avancelib": {
         "display_label": "Opinion sur l'avance déclarée du Parti libéral dans les récents sondages",
@@ -185,11 +192,13 @@ QUESTIONS = {
         "display_label": "Confiance personnelle envers les sondages pour prédire qui va gagner",
         "concepts": ["confiance", "crédibilité des sondages"],
         "themes": ["opinion publique"],
+        "is_ordinal": True,
     },
     "sondbons": {
         "display_label": "Opinion : les sondages durant les campagnes électorales sont-ils une bonne ou mauvaise chose",
         "concepts": ["opinion sur les sondages", "jugement normatif"],
         "themes": ["opinion publique", "démocratie"],
+        "is_ordinal": True,
     },
     "z2q2": {
         "display_label": "Visionnement du débat télévisé entre les trois chefs (13 mars 2007)",
@@ -255,6 +264,7 @@ QUESTIONS = {
         "display_label": "Perception du volume de sondages durant la dernière campagne électorale",
         "concepts": ["saturation médiatique", "sondages"],
         "themes": ["communication politique", "opinion publique"],
+        "is_ordinal": True,
     },
     "sonddiff": {
         "display_label": "Impact des résultats de sondages sur sa propre décision de vote",
