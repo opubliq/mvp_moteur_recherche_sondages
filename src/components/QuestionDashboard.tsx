@@ -169,9 +169,9 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
 
   const numeric = kind === "scale" || kind === "continuous";
   const refusal = useMemo(() => refusalCodes(q.response_options), [q]);
-  // Masquer refus/NSP dans la distribution (option). Continu : toujours exclus du
-  // binning (sinon l'axe se dilate). Catégoriel/échelle : à la demande.
-  const [hideRefusal, setHideRefusal] = useState(false);
+  // Refus/NSP EXCLUS par défaut partout ; toggle « inclure refus/NSP » pour les
+  // remettre. Continu : toujours exclus du binning (sinon l'axe se dilate).
+  const [includeRefusal, setIncludeRefusal] = useState(false);
   const canToggleRefusal = kind !== "continuous" && refusal.length > 0;
 
   useEffect(() => {
@@ -179,7 +179,7 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
     setState("loading");
     setDist(null);
     setStat(null);
-    const distExclude = kind === "continuous" ? refusal : hideRefusal ? refusal : [];
+    const distExclude = kind === "continuous" ? refusal : includeRefusal ? [] : refusal;
     const jobs: Promise<unknown>[] = [
       fetchMicrodata<DistributionRow>({ surveyId: q.survey_id, target: q.variable, exclude: distExclude }).then(
         (r) => !cancelled && setDist(r.rows),
@@ -202,7 +202,7 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
     return () => {
       cancelled = true;
     };
-  }, [q, kind, numeric, refusal, hideRefusal]);
+  }, [q, kind, numeric, refusal, includeRefusal]);
 
   if (state === "none") return <NoMicrodata />;
   if (state === "error") return <div className="op-card"><p className="text-sm text-error">Échec du chargement des microdonnées.</p></div>;
@@ -217,8 +217,8 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
         <div className="flex items-center gap-3">
           {canToggleRefusal && (
             <label className="label cursor-pointer gap-1.5 text-xs">
-              <input type="checkbox" className="checkbox checkbox-xs" checked={hideRefusal} onChange={(e) => setHideRefusal(e.target.checked)} />
-              masquer refus/NSP
+              <input type="checkbox" className="checkbox checkbox-xs" checked={includeRefusal} onChange={(e) => setIncludeRefusal(e.target.checked)} />
+              inclure refus/NSP
             </label>
           )}
           {stat && (
@@ -261,8 +261,7 @@ function Crossing({
   const dims = useMemo(() => [...socioDims, ...otherDims], [socioDims, otherDims]);
   const [dimVar, setDimVar] = useState<string>(dims[0]?.variable ?? "");
   const [mode, setMode] = useState<"mean" | "stacked">("mean");
-  const [includeRefusal, setIncludeRefusal] = useState(false); // mode moyenne
-  const [hideRefusal, setHideRefusal] = useState(false); // mode empilé (distribution)
+  const [includeRefusal, setIncludeRefusal] = useState(false); // défaut : refus exclus
   const [cross, setCross] = useState<CrosstabRow[] | null>(null);
   const [means, setMeans] = useState<MeanByGroupRow[] | null>(null);
   const [domain, setDomain] = useState<{ min: number; max: number; overall?: number } | null>(null);
@@ -272,16 +271,12 @@ function Crossing({
   const dimQ = useMemo(() => dims.find((d) => d.variable === dimVar), [dims, dimVar]);
   // continuous : moyenne uniquement (empilé 100% d'un continu n'a pas de sens).
   const effMode: "mean" | "stacked" = kind === "continuous" ? "mean" : mode;
-  // Le graphe est un empilé dès que ce n'est pas une moyenne numérique (un `single`
-  // non-numérique reste sur mode="mean" par défaut mais rend un empilé).
-  const isStacked = !(numeric && effMode === "mean");
   const refusal = useMemo(() => refusalCodes(q.response_options), [q]);
-  // Moyenne : refus exclus par défaut (sinon 99 fait exploser la moyenne).
-  // Empilé : refus affichés par défaut, option pour les masquer.
-  const exclude = useMemo(() => {
-    if (!isStacked) return includeRefusal ? [] : refusal;
-    return hideRefusal ? refusal : [];
-  }, [isStacked, includeRefusal, hideRefusal, refusal]);
+  // Refus/NSP EXCLUS par défaut (moyenne comme empilé) ; toggle pour les inclure.
+  const exclude = useMemo(
+    () => (includeRefusal ? [] : refusal),
+    [includeRefusal, refusal],
+  );
 
   useEffect(() => {
     if (!dimVar) return;
@@ -341,16 +336,10 @@ function Crossing({
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <DimSelect socioDims={socioDims} otherDims={otherDims} value={dimVar} onChange={setDimVar} />
-        {!isStacked && (
+        {refusal.length > 0 && (
           <label className="label cursor-pointer gap-2 text-xs">
             <input type="checkbox" className="checkbox checkbox-xs" checked={includeRefusal} onChange={(e) => setIncludeRefusal(e.target.checked)} />
             inclure refus/NSP
-          </label>
-        )}
-        {isStacked && refusal.length > 0 && (
-          <label className="label cursor-pointer gap-2 text-xs">
-            <input type="checkbox" className="checkbox checkbox-xs" checked={hideRefusal} onChange={(e) => setHideRefusal(e.target.checked)} />
-            masquer refus/NSP
           </label>
         )}
       </div>

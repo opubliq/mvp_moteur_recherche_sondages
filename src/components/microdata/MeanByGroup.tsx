@@ -46,10 +46,12 @@ export default function MeanByGroup({
         className="grid items-center"
         style={{ gridTemplateColumns: "10rem 1fr 3.2rem", columnGap: "0.5rem", rowGap: "0.5rem" }}
       >
-        {/* Ligne de moyenne globale : traverse TOUTES les rangées (colonne 2). */}
+        {/* Ligne de moyenne globale : traverse TOUTES les rangées (colonne 2).
+            align-self: stretch est indispensable — sinon `items-center` de la
+            grille réduit cet élément à hauteur nulle et la ligne disparaît. */}
         {overallMean != null && groups.length > 0 && (
           <div
-            style={{ gridColumn: 2, gridRow: `1 / span ${groups.length}`, position: "relative", pointerEvents: "none" }}
+            style={{ gridColumn: 2, gridRow: `1 / span ${groups.length}`, alignSelf: "stretch", position: "relative", pointerEvents: "none" }}
           >
             <div
               className="absolute inset-y-0"
