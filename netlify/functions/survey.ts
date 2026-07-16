@@ -47,6 +47,7 @@ const SELECT_FIELDS = [
   "language",
   "variable",
   "question_text",
+  "display_label",
   "response_options",
   "var_type",
   "is_sociodemo",

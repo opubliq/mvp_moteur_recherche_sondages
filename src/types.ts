@@ -21,6 +21,8 @@ export interface SearchResult {
   language: string | null;
   variable: string;
   question_text: string;
+  /** Libellé court/propre authored (LLM), pour l'affichage. Fallback question_text. */
+  display_label?: string | null;
   response_options: ResponseOption[];
   var_type: string | null;
   is_sociodemo: boolean;
