@@ -101,3 +101,61 @@ export interface SurveyDetailResponse {
   questions: SearchResult[];
   count: number;
 }
+
+/* --- Microdonnées répondant : contrat de la Netlify Function `/microdata` --- */
+
+/** Une catégorie d'une distribution univariée pondérée. */
+export interface DistributionRow {
+  target_code: number | string;
+  weighted_n: number;
+  raw_n: number;
+  share: number; // 0..1
+}
+
+/** Une cellule d'un crosstab (part normalisée PAR groupe de dimension). */
+export interface CrosstabRow {
+  dim_code: number | string;
+  target_code: number | string;
+  weighted_n: number;
+  raw_n: number;
+  col_share: number; // 0..1, somme à 1 par dim_code
+}
+
+/** Moyenne pondérée globale d'une cible numérique. */
+export interface MeanRow {
+  mean: number;
+  min: number;
+  max: number;
+  weighted_n: number;
+  raw_n: number;
+}
+
+/** Moyenne pondérée par groupe de dimension. */
+export interface MeanByGroupRow {
+  dim_code: number | string;
+  mean: number;
+  weighted_n: number;
+  raw_n: number;
+}
+
+export type MicrodataMode = "distribution" | "crosstab" | "mean" | "mean_by_group";
+
+export interface MicrodataResponse<Row = Record<string, number | string>> {
+  survey_id: string;
+  target: string;
+  dim: string | null;
+  mode: MicrodataMode;
+  filters: { var: string; codes: (string | number)[] }[];
+  row_count: number;
+  rows: Row[];
+}
+
+export interface MicrodataQuery {
+  surveyId: string;
+  target: string;
+  dim?: string;
+  filters?: { var: string; codes: (string | number)[] }[];
+  agg?: "count" | "mean";
+  /** Codes de la cible à exclure (refus/NSP) — pour des moyennes sensées. */
+  exclude?: (string | number)[];
+}

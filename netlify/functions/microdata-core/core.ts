@@ -28,6 +28,12 @@ export interface MicrodataParams {
   target: string;
   dim?: string;
   filters?: Filter[];
+  /** "count" (défaut) = distribution/crosstab pondérés ; "mean" = moyenne
+   *  pondérée d'une cible numérique (globale, ou par dim_code si `dim`). */
+  agg?: "count" | "mean";
+  /** Codes de la cible à exclure (ex. refus/NSP 99/9999) — indispensable pour
+   *  que la moyenne d'une échelle ait un sens. Valeurs LIÉES, jamais interpolées. */
+  exclude?: (string | number)[];
 }
 
 export interface MicrodataConfig {
@@ -93,12 +99,15 @@ function num(v: unknown): number {
 
 // --- Handler principal ------------------------------------------------------
 export async function handleMicrodataQuery(params: MicrodataParams, config: MicrodataConfig) {
-  const { survey_id, target, dim, filters = [] } = params;
+  const { survey_id, target, dim, filters = [], agg = "count", exclude = [] } = params;
 
   if (!survey_id || !IDENT_RE.test(survey_id)) {
     throw new MicrodataError(400, `Invalid survey_id: ${JSON.stringify(survey_id)}`);
   }
   if (!target) throw new MicrodataError(400, "target is required");
+  if (agg !== "count" && agg !== "mean") {
+    throw new MicrodataError(400, `Invalid agg: ${JSON.stringify(agg)}`);
+  }
 
   const parquetUrl = signedBlobUrl(config.storage, `${survey_id}.parquet`);
   const c = await getConnection();
@@ -111,7 +120,7 @@ export async function handleMicrodataQuery(params: MicrodataParams, config: Micr
     if (dim) assertColumn(dim, cols, "dim");
     for (const f of filters) assertColumn(f.var, cols, "filter");
 
-    // 2) Clauses WHERE : NULL exclu ; valeurs de filtre = paramètres LIÉS
+    // 2) Clauses WHERE : NULL exclu ; valeurs de filtre/exclude = paramètres LIÉS
     const bind: Record<string, string | number> = { url: parquetUrl };
     const where: string[] = [`${quoteIdent(target)} IS NOT NULL`];
     if (dim) where.push(`${quoteIdent(dim)} IS NOT NULL`);
@@ -124,11 +133,44 @@ export async function handleMicrodataQuery(params: MicrodataParams, config: Micr
       });
       where.push(`${quoteIdent(f.var)} IN (${placeholders.join(", ")})`);
     });
+    // Exclusion de codes de la cible (refus/NSP) — surtout utile en mode mean.
+    if (exclude.length) {
+      const placeholders = exclude.map((code, j) => {
+        const p = `x_${j}`;
+        bind[p] = code;
+        return `$${p}`;
+      });
+      where.push(`${quoteIdent(target)} NOT IN (${placeholders.join(", ")})`);
+    }
     const whereSql = where.join(" AND ");
 
-    // 3) SQL — distribution (dim absent) ou crosstab (dim présent)
+    // 3) SQL selon agg (count = distribution/crosstab ; mean = moyenne pondérée)
     let sql: string;
-    if (dim) {
+    let mode: string;
+    if (agg === "mean") {
+      // Moyenne pondérée d'une cible numérique : SUM(w·x)/SUM(w). TRY_CAST écarte
+      // les cibles non numériques (renvoie NULL, exclu par WHERE x IS NOT NULL).
+      if (dim) {
+        mode = "mean_by_group";
+        sql = `WITH base AS (
+  SELECT ${quoteIdent(dim)} AS dim_code, TRY_CAST(${quoteIdent(target)} AS DOUBLE) AS x, "__weight" AS w
+  FROM read_parquet($url) WHERE ${whereSql}
+)
+SELECT dim_code, SUM(w * x) / SUM(w) AS mean,
+       SUM(w) AS weighted_n, COUNT(*) AS raw_n
+FROM base WHERE x IS NOT NULL GROUP BY dim_code ORDER BY dim_code`;
+      } else {
+        mode = "mean";
+        sql = `WITH base AS (
+  SELECT TRY_CAST(${quoteIdent(target)} AS DOUBLE) AS x, "__weight" AS w
+  FROM read_parquet($url) WHERE ${whereSql}
+)
+SELECT SUM(w * x) / SUM(w) AS mean, MIN(x) AS min, MAX(x) AS max,
+       SUM(w) AS weighted_n, COUNT(*) AS raw_n
+FROM base WHERE x IS NOT NULL`;
+      }
+    } else if (dim) {
+      mode = "crosstab";
       sql = `WITH base AS (
   SELECT ${quoteIdent(target)} AS target_code, ${quoteIdent(dim)} AS dim_code, "__weight" AS w
   FROM read_parquet($url) WHERE ${whereSql}
@@ -138,6 +180,7 @@ SELECT dim_code, target_code,
        SUM(w) / SUM(SUM(w)) OVER (PARTITION BY dim_code) AS col_share
 FROM base GROUP BY dim_code, target_code ORDER BY dim_code, target_code`;
     } else {
+      mode = "distribution";
       sql = `WITH base AS (
   SELECT ${quoteIdent(target)} AS target_code, "__weight" AS w
   FROM read_parquet($url) WHERE ${whereSql}
@@ -161,7 +204,7 @@ FROM base GROUP BY target_code ORDER BY target_code`;
       survey_id,
       target,
       dim: dim ?? null,
-      mode: dim ? "crosstab" : "distribution",
+      mode,
       filters,
       row_count: rows.length,
       rows,

@@ -34,6 +34,8 @@ function parseParams(event: Parameters<Handler>[0]): MicrodataParams {
       target: String(b.target ?? ""),
       dim: b.dim ? String(b.dim) : undefined,
       filters: Array.isArray(b.filters) ? b.filters : [],
+      agg: b.agg === "mean" ? "mean" : "count",
+      exclude: Array.isArray(b.exclude) ? b.exclude : [],
     };
   }
   const q = event.queryStringParameters ?? {};
@@ -42,6 +44,8 @@ function parseParams(event: Parameters<Handler>[0]): MicrodataParams {
     target: q.target ?? "",
     dim: q.dim || undefined,
     filters: q.filters ? JSON.parse(q.filters) : [],
+    agg: q.agg === "mean" ? "mean" : "count",
+    exclude: q.exclude ? JSON.parse(q.exclude) : [],
   };
 }
 

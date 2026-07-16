@@ -1,4 +1,4 @@
-import type { Concept, ConceptCount, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent } from "./types";
+import type { Concept, ConceptCount, MicrodataQuery, MicrodataResponse, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent } from "./types";
 import { MOCK_RESPONSE } from "./mock";
 
 /**
@@ -122,6 +122,41 @@ export async function fetchSurvey(surveyId: string): Promise<SurveyDetailRespons
   }
 
   return (await res.json()) as SurveyDetailResponse;
+}
+
+/** Levée quand un sondage n'a pas de microdonnées (Parquet absent, 404). */
+export class NoMicrodataError extends Error {}
+
+/**
+ * Appelle la Netlify Function `/microdata` : distribution / crosstab / moyenne
+ * pondérée sur le Parquet répondant d'un sondage. Renvoie les CODES bruts (le
+ * mapping code→label se fait côté composant via response_options).
+ * Lève `NoMicrodataError` si le sondage n'a pas de Parquet (404).
+ */
+export async function fetchMicrodata<Row = Record<string, number | string>>(
+  query: MicrodataQuery,
+): Promise<MicrodataResponse<Row>> {
+  const body = {
+    survey_id: query.surveyId,
+    target: query.target,
+    dim: query.dim,
+    filters: query.filters ?? [],
+    agg: query.agg ?? "count",
+    exclude: query.exclude ?? [],
+  };
+  const res = await fetch("/microdata", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (res.status === 404) {
+    throw new NoMicrodataError(`Aucune microdonnée pour ${query.surveyId}`);
+  }
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    throw new Error(`Microdonnées échouées (${res.status}): ${txt || res.statusText}`);
+  }
+  return (await res.json()) as MicrodataResponse<Row>;
 }
 
 /**
