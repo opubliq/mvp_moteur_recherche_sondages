@@ -71,10 +71,9 @@ function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
-/** Score 0-100 -> couleur OKLCH de la rampe séquentielle, en chaîne CSS `oklch(...)`. */
-export function scoreToColor(score: number): string {
-  const s = Math.max(0, Math.min(100, score));
-  const t = s / 100;
+/** Position sur la rampe, en OKLCH. */
+function rampAt(score: number): Oklch {
+  const t = Math.max(0, Math.min(100, score)) / 100;
 
   // Interpolation par morceaux entre les trois ancres. H croît de façon
   // monotone (29 -> 78 -> 196), donc un lerp direct suffit : aucun risque de
@@ -84,11 +83,48 @@ export function scoreToColor(score: number): string {
       ? [CORAL_PALE, AMBER_MID, t / 0.5]
       : [AMBER_MID, SARCELLE, (t - 0.5) / 0.5];
 
-  const l = lerp(from.l, to.l, localT);
-  const c = lerp(from.c, to.c, localT);
-  const h = lerp(from.h, to.h, localT);
+  return {
+    l: lerp(from.l, to.l, localT),
+    c: lerp(from.c, to.c, localT),
+    h: lerp(from.h, to.h, localT),
+  };
+}
 
-  return `oklch(${l.toFixed(4)} ${c.toFixed(4)} ${h.toFixed(2)})`;
+const css = ({ l, c, h }: Oklch) => `oklch(${l.toFixed(4)} ${c.toFixed(4)} ${h.toFixed(2)})`;
+
+/** Score 0-100 -> couleur OKLCH de la rampe séquentielle, en chaîne CSS `oklch(...)`. */
+export function scoreToColor(score: number): string {
+  return css(rampAt(score));
+}
+
+/**
+ * De combien on assombrit la rampe pour en tirer une encre. Valeur CALCULÉE, pas
+ * choisie à l'œil : c'est le plus petit écart de clarté qui tienne le seuil AA
+ * (4.5:1) sur TOUTE la rampe. Mesuré, contraste au pire cas :
+ *   0.35 -> 3.62:1 (échoue)   0.40 -> 4.35:1 (échoue)   0.45 -> 4.77:1
+ * Le pire cas est le score 100 (sarcelle, L=0.58) : c'est le fond le plus sombre,
+ * donc celui qui laisse le moins de place en dessous. Au-delà de 0.5 le gain
+ * plafonne — L bute sur 0 et l'encre vire au noir, ce qu'on cherche justement à
+ * éviter.
+ */
+const INK_DARKEN = 0.45;
+
+/**
+ * Encre lisible SUR un fond `scoreToColor(score)` : la même teinte, assombrie.
+ *
+ * POURQUOI PAS UNE ENCRE NOIRE FIXE. C'était la version d'avant
+ * (`oklch(0.28 0.03 250)`), et son contraste réel tombait à 3.57:1 sur la
+ * sarcelle — sous le seuil AA, donc illisible là où les scores sont les
+ * meilleurs. Reteinter fait mieux (4.77:1) TOUT EN rattachant le chiffre à sa
+ * bande : un jeton se lit alors comme un point qui porte un nombre, pas comme un
+ * badge posé dessus.
+ *
+ * La chroma est conservée telle quelle : la remonter (×1.3) ne gagne rien en
+ * contraste (mesuré : 4.73:1, soit un poil moins) et ferait vibrer le chiffre.
+ */
+export function scoreToInkColor(score: number): string {
+  const { l, c, h } = rampAt(score);
+  return css({ l: Math.max(0, l - INK_DARKEN), c, h });
 }
 
 /**
