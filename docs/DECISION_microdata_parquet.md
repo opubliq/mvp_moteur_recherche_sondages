@@ -1,6 +1,6 @@
 # Décision — Microdonnées répondant (réponses fermées) : contrat Parquet + crosstab DuckDB
 
-Statut : **proposé** (issue `mvp_moteur_recherche_sondages-v33.1`, à valider par l'utilisateur).
+Statut : **validé** (issue `mvp_moteur_recherche_sondages-v33.1`), prêt à implémenter.
 Portée : figer, **avant ingestion**, le schéma des fichiers Parquet répondant-niveau, la
 gestion codes/labels, le typage raw-first, les poids, le patron de requête DuckDB et la
 convention Blob. Store déjà tranché : **1 Parquet par sondage dans Azure Blob**, interrogé
@@ -51,11 +51,11 @@ sont préfixées `__` :
 |---|---|---|
 | `__respondent_id` | int64 | identité de ligne stable. Dérivée de l'ID répondant RAW s'il existe (`QUEST` eeq, `record` habit) ; sinon index de ligne 0..N-1. **Toujours présent.** |
 | `__survey_id` | string (dictionary) | constante = `survey_id`. Permet d'empiler plusieurs Parquet si besoin, et trace l'origine dans le sandbox. |
-| `__weight` | double, nullable | poids principal du sondage (voir §5). NULL si le sondage n'a pas de poids. |
+| `__weight` | double, **non-nullable** | poids du répondant (voir §5). Toujours présent et rempli : poids fourni par la maison de sondage, ou `1.0` si le sondage n'en fournit pas. |
 
 > Les variables de poids RAW (`POND`, `WEIGHTMERGED`, `WEIGHT_FIN`) restent **aussi** comme
 > colonnes normales (raw-first : on ne supprime rien) ; `__weight` en est une **copie
-> pointée** vers celle retenue, pour un accès uniforme cross-sondage.
+> pointée** vers celle déclarée, pour un accès uniforme cross-sondage.
 
 ### Hétérogénéité inter-sondages
 
@@ -89,11 +89,20 @@ LANG            : string (dict) ("FR","EN")
 
 ## 2. Codes vs labels — OÙ vivent les labels
 
-**Décision : valeurs Parquet = codes RAW ; les labels NE sont PAS dupliqués — ils viennent de
-l'index AI Search `survey-questions`, keyés sur `variable`.** Pas de sidecar labels par sondage.
+**Décision : valeurs Parquet = codes RAW ; les labels ne sont pas émis à côté du Parquet — ils
+viennent de l'index AI Search `survey-questions`, keyés sur `variable`.** Pas de sidecar labels
+par sondage.
+
+> **Cadrage.** La source de vérité des labels est le **JSON normalisé** (`ingestion/normalized/`) ;
+> AI Search en est une **projection**, un sidecar en serait une seconde. « Éviter la duplication »
+> ne tranche donc pas à lui seul. Ce qui tranche : le seul consommateur actuel est le **UI**, qui
+> charge déjà les `response_options` — un sidecar n'apporterait rien aujourd'hui. Et la décision est
+> **réversible sans coût** : si le sandbox de l'agent (epic `aat`) a un jour besoin de fichiers
+> auto-descriptifs, le sidecar s'ajoute par une simple projection du normalisé vers le Blob, sans
+> jamais toucher aux Parquet.
 
 Justification : l'index `survey-questions` (cf. `ingestion/create_index.py`) contient **déjà**,
-par question (doc `question`), tout ce qu'un sidecar aurait dupliqué, et sur **la même clé** que
+par question (doc `question`), tout ce qu'un sidecar porterait, et sur **la même clé** que
 le nom de colonne du Parquet :
 
 - `variable` — l'ID de variable RAW = **clé de jointure** avec les colonnes Parquet.
@@ -102,9 +111,9 @@ le nom de colonne du Parquet :
 
 Le UI charge déjà ces `response_options` pour la vue structure du sondage : au moment de rendre
 une distribution/crosstab, le front a **déjà en mémoire** les maps `code → label` de la variable
-cible et de la dimension de croisement. Un sidecar `.labels.json` serait une **pure duplication**
-d'une projection déjà existante du même JSON normalisé (le normalisé alimente AI Search ET
-alimenterait le sidecar — deux copies de la même source).
+cible et de la dimension de croisement. Un sidecar `.labels.json` n'ajouterait donc **aucune
+capacité** au seul consommateur actuel, tout en créant un second artefact à générer et à garder
+à jour. On ne le construit pas tant que rien ne le réclame (cf. encadré ci-dessus).
 
 Conséquences :
 - **Ne PAS** émettre de sidecar labels par sondage.
@@ -115,7 +124,7 @@ Conséquences :
 
 ### Ce qui n'est PAS dans AI Search → `_manifest.json` (niveau sondage)
 
-Trois métadonnées propres aux microdonnées ne sont pas indexées (les poids et l'ID répondant
+Quelques métadonnées propres aux microdonnées ne sont pas indexées (les poids et l'ID répondant
 sont dans `EXCLUDED_VARS` des extracteurs, donc absents d'AI Search). Elles vivent dans un petit
 `_manifest.json` unique dans le container (voir §7), pas dans des sidecars par variable :
 
@@ -127,17 +136,19 @@ sont dans `EXCLUDED_VARS` des extracteurs, donc absents d'AI Search). Elles vive
       "n_respondents": 2456,
       "n_vars": 180,
       "weight_var": "POND",
+      "weight_source": "provided",
       "respondent_id_var": "QUEST",
-      "has_weight": true,
       "updated_at": "2026-07-10T..."
     }
   ]
 }
 ```
 
-- `weight_var` / `respondent_id_var` : déclarés par sondage à l'ingestion (le poids principal
-  n'est **pas** deviné, cf. §5).
-- `has_weight` : pilote la bascule pondéré/non-pondéré du UI sans ouvrir le Parquet.
+- `weight_var` / `respondent_id_var` : déclarés par sondage à l'ingestion (le poids n'est **pas**
+  deviné, cf. §5). `weight_var` est `null` quand le sondage ne fournit pas de poids.
+- `weight_source` : `"provided"` (poids de la maison de sondage) ou `"uniform"` (aucun poids
+  fourni → `__weight = 1.0`). **Essentiel** : sans ce champ, un `__weight` uniforme est
+  indiscernable d'un vrai poids, et des chiffres non pondérés se lisent comme représentatifs.
 - La liste `surveys` dit **quels sondages ont des microdonnées** (tous n'en auront pas).
 
 ---
@@ -164,13 +175,13 @@ Le `var_type` d'AI Search (`single`/`multiple`/`scale`/`continuous`/`open`) pilo
 - **On n'impute rien, on ne recode rien.** Les sentinelles RAW sont **conservées comme
   valeurs** : `99`/`98` (« Je préfère ne pas répondre », déjà dans `response_options`), `9999`
   (refus, observé dans les CSV govcan), etc. Elles restent des codes visibles, filtrables par
-  l'analyste, avec leur label dans le sidecar.
+  l'analyste, avec leur label dans le catalogue AI Search.
 - **Seul** le missing *structurel* (cellule vide SAV/CSV, `NaN`) devient **NULL Parquet** —
   c'est un ajustement de format, pas de fond. DuckDB distingue alors « pas de réponse »
   (`NULL`, exclu des dénominateurs par défaut) de « a refusé » (code RAW présent).
 - Aucune plage user-missing SPSS observée (`missing_ranges` vide sur eeq) ; si un futur SAV en
   a, **ne pas les appliquer** (`pyreadstat(..., apply_value_formats=False)` déjà en place) —
-  garder les codes bruts, documenter la plage dans le sidecar (`missing_codes`) au besoin.
+  garder les codes bruts, documenter la plage dans le `_manifest.json` (`missing_codes`) au besoin.
 
 ### Encodage
 
@@ -196,8 +207,8 @@ normalisé.** Aucune nouvelle source.
   transversale (`gender|age|education|income|region|language|occupation|marital_status`…),
   aussi câblée dans `ingestion/canonical.py`.
 - Les variables sociodémo **ne sont pas séparées physiquement** : ce sont des colonnes RAW
-  normales dans le Parquet. Le sidecar porte `is_sociodemo`/`sociodemo_type` par variable → le
-  UI peuple le sélecteur « croiser par… » en filtrant `is_sociodemo == true`.
+  normales dans le Parquet. Le catalogue AI Search porte `is_sociodemo`/`sociodemo_type` par
+  variable → le UI peuple le sélecteur « croiser par… » en filtrant `is_sociodemo == true`.
 - **Bénéfice cross-sondage** : `sociodemo_type` est la clé **comparable** entre sondages (le UI
   peut proposer « croiser par âge » quel que soit l'ID RAW réel : `CLAGE` ici, `AGE_CAT`
   ailleurs). Les IDs RAW, eux, ne sont pas comparables.
@@ -206,20 +217,30 @@ normalisé.** Aucune nouvelle source.
 
 ## 5. Poids de sondage
 
-**Des poids existent** (confirmé sur données réelles) et étaient jusqu'ici **exclus** de
-l'index (`EXCLUDED_VARS` dans les extracteurs, ex. `POND`). Pour le Parquet, on les **conserve
-et on les expose**.
+**Décision : `__weight` est obligatoire.** Le contrat d'ingestion garantit que **tout** Parquet a
+une colonne de poids, toujours nommée pareil, toujours remplie. Le UI et l'agent n'ont donc
+**jamais** de branche pondéré/non-pondéré à gérer : c'est toujours `SUM(__weight)`.
 
-- Détection : `POND` (eeq_2014, `float`, ~0.5–2.6) ; `WEIGHTMERGED` + `WEIGHT_FIN` (habit,
-  CSV) ; heuristique de repérage = nom (`POND|WGT|WEIGHT|POID`) + label (« pondération » /
-  « weight ») + type flottant non-catégoriel. **À confirmer par sondage** (déclaration
-  explicite, pas seulement heuristique) car certains ont plusieurs colonnes de poids.
-- Contrat : le générateur choisit **un** poids principal (déclaré `weight_var` dans le
-  `_manifest.json`) et le copie dans `__weight`. Les colonnes de poids RAW restent **toutes** présentes (raw-first)
-  pour l'analyste avancé. `__weight` NULL si aucun poids.
-- Usage : distributions **pondérées** = `SUM(__weight)` au lieu de `COUNT(*)`. Le UI peut
-  offrir un bascule pondéré/non-pondéré ; défaut recommandé = pondéré quand `weight_var`
-  présent (représentativité).
+**Des poids existent** dans les données réelles (`POND` sur eeq_2014, `float` ~0.5–2.6 ;
+`WEIGHTMERGED` + `WEIGHT_FIN` sur habit) et étaient jusqu'ici **exclus** de l'index
+(`EXCLUDED_VARS` des extracteurs). Pour le Parquet, on les **capte**.
+
+- **Déclaration, pas détection.** Le poids retenu est déclaré par sondage dans le module
+  extracteur (`ingestion/surveys/{survey_id}.py`), à côté d'`EXCLUDED_VARS` :
+  `WEIGHT_VAR = "POND"`. C'est là que vit déjà la connaissance spécifique au sondage. Aucune
+  heuristique sur le nom de colonne — trop fragile.
+- **Remplissage de `__weight`** :
+  - `WEIGHT_VAR` déclaré → `__weight` = copie de cette colonne, `weight_source = "provided"`.
+  - `WEIGHT_VAR` absent → `__weight = 1.0` pour tous les répondants,
+    `weight_source = "uniform"`. `SUM(__weight)` vaut alors exactement `COUNT(*)` : le contrat
+    reste uniforme, sans prétention statistique.
+- Les colonnes de poids RAW restent **toutes** présentes (raw-first) pour l'analyste avancé ;
+  `__weight` en est une copie d'accès uniforme.
+- **Plusieurs poids dans un même sondage** (cas `habit`) : réglé par le même mécanisme — on
+  déclare `WEIGHT_VAR` quand on ingère ce sondage. Pas de règle d'arbitrage à inventer d'avance.
+- **Hors scope** : générer un vrai poids (post-stratification / raking sur cibles de
+  recensement) est un travail statistique à part entière → bead dédié le jour où on en veut un.
+  `weight_source = "uniform"` est le marqueur honnête en attendant.
 
 ---
 
@@ -233,7 +254,8 @@ sociodémo (+ filtres), pondérée ou non.
 ### Patron paramétré
 
 Paramètres : `target` (var cible), `dim` (var sociodémo de croisement, optionnelle),
-`filters` (liste `var IN (codes)`), `weighted` (bool). Identifiants **whitelistés** contre les
+`filters` (liste `var IN (codes)`). Pas de paramètre `weighted` : `__weight` étant toujours
+présent (§5), l'agrégation est **toujours** `SUM(__weight)`. Identifiants **whitelistés** contre les
 noms de variable connus (schéma Parquet / champ `variable` d'AI Search) avant interpolation
 (anti-injection ; DuckDB ne paramètre pas les noms de colonne).
 
@@ -271,7 +293,9 @@ GROUP BY dim_code, target_code
 ORDER BY dim_code, target_code;
 ```
 
-- **Non pondéré** : remplacer `SUM(w)` par `COUNT(*)` et `w` par `1`.
+- `raw_n` est conservé à côté de `weighted_n` : c'est le **n brut** (taille d'échantillon réelle),
+  nécessaire pour afficher les effectifs et juger de la fiabilité d'une cellule. Quand
+  `weight_source = "uniform"`, les deux colonnes sont égales.
 - Le JS mappe `dim_code`/`target_code` → labels via les `response_options` d'AI Search (jointure
   sur `variable`), pivote en tableau (dimension en colonnes, cible en lignes) et affiche `col_share`.
 - `NULL` exclu par les `WHERE ... IS NOT NULL` → dénominateur = répondants ayant répondu aux
@@ -294,7 +318,7 @@ Container: survey-responses
   eeq_2014.parquet
   govcan_habit_2024.parquet
   cecd_elxn_qc_2012.parquet
-  _manifest.json          ← index : [{survey_id, n_respondents, n_vars, weight_var, respondent_id_var, has_weight, updated_at}]
+  _manifest.json          ← index : [{survey_id, n_respondents, n_vars, weight_var, weight_source, respondent_id_var, updated_at}]
 ```
 
 - **Pas de partition Hive** (`survey_id=.../`) : granularité = le fichier lui-même ; l'accès est
@@ -303,7 +327,7 @@ Container: survey-responses
 - Nommage : `survey-responses/{survey_id}.parquet`. Le `survey_id` est la clé de jointure avec le
   catalogue AI Search (le UI connaît déjà le `survey_id` sélectionné).
 - `_manifest.json` : petit index chargé par la Function pour lister les sondages ayant des
-  microdonnées et exposer `has_weight` (bascule pondéré) sans ouvrir chaque Parquet.
+  microdonnées et exposer `weight_source` (nature du poids) sans ouvrir chaque Parquet.
 - Accès Function → Blob : SAS en lecture (ou connection string côté serveur). **Nouvelle
   infra** : aucun compte/connexion Blob dans `.env` aujourd'hui → à provisionner en v33.2
   (`AZURE_STORAGE_*`). Le Parquet n'est **jamais** exposé public : la Function relaie.
@@ -313,12 +337,12 @@ Container: survey-responses
 ## Récapitulatif du contrat (à implémenter)
 
 1. **1 Parquet/sondage**, 1 ligne = 1 répondant, colonnes = **IDs de variable RAW** + `__respondent_id`/`__survey_id`/`__weight`. Valeurs = **codes RAW**.
-2. **Labels ← AI Search** (`response_options {code,label}`, keyés sur `variable`), pas de sidecar : l'index `survey-questions` porte déjà labels + `is_sociodemo` + `sociodemo_type` + `var_type`, sur la même clé que les colonnes Parquet. Seules les métadonnées absentes d'AI Search (`weight_var`, `respondent_id_var`, présence de microdonnées) vont dans `_manifest.json`.
+2. **Labels ← AI Search** (`response_options {code,label}`, keyés sur `variable`), **pas de sidecar** : l'index `survey-questions` porte déjà labels + `is_sociodemo` + `sociodemo_type` + `var_type`, sur la même clé que les colonnes Parquet. Seules les métadonnées absentes d'AI Search (`weight_var`, `weight_source`, `respondent_id_var`, présence de microdonnées) vont dans `_manifest.json`.
 3. **Typage** : catégoriel = entier/dictionary, numérique/échelle = double, texte = string ; NaN structurel → NULL, **codes de refus conservés** ; downcast float→int ; sortie **UTF-8**.
 4. **Sociodémo** = colonnes RAW normales, flaggées via le `is_sociodemo`/`sociodemo_type` déjà présent par question ; `sociodemo_type` = clé de croisement transversale.
-5. **Poids** conservés (RAW + `__weight` pointé) → distributions pondérées `SUM(__weight)`.
+5. **Poids obligatoire** : `WEIGHT_VAR` déclaré dans l'extracteur → `__weight` (non-nullable) ; absent → `__weight = 1.0` + `weight_source = "uniform"`. Colonnes de poids RAW conservées. Agrégation **toujours** `SUM(__weight)`, aucune bascule.
 6. **DuckDB** lit le Parquet Blob via `httpfs`, GROUP BY paramétré sur les codes, mapping labels côté JS.
-7. **Blob** : container `survey-responses`, `{survey_id}.parquet` + `.labels.json` + `_manifest.json`, pas de partition Hive.
+7. **Blob** : container `survey-responses`, `{survey_id}.parquet` + `_manifest.json`, pas de partition Hive.
 
 ---
 
@@ -336,8 +360,10 @@ Container: survey-responses
 - **Sentinelles de missing incohérentes** : `99`/`98` (eeq) vs `9999` (CSV govcan) vs cellule
   vide. Raw-first tranche proprement : sentinelle codée = valeur conservée ; vide = NULL.
 - **Poids multiples** : `habit` a `WEIGHTMERGED` **et** `WEIGHT_FIN` (valeurs identiques sur
-  l'échantillon vu). Le choix du `weight_var` principal doit être **déclaré par sondage**, pas
-  deviné.
+  l'échantillon vu). Réglé par la déclaration `WEIGHT_VAR` dans l'extracteur (§5) — on tranche au
+  moment d'ingérer ce sondage, pas d'avance.
+- **Sondages sans poids** : `__weight = 1.0` (§5). Le risque réel n'est pas technique mais
+  interprétatif — d'où `weight_source` au manifeste, pour que « non pondéré » reste visible.
 - **Poids/ID actuellement exclus de l'index** (`EXCLUDED_VARS`) : pour le Parquet il faut au
   contraire les **capter** — le générateur ne doit PAS réutiliser la liste d'exclusion des
   extracteurs telle quelle (elle sert le catalogue de questions, pas les microdonnées).
@@ -346,6 +372,6 @@ Container: survey-responses
 - **CSV mixtes codes/labels** : la plupart des colonnes fermées govcan stockent des **codes
   numériques** (`GENDER` 1/2, `EDUCATION` 6/8/9999) — conforme au plan ; mais certaines
   colonnes techniques stockent déjà du **texte** (`Device`="Smartphone", `ResLanguage`="fr").
-  Raw-first : on garde tel quel (string dictionary), le sidecar n'aura pas de `labels` pour
-  elles (`value_type=text/categorical` sans table code→label).
+  Raw-first : on garde tel quel (string dictionary) ; le catalogue n'aura pas de table
+  code→label pour elles — le UI affiche alors la valeur brute, qui est déjà lisible.
 - **Infra Blob à créer** : aucun compte/clé Blob dans `.env` — dépendance pour v33.2.
