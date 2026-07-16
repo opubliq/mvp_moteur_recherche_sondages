@@ -102,6 +102,10 @@ def build_docs(survey_file: SurveyFile) -> list[dict[str, Any]]:
             "var_type": question.var_type,
             "has_verbatims": question.has_verbatims,
             "is_sociodemo": question.is_sociodemo,
+            # Source unique de l'ordinalité côté catalogue : les `scale` sont
+            # ordinaux par nature (le front n'a pas à re-dériver scale⇒ordinal),
+            # les autres portent la valeur authorée en enrichment.
+            "is_ordinal": question.var_type == "scale" or question.is_ordinal,
             "sociodemo_type": question.sociodemo_type,
             "concepts": question.concepts,
             "themes": question.themes,

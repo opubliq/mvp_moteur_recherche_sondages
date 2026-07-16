@@ -24,6 +24,39 @@ logger = logging.getLogger(__name__)
 _VERBATIM_QUESTION_FIELDS = {"variable", "question_text", "response_options"}
 
 
+def _reorder_options(
+    options: list[dict[str, Any]],
+    order: list[Any],
+    *,
+    survey_id: str,
+    variable: str,
+) -> list[dict[str, Any]]:
+    """Permute `options` selon `order` (liste de codes) — verbatim-safe.
+
+    Les codes listés dans `order` viennent d'abord, dans l'ordre donné ; les codes
+    NON listés (typiquement refus/NSP) conservent leur ordre d'origine, à la fin.
+    On ne fait que RÉORDONNER des dicts existants : aucun label ni code n'est
+    créé, modifié ou supprimé. Les codes se comparent en `str()` (int|str).
+
+    Lève ValueError si un code de `order` est absent des options (typo d'author).
+    """
+    by_code: dict[str, dict[str, Any]] = {str(opt["code"]): opt for opt in options}
+
+    missing = [c for c in order if str(c) not in by_code]
+    if missing:
+        raise ValueError(
+            f"[{survey_id}] response_order de {variable!r} référence des codes "
+            f"absents des options : {missing!r} (codes disponibles : "
+            f"{sorted(by_code)})."
+        )
+
+    ordered_keys = [str(c) for c in order]
+    seen = set(ordered_keys)
+    # Codes non listés : préservent leur ordre d'origine, poussés à la fin.
+    trailing = [opt for opt in options if str(opt["code"]) not in seen]
+    return [by_code[k] for k in ordered_keys] + trailing
+
+
 def apply_enrichment(data: dict[str, Any], survey_id: str) -> dict[str, Any]:
     """Superpose `ingestion/enrichment/<survey_id>.py` sur `data` (mutation + retour).
 
@@ -63,6 +96,17 @@ def apply_enrichment(data: dict[str, Any], survey_id: str) -> dict[str, Any]:
             question["concepts"] = entry["concepts"]
         if entry.get("themes"):
             question["themes"] = entry["themes"]
+        if entry.get("is_ordinal"):
+            question["is_ordinal"] = True
+        # Réordonnancement verbatim-safe des options (rampe du gradient ordinal) :
+        # on permute des dicts existants, sans toucher aux labels/codes.
+        if entry.get("response_order"):
+            question["response_options"] = _reorder_options(
+                question.get("response_options", []),
+                entry["response_order"],
+                survey_id=survey_id,
+                variable=question["variable"],
+            )
         enriched += 1
 
     logger.info(

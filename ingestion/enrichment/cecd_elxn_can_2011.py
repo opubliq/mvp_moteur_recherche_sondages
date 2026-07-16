@@ -15,6 +15,7 @@ QUESTIONS = {
         "display_label": "Groupe d'âge du répondant",
         "concepts": ["âge"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "qlanf": {
         "display_label": "Langue parlée le plus souvent au foyer",
@@ -55,6 +56,7 @@ QUESTIONS = {
         "display_label": "Revenu annuel total du ménage",
         "concepts": ["revenu", "statut économique"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "qenfa": {
         "display_label": "Nombre de personnes mineures résidant au foyer",
@@ -85,6 +87,7 @@ QUESTIONS = {
         "display_label": "Satisfaction envers le gouvernement provincial du Québec",
         "concepts": ["satisfaction gouvernementale", "évaluation provinciale"],
         "themes": ["leadership politique", "démocratie"],
+        "is_ordinal": True,
     },
     "prov1": {
         "display_label": "Intention de vote provincial québécois (question principale)",
@@ -120,6 +123,7 @@ QUESTIONS = {
         "display_label": "Satisfaction envers le gouvernement fédéral du Canada",
         "concepts": ["satisfaction gouvernementale", "évaluation fédérale"],
         "themes": ["leadership politique", "démocratie"],
+        "is_ordinal": True,
     },
     "fede1": {
         "display_label": "Intention de vote fédéral canadien (question principale)",
@@ -140,6 +144,7 @@ QUESTIONS = {
         "display_label": "Certitude de participation au vote fédéral (pré-électoral)",
         "concepts": ["certitude de voter", "participation électorale"],
         "themes": ["comportement électoral", "engagement civique"],
+        "is_ordinal": True,
     },
     "pol2a": {
         "display_label": "Évaluation de la performance électorale du chef du Parti Libéral (Michael Ignatieff)",
@@ -175,6 +180,7 @@ QUESTIONS = {
         "display_label": "Intérêt pour la campagne électorale fédérale 2011 (post-électoral)",
         "concepts": ["intérêt politique", "campagne électorale"],
         "themes": ["engagement civique", "comportement électoral"],
+        "is_ordinal": True,
     },
     "z2": {
         "display_label": "Participation au vote fédéral du 2 mai 2011",
@@ -210,6 +216,7 @@ QUESTIONS = {
         "display_label": "Opinion sur la valeur des sondages électoraux (bonne ou mauvaise chose)",
         "concepts": ["perception des sondages", "opinion sur sondages"],
         "themes": ["opinion publique"],
+        "is_ordinal": True,
     },
     "z9": {
         "display_label": "Méthode de sondage préférée (poste, internet, téléphone, visite)",

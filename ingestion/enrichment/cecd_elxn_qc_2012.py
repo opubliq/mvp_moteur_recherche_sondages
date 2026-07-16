@@ -15,6 +15,7 @@ QUESTIONS = {
         "display_label": "Groupe d'âge du répondant",
         "concepts": ["âge"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "sexe": {
         "display_label": "Sexe du répondant",
@@ -65,21 +66,25 @@ QUESTIONS = {
         "display_label": "Visionnement du débat des quatre chefs (Radio-Canada, 19 août 2012)",
         "concepts": ["débat des quatre chefs", "exposition aux débats"],
         "themes": ["communication politique", "leadership politique"],
+        "is_ordinal": True,
     },
     "vudebat_CH_MA": {
         "display_label": "Visionnement du face-à-face Charest-Marois (TVA, 20 août 2012)",
         "concepts": ["face-à-face de chefs", "exposition aux débats"],
         "themes": ["leadership politique", "communication politique"],
+        "is_ordinal": True,
     },
     "vudebat_CH_LE": {
         "display_label": "Visionnement du face-à-face Charest-Legault (TVA, 21 août 2012)",
         "concepts": ["face-à-face de chefs", "exposition aux débats"],
         "themes": ["leadership politique", "communication politique"],
+        "is_ordinal": True,
     },
     "vudebat_MA_LE": {
         "display_label": "Visionnement du face-à-face Legault-Marois (TVA, 22 août 2012)",
         "concepts": ["face-à-face de chefs", "exposition aux débats"],
         "themes": ["leadership politique", "communication politique"],
+        "is_ordinal": True,
     },
     "intvoteref": {
         "display_label": "Intention de vote référendaire (souveraineté du Québec)",
@@ -135,11 +140,13 @@ QUESTIONS = {
         "display_label": "Confiance dans les sondages pour prédire le résultat électoral",
         "concepts": ["confiance", "crédibilité des sondages"],
         "themes": ["opinion publique"],
+        "is_ordinal": True,
     },
     "sondbons": {
         "display_label": "Opinion sur l'utilité des sondages durant les campagnes électorales",
         "concepts": ["opinion sur les sondages", "sondages"],
         "themes": ["opinion publique", "communication politique"],
+        "is_ordinal": True,
     },
     "participation": {
         "display_label": "Participation électorale (a voté lors de l'élection du 4 septembre 2012)",

@@ -24,6 +24,12 @@ export interface SearchResult {
   response_options: ResponseOption[];
   var_type: string | null;
   is_sociodemo: boolean;
+  /**
+   * Ordinalité des catégories (orthogonale à `var_type`) : true si les niveaux
+   * ont un ordre intrinsèque (Likert, satisfaction, fréquence…) ou si `scale`.
+   * L'ordre du gradient suit l'ordre du tableau `response_options`, pas les codes.
+   */
+  is_ordinal: boolean;
   sociodemo_type: string | null;
   concepts: string[];
   themes: string[];

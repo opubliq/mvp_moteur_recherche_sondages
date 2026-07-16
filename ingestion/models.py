@@ -29,6 +29,11 @@ class Question(BaseModel):
     var_type: str | None = None  # ex. "single", "multiple", "open", "scale"
     has_verbatims: bool = False
     is_sociodemo: bool = False
+    # Ordinalité des catégories (ORTHOGONALE à var_type) : true si les niveaux
+    # ont un ORDRE intrinsèque (Likert accord/désaccord, satisfaction, fréquence,
+    # importance…). Authoré en enrichment ; dérivé à true pour les `scale` au
+    # build. Débloque le gradient séquentiel + l'ordre des graphes microdonnées.
+    is_ordinal: bool = False
     sociodemo_type: str | None = None  # ex. "age", "gender", "education"
     concepts: list[str] = Field(default_factory=list)
     themes: list[str] = Field(default_factory=list)

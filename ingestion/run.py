@@ -85,10 +85,18 @@ def _ingest_survey(
     survey_id: str,
     loader: Callable[[], dict[str, Any]],
     client: SearchClient,
+    *,
+    embed: bool = True,
 ) -> int:
     """Ingère un sondage : extraction → docs → embeddings → upload.
 
     Retourne le nombre de documents poussés (parent + children).
+
+    Si `embed=False` (mode métadonnée seule), on saute entièrement le calcul des
+    embeddings : les docs poussés n'ont pas de `content_vector`/`survey_vector`,
+    et `merge_or_upload_documents` PRÉSERVE les vecteurs existants (le merge ne
+    met à jour que les champs fournis). Sert à re-pousser des métadonnées non
+    vectorielles (ex. is_ordinal, response_options réordonnés) sans recalcul.
     """
     logger.info("[%s] extraction…", survey_id)
     raw = loader()
@@ -111,7 +119,9 @@ def _ingest_survey(
     )
 
     # Embeddings sur les children uniquement (le parent n'a pas de vecteur).
-    if children:
+    # Sautés en mode métadonnée seule (--no-embed) : le merge préserve les
+    # vecteurs déjà indexés.
+    if children and embed:
         texts = [embed_text(q) for q in survey_file.questions]
         logger.info("[%s] calcul de %d embeddings…", survey_id, len(texts))
         vectors = embed_batch(texts)
@@ -128,6 +138,12 @@ def _ingest_survey(
             child["content_vector"] = vector
             child["survey_vector"] = survey_vector
             child["embedding_model"] = deployment
+    elif children:
+        logger.info(
+            "[%s] embeddings sautés (--no-embed) : merge des métadonnées seules, "
+            "vecteurs existants préservés.",
+            survey_id,
+        )
 
     # Upload idempotent (merge-or-upload sur la clé `id`).
     logger.info("[%s] upload de %d documents vers Azure…", survey_id, len(docs))
@@ -145,7 +161,7 @@ def _ingest_survey(
     return len(docs)
 
 
-def run(only: str | None = None, recreate_index: bool = False) -> None:
+def run(only: str | None = None, recreate_index: bool = False, embed: bool = True) -> None:
     """Point d'entrée programmatique de l'orchestrateur."""
     settings = get_settings()
 
@@ -175,7 +191,7 @@ def run(only: str | None = None, recreate_index: bool = False) -> None:
 
     total = 0
     for survey_id in sorted(sources):
-        total += _ingest_survey(survey_id, sources[survey_id], client)
+        total += _ingest_survey(survey_id, sources[survey_id], client, embed=embed)
 
     logger.info(
         "Terminé : %d documents poussés sur %d sondage(s). Doc count index : %d.",
@@ -200,6 +216,12 @@ def main() -> None:
         default=None,
         help="N'ingère que ce survey_id.",
     )
+    parser.add_argument(
+        "--no-embed",
+        action="store_true",
+        help="Mode métadonnée seule : saute les embeddings (merge préserve les "
+        "vecteurs existants). Pour re-pousser des champs non vectoriels.",
+    )
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -210,7 +232,7 @@ def main() -> None:
     # Le client Azure logge chaque requête HTTP en INFO : trop verbeux.
     logging.getLogger("azure").setLevel(logging.WARNING)
 
-    run(only=args.only, recreate_index=args.recreate_index)
+    run(only=args.only, recreate_index=args.recreate_index, embed=not args.no_embed)
 
 
 if __name__ == "__main__":

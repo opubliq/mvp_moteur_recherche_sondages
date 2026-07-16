@@ -22,6 +22,7 @@ QUESTIONS = {
         "display_label": "Groupe d'âge",
         "concepts": ["âge"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "QSEXE": {
         "display_label": "Sexe",
@@ -52,11 +53,13 @@ QUESTIONS = {
         "display_label": "Niveau de scolarité",
         "concepts": ["éducation"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "Q57": {
         "display_label": "Revenu total du ménage (2013)",
         "concepts": ["revenu"],
         "themes": ["économie personnelle"],
+        "is_ordinal": True,
     },
     "Q58": {
         "display_label": "Situation d'emploi",
@@ -142,6 +145,7 @@ QUESTIONS = {
         "display_label": "Fréquence de pratique religieuse",
         "concepts": ["religion"],
         "themes": ["démographie"],
+        "is_ordinal": True,
     },
     "Q65": {
         "display_label": "Lieu de naissance",
@@ -200,36 +204,43 @@ QUESTIONS = {
         "display_label": "Importance du vote : positions politiques du parti",
         "concepts": ["facteurs de vote"],
         "themes": ["élections"],
+        "is_ordinal": True,
     },
     "Q7B": {
         "display_label": "Importance du vote : qualité de la candidate locale",
         "concepts": ["facteurs de vote"],
         "themes": ["élections"],
+        "is_ordinal": True,
     },
     "Q7C": {
         "display_label": "Importance du vote : le chef du parti",
         "concepts": ["facteurs de vote"],
         "themes": ["élections"],
+        "is_ordinal": True,
     },
     "Q7D": {
         "display_label": "Importance du vote : capacité à défendre les intérêts du Québec",
         "concepts": ["facteurs de vote", "intérêts québécois"],
         "themes": ["élections"],
+        "is_ordinal": True,
     },
     "Q7E": {
         "display_label": "Importance du vote : compréhension de l'histoire et culture québécoise",
         "concepts": ["facteurs de vote", "identité québécoise"],
         "themes": ["élections"],
+        "is_ordinal": True,
     },
     "Q7F": {
         "display_label": "Importance du vote : probabilité de former gouvernement",
         "concepts": ["facteurs de vote", "viabilité électorale"],
         "themes": ["élections"],
+        "is_ordinal": True,
     },
     "Q7G": {
         "display_label": "Importance du vote : préférences constitutionnelles du parti",
         "concepts": ["facteurs de vote", "constitution"],
         "themes": ["élections"],
+        "is_ordinal": True,
     },
     "Q8": {
         "display_label": "Évaluation : meilleure campagne",
@@ -248,16 +259,19 @@ QUESTIONS = {
         "display_label": "Satisfaction : performance gouvernement péquiste",
         "concepts": ["satisfaction gouvernementale"],
         "themes": ["démocratie"],
+        "is_ordinal": True,
     },
     "Q11": {
         "display_label": "Satisfaction : gestion économique gouvernement",
         "concepts": ["satisfaction gouvernementale", "économie"],
         "themes": ["démocratie", "économie"],
+        "is_ordinal": True,
     },
     "Q35": {
         "display_label": "Satisfaction : fonctionnement de la démocratie québécoise",
         "concepts": ["satisfaction démocratique"],
         "themes": ["démocratie"],
+        "is_ordinal": True,
     },
     # =========================================================================
     # IDENTITÉ ET ATTACHEMENT
@@ -266,26 +280,31 @@ QUESTIONS = {
         "display_label": "Degré d'attachement au Québec",
         "concepts": ["identité québécoise", "attachement"],
         "themes": ["identité"],
+        "is_ordinal": True,
     },
     "Q13": {
         "display_label": "Degré d'attachement au Canada",
         "concepts": ["identité canadienne", "attachement"],
         "themes": ["identité"],
+        "is_ordinal": True,
     },
     "Q14A": {
         "display_label": "Identité : Québécois vs Canadien (ordre 1)",
         "concepts": ["identité"],
         "themes": ["identité"],
+        "is_ordinal": True,
     },
     "Q14B": {
         "display_label": "Identité : Canadien vs Québécois (ordre 2)",
         "concepts": ["identité"],
         "themes": ["identité"],
+        "is_ordinal": True,
     },
     "Q15": {
         "display_label": "Valeurs québécoises distinctes du reste du Canada",
         "concepts": ["identité québécoise", "distinctivité"],
         "themes": ["identité"],
+        "is_ordinal": True,
     },
     # =========================================================================
     # SOUVERAINETÉ ET CONSTITUTION
@@ -304,6 +323,7 @@ QUESTIONS = {
         "display_label": "Importance de l'indépendance politique du Québec",
         "concepts": ["souveraineté"],
         "themes": ["constitution"],
+        "is_ordinal": True,
     },
     "Q19": {
         "display_label": "Referendum : indépendance du Québec",
@@ -364,11 +384,13 @@ QUESTIONS = {
         "display_label": "Majorité claire en referendum : indépendance",
         "concepts": ["souveraineté", "règles référendaires"],
         "themes": ["constitution"],
+        "is_ordinal": True,
     },
     "Q27B": {
         "display_label": "Majorité claire en referendum : Constitution 1982",
         "concepts": ["constitution", "règles référendaires"],
         "themes": ["constitution"],
+        "is_ordinal": True,
     },
     # =========================================================================
     # INTÉRÊT POLITIQUE ET AUTO-POSITIONNEMENT
@@ -377,6 +399,7 @@ QUESTIONS = {
         "display_label": "Intérêt pour la politique en général",
         "concepts": ["engagement politique"],
         "themes": ["participation politique"],
+        "is_ordinal": True,
     },
     "Q32": {
         "display_label": "Auto-positionnement : échelle gauche-droite",
@@ -392,6 +415,7 @@ QUESTIONS = {
         "display_label": "Force de l'affiliation partisane",
         "concepts": ["identification partisane"],
         "themes": ["affiliation partisane"],
+        "is_ordinal": True,
     },
     # =========================================================================
     # ÉVALUATIONS DE POLITICIENS (0-100)
@@ -494,46 +518,55 @@ QUESTIONS = {
         "display_label": "Accord : gouvernement responsable de satisfaire les besoins fondamentaux",
         "concepts": ["responsabilité gouvernementale", "filet social"],
         "themes": ["politique sociale"],
+        "is_ordinal": True,
     },
     "Q34B": {
         "display_label": "Accord : Assemblée nationale ne tient pas compte de gens comme moi",
         "concepts": ["représentation politique"],
         "themes": ["démocratie"],
+        "is_ordinal": True,
     },
     "Q34C": {
         "display_label": "Accord : gens comme moi n'ont rien à dire au gouvernement",
         "concepts": ["efficacité politique"],
         "themes": ["démocratie"],
+        "is_ordinal": True,
     },
     "Q34D": {
         "display_label": "Accord : politique provinciale trop compliquée à comprendre",
         "concepts": ["compréhension politique"],
         "themes": ["participation politique"],
+        "is_ordinal": True,
     },
     "Q36A": {
         "display_label": "Accord : garantir égalité des chances pour tous",
         "concepts": ["égalité", "justice sociale"],
         "themes": ["politique sociale"],
+        "is_ordinal": True,
     },
     "Q36B": {
         "display_label": "Accord : inégalité des chances n'est pas grave",
         "concepts": ["égalité"],
         "themes": ["politique sociale"],
+        "is_ordinal": True,
     },
     "Q36C": {
         "display_label": "Accord : action gouvernementale nécessaire pour combattre pauvreté",
         "concepts": ["pauvreté", "responsabilité gouvernementale"],
         "themes": ["politique sociale"],
+        "is_ordinal": True,
     },
     "Q36D": {
         "display_label": "Accord : profits de entreprises bénéficient à tous",
         "concepts": ["économie", "redistribution"],
         "themes": ["économie"],
+        "is_ordinal": True,
     },
     "Q36E": {
         "display_label": "Accord : trop d'immigrants au Québec",
         "concepts": ["immigration", "démographie"],
         "themes": ["immigration"],
+        "is_ordinal": True,
     },
     # =========================================================================
     # QUESTIONS DE VALEURS / ENJEUX SOCIÉTAUX
@@ -565,6 +598,7 @@ QUESTIONS = {
         "display_label": "Rôle gouvernement : emploi et qualité de vie",
         "concepts": ["interventionnisme", "filet social"],
         "themes": ["économie"],
+        "is_ordinal": True,
     },
     "Q43A": {
         "display_label": "Thermomètre : syndicats",
@@ -583,11 +617,13 @@ QUESTIONS = {
         "display_label": "Accord : projet de charte de la laïcité",
         "concepts": ["laïcité", "religion"],
         "themes": ["valeurs sociales"],
+        "is_ordinal": True,
     },
     "Q44B": {
         "display_label": "Accord : projet de charte des valeurs",
         "concepts": ["charte des valeurs"],
         "themes": ["valeurs sociales"],
+        "is_ordinal": True,
     },
     "Q53": {
         "display_label": "Importance de tenir un referendum sur l'indépendance",
@@ -654,16 +690,22 @@ QUESTIONS = {
         "display_label": "Comparaison : situation économique Québec vs Canada",
         "concepts": ["économie comparée", "relations fédérales"],
         "themes": ["économie", "fédéralisme"],
+        "is_ordinal": True,
+        "response_order": [1, 3, 2],
     },
     "Q46": {
         "display_label": "Impact sur économie Québec si indépendance",
         "concepts": ["souveraineté", "économie"],
         "themes": ["constitution", "économie"],
+        "is_ordinal": True,
+        "response_order": [1, 3, 2],
     },
     "Q47": {
         "display_label": "Impact sur situation financière personnelle si indépendance",
         "concepts": ["souveraineté", "économie personnelle"],
         "themes": ["constitution", "économie"],
+        "is_ordinal": True,
+        "response_order": [1, 3, 2],
     },
     "Q48": {
         "display_label": "Devise si Québec indépendant : dollar canadien ou nouvelle devise?",
@@ -674,11 +716,13 @@ QUESTIONS = {
         "display_label": "Faire partie du Canada : effet sur économie du Québec",
         "concepts": ["fédéralisme", "économie"],
         "themes": ["économie", "fédéralisme"],
+        "is_ordinal": True,
     },
     "Q50": {
         "display_label": "Choix : grand marché vs souveraineté",
         "concepts": ["souveraineté", "économie"],
         "themes": ["constitution", "économie"],
+        "is_ordinal": True,
     },
     "Q51": {
         "display_label": "Relations économiques futures : Canada ou États-Unis?",
@@ -689,5 +733,7 @@ QUESTIONS = {
         "display_label": "Tendance économie Québec : amélioration ou détérioration?",
         "concepts": ["perceptions économiques"],
         "themes": ["économie"],
+        "is_ordinal": True,
+        "response_order": [1, 3, 2],
     },
 }
