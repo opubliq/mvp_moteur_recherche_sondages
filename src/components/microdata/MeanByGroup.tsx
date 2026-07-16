@@ -40,7 +40,7 @@ export default function MeanByGroup({
   return (
     <div role="img" aria-label="Moyenne par groupe">
       {dimName && (
-        <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = sous-groupes de « {dimName} »</div>
+        <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = « {dimName} »</div>
       )}
       <div
         className="grid items-center"

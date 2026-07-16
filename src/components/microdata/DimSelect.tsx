@@ -7,9 +7,9 @@ import type { SearchResult } from "../../types";
  * Un <select> natif ne peut pas filtrer ; combobox léger, options groupées
  * Sociodémographiques / Autres questions.
  */
-/** Libellé affiché = question propre (sans le nom de variable). */
+/** Libellé affiché = display_label propre (repli question_text), sans nom de variable. */
 function optionLabel(d: SearchResult): string {
-  return d.question_text;
+  return d.display_label || d.question_text;
 }
 
 /** Filtre : essaie la regex (insensible à la casse), repli sur sous-chaîne. */

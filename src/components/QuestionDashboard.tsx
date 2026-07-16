@@ -364,8 +364,9 @@ function Crossing({
             </p>
           );
         }
-        const shortTarget = q.question_text.length > 60 ? q.question_text.slice(0, 60) + "…" : q.question_text;
-        const shortDim = dimQ.question_text.length > 48 ? dimQ.question_text.slice(0, 48) + "…" : dimQ.question_text;
+        const clip = (s: string, n: number) => (s.length > n ? s.slice(0, n) + "…" : s);
+        const shortTarget = clip(q.display_label || q.question_text, 64);
+        const shortDim = clip(dimQ.display_label || dimQ.question_text, 52);
         return (
           <>
             {numeric && effMode === "mean" && means && domain ? (

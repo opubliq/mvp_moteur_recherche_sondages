@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { CrosstabRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, formatPct, labelMap, refusalCodes } from "../../lib/microdataFormat";
 import { categoryColor, divergingRamp, MAX_CATEGORIES, OTHER_COLOR } from "../../lib/vizPalette";
@@ -39,6 +39,7 @@ export default function StackedBars100({
 }) {
   const tMap = labelMap(targetOptions);
   const dMap = labelMap(dimOptions);
+  const [tip, setTip] = useState<{ x: number; y: number; label: string; pct: string; n: number; group: string } | null>(null);
 
   const { cats, groups } = useMemo(() => {
     const present = new Set(rows.map((r) => String(r.target_code)));
@@ -82,19 +83,20 @@ export default function StackedBars100({
       catOf = (code) => (keptSet.has(code) ? code : OTHER);
     }
 
-    // Agrégation par groupe de dimension.
-    const byDim = new Map<string, { raw: number; shares: Map<string, number> }>();
+    // Agrégation par groupe de dimension (shares = col_share, raws = n par cat).
+    const byDim = new Map<string, { raw: number; shares: Map<string, number>; raws: Map<string, number> }>();
     for (const r of rows) {
       const dk = String(r.dim_code);
-      if (!byDim.has(dk)) byDim.set(dk, { raw: 0, shares: new Map() });
+      if (!byDim.has(dk)) byDim.set(dk, { raw: 0, shares: new Map(), raws: new Map() });
       const g = byDim.get(dk)!;
       g.raw += r.raw_n;
       const cat = catOf(String(r.target_code));
       g.shares.set(cat, (g.shares.get(cat) ?? 0) + r.col_share);
+      g.raws.set(cat, (g.raws.get(cat) ?? 0) + r.raw_n);
     }
     const groups = [...byDim.entries()]
       .sort((a, b) => Number(a[0]) - Number(b[0]))
-      .map(([code, g]) => ({ code, label: codeLabel(dMap, code), raw: g.raw, shares: g.shares }));
+      .map(([code, g]) => ({ code, label: codeLabel(dMap, code), raw: g.raw, shares: g.shares, raws: g.raws }));
 
     return { cats, groups };
   }, [rows, tMap, dMap, ordinal, targetOptions]);
@@ -104,7 +106,7 @@ export default function StackedBars100({
       {/* Titre de la couleur = variable cible (quel axe = quelle variable). */}
       {targetName && (
         <div className="mb-1 text-xs font-semibold text-base-content/70">
-          Couleurs = réponses à « {targetName} »
+          Couleurs = « {targetName} »
         </div>
       )}
       {/* Légende (identité jamais portée par la couleur seule) */}
@@ -118,7 +120,7 @@ export default function StackedBars100({
       </ul>
 
       {dimName && (
-        <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = sous-groupes de « {dimName} »</div>
+        <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = « {dimName} »</div>
       )}
       <div className="space-y-2">
         {groups.map((g) => (
@@ -135,9 +137,12 @@ export default function StackedBars100({
                 return (
                   <div
                     key={c.code}
-                    className="flex items-center justify-center overflow-hidden text-[11px] font-medium"
+                    className="flex cursor-default items-center justify-center overflow-hidden text-[11px] font-medium"
                     style={{ flexGrow: share, flexBasis: 0, background: c.color, color: c.dark ? "oklch(0.28 0.02 196)" : "white" }}
-                    title={`${g.label} · ${c.label} : ${formatPct(share, 1)}`}
+                    onMouseMove={(e) =>
+                      setTip({ x: e.clientX, y: e.clientY, label: c.label, pct: formatPct(share, 1), n: g.raws.get(c.code) ?? 0, group: g.label })
+                    }
+                    onMouseLeave={() => setTip(null)}
                   >
                     {wide ? formatPct(share) : ""}
                   </div>
@@ -147,6 +152,19 @@ export default function StackedBars100({
           </div>
         ))}
       </div>
+
+      {tip && (
+        <div
+          className="pointer-events-none fixed z-50 rounded-md border border-base-content/10 bg-base-100 px-2.5 py-1.5 text-xs shadow-lg"
+          style={{ left: tip.x + 12, top: tip.y + 12 }}
+        >
+          <div className="font-semibold">{tip.label}</div>
+          <div className="text-base-content/60">{tip.group}</div>
+          <div className="mt-0.5 tabular-nums">
+            <b>{tip.pct}</b> · n = {formatN(tip.n)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
