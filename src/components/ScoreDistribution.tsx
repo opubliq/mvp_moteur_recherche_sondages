@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { SearchResult } from "../types";
 import { scoreToColor } from "../lib/scoreColor";
 import { buildScoreBins } from "../lib/scoreBins";
@@ -37,6 +37,8 @@ export default function ScoreDistribution({ results, threshold, onThresholdChang
 
   const bins = useMemo(() => buildScoreBins(scores, BIN_WIDTH), [scores]);
   const maxCount = Math.max(1, ...bins.map((b) => b.count));
+  // Index du bin survolé — pilote le tooltip applicatif.
+  const [hovered, setHovered] = useState<number | null>(null);
 
   if (scores.length === 0) return null;
 
@@ -52,7 +54,7 @@ export default function ScoreDistribution({ results, threshold, onThresholdChang
             style={{ left: `${threshold}%` }}
           />
           <div className="relative flex h-full items-end gap-px">
-            {bins.map((b) => (
+            {bins.map((b, i) => (
               <div
                 key={b.start}
                 className="min-w-0 flex-1 rounded-t transition-opacity"
@@ -61,10 +63,28 @@ export default function ScoreDistribution({ results, threshold, onThresholdChang
                   background: b.count > 0 ? scoreToColor(b.center) : "transparent",
                   opacity: b.end <= threshold ? 0.25 : 1,
                 }}
-                title={`${b.start}-${b.end} : ${b.count} résultat${b.count > 1 ? "s" : ""}`}
+                onPointerEnter={() => setHovered(i)}
+                onPointerLeave={() => setHovered((h) => (h === i ? null : h))}
               />
             ))}
           </div>
+
+          {/* Tooltip applicatif plutôt que le `title` natif du navigateur (délai
+              d'~1s, aucune mise en forme). La valeur mène, le libellé suit. */}
+          {hovered !== null && bins[hovered] && (
+            <div
+              className="pointer-events-none absolute -top-1 z-10 -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-lg border border-base-content/10 bg-base-100 px-2 py-1 text-xs shadow-md"
+              style={{ left: `${Math.min(92, Math.max(8, bins[hovered].center))}%` }}
+            >
+              <span className="font-semibold tabular-nums">{bins[hovered].count}</span>{" "}
+              <span className="text-base-content/60">
+                résultat{bins[hovered].count > 1 ? "s" : ""} · score{" "}
+              </span>
+              <span className="font-semibold tabular-nums">
+                {bins[hovered].start}-{bins[hovered].end}
+              </span>
+            </div>
+          )}
         </div>
 
         <input
