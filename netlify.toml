@@ -6,6 +6,16 @@
 [functions]
   node_bundler = "esbuild"
 
+# microdata embarque DuckDB (binding natif .node) : esbuild ne peut pas le bundler.
+# On l'externalise et on force l'inclusion du binaire natif dans le paquet Lambda.
+[functions."microdata"]
+  external_node_modules = ["@duckdb/node-api", "@duckdb/node-bindings"]
+  included_files = [
+    "node_modules/@duckdb/node-api/**",
+    "node_modules/@duckdb/node-bindings/**",
+    "node_modules/@duckdb/node-bindings-linux-x64/**",
+  ]
+
 [dev]
   command    = "npm run dev"
   framework  = "vite"
@@ -41,6 +51,12 @@
 [[redirects]]
   from = "/themes"
   to = "/.netlify/functions/themes"
+  status = 200
+
+# Expose la function sous /microdata (distributions & crosstabs DuckDB sur Parquet)
+[[redirects]]
+  from = "/microdata"
+  to = "/.netlify/functions/microdata"
   status = 200
 
 # Fallback SPA
