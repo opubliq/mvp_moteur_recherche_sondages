@@ -139,21 +139,8 @@ export default function QuestionDashboard() {
         </div>
 
         <div className="space-y-4">
-          <div className="op-card">
-            <h3 className="mb-2 text-sm font-semibold">Autres questions du sondage</h3>
-            {questions
-              .filter((x) => x.variable !== q.variable)
-              .slice(0, 6)
-              .map((x) => (
-                <Link
-                  key={x.variable}
-                  to={`/sondage/${x.survey_id}/q/${encodeURIComponent(x.variable)}`}
-                  className="block py-1.5 text-sm leading-snug hover:text-primary"
-                >
-                  {x.question_text.slice(0, 70)}{x.question_text.length > 70 ? "…" : ""}
-                </Link>
-              ))}
-          </div>
+          <SurveyContext survey={survey} />
+          <SurveyQuestionsNav questions={questions} currentVariable={q.variable} surveyId={q.survey_id} />
         </div>
       </div>
     </div>
@@ -431,6 +418,89 @@ function NoMicrodata() {
     <div className="op-card">
       <h3 className="mb-2 font-semibold">Microdonnées non disponibles</h3>
       <p className="text-sm text-base-content/50">Ce sondage n'a pas encore de données répondant ingérées.</p>
+    </div>
+  );
+}
+
+/* --------------------------------------------------------------------------
+ * Colonne droite — contexte du sondage
+ *
+ * DÉCISION PRODUIT (v33.12) : la colonne droite montrait les 6 premières
+ * questions du sondage sans logique (ordre arbitraire de l'index). Deux
+ * pistes existaient : (a) contexte du sondage (SurveyParent) + navigation
+ * cadrée vers les autres questions, ou (b) questions sémantiquement proches
+ * (embeddings/recherche vectorielle). On retient (a) : elle ne demande
+ * aucune infra backend nouvelle (SurveyParent est déjà renvoyé par
+ * /survey), est robuste (pas de similarité floue à valider) et répond
+ * directement à la remarque de plot_issues.md #1 (« on pourrait ajouter
+ * des infos sur le sondage »). La liste des questions reste utile comme
+ * navigation, mais on affiche l'ensemble (scrollable, question courante
+ * mise en évidence) plutôt qu'une tranche arbitraire des 6 premières.
+ * ------------------------------------------------------------------------ */
+const LANG_LABELS: Record<string, string> = { fr: "Français", en: "Anglais" };
+
+function SurveyContext({ survey }: { survey: SurveyParent | null }) {
+  if (!survey) return null;
+  const meta = [
+    survey.pollster,
+    survey.survey_year != null ? String(survey.survey_year) : null,
+    survey.language ? LANG_LABELS[survey.language] ?? survey.language : null,
+    survey.n_respondents != null ? `N = ${survey.n_respondents.toLocaleString("fr-CA")}` : null,
+  ].filter(Boolean);
+
+  return (
+    <div className="op-card">
+      <h3 className="mb-1 text-sm font-semibold">À propos de ce sondage</h3>
+      {meta.length > 0 && <p className="mb-2 text-xs text-base-content/60">{meta.join(" · ")}</p>}
+      {survey.survey_description && (
+        <p className="text-sm leading-snug text-base-content/70">{survey.survey_description}</p>
+      )}
+      {survey.top_concepts && survey.top_concepts.length > 0 && (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {survey.top_concepts.slice(0, 8).map((c) => (
+            <span key={c.value} className="badge badge-ghost badge-sm">
+              {c.value}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SurveyQuestionsNav({
+  questions,
+  currentVariable,
+  surveyId,
+}: {
+  questions: SearchResult[];
+  currentVariable: string;
+  surveyId: string;
+}) {
+  if (questions.length === 0) return null;
+  return (
+    <div className="op-card">
+      <h3 className="mb-2 text-sm font-semibold">
+        Questions du sondage <span className="font-normal text-base-content/45">({questions.length})</span>
+      </h3>
+      <div className="max-h-96 space-y-0.5 overflow-y-auto pr-1">
+        {questions.map((x) => {
+          const active = x.variable === currentVariable;
+          return (
+            <Link
+              key={x.variable}
+              to={`/sondage/${surveyId}/q/${encodeURIComponent(x.variable)}`}
+              className={`block rounded-lg px-2 py-1.5 text-sm leading-snug ${
+                active ? "bg-primary/10 font-medium text-primary" : "hover:bg-base-200 hover:text-primary"
+              }`}
+            >
+              <span className="mr-1.5 font-mono text-xs text-base-content/40">{x.variable}</span>
+              {x.question_text.slice(0, 60)}
+              {x.question_text.length > 60 ? "…" : ""}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
