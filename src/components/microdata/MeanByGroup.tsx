@@ -15,6 +15,7 @@ import { codeLabel, formatMean, formatN, labelMap } from "../../lib/microdataFor
 export default function MeanByGroup({
   rows,
   dimOptions,
+  dimOrdinal = false,
   domainMin,
   domainMax,
   overallMean,
@@ -23,6 +24,8 @@ export default function MeanByGroup({
 }: {
   rows: MeanByGroupRow[];
   dimOptions: ResponseOption[];
+  /** Dimension (axe Y) ordinale → préserver l'ordre naturel ; sinon tri par n décroissant. */
+  dimOrdinal?: boolean;
   domainMin: number;
   domainMax: number;
   overallMean?: number;
@@ -31,10 +34,17 @@ export default function MeanByGroup({
 }) {
   const dMap = labelMap(dimOptions);
   const span = domainMax - domainMin || 1;
-  const groups = useMemo(
-    () => [...rows].sort((a, b) => Number(a.dim_code) - Number(b.dim_code)),
-    [rows],
-  );
+  // Rangées : dimension ORDINALE → ordre naturel des response_options ;
+  // dimension NOMINALE → tri par n (raw_n) DÉCROISSANT (plus gros en haut).
+  const groups = useMemo(() => {
+    const dimOrder = new Map(dimOptions.map((o, i) => [String(o.code), i]));
+    return [...rows].sort((a, b) =>
+      dimOrdinal
+        ? (dimOrder.get(String(a.dim_code)) ?? Number(a.dim_code)) -
+          (dimOrder.get(String(b.dim_code)) ?? Number(b.dim_code))
+        : b.raw_n - a.raw_n,
+    );
+  }, [rows, dimOptions, dimOrdinal]);
   const pct = (v: number) => `${((v - domainMin) / span) * 100}%`;
 
   return (

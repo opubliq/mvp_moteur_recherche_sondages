@@ -374,14 +374,14 @@ function Crossing({
         return (
           <>
             {numeric && effMode === "mean" && means && domain ? (
-              <MeanByGroup rows={means} dimOptions={dimQ.response_options} domainMin={domain.min} domainMax={domain.max} overallMean={domain.overall} targetName={shortTarget} dimName={shortDim} />
+              <MeanByGroup rows={means} dimOptions={dimQ.response_options} dimOrdinal={dimQ.is_ordinal} domainMin={domain.min} domainMax={domain.max} overallMean={domain.overall} targetName={shortTarget} dimName={shortDim} />
             ) : cross && numeric ? (
               // Cible scale/continuous en mode « Distribution » : ridgeline (une
               // densité par sous-groupe sur un axe X commun) plutôt qu'un empilé
               // 100 % qui n'exprime pas la forme d'une échelle.
-              <RidgePlot rows={cross} dimOptions={dimQ.response_options} targetName={shortTarget} dimName={shortDim} />
+              <RidgePlot rows={cross} dimOptions={dimQ.response_options} dimOrdinal={dimQ.is_ordinal} targetName={shortTarget} dimName={shortDim} />
             ) : cross ? (
-              <StackedBars100 rows={cross} targetOptions={q.response_options} dimOptions={dimQ.response_options} ordinal={q.is_ordinal || kind === "scale"} targetName={shortTarget} dimName={shortDim} />
+              <StackedBars100 rows={cross} targetOptions={q.response_options} dimOptions={dimQ.response_options} ordinal={q.is_ordinal || kind === "scale"} dimOrdinal={dimQ.is_ordinal} targetName={shortTarget} dimName={shortDim} />
             ) : null}
             <p className="mt-2 text-xs text-base-content/45">
               {numeric && effMode === "stacked"

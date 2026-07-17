@@ -42,12 +42,15 @@ function smoothPath(pts: { x: number; y: number }[]): string {
 export default function RidgePlot({
   rows,
   dimOptions,
+  dimOrdinal = false,
   targetName,
   dimName,
   binCount = 24,
 }: {
   rows: CrosstabRow[];
   dimOptions: ResponseOption[];
+  /** Dimension (axe Y) ordinale → préserver l'ordre naturel ; sinon tri par n décroissant. */
+  dimOrdinal?: boolean;
   targetName?: string;
   dimName?: string;
   /** Nombre de bins par défaut pour une cible CONTINUE (ignoré en mode discret). */
@@ -116,8 +119,10 @@ export default function RidgePlot({
       return buckets[lo] + (buckets[hi] - buckets[lo]) * (fi - lo);
     };
 
+    // Rangées : dimension ORDINALE → ordre naturel des response_options ;
+    // dimension NOMINALE → tri par n (raw) DÉCROISSANT (plus gros en haut).
+    const dimOrder = new Map(dimOptions.map((o, i) => [String(o.code), i]));
     const allGroups = [...byDim.entries()]
-      .sort((a, b) => Number(a[0]) - Number(b[0]))
       .map(([code, g]) => {
         const median = weightedMedian(g.pts);
         return {
@@ -128,7 +133,12 @@ export default function RidgePlot({
           median,
           medianH: heightAt(g.w, median),
         };
-      });
+      })
+      .sort((a, b) =>
+        dimOrdinal
+          ? (dimOrder.get(a.code) ?? Number(a.code)) - (dimOrder.get(b.code) ?? Number(b.code))
+          : b.raw - a.raw,
+      );
 
     // Sous-groupes sous le seuil de n : écartés AVANT le calcul de maxW, sinon
     // un groupe minuscule (ex. n=1, densité concentrée dans un seul bin) fixe
@@ -140,7 +150,7 @@ export default function RidgePlot({
     const maxW = Math.max(0.0001, ...groups.flatMap((g) => g.buckets));
 
     return { min, max, span, bins, discrete, center, groups, hidden, maxW };
-  }, [rows, dMap, nBins, minN]);
+  }, [rows, dMap, nBins, minN, dimOptions, dimOrdinal]);
 
   if (!model)
     return <p className="text-sm text-base-content/60">Aucune donnée numérique.</p>;

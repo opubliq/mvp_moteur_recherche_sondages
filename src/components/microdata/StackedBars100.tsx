@@ -27,6 +27,7 @@ export default function StackedBars100({
   targetOptions,
   dimOptions,
   ordinal = false,
+  dimOrdinal = false,
   targetName,
   dimName,
 }: {
@@ -34,6 +35,8 @@ export default function StackedBars100({
   targetOptions: ResponseOption[];
   dimOptions: ResponseOption[];
   ordinal?: boolean;
+  /** Dimension (axe Y) ordinale → préserver l'ordre naturel ; sinon tri par n décroissant. */
+  dimOrdinal?: boolean;
   targetName?: string;
   dimName?: string;
 }) {
@@ -94,12 +97,19 @@ export default function StackedBars100({
       g.shares.set(cat, (g.shares.get(cat) ?? 0) + r.col_share);
       g.raws.set(cat, (g.raws.get(cat) ?? 0) + r.raw_n);
     }
+    // Rangées : dimension ORDINALE → ordre naturel des response_options ;
+    // dimension NOMINALE → tri par n (raw) DÉCROISSANT (plus gros en haut).
+    const dimOrder = new Map(dimOptions.map((o, i) => [String(o.code), i]));
     const groups = [...byDim.entries()]
-      .sort((a, b) => Number(a[0]) - Number(b[0]))
-      .map(([code, g]) => ({ code, label: codeLabel(dMap, code), raw: g.raw, shares: g.shares, raws: g.raws }));
+      .map(([code, g]) => ({ code, label: codeLabel(dMap, code), raw: g.raw, shares: g.shares, raws: g.raws }))
+      .sort((a, b) =>
+        dimOrdinal
+          ? (dimOrder.get(a.code) ?? Number(a.code)) - (dimOrder.get(b.code) ?? Number(b.code))
+          : b.raw - a.raw,
+      );
 
     return { cats, groups };
-  }, [rows, tMap, dMap, ordinal, targetOptions]);
+  }, [rows, tMap, dMap, ordinal, targetOptions, dimOptions, dimOrdinal]);
 
   return (
     <div>
