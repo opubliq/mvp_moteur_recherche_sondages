@@ -67,12 +67,21 @@ interface CohereRerankResponse {
 // ---------------------------------------------------------------------------
 
 /**
- * Formate un document en YAML pour Cohere : le champ le plus important d'abord
- * (la question), puis l'échelle de réponse si elle existe.
+ * Formate un document en YAML pour Cohere : titre lisible en tête (si présent),
+ * puis la question, puis l'échelle de réponse si elle existe.
+ *
+ * Le `titre` (display_label authoré) surface le SUJET des questions à tronc
+ * générique — thermomètres/batteries/grilles où le verbatim est un stem commun
+ * (« Sur une échelle de 0 à 100… ») et le sujet réel (« syndicats », un enjeu de
+ * confiance…) n'apparaît que dans le libellé court. Ajouté seulement s'il existe
+ * (jamais de ligne vide). A/B golden : écart exact-partiel +0.031, amélioré sur
+ * les 14 requêtes, gain concentré sur ces batteries (cf. eval/_cohere_label_*).
  */
-function yamlDoc(question: string, opts: ResponseOption[]): string {
+function yamlDoc(question: string, opts: ResponseOption[], label?: string | null): string {
   const labels = (opts || []).map((o) => o?.label).filter(Boolean);
-  let s = `question: ${question ?? ""}`;
+  let s = "";
+  if (label && label.trim()) s += `titre: ${label.trim()}\n`;
+  s += `question: ${question ?? ""}`;
   if (labels.length) s += `\noptions_de_reponse: ${labels.join(" | ")}`;
   return s;
 }
@@ -151,7 +160,7 @@ export async function rerankCandidates(
     .slice(0, RERANK_WINDOW);
 
   // 2. Documents YAML.
-  const documents = window.map((c) => yamlDoc(c.question_text, c.response_options));
+  const documents = window.map((c) => yamlDoc(c.question_text, c.response_options, c.display_label));
 
   // 3. Appel Cohere (query brute).
   const scores = await cohereRerank(query, documents, env);
