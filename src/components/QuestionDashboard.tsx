@@ -210,6 +210,9 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
   if (state === "loading" || !dist) return <div className="op-card py-10 text-center"><span className="loading loading-spinner" /></div>;
 
   const totalRaw = dist.reduce((s, r) => s + r.raw_n, 0);
+  // Une échelle à trop de niveaux (ex. thermomètre 0–100) se lit mieux en
+  // histogramme qu'en une longue liste de barres. Seuil : > 12 niveaux distincts.
+  const asHistogram = kind === "continuous" || (kind === "scale" && dist.length > 12);
 
   return (
     <div className="op-card">
@@ -231,7 +234,7 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
         </div>
       </div>
 
-      {kind === "continuous" ? (
+      {asHistogram ? (
         <Histogram rows={dist} mean={stat?.mean} />
       ) : (
         <DistributionBars rows={dist} options={q.response_options} ordinal={q.is_ordinal || kind === "scale"} />
@@ -239,7 +242,7 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
 
       <p className="mt-3 text-xs text-base-content/45">
         Base : {formatN(totalRaw)} répondants · pondéré
-        {kind === "continuous" && refusal.length > 0 ? " · refus/NSP exclus" : ""}
+        {asHistogram && refusal.length > 0 ? " · refus/NSP exclus" : ""}
       </p>
     </div>
   );
