@@ -42,6 +42,7 @@ const SELECT_FIELDS = [
   "doc_type",
   "survey_id",
   "survey_name",
+  "survey_description",
   "survey_year",
   "pollster",
   "language",
