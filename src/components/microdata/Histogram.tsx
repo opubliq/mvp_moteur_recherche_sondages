@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { DistributionRow } from "../../types";
 import { formatMean } from "../../lib/microdataFormat";
+import { HoverTip, useHoverTip } from "./HoverTip";
 
 /**
  * Histogramme d'une cible `continuous` (âge, thermomètre 0–100…). Refus/NSP
@@ -16,6 +17,8 @@ export default function Histogram({
   mean?: number;
   bins?: number;
 }) {
+  const { tip, showTip, hideTip } = useHoverTip<{ range: string; pct: string }>();
+
   const model = useMemo(() => {
     const pts = rows
       .map((r) => ({ x: Number(r.target_code), w: r.share }))
@@ -61,9 +64,12 @@ export default function Histogram({
               rx={2}
               fill="var(--color-primary)"
               opacity={0.85}
-            >
-              <title>{b.x0.toFixed(0)}–{b.x1.toFixed(0)} : {(b.w * 100).toFixed(1)} %</title>
-            </rect>
+              className="cursor-default"
+              onMouseMove={(e) =>
+                showTip(e, { range: `${b.x0.toFixed(0)}–${b.x1.toFixed(0)}`, pct: `${(b.w * 100).toFixed(1)} %` })
+              }
+              onMouseLeave={hideTip}
+            />
           );
         })}
 
@@ -85,6 +91,16 @@ export default function Histogram({
           </g>
         )}
       </svg>
+
+      <HoverTip
+        tip={tip}
+        render={(d) => (
+          <>
+            <div className="font-semibold">{d.range}</div>
+            <div className="mt-0.5 tabular-nums">{d.pct}</div>
+          </>
+        )}
+      />
     </div>
   );
 }

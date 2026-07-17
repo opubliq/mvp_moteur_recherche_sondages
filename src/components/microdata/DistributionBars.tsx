@@ -1,5 +1,6 @@
 import type { DistributionRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, formatPct, labelMap } from "../../lib/microdataFormat";
+import { HoverTip, useHoverTip } from "./HoverTip";
 
 /**
  * Distribution univariée — barres horizontales pondérées (une seule série →
@@ -18,6 +19,7 @@ export default function DistributionBars({
   ordinal?: boolean;
 }) {
   const map = labelMap(options);
+  const { tip, showTip, hideTip } = useHoverTip<{ label: string; pct: string; n: number }>();
   // Index d'ordre ordinal = position dans response_options.
   const optIndex = new Map(options.map((o, i) => [String(o.code), i]));
   const sorted = [...rows].sort((a, b) => {
@@ -38,7 +40,8 @@ export default function DistributionBars({
           <div
             key={String(r.target_code)}
             className="dist-row"
-            title={`${label} — ${formatPct(r.share, 1)} · ${formatN(r.raw_n)} répondants (n brut)`}
+            onMouseMove={(e) => showTip(e, { label, pct: formatPct(r.share, 1), n: r.raw_n })}
+            onMouseLeave={hideTip}
           >
             <span className="leading-snug">{label}</span>
             <div className="dist-track">
@@ -48,6 +51,18 @@ export default function DistributionBars({
           </div>
         );
       })}
+
+      <HoverTip
+        tip={tip}
+        render={(d) => (
+          <>
+            <div className="font-semibold">{d.label}</div>
+            <div className="mt-0.5 tabular-nums">
+              <b>{d.pct}</b> · n = {formatN(d.n)} (n brut)
+            </div>
+          </>
+        )}
+      />
     </div>
   );
 }

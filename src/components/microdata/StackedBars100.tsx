@@ -1,7 +1,8 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { CrosstabRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, formatPct, labelMap, refusalCodes } from "../../lib/microdataFormat";
 import { categoryColor, divergingRamp, MAX_CATEGORIES, OTHER_COLOR } from "../../lib/vizPalette";
+import { HoverTip, useHoverTip } from "./HoverTip";
 
 /**
  * Croisement cible catégorielle × dimension → barres empilées 100 %. Une barre
@@ -42,7 +43,7 @@ export default function StackedBars100({
 }) {
   const tMap = labelMap(targetOptions);
   const dMap = labelMap(dimOptions);
-  const [tip, setTip] = useState<{ x: number; y: number; label: string; pct: string; n: number; group: string } | null>(null);
+  const { tip, showTip, hideTip } = useHoverTip<{ label: string; pct: string; n: number; group: string }>();
 
   const { cats, groups } = useMemo(() => {
     const present = new Set(rows.map((r) => String(r.target_code)));
@@ -150,9 +151,9 @@ export default function StackedBars100({
                     className="flex cursor-default items-center justify-center overflow-hidden text-[11px] font-medium"
                     style={{ flexGrow: share, flexBasis: 0, background: c.color, color: c.dark ? "oklch(0.28 0.02 196)" : "white" }}
                     onMouseMove={(e) =>
-                      setTip({ x: e.clientX, y: e.clientY, label: c.label, pct: formatPct(share, 1), n: g.raws.get(c.code) ?? 0, group: g.label })
+                      showTip(e, { label: c.label, pct: formatPct(share, 1), n: g.raws.get(c.code) ?? 0, group: g.label })
                     }
-                    onMouseLeave={() => setTip(null)}
+                    onMouseLeave={hideTip}
                   >
                     {wide ? formatPct(share) : ""}
                   </div>
@@ -163,18 +164,18 @@ export default function StackedBars100({
         ))}
       </div>
 
-      {tip && (
-        <div
-          className="pointer-events-none fixed z-50 rounded-md border border-base-content/10 bg-base-100 px-2.5 py-1.5 text-xs shadow-lg"
-          style={{ left: tip.x + 12, top: tip.y + 12 }}
-        >
-          <div className="font-semibold">{tip.label}</div>
-          <div className="text-base-content/60">{tip.group}</div>
-          <div className="mt-0.5 tabular-nums">
-            <b>{tip.pct}</b> · n = {formatN(tip.n)}
-          </div>
-        </div>
-      )}
+      <HoverTip
+        tip={tip}
+        render={(d) => (
+          <>
+            <div className="font-semibold">{d.label}</div>
+            <div className="text-base-content/60">{d.group}</div>
+            <div className="mt-0.5 tabular-nums">
+              <b>{d.pct}</b> · n = {formatN(d.n)}
+            </div>
+          </>
+        )}
+      />
     </div>
   );
 }

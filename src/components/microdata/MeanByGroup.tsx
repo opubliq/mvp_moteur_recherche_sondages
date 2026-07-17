@@ -1,6 +1,7 @@
 import { Fragment, useMemo } from "react";
 import type { MeanByGroupRow, ResponseOption } from "../../types";
 import { codeLabel, formatMean, formatN, labelMap } from "../../lib/microdataFormat";
+import { HoverTip, useHoverTip } from "./HoverTip";
 
 /**
  * Croisement cible `scale`/`continuous` × dimension → moyenne pondérée par
@@ -33,6 +34,7 @@ export default function MeanByGroup({
   dimName?: string;
 }) {
   const dMap = labelMap(dimOptions);
+  const { tip, showTip, hideTip } = useHoverTip<{ label: string; mean: number; n: number }>();
   const span = domainMax - domainMin || 1;
   // Rangées : dimension ORDINALE → ordre naturel des response_options ;
   // dimension NOMINALE → tri par n (raw_n) DÉCROISSANT (plus gros en haut).
@@ -81,13 +83,14 @@ export default function MeanByGroup({
               <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2" style={{ background: "color-mix(in oklch, var(--color-base-content) 12%, transparent)" }} />
               {/* point = moyenne du groupe (au premier plan) */}
               <div
-                className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 cursor-default rounded-full"
                 style={{
                   left: pct(g.mean),
                   background: "var(--color-primary)",
                   boxShadow: "0 0 0 2px var(--color-base-100)",
                 }}
-                title={`${codeLabel(dMap, g.dim_code)} : moy. ${formatMean(g.mean)} (n ${formatN(g.raw_n)})`}
+                onMouseMove={(e) => showTip(e, { label: codeLabel(dMap, g.dim_code), mean: g.mean, n: g.raw_n })}
+                onMouseLeave={hideTip}
               />
             </div>
             <span style={{ gridColumn: 3, gridRow: i + 1 }} className="text-right text-sm font-medium tabular-nums">
@@ -117,6 +120,18 @@ export default function MeanByGroup({
           Axe horizontal = moyenne de « {targetName} »
         </div>
       )}
+
+      <HoverTip
+        tip={tip}
+        render={(d) => (
+          <>
+            <div className="font-semibold">{d.label}</div>
+            <div className="mt-0.5 tabular-nums">
+              moy. <b>{formatMean(d.mean)}</b> · n = {formatN(d.n)}
+            </div>
+          </>
+        )}
+      />
     </div>
   );
 }
