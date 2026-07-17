@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Check, Plus, Download } from "lucide-react";
+import { Check, Plus, Download, ArrowLeftRight } from "lucide-react";
 import { fetchSurvey, fetchMicrodata, NoMicrodataError } from "../api";
 import type {
   CrosstabRow,
@@ -256,16 +256,26 @@ function Crossing({
   const [dimVar, setDimVar] = useState<string>(dims[0]?.variable ?? "");
   const [mode, setMode] = useState<"mean" | "stacked">("mean");
   const [includeRefusal, setIncludeRefusal] = useState(false); // défaut : refus exclus
+  // Swap cible↔dimension : ne vaut QUE pour cette vue de croisement (la cible
+  // de la page reste q partout ailleurs — header, univarié, breadcrumb…).
+  const [swapped, setSwapped] = useState(false);
   const [cross, setCross] = useState<CrosstabRow[] | null>(null);
   const [means, setMeans] = useState<MeanByGroupRow[] | null>(null);
   const [domain, setDomain] = useState<{ min: number; max: number; overall?: number } | null>(null);
   const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
 
-  const numeric = kind === "scale" || kind === "continuous";
   const dimQ = useMemo(() => dims.find((d) => d.variable === dimVar), [dims, dimVar]);
+  // Cible/dimension EFFECTIVES de la vue croisée après swap éventuel.
+  const targetQ = swapped ? dimQ : q;
+  const otherQ = swapped ? q : dimQ;
+  const targetVar = swapped ? dimVar : q.variable;
+  const otherVar = swapped ? q.variable : dimVar;
+  const effKind: Kind = swapped && dimQ ? kindOf(dimQ) : kind;
+
+  const numeric = effKind === "scale" || effKind === "continuous";
   // continuous : moyenne uniquement (empilé 100% d'un continu n'a pas de sens).
-  const effMode: "mean" | "stacked" = kind === "continuous" ? "mean" : mode;
-  const refusal = useMemo(() => refusalCodes(q.response_options), [q]);
+  const effMode: "mean" | "stacked" = effKind === "continuous" ? "mean" : mode;
+  const refusal = useMemo(() => refusalCodes(targetQ?.response_options ?? q.response_options), [targetQ, q]);
   // Refus/NSP EXCLUS par défaut (moyenne comme empilé) ; toggle pour les inclure.
   const exclude = useMemo(
     () => (includeRefusal ? [] : refusal),
@@ -273,7 +283,7 @@ function Crossing({
   );
 
   useEffect(() => {
-    if (!dimVar) return;
+    if (!dimVar || !targetQ || !otherVar) return;
     let cancelled = false;
     setState("loading");
     setCross(null);
@@ -282,8 +292,8 @@ function Crossing({
     const useMean = numeric && effMode === "mean";
     if (useMean) {
       Promise.all([
-        fetchMicrodata<MeanByGroupRow>({ surveyId: q.survey_id, target: q.variable, dim: dimVar, agg: "mean", exclude }),
-        fetchMicrodata<MeanRow>({ surveyId: q.survey_id, target: q.variable, agg: "mean", exclude }),
+        fetchMicrodata<MeanByGroupRow>({ surveyId: q.survey_id, target: targetVar, dim: otherVar, agg: "mean", exclude }),
+        fetchMicrodata<MeanRow>({ surveyId: q.survey_id, target: targetVar, agg: "mean", exclude }),
       ])
         .then(([g, overall]) => {
           if (cancelled) return;
@@ -294,7 +304,7 @@ function Crossing({
         })
         .catch(() => !cancelled && setState("error"));
     } else {
-      fetchMicrodata<CrosstabRow>({ surveyId: q.survey_id, target: q.variable, dim: dimVar, exclude })
+      fetchMicrodata<CrosstabRow>({ surveyId: q.survey_id, target: targetVar, dim: otherVar, exclude })
         .then((r) => {
           if (cancelled) return;
           setCross(r.rows);
@@ -305,7 +315,7 @@ function Crossing({
     return () => {
       cancelled = true;
     };
-  }, [q, dimVar, effMode, numeric, exclude]);
+  }, [q, targetVar, otherVar, targetQ, effMode, numeric, exclude]);
 
   if (dims.length === 0) {
     return (
@@ -320,7 +330,7 @@ function Crossing({
     <div className="op-card">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <h3 className="font-semibold">Croiser par sous-groupe</h3>
-        {numeric && kind === "scale" && (
+        {numeric && effKind === "scale" && (
           <div className="join">
             <button className={`btn join-item btn-xs ${effMode === "mean" ? "btn-primary" : "btn-ghost"}`} onClick={() => setMode("mean")}>Moyenne</button>
             <button className={`btn join-item btn-xs ${effMode === "stacked" ? "btn-primary" : "btn-ghost"}`} onClick={() => setMode("stacked")}>Distribution</button>
@@ -330,6 +340,16 @@ function Crossing({
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <DimSelect socioDims={socioDims} otherDims={otherDims} value={dimVar} onChange={setDimVar} />
+        <button
+          type="button"
+          className="btn btn-ghost btn-sm gap-1.5"
+          title="Inverser cible et dimension du croisement"
+          disabled={!dimQ}
+          onClick={() => setSwapped((s) => !s)}
+        >
+          <ArrowLeftRight size={15} />
+          Inverser
+        </button>
         {refusal.length > 0 && (
           <label className="label cursor-pointer gap-2 text-xs">
             <input type="checkbox" className="checkbox checkbox-xs" checked={includeRefusal} onChange={(e) => setIncludeRefusal(e.target.checked)} />
@@ -340,7 +360,7 @@ function Crossing({
 
       {state === "loading" && <div className="py-8 text-center"><span className="loading loading-spinner" /></div>}
       {state === "error" && <p className="text-sm text-error">Échec du croisement.</p>}
-      {state === "ok" && dimQ && (() => {
+      {state === "ok" && targetQ && otherQ && (() => {
         const groupCount =
           numeric && effMode === "mean" && means
             ? means.length
@@ -359,19 +379,19 @@ function Crossing({
           );
         }
         const clip = (s: string, n: number) => (s.length > n ? s.slice(0, n) + "…" : s);
-        const shortTarget = clip(q.display_label || q.question_text, 64);
-        const shortDim = clip(dimQ.display_label || dimQ.question_text, 52);
+        const shortTarget = clip(targetQ.display_label || targetQ.question_text, 64);
+        const shortDim = clip(otherQ.display_label || otherQ.question_text, 52);
         return (
           <>
             {numeric && effMode === "mean" && means && domain ? (
-              <MeanByGroup rows={means} dimOptions={dimQ.response_options} dimOrdinal={dimQ.is_ordinal} domainMin={domain.min} domainMax={domain.max} overallMean={domain.overall} targetName={shortTarget} dimName={shortDim} />
+              <MeanByGroup rows={means} dimOptions={otherQ.response_options} dimOrdinal={otherQ.is_ordinal} domainMin={domain.min} domainMax={domain.max} overallMean={domain.overall} targetName={shortTarget} dimName={shortDim} />
             ) : cross && numeric ? (
               // Cible scale/continuous en mode « Distribution » : ridgeline (une
               // densité par sous-groupe sur un axe X commun) plutôt qu'un empilé
               // 100 % qui n'exprime pas la forme d'une échelle.
-              <RidgePlot rows={cross} dimOptions={dimQ.response_options} dimOrdinal={dimQ.is_ordinal} targetName={shortTarget} dimName={shortDim} />
+              <RidgePlot rows={cross} dimOptions={otherQ.response_options} dimOrdinal={otherQ.is_ordinal} targetName={shortTarget} dimName={shortDim} />
             ) : cross ? (
-              <StackedBars100 rows={cross} targetOptions={q.response_options} dimOptions={dimQ.response_options} ordinal={q.is_ordinal || kind === "scale"} dimOrdinal={dimQ.is_ordinal} targetName={shortTarget} dimName={shortDim} />
+              <StackedBars100 rows={cross} targetOptions={targetQ.response_options} dimOptions={otherQ.response_options} ordinal={targetQ.is_ordinal || effKind === "scale"} dimOrdinal={otherQ.is_ordinal} targetName={shortTarget} dimName={shortDim} />
             ) : null}
             <p className="mt-2 text-xs text-base-content/45">
               {numeric && effMode === "stacked"
