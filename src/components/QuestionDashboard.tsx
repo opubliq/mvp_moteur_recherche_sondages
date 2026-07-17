@@ -111,7 +111,10 @@ export default function QuestionDashboard() {
               <span className="op-badge op-badge-plain font-mono">{q.variable}</span>
               {q.var_type && <span className="op-badge op-badge-plain">{q.var_type}</span>}
             </div>
-            <h1 className="text-xl font-semibold leading-snug">{q.question_text}</h1>
+            <h1 className="text-xl font-semibold leading-snug">{q.display_label || q.question_text}</h1>
+            {q.display_label && q.display_label !== q.question_text && (
+              <p className="mt-1 text-sm leading-snug text-base-content/55">{q.question_text}</p>
+            )}
           </div>
           <div className="flex shrink-0 flex-col gap-2">
             <button className={`btn btn-sm gap-1.5 ${inCart ? "btn-outline" : "btn-primary"}`} onClick={() => toggle(toCartItem(q))}>
@@ -495,8 +498,10 @@ function SurveyQuestionsNav({
               }`}
             >
               <span className="mr-1.5 font-mono text-xs text-base-content/40">{x.variable}</span>
-              {x.question_text.slice(0, 60)}
-              {x.question_text.length > 60 ? "…" : ""}
+              {(() => {
+                const label = x.display_label || x.question_text;
+                return label.slice(0, 60) + (label.length > 60 ? "…" : "");
+              })()}
             </Link>
           );
         })}
