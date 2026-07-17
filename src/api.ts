@@ -1,33 +1,7 @@
 import type { Concept, ConceptCount, MicrodataQuery, MicrodataResponse, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent } from "./types";
-import { MOCK_RESPONSE } from "./mock";
-
-/**
- * Flag dev : si VITE_USE_MOCK=true, on renvoie une réponse mock au lieu
- * d'appeler la Netlify Function. Sert à valider le rendu quand l'index
- * Azure est vide. Désactivé par défaut.
- */
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true";
 
 /** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
 export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
-  if (USE_MOCK) {
-    const surveyIds = new Set(MOCK_RESPONSE.results.map((r) => r.survey_id));
-    const surveys: SurveyParent[] = Array.from(surveyIds).map((id) => {
-      const first = MOCK_RESPONSE.results.find((r) => r.survey_id === id)!;
-      return {
-        id: first.survey_id,
-        survey_id: first.survey_id,
-        survey_name: first.survey_name,
-        survey_year: first.survey_year,
-        pollster: first.pollster,
-        language: first.language,
-        n_respondents: first.n_respondents,
-        tags: first.tags,
-      };
-    });
-    return { surveys, count: surveys.length, total_questions: MOCK_RESPONSE.results.length };
-  }
-
   const res = await fetch("/surveys");
   if (!res.ok) {
     const body = await res.text().catch(() => "");
@@ -45,8 +19,6 @@ export interface DecomposeResponse {
 }
 
 export async function decompose(query: string): Promise<DecomposeResponse> {
-  if (USE_MOCK) return { concepts: [], rerankQuery: "" };
-
   const res = await fetch("/decompose", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -71,11 +43,6 @@ export async function search(
   rerank = false,
   rerankQuery?: string,
 ): Promise<SearchResponse> {
-  if (USE_MOCK) {
-    await new Promise((r) => setTimeout(r, 300));
-    return MOCK_RESPONSE;
-  }
-
   const res = await fetch("/search", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -92,28 +59,6 @@ export async function search(
 
 /** Appelle la Netlify Function `/survey` : doc parent + toutes ses questions. */
 export async function fetchSurvey(surveyId: string): Promise<SurveyDetailResponse> {
-  if (USE_MOCK) {
-    await new Promise((r) => setTimeout(r, 300));
-    const questions = MOCK_RESPONSE.results.filter((r) => r.survey_id === surveyId);
-    const first = questions[0];
-    return {
-      survey: first
-        ? {
-            id: first.survey_id,
-            survey_id: first.survey_id,
-            survey_name: first.survey_name,
-            survey_year: first.survey_year,
-            pollster: first.pollster,
-            language: first.language,
-            n_respondents: first.n_respondents,
-            tags: first.tags,
-          }
-        : null,
-      questions,
-      count: questions.length,
-    };
-  }
-
   const res = await fetch(`/survey?survey_id=${encodeURIComponent(surveyId)}`);
 
   if (!res.ok) {
