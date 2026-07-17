@@ -15,6 +15,7 @@ import { formatMean, formatN, refusalCodes } from "../lib/microdataFormat";
 import DistributionBars from "./microdata/DistributionBars";
 import Histogram from "./microdata/Histogram";
 import StackedBars100 from "./microdata/StackedBars100";
+import RidgePlot from "./microdata/RidgePlot";
 import MeanByGroup from "./microdata/MeanByGroup";
 import DimSelect from "./microdata/DimSelect";
 
@@ -371,10 +372,19 @@ function Crossing({
           <>
             {numeric && effMode === "mean" && means && domain ? (
               <MeanByGroup rows={means} dimOptions={dimQ.response_options} domainMin={domain.min} domainMax={domain.max} overallMean={domain.overall} targetName={shortTarget} dimName={shortDim} />
+            ) : cross && numeric ? (
+              // Cible scale/continuous en mode « Distribution » : ridgeline (une
+              // densité par sous-groupe sur un axe X commun) plutôt qu'un empilé
+              // 100 % qui n'exprime pas la forme d'une échelle.
+              <RidgePlot rows={cross} dimOptions={dimQ.response_options} targetName={shortTarget} dimName={shortDim} />
             ) : cross ? (
               <StackedBars100 rows={cross} targetOptions={q.response_options} dimOptions={dimQ.response_options} ordinal={q.is_ordinal || kind === "scale"} targetName={shortTarget} dimName={shortDim} />
             ) : null}
-            <p className="mt-2 text-xs text-base-content/45">% pondéré par sous-groupe.</p>
+            <p className="mt-2 text-xs text-base-content/45">
+              {numeric && effMode === "stacked"
+                ? "Densité pondérée par sous-groupe (axe commun)."
+                : "% pondéré par sous-groupe."}
+            </p>
           </>
         );
       })()}
