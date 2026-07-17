@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import type { CrosstabRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, labelMap } from "../../lib/microdataFormat";
 
@@ -44,13 +44,19 @@ export default function RidgePlot({
   dimOptions,
   targetName,
   dimName,
+  binCount = 24,
 }: {
   rows: CrosstabRow[];
   dimOptions: ResponseOption[];
   targetName?: string;
   dimName?: string;
+  /** Nombre de bins par défaut pour une cible CONTINUE (ignoré en mode discret). */
+  binCount?: number;
 }) {
   const dMap = labelMap(dimOptions);
+  // Contrôles interactifs : nombre de bins (continu) et seuil de n minimal.
+  const [nBins, setNBins] = useState(binCount);
+  const [minN, setMinN] = useState(20);
 
   const model = useMemo(() => {
     const pts = rows
@@ -66,40 +72,131 @@ export default function RidgePlot({
     // Échelle discrète (petit entier, ex. Likert 1–7) → un bin par valeur ;
     // sinon binning régulier comme l'histogramme d'un continu.
     const discrete = xs.every((x) => Number.isInteger(x)) && max - min <= 15;
-    const bins = discrete ? Math.round(span) + 1 : 24;
+    const bins = discrete ? Math.round(span) + 1 : Math.max(2, nBins);
     const width = span / (discrete ? Math.max(1, bins - 1) : bins);
     // Centre du bin i sur l'axe X (valeur de la variable).
     const center = (i: number) => (discrete ? min + i : min + (i + 0.5) * width);
     const idxOf = (x: number) =>
       discrete ? Math.round(x - min) : Math.min(bins - 1, Math.floor((x - min) / width));
+    // Indice fractionnaire d'une valeur x dans le tableau de buckets (pour
+    // interpoler la hauteur de la courbe lissée à une position quelconque).
+    const fracIdx = (x: number) => (discrete ? x - min : (x - min) / width - 0.5);
 
     // Densité (buckets pondérés) par sous-groupe.
-    const byDim = new Map<string, { w: number[]; raw: number }>();
+    const byDim = new Map<string, { w: number[]; raw: number; pts: { x: number; w: number }[] }>();
     for (const p of pts) {
-      if (!byDim.has(p.dim)) byDim.set(p.dim, { w: Array(bins).fill(0), raw: 0 });
+      if (!byDim.has(p.dim)) byDim.set(p.dim, { w: Array(bins).fill(0), raw: 0, pts: [] });
       const g = byDim.get(p.dim)!;
       g.w[idxOf(p.x)] += p.w;
+      g.pts.push({ x: p.x, w: p.w });
     }
     for (const r of rows) {
       const g = byDim.get(String(r.dim_code));
       if (g) g.raw += r.raw_n;
     }
 
-    const groups = [...byDim.entries()]
+    // Médiane pondérée (sur col_share) des valeurs de la cible dans le groupe.
+    const weightedMedian = (arr: { x: number; w: number }[]) => {
+      const sorted = [...arr].sort((a, b) => a.x - b.x);
+      const total = sorted.reduce((s, p) => s + p.w, 0);
+      if (total <= 0) return sorted.length ? sorted[Math.floor(sorted.length / 2)].x : min;
+      let acc = 0;
+      for (const p of sorted) {
+        acc += p.w;
+        if (acc >= total / 2) return p.x;
+      }
+      return sorted[sorted.length - 1].x;
+    };
+    // Hauteur (valeur de densité) de la courbe lissée à la position x, par
+    // interpolation linéaire entre les centres de bins voisins.
+    const heightAt = (buckets: number[], x: number) => {
+      const fi = Math.max(0, Math.min(bins - 1, fracIdx(x)));
+      const lo = Math.floor(fi);
+      const hi = Math.min(bins - 1, lo + 1);
+      return buckets[lo] + (buckets[hi] - buckets[lo]) * (fi - lo);
+    };
+
+    const allGroups = [...byDim.entries()]
       .sort((a, b) => Number(a[0]) - Number(b[0]))
-      .map(([code, g]) => ({ code, label: codeLabel(dMap, code), buckets: g.w, raw: g.raw }));
+      .map(([code, g]) => {
+        const median = weightedMedian(g.pts);
+        return {
+          code,
+          label: codeLabel(dMap, code),
+          buckets: g.w,
+          raw: g.raw,
+          median,
+          medianH: heightAt(g.w, median),
+        };
+      });
+
+    // Sous-groupes sous le seuil de n : écartés AVANT le calcul de maxW, sinon
+    // un groupe minuscule (ex. n=1, densité concentrée dans un seul bin) fixe
+    // l'échelle verticale et aplatit toutes les autres rangées.
+    const groups = allGroups.filter((g) => g.raw >= minN);
+    const hidden = allGroups.length - groups.length;
 
     // Échelle verticale COMMUNE : max global des buckets (pics comparables).
     const maxW = Math.max(0.0001, ...groups.flatMap((g) => g.buckets));
 
-    return { min, max, span, bins, center, groups, maxW };
-  }, [rows, dMap]);
+    return { min, max, span, bins, discrete, center, groups, hidden, maxW };
+  }, [rows, dMap, nBins, minN]);
 
-  if (!model || model.groups.length === 0)
+  if (!model)
     return <p className="text-sm text-base-content/60">Aucune donnée numérique.</p>;
 
-  const { min, max, span, bins, center, groups, maxW } = model;
+  const { min, max, span, discrete, center, groups, hidden, maxW } = model;
   const N = groups.length;
+
+  // Barre de contrôles : seuil de n (toujours) + nombre de bins (continu seul).
+  const controls = (
+    <div className="flex w-36 shrink-0 flex-col gap-3 text-xs text-base-content/60">
+      <label className="flex flex-col gap-1">
+        <span className="font-medium">n minimal</span>
+        <select
+          className="select select-bordered select-xs"
+          value={minN}
+          onChange={(e) => setMinN(Number(e.target.value))}
+        >
+          <option value={0}>tous</option>
+          <option value={10}>≥ 10</option>
+          <option value={20}>≥ 20</option>
+          <option value={30}>≥ 30</option>
+          <option value={50}>≥ 50</option>
+        </select>
+      </label>
+      {!discrete && (
+        <label className="flex flex-col gap-1">
+          <span className="font-medium">finesse (bins)</span>
+          <input
+            type="range"
+            className="range range-xs"
+            min={8}
+            max={60}
+            step={2}
+            value={nBins}
+            onChange={(e) => setNBins(Number(e.target.value))}
+          />
+          <span className="tabular-nums text-base-content/45">{nBins} bins</span>
+        </label>
+      )}
+      {hidden > 0 && (
+        <span className="text-base-content/45">
+          {hidden} sous-groupe{hidden > 1 ? "s" : ""} masqué{hidden > 1 ? "s" : ""} (n &lt; {minN})
+        </span>
+      )}
+    </div>
+  );
+
+  if (N === 0)
+    return (
+      <div>
+        {controls}
+        <p className="text-sm text-base-content/60">
+          Aucun sous-groupe au-dessus du seuil (n ≥ {minN}). Abaisse le seuil « n minimal ».
+        </p>
+      </div>
+    );
 
   // Géométrie SVG.
   const W = 640;
@@ -115,15 +212,18 @@ export default function RidgePlot({
   const xPix = (v: number) => padL + ((v - min) / span) * plotW;
   const baseY = (i: number) => padT + ridgeH + i * rowH;
 
-  const ticks = model.min === model.max ? [min] : buildTicks(min, max, bins <= 12);
-  const clip = (s: string, n = 20) => (s.length > n ? s.slice(0, n) + "…" : s);
+  // Graduations liées à la NATURE de la cible (discrète = un tick/entier), pas
+  // au nombre de bins choisi — sinon baisser la finesse resserre l'axe à des
+  // pas de 1 illisibles.
+  const ticks = model.min === model.max ? [min] : buildTicks(min, max, discrete);
 
   return (
     <div role="img" aria-label="Ridgeline des distributions par sous-groupe">
       {dimName && (
         <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = « {dimName} »</div>
       )}
-      <div className="overflow-x-auto">
+      <div className="flex items-start gap-4">
+      <div className="min-w-0 flex-1 overflow-x-auto">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxWidth: W }}>
           {/* graduations verticales discrètes de l'axe commun */}
           {ticks.map((t) => (
@@ -142,24 +242,37 @@ export default function RidgePlot({
               bas passe DEVANT celle du dessus (chevauchement façon ggridges). */}
           {groups.map((g, i) => {
             const by = baseY(i);
-            const pts = [
-              { x: xPix(min), y: by },
-              ...g.buckets.map((w, b) => ({ x: xPix(center(b)), y: by - (w / maxW) * ridgeH })),
-              { x: xPix(max), y: by },
-            ];
-            const line = smoothPath(pts);
+            // Courbe lissée à TRAVERS les centres de bins seulement : pas d'ancre
+            // baseline forcée aux extrémités (évite le débordement de la spline
+            // hors de l'axe). On ferme l'aire par une descente verticale droite.
+            const curve = g.buckets.map((w, b) => ({ x: xPix(center(b)), y: by - (w / maxW) * ridgeH }));
+            const line = smoothPath(curve);
+            const first = curve[0];
+            const last = curve[curve.length - 1];
+            const area = `${line} L ${last.x.toFixed(2)} ${by} L ${first.x.toFixed(2)} ${by} Z`;
+            // Position de la médiane du sous-groupe + hauteur de la courbe à cet endroit.
+            const mx = xPix(g.median);
+            const myTop = by - (g.medianH / maxW) * ridgeH;
+            const clipId = `ridge-clip-${i}`;
             return (
               <g key={g.code}>
-                <path d={`${line} Z`} fill={FILL} stroke="none" />
-                <path d={line} fill="none" stroke={STROKE} strokeWidth={1.4} strokeLinejoin="round" />
+                {/* rien ne doit déborder sous la ligne d'axe de la rangée */}
+                <clipPath id={clipId}>
+                  <rect x={0} y={0} width={W} height={by} />
+                </clipPath>
+                <path d={area} fill={FILL} stroke="none" clipPath={`url(#${clipId})`} />
+                {/* médiane : de l'axe jusqu'au sommet du ridge à cette position */}
+                <line x1={mx} y1={by} x2={mx} y2={myTop} stroke={STROKE} strokeWidth={1.5} opacity={0.7} />
                 <title>{g.label} — n = {formatN(g.raw)}</title>
-                {/* libellé du sous-groupe + n, dans la gouttière gauche */}
-                <text x={padL - 10} y={by - 5} textAnchor="end" fontSize={12} fill="currentColor">
-                  {clip(g.label)}
-                </text>
-                <text x={padL - 10} y={by + 8} textAnchor="end" fontSize={10} fill="currentColor" opacity={0.45}>
-                  n = {formatN(g.raw)}
-                </text>
+                {/* libellé du sous-groupe + n, dans la gouttière gauche : en
+                    HTML (foreignObject) pour que les longs libellés passent sur
+                    plusieurs lignes, comme le dot plot des moyennes. */}
+                <foreignObject x={0} y={by - 46} width={padL - 10} height={52}>
+                  <div className="flex h-full flex-col items-end justify-end text-right leading-tight">
+                    <span className="text-[12px] text-base-content">{g.label}</span>
+                    <span className="text-[10px] text-base-content/45">n = {formatN(g.raw)}</span>
+                  </div>
+                </foreignObject>
               </g>
             );
           })}
@@ -180,6 +293,8 @@ export default function RidgePlot({
             </text>
           ))}
         </svg>
+      </div>
+      {controls}
       </div>
       {targetName && (
         <div className="mt-1 text-center text-xs font-semibold text-base-content/70">

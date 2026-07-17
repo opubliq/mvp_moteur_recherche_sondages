@@ -385,7 +385,7 @@ function Crossing({
             ) : null}
             <p className="mt-2 text-xs text-base-content/45">
               {numeric && effMode === "stacked"
-                ? "Densité pondérée par sous-groupe (axe commun)."
+                ? "Densité pondérée par sous-groupe (axe commun). La ligne verticale marque la médiane du sous-groupe."
                 : "% pondéré par sous-groupe."}
             </p>
           </>
