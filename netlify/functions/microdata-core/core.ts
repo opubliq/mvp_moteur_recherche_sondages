@@ -55,7 +55,13 @@ let instancePromise: Promise<DuckDBInstance> | null = null;
 async function getConnection(): Promise<DuckDBConnection> {
   if (!instancePromise) {
     instancePromise = (async () => {
-      const inst = await DuckDBInstance.create(":memory:");
+      // Sur AWS Lambda (runtime des Netlify Functions) seul /tmp est inscriptible.
+      // DuckDB installe/charge ses extensions depuis $HOME/.duckdb par défaut ⇒
+      // l'INSTALL échouerait en "read-only file system". On redirige tout vers /tmp.
+      const inst = await DuckDBInstance.create(":memory:", {
+        home_directory: "/tmp",
+        extension_directory: "/tmp/.duckdb_extensions",
+      });
       const c = await inst.connect();
       // httpfs : lecture Blob via HTTP RANGE (métadonnées Parquet + column chunks
       // cités seulement, pas de download complet). INSTALL une seule fois par
