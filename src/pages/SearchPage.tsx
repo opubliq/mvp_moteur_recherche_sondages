@@ -10,7 +10,7 @@ import ScoreDistribution from "../components/ScoreDistribution";
 import type { SearchResult } from "../types";
 
 /** Position de départ du curseur de seuil — voir le commentaire dans SearchPage. */
-const DEFAULT_THRESHOLD = 30;
+const DEFAULT_THRESHOLD = 50;
 
 /**
  * Regroupe les résultats par sondage, en conservant l'ordre de pertinence.
@@ -41,7 +41,7 @@ function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
 
 export default function SearchPage() {
   const {
-    query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
+    query, filters, concepts, rerankQuery, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
     handleSearch, handleFilterChange,
   } = useSearchState();
 
@@ -56,11 +56,13 @@ export default function SearchPage() {
   // une fenêtre de 150 contient en moyenne ~25 résultats pertinents pour ~125
   // hors-sujet (golden 15 requêtes : 375 vs 1875).
   //
-  // 30 est délibérément prudent : sur le golden il conserve 100 % des exacts
-  // (et 98,1 % de tout ce qui est pertinent) tout en écartant 17 % du bruit.
-  // Monter à 45 jetterait 53 % du bruit pour 1,6 % des exacts — arbitrage
-  // ouvert. La vraie correction est en amont (bead 9gf.14 : le retrieval
-  // sur-décompose et remplit le pool de bruit) ; ce seuil est un pansement.
+  // Le défaut privilégie la précision de la première vue plutôt que le rappel.
+  // Sur le golden, 30 conservait 100 % des exacts mais n'écartait que 17 % du
+  // bruit, alors que 45 en jetait 53 % pour 1,6 % des exacts : l'arbitrage
+  // penche nettement vers le haut. 50 assume ce compromis, sans coût réel
+  // puisque le curseur redescend à 0. La vraie correction est en amont
+  // (bead 9gf.14 : le retrieval sur-décompose et remplit le pool de bruit) ;
+  // ce seuil est un pansement.
   const [scoreThreshold, setScoreThreshold] = useState(DEFAULT_THRESHOLD);
   // Nouvelle recherche → le filtre précédent n'a plus de sens, on le réinitialise.
   useEffect(() => setScoreThreshold(DEFAULT_THRESHOLD), [results]);
@@ -98,7 +100,7 @@ export default function SearchPage() {
       ) : (
         concepts.length > 0 && (
           <div className="mb-5">
-            <ConceptChips concepts={concepts} />
+            <ConceptChips concepts={concepts} rerankQuery={rerankQuery} />
           </div>
         )
       )}

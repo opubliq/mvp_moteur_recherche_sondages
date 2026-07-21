@@ -155,6 +155,8 @@ export interface MeanRow {
 export interface MeanByGroupRow {
   dim_code: number | string;
   mean: number;
+  /** Erreur-type pondérée (n effectif de Kish). null/absent si incalculable. */
+  se?: number | null;
   weighted_n: number;
   raw_n: number;
 }

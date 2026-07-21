@@ -15,6 +15,8 @@ interface SearchContextValue {
   query: string;
   filters: SearchFilters;
   concepts: Concept[];
+  /** Reformulation LLM envoyée au reranker Cohere (issue de `/decompose`). */
+  rerankQuery: string;
   results: SearchResult[];
   facets: SearchFacets | null;
   globalFacets: SearchFacets | null;
@@ -146,11 +148,11 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<SearchContextValue>(
     () => ({
-      query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
+      query, filters, concepts, rerankQuery, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
       handleSearch, handleFilterChange,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched],
+    [query, filters, concepts, rerankQuery, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched],
   );
 
   return <SearchContext.Provider value={value}>{children}</SearchContext.Provider>;

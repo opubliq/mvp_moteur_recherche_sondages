@@ -103,6 +103,24 @@ function num(v: unknown): number {
   return typeof v === "bigint" ? Number(v) : (v as number);
 }
 
+/**
+ * Erreur-type d'une moyenne PONDÉRÉE : sqrt(var_w / (n_eff − 1)).
+ *  - var_w = Σw·x²/Σw − mean²  (variance pondérée, de population)
+ *  - n_eff = (Σw)² / Σw²       (n effectif de Kish — corrige le design effect
+ *    des poids ; sans ça la SE est sous-estimée sur un échantillon repondéré)
+ * Diviser par n_eff−1 plutôt que n_eff EST la correction de Bessel :
+ * var_pop/(n−1) ≡ var_échantillon/n. Sans elle la SE est trop optimiste sur
+ * les petits groupes — précisément ceux qu'on veut signaler.
+ * `greatest(…, 0)` couvre la variance légèrement négative que peut produire la
+ * forme E[x²]−E[x]² par annulation ; les `nullif` renvoient NULL (→ pas d'IC)
+ * plutôt que de faire échouer la requête sur un groupe dégénéré (n_eff ≤ 1,
+ * Σw² = 0). Une division par zéro rend NULL en DuckDB, jamais une erreur.
+ */
+const SE_SQL = `sqrt(
+         greatest(SUM(w * x * x) / SUM(w) - pow(SUM(w * x) / SUM(w), 2), 0)
+         / nullif(pow(SUM(w), 2) / nullif(SUM(w * w), 0) - 1, 0)
+       ) AS se`;
+
 // --- Handler principal ------------------------------------------------------
 export async function handleMicrodataQuery(params: MicrodataParams, config: MicrodataConfig) {
   const { survey_id, target, dim, filters = [], agg = "count", exclude = [] } = params;
@@ -163,7 +181,8 @@ export async function handleMicrodataQuery(params: MicrodataParams, config: Micr
   FROM read_parquet($url) WHERE ${whereSql}
 )
 SELECT dim_code, SUM(w * x) / SUM(w) AS mean,
-       SUM(w) AS weighted_n, COUNT(*) AS raw_n
+       SUM(w) AS weighted_n, COUNT(*) AS raw_n,
+       ${SE_SQL}
 FROM base WHERE x IS NOT NULL GROUP BY dim_code ORDER BY dim_code`;
       } else {
         mode = "mean";

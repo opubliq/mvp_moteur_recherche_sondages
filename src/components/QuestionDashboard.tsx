@@ -500,14 +500,49 @@ function SurveyQuestionsNav({
   currentVariable: string;
   surveyId: string;
 }) {
+  const [filter, setFilter] = useState("");
+
+  const { shown, invalidRegex } = useMemo(() => {
+    const q = filter.trim();
+    if (!q) return { shown: questions, invalidRegex: false };
+    let re: RegExp | null = null;
+    try {
+      re = new RegExp(q, "i");
+    } catch {
+      re = null;
+    }
+    const test = re
+      ? (s: string) => re!.test(s)
+      : (s: string) => s.toLowerCase().includes(q.toLowerCase());
+    return {
+      shown: questions.filter(
+        (x) => test(x.variable) || test(x.display_label || "") || test(x.question_text || ""),
+      ),
+      invalidRegex: re === null,
+    };
+  }, [questions, filter]);
+
   if (questions.length === 0) return null;
   return (
     <div className="op-card">
       <h3 className="mb-2 text-sm font-semibold">
-        Questions du sondage <span className="font-normal text-base-content/45">({questions.length})</span>
+        Questions du sondage{" "}
+        <span className="font-normal text-base-content/45">
+          ({filter.trim() ? `${shown.length}/${questions.length}` : questions.length})
+        </span>
       </h3>
+      <input
+        type="search"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        placeholder="Filtrer (regex)…"
+        className={`input input-sm input-bordered mb-2 w-full text-sm ${invalidRegex ? "input-error" : ""}`}
+      />
       <div className="max-h-96 space-y-0.5 overflow-y-auto pr-1">
-        {questions.map((x) => {
+        {shown.length === 0 && (
+          <p className="px-2 py-1.5 text-sm text-base-content/50">Aucune question ne correspond.</p>
+        )}
+        {shown.map((x) => {
           const active = x.variable === currentVariable;
           return (
             <Link

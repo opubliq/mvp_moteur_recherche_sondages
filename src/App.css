@@ -274,7 +274,13 @@
 .crumbs .sep { opacity: 0.35; }
 
 /* Console de concepts (chips inline) */
+.concept-block { display: flex; flex-direction: column; gap: 0.4rem; }
 .concept-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+.rerank-query-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
+.rerank-query {
+  font-size: 0.82rem; font-style: italic; opacity: 0.8;
+  color: color-mix(in oklch, var(--color-primary) 70%, black 10%);
+}
 .concept-chip {
   display: inline-flex; align-items: center; gap: 0.45rem;
   border: 1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);

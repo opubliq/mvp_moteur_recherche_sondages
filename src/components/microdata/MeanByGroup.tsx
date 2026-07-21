@@ -34,7 +34,12 @@ export default function MeanByGroup({
   dimName?: string;
 }) {
   const dMap = labelMap(dimOptions);
-  const { tip, showTip, hideTip } = useHoverTip<{ label: string; mean: number; n: number }>();
+  const { tip, showTip, hideTip } = useHoverTip<{
+    label: string;
+    mean: number;
+    n: number;
+    half?: number;
+  }>();
   const span = domainMax - domainMin || 1;
   // Rangées : dimension ORDINALE → ordre naturel des response_options ;
   // dimension NOMINALE → tri par n (raw_n) DÉCROISSANT (plus gros en haut).
@@ -47,7 +52,20 @@ export default function MeanByGroup({
         : b.raw_n - a.raw_n,
     );
   }, [rows, dimOptions, dimOrdinal]);
-  const pct = (v: number) => `${((v - domainMin) / span) * 100}%`;
+  const frac = (v: number) => ((v - domainMin) / span) * 100;
+  const pct = (v: number) => `${frac(v)}%`;
+  /**
+   * IC 95 % de la moyenne du groupe, borné au domaine de l'échelle. Renvoie null
+   * dès que la SE est absente/non finie (groupe dégénéré, cache antérieur à
+   * l'ajout de `se`) — l'IC est alors simplement omis, pas d'erreur.
+   */
+  const ci = (g: MeanByGroupRow) => {
+    const se = g.se;
+    if (se == null || !Number.isFinite(se) || se <= 0) return null;
+    const lo = Math.max(domainMin, g.mean - 1.96 * se);
+    const hi = Math.min(domainMax, g.mean + 1.96 * se);
+    return hi > lo ? { lo, hi, half: 1.96 * se } : null;
+  };
 
   return (
     <div role="img" aria-label="Moyenne par groupe">
@@ -81,6 +99,28 @@ export default function MeanByGroup({
             <div style={{ gridColumn: 2, gridRow: i + 1 }} className="relative h-6">
               {/* rail de l'axe (discret) */}
               <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2" style={{ background: "color-mix(in oklch, var(--color-base-content) 12%, transparent)" }} />
+              {/* IC 95 % : barre simple, SOUS le point (pas de capuchons — trop
+                  de bruit sur une rangée de 24px). Sous n=30 l'approximation
+                  normale est optimiste → pointillé plutôt que masquage, qui
+                  suggérerait à tort une précision parfaite. */}
+              {(() => {
+                const c = ci(g);
+                if (!c) return null;
+                const weak = g.raw_n < 30;
+                const color = "color-mix(in oklch, var(--color-primary) 35%, transparent)";
+                return (
+                  <div
+                    className="absolute top-1/2 h-[3px] -translate-y-1/2 rounded-full"
+                    style={{
+                      left: pct(c.lo),
+                      width: `${frac(c.hi) - frac(c.lo)}%`,
+                      background: weak
+                        ? `repeating-linear-gradient(90deg, ${color} 0 3px, transparent 3px 6px)`
+                        : color,
+                    }}
+                  />
+                );
+              })()}
               {/* point = moyenne du groupe (au premier plan) */}
               <div
                 className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 cursor-default rounded-full"
@@ -89,7 +129,14 @@ export default function MeanByGroup({
                   background: "var(--color-primary)",
                   boxShadow: "0 0 0 2px var(--color-base-100)",
                 }}
-                onMouseMove={(e) => showTip(e, { label: codeLabel(dMap, g.dim_code), mean: g.mean, n: g.raw_n })}
+                onMouseMove={(e) =>
+                  showTip(e, {
+                    label: codeLabel(dMap, g.dim_code),
+                    mean: g.mean,
+                    n: g.raw_n,
+                    half: ci(g)?.half,
+                  })
+                }
                 onMouseLeave={hideTip}
               />
             </div>
@@ -127,8 +174,14 @@ export default function MeanByGroup({
           <>
             <div className="font-semibold">{d.label}</div>
             <div className="mt-0.5 tabular-nums">
-              moy. <b>{formatMean(d.mean)}</b> · n = {formatN(d.n)}
+              moy. <b>{formatMean(d.mean)}</b>
+              {d.half != null && <> ± {formatMean(d.half)}</>} · n = {formatN(d.n)}
             </div>
+            {d.half != null && (
+              <div className="mt-0.5 text-base-content/60">
+                IC 95 %{d.n < 30 ? " · n faible, à interpréter avec prudence" : ""}
+              </div>
+            )}
           </>
         )}
       />
