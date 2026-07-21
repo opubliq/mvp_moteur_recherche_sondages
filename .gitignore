@@ -39,3 +39,6 @@ dist/
 
 # Bundles de fonctions pré-packagés (ne jamais committer : ils shadowent le .ts)
 netlify/functions/*.zip
+
+# Worktrees éphémères créés par Claude Code
+.claude/worktrees/
