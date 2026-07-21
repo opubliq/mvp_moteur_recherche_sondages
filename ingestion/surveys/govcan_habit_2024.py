@@ -166,7 +166,6 @@ def extract() -> dict:
     questions = []
 
     for _, row in var_meta.iterrows():
-        has_verbatims = False
         var_name = str(row['Variable']).strip()
         raw_label = (str(row['Label']) or "").strip()
 

@@ -10,7 +10,6 @@ Usage :
 """
 
 from __future__ import annotations
-import numpy as np
 import pandas as pd
 
 import json
@@ -144,10 +143,6 @@ def extract() -> dict:
     questions = []
 
     for col in columns:
-        # Ratio détection auto
-        series_data = df[col].replace([' ', ''], np.nan).dropna() if 'df' in locals() else pd.Series()
-        has_verbatims = (len(series_data) > 10 and (series_data.nunique() / len(series_data)) > 0.1)
-        has_verbatims = False
         if col in EXCLUDED_VARS:
             continue
 
@@ -188,8 +183,6 @@ def extract() -> dict:
         # Infer type
         if col.endswith("O") or col.endswith("_TEXT") or col.endswith("_TEXTO"):
             var_type = "open"
-            has_verbatims = True
-            has_verbatims = True
         elif response_options:
             var_type = "single"
         else:
@@ -200,7 +193,6 @@ def extract() -> dict:
             "question_text": question_text,
             "response_options": response_options,
             "var_type": var_type,
-                "has_verbatims": has_verbatims,
             "is_sociodemo": sociodemo_type is not None,
             "sociodemo_type": sociodemo_type,
             "concepts": [],

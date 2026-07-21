@@ -17,8 +17,6 @@ Usage :
 """
 
 from __future__ import annotations
-import numpy as np
-import pandas as pd
 
 import json
 from pathlib import Path
@@ -28,6 +26,7 @@ import pyreadstat
 from ingestion.canonical import canonical_sociodemo_text
 from ingestion.models import SurveyFile
 from ingestion.validate import fabrication_reason
+from ingestion.open_text import is_text_column
 
 # ---------------------------------------------------------------------------
 # Chemins
@@ -168,10 +167,6 @@ def extract() -> dict:
 
     questions = []
     for col in df.columns:
-        # Ratio détection auto
-        series_data = df[col].replace([' ', ''], np.nan).dropna() if 'df' in locals() else pd.Series()
-        has_verbatims = (len(series_data) > 10 and (series_data.nunique() / len(series_data)) > 0.1)
-        has_verbatims = False
         if col in EXCLUDED_VARS:
             continue
 
@@ -202,13 +197,10 @@ def extract() -> dict:
             response_options.append({"code": code, "label": str(label)})
 
         # Inférer le type de variable
-        dtype_str = str(df[col].dtype)
         if col in MULTI_MENTION_VARS:
             var_type = "multiple"  # grille de sélection multiple (mention 1..4)
-        elif dtype_str == "object":
+        elif is_text_column(df[col]):
             var_type = "open"
-            has_verbatims = True
-            has_verbatims = True  # chaîne de caractères
         elif raw_opts:
             var_type = "single"  # numérique avec étiquettes → choix unique
         else:
@@ -222,7 +214,6 @@ def extract() -> dict:
                 "question_text": question_text,
                 "response_options": response_options,
                 "var_type": var_type,
-                "has_verbatims": has_verbatims,
                 "is_sociodemo": is_sociodemo,
                 "sociodemo_type": sociodemo_type,
                 "concepts": [],

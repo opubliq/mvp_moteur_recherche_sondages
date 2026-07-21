@@ -107,7 +107,7 @@ le nom de colonne du Parquet :
 
 - `variable` — l'ID de variable RAW = **clé de jointure** avec les colonnes Parquet.
 - `response_options` — collection `{code, label}` : **les labels d'options**.
-- `is_sociodemo`, `sociodemo_type`, `var_type`, `display_label`, `question_text`, `has_verbatims`.
+- `is_sociodemo`, `sociodemo_type`, `var_type`, `display_label`, `question_text`, `text_kind`.
 
 Le UI charge déjà ces `response_options` pour la vue structure du sondage : au moment de rendre
 une distribution/crosstab, le front a **déjà en mémoire** les maps `code → label` de la variable

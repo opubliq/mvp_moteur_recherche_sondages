@@ -74,7 +74,7 @@ Un fichier par sondage, structure :
 | `display_label`    | string\|null| question.display_label (mou, LLM)                |
 | `response_options` | [{code,label}] | codes convertis en string                     |
 | `var_type`         | string\|null| question.var_type                                |
-| `has_verbatims`    | bool        | true si des réponses libres sont liées           |
+| `text_kind`        | string\|null| nature d'une colonne texte — **dérivé des données** (cf. ci-dessous) |
 | `is_sociodemo`     | bool        | question.is_sociodemo                            |
 | `sociodemo_type`   | string\|null| question.sociodemo_type                          |
 | `concepts`         | [string]    | question.concepts                                |
@@ -89,6 +89,31 @@ Un fichier par sondage, structure :
 | `tags`             | [string]    | dénormalisé                                      |
 | `content_vector`   | float[3072] | **absent de build_docs** — vecteur QUESTION injecté par l'orchestrateur |
 | `survey_vector`    | float[3072] | **absent de build_docs** — vecteur CONTEXTE sondage injecté par l'orchestrateur |
+
+## `text_kind` — nature d'une colonne texte (et corpus verbatim)
+
+`var_type == "open"` signifie seulement « colonne string », pas « verbatim ». La
+nature réelle du contenu est **dérivée des données** à l'ingestion par
+`ingestion/open_text.py` (règle unique, jamais devinée par un extracteur) :
+
+| `var_type`   | `text_kind` | sens                                                     |
+|--------------|-------------|----------------------------------------------------------|
+| `open`       | `prose`     | **verbatim** — réponse en phrases                        |
+| `open`       | `short`     | réponse d'un ou deux mots, codable mais non analysable   |
+| `continuous` | `numeric`   | nombre stocké en string → **requalifié** depuis `open`   |
+| `open`       | `empty`     | colonne string entièrement vide                          |
+| autre        | `null`      | pas une colonne texte                                    |
+
+Seuils : `numeric` si **100 %** des valeurs non-vides se lisent comme un nombre
+(strict, pour que le retypage du Parquet soit sans perte) ; sinon `prose` si au
+moins **30 %** des réponses font ≥ 3 mots, `short` autrement.
+
+**Prédicat verbatim** — un seul, partout :
+`var_type == "open" && text_kind == "prose"`
+(`is_verbatim()` en Python, `isVerbatim()` dans `src/lib/verbatims.ts`).
+
+Décompte reproductible du corpus : `uv run python -m ingestion.open_text`
+(instantané daté dans `docs/verbatims_corpus.md`).
 
 ## Deux vecteurs par question (recherche pondérée)
 

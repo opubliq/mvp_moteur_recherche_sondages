@@ -306,6 +306,7 @@ export async function retrieve(
       "display_label",
       "response_options",
       "var_type",
+      "text_kind",
       "is_sociodemo",
       "is_ordinal",
       "sociodemo_type",

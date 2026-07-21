@@ -107,7 +107,6 @@ def extract() -> dict:
     questions = []
 
     for _, row in var_meta.iterrows():
-        has_verbatims = False
         var_name = str(row["Variable"]).strip()
         raw_label = (str(row["Label"]) or "").strip()
 
@@ -135,8 +134,6 @@ def extract() -> dict:
         # Detect var_type
         if not options:
             var_type = "open"
-            has_verbatims = True
-            has_verbatims = True
         elif any(
             o["label"].lower() in ["accurate", "inaccurate"] for o in options
         ):
@@ -155,7 +152,6 @@ def extract() -> dict:
                 question_text=question_text,
                 response_options=options,
                 var_type=var_type,
-                has_verbatims=has_verbatims,
                 is_sociodemo=sociodemo_type is not None,
                 sociodemo_type=sociodemo_type,
             )

@@ -24,6 +24,12 @@ export interface SearchResult {
   display_label?: string | null;
   response_options: ResponseOption[];
   var_type: string | null;
+  /**
+   * Nature du contenu quand la colonne est du texte (cf. `TextKind`). Le corpus
+   * verbatim se teste avec `isVerbatim()` (src/lib/verbatims.ts), jamais avec
+   * `var_type === "open"` seul.
+   */
+  text_kind?: TextKind | null;
   is_sociodemo: boolean;
   /**
    * Ordinalité des catégories (orthogonale à `var_type`) : true si les niveaux
@@ -48,9 +54,17 @@ export interface SearchResult {
    * golden), le chevauchement est assumé (bead 9gf.12).
    */
   score_pertinence?: number;
-  /** Question ouverte (réponse libre) — dérivé de var_type quand présent. */
-  is_open?: boolean;
 }
+
+/**
+ * Nature du contenu d'une colonne texte, dérivée des données à l'ingestion
+ * (cf. `ingestion/open_text.py`) — orthogonale à `var_type` :
+ *   prose   → vrai verbatim (réponse en phrases)
+ *   short   → réponse d'un ou deux mots, codable mais non analysable en prose
+ *   numeric → nombre stocké en string ; `var_type` est alors `continuous`
+ *   empty   → colonne texte entièrement vide
+ */
+export type TextKind = "prose" | "short" | "numeric" | "empty";
 
 
 export interface FacetEntry {

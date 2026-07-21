@@ -39,6 +39,7 @@ const RESULT_FIELDS = [
   "display_label",
   "response_options",
   "var_type",
+  "text_kind",
   "is_sociodemo",
   "sociodemo_type",
   "concepts",

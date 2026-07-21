@@ -39,6 +39,7 @@ from ingestion.create_index import create_index
 from ingestion.embed import embed_batch
 from ingestion.enrich import apply_enrichment
 from ingestion.models import SurveyFile
+from ingestion.open_text import effective_var_type
 from ingestion.validate import assert_no_fabricated_text
 
 logger = logging.getLogger("ingestion.run")
@@ -81,6 +82,48 @@ def _discover_sources() -> dict[str, Callable[[], dict[str, Any]]]:
     return sources
 
 
+def _qualify_text_columns(raw: dict[str, Any], survey_id: str) -> None:
+    """Renseigne `text_kind` (et requalifie `var_type`) des questions `open`, EN PLACE.
+
+    `var_type == "open"` ne signifie que « colonne string » : la nature réelle du
+    contenu se lit dans les données. La règle vit dans `ingestion/open_text.py` —
+    ici on ne fait que la câbler au rail catalogue.
+
+    Le fichier brut n'est lu QUE si le sondage a au moins une question `open`.
+    S'il est introuvable ou illisible, on avertit et on laisse les questions
+    inchangées : l'ingestion du catalogue ne doit pas échouer là-dessus.
+    """
+    questions = [q for q in raw.get("questions", []) if q.get("var_type") == "open"]
+    if not questions:
+        return
+
+    # Import local : le rail microdonnées tire Azure Blob, inutile aux sondages
+    # sans question ouverte.
+    from ingestion.microdata import _locate_raw, read_raw
+
+    try:
+        df = read_raw(_locate_raw(survey_id))
+    except (FileNotFoundError, ValueError) as exc:
+        logger.warning(
+            "[%s] brut illisible (%s) — %d question(s) `open` laissée(s) sans text_kind.",
+            survey_id,
+            exc,
+            len(questions),
+        )
+        return
+
+    for question in questions:
+        variable = question.get("variable")
+        if variable not in df.columns:
+            logger.warning(
+                "[%s] colonne %s absente du brut — pas de text_kind.", survey_id, variable
+            )
+            continue
+        question["var_type"], question["text_kind"] = effective_var_type(
+            "open", df[variable]
+        )
+
+
 def _ingest_survey(
     survey_id: str,
     loader: Callable[[], dict[str, Any]],
@@ -103,6 +146,9 @@ def _ingest_survey(
     # Superpose les champs authorés (display_label, concepts/themes, description,
     # month) depuis ingestion/enrichment/<survey_id>.py, sans toucher au verbatim.
     raw = apply_enrichment(raw, survey_id)
+    # Qualifie les colonnes texte d'après les DONNÉES (prose / short / numeric /
+    # empty), seule source du signal « verbatim » consommé par l'epic jsu.
+    _qualify_text_columns(raw, survey_id)
     survey_file = SurveyFile.model_validate(raw)
 
     # Garde-fou : aucun question_text/label fabriqué ne doit être indexé.

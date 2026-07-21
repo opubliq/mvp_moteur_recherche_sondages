@@ -27,7 +27,12 @@ class Question(BaseModel):
     display_label: str | None = None
     response_options: list[ResponseOption] = Field(default_factory=list)
     var_type: str | None = None  # ex. "single", "multiple", "open", "scale"
-    has_verbatims: bool = False
+    # Nature du contenu d'une colonne TEXTE (orthogonal à var_type) :
+    # "prose" (verbatim) | "short" (1-2 mots, codable) | "numeric" (nombre stocké
+    # en string → var_type requalifié `continuous`) | "empty" | None (non-texte).
+    # DÉRIVÉ des données au build par ingestion/open_text.py — jamais authoré en
+    # enrichment, jamais renseigné par un extracteur.
+    text_kind: str | None = None
     is_sociodemo: bool = False
     # Ordinalité des catégories (ORTHOGONALE à var_type) : true si les niveaux
     # ont un ORDRE intrinsèque (Likert accord/désaccord, satisfaction, fréquence,

@@ -41,7 +41,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "region",
       "concepts": [],
@@ -78,7 +77,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "age",
       "concepts": [],
@@ -99,7 +97,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "gender",
       "concepts": [],
@@ -124,7 +121,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": true,
       "sociodemo_type": "language",
       "concepts": [],
@@ -177,7 +173,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -230,7 +225,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -255,7 +249,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -292,7 +285,6 @@
         }
       ],
       "var_type": "multiple",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -329,7 +321,6 @@
         }
       ],
       "var_type": "multiple",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -366,7 +357,6 @@
         }
       ],
       "var_type": "multiple",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -403,7 +393,6 @@
         }
       ],
       "var_type": "multiple",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -432,7 +421,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -461,7 +449,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -490,7 +477,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -519,7 +505,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -552,7 +537,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -597,7 +581,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -642,7 +625,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -687,7 +669,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -732,7 +713,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -777,7 +757,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -822,7 +801,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -867,7 +845,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -900,7 +877,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -925,7 +901,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -958,7 +933,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -991,7 +965,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1016,7 +989,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1069,7 +1041,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1094,7 +1065,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],
@@ -1127,7 +1097,6 @@
         }
       ],
       "var_type": "single",
-      "has_verbatims": false,
       "is_sociodemo": false,
       "sociodemo_type": null,
       "concepts": [],

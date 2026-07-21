@@ -193,9 +193,13 @@ def build_index(name: str, dims: int) -> SearchIndex:
             filterable=True,
             facetable=True,
         ),
+        # Nature du contenu d'une colonne texte (orthogonal à var_type) :
+        # prose | short | numeric | empty. Dérivé des données à l'ingestion
+        # (ingestion/open_text.py). Le corpus verbatim se filtre avec
+        # `var_type eq 'open' and text_kind eq 'prose'`.
         SimpleField(
-            name="has_verbatims",
-            type=SearchFieldDataType.Boolean,
+            name="text_kind",
+            type=SearchFieldDataType.String,
             filterable=True,
             facetable=True,
         ),

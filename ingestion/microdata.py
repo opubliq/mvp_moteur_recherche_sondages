@@ -36,6 +36,8 @@ from azure.core.exceptions import ResourceNotFoundError
 from azure.storage.blob import BlobServiceClient, ContainerClient
 from dotenv import load_dotenv
 
+from ingestion.open_text import effective_var_type, is_text_column
+
 load_dotenv()
 
 logger = logging.getLogger("ingestion.microdata")
@@ -222,10 +224,21 @@ def _numeric_array(series: pd.Series) -> pa.Array:
 
 
 def _to_arrow_column(series: pd.Series, var_type: str | None) -> pa.Array:
-    # Texte libre (catalogue) ou colonnes objet non numériques → string (raw-first).
-    if var_type == "open" or series.dtype == object:
-        # Colonne objet réellement numérique (rare) reste string : raw-first, on ne
-        # force pas ; le UI affiche la valeur brute déjà lisible.
+    # Un `open` du catalogue n'est qu'une colonne string : sa nature réelle se lit
+    # dans les données (même règle que le rail catalogue, cf. open_text.py). Un
+    # `open` dont TOUTES les valeurs sont des nombres est requalifié `continuous`
+    # et typé numériquement — seuil strict à 100 %, donc sans perte raw-first.
+    if var_type == "open":
+        var_type, text_kind = effective_var_type(var_type, series)
+        if text_kind == "numeric":
+            return _numeric_array(series)  # requalifié `continuous`
+
+    # Texte libre ou colonne chaîne non déclarée au catalogue → string (raw-first).
+    # `is_text_column` plutôt qu'un test `dtype == object` : sous pandas ≥ 2 les
+    # colonnes chaîne de pyreadstat ont le dtype `str`, et le test échouait
+    # silencieusement — les verbatims partaient en `_numeric_array`, donc en
+    # colonne double entièrement nulle (constaté sur cecd_elxn_qc_1998).
+    if var_type == "open" or is_text_column(series):
         return _string_array(series)
     return _numeric_array(series)
 
