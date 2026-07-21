@@ -42,7 +42,7 @@ function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
 export default function SearchPage() {
   const {
     query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
-    handleSearch, handleFilterChange, handleConceptsChange,
+    handleSearch, handleFilterChange,
   } = useSearchState();
 
   // Le filtre par palier (badges Exact/Partiel/Faible) est SUPPRIMÉ : les
@@ -87,8 +87,8 @@ export default function SearchPage() {
       </div>
 
       {/* Panneau d'étapes UNIQUEMENT sur une nouvelle recherche — reconnaissable
-          au fait que `handleSearch` a purgé les résultats. Un affinage (facette
-          ou poids) passe aussi par `phase = retrieve` mais garde volontairement
+          au fait que `handleSearch` a purgé les résultats. Un affinage de
+          facette passe aussi par `phase = retrieve` mais garde volontairement
           ses résultats à l'écran : y insérer le panneau ferait sauter la page
           pour une re-requête que l'utilisateur suit déjà via le bouton. */}
       {phase !== "idle" && results.length === 0 ? (
@@ -98,7 +98,7 @@ export default function SearchPage() {
       ) : (
         concepts.length > 0 && (
           <div className="mb-5">
-            <ConceptChips concepts={concepts} onChange={handleConceptsChange} />
+            <ConceptChips concepts={concepts} />
           </div>
         )
       )}

@@ -6,8 +6,8 @@
  * dupliquer le prompt système ni les paramètres du call.
  *
  * `decomposeQuery()` transforme une requête utilisateur brute en concepts
- * pondérés (action + objet, objet + public cible, ou concept unique) pour
- * enrichir la recherche.
+ * (action + objet, objet + public cible, ou concept unique) pour enrichir la
+ * recherche.
  *
  * MODÈLE : gpt-5.4-mini (Azure AI Foundry, route Chat Completions compatible
  * OpenAI). PAS gpt-5-mini — celui-là est un modèle *reasoning* bloqué à
@@ -32,7 +32,7 @@
  *     ailleurs pour la reformulation de query et la règle "un seul concept
  *     intention de vote")
  *   - `response_format: { type: "json_object" }`
- *   - même normalisation des concepts (dédoublonnage + somme des poids = 1)
+ *   - même normalisation des concepts (dédoublonnage)
  *
  * Les clés/endpoints Foundry sont injectés via le paramètre `env` (jamais lus
  * globalement) pour que le harness offline puisse les fournir librement.
@@ -74,9 +74,7 @@ ANCRES D'ENTITÉS/INSTITUTIONS : quand un concept désigne une entité ou un pal
 
 STRUCTURE À 2 NIVEAUX : si un concept a un NOM DE BASE générique (ex. 'eau') qui peut être précisé par un ADJECTIF/QUALIFICATIF (ex. 'potable', 'à boire', 'buvable'), sépare les deux : 'syns' = variantes du nom de base SEUL (toujours valide tout seul) ; 'qualifiers' = les précisions/adjectifs (liste optionnelle, omets-la si non applicable). NE FUSIONNE PAS le nom de base et l'adjectif en un seul synonyme composé ('eau potable') — le nom de base doit rester cherchable seul, une question qui ne dit que 'eau' reste pertinente (juste moins précise).
 
-Si un mot évaluatif concret (ex. 'qualité', 'état', 'niveau', 'satisfaction', 'accès') précède 'de'/'envers'/'à' + un objet, c'est en général un CONCEPT À PART ENTIÈRE (souvent littéralement présent dans la question) — PAS un qualificatif à fusionner avec l'objet qui suit. Ex. : 'qualité de l'eau qu'on peut boire' -> DEUX concepts : {orig:'qualité', syns:['qualité'], weight:0.3} ET {orig:'eau', syns:['eau'], qualifiers:['potable','à boire','buvable'], weight:0.7}. PAS un seul concept 'qualité de l'eau potable' répété pour chaque synonyme.
-
-POIDS (weight) : assigne à chaque concept son importance relative (0.0-1.0, tous les poids somment à 1). Concept évaluatif générique (qualité, état, niveau, satisfaction, accès) -> poids faible ; concept-objet principal -> fort. Ex. : 'état des trottoirs' -> {orig:'état',...,weight:0.2} ET {orig:'trottoir',...,weight:0.8}. Requête à concept unique -> weight:1. (weight ne sert QUE d'indication d'importance affichée à l'utilisateur — il n'affecte ni la requête de recherche ni le classement des résultats ; ne complique pas la décomposition en concepts pour le "bien pondérer".)
+Si un mot évaluatif concret (ex. 'qualité', 'état', 'niveau', 'satisfaction', 'accès') précède 'de'/'envers'/'à' + un objet, c'est en général un CONCEPT À PART ENTIÈRE (souvent littéralement présent dans la question) — PAS un qualificatif à fusionner avec l'objet qui suit. Ex. : 'qualité de l'eau qu'on peut boire' -> DEUX concepts : {orig:'qualité', syns:['qualité']} ET {orig:'eau', syns:['eau'], qualifiers:['potable','à boire','buvable']}. PAS un seul concept 'qualité de l'eau potable' répété pour chaque synonyme.
 
 REQUÊTE DE RERANK (rerank_query) : destinée à un AUTRE modèle que les concepts ci-dessus. Les concepts servent au BM25 (matching littéral) ; celle-ci part au RERANKER SÉMANTIQUE, qui lit la requête ET la question de sondage ensemble (avec ses options de réponse) pour juger de leur correspondance.
 
@@ -93,7 +91,7 @@ POURQUOI : ajouter du contenu déplace le score du reranker de façon imprévisi
 
 Garde la LANGUE de l'utilisateur. Reste COURT (une ligne).
 
-Réponds UNIQUEMENT en JSON : {"concepts":[{"orig":"...","syns":["...","..."],"qualifiers":["...","..."],"weight":0.5}, ...], "rerank_query":"..."}. "qualifiers" est optionnel (liste vide si non applicable). "weight" est obligatoire (somme = 1). "rerank_query" est obligatoire.`;
+Réponds UNIQUEMENT en JSON : {"concepts":[{"orig":"...","syns":["...","..."],"qualifiers":["...","..."]}, ...], "rerank_query":"..."}. "qualifiers" est optionnel (liste vide si non applicable). "rerank_query" est obligatoire.`;
 
 // ---------------------------------------------------------------------------
 // Types
@@ -138,13 +136,12 @@ interface FoundryChatResponse {
 // ---------------------------------------------------------------------------
 
 /**
- * Normalise les concepts : dédoublonnage, nettoyage et s'assure que la somme des poids vaut 1.
+ * Normalise les concepts : nettoyage et dédoublonnage des synonymes/qualifiers.
  */
 export function normalizeConcepts(concepts: Concept[]): Concept[] {
   if (!concepts || concepts.length === 0) return [];
 
-  // 1. Nettoyage et dédoublonnage pour chaque concept
-  const cleaned = concepts.map((c) => {
+  return concepts.map((c) => {
     const orig = c.orig.trim();
     const syns = Array.from(new Set((c.syns || []).map((s) => s.trim()).filter((s) => s.toLowerCase() !== orig.toLowerCase())));
     const qualifiers = Array.from(new Set((c.qualifiers || []).map((q) => q.trim()).filter((q) => q.toLowerCase() !== orig.toLowerCase())));
@@ -153,21 +150,8 @@ export function normalizeConcepts(concepts: Concept[]): Concept[] {
       orig,
       syns,
       qualifiers: qualifiers.length > 0 ? qualifiers : undefined,
-      weight: Math.max(0, c.weight || 0),
     };
   });
-
-  // 2. Normalisation des poids (somme = 1)
-  const totalWeight = cleaned.reduce((acc, c) => acc + c.weight, 0);
-
-  if (totalWeight === 0) {
-    const equalWeight = 1 / cleaned.length;
-    cleaned.forEach((c) => (c.weight = equalWeight));
-  } else if (Math.abs(totalWeight - 1.0) > 0.001) {
-    cleaned.forEach((c) => (c.weight = c.weight / totalWeight));
-  }
-
-  return cleaned;
 }
 
 // ---------------------------------------------------------------------------
@@ -175,12 +159,12 @@ export function normalizeConcepts(concepts: Concept[]): Concept[] {
 // ---------------------------------------------------------------------------
 
 /**
- * Décompose une requête utilisateur brute en concepts pondérés via Mistral-Large-3
+ * Décompose une requête utilisateur brute en concepts via Mistral-Large-3
  * (Azure AI Foundry, route Chat Completions compatible OpenAI).
  *
  * Même prompt que la prod, `temperature: 0` (pool de candidats déterministe —
  * voir note en tête de fichier), `response_format: json_object`, puis
- * normalisation (dédoublonnage + somme des poids = 1).
+ * normalisation (dédoublonnage).
  *
  * @param query Requête utilisateur brute (sera trim()).
  * @param env   Endpoint/clé + deployment chat Foundry injectés.

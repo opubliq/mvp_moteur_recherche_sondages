@@ -287,9 +287,6 @@
   opacity: 0.85; font-style: italic; font-size: 0.74rem;
   color: color-mix(in oklch, var(--color-secondary) 80%, black 8%);
 }
-.concept-chip .w { font-variant-numeric: tabular-nums; font-size: 0.7rem; opacity: 0.55; }
-.concept-chip input[type=range] { width: 0; opacity: 0; transition: width 160ms ease, opacity 160ms ease; accent-color: var(--color-primary); }
-.concept-chip:hover input[type=range], .concept-chip:focus-within input[type=range] { width: 4.5rem; opacity: 1; }
 
 /* Checkbox panier */
 .cart-check { width: 1.05rem; height: 1.05rem; accent-color: var(--color-primary); margin-top: 0.15rem; flex: none; }
@@ -299,7 +296,7 @@
 
 /* Distribution (barres horizontales) */
 .dist-row { display: grid; grid-template-columns: 12rem 1fr 3rem; align-items: center; gap: 0.7rem; padding: 0.28rem 0; font-size: 0.85rem; }
-.dist-track { height: 1.1rem; border-radius: 0.4rem; background: color-mix(in oklch, var(--color-base-content) 6%, transparent); overflow: hidden; }
+.dist-track { height: 1.1rem; border-radius: 0.4rem; overflow: hidden; }
 .dist-fill { height: 100%; border-radius: 0.4rem; background: color-mix(in oklch, var(--color-primary) 55%, var(--op-accent-soft)); }
 .dist-pct { text-align: right; font-variant-numeric: tabular-nums; opacity: 0.7; }
 @media (max-width: 640px) { .dist-row { grid-template-columns: 8rem 1fr 2.5rem; } }

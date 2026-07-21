@@ -202,10 +202,8 @@ function escapeLucene(term: string): string {
 /**
  * Construit une requête Lucene à partir des concepts et leurs synonymes/qualifiers.
  *
- * `c.weight` n'est PAS lu ici et n'influence jamais la requête : c'est un champ
- * cosmétique affiché/éditable dans l'UI (`ConceptChips`) pour donner à
- * l'utilisateur un indice d'importance relative, rien d'autre. Le retrieval ne
- * pondère pas les groupes AND entre eux — chaque concept compte également.
+ * Le retrieval ne pondère pas les groupes AND entre eux — chaque concept compte
+ * également.
  */
 export function buildLuceneQuery(concepts: Concept[]): string {
   if (!concepts || concepts.length === 0) return "*";

@@ -35,9 +35,16 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
 
       <div className="flex min-w-0 flex-1 flex-col gap-2">
         <div className="flex items-start justify-between gap-3">
-          <h4 className="font-medium leading-snug">
-            <HighlightedText text={q.question_text} concepts={concepts} />
-          </h4>
+          <div className="min-w-0">
+            <h4 className="font-semibold leading-snug">
+              <HighlightedText text={q.display_label || q.question_text} concepts={concepts} />
+            </h4>
+            {q.display_label && q.display_label !== q.question_text && (
+              <p className="mt-0.5 text-sm leading-snug text-base-content/55">
+                <HighlightedText text={q.question_text} concepts={concepts} />
+              </p>
+            )}
+          </div>
           <div className="flex shrink-0 items-center gap-2">
             {score !== undefined && (
               <span

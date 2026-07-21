@@ -25,7 +25,6 @@ interface SearchContextValue {
   hasSearched: boolean;
   handleSearch: (q: string) => Promise<void>;
   handleFilterChange: (next: SearchFilters) => void;
-  handleConceptsChange: (nextConcepts: Concept[]) => void;
 }
 
 const SearchContext = createContext<SearchContextValue | null>(null);
@@ -112,7 +111,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     // concepts de l'ancienne requête restent affichés pendant ~2,6 s (décompo +
     // rerank Cohere), ce qui donne une page figée qui saute d'un coup — et pire,
     // laisse lire des résultats qui ne correspondent plus à ce qui est tapé.
-    // On ne purge QUE dans handleSearch : un changement de facette ou de poids
+    // On ne purge QUE dans handleSearch : un changement de facette
     // (runSearch direct) affine la recherche courante, garder l'affichage
     // pendant la re-requête y est le bon comportement.
     setResults([]);
@@ -145,25 +144,10 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     if (query) void runSearch(query, next, concepts, rerankQuery);
   }
 
-  // Changement des concepts (poids) → re-requête serveur.
-  //
-  // Avant la bead 9gf.12, ce handler recalculait la pertinence CÔTÉ CLIENT
-  // (`scoreResult`) puis re-triait localement. C'est structurellement impossible
-  // avec Cohere : le score de pertinence est produit par le reranker côté
-  // serveur, à partir du pool de candidats Azure — il n'est pas recalculable
-  // depuis les seuls résultats déjà affichés. Les concepts ne servent d'ailleurs
-  // plus au scoring du tout : ils pilotent la requête Lucene de récupération
-  // (`buildLuceneQuery`), donc en changer les poids change le POOL, pas juste
-  // son ordre. La seule réponse honnête est de relancer la recherche.
-  function handleConceptsChange(nextConcepts: Concept[]) {
-    setConcepts(nextConcepts);
-    if (query) void runSearch(query, filters, nextConcepts, rerankQuery);
-  }
-
   const value = useMemo<SearchContextValue>(
     () => ({
       query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
-      handleSearch, handleFilterChange, handleConceptsChange,
+      handleSearch, handleFilterChange,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [query, filters, concepts, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched],
