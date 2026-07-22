@@ -123,6 +123,48 @@ export interface SurveyDetailResponse {
   count: number;
 }
 
+/* --- Réponses libres : contrat de la Netlify Function `/verbatims` --- */
+
+/**
+ * Sociodémo du répondant attachée à sa réponse — des LIBELLÉS déjà lisibles
+ * (« Woman », « Ontario »), pas des codes à mapper. Tout est optionnel : la
+ * couverture varie d'un sondage à l'autre.
+ */
+export interface VerbatimSociodemo {
+  gender?: string;
+  age?: string;
+  education?: string;
+  income?: string;
+  region?: string;
+  language?: string;
+  occupation?: string;
+}
+
+/** Une réponse à une question ouverte, telle que saisie par le répondant. */
+export interface Verbatim {
+  id: string;
+  respondent_id: number;
+  text: string;
+  /** Qui a répondu. Absent si le sondage ne porte aucune sociodémo. */
+  sociodemo?: VerbatimSociodemo;
+  /** Score Cohere 0-1, présent seulement en mode recherche. */
+  relevance_score?: number;
+  /** `relevance_score` × 100 arrondi — absolu, même convention que /search. */
+  score_pertinence?: number;
+}
+
+export interface VerbatimsResponse {
+  survey_id: string;
+  variable: string;
+  /** Requête ayant produit ce classement ; vide en mode parcours. */
+  query: string;
+  /** Total de réponses de la question (parcours) ou du pool BM25 (recherche). */
+  total: number;
+  /** Taille du pool remis au reranker — mode recherche seulement. */
+  pool_size?: number;
+  results: Verbatim[];
+}
+
 /* --- Microdonnées répondant : contrat de la Netlify Function `/microdata` --- */
 
 /** Une catégorie d'une distribution univariée pondérée. */

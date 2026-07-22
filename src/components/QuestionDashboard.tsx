@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Check, Plus, Download, ArrowLeftRight } from "lucide-react";
+import { Check, Plus, Download, ArrowLeftRight, MessageSquare } from "lucide-react";
 import { fetchSurvey, fetchMicrodata, NoMicrodataError } from "../api";
 import type {
   CrosstabRow,
@@ -12,6 +12,7 @@ import type {
 } from "../types";
 import { useCart, toCartItem } from "../context/CartContext";
 import { formatMean, formatN, refusalCodes } from "../lib/microdataFormat";
+import { isVerbatim } from "../lib/verbatims";
 import DistributionBars from "./microdata/DistributionBars";
 import Histogram from "./microdata/Histogram";
 import StackedBars100 from "./microdata/StackedBars100";
@@ -130,7 +131,7 @@ export default function QuestionDashboard() {
       <div className="grid-dash">
         <div className="space-y-4">
           {kind === "open" ? (
-            <VerbatimsStub />
+            <OpenTextPanel q={q} />
           ) : kind === "multiple" ? (
             <MultipleNotice />
           ) : (
@@ -408,15 +409,36 @@ function Crossing({
 /* --------------------------------------------------------------------------
  * Panneaux d'état
  * ------------------------------------------------------------------------ */
-function VerbatimsStub() {
+/**
+ * Question texte : aucune distribution à tracer. Si c'est de la vraie prose,
+ * on renvoie vers l'espace verbatims ; sinon (`short`/`empty`) on le dit, il
+ * n'y a rien à y analyser.
+ */
+function OpenTextPanel({ q }: { q: SearchResult }) {
+  if (!isVerbatim(q)) {
+    return (
+      <div className="op-card">
+        <h3 className="mb-2 font-semibold">Question à réponse texte</h3>
+        <p className="text-sm text-base-content/50">
+          Les réponses sont du texte libre trop court pour une analyse qualitative
+          {q.text_kind === "empty" ? " (colonne vide)" : ""} — ni distribution ni analyse qualitative.
+        </p>
+      </div>
+    );
+  }
   return (
     <div className="op-card">
-      <h3 className="mb-3 font-semibold">
-        Analyse des verbatims <span className="op-badge op-badge-plain">à venir</span>
-      </h3>
-      <p className="text-sm text-base-content/50">
-        Question ouverte : les réponses libres alimenteront ce panneau (nuage de thèmes + citations).
+      <h3 className="mb-2 font-semibold">Question ouverte</h3>
+      <p className="mb-3 text-sm text-base-content/60">
+        Les réponses sont en texte libre : pas de distribution à tracer. L'espace des réponses
+        libres permet d'y chercher des citations.
       </p>
+      <Link
+        to={`/questions-ouvertes/${q.survey_id}/${encodeURIComponent(q.variable)}`}
+        className="btn btn-primary btn-sm gap-1.5"
+      >
+        <MessageSquare size={16} /> Lire les réponses
+      </Link>
     </div>
   );
 }

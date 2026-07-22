@@ -2,7 +2,8 @@ import type { CartItem } from "../context/CartContext";
 
 export type ExportFormat = "csv-large" | "json";
 
-function triggerDownload(content: string, filename: string, mime: string) {
+/** Download côté client — partagé avec l'export des citations (`exportVerbatims`). */
+export function triggerDownload(content: string, filename: string, mime: string) {
   const blob = new Blob([content], { type: mime });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -15,7 +16,7 @@ function triggerDownload(content: string, filename: string, mime: string) {
 }
 
 /** Échappe une valeur pour un champ CSV (RFC 4180). */
-function csvCell(value: string | number | null): string {
+export function csvCell(value: string | number | null): string {
   const s = value == null ? "" : String(value);
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 }

@@ -89,8 +89,13 @@ function yamlDoc(question: string, opts: ResponseOption[], label?: string | null
 /**
  * Appelle l'endpoint Cohere Rerank et renvoie un tableau de scores aligné sur
  * l'ordre des `documents` d'entrée (score par index).
+ *
+ * Exporté parce que le corpus de questions n'est pas le seul à reranker : la
+ * recherche de citations (bead jsu.4) reranke des verbatims, qui sont du texte
+ * nu sans structure YAML. Seul le formatage des documents diffère — l'appel,
+ * lui, est le même.
  */
-async function cohereRerank(
+export async function cohereRerankDocuments(
   query: string,
   documents: string[],
   env: RerankEnv,
@@ -163,7 +168,7 @@ export async function rerankCandidates(
   const documents = window.map((c) => yamlDoc(c.question_text, c.response_options, c.display_label));
 
   // 3. Appel Cohere (query brute).
-  const scores = await cohereRerank(query, documents, env);
+  const scores = await cohereRerankDocuments(query, documents, env);
 
   // 4. Attache relevance_score + tri desc.
   const reranked = window.map((c, i) => ({ ...c, relevance_score: scores[i] }));

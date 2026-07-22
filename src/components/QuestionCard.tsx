@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
-import { BarChart3, ArrowRight } from "lucide-react";
+import { BarChart3, ArrowRight, MessageSquare } from "lucide-react";
 import type { SearchResult } from "../types";
 import { useCart, toCartItem } from "../context/CartContext";
 import { scoreColorVars } from "../lib/scoreColor";
 import { HighlightedText } from "../lib/highlight";
 import { useSearchState } from "../context/SearchContext";
+import { isVerbatim } from "../lib/verbatims";
 
-/** Une question = une rangée pleine largeur, cliquable → dashboard de données. */
+/**
+ * Une question = une rangée pleine largeur, cliquable. Une question fermée mène
+ * au dashboard de données ; une question à prose ouverte mène à l'espace
+ * verbatims de CETTE question (bead jsu.2) — il n'y a pas de graphe à y voir.
+ */
 export default function QuestionCard({ q }: { q: SearchResult }) {
   const { has, toggle } = useCart();
   const inCart = has(q.survey_id, q.variable);
+  const verbatim = isVerbatim(q);
   // Termes de la query expansion (orig/syns/qualifiers), pour surlignage lexical
   // pur affichage (bead 9gf.19) — jamais utilisés pour trier/scorer/filtrer.
   const { concepts } = useSearchState();
@@ -20,7 +26,14 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
   const scoreVars = score !== undefined ? scoreColorVars(score) : undefined;
 
   return (
-    <Link to={`/sondage/${q.survey_id}/q/${encodeURIComponent(q.variable)}`} className="op-qrow">
+    <Link
+      to={
+        verbatim
+          ? `/questions-ouvertes/${q.survey_id}/${encodeURIComponent(q.variable)}`
+          : `/sondage/${q.survey_id}/q/${encodeURIComponent(q.variable)}`
+      }
+      className="op-qrow"
+    >
       <input
         type="checkbox"
         className="cart-check"
@@ -75,7 +88,13 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
         )}
 
         <div className="flex flex-wrap items-center gap-1.5 text-xs">
-          {q.var_type && <span className="badge badge-neutral badge-sm">{q.var_type}</span>}
+          {verbatim ? (
+            <span className="badge badge-secondary badge-sm gap-1">
+              <MessageSquare size={12} strokeWidth={2} /> question ouverte
+            </span>
+          ) : (
+            q.var_type && <span className="badge badge-neutral badge-sm">{q.var_type}</span>
+          )}
           {q.is_sociodemo && (
             <span className="badge badge-info badge-sm">
               sociodémo{q.sociodemo_type ? ` · ${q.sociodemo_type}` : ""}
@@ -88,7 +107,11 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
           ))}
 
           <span className="op-cta ml-auto flex items-center gap-1 font-semibold text-primary">
-            <BarChart3 size={15} strokeWidth={1.75} /> Explorer les données
+            {verbatim ? (
+              <><MessageSquare size={15} strokeWidth={1.75} /> Lire les réponses</>
+            ) : (
+              <><BarChart3 size={15} strokeWidth={1.75} /> Explorer les données</>
+            )}
             <span className="op-cta-arrow" aria-hidden><ArrowRight size={15} strokeWidth={1.75} /></span>
           </span>
         </div>

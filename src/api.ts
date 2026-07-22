@@ -1,4 +1,4 @@
-import type { Concept, ConceptCount, MicrodataQuery, MicrodataResponse, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent } from "./types";
+import type { Concept, ConceptCount, MicrodataQuery, MicrodataResponse, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent, VerbatimsResponse } from "./types";
 
 /** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
 export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
@@ -102,6 +102,51 @@ export async function fetchMicrodata<Row = Record<string, number | string>>(
     throw new Error(`Microdonnées échouées (${res.status}): ${txt || res.statusText}`);
   }
   return (await res.json()) as MicrodataResponse<Row>;
+}
+
+/**
+ * Appelle `/verbatims` : les réponses libres d'UNE question ouverte.
+ *
+ * Sans `query` → parcours paginé (aucun scoring, aucun appel Cohere).
+ * Avec `query` → BM25 + rerank Cohere, les meilleures citations d'abord.
+ */
+export async function fetchVerbatims(params: {
+  surveyId: string;
+  variable: string;
+  query?: string;
+  top?: number;
+  skip?: number;
+}): Promise<VerbatimsResponse> {
+  const res = await fetch("/verbatims", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      survey_id: params.surveyId,
+      variable: params.variable,
+      query: params.query ?? "",
+      top: params.top,
+      skip: params.skip,
+    }),
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Chargement des réponses échoué (${res.status}): ${body || res.statusText}`);
+  }
+  return (await res.json()) as VerbatimsResponse;
+}
+
+/**
+ * Appelle `/open-questions` : toutes les questions à réponses libres du corpus,
+ * cross-sondage. Sert le sélecteur de l'espace « Réponses libres ».
+ */
+export async function fetchOpenQuestions(): Promise<SearchResult[]> {
+  const res = await fetch("/open-questions");
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Chargement des questions ouvertes échoué (${res.status}): ${body || res.statusText}`);
+  }
+  const data = (await res.json()) as { results: SearchResult[] };
+  return data.results;
 }
 
 /**

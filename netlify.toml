@@ -53,6 +53,18 @@
   to = "/.netlify/functions/themes"
   status = 200
 
+# Expose la function sous /open-questions (catalogue des questions à réponses libres)
+[[redirects]]
+  from = "/open-questions"
+  to = "/.netlify/functions/open-questions"
+  status = 200
+
+# Expose la function sous /verbatims (réponses libres d'une question : BM25 + rerank)
+[[redirects]]
+  from = "/verbatims"
+  to = "/.netlify/functions/verbatims"
+  status = 200
+
 # Expose la function sous /microdata (distributions & crosstabs DuckDB sur Parquet)
 [[redirects]]
   from = "/microdata"

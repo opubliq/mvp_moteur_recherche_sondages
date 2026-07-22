@@ -18,7 +18,7 @@ const MODES: ModeDef[] = [
   { key: "recherche", Ico: Search, label: "Recherche", to: "/recherche" },
   { key: "corpus", Ico: LayoutGrid, label: "Exploration corpus", to: "/corpus" },
   { key: "agent", Ico: Sparkles, label: "Agent analytique", to: "/agent", soon: true },
-  { key: "verbatims", Ico: MessageSquare, label: "Verbatims", to: "/verbatims", soon: true },
+  { key: "questions-ouvertes", Ico: MessageSquare, label: "Réponses libres", to: "/questions-ouvertes" },
 ];
 
 export default function AppShell() {

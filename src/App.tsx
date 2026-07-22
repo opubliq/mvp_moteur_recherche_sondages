@@ -15,7 +15,8 @@ export default function App() {
         <Route path="/recherche" element={<SearchPage />} />
         <Route path="/corpus" element={<CorpusPage />} />
         <Route path="/agent" element={<AgentPage />} />
-        <Route path="/verbatims" element={<VerbatimsPage />} />
+        <Route path="/questions-ouvertes" element={<VerbatimsPage />} />
+        <Route path="/questions-ouvertes/:surveyId/:variable" element={<VerbatimsPage />} />
         <Route path="/sondage/:surveyId" element={<SurveyPage />} />
         <Route path="/sondage/:surveyId/q/:variable" element={<QuestionDashboard />} />
         <Route path="*" element={<Navigate to="/recherche" replace />} />

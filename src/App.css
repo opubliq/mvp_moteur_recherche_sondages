@@ -268,6 +268,27 @@
 .grid-dash { display: grid; grid-template-columns: 1fr 20rem; gap: 1.6rem; align-items: start; }
 @media (max-width: 900px) { .grid-facets, .grid-dash { grid-template-columns: 1fr; } }
 
+/*
+ * Rail d'outils de l'espace des réponses libres (recherche de citations, puis
+ * annotation). Deux contraintes que `sticky top-*` seul ne satisfait pas :
+ *   - il doit se coller SOUS la topbar (elle-même sticky à top:0, z-20),
+ *     sinon il glisse derrière elle ;
+ *   - il doit scroller pour lui-même dès qu'il dépasse la hauteur de l'écran,
+ *     sinon le bas du rail devient inatteignable — cas garanti quand la carte
+ *     d'annotation (prompt + options + progression) s'y ajoutera.
+ * Sous 900px la grille passe en une colonne : le rail redevient un bloc normal.
+ */
+.op-tool-rail {
+  position: sticky;
+  top: calc(var(--topbar-h) + 1rem);
+  max-height: calc(100vh - var(--topbar-h) - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+@media (max-width: 900px) {
+  .op-tool-rail { position: static; max-height: none; overflow: visible; }
+}
+
 /* Fil d'ariane */
 .crumbs { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; }
 .crumbs a:hover { color: var(--color-primary); text-decoration: underline; }
