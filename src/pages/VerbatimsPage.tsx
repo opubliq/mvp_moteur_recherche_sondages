@@ -8,7 +8,7 @@ import { exportVerbatims } from "../lib/exportVerbatims";
 import type { ExportFormat } from "../lib/exportCart";
 import AnnotateCard from "../components/AnnotateCard";
 import AnnotationCrosstab from "../components/AnnotationCrosstab";
-import VerbatimRow from "../components/VerbatimRow";
+import VerbatimRow, { labelBadgeClass } from "../components/VerbatimRow";
 import { annotationKey, useAnnotations } from "../context/AnnotationContext";
 import { effectiveLabels, type Annotation } from "../logic/annotate";
 
@@ -89,6 +89,9 @@ export default function VerbatimsPage() {
  * L'espace lui-même — une question, ses réponses
  * ------------------------------------------------------------------------ */
 
+/** Fenêtre dans laquelle on pioche l'échantillon aléatoire — le max de `/verbatims`. */
+const UNIVERSE_SAMPLE_WINDOW = 200;
+
 function Workspace({
   q,
   questions,
@@ -158,15 +161,17 @@ function Workspace({
   const selectedRows = useMemo(() => [...selected.values()], [selected]);
 
   /**
-   * Verdicts affichables sur les lignes : le batch d'abord, l'essai en dernier
-   * recours. Un essai sert à régler la consigne AVANT le batch ; une fois le
-   * batch passé, c'est lui qui fait foi, sinon deux étiquettes contradictoires
-   * cohabiteraient sur la même réponse.
+   * Verdicts affichables sur une réponse. Quand l'essai et le batch ont tous
+   * deux annoté la même réponse, c'est le run le plus RÉCENT qui gagne : on
+   * relance un essai précisément pour voir l'effet d'une consigne modifiée, et
+   * lui opposer le batch précédent revient à masquer ce qu'on vient de demander.
    */
   const shownAnnotations = useMemo(() => {
+    const slices = [session.batch, session.test]
+      .filter((s): s is NonNullable<typeof s> => s != null)
+      .sort((a, b) => a.ranAt - b.ranAt);
     const map = new Map<string, Annotation>();
-    for (const [id, a] of session.test?.annotations ?? []) map.set(id, a);
-    for (const [id, a] of session.batch?.annotations ?? []) map.set(id, a);
+    for (const s of slices) for (const [id, a] of s.annotations) map.set(id, a);
     return map;
   }, [session.test, session.batch]);
 
@@ -186,6 +191,39 @@ function Workspace({
       property: `Est-ce que la réponse exprime la même idée que celle-ci : « ${v.text.trim()} » ?`,
     }));
     document.getElementById("op-annotate-card")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  };
+
+  /**
+   * Tire N réponses au hasard pour régler la consigne.
+   *
+   * L'échantillon est pris dans TOUTE la question, pas dans les lignes déjà
+   * chargées : les premières réponses de l'index sont un tranche arbitraire du
+   * fichier, et y régler un prompt revient à le régler sur un coin du corpus.
+   *
+   * Au-delà d'une page, on tire une fenêtre au hasard puis on pioche dedans —
+   * un vrai tirage uniforme demanderait N appels, pour une variété qu'on
+   * n'obtiendrait pas mieux. La sélection est REMPLACÉE : on tire pour repartir
+   * d'un échantillon frais, pas pour empiler.
+   */
+  const [sampling, setSampling] = useState(false);
+  const sampleRandom = (n = 10) => {
+    if (questionTotal === 0) return;
+    setSampling(true);
+    const windowSize = Math.min(UNIVERSE_SAMPLE_WINDOW, questionTotal);
+    const skip = Math.floor(Math.random() * (questionTotal - windowSize + 1));
+    fetchVerbatims({ surveyId: q.survey_id, variable: q.variable, top: windowSize, skip })
+      .then((res) => {
+        const pool = [...res.results];
+        const picked: Verbatim[] = [];
+        while (picked.length < Math.min(n, pool.length)) {
+          picked.push(...pool.splice(Math.floor(Math.random() * pool.length), 1));
+        }
+        setSelected(new Map(picked.map((v) => [v.id, v])));
+      })
+      .catch(() => {
+        /* échec du tirage : la sélection en cours reste intacte */
+      })
+      .finally(() => setSampling(false));
   };
 
   const loadMore = () => {
@@ -229,34 +267,37 @@ function Workspace({
         </div>
       </header>
 
-      <div className="grid-dash">
-        <VerbatimList
-          rows={rows}
-          state={state}
-          searching={searching}
-          query={query}
-          total={total}
-          poolSize={data?.pool_size}
-          selected={selected}
-          onToggle={(v) =>
-            setSelected((s) => {
-              const next = new Map(s);
-              if (next.has(v.id)) next.delete(v.id);
-              else next.set(v.id, v);
-              return next;
-            })
-          }
-          canLoadMore={!searching && state === "ok" && rows.length < total}
-          loadingMore={loadingMore}
-          onLoadMore={loadMore}
-          annotations={shownAnnotations}
-          labels={labels}
-          onSeed={seedFromVerbatim}
-        />
-
-        {/* Rail d'outils : chercher, annoter, emporter — dans l'ordre où on s'en sert. */}
-        <div className="op-tool-rail space-y-4">
+      <div className="grid-verbatims">
+        {/* Colonne de gauche : chercher DANS les réponses, puis les lire. La
+            recherche vit au-dessus de la liste qu'elle filtre, pas dans le rail
+            d'outils — c'est le même objet. */}
+        <div className="min-w-0 space-y-4">
           <QuoteSearchCard query={query} onSubmit={setQuery} busy={state === "loading"} />
+          <VerbatimList
+            rows={rows}
+            state={state}
+            searching={searching}
+            query={query}
+            total={total}
+            poolSize={data?.pool_size}
+            selected={selected}
+            onToggle={(v) =>
+              setSelected((s) => {
+                const next = new Map(s);
+                if (next.has(v.id)) next.delete(v.id);
+                else next.set(v.id, v);
+                return next;
+              })
+            }
+            canLoadMore={!searching && state === "ok" && rows.length < total}
+            loadingMore={loadingMore}
+            onLoadMore={loadMore}
+            onSeed={seedFromVerbatim}
+          />
+        </div>
+
+        {/* Rail d'outils : annoter, puis emporter. */}
+        <div className="op-tool-rail space-y-4">
           <AnnotateCard
             q={q}
             session={session}
@@ -264,10 +305,14 @@ function Workspace({
             reset={() => annotations.reset(aKey)}
             selection={selectedRows}
             questionTotal={questionTotal}
+            onSampleRandom={sampleRandom}
+            sampling={sampling}
           />
           <SelectionCard
             q={q}
             selected={selectedRows}
+            annotations={shownAnnotations}
+            labels={labels}
             onRemove={(id) =>
               setSelected((s) => {
                 const next = new Map(s);
@@ -303,8 +348,6 @@ function VerbatimList({
   canLoadMore,
   loadingMore,
   onLoadMore,
-  annotations,
-  labels,
   onSeed,
 }: {
   rows: Verbatim[];
@@ -318,9 +361,6 @@ function VerbatimList({
   canLoadMore: boolean;
   loadingMore: boolean;
   onLoadMore: () => void;
-  /** Verdicts à afficher sous les réponses (bead jsu.6). */
-  annotations: Map<string, Annotation>;
-  labels: string[];
   onSeed: (v: Verbatim) => void;
 }) {
   return (
@@ -365,8 +405,6 @@ function VerbatimList({
                 v={v}
                 selected={selected.has(v.id)}
                 onToggle={() => onToggle(v)}
-                annotation={annotations.get(v.id)}
-                labels={labels}
                 onSeed={onSeed}
               />
             ))}
@@ -390,6 +428,11 @@ function VerbatimList({
 /**
  * Recherche lexicale dans les réponses (BM25) puis rerank Cohere. Pas de
  * synthèse LLM : on renvoie les citations telles quelles.
+ *
+ * Disposée en BARRE horizontale au-dessus de la liste : elle vit dans la
+ * colonne large, au contact de ce qu'elle filtre. En rail étroit, elle
+ * empilait champ, bouton et retour sur trois lignes tout en éloignant la
+ * recherche de son résultat.
  */
 function QuoteSearchCard({
   query,
@@ -410,47 +453,60 @@ function QuoteSearchCard({
         onSubmit(draft.trim());
       }}
     >
-      <h3 className="mb-2 flex items-center gap-1.5 text-sm font-semibold">
-        <Search size={15} strokeWidth={1.75} /> Chercher des citations
-      </h3>
-      <input
-        type="search"
-        value={draft}
-        onChange={(e) => setDraft(e.target.value)}
-        placeholder="ex. panneaux solaires"
-        className="input input-sm input-bordered mb-2 w-full text-sm"
-      />
-      <button type="submit" className="btn btn-primary btn-sm w-full" disabled={busy}>
-        {busy ? <span className="loading loading-spinner loading-xs" /> : "Chercher"}
-      </button>
-      {query && (
-        <button
-          type="button"
-          className="btn btn-ghost btn-xs mt-1 w-full"
-          onClick={() => {
-            setDraft("");
-            onSubmit("");
-          }}
-        >
-          Revenir à toutes les réponses
+      <div className="flex flex-wrap items-center gap-2">
+        <Search size={16} strokeWidth={1.75} className="shrink-0 text-base-content/45" />
+        <input
+          type="search"
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          placeholder="Chercher des citations — ex. panneaux solaires"
+          className="input input-sm input-bordered min-w-48 flex-1 text-sm"
+        />
+        <button type="submit" className="btn btn-primary btn-sm" disabled={busy}>
+          {busy ? <span className="loading loading-spinner loading-xs" /> : "Chercher"}
         </button>
-      )}
-      <p className="mt-2 text-xs text-base-content/45">
+        {query && (
+          <button
+            type="button"
+            className="btn btn-ghost btn-sm"
+            onClick={() => {
+              setDraft("");
+              onSubmit("");
+            }}
+          >
+            Toutes les réponses
+          </button>
+        )}
+      </div>
+      <p className="mt-1.5 text-xs text-base-content/45">
         Recherche par mots dans les réponses, reclassées par pertinence sémantique.
       </p>
     </form>
   );
 }
 
-/** Ce qu'on emporte : copie en bloc ou téléchargement des citations cochées. */
+/**
+ * Ce qu'on emporte, et ce que le modèle en a dit.
+ *
+ * Double rôle assumé : c'est le panier de citations (copie/téléchargement) ET
+ * la vue de contrôle de l'essai d'annotation. Les deux regardent le même objet
+ * — les réponses cochées — et l'essai porte justement sur cette sélection. Les
+ * séparer aurait obligé à chercher ailleurs le verdict de ce qu'on a sous les
+ * yeux.
+ */
 function SelectionCard({
   q,
   selected,
+  annotations,
+  labels,
   onRemove,
   onClear,
 }: {
   q: SearchResult;
   selected: Verbatim[];
+  /** Verdicts du run le plus récent, s'il y en a. */
+  annotations: Map<string, Annotation>;
+  labels: string[];
   onRemove: (id: string) => void;
   onClear: () => void;
 }) {
@@ -485,23 +541,38 @@ function SelectionCard({
       </h3>
 
       {/* Voir CE qu'on emporte, pas seulement combien : une sélection de 6
-          citations anonymes n'est pas vérifiable avant téléchargement. */}
-      <ul className="mb-2 max-h-64 space-y-1 overflow-y-auto pr-1">
-        {selected.map((v) => (
-          <li key={v.id} className="flex items-start gap-1.5 rounded-lg bg-base-200/60 p-1.5">
-            <span className="min-w-0 flex-1 text-xs leading-snug">
-              {v.text.length > 140 ? v.text.slice(0, 140) + "…" : v.text}
-            </span>
-            <button
-              type="button"
-              className="btn btn-ghost btn-xs shrink-0 px-1"
-              onClick={() => onRemove(v.id)}
-              aria-label="Retirer de la sélection"
-            >
-              <X size={13} strokeWidth={1.75} />
-            </button>
-          </li>
-        ))}
+          citations anonymes n'est pas vérifiable avant téléchargement. Et quand
+          un essai est passé, l'étiquette et sa justification se lisent JUSTE
+          SOUS le texte qui les a produites — c'est là qu'on juge la consigne. */}
+      <ul className="mb-2 max-h-[28rem] space-y-1.5 overflow-y-auto pr-1">
+        {selected.map((v) => {
+          const a = annotations.get(v.id);
+          return (
+            <li key={v.id} className="flex items-start gap-1.5 rounded-lg bg-base-200/60 p-1.5">
+              <div className="min-w-0 flex-1">
+                <span className="block text-xs leading-snug">
+                  {v.text.length > 220 ? v.text.slice(0, 220) + "…" : v.text}
+                </span>
+                {a && (
+                  <div className="mt-1 flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+                    <span className={`badge badge-xs ${labelBadgeClass(a.label, labels)}`}>{a.label}</span>
+                    {a.reason && (
+                      <span className="text-[11px] italic leading-snug text-base-content/45">{a.reason}</span>
+                    )}
+                  </div>
+                )}
+              </div>
+              <button
+                type="button"
+                className="btn btn-ghost btn-xs shrink-0 px-1"
+                onClick={() => onRemove(v.id)}
+                aria-label="Retirer de la sélection"
+              >
+                <X size={13} strokeWidth={1.75} />
+              </button>
+            </li>
+          );
+        })}
       </ul>
 
       <button className="btn btn-outline btn-sm mb-2 w-full gap-1.5" onClick={copyAll}>

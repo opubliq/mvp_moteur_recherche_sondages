@@ -42,6 +42,14 @@ export interface RunSlice {
   failed: number;
   /** Signature de la consigne ayant produit ce run (cf. `specSignature`). */
   signature: string;
+  /**
+   * Date de lancement du run. C'est elle qui arbitre quand une réponse est
+   * annotée deux fois (un essai relancé après un batch) : le run le plus RÉCENT
+   * gagne. Faire gagner le batch par principe donnait l'illusion que l'essai
+   * n'avait rien produit, alors qu'on itérait justement sur une nouvelle
+   * consigne.
+   */
+  ranAt: number;
 }
 
 export interface AnnotationSession {

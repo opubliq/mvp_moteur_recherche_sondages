@@ -20,7 +20,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { AlertTriangle, Download, Play, Square, Wand2 } from "lucide-react";
+import { AlertTriangle, Download, Play, Shuffle, Square, Wand2 } from "lucide-react";
 import { specSignature, type AnnotationSession } from "../context/AnnotationContext";
 import { exportAnnotations } from "../lib/exportAnnotations";
 import type { ExportFormat } from "../lib/exportCart";
@@ -73,6 +73,8 @@ export default function AnnotateCard({
   reset,
   selection,
   questionTotal,
+  onSampleRandom,
+  sampling,
 }: {
   q: SearchResult;
   session: AnnotationSession;
@@ -86,6 +88,9 @@ export default function AnnotateCard({
    * ce chiffre laisserait croire que le batch ne porte que sur elles.
    */
   questionTotal: number;
+  /** Tire N réponses au hasard dans toute la question et en fait la sélection. */
+  onSampleRandom: (n?: number) => void;
+  sampling: boolean;
 }) {
   const [progress, setProgress] = useState<RunProgress | null>(null);
   const [mode, setMode] = useState<"test" | "batch" | null>(null);
@@ -138,7 +143,10 @@ export default function AnnotateCard({
       let items: Verbatim[];
       if (kind === "test") {
         items = selection;
-        update((s) => ({ ...s, test: { annotations: new Map(), rows: items, failed: 0, signature } }));
+        update((s) => ({
+          ...s,
+          test: { annotations: new Map(), rows: items, failed: 0, signature, ranAt: Date.now() },
+        }));
       } else {
         setProgress({ phase: "fetching", done: 0, total: 0, failed: 0 });
         const universe = await fetchUniverse(q.survey_id, q.variable, {
@@ -151,7 +159,7 @@ export default function AnnotateCard({
         // téléchargé », sinon l'avertissement mentirait.
         update((s) => ({
           ...s,
-          batch: { annotations: new Map(), rows: items, failed: 0, signature },
+          batch: { annotations: new Map(), rows: items, failed: 0, signature, ranAt: Date.now() },
           downloaded: false,
         }));
       }
@@ -181,8 +189,24 @@ export default function AnnotateCard({
     }
   };
 
+  /**
+   * Le run le plus récent — c'est LUI qu'on affiche. Après un batch, relancer
+   * un essai doit montrer l'essai : on itère sur la consigne, et lui opposer le
+   * batch précédent donnait l'illusion que rien ne s'était passé.
+   */
+  const latest = [session.batch, session.test]
+    .filter((s): s is NonNullable<typeof s> => s != null)
+    .sort((a, b) => b.ranAt - a.ranAt)[0];
+
+  /**
+   * Ce qu'on télécharge, en revanche, reste le BATCH quand il existe : c'est le
+   * livrable, et repartir avec dix lignes d'essai en croyant tenir le run
+   * complet serait une perte silencieuse. Le bouton annonce donc son effectif.
+   */
+  const downloadable = session.batch ?? session.test;
+
   const download = () => {
-    const slice = session.batch ?? session.test;
+    const slice = downloadable;
     if (!slice) return;
     exportAnnotations(
       {
@@ -199,7 +223,7 @@ export default function AnnotateCard({
   };
 
   const batchDone = session.batch != null && !running;
-  const dist = distribution((session.batch ?? session.test)?.annotations ?? new Map(), labels);
+  const dist = distribution(latest?.annotations ?? new Map(), labels);
 
   return (
     <div className="op-card" id="op-annotate-card">
@@ -236,6 +260,18 @@ export default function AnnotateCard({
       </p>
 
       {/* --- Étape 2 : l'essai, avant tout batch --- */}
+      {/* Tirer au sort plutôt que cocher : sur une question de plusieurs
+          centaines de réponses, choisir soi-même son échantillon revient à
+          régler la consigne sur les cas qu'on avait déjà en tête. */}
+      <button
+        type="button"
+        className="btn btn-ghost btn-sm mb-1 w-full gap-1.5"
+        disabled={running || sampling || questionTotal === 0}
+        onClick={() => onSampleRandom(10)}
+      >
+        {sampling ? <span className="loading loading-spinner loading-xs" /> : <Shuffle size={14} strokeWidth={2} />}
+        Tirer 10 réponses au hasard
+      </button>
       <button
         type="button"
         className="btn btn-outline btn-sm w-full gap-1.5"
@@ -251,7 +287,8 @@ export default function AnnotateCard({
       </button>
       {selection.length === 0 && (
         <p className="mt-1 text-xs text-base-content/45">
-          Coche 4-5 réponses dans la liste pour régler ta consigne avant de la lancer sur tout.
+          Tire un échantillon au hasard, ou coche des réponses dans la liste. Les étiquettes et leurs
+          justifications s'affichent dans « Sélection », plus bas.
         </p>
       )}
       {session.test && !testFresh && (
@@ -343,15 +380,13 @@ export default function AnnotateCard({
         <div className="mt-3 border-t border-base-300 pt-3">
           <div className="mb-2 flex items-baseline justify-between">
             <h4 className="text-xs font-semibold">
-              {session.batch ? "Résultat" : "Essai"} · {(session.batch ?? session.test)!.annotations.size} réponses
+              {latest === session.batch ? "Résultat" : "Essai"} · {latest!.annotations.size} réponses
             </h4>
-            {(session.batch ?? session.test)!.failed > 0 && (
-              <span className="text-xs text-warning">{(session.batch ?? session.test)!.failed} en échec</span>
-            )}
+            {latest!.failed > 0 && <span className="text-xs text-warning">{latest!.failed} en échec</span>}
           </div>
           <ul className="mb-3 space-y-1">
             {dist.map((d) => {
-              const n = (session.batch ?? session.test)!.annotations.size;
+              const n = latest!.annotations.size;
               return (
                 <li key={d.label} className="flex items-center gap-2 text-xs">
                   <span className={`badge badge-sm ${labelBadgeClass(d.label, labels)}`}>{d.label}</span>
@@ -384,7 +419,8 @@ export default function AnnotateCard({
             disabled={running}
           >
             <Download size={15} strokeWidth={1.75} />
-            {session.downloaded ? "Télécharger à nouveau" : "Télécharger les annotations"}
+            {session.downloaded ? "Télécharger à nouveau" : "Télécharger"} les{" "}
+            {downloadable!.annotations.size} annotations
           </button>
           <button
             type="button"

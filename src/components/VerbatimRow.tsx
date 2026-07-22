@@ -1,15 +1,17 @@
 /**
  * Une réponse libre dans la liste de l'espace « Réponses libres ».
  *
- * Extraite de `VerbatimsPage` (bead jsu.6) : la liste portait déjà onze props,
- * et l'annotation en ajoutait trois de plus. La ligne est le seul endroit du
- * produit où l'on voit une réponse ET son étiquette côte à côte — c'est ce qui
- * rend la boucle d'essai lisible, donc elle mérite son propre composant.
+ * Extraite de `VerbatimsPage` (bead jsu.6), où la liste portait déjà onze props.
+ *
+ * LA LISTE RESTE NUE : pas d'étiquette d'annotation ici. On y parcourt et on y
+ * choisit du matériau ; le verdict du modèle s'examine dans le panneau
+ * « Sélection », en face de la consigne qui l'a produit. Mêler les deux
+ * couvrait la liste de puces sur les seules lignes annotées, au hasard du
+ * défilement, et rendait le parcours illisible.
  */
 
 import { useState } from "react";
 import { Check, Copy, Wand2 } from "lucide-react";
-import type { Annotation } from "../logic/annotate";
 import { FALLBACK_LABEL } from "../logic/annotate";
 import type { Verbatim } from "../types";
 
@@ -53,17 +55,11 @@ export default function VerbatimRow({
   v,
   selected,
   onToggle,
-  annotation,
-  labels,
   onSeed,
 }: {
   v: Verbatim;
   selected: boolean;
   onToggle: () => void;
-  /** Verdict du modèle sur CETTE réponse, s'il existe. */
-  annotation?: Annotation;
-  /** Étiquettes de la consigne courante, pour la couleur de la puce. */
-  labels: string[];
   /** « Partir de cette réponse » : pré-remplit la consigne d'annotation. */
   onSeed?: (v: Verbatim) => void;
 }) {
@@ -94,19 +90,6 @@ export default function VerbatimRow({
       />
       <div className="min-w-0 flex-1">
         <p className="whitespace-pre-wrap text-sm leading-snug">{v.text}</p>
-
-        {/* L'étiquette est SOUS la réponse, jamais à sa place : on juge le
-            classement en lisant les deux ensemble. */}
-        {annotation && (
-          <div className="mt-1.5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-            <span className={`badge badge-sm ${labelBadgeClass(annotation.label, labels)}`}>
-              {annotation.label}
-            </span>
-            {annotation.reason && (
-              <span className="text-xs italic leading-snug text-base-content/45">{annotation.reason}</span>
-            )}
-          </div>
-        )}
 
         <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-base-content/40">
           <span className="font-mono">répondant {v.respondent_id}</span>

@@ -269,6 +269,25 @@
 @media (max-width: 900px) { .grid-facets, .grid-dash { grid-template-columns: 1fr; } }
 
 /*
+ * Grille de l'espace des réponses libres. DISTINCTE de `.grid-dash` (que le
+ * dashboard d'une question utilise aussi) : ici le rail porte la carte
+ * d'annotation et le panneau de sélection avec ses étiquettes et leurs
+ * justifications, qui deviennent illisibles à 20rem. La colonne de gauche, elle,
+ * n'a besoin que d'une largeur de lecture confortable pour des réponses libres.
+ *
+ * `minmax(0, 1fr)` et non `1fr` : sans le minimum à 0, une réponse contenant un
+ * très long mot (URL, chaîne collée) impose sa largeur à la colonne et fait
+ * déborder la page entière.
+ */
+.grid-verbatims {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 27rem;
+  gap: 1.6rem;
+  align-items: start;
+}
+@media (max-width: 1100px) { .grid-verbatims { grid-template-columns: 1fr; } }
+
+/*
  * Rail d'outils de l'espace des réponses libres (recherche de citations, puis
  * annotation). Deux contraintes que `sticky top-*` seul ne satisfait pas :
  *   - il doit se coller SOUS la topbar (elle-même sticky à top:0, z-20),
@@ -285,7 +304,7 @@
   overflow-y: auto;
   overscroll-behavior: contain;
 }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .op-tool-rail { position: static; max-height: none; overflow: visible; }
 }
 
