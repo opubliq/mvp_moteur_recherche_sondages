@@ -11,7 +11,7 @@ export default function ConceptChips({ concepts, rerankQuery }: ConceptChipsProp
   return (
     <div className="concept-block">
       <div className="concept-row">
-        <span className="text-xs font-semibold uppercase tracking-wide text-base-content/45">Concepts</span>
+        <span className="text-xs font-semibold uppercase tracking-wide text-base-content/45">Concepts pour le retrieval</span>
         {concepts.map((c, i) => {
           // Synonymes hors du mot original (souvent dupliqué dans syns).
           const syns = c.syns.filter((s) => s.toLowerCase() !== c.orig.toLowerCase());
