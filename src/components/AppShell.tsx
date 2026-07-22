@@ -3,6 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { Search, LayoutGrid, Sparkles, MessageSquare, ShoppingCart } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { fetchAllSurveys } from "../api";
+import { useAnnotations, useUnloadGuard } from "../context/AnnotationContext";
 import { useCart } from "../context/CartContext";
 import ExportDrawer from "./ExportDrawer";
 
@@ -23,6 +24,11 @@ const MODES: ModeDef[] = [
 
 export default function AppShell() {
   const { size } = useCart();
+  // Garde-fou de sortie au niveau de la coquille, pas de l'espace d'annotation :
+  // un run non téléchargé reste en mémoire quand on part explorer un autre
+  // onglet, et c'est de LÀ qu'on ferme la fenêtre par distraction.
+  const { hasUndownloaded } = useAnnotations();
+  useUnloadGuard(hasUndownloaded);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [stats, setStats] = useState<{ surveys: number; questions: number } | null>(null);
 

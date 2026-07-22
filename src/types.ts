@@ -223,4 +223,10 @@ export interface MicrodataQuery {
   agg?: "count" | "mean";
   /** Codes de la cible à exclure (refus/NSP) — pour des moyennes sensées. */
   exclude?: (string | number)[];
+  /**
+   * Annotation éphémère jointe à la volée (bead jsu.7) : `respondent_id` →
+   * étiquette. Sa présence rend `__annotation` utilisable comme `target`/`dim`.
+   * Rien n'est persisté : la map voyage dans la requête et disparaît avec elle.
+   */
+  annotation?: { rid: number; label: string }[];
 }

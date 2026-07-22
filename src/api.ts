@@ -1,4 +1,5 @@
 import type { Concept, ConceptCount, MicrodataQuery, MicrodataResponse, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent, VerbatimsResponse } from "./types";
+import type { AnnotateResult, AnnotationItem, AnnotationSpec } from "./logic/annotate";
 
 /** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
 export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
@@ -88,6 +89,7 @@ export async function fetchMicrodata<Row = Record<string, number | string>>(
     filters: query.filters ?? [],
     agg: query.agg ?? "count",
     exclude: query.exclude ?? [],
+    ...(query.annotation ? { annotation: query.annotation } : {}),
   };
   const res = await fetch("/microdata", {
     method: "POST",
@@ -133,6 +135,49 @@ export async function fetchVerbatims(params: {
     throw new Error(`Chargement des réponses échoué (${res.status}): ${body || res.statusText}`);
   }
   return (await res.json()) as VerbatimsResponse;
+}
+
+/** Quota du modèle atteint : le run doit attendre `retryAfterMs`, pas abandonner. */
+export class AnnotateRateLimitError extends Error {
+  constructor(public retryAfterMs: number) {
+    super("Quota du modèle atteint");
+    this.name = "AnnotateRateLimitError";
+  }
+}
+
+/**
+ * Appelle `/annotate` : annote UN paquet de réponses (≤ 25, cf.
+ * `MAX_ITEMS_PER_CALL`). Le découpage et la cadence sont l'affaire de
+ * `runAnnotation` (src/lib/annotationRun.ts), pas de cette fonction.
+ */
+export async function annotateChunk(params: {
+  spec: AnnotationSpec;
+  items: AnnotationItem[];
+  withReason?: boolean;
+  signal?: AbortSignal;
+}): Promise<AnnotateResult> {
+  const res = await fetch("/annotate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      property: params.spec.property,
+      options: params.spec.options,
+      question_text: params.spec.questionText,
+      items: params.items,
+      with_reason: params.withReason ?? false,
+    }),
+    signal: params.signal,
+  });
+
+  if (res.status === 429) {
+    const data = (await res.json().catch(() => ({}))) as { retry_after_ms?: number };
+    throw new AnnotateRateLimitError(data.retry_after_ms ?? 20000);
+  }
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Annotation échouée (${res.status}): ${body || res.statusText}`);
+  }
+  return (await res.json()) as AnnotateResult;
 }
 
 /**

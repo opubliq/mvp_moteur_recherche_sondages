@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
+import { AnnotationProvider } from "./context/AnnotationContext";
 import { CartProvider } from "./context/CartContext";
 import { SearchProvider } from "./context/SearchContext";
 import "./index.css";
@@ -12,7 +13,11 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <CartProvider>
         <SearchProvider>
-          <App />
+          {/* Annotations éphémères : au-dessus des routes, pour qu'un
+              aller-retour vers la recherche ne détruise pas un run. */}
+          <AnnotationProvider>
+            <App />
+          </AnnotationProvider>
         </SearchProvider>
       </CartProvider>
     </BrowserRouter>

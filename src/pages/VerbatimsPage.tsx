@@ -6,6 +6,11 @@ import type { SearchResult, SurveyParent, Verbatim, VerbatimsResponse } from "..
 import { isVerbatim } from "../lib/verbatims";
 import { exportVerbatims } from "../lib/exportVerbatims";
 import type { ExportFormat } from "../lib/exportCart";
+import AnnotateCard from "../components/AnnotateCard";
+import AnnotationCrosstab from "../components/AnnotationCrosstab";
+import VerbatimRow from "../components/VerbatimRow";
+import { annotationKey, useAnnotations } from "../context/AnnotationContext";
+import { effectiveLabels, type Annotation } from "../logic/annotate";
 
 /**
  * Espace de travail des questions ouvertes — UNE question à la fois.
@@ -70,14 +75,30 @@ export default function VerbatimsPage() {
 
   // `key` : changer de question remet l'espace à zéro (recherche, sélection,
   // pagination) plutôt que de traîner l'état de la question précédente.
-  return <Workspace key={`${q.survey_id}/${q.variable}`} q={q} surveyName={survey?.survey_name ?? surveyId} />;
+  return (
+    <Workspace
+      key={`${q.survey_id}/${q.variable}`}
+      q={q}
+      questions={questions}
+      surveyName={survey?.survey_name ?? surveyId}
+    />
+  );
 }
 
 /* --------------------------------------------------------------------------
  * L'espace lui-même — une question, ses réponses
  * ------------------------------------------------------------------------ */
 
-function Workspace({ q, surveyName }: { q: SearchResult; surveyName: string }) {
+function Workspace({
+  q,
+  questions,
+  surveyName,
+}: {
+  q: SearchResult;
+  /** Toutes les questions du sondage — vivier des dimensions de croisement (jsu.7). */
+  questions: SearchResult[];
+  surveyName: string;
+}) {
   // Requête SOUMISE (pas la frappe en cours) : c'est elle qui pilote le fetch.
   const [query, setQuery] = useState("");
   const [data, setData] = useState<VerbatimsResponse | null>(null);
@@ -95,6 +116,20 @@ function Workspace({ q, surveyName }: { q: SearchResult; surveyName: string }) {
    */
   const [selected, setSelected] = useState<Map<string, Verbatim>>(new Map());
 
+  /**
+   * Nombre de réponses de la QUESTION — figé au premier chargement (toujours en
+   * parcours, la requête part vide). En mode recherche, `data.total` devient le
+   * nombre de réponses ayant matché BM25 : le batch d'annotation ne doit jamais
+   * s'appuyer dessus, sinon il annonce 40 réponses et en annote 1 600.
+   */
+  const [questionTotal, setQuestionTotal] = useState(0);
+
+  // Les annotations vivent AU-DESSUS du `key` de la page (contexte racine) :
+  // changer de question ou passer par la recherche ne détruit plus un run.
+  const annotations = useAnnotations();
+  const aKey = annotationKey(q.survey_id, q.variable);
+  const session = annotations.get(aKey);
+
   useEffect(() => {
     let cancelled = false;
     setState("loading");
@@ -104,6 +139,7 @@ function Workspace({ q, surveyName }: { q: SearchResult; surveyName: string }) {
       .then((res) => {
         if (cancelled) return;
         setData(res);
+        if (!query.trim()) setQuestionTotal(res.total);
         setState("ok");
       })
       .catch(() => !cancelled && setState("error"));
@@ -120,6 +156,37 @@ function Workspace({ q, surveyName }: { q: SearchResult; surveyName: string }) {
   const total = data?.total ?? 0;
 
   const selectedRows = useMemo(() => [...selected.values()], [selected]);
+
+  /**
+   * Verdicts affichables sur les lignes : le batch d'abord, l'essai en dernier
+   * recours. Un essai sert à régler la consigne AVANT le batch ; une fois le
+   * batch passé, c'est lui qui fait foi, sinon deux étiquettes contradictoires
+   * cohabiteraient sur la même réponse.
+   */
+  const shownAnnotations = useMemo(() => {
+    const map = new Map<string, Annotation>();
+    for (const [id, a] of session.test?.annotations ?? []) map.set(id, a);
+    for (const [id, a] of session.batch?.annotations ?? []) map.set(id, a);
+    return map;
+  }, [session.test, session.batch]);
+
+  const labels = useMemo(
+    () => effectiveLabels(session.optionsText.split("\n").map((l) => l.trim()).filter(Boolean)),
+    [session.optionsText],
+  );
+
+  /**
+   * « Partir de cette réponse » — le pont entre exploration et formalisation :
+   * une citation qui interpelle devient le point de départ d'une propriété à
+   * annoter, sans repartir d'une page blanche.
+   */
+  const seedFromVerbatim = (v: Verbatim) => {
+    annotations.update(aKey, (s) => ({
+      ...s,
+      property: `Est-ce que la réponse exprime la même idée que celle-ci : « ${v.text.trim()} » ?`,
+    }));
+    document.getElementById("op-annotate-card")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  };
 
   const loadMore = () => {
     setLoadingMore(true);
@@ -182,11 +249,22 @@ function Workspace({ q, surveyName }: { q: SearchResult; surveyName: string }) {
           canLoadMore={!searching && state === "ok" && rows.length < total}
           loadingMore={loadingMore}
           onLoadMore={loadMore}
+          annotations={shownAnnotations}
+          labels={labels}
+          onSeed={seedFromVerbatim}
         />
 
-        {/* Rail d'outils : recherche (jsu.4) au-dessus, annotation (jsu.6) plus tard. */}
+        {/* Rail d'outils : chercher, annoter, emporter — dans l'ordre où on s'en sert. */}
         <div className="op-tool-rail space-y-4">
           <QuoteSearchCard query={query} onSubmit={setQuery} busy={state === "loading"} />
+          <AnnotateCard
+            q={q}
+            session={session}
+            update={(updater) => annotations.update(aKey, updater)}
+            reset={() => annotations.reset(aKey)}
+            selection={selectedRows}
+            questionTotal={questionTotal}
+          />
           <SelectionCard
             q={q}
             selected={selectedRows}
@@ -201,6 +279,10 @@ function Workspace({ q, surveyName }: { q: SearchResult; surveyName: string }) {
           />
         </div>
       </div>
+
+      {/* Croisement (jsu.7) : en bas, pleine largeur, et seulement quand il y a
+          quelque chose à croiser — le composant s'efface tout seul sinon. */}
+      <AnnotationCrosstab q={q} questions={questions} session={session} />
     </div>
   );
 }
@@ -208,21 +290,6 @@ function Workspace({ q, surveyName }: { q: SearchResult; surveyName: string }) {
 /* --------------------------------------------------------------------------
  * Colonne gauche — la liste des réponses
  * ------------------------------------------------------------------------ */
-
-/**
- * Les 3 repères sociodémo affichés sous chaque réponse : genre, âge, région.
- *
- * Une citation sans son locuteur n'est pas utilisable en rapport — mais le doc
- * en porte 7, et les afficher tous noierait le texte de la réponse. Ce trio est
- * le plus court et le plus lu ; le reste part quand même dans l'export.
- * `income`, `education` et `occupation` ont en prime des libellés à rallonge
- * (« College or CEGEP certificate or diploma ») qui casseraient la ligne.
- */
-function shortSociodemo(v: Verbatim): string[] {
-  const s = v.sociodemo;
-  if (!s) return [];
-  return [s.gender, s.age, s.region].filter((x): x is string => Boolean(x && x.trim()));
-}
 
 function VerbatimList({
   rows,
@@ -236,6 +303,9 @@ function VerbatimList({
   canLoadMore,
   loadingMore,
   onLoadMore,
+  annotations,
+  labels,
+  onSeed,
 }: {
   rows: Verbatim[];
   state: "loading" | "ok" | "error";
@@ -248,19 +318,11 @@ function VerbatimList({
   canLoadMore: boolean;
   loadingMore: boolean;
   onLoadMore: () => void;
+  /** Verdicts à afficher sous les réponses (bead jsu.6). */
+  annotations: Map<string, Annotation>;
+  labels: string[];
+  onSeed: (v: Verbatim) => void;
 }) {
-  const [copied, setCopied] = useState<string | null>(null);
-
-  const copy = async (v: Verbatim) => {
-    try {
-      await navigator.clipboard.writeText(v.text);
-      setCopied(v.id);
-      setTimeout(() => setCopied((c) => (c === v.id ? null : c)), 1500);
-    } catch {
-      /* presse-papiers refusé (contexte non sécurisé) : on ne casse rien */
-    }
-  };
-
   return (
     <div className="op-card">
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
@@ -294,46 +356,19 @@ function VerbatimList({
 
       {state === "ok" && rows.length > 0 && (
         <>
-          <ul className="space-y-2">
+          {/* Seule la LISTE scrolle : le bouton « charger plus » reste sous
+              elle, atteignable sans avoir à revenir au bas du défilement. */}
+          <ul className="op-verbatim-scroll space-y-2">
             {rows.map((v) => (
-              <li
+              <VerbatimRow
                 key={v.id}
-                className={`flex gap-2 rounded-lg border p-2.5 ${
-                  selected.has(v.id) ? "border-primary/40 bg-primary/5" : "border-base-300"
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  className="checkbox checkbox-sm mt-0.5 shrink-0"
-                  checked={selected.has(v.id)}
-                  onChange={() => onToggle(v)}
-                  aria-label="Sélectionner cette citation"
-                />
-                <div className="min-w-0 flex-1">
-                  <p className="whitespace-pre-wrap text-sm leading-snug">{v.text}</p>
-                  <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-base-content/40">
-                    <span className="font-mono">répondant {v.respondent_id}</span>
-                    {shortSociodemo(v).map((s) => (
-                      <span key={s} className="badge badge-ghost badge-xs whitespace-nowrap">
-                        {s}
-                      </span>
-                    ))}
-                    {v.score_pertinence != null && (
-                      <span className="tabular-nums" title="Score de pertinence Cohere (0-100, absolu)">
-                        · {v.score_pertinence}
-                      </span>
-                    )}
-                    <button
-                      type="button"
-                      className="ml-auto flex items-center gap-1 hover:text-primary"
-                      onClick={() => copy(v)}
-                    >
-                      {copied === v.id ? <Check size={13} /> : <Copy size={13} />}
-                      {copied === v.id ? "copié" : "copier"}
-                    </button>
-                  </div>
-                </div>
-              </li>
+                v={v}
+                selected={selected.has(v.id)}
+                onToggle={() => onToggle(v)}
+                annotation={annotations.get(v.id)}
+                labels={labels}
+                onSeed={onSeed}
+              />
             ))}
           </ul>
 

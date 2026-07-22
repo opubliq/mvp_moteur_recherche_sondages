@@ -7,7 +7,7 @@
  * `microdata-core/` reste identique. Voir microdata-core/README.md.
  *
  * GET  /microdata?survey_id=eeq_2014&target=QSEXE[&dim=CLAGE][&filters=<json>]
- * POST { survey_id, target, dim?, filters?: [{var, codes:[]}] }
+ * POST { survey_id, target, dim?, filters?: [{var, codes:[]}], annotation?: [{rid,label}] }
  *
  * Env (serveur only) : AZURE_STORAGE_ACCOUNT, AZURE_STORAGE_KEY, AZURE_STORAGE_CONTAINER
  */
@@ -36,6 +36,9 @@ function parseParams(event: Parameters<Handler>[0]): MicrodataParams {
       filters: Array.isArray(b.filters) ? b.filters : [],
       agg: b.agg === "mean" ? "mean" : "count",
       exclude: Array.isArray(b.exclude) ? b.exclude : [],
+      // Annotation éphémère (jsu.7) : POST uniquement — une map de plusieurs
+      // milliers de paires n'a rien à faire dans une query string.
+      annotation: Array.isArray(b.annotation) ? b.annotation : undefined,
     };
   }
   const q = event.queryStringParameters ?? {};

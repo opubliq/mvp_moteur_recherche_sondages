@@ -65,6 +65,12 @@
   to = "/.netlify/functions/verbatims"
   status = 200
 
+# Expose la function sous /annotate (annotation LLM d'un paquet de réponses libres)
+[[redirects]]
+  from = "/annotate"
+  to = "/.netlify/functions/annotate"
+  status = 200
+
 # Expose la function sous /microdata (distributions & crosstabs DuckDB sur Parquet)
 [[redirects]]
   from = "/microdata"

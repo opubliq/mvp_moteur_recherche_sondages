@@ -289,6 +289,31 @@
   .op-tool-rail { position: static; max-height: none; overflow: visible; }
 }
 
+/*
+ * Liste des réponses libres : elle scrolle POUR ELLE-MÊME plutôt que d'étirer
+ * la page. Une question ouverte compte des centaines de réponses ; sans borne,
+ * l'en-tête, le rail d'outils et surtout le croisement (jsu.7) se retrouvent à
+ * des écrans de distance, et la page perd tout repère.
+ *
+ * La borne est en `vh` : ce qu'on veut, c'est que la liste tienne dans l'écran
+ * à côté du rail, pas qu'elle fasse un nombre fixe de lignes. Le `min()` évite
+ * qu'elle devienne démesurée sur un très grand moniteur.
+ *
+ * `overscroll-behavior: contain` : arrivé en bas de la liste, la molette ne
+ * repart pas dans la page — c'est le comportement attendu d'un panneau qu'on
+ * parcourt. Le padding droit réserve la gouttière de la barre de défilement
+ * pour que le texte ne saute pas quand elle apparaît.
+ */
+.op-verbatim-scroll {
+  max-height: min(68vh, 46rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 0.35rem;
+}
+@media (max-width: 900px) {
+  .op-verbatim-scroll { max-height: 70vh; }
+}
+
 /* Fil d'ariane */
 .crumbs { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; }
 .crumbs a:hover { color: var(--color-primary); text-decoration: underline; }

@@ -23,6 +23,27 @@ export interface Filter {
   codes: (string | number)[];
 }
 
+/** Une réponse annotée : le répondant, et l'étiquette que le LLM lui a donnée. */
+export interface AnnotationPair {
+  rid: number;
+  label: string;
+}
+
+/**
+ * Nom réservé désignant l'annotation dans `target`/`dim`. Préfixé `__` comme les
+ * autres colonnes techniques du Parquet, et impossible à confondre avec une
+ * variable de sondage — le whitelist ne l'accepte que si une annotation
+ * accompagne la requête.
+ */
+export const ANNOTATION_COLUMN = "__annotation";
+
+/**
+ * Plafond de lignes d'annotation par requête. La plus grosse question ouverte du
+ * corpus en compte 2 730 (~70 KB de JSON) ; 20 000 laisse de la marge tout en
+ * bornant la taille du POST et le coût de la jointure.
+ */
+const MAX_ANNOTATION_ROWS = 20000;
+
 export interface MicrodataParams {
   survey_id: string;
   target: string;
@@ -34,6 +55,16 @@ export interface MicrodataParams {
   /** Codes de la cible à exclure (ex. refus/NSP 99/9999) — indispensable pour
    *  que la moyenne d'une échelle ait un sens. Valeurs LIÉES, jamais interpolées. */
   exclude?: (string | number)[];
+  /**
+   * Annotation éphémère à joindre à la volée (bead jsu.7) : `respondent_id` →
+   * étiquette. Fournie, elle rend `ANNOTATION_COLUMN` utilisable comme `target`
+   * ou `dim` ; absente, la requête se comporte exactement comme avant.
+   *
+   * Rien n'est écrit nulle part : la map voyage dans la requête, vit le temps
+   * de la jointure et disparaît. C'est ce qui permet de croiser une annotation
+   * sans la persister — et donc sans toucher au contrat RAW-FIRST des Parquet.
+   */
+  annotation?: AnnotationPair[];
 }
 
 export interface MicrodataConfig {
@@ -123,7 +154,7 @@ const SE_SQL = `sqrt(
 
 // --- Handler principal ------------------------------------------------------
 export async function handleMicrodataQuery(params: MicrodataParams, config: MicrodataConfig) {
-  const { survey_id, target, dim, filters = [], agg = "count", exclude = [] } = params;
+  const { survey_id, target, dim, filters = [], agg = "count", exclude = [], annotation } = params;
 
   if (!survey_id || !IDENT_RE.test(survey_id)) {
     throw new MicrodataError(400, `Invalid survey_id: ${JSON.stringify(survey_id)}`);
@@ -133,6 +164,28 @@ export async function handleMicrodataQuery(params: MicrodataParams, config: Micr
     throw new MicrodataError(400, `Invalid agg: ${JSON.stringify(agg)}`);
   }
 
+  // --- Annotation jointe à la volée (jsu.7) ---------------------------------
+  const hasAnnotation = Array.isArray(annotation) && annotation.length > 0;
+  if (hasAnnotation) {
+    if (annotation!.length > MAX_ANNOTATION_ROWS) {
+      throw new MicrodataError(400, `annotation exceeds ${MAX_ANNOTATION_ROWS} rows`);
+    }
+    for (const a of annotation!) {
+      if (!a || !Number.isFinite(a.rid) || typeof a.label !== "string") {
+        throw new MicrodataError(400, "annotation must be [{rid:number,label:string}]");
+      }
+    }
+  }
+  const usesAnnotation = target === ANNOTATION_COLUMN || dim === ANNOTATION_COLUMN;
+  if (usesAnnotation && !hasAnnotation) {
+    throw new MicrodataError(400, `${ANNOTATION_COLUMN} requires a non-empty annotation`);
+  }
+  if (agg === "mean" && target === ANNOTATION_COLUMN) {
+    // Une étiquette est du texte : sa moyenne n'existe pas. Refuser franchement
+    // vaut mieux que renvoyer un résultat vide via TRY_CAST.
+    throw new MicrodataError(400, `${ANNOTATION_COLUMN} cannot be averaged`);
+  }
+
   const parquetUrl = signedBlobUrl(config.storage, `${survey_id}.parquet`);
   const c = await getConnection();
   try {
@@ -140,14 +193,49 @@ export async function handleMicrodataQuery(params: MicrodataParams, config: Micr
     const cols = await fetchColumns(c, parquetUrl).catch(() => {
       throw new MicrodataError(404, `No microdata Parquet for survey_id '${survey_id}'`);
     });
+    // L'annotation n'existe pas dans le Parquet : elle n'entre au whitelist que
+    // si la requête en porte une, et jamais comme variable de filtre.
+    if (hasAnnotation) cols.add(ANNOTATION_COLUMN);
     assertColumn(target, cols, "target");
     if (dim) assertColumn(dim, cols, "dim");
-    for (const f of filters) assertColumn(f.var, cols, "filter");
+    for (const f of filters) {
+      if (f.var === ANNOTATION_COLUMN) {
+        throw new MicrodataError(400, `${ANNOTATION_COLUMN} cannot be used as a filter`);
+      }
+      assertColumn(f.var, cols, "filter");
+    }
+
+    /**
+     * Référence SQL d'une colonne : celles du Parquet sont préfixées par son
+     * alias, l'annotation pointe sur la table jointe. Le préfixe est appliqué
+     * même sans annotation pour n'avoir qu'un seul chemin de génération.
+     */
+    const col = (name: string) => (name === ANNOTATION_COLUMN ? "a.label" : `p.${quoteIdent(name)}`);
+
+    // Jointure INTERNE : l'univers du croisement est l'ensemble des réponses
+    // annotées. Un répondant qui n'a pas répondu à la question ouverte n'a pas
+    // d'étiquette et n'a rien à faire dans les effectifs.
+    const fromSql = hasAnnotation
+      ? `read_parquet($url) p JOIN annot a ON p."__respondent_id" = a.rid`
+      : `read_parquet($url) p`;
+    /**
+     * L'annotation voyage en UN seul paramètre lié (JSON) plutôt qu'en 2×N
+     * placeholders : rien n'est interpolé, la requête reste de taille fixe, et
+     * 2 730 annotations passent en ~112 ms (mesuré).
+     */
+    const withSql = hasAnnotation
+      ? `WITH annot AS (
+  SELECT (u).rid AS rid, (u).label AS label
+  FROM (SELECT unnest(from_json($annot, '["STRUCT(rid BIGINT, label VARCHAR)"]')) AS u)
+),
+`
+      : "WITH ";
 
     // 2) Clauses WHERE : NULL exclu ; valeurs de filtre/exclude = paramètres LIÉS
     const bind: Record<string, string | number> = { url: parquetUrl };
-    const where: string[] = [`${quoteIdent(target)} IS NOT NULL`];
-    if (dim) where.push(`${quoteIdent(dim)} IS NOT NULL`);
+    if (hasAnnotation) bind.annot = JSON.stringify(annotation);
+    const where: string[] = [`${col(target)} IS NOT NULL`];
+    if (dim) where.push(`${col(dim)} IS NOT NULL`);
     filters.forEach((f, i) => {
       if (!f.codes?.length) return;
       const placeholders = f.codes.map((code, j) => {
@@ -155,7 +243,7 @@ export async function handleMicrodataQuery(params: MicrodataParams, config: Micr
         bind[p] = code;
         return `$${p}`;
       });
-      where.push(`${quoteIdent(f.var)} IN (${placeholders.join(", ")})`);
+      where.push(`${col(f.var)} IN (${placeholders.join(", ")})`);
     });
     // Exclusion de codes de la cible (refus/NSP) — surtout utile en mode mean.
     if (exclude.length) {
@@ -164,7 +252,7 @@ export async function handleMicrodataQuery(params: MicrodataParams, config: Micr
         bind[p] = code;
         return `$${p}`;
       });
-      where.push(`${quoteIdent(target)} NOT IN (${placeholders.join(", ")})`);
+      where.push(`${col(target)} NOT IN (${placeholders.join(", ")})`);
     }
     const whereSql = where.join(" AND ");
 
@@ -176,9 +264,9 @@ export async function handleMicrodataQuery(params: MicrodataParams, config: Micr
       // les cibles non numériques (renvoie NULL, exclu par WHERE x IS NOT NULL).
       if (dim) {
         mode = "mean_by_group";
-        sql = `WITH base AS (
-  SELECT ${quoteIdent(dim)} AS dim_code, TRY_CAST(${quoteIdent(target)} AS DOUBLE) AS x, "__weight" AS w
-  FROM read_parquet($url) WHERE ${whereSql}
+        sql = `${withSql}base AS (
+  SELECT ${col(dim)} AS dim_code, TRY_CAST(${col(target)} AS DOUBLE) AS x, p."__weight" AS w
+  FROM ${fromSql} WHERE ${whereSql}
 )
 SELECT dim_code, SUM(w * x) / SUM(w) AS mean,
        SUM(w) AS weighted_n, COUNT(*) AS raw_n,
@@ -186,9 +274,9 @@ SELECT dim_code, SUM(w * x) / SUM(w) AS mean,
 FROM base WHERE x IS NOT NULL GROUP BY dim_code ORDER BY dim_code`;
       } else {
         mode = "mean";
-        sql = `WITH base AS (
-  SELECT TRY_CAST(${quoteIdent(target)} AS DOUBLE) AS x, "__weight" AS w
-  FROM read_parquet($url) WHERE ${whereSql}
+        sql = `${withSql}base AS (
+  SELECT TRY_CAST(${col(target)} AS DOUBLE) AS x, p."__weight" AS w
+  FROM ${fromSql} WHERE ${whereSql}
 )
 SELECT SUM(w * x) / SUM(w) AS mean, MIN(x) AS min, MAX(x) AS max,
        SUM(w) AS weighted_n, COUNT(*) AS raw_n
@@ -196,9 +284,9 @@ FROM base WHERE x IS NOT NULL`;
       }
     } else if (dim) {
       mode = "crosstab";
-      sql = `WITH base AS (
-  SELECT ${quoteIdent(target)} AS target_code, ${quoteIdent(dim)} AS dim_code, "__weight" AS w
-  FROM read_parquet($url) WHERE ${whereSql}
+      sql = `${withSql}base AS (
+  SELECT ${col(target)} AS target_code, ${col(dim)} AS dim_code, p."__weight" AS w
+  FROM ${fromSql} WHERE ${whereSql}
 )
 SELECT dim_code, target_code,
        SUM(w) AS weighted_n, COUNT(*) AS raw_n,
@@ -206,9 +294,9 @@ SELECT dim_code, target_code,
 FROM base GROUP BY dim_code, target_code ORDER BY dim_code, target_code`;
     } else {
       mode = "distribution";
-      sql = `WITH base AS (
-  SELECT ${quoteIdent(target)} AS target_code, "__weight" AS w
-  FROM read_parquet($url) WHERE ${whereSql}
+      sql = `${withSql}base AS (
+  SELECT ${col(target)} AS target_code, p."__weight" AS w
+  FROM ${fromSql} WHERE ${whereSql}
 )
 SELECT target_code,
        SUM(w) AS weighted_n, COUNT(*) AS raw_n,
