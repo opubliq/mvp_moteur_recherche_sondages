@@ -124,7 +124,9 @@ export default function AnnotationCrosstab({
   const shortLabel = (x: SearchResult) => (x.display_label || x.question_text).slice(0, 60);
 
   return (
-    <div className="op-card">
+    // `id` : cible du lien d'ancrage de l'en-tête — le croisement vit en bas
+    // d'une page qui peut faire plusieurs écrans, on doit pouvoir y sauter.
+    <div className="op-card" id="op-crosstab">
       <h3 className="mb-1 flex items-center gap-1.5 font-semibold">
         <GitCompare size={16} strokeWidth={1.75} /> Croiser l'annotation
       </h3>

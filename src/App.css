@@ -288,50 +288,22 @@
 @media (max-width: 1100px) { .grid-verbatims { grid-template-columns: 1fr; } }
 
 /*
- * Rail d'outils de l'espace des réponses libres (recherche de citations, puis
- * annotation). Deux contraintes que `sticky top-*` seul ne satisfait pas :
- *   - il doit se coller SOUS la topbar (elle-même sticky à top:0, z-20),
- *     sinon il glisse derrière elle ;
- *   - il doit scroller pour lui-même dès qu'il dépasse la hauteur de l'écran,
- *     sinon le bas du rail devient inatteignable — cas garanti quand la carte
- *     d'annotation (prompt + options + progression) s'y ajoutera.
- * Sous 900px la grille passe en une colonne : le rail redevient un bloc normal.
- */
-.op-tool-rail {
-  position: sticky;
-  top: calc(var(--topbar-h) + 1rem);
-  max-height: calc(100vh - var(--topbar-h) - 2rem);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-@media (max-width: 1100px) {
-  .op-tool-rail { position: static; max-height: none; overflow: visible; }
-}
-
-/*
- * Liste des réponses libres : elle scrolle POUR ELLE-MÊME plutôt que d'étirer
- * la page. Une question ouverte compte des centaines de réponses ; sans borne,
- * l'en-tête, le rail d'outils et surtout le croisement (jsu.7) se retrouvent à
- * des écrans de distance, et la page perd tout repère.
+ * UN SEUL ASCENSEUR SUR CET ESPACE : celui de la page.
  *
- * La borne est en `vh` : ce qu'on veut, c'est que la liste tienne dans l'écran
- * à côté du rail, pas qu'elle fasse un nombre fixe de lignes. Le `min()` évite
- * qu'elle devienne démesurée sur un très grand moniteur.
+ * La version précédente bornait la liste des réponses (68vh) ET le rail d'outils
+ * (100vh, sticky), chacun avec `overscroll-behavior: contain`. Résultat : sur la
+ * quasi-totalité de la surface, la molette pilotait un panneau interne et jamais
+ * la page — le croisement, en bas, n'était atteignable qu'en visant la gouttière
+ * entre les deux colonnes. Trois ascenseurs concurrents pour une seule page.
  *
- * `overscroll-behavior: contain` : arrivé en bas de la liste, la molette ne
- * repart pas dans la page — c'est le comportement attendu d'un panneau qu'on
- * parcourt. Le padding droit réserve la gouttière de la barre de défilement
- * pour que le texte ne saute pas quand elle apparaît.
+ * Le rail est donc redevenu un bloc de flux normal : il défile avec le reste.
+ * Il n'y a plus de règle propre — cette note reste comme trace de la décision.
+ *
+ * Ce qui bornait la croissance de la page n'était pas le `max-height` mais la
+ * pagination : la liste ne s'allonge que sur « Charger plus de réponses ». Et
+ * l'accès au croisement passe maintenant par un lien d'ancrage dans l'en-tête,
+ * pas par la molette.
  */
-.op-verbatim-scroll {
-  max-height: min(68vh, 46rem);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding-right: 0.35rem;
-}
-@media (max-width: 900px) {
-  .op-verbatim-scroll { max-height: 70vh; }
-}
 
 /* Fil d'ariane */
 .crumbs { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; }

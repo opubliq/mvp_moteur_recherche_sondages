@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Check, ChevronDown, Copy, Download, MessageSquare, Search, X } from "lucide-react";
+import { Check, ChevronDown, ChevronRight, Copy, Download, GitCompare, MessageSquare, Search, X } from "lucide-react";
 import { fetchOpenQuestions, fetchSurvey, fetchVerbatims } from "../api";
 import type { SearchResult, SurveyParent, Verbatim, VerbatimsResponse } from "../types";
 import { isVerbatim } from "../lib/verbatims";
@@ -160,6 +160,27 @@ function Workspace({
 
   const selectedRows = useMemo(() => [...selected.values()], [selected]);
 
+  /** Y a-t-il de quoi croiser ? Même condition que `AnnotationCrosstab`. */
+  const hasCrosstab = session.batch != null && session.batch.annotations.size > 0;
+
+  /**
+   * Repli de la liste des réponses.
+   *
+   * La page raconte trois phases — explorer, annoter, croiser — mais les
+   * affiche toutes en même temps. Une fois le batch passé, la liste (des
+   * centaines de réponses, désormais dans le flux de la page) n'est plus
+   * l'objet du travail : elle n'est qu'un mur entre l'annotation et le
+   * croisement, qui vit en dessous.
+   *
+   * On la replie donc au moment où un batch apparaît. Le repli est réversible
+   * d'un clic — relire des verbatims après coup est légitime — et une nouvelle
+   * recherche la rouvre d'office : chercher, c'est demander à voir la liste.
+   */
+  const [listOpen, setListOpen] = useState(true);
+  useEffect(() => {
+    if (hasCrosstab) setListOpen(false);
+  }, [hasCrosstab]);
+
   /**
    * Verdicts affichables sur une réponse. Quand l'essai et le batch ont tous
    * deux annoté la même réponse, c'est le run le plus RÉCENT qui gagne : on
@@ -263,7 +284,24 @@ function Workspace({
               <p className="mt-1 text-sm leading-snug text-base-content/55">{q.question_text}</p>
             )}
           </div>
-          <OpenQuestionPicker current={q} />
+          <div className="flex shrink-0 flex-wrap items-center gap-2">
+            {/* Le croisement est en bas d'une page qui fait plusieurs écrans :
+                sans ce lien, rien ne dit qu'il existe une fois l'annotation
+                passée. Il n'apparaît que quand il y a de quoi croiser — même
+                condition que le composant lui-même. */}
+            {hasCrosstab && (
+              <button
+                type="button"
+                className="btn btn-outline btn-sm gap-1.5"
+                onClick={() =>
+                  document.getElementById("op-crosstab")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+              >
+                <GitCompare size={15} strokeWidth={1.75} /> Croisement
+              </button>
+            )}
+            <OpenQuestionPicker current={q} />
+          </div>
         </div>
       </header>
 
@@ -272,8 +310,17 @@ function Workspace({
             recherche vit au-dessus de la liste qu'elle filtre, pas dans le rail
             d'outils — c'est le même objet. */}
         <div className="min-w-0 space-y-4">
-          <QuoteSearchCard query={query} onSubmit={setQuery} busy={state === "loading"} />
+          <QuoteSearchCard
+            query={query}
+            onSubmit={(v) => {
+              setQuery(v);
+              setListOpen(true);
+            }}
+            busy={state === "loading"}
+          />
           <VerbatimList
+            open={listOpen}
+            onToggleOpen={() => setListOpen((o) => !o)}
             rows={rows}
             state={state}
             searching={searching}
@@ -294,10 +341,20 @@ function Workspace({
             onLoadMore={loadMore}
             onSeed={seedFromVerbatim}
           />
+
+          {/* Le croisement vit DANS la colonne de gauche, pas sous la grille.
+              Sous la grille, il commençait après la plus haute des deux colonnes
+              — c'est-à-dire après le rail, volontairement long — ce qui creusait
+              un vide sous la liste repliée et l'éloignait de la carte
+              d'annotation qui vient de le produire. Ici il occupe exactement la
+              place que le repli libère, à hauteur d'yeux de cette carte.
+              Il s'efface tout seul tant qu'il n'y a rien à croiser. */}
+          <AnnotationCrosstab q={q} questions={questions} session={session} />
         </div>
 
-        {/* Rail d'outils : annoter, puis emporter. */}
-        <div className="op-tool-rail space-y-4">
+        {/* Rail d'outils : annoter, puis emporter. Bloc de flux normal — il
+            défile avec la page, il n'a pas d'ascenseur à lui. */}
+        <div className="min-w-0 space-y-4">
           <AnnotateCard
             q={q}
             session={session}
@@ -324,10 +381,6 @@ function Workspace({
           />
         </div>
       </div>
-
-      {/* Croisement (jsu.7) : en bas, pleine largeur, et seulement quand il y a
-          quelque chose à croiser — le composant s'efface tout seul sinon. */}
-      <AnnotationCrosstab q={q} questions={questions} session={session} />
     </div>
   );
 }
@@ -337,6 +390,8 @@ function Workspace({
  * ------------------------------------------------------------------------ */
 
 function VerbatimList({
+  open,
+  onToggleOpen,
   rows,
   state,
   searching,
@@ -350,6 +405,9 @@ function VerbatimList({
   onLoadMore,
   onSeed,
 }: {
+  /** Liste dépliée ? Repliée automatiquement une fois un batch annoté. */
+  open: boolean;
+  onToggleOpen: () => void;
   rows: Verbatim[];
   state: "loading" | "ok" | "error";
   searching: boolean;
@@ -365,8 +423,18 @@ function VerbatimList({
 }) {
   return (
     <div className="op-card">
-      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-        <h3 className="font-semibold">{searching ? "Citations trouvées" : "Réponses"}</h3>
+      {/* L'en-tête reste toujours visible et sert de poignée de repli : replié,
+          il dit ce qu'il cache et comment le rouvrir. */}
+      <div className={`flex flex-wrap items-baseline justify-between gap-2 ${open ? "mb-3" : ""}`}>
+        <button
+          type="button"
+          className="flex items-center gap-1.5 font-semibold hover:text-primary"
+          onClick={onToggleOpen}
+          aria-expanded={open}
+        >
+          {open ? <ChevronDown size={16} strokeWidth={2} /> : <ChevronRight size={16} strokeWidth={2} />}
+          {searching ? "Citations trouvées" : "Réponses"}
+        </button>
         {state === "ok" && (
           <span className="text-xs text-base-content/45">
             {searching
@@ -378,10 +446,16 @@ function VerbatimList({
         )}
       </div>
 
-      {state === "loading" && <div className="py-12 text-center"><span className="loading loading-spinner" /></div>}
-      {state === "error" && <p className="text-sm text-error">Échec du chargement des réponses.</p>}
+      {!open && (
+        <p className="mt-1 text-xs text-base-content/45">
+          Liste repliée pour laisser la place au croisement — clique le titre pour la rouvrir.
+        </p>
+      )}
 
-      {state === "ok" && rows.length === 0 && (
+      {open && state === "loading" && <div className="py-12 text-center"><span className="loading loading-spinner" /></div>}
+      {open && state === "error" && <p className="text-sm text-error">Échec du chargement des réponses.</p>}
+
+      {open && state === "ok" && rows.length === 0 && (
         <p className="text-sm text-base-content/55">
           {searching ? (
             <>
@@ -394,11 +468,12 @@ function VerbatimList({
         </p>
       )}
 
-      {state === "ok" && rows.length > 0 && (
+      {open && state === "ok" && rows.length > 0 && (
         <>
-          {/* Seule la LISTE scrolle : le bouton « charger plus » reste sous
-              elle, atteignable sans avoir à revenir au bas du défilement. */}
-          <ul className="op-verbatim-scroll space-y-2">
+          {/* La liste s'étire dans la page : elle ne scrolle plus pour
+              elle-même (voir la note « un seul ascenseur » dans App.css). Sa
+              longueur reste commandée par « Charger plus de réponses ». */}
+          <ul className="space-y-2">
             {rows.map((v) => (
               <VerbatimRow
                 key={v.id}
@@ -544,7 +619,7 @@ function SelectionCard({
           citations anonymes n'est pas vérifiable avant téléchargement. Et quand
           un essai est passé, l'étiquette et sa justification se lisent JUSTE
           SOUS le texte qui les a produites — c'est là qu'on juge la consigne. */}
-      <ul className="mb-2 max-h-[28rem] space-y-1.5 overflow-y-auto pr-1">
+      <ul className="mb-2 space-y-1.5">
         {selected.map((v) => {
           const a = annotations.get(v.id);
           return (

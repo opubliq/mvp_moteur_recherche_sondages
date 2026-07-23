@@ -20,7 +20,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { AlertTriangle, Download, Play, Shuffle, Square, Wand2 } from "lucide-react";
+import { AlertTriangle, Download, GitCompare, Play, Shuffle, Square, Wand2 } from "lucide-react";
 import { specSignature, type AnnotationSession } from "../context/AnnotationContext";
 import { exportAnnotations } from "../lib/exportAnnotations";
 import type { ExportFormat } from "../lib/exportCart";
@@ -422,6 +422,21 @@ export default function AnnotateCard({
             {session.downloaded ? "Télécharger à nouveau" : "Télécharger"} les{" "}
             {downloadable!.annotations.size} annotations
           </button>
+          {/* Le pont vers le croisement, depuis l'endroit où on vient de le
+              rendre possible : après un batch, le geste suivant est de croiser,
+              mais le dashboard vit dans l'autre colonne. Ce bouton l'y amène
+              plutôt que de compter sur le lien de l'en-tête, plus loin. */}
+          {batchDone && (
+            <button
+              type="button"
+              className="btn btn-primary btn-sm mt-2 w-full gap-1.5"
+              onClick={() =>
+                document.getElementById("op-crosstab")?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+            >
+              <GitCompare size={15} strokeWidth={1.75} /> Croiser ces annotations
+            </button>
+          )}
           <button
             type="button"
             className="btn btn-ghost btn-xs mt-1 w-full"
