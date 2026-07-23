@@ -78,6 +78,18 @@
   to = "/.netlify/functions/microdata"
   status = 200
 
+# Expose la function sous /microdata-manifest (liste des sondages à micro-données)
+[[redirects]]
+  from = "/microdata-manifest"
+  to = "/.netlify/functions/microdata-manifest"
+  status = 200
+
+# Expose la function sous /agent (boucle tool-use analytique — bead aat.1)
+[[redirects]]
+  from = "/agent"
+  to = "/.netlify/functions/agent"
+  status = 200
+
 # Fallback SPA
 [[redirects]]
   from = "/*"

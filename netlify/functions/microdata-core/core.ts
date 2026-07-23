@@ -71,6 +71,49 @@ export interface MicrodataConfig {
   storage: StorageConfig;
 }
 
+/**
+ * Une entrée du `_manifest.json` (écrit par `ingestion/microdata.py`). Décrit un
+ * sondage dont le Parquet répondant EXISTE dans le Blob — donc calculable par
+ * `/microdata`. Sa présence dans le manifest EST le signal « micro-données
+ * disponibles » : l'agent ne doit proposer de croisement que sur ces sondages.
+ */
+export interface ManifestEntry {
+  survey_id: string;
+  n_respondents: number;
+  n_vars: number;
+  weight_var: string | null;
+  weight_source: string | null;
+  weight_imputed_n: number;
+  respondent_id_var: string | null;
+  updated_at: string;
+}
+
+export interface Manifest {
+  surveys: ManifestEntry[];
+}
+
+/**
+ * Lit le `_manifest.json` du Blob (liste des sondages à micro-données
+ * calculables). Un simple GET HTTP sur l'URL signée suffit — pas de DuckDB, le
+ * fichier est petit. Sert à combler le manque de plomberie du bead aat.1 :
+ * exposer QUELS sondages ont des micro-données, pour que l'agent ne propose pas
+ * de croisement sur une question non calculable.
+ */
+export async function fetchManifest(config: MicrodataConfig): Promise<Manifest> {
+  const url = signedBlobUrl(config.storage, "_manifest.json");
+  const res = await fetch(url);
+  if (res.status === 404) {
+    // Manifest jamais écrit (aucune ingestion micro-données) : liste vide plutôt
+    // qu'une erreur, l'agent en conclut « aucun croisement disponible ».
+    return { surveys: [] };
+  }
+  if (!res.ok) {
+    throw new MicrodataError(502, `Manifest fetch failed: ${res.status}`);
+  }
+  const data = (await res.json()) as Partial<Manifest>;
+  return { surveys: Array.isArray(data.surveys) ? data.surveys : [] };
+}
+
 // --- Erreur métier typée (l'adaptateur mappe → code HTTP) -------------------
 export class MicrodataError extends Error {
   constructor(
