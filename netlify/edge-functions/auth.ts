@@ -2,7 +2,9 @@
 // l'utilisateur n'a pas fourni les identifiants partagés.
 // Identifiants configurés via variables d'env Netlify : BASIC_AUTH_USER / BASIC_AUTH_PASSWORD.
 
-const REALM = "Opubliq — accès restreint";
+// ASCII pur : les valeurs de header HTTP sont des ByteString (Latin-1),
+// un tiret cadratin ou un accent y provoque un TypeError.
+const REALM = "Opubliq restricted access";
 
 export default async (request: Request) => {
   const expectedUser = Deno.env.get("BASIC_AUTH_USER");
