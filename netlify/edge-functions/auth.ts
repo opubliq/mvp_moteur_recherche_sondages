@@ -1,18 +1,16 @@
-import type { Config, Context } from "@netlify/edge-functions";
-
 // Basic Auth global : bloque tout le site (pages + API functions) tant que
 // l'utilisateur n'a pas fourni les identifiants partagés.
 // Identifiants configurés via variables d'env Netlify : BASIC_AUTH_USER / BASIC_AUTH_PASSWORD.
 
 const REALM = "Opubliq — accès restreint";
 
-export default async (request: Request, context: Context) => {
+export default async (request: Request) => {
   const expectedUser = Deno.env.get("BASIC_AUTH_USER");
   const expectedPassword = Deno.env.get("BASIC_AUTH_PASSWORD");
 
   // Si le login n'est pas configuré, on ne bloque rien (évite de se verrouiller dehors).
   if (!expectedUser || !expectedPassword) {
-    return context.next();
+    return;
   }
 
   const header = request.headers.get("authorization") || "";
@@ -30,7 +28,8 @@ export default async (request: Request, context: Context) => {
     const password = decoded.slice(sep + 1);
 
     if (user === expectedUser && password === expectedPassword) {
-      return context.next();
+      // Laisse passer vers la page / la function d'origine.
+      return;
     }
   }
 
@@ -42,7 +41,7 @@ export default async (request: Request, context: Context) => {
   });
 };
 
-export const config: Config = {
+export const config = {
   // Protège tout, y compris les endpoints API.
   path: "/*",
 };
