@@ -29,7 +29,7 @@ export default defineConfig({
   plugins: [resolveTsFromJs()],
   test: {
     root: rootDir,
-    include: ["netlify/functions/**/*.test.ts"],
+    include: ["netlify/functions/**/*.test.ts", "src/**/*.test.ts"],
     environment: "node",
     // @duckdb/node-api charge un binding natif .node : ne pas le transformer.
     server: { deps: { external: [/@duckdb\//] } },

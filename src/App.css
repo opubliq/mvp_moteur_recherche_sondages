@@ -268,6 +268,33 @@
 .grid-dash { display: grid; grid-template-columns: 1fr 20rem; gap: 1.6rem; align-items: start; }
 @media (max-width: 900px) { .grid-facets, .grid-dash { grid-template-columns: 1fr; } }
 
+/* Agent : conversation à gauche, document Markdown à droite (bead agy).
+   Hauteur bornée au viewport pour que CHAQUE colonne défile de son côté — le fil
+   ne doit pas faire descendre le document, et inversement. */
+.agent-layout {
+  display: grid;
+  grid-template-columns: 27rem minmax(0, 1fr);
+  gap: 1.2rem;
+  height: calc(100dvh - var(--topbar-h) - 9.5rem);
+  min-height: 28rem;
+}
+.agent-col {
+  display: flex; flex-direction: column; min-height: 0; overflow: hidden;
+  border: 1px solid color-mix(in oklch, var(--color-base-content) 9%, transparent);
+  background: var(--color-base-100);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px -20px color-mix(in oklch, var(--color-base-content) 45%, transparent);
+}
+/* Zone défilante d'une colonne : `min-height:0` sinon le flex refuse de rétrécir. */
+.agent-scroll { flex: 1; min-height: 0; overflow-y: auto; }
+/* Le panneau d'historique ne mange pas le fil : il plafonne et défile lui aussi. */
+.agent-history { max-height: 16rem; overflow-y: auto; }
+
+@media (max-width: 1100px) {
+  .agent-layout { grid-template-columns: 1fr; height: auto; }
+  .agent-col { max-height: 38rem; }
+}
+
 /*
  * Grille de l'espace des réponses libres. DISTINCTE de `.grid-dash` (que le
  * dashboard d'une question utilise aussi) : ici le rail porte la carte
