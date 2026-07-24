@@ -41,13 +41,12 @@ export async function search(
   filters: SearchFilters,
   top = 30,
   concepts?: Concept[],
-  rerank = false,
   rerankQuery?: string,
 ): Promise<SearchResponse> {
   const res = await fetch("/search", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query, filters, top, concepts, rerank, rerank_query: rerankQuery }),
+    body: JSON.stringify({ query, filters, top, concepts, rerank_query: rerankQuery }),
   });
 
   if (!res.ok) {

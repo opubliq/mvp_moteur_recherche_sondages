@@ -91,7 +91,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     setPhase("retrieve");
     setError(null);
     try {
-      const res = await search(q, f, 30, c, false, rq);
+      const res = await search(q, f, 30, c, rq);
       setResults(res.results);
       if (res.facets) setFacets(res.facets);
       setHasSearched(true);

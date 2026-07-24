@@ -9,11 +9,10 @@ une requête plus riche à partir de ça, puis on **note chaque résultat sur un
 couverture réelle de ces concepts. Ça donne un score explicable ("pourquoi ce
 résultat est classé Partiel") au lieu d'un score de similarité brut illisible.
 
-Quatre étapes :
+Trois étapes :
 1. Décomposition en concepts pondérés (appel LLM, JSON structuré)
 2. Requête élargie + couverture pondérée (code déterministe)
 3. Niveau discret 1-4 affiché dans l'UI
-4. (Optionnel) Juge LLM final pour couper le bruit résiduel
 
 ## 1. Décomposition en concepts (appel LLM, JSON structuré)
 
@@ -94,15 +93,6 @@ interprétable : "Exact" veut vraiment dire couverture totale, pas juste "score
   numérique brut affiché à l'utilisateur — seul le palier compte).
 - Highlight des termes (originaux + synonymes) dans les résultats affichés, en
   excluant les stopwords et les termes trop courts (<3 caractères).
-
-## 5. (Optionnel) Juge LLM final = cutoff anti-bruit
-
-Après le tri, un second appel LLM peut juger en batch (ex. 20 à la fois) la
-pertinence **topique** de chaque résultat par rapport au sujet original (pas
-juste "partage un mot" — vraiment sur le même sujet), avec le contexte utile
-(ex. titre du document parent) pour les entrées elliptiques. Retourne
-`pertinent` (bool) + `raison` courte. L'UI filtre sur ce booléen comme deuxième
-cutoff, après le seuil de reranking sémantique éventuel.
 
 ## Ce qui rend ce pattern portable
 
