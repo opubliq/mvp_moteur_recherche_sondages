@@ -25,6 +25,7 @@
 import type { Handler } from "@netlify/functions";
 import { cohereRerankDocuments, RerankError } from "../../src/logic/rerank";
 import type { RerankEnv } from "../../src/logic/rerank";
+import { newRequestId, resolveClientId } from "../../src/logic/costlog";
 
 const INDEX_NAME = "survey-verbatims";
 const SEARCH_API_VERSION = "2024-07-01";
@@ -225,7 +226,10 @@ export const handler: Handler = async (event) => {
       COHERE_RERANK_DEPLOYMENT: process.env.COHERE_RERANK_DEPLOYMENT ?? "",
       COHERE_RERANK_KEY: process.env.COHERE_RERANK_KEY ?? "",
     };
-    const scores = await cohereRerankDocuments(query, pool.map((d) => d.text ?? ""), rerankEnv);
+    // Identité d'usage de la requête (epic 97r, ticket 97r.5) : ce handler émet
+    // lui aussi une ligne op:"rerank" (search units Cohere sur les verbatims).
+    const usage = { clientId: resolveClientId(event.headers), requestId: newRequestId() };
+    const scores = await cohereRerankDocuments(query, pool.map((d) => d.text ?? ""), rerankEnv, usage);
 
     const ranked = pool
       .map((d, i) => ({

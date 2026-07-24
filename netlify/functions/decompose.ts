@@ -23,6 +23,7 @@
 
 import type { Handler } from "@netlify/functions";
 import { decomposeQuery, type DecomposeEnv } from "../../src/logic/decompose";
+import { newRequestId, resolveClientId } from "../../src/logic/costlog";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -103,7 +104,9 @@ export const handler: Handler = async (event) => {
   };
 
   try {
-    const { concepts, rerankQuery } = await decomposeQuery(query, env);
+    // Identité d'usage de la requête (epic 97r, ticket 97r.5).
+    const usage = { clientId: resolveClientId(event.headers), requestId: newRequestId() };
+    const { concepts, rerankQuery } = await decomposeQuery(query, env, usage);
 
     return {
       statusCode: 200,

@@ -39,7 +39,7 @@
  * impossible ; `required` sur toutes les clés rend l'omission impossible.
  */
 
-import { logUsage, newRequestId } from "./costlog";
+import { logUsage, usageIdentity, type UsageContext } from "./costlog";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -281,7 +281,7 @@ export async function annotateBatch(
   items: AnnotationItem[],
   spec: AnnotationSpec,
   env: AnnotateEnv,
-  opts: { withReason?: boolean } = {},
+  opts: { withReason?: boolean; usage?: UsageContext } = {},
 ): Promise<AnnotateResult> {
   if (items.length === 0) return { annotations: {}, missing: [] };
 
@@ -290,7 +290,7 @@ export async function annotateBatch(
   const endpoint = (env.AOAI_ENDPOINT ?? "").replace(/\/$/, "");
   const url = `${endpoint}/openai/deployments/${env.AOAI_CHAT_DEPLOYMENT}/chat/completions?api-version=${AOAI_API_VERSION}`;
 
-  const requestId = newRequestId();
+  const identity = usageIdentity(opts.usage);
   const startedAt = Date.now();
   const res = await fetch(url, {
     method: "POST",
@@ -324,8 +324,7 @@ export async function annotateBatch(
 
   // Usage & coût marginal (epic 97r) — best-effort, purement additif.
   logUsage({
-    client_id: "unknown", // propagation client_id : ticket 97r.5
-    request_id: requestId,
+    ...identity,
     op: "annotate",
     prompt_tokens: json.usage?.prompt_tokens,
     completion_tokens: json.usage?.completion_tokens,

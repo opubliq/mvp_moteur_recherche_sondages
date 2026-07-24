@@ -55,7 +55,7 @@ describe("runAgentStream — séquence d'events (aat.4)", () => {
       runAgentStream([{ role: "user", content: "climat" }], FAKE_ENV, FAKE_MICRODATA, {
         chat,
         execute,
-        requestId: "req-1",
+        usage: { requestId: "req-1" },
       }),
     );
 

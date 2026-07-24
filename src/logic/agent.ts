@@ -31,7 +31,7 @@
 import type { Concept, SearchFilters } from "../types";
 import { retrieve, RetrieveError, type RetrieveEnv } from "./retrieve";
 import { rerankCandidates, RerankError, type RerankEnv } from "./rerank";
-import { logUsage, newRequestId } from "./costlog";
+import { logUsage, usageIdentity, type UsageContext } from "./costlog";
 import {
   getSurveyCatalog,
   listSurveys,
@@ -433,7 +433,7 @@ export async function executeTool(
   env: AgentEnv,
   microdata: MicrodataProvider,
   manifestCache: { current: ManifestLike | null },
-  requestId?: string,
+  usage?: UsageContext,
 ): Promise<unknown> {
   const getManifest = async (): Promise<ManifestLike> => {
     if (!manifestCache.current) manifestCache.current = await microdata.manifest();
@@ -450,11 +450,12 @@ export async function executeTool(
         : undefined;
       const concepts: Concept[] | undefined = undefined;
       try {
-        // request_id de la requête agent propagé à l'embedding (op:"embed") ET au
-        // rerank (op:"rerank", ticket 97r.3) pour que l'agrégation par requête
-        // somme la boucle + les /search déclenchés sous un même request_id.
-        const { candidates } = await retrieve(query, concepts, retrieveEnv(env), { filters, top, requestId });
-        let ranked = await rerankCandidates(query, candidates, rerankEnv(env), requestId);
+        // Identité de la requête agent (client_id + request_id) propagée à
+        // l'embedding (op:"embed") ET au rerank (op:"rerank", tickets 97r.3/97r.5)
+        // pour que l'agrégation par requête somme la boucle + les /search
+        // déclenchés sous un même request_id, au crédit du même client.
+        const { candidates } = await retrieve(query, concepts, retrieveEnv(env), { filters, top, usage });
+        let ranked = await rerankCandidates(query, candidates, rerankEnv(env), usage);
         ranked = ranked
           .map((r) => ({ ...r, score_pertinence: Math.round((r.relevance_score ?? 0) * 100) }))
           .slice(0, top);
@@ -616,12 +617,13 @@ export interface RunAgentOptions {
   /** Budget mural en ms. Défaut DEFAULT_DEADLINE_MS. */
   deadlineMs?: number;
   /**
-   * request_id corrélant TOUTE la requête agent (epic 97r) : les lignes
-   * `agent_turn` de chaque tour ET les `embed`/`rerank` des /search déclenchés.
-   * Fourni par le handler Netlify ; à défaut, généré localement (rétrocompatible
-   * pour un appel direct du module hors endpoint).
+   * Identité d'usage de TOUTE la requête agent (epic 97r) : client_id du tenant
+   * + request_id corrélant les lignes `agent_turn` de chaque tour ET les
+   * `embed`/`rerank` des /search déclenchés. Fournie par le handler Netlify ; à
+   * défaut `unknown` + id local (rétrocompatible pour un appel direct du module
+   * hors endpoint).
    */
-  requestId?: string;
+  usage?: UsageContext;
 }
 
 /**
@@ -640,13 +642,15 @@ export async function* runAgentStream(
   opts: RunAgentOptions = {},
 ): AsyncGenerator<AgentEvent, void, void> {
   const chat = opts.chat ?? makeAoaiChat(env);
-  // request_id unique par requête agent (fallback si non fourni par l'endpoint).
-  const requestId = opts.requestId ?? newRequestId();
+  // Identité résolue une seule fois : le request_id retenu (fourni ou généré)
+  // doit être le MÊME pour la boucle et pour les outils.
+  const identity = usageIdentity(opts.usage);
+  const usageCtx: UsageContext = { clientId: identity.client_id, requestId: identity.request_id };
   const manifestCache: { current: ManifestLike | null } = { current: null };
   const execute =
     opts.execute ??
     ((name: string, args: Record<string, unknown>) =>
-      executeTool(name, args, env, microdata, manifestCache, requestId));
+      executeTool(name, args, env, microdata, manifestCache, usageCtx));
   const deadlineMs = opts.deadlineMs ?? DEFAULT_DEADLINE_MS;
   const start = Date.now();
 
@@ -683,8 +687,7 @@ export async function* runAgentStream(
     const turnStartedAt = Date.now();
     const { message: assistant, usage } = await chat(messages, useTools);
     logUsage({
-      client_id: "unknown", // propagation client_id : ticket 97r.5
-      request_id: requestId,
+      ...identity,
       op: "agent_turn",
       prompt_tokens: usage?.prompt_tokens,
       completion_tokens: usage?.completion_tokens,

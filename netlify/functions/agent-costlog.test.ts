@@ -60,7 +60,7 @@ describe("agent loop costlog (97r.4)", () => {
     const result = await runAgent([{ role: "user", content: "climat" }], FAKE_ENV, FAKE_MICRODATA, {
       chat,
       execute,
-      requestId: "req-fixe-123",
+      usage: { clientId: "acme", requestId: "req-fixe-123" },
     });
 
     expect(result.iterations).toBe(2);
@@ -74,7 +74,8 @@ describe("agent loop costlog (97r.4)", () => {
     expect(turns[0].prompt_tokens).toBe(100);
     expect(turns[1].completion_tokens).toBe(40);
     expect(typeof turns[0].latency_ms).toBe("number");
-    expect(turns[0].client_id).toBe("unknown");
+    // client_id du tenant propagé par le handler sur chaque tour (ticket 97r.5).
+    expect(new Set(turns.map((t) => t.client_id))).toEqual(new Set(["acme"]));
   });
 
   it("génère un request_id local si aucun n'est fourni (rétrocompatible)", async () => {
@@ -90,5 +91,6 @@ describe("agent loop costlog (97r.4)", () => {
     expect(turn.op).toBe("agent_turn");
     expect(typeof turn.request_id).toBe("string");
     expect(turn.request_id.length).toBeGreaterThan(0);
+    expect(turn.client_id).toBe("unknown");
   });
 });

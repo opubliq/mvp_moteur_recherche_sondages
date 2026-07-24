@@ -21,6 +21,7 @@ import { retrieve, RetrieveError } from "../../src/logic/retrieve";
 import type { RetrieveEnv, RawCandidate } from "../../src/logic/retrieve";
 import { rerankCandidates, RerankError } from "../../src/logic/rerank";
 import type { RerankEnv } from "../../src/logic/rerank";
+import { newRequestId, resolveClientId, type UsageContext } from "../../src/logic/costlog";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -114,6 +115,13 @@ export const handler: Handler = async (event) => {
 
   const trimmedQuery = query.trim();
 
+  // Identité d'usage de la requête (epic 97r, ticket 97r.5) : un seul request_id
+  // pour l'embedding ET le rerank, au crédit du tenant résolu des en-têtes.
+  const usage: UsageContext = {
+    clientId: resolveClientId(event.headers),
+    requestId: newRequestId(),
+  };
+
   // Requête envoyée à Cohere. `/decompose` produit une reformulation destinée au
   // reranker (énoncé de recherche + levée d'ambiguïté) ; on retombe sur la requête
   // brute si elle manque, pour qu'un appel direct à /search reste valide.
@@ -146,7 +154,7 @@ export const handler: Handler = async (event) => {
   let rawFacets: Record<string, Array<{ value: any; count: number }>> | undefined;
 
   try {
-    const result = await retrieve(trimmedQuery, concepts, env, { filters, top });
+    const result = await retrieve(trimmedQuery, concepts, env, { filters, top, usage });
     results = result.candidates;
     luceneQuery = result.luceneQuery;
     rawFacets = result.facets;
@@ -176,7 +184,7 @@ export const handler: Handler = async (event) => {
   // DE TRI PRIMAIRE des résultats. La query envoyée à Cohere est la query
   // utilisateur BRUTE (pas les concepts).
   try {
-    results = await rerankCandidates(rerankQuery, results, rerankEnv);
+    results = await rerankCandidates(rerankQuery, results, rerankEnv, usage);
   } catch (err) {
     if (err instanceof RerankError) {
       console.error("[search] Cohere rerank failed:", err.message);

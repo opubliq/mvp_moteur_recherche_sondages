@@ -39,7 +39,7 @@
  */
 
 import type { Concept } from "../types";
-import { logUsage, newRequestId } from "./costlog";
+import { logUsage, usageIdentity, type UsageContext } from "./costlog";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -170,16 +170,23 @@ export function normalizeConcepts(concepts: Concept[]): Concept[] {
  *
  * @param query Requête utilisateur brute (sera trim()).
  * @param env   Endpoint/clé + deployment chat Foundry injectés.
+ * @param usage Identité d'usage (client_id + request_id) pour la ligne costlog
+ *              (epic 97r, ticket 97r.5). Optionnelle : `unknown` + id local si
+ *              absente (appel direct du module, harness d'éval).
  * @returns     Concepts normalisés + requête reformulée pour le reranker.
  * @throws {Error} Si l'appel Foundry échoue ou renvoie un contenu vide.
  */
-export async function decomposeQuery(query: string, env: DecomposeEnv): Promise<DecomposeResult> {
+export async function decomposeQuery(
+  query: string,
+  env: DecomposeEnv,
+  usage?: UsageContext,
+): Promise<DecomposeResult> {
   const endpoint = (env.FOUNDRY_CHAT_ENDPOINT ?? "").replace(/\/$/, "");
   const model = env.FOUNDRY_CHAT_DEPLOYMENT ?? "";
   const key = env.FOUNDRY_CHAT_KEY ?? "";
   const url = `${endpoint}/models/chat/completions?api-version=${FOUNDRY_API_VERSION}`;
 
-  const requestId = newRequestId();
+  const identity = usageIdentity(usage);
   const startedAt = Date.now();
   const res = await fetch(url, {
     method: "POST",
@@ -210,8 +217,7 @@ export async function decomposeQuery(query: string, env: DecomposeEnv): Promise<
 
   // Usage & coût marginal (epic 97r) — best-effort, purement additif.
   logUsage({
-    client_id: "unknown", // propagation client_id : ticket 97r.5
-    request_id: requestId,
+    ...identity,
     op: "decompose",
     prompt_tokens: json.usage?.prompt_tokens,
     completion_tokens: json.usage?.completion_tokens,

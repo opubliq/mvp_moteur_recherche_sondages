@@ -29,6 +29,7 @@ import {
   type AnnotateEnv,
   type AnnotationItem,
 } from "../../src/logic/annotate";
+import { newRequestId, resolveClientId } from "../../src/logic/costlog";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -102,7 +103,13 @@ export const handler: Handler = async (event) => {
       items,
       { property, options, questionText },
       env,
-      { withReason: Boolean(body.with_reason) },
+      {
+        withReason: Boolean(body.with_reason),
+        // Identité d'usage du batch (epic 97r, ticket 97r.5). Un run d'annotation
+        // est une suite de batches : chacun est une requête HTTP distincte, donc
+        // un request_id distinct — l'agrégation par client, elle, tient.
+        usage: { clientId: resolveClientId(event.headers), requestId: newRequestId() },
+      },
     );
     return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify(result) };
   } catch (err) {

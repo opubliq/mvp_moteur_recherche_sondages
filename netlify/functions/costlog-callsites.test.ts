@@ -124,13 +124,14 @@ describe("costlog call-sites (97r.2)", () => {
       COHERE_RERANK_DEPLOYMENT: "Cohere-rerank-v4.0-pro",
       COHERE_RERANK_KEY: "k",
     };
-    await rerankCandidates("climat", candidates, env, "req-fixed-123");
+    await rerankCandidates("climat", candidates, env, { clientId: "acme", requestId: "req-fixed-123" });
 
     const [rec] = costlogLines(logSpy);
     expect(rec.op).toBe("rerank");
     expect(rec.units).toBe(2); // ceil(150 / 100)
     expect(rec.meta).toEqual({ nb_docs: 150 });
     expect(rec.request_id).toBe("req-fixed-123");
+    expect(rec.client_id).toBe("acme");
     expect(rec.prompt_tokens).toBeUndefined();
     expect(typeof rec.latency_ms).toBe("number");
   });

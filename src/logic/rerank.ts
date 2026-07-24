@@ -25,7 +25,7 @@
 
 import type { ResponseOption } from "../types";
 import type { RawCandidate } from "./retrieve";
-import { logUsage, newRequestId } from "./costlog";
+import { logUsage, usageIdentity, type UsageContext } from "./costlog";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -96,10 +96,11 @@ function yamlDoc(question: string, opts: ResponseOption[], label?: string | null
  * nu sans structure YAML. Seul le formatage des documents diffère — l'appel,
  * lui, est le même.
  *
- * @param requestId request_id à corréler à cet appel (epic 97r, op:"rerank").
- *   Optionnel : fourni par un orchestrateur (boucle agent, /search) pour sommer
- *   boucle + outils sous une même requête ; sinon on en génère un localement
- *   (rétrocompatible). C'est ICI qu'est émis le comptage en search units Cohere
+ * @param usage identité d'usage (client_id + request_id) attachée à la ligne
+ *   costlog (epic 97r, op:"rerank" ; ticket 97r.5). Optionnelle : fournie par un
+ *   orchestrateur (boucle agent, /search) pour sommer boucle + outils sous une
+ *   même requête ; sinon `unknown` + id local (rétrocompatible). C'est ICI
+ *   qu'est émis le comptage en search units Cohere
  *   (1 unit = 1 query + jusqu'à 100 docs → Math.ceil(nbDocs / 100)), donc tous
  *   les appelants — questions ET verbatims — sont instrumentés d'un seul point.
  */
@@ -107,12 +108,12 @@ export async function cohereRerankDocuments(
   query: string,
   documents: string[],
   env: RerankEnv,
-  requestId?: string,
+  usage?: UsageContext,
 ): Promise<number[]> {
   const endpoint = (env.COHERE_RERANK_ENDPOINT ?? "").replace(/\/$/, "");
   const url = `${endpoint}/providers/cohere/v2/rerank`;
 
-  const usageRequestId = requestId ?? newRequestId();
+  const identity = usageIdentity(usage);
   const nbDocs = documents.length;
   const startedAt = Date.now();
   const res = await fetch(url, {
@@ -139,8 +140,7 @@ export async function cohereRerankDocuments(
   // jusqu'à 100 docs EN ENTRÉE (nbDocs, pas top_n de sortie). Émis après succès
   // seulement (un appel raté n'est pas facturé côté search units).
   logUsage({
-    client_id: "unknown", // propagation client_id : ticket 97r.5
-    request_id: usageRequestId,
+    ...identity,
     op: "rerank",
     units: Math.ceil(nbDocs / 100),
     latency_ms: Date.now() - startedAt,
@@ -173,10 +173,11 @@ export async function cohereRerankDocuments(
  * @param query      Query utilisateur brute (déjà trim() côté appelant).
  * @param candidates Candidats bruts renvoyés par `retrieve()`.
  * @param env        Endpoint/clé/déploiement Cohere (voir {@link RerankEnv}).
- * @param requestId  request_id à corréler à l'appel Cohere (epic 97r). Optionnel :
- *                   fourni par un orchestrateur (boucle agent) pour partager le
+ * @param usage      identité d'usage (client_id + request_id) propagée à l'appel
+ *                   Cohere (epic 97r, ticket 97r.5). Optionnelle : fournie par le
+ *                   handler ou un orchestrateur (boucle agent) pour partager le
  *                   même id que les `agent_turn`/`embed` de la requête ; sinon
- *                   généré localement (rétrocompatible).
+ *                   `unknown` + id local (rétrocompatible).
  * @returns          Les candidats de la fenêtre, chacun avec son
  *                   `relevance_score`, triés par pertinence décroissante.
  * @throws {RerankError} Si l'appel Cohere échoue.
@@ -185,7 +186,7 @@ export async function rerankCandidates(
   query: string,
   candidates: RawCandidate[],
   env: RerankEnv,
-  requestId?: string,
+  usage?: UsageContext,
 ): Promise<RawCandidate[]> {
   if (!candidates || candidates.length === 0) return [];
 
@@ -198,7 +199,7 @@ export async function rerankCandidates(
   const documents = window.map((c) => yamlDoc(c.question_text, c.response_options, c.display_label));
 
   // 3. Appel Cohere (query brute).
-  const scores = await cohereRerankDocuments(query, documents, env, requestId);
+  const scores = await cohereRerankDocuments(query, documents, env, usage);
 
   // 4. Attache relevance_score + tri desc.
   const reranked = window.map((c, i) => ({ ...c, relevance_score: scores[i] }));

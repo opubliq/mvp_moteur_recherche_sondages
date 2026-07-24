@@ -32,7 +32,7 @@ import {
   type ChatMessage,
   type MicrodataProvider,
 } from "../../src/logic/agent";
-import { newRequestId } from "../../src/logic/costlog";
+import { newRequestId, resolveClientId } from "../../src/logic/costlog";
 import { handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "./microdata-core/core.js";
 
 const CORS_HEADERS: Record<string, string> = {
@@ -142,16 +142,17 @@ export default async (req: Request): Promise<Response> => {
     manifest: () => fetchManifest(microdataConfig),
   };
 
-  // request_id unique par requête agent (epic 97r) : corrèle les lignes
-  // agent_turn de la boucle ET les embed/rerank des /search déclenchés.
-  const requestId = newRequestId();
+  // Identité d'usage de la requête agent (epic 97r, ticket 97r.5) : un request_id
+  // unique qui corrèle les lignes agent_turn de la boucle ET les embed/rerank des
+  // /search déclenchés, au crédit du tenant résolu des en-têtes.
+  const usage = { clientId: resolveClientId(req.headers), requestId: newRequestId() };
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const send = (payload: unknown) => controller.enqueue(encoder.encode(sseFrame(payload)));
       try {
-        for await (const ev of runAgentStream(history, env, microdata, { requestId })) {
+        for await (const ev of runAgentStream(history, env, microdata, { usage })) {
           send(ev);
         }
       } catch (err) {
