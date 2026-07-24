@@ -128,6 +128,37 @@ export async function fetchUniverse(
   return { rows, total, truncated: total > cap };
 }
 
+/**
+ * Tire un échantillon de réponses NON VIDES pour le scanner.
+ *
+ * Même principe que le tirage de la carte d'annotation (`sampleRandom` dans
+ * VerbatimsPage) : on prend une fenêtre au hasard dans toute la question puis on
+ * pioche dedans, plutôt que de balayer les premières réponses de l'index — un
+ * tranche arbitraire du fichier, où l'on proposerait une grille biaisée sur un
+ * coin du corpus. Les réponses vides sont écartées : elles n'apprennent rien au
+ * scan et gaspillent son budget.
+ */
+export async function fetchScanSample(
+  surveyId: string,
+  variable: string,
+  questionTotal: number,
+  n: number,
+  opts: { signal?: AbortSignal } = {},
+): Promise<Verbatim[]> {
+  if (questionTotal === 0) return [];
+  const windowSize = Math.min(UNIVERSE_PAGE, questionTotal);
+  const skip = Math.floor(Math.random() * (questionTotal - windowSize + 1));
+  const res = await fetchVerbatims({ surveyId, variable, top: windowSize, skip });
+  if (opts.signal?.aborted) throw new DOMException("Aborted", "AbortError");
+
+  const pool = res.results.filter((v) => v.text.trim().length > 0);
+  const picked: Verbatim[] = [];
+  while (picked.length < Math.min(n, pool.length)) {
+    picked.push(...pool.splice(Math.floor(Math.random() * pool.length), 1));
+  }
+  return picked;
+}
+
 function chunk<T>(items: T[], size: number): T[][] {
   const out: T[][] = [];
   for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));

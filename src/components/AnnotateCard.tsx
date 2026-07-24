@@ -20,17 +20,20 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { AlertTriangle, Download, GitCompare, Play, Shuffle, Square, Wand2 } from "lucide-react";
+import { AlertTriangle, Download, GitCompare, Play, ScanSearch, Shuffle, Square, Wand2 } from "lucide-react";
 import { specSignature, type AnnotationSession } from "../context/AnnotationContext";
+import { scanQuestion, ScanRateLimitError } from "../api";
 import { exportAnnotations } from "../lib/exportAnnotations";
 import type { ExportFormat } from "../lib/exportCart";
 import {
   MAX_RUN_ITEMS,
+  fetchScanSample,
   fetchUniverse,
   runAnnotation,
   type RunProgress,
 } from "../lib/annotationRun";
 import { MAX_ITEMS_PER_CALL, effectiveLabels, type Annotation } from "../logic/annotate";
+import { SCAN_SAMPLE_SIZE } from "../logic/scan";
 import type { SearchResult, Verbatim } from "../types";
 import { labelBadgeClass } from "./VerbatimRow";
 
@@ -100,6 +103,13 @@ export default function AnnotateCard({
   const [format, setFormat] = useState<ExportFormat>("csv-large");
   const abortRef = useRef<AbortController | null>(null);
 
+  // Le scanner propose une grille de départ ; il vit à côté du run, avec son
+  // propre cycle (un seul appel, pas d'orchestration) et son propre message.
+  const [scanning, setScanning] = useState(false);
+  const [scanError, setScanError] = useState<string | null>(null);
+  const [scanRationale, setScanRationale] = useState<string | null>(null);
+  const scanAbortRef = useRef<AbortController | null>(null);
+
   // Un compte à rebours n'avance pas tout seul : sans ce tick, l'attente
   // imposée par le quota afficherait un chiffre figé, exactement l'inverse de
   // ce qu'on veut montrer.
@@ -110,8 +120,54 @@ export default function AnnotateCard({
     return () => clearInterval(t);
   }, [progress?.phase]);
 
-  // Un run en cours n'appartient pas à la page : si elle se démonte, on coupe.
-  useEffect(() => () => abortRef.current?.abort(), []);
+  // Un run — ou un scan — en cours n'appartient pas à la page : si elle se
+  // démonte, on coupe les deux.
+  useEffect(() => () => {
+    abortRef.current?.abort();
+    scanAbortRef.current?.abort();
+  }, []);
+
+  /**
+   * SCANNER — l'amorce du cold start. On tire un échantillon de la question, le
+   * modèle en dégage une propriété et ses étiquettes, et on PRÉREMPLIT les deux
+   * champs. C'est un point de départ, pas un verdict : l'utilisateur corrige
+   * puis essaie comme d'habitude. On remplace le brouillon en cours sans
+   * confirmation — proposer une grille alors qu'on en tapait une n'a de sens que
+   * si on n'avait pas encore d'idée arrêtée, et l'essai reste le vrai garde-fou.
+   */
+  const scan = async () => {
+    const ctrl = new AbortController();
+    scanAbortRef.current = ctrl;
+    setScanning(true);
+    setScanError(null);
+    setScanRationale(null);
+    try {
+      const sample = await fetchScanSample(q.survey_id, q.variable, questionTotal, SCAN_SAMPLE_SIZE, {
+        signal: ctrl.signal,
+      });
+      if (sample.length === 0) {
+        setScanError("Aucune réponse exploitable à scanner sur cette question.");
+        return;
+      }
+      const result = await scanQuestion({
+        questionText: q.display_label || q.question_text,
+        items: sample.map((v) => ({ text: v.text })),
+        signal: ctrl.signal,
+      });
+      update((s) => ({ ...s, property: result.property, optionsText: result.labels.join("\n") }));
+      setScanRationale(result.rationale ?? null);
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
+      if (err instanceof ScanRateLimitError) {
+        setScanError("Quota du modèle atteint — réessaie dans une minute.");
+      } else {
+        setScanError(err instanceof Error ? err.message : "Scan échoué");
+      }
+    } finally {
+      scanAbortRef.current = null;
+      setScanning(false);
+    }
+  };
 
   const options = parseOptions(session.optionsText);
   const labels = effectiveLabels(options);
@@ -230,6 +286,35 @@ export default function AnnotateCard({
       <h3 className="mb-2 flex items-center gap-1.5 text-sm font-semibold">
         <Wand2 size={15} strokeWidth={1.75} /> Annoter les réponses
       </h3>
+
+      {/* --- Scanner : proposer une grille quand on ne sait pas quoi annoter --- */}
+      {/* Amorce du cold start. Facultatif : qui a déjà sa grille en tête écrit
+          directement dans les champs. On ne l'offre pas pendant un run (mêmes
+          champs verrouillés) ni sur une question vide. */}
+      <button
+        type="button"
+        className="btn btn-ghost btn-sm mb-1 w-full gap-1.5"
+        disabled={running || scanning || questionTotal === 0}
+        onClick={scan}
+      >
+        {scanning ? (
+          <span className="loading loading-spinner loading-xs" />
+        ) : (
+          <ScanSearch size={14} strokeWidth={2} />
+        )}
+        {scanning ? "Analyse d'un échantillon…" : "Proposer une annotation (scanner)"}
+      </button>
+      <p className="mb-2 text-xs text-base-content/45">
+        Analyse {SCAN_SAMPLE_SIZE} réponses au hasard et propose une propriété à distinguer et ses
+        étiquettes. À corriger avant l'essai — c'est un point de départ.
+      </p>
+      {scanError && <p className="mb-2 text-xs text-error">{scanError}</p>}
+      {scanRationale && !scanError && (
+        <p className="mb-2 rounded-lg bg-info/10 p-2 text-xs leading-snug text-info-content">
+          <span className="font-medium">Angle proposé — </span>
+          {scanRationale}
+        </p>
+      )}
 
       <label className="mb-1 block text-xs font-medium text-base-content/60" htmlFor="op-annot-prop">
         Ce que tu veux distinguer

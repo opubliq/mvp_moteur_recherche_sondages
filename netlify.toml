@@ -73,6 +73,12 @@
   to = "/.netlify/functions/annotate"
   status = 200
 
+# Expose la function sous /scan (proposition LLM d'une grille d'annotation depuis un échantillon)
+[[redirects]]
+  from = "/scan"
+  to = "/.netlify/functions/scan"
+  status = 200
+
 # Expose la function sous /microdata (distributions & crosstabs DuckDB sur Parquet)
 [[redirects]]
   from = "/microdata"

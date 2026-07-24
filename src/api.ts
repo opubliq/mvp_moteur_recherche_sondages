@@ -1,5 +1,6 @@
 import type { Concept, ConceptCount, MicrodataQuery, MicrodataResponse, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent, VerbatimsResponse } from "./types";
 import type { AnnotateResult, AnnotationItem, AnnotationSpec } from "./logic/annotate";
+import type { ScanItem, ScanResult } from "./logic/scan";
 
 /** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
 export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
@@ -177,6 +178,45 @@ export async function annotateChunk(params: {
     throw new Error(`Annotation échouée (${res.status}): ${body || res.statusText}`);
   }
   return (await res.json()) as AnnotateResult;
+}
+
+/** Quota du modèle atteint pendant un scan : réessayer plus tard, pas boucler. */
+export class ScanRateLimitError extends Error {
+  constructor(public retryAfterMs: number) {
+    super("Quota du modèle atteint");
+    this.name = "ScanRateLimitError";
+  }
+}
+
+/**
+ * Appelle `/scan` : propose une grille d'annotation (propriété + étiquettes) à
+ * partir d'un échantillon de réponses. Un seul appel — pas d'orchestration,
+ * contrairement à `annotateChunk`.
+ */
+export async function scanQuestion(params: {
+  questionText: string;
+  items: ScanItem[];
+  signal?: AbortSignal;
+}): Promise<ScanResult> {
+  const res = await fetch("/scan", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      question_text: params.questionText,
+      items: params.items,
+    }),
+    signal: params.signal,
+  });
+
+  if (res.status === 429) {
+    const data = (await res.json().catch(() => ({}))) as { retry_after_ms?: number };
+    throw new ScanRateLimitError(data.retry_after_ms ?? 20000);
+  }
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Scan échoué (${res.status}): ${body || res.statusText}`);
+  }
+  return (await res.json()) as ScanResult;
 }
 
 /**
