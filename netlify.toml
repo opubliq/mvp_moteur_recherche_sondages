@@ -4,12 +4,13 @@
   functions     = "netlify/functions"
   edge_functions = "netlify/edge-functions"
 
+# DuckDB embarque un binding natif (.node) qu'esbuild ne peut pas bundler. On
+# l'externalise et on force l'inclusion du binaire dans le paquet Lambda. Réglage
+# GLOBAL : plusieurs fonctions touchent DuckDB via `microdata-core` (microdata,
+# microdata-manifest, agent) — un bloc par fonction en oubliait, et une seule
+# fonction non externalisée fait planter tout le bundling (donc `netlify dev`).
 [functions]
   node_bundler = "esbuild"
-
-# microdata embarque DuckDB (binding natif .node) : esbuild ne peut pas le bundler.
-# On l'externalise et on force l'inclusion du binaire natif dans le paquet Lambda.
-[functions."microdata"]
   external_node_modules = ["@duckdb/node-api", "@duckdb/node-bindings"]
   included_files = [
     "node_modules/@duckdb/node-api/**",
