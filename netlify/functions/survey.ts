@@ -5,28 +5,16 @@
  * POST { survey_id: string }
  *
  * Contrairement à /search, AUCUN embedding ni recherche vectorielle : on liste
- * exhaustivement un sondage par simple filtre OData.
- *
- *   1. Doc parent  : filtre `doc_type eq 'survey'   and survey_id eq '<id>'`
- *   2. Questions   : filtre `doc_type eq 'question' and survey_id eq '<id>'`,
- *                    `top` élevé (eeq_2014 = 128 questions), triées par variable.
- *
- * Une seule requête AI Search couvre les deux : filtre `survey_id eq '<id>'`,
- * puis on partitionne par `doc_type` côté serveur.
+ * exhaustivement un sondage par simple filtre OData. La requête AI Search elle-même
+ * vit dans `src/logic/corpus.ts` (`getSurveyCatalog`), partagée avec l'orchestrateur
+ * agent (`src/logic/agent.ts`) — source de vérité unique du mapping code→label.
  *
  * Vars d'env requises (côté serveur seulement) :
  *   SEARCH_ENDPOINT, SEARCH_QUERY_KEY
  */
 
 import type { Handler } from "@netlify/functions";
-
-// ---------------------------------------------------------------------------
-// Constantes
-// ---------------------------------------------------------------------------
-
-const INDEX_NAME = "survey-questions";
-const SEARCH_API_VERSION = "2024-07-01";
-const SEARCH_TOP = 1000;
+import { getSurveyCatalog } from "../../src/logic/corpus";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -34,56 +22,6 @@ const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Headers": "Content-Type",
   "Content-Type": "application/json",
 };
-
-// Champs renvoyés (mêmes que search.ts, sans content_vector ; + doc_type pour
-// partitionner parent / children).
-const SELECT_FIELDS = [
-  "id",
-  "doc_type",
-  "survey_id",
-  "survey_name",
-  "survey_description",
-  "survey_year",
-  "pollster",
-  "language",
-  "variable",
-  "question_text",
-  "display_label",
-  "response_options",
-  "var_type",
-  "text_kind",
-  "is_sociodemo",
-  "is_ordinal",
-  "sociodemo_type",
-  "concepts",
-  "themes",
-  "tags",
-  "n_respondents",
-].join(",");
-
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
-interface IndexDoc {
-  id: string;
-  doc_type?: string;
-  survey_id: string;
-  survey_name: string;
-  survey_year: number | null;
-  pollster: string | null;
-  language: string | null;
-  variable?: string;
-  [key: string]: unknown;
-}
-
-interface SearchResponse {
-  value: IndexDoc[];
-}
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
 
 /** Extrait survey_id depuis le body POST ou la query string GET. */
 function extractSurveyId(event: Parameters<Handler>[0]): string | null {
@@ -100,10 +38,6 @@ function extractSurveyId(event: Parameters<Handler>[0]): string | null {
     return null;
   }
 }
-
-// ---------------------------------------------------------------------------
-// Handler principal
-// ---------------------------------------------------------------------------
 
 export const handler: Handler = async (event) => {
   // CORS preflight
@@ -140,41 +74,14 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  // Échappe les apostrophes OData ('  ->  '')
-  const escapedId = surveyId.replace(/'/g, "''");
-  const filter = `survey_id eq '${escapedId}'`;
-
-  const searchEndpoint = (process.env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
-  const searchKey = process.env.SEARCH_QUERY_KEY ?? ""; // clé QUERY (read-only)
-  const searchUrl = `${searchEndpoint}/indexes/${INDEX_NAME}/docs/search?api-version=${SEARCH_API_VERSION}`;
-
-  // Le champ `variable` n'est pas sortable côté index → tri client après coup.
-  const searchPayload = {
-    search: "*",
-    filter,
-    select: SELECT_FIELDS,
-    top: SEARCH_TOP,
+  const env = {
+    SEARCH_ENDPOINT: process.env.SEARCH_ENDPOINT!,
+    SEARCH_QUERY_KEY: process.env.SEARCH_QUERY_KEY!,
   };
 
-  console.log(`[survey] AI Search — filter="${filter}" top=${SEARCH_TOP}`);
-
-  let searchResult: SearchResponse;
+  let catalog: Awaited<ReturnType<typeof getSurveyCatalog>>;
   try {
-    const res = await fetch(searchUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": searchKey,
-      },
-      body: JSON.stringify(searchPayload),
-    });
-
-    if (!res.ok) {
-      const errBody = await res.text();
-      throw new Error(`AI Search error ${res.status}: ${errBody}`);
-    }
-
-    searchResult = (await res.json()) as SearchResponse;
+    catalog = await getSurveyCatalog(surveyId, env);
   } catch (err) {
     console.error("[survey] AI Search request failed:", err);
     return {
@@ -184,18 +91,7 @@ export const handler: Handler = async (event) => {
     };
   }
 
-  const docs = searchResult.value ?? [];
-  const survey = docs.find((d) => d.doc_type === "survey") ?? null;
-  const questions = docs
-    .filter((d) => d.doc_type === "question")
-    .sort((a, b) =>
-      (a.variable ?? "").localeCompare(b.variable ?? "", undefined, {
-        numeric: true,
-        sensitivity: "base",
-      }),
-    );
-
-  if (!survey && questions.length === 0) {
+  if (!catalog) {
     return {
       statusCode: 404,
       headers: CORS_HEADERS,
@@ -206,10 +102,6 @@ export const handler: Handler = async (event) => {
   return {
     statusCode: 200,
     headers: CORS_HEADERS,
-    body: JSON.stringify({
-      survey,
-      questions,
-      count: questions.length,
-    }),
+    body: JSON.stringify(catalog),
   };
 };
