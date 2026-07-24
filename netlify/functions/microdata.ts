@@ -16,8 +16,14 @@ import type { Handler } from "@netlify/functions";
 import {
   handleMicrodataQuery,
   MicrodataError,
+  type Agg,
   type MicrodataParams,
 } from "./microdata-core/core.js";
+
+const AGGS = ["count", "mean", "corr", "ols", "ttest", "anova"] as const;
+function parseAgg(v: unknown): Agg {
+  return (AGGS as readonly string[]).includes(String(v)) ? (v as Agg) : "count";
+}
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -34,8 +40,12 @@ function parseParams(event: Parameters<Handler>[0]): MicrodataParams {
       target: String(b.target ?? ""),
       dim: b.dim ? String(b.dim) : undefined,
       filters: Array.isArray(b.filters) ? b.filters : [],
-      agg: b.agg === "mean" ? "mean" : "count",
+      agg: parseAgg(b.agg),
       exclude: Array.isArray(b.exclude) ? b.exclude : [],
+      target2: b.target2 ? String(b.target2) : undefined,
+      exclude2: Array.isArray(b.exclude2) ? b.exclude2 : undefined,
+      groups: Array.isArray(b.groups) ? b.groups : undefined,
+      success: Array.isArray(b.success) ? b.success : undefined,
       // Annotation éphémère (jsu.7) : POST uniquement — une map de plusieurs
       // milliers de paires n'a rien à faire dans une query string.
       annotation: Array.isArray(b.annotation) ? b.annotation : undefined,
@@ -47,8 +57,12 @@ function parseParams(event: Parameters<Handler>[0]): MicrodataParams {
     target: q.target ?? "",
     dim: q.dim || undefined,
     filters: q.filters ? JSON.parse(q.filters) : [],
-    agg: q.agg === "mean" ? "mean" : "count",
+    agg: parseAgg(q.agg),
     exclude: q.exclude ? JSON.parse(q.exclude) : [],
+    target2: q.target2 || undefined,
+    exclude2: q.exclude2 ? JSON.parse(q.exclude2) : undefined,
+    groups: q.groups ? JSON.parse(q.groups) : undefined,
+    success: q.success ? JSON.parse(q.success) : undefined,
   };
 }
 
