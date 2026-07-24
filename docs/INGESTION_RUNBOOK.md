@@ -39,12 +39,21 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **13 sondages ingérés**, ~3043 docs (vérité terrain de l'index Azure) :
+- **14 sondages ingérés**, ~3143 docs catalogue (vérité terrain de l'index Azure) :
   `cecd_charte_2013_10`, `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`,
   `cecd_elxn_qc_2007`, `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`,
   `cecd_sante_can_usa`, `eeq_2014`, `govcan_06822_wave1_2024`,
   `govcan_06822_wave2_2024`, `govcan_06822_wave3_2024`, `govcan_habit_2024`,
-  `govcan_parca_2024`.
+  `govcan_parca_2024`, `medaillon_organismes_qualitatif`.
+- **`medaillon_organismes_qualitatif`** (ajouté 2026-07-23) : premier sondage au
+  format **CSV + questionnaire SurveyJS** (et non SAV/codebook). 130 organismes,
+  29 questions toutes ouvertes (`var_type=open`, `text_kind=prose`), extracteur +
+  enrichment écrits inline (les briefs subagent SAV ne s'appliquent pas). Rails
+  microdonnées (Parquet 130×33, `mode` conservé pour crosstab DuckDB) + verbatims
+  (1615 docs annotables) ingérés. **PII anonymisée totalement** : l'extracteur
+  génère un CSV dé-identifié (`_deid.csv`, sans `participant_name`/`_email`) qui est
+  la seule source lue par les rails — le `raw_data_file` de la JSON normalisée
+  pointe dessus (garde-fou : sans cette JSON, `_locate_raw` lirait le CSV brut PII).
 - Candidats restants : voir `ingestion/COUVERTURE.md` (55 ingérables classe A/B ;
   NE PAS ingérer les 2 classe C « nécessite questionnaire »).
 
