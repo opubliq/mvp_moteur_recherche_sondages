@@ -1,20 +1,23 @@
 /**
- * Netlify Function — /agent (bead aat.1)
+ * Netlify Function — /agent (beads aat.1, streaming aat.4)
  *
  * POST { messages: [{ role: "user"|"assistant", content: string }] }
- *   → { message, messages, trace, iterations, stopped_reason }
+ *   → flux SSE (text/event-stream) : une suite d'`AgentEvent` encodés
+ *     `data: <json>\n\n`, terminée par un event `{ type:"done", result }`.
  *
- * Adaptateur MINCE : parse la requête HTTP, valide l'env, injecte les
- * endpoints/clés dans la boucle tool-use (`src/logic/agent.ts`), sérialise la
- * réponse. Aucune logique d'orchestration ici — elle vit dans le module partagé,
- * testable hors runtime Netlify.
+ * Format de fonction Netlify **v2** (`export default (Request) => Response`),
+ * choisi EXPRÈS : le corps de la réponse est un `ReadableStream` Web standard,
+ * exactement l'API de streaming qu'Azure Functions (modèle Node v4) expose aussi.
+ * Lors de l'epic b1d (migration hors Netlify), SEUL ce fichier est à re-porter —
+ * l'orchestration vit dans `src/logic/agent.ts` et n'y touche pas.
  *
- * La clé AOAI et la clé de stockage ne quittent JAMAIS le serveur : la boucle
- * tourne côté fonction, le client n'envoie/reçoit que le fil de messages.
+ * Adaptateur MINCE : parse la requête, valide l'env, injecte endpoints/clés +
+ * accès micro-données dans `runAgentStream`, ré-encode chaque event en SSE. La
+ * clé AOAI et la clé de stockage ne quittent JAMAIS le serveur : la boucle tourne
+ * côté fonction, le client n'envoie/reçoit que le fil de messages + les events.
  *
- * LIMITE (documentée, cf. src/logic/agent.ts) : fonction SYNCHRONE, ~10 s de
- * budget Netlify. Une chaîne longue d'outils peut être coupée par la plateforme.
- * Le streaming / la déportation de la boucle relèvent de aat.3.
+ * Le mur ~10 s d'une fonction synchrone ne s'applique plus tel quel : les octets
+ * du flux gardent la connexion vivante (et disparaîtra sur Azure, timeout large).
  *
  * Vars d'env requises (serveur only) : AOAI_ENDPOINT, AOAI_KEY, AOAI_CHAT_DEPLOYMENT,
  *   AOAI_EMBED_DEPLOYMENT, SEARCH_ENDPOINT, SEARCH_QUERY_KEY, COHERE_RERANK_ENDPOINT,
@@ -22,21 +25,28 @@
  *   AZURE_STORAGE_KEY, AZURE_STORAGE_CONTAINER.
  */
 
-import type { Handler } from "@netlify/functions";
 import {
-  runAgent,
+  runAgentStream,
   AgentRateLimitError,
   type AgentEnv,
   type ChatMessage,
   type MicrodataProvider,
 } from "../../src/logic/agent";
+import { newRequestId } from "../../src/logic/costlog";
 import { handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "./microdata-core/core.js";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
-  "Content-Type": "application/json",
+};
+
+/** En-têtes du flux SSE (CORS inclus). `no-transform` empêche tout tampon proxy. */
+const SSE_HEADERS: Record<string, string> = {
+  ...CORS_HEADERS,
+  "Content-Type": "text/event-stream; charset=utf-8",
+  "Cache-Control": "no-cache, no-transform",
+  Connection: "keep-alive",
 };
 
 const REQUIRED_ENV = [
@@ -57,11 +67,12 @@ const REQUIRED_ENV = [
 /** Plafond de messages du fil (borne la taille du POST et le coût). */
 const MAX_HISTORY = 40;
 
-const fail = (statusCode: number, error: string, extra: Record<string, unknown> = {}) => ({
-  statusCode,
-  headers: CORS_HEADERS,
-  body: JSON.stringify({ error, ...extra }),
-});
+/** Réponse d'erreur JSON classique (avant l'ouverture du flux). */
+const failJson = (status: number, error: string, extra: Record<string, unknown> = {}) =>
+  new Response(JSON.stringify({ error, ...extra }), {
+    status,
+    headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+  });
 
 /** Ne garde que les messages user/assistant textuels du client (le reste est reconstruit). */
 function sanitizeHistory(raw: unknown): ChatMessage[] {
@@ -78,34 +89,39 @@ function sanitizeHistory(raw: unknown): ChatMessage[] {
   return out.slice(-MAX_HISTORY);
 }
 
-export const handler: Handler = async (event) => {
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 200, headers: CORS_HEADERS, body: "" };
+/** Encode un objet en une frame SSE `data: <json>\n\n` (JSON sur une seule ligne). */
+function sseFrame(payload: unknown): string {
+  return `data: ${JSON.stringify(payload)}\n\n`;
+}
+
+export default async (req: Request): Promise<Response> => {
+  if (req.method === "OPTIONS") {
+    return new Response("", { status: 200, headers: CORS_HEADERS });
   }
-  if (event.httpMethod !== "POST") {
-    return fail(405, "Method Not Allowed");
+  if (req.method !== "POST") {
+    return failJson(405, "Method Not Allowed");
   }
 
   for (const key of REQUIRED_ENV) {
     if (!process.env[key]) {
       console.error(`[agent] Missing env var: ${key}`);
-      return fail(500, `Server configuration error: missing ${key}`);
+      return failJson(500, `Server configuration error: missing ${key}`);
     }
   }
 
   let body: { messages?: unknown };
   try {
-    body = JSON.parse(event.body ?? "{}");
+    body = (await req.json()) as { messages?: unknown };
   } catch {
-    return fail(400, "Invalid JSON body");
+    return failJson(400, "Invalid JSON body");
   }
 
   const history = sanitizeHistory(body.messages);
   if (history.length === 0) {
-    return fail(400, "messages est requis (au moins un message user)");
+    return failJson(400, "messages est requis (au moins un message user)");
   }
   if (history[history.length - 1].role !== "user") {
-    return fail(400, "Le dernier message doit être de rôle user");
+    return failJson(400, "Le dernier message doit être de rôle user");
   }
 
   const env: AgentEnv = Object.fromEntries(
@@ -126,14 +142,37 @@ export const handler: Handler = async (event) => {
     manifest: () => fetchManifest(microdataConfig),
   };
 
-  try {
-    const result = await runAgent(history, env, microdata);
-    return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify(result) };
-  } catch (err) {
-    if (err instanceof AgentRateLimitError) {
-      return fail(429, "Quota du modèle atteint", { retry_after_ms: err.retryAfterMs });
-    }
-    console.error("[agent] loop failed:", err);
-    return fail(502, "Agent échoué", { details: err instanceof Error ? err.message : String(err) });
-  }
+  // request_id unique par requête agent (epic 97r) : corrèle les lignes
+  // agent_turn de la boucle ET les embed/rerank des /search déclenchés.
+  const requestId = newRequestId();
+
+  const encoder = new TextEncoder();
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const send = (payload: unknown) => controller.enqueue(encoder.encode(sseFrame(payload)));
+      try {
+        for await (const ev of runAgentStream(history, env, microdata, { requestId })) {
+          send(ev);
+        }
+      } catch (err) {
+        // Le flux SSE a déjà un statut 200 : une erreur en cours de boucle ne peut
+        // plus devenir un 429/502 HTTP, on la relaie DANS le flux. Le client mappe
+        // `rate_limit` sur son compte à rebours, comme l'ancien 429 JSON.
+        if (err instanceof AgentRateLimitError) {
+          send({ type: "error", kind: "rate_limit", retry_after_ms: err.retryAfterMs });
+        } else {
+          console.error("[agent] stream failed:", err);
+          send({
+            type: "error",
+            kind: "failed",
+            message: err instanceof Error ? err.message : String(err),
+          });
+        }
+      } finally {
+        controller.close();
+      }
+    },
+  });
+
+  return new Response(stream, { status: 200, headers: SSE_HEADERS });
 };

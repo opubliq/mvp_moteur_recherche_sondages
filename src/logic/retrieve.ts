@@ -21,6 +21,7 @@
  */
 
 import type { Concept, SearchFilters, SearchResult } from "../types";
+import { logUsage, newRequestId } from "./costlog";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -59,6 +60,13 @@ export interface RetrieveEnv {
 export interface RetrieveOptions {
   filters?: SearchFilters;
   top?: number;
+  /**
+   * request_id à corréler à l'appel embedding (epic 97r). Fourni par un appelant
+   * qui orchestre plusieurs opérations sous une même requête (ex. la boucle
+   * agent), pour que l'agrégation par requête somme boucle + outils. Si absent,
+   * `getEmbedding` génère son propre id localement (rétrocompatible).
+   */
+  requestId?: string;
 }
 
 /**
@@ -90,6 +98,7 @@ export class RetrieveError extends Error {
 
 interface AoaiEmbeddingResponse {
   data: Array<{ embedding: number[]; index: number }>;
+  usage?: { prompt_tokens: number };
 }
 
 interface AzureSearchResponse {
@@ -102,14 +111,22 @@ interface AzureSearchResponse {
 // Helpers
 // ---------------------------------------------------------------------------
 
-/** Génère l'embedding d'un texte via Azure OpenAI REST API. */
-async function getEmbedding(text: string, env: RetrieveEnv): Promise<number[]> {
+/**
+ * Génère l'embedding d'un texte via Azure OpenAI REST API.
+ *
+ * @param requestId request_id à corréler à cet appel (epic 97r). Optionnel :
+ *   fourni par un orchestrateur (ex. boucle agent) pour sommer boucle + outils
+ *   sous une même requête ; sinon on en génère un localement (rétrocompatible).
+ */
+async function getEmbedding(text: string, env: RetrieveEnv, requestId?: string): Promise<number[]> {
   const endpoint = (env.AOAI_ENDPOINT ?? "").replace(/\/$/, "");
   const deployment = env.AOAI_EMBED_DEPLOYMENT ?? "";
   const key = env.AOAI_KEY ?? "";
 
   const url = `${endpoint}/openai/deployments/${deployment}/embeddings?api-version=${AOAI_API_VERSION}`;
 
+  const usageRequestId = requestId ?? newRequestId();
+  const startedAt = Date.now();
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -125,6 +142,17 @@ async function getEmbedding(text: string, env: RetrieveEnv): Promise<number[]> {
   }
 
   const json = (await res.json()) as AoaiEmbeddingResponse;
+
+  // Usage & coût marginal (epic 97r) — best-effort, purement additif.
+  // Un embedding n'a pas de tokens de complétion.
+  logUsage({
+    client_id: "unknown", // propagation client_id : ticket 97r.5
+    request_id: usageRequestId,
+    op: "embed",
+    prompt_tokens: json.usage?.prompt_tokens,
+    latency_ms: Date.now() - startedAt,
+  });
+
   return json.data[0].embedding;
 }
 
@@ -243,7 +271,7 @@ export async function retrieve(
   options: RetrieveOptions = {},
 ): Promise<RetrieveResult> {
   const trimmedQuery = query.trim();
-  const { filters, top = 10 } = options;
+  const { filters, top = 10, requestId } = options;
   const clampedTop = Math.min(Math.max(1, Number(top) || 10), MAX_TOP);
 
   // -----------------------------------------------------------------------
@@ -251,7 +279,7 @@ export async function retrieve(
   // -----------------------------------------------------------------------
   let vector: number[];
   try {
-    vector = await getEmbedding(trimmedQuery, env);
+    vector = await getEmbedding(trimmedQuery, env, requestId);
     console.log(
       `[retrieve] embedding OK — dims=${
         vector.length

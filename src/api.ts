@@ -1,6 +1,9 @@
 import type { Concept, ConceptCount, MicrodataQuery, MicrodataResponse, SearchFilters, SearchResponse, SearchResult, SurveyDetailResponse, SurveyParent, VerbatimsResponse } from "./types";
 import type { AnnotateResult, AnnotationItem, AnnotationSpec } from "./logic/annotate";
 import type { ScanItem, ScanResult } from "./logic/scan";
+import type { ChatMessage as AgentMessage, ToolTrace as AgentToolTrace, AgentEvent } from "./logic/agent";
+
+export type { AgentMessage, AgentToolTrace, AgentEvent };
 
 /** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
 export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
@@ -264,4 +267,97 @@ export async function fetchQuestionsByTag(
   }
   const data = (await res.json()) as { results: SearchResult[] };
   return data.results;
+}
+
+/** Quota du modèle atteint pendant un tour de l'agent : relayer le délai, pas 502. */
+export class AgentRateLimitError extends Error {
+  constructor(public retryAfterMs: number) {
+    super("Quota du modèle atteint");
+    this.name = "AgentRateLimitError";
+  }
+}
+
+/** Réponse de `/agent` (bead aat.1) — voir netlify/functions/agent.ts. */
+export interface AgentChatResponse {
+  message: string;
+  messages: AgentMessage[];
+  trace: AgentToolTrace[];
+  iterations: number;
+  stopped_reason: "final" | "max_iterations" | "deadline";
+}
+
+/** Frame d'erreur du flux SSE /agent (hors union AgentEvent : purement transport). */
+type AgentStreamError = { type: "error"; kind: "rate_limit" | "failed"; retry_after_ms?: number; message?: string };
+
+/**
+ * Appelle `/agent` en STREAMING (bead aat.4). POST le fil, lit le flux SSE et
+ * relaie chaque `AgentEvent` à `onEvent` au fil de l'eau (outils en direct, puis
+ * réponse). Résout avec le `result` de l'event `done` (fil à réinjecter + trace).
+ *
+ * On lit le corps via `ReadableStream` plutôt qu'`EventSource` : ce dernier ne
+ * fait que du GET et ne peut pas porter le fil `messages` en body. Ce câblage est
+ * transport-agnostique (Netlify aujourd'hui, Azure Functions après l'epic b1d).
+ */
+export async function agentChatStream(
+  messages: AgentMessage[],
+  onEvent: (ev: AgentEvent) => void,
+): Promise<AgentChatResponse> {
+  const res = await fetch("/agent", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ messages }),
+  });
+  // Erreur AVANT l'ouverture du flux (env manquant, corps invalide, 429 précoce).
+  if (!res.ok || !res.body) {
+    if (res.status === 429) {
+      const data = (await res.json().catch(() => ({}))) as { retry_after_ms?: number };
+      throw new AgentRateLimitError(data.retry_after_ms ?? 20000);
+    }
+    const body = await res.text().catch(() => "");
+    throw new Error(`Agent échoué (${res.status}): ${body || res.statusText}`);
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let result: AgentChatResponse | null = null;
+
+  // Traite une frame SSE (bloc séparé par `\n\n`) : on ne lit que les lignes `data:`.
+  const handleFrame = (frame: string) => {
+    const dataLines = frame
+      .split("\n")
+      .filter((l) => l.startsWith("data:"))
+      .map((l) => l.slice(5).trim());
+    if (dataLines.length === 0) return;
+    let payload: AgentEvent | AgentStreamError;
+    try {
+      payload = JSON.parse(dataLines.join("\n"));
+    } catch {
+      return; // frame incomplète/parasite : ignorée
+    }
+    if (payload.type === "error") {
+      const e = payload as AgentStreamError;
+      if (e.kind === "rate_limit") throw new AgentRateLimitError(e.retry_after_ms ?? 20000);
+      throw new Error(`Agent échoué: ${e.message ?? "erreur inconnue"}`);
+    }
+    if (payload.type === "done") result = payload.result;
+    onEvent(payload);
+  };
+
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    // Découpe sur le séparateur d'events SSE ; garde le reliquat partiel en buffer.
+    let sep: number;
+    while ((sep = buffer.indexOf("\n\n")) !== -1) {
+      const frame = buffer.slice(0, sep);
+      buffer = buffer.slice(sep + 2);
+      handleFrame(frame);
+    }
+  }
+  if (buffer.trim()) handleFrame(buffer); // dernière frame sans `\n\n` final
+
+  if (!result) throw new Error("Agent: flux terminé sans résultat final");
+  return result;
 }

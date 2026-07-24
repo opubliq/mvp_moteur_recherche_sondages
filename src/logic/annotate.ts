@@ -39,6 +39,8 @@
  * impossible ; `required` sur toutes les clés rend l'omission impossible.
  */
 
+import { logUsage, newRequestId } from "./costlog";
+
 // ---------------------------------------------------------------------------
 // Constantes
 // ---------------------------------------------------------------------------
@@ -288,6 +290,8 @@ export async function annotateBatch(
   const endpoint = (env.AOAI_ENDPOINT ?? "").replace(/\/$/, "");
   const url = `${endpoint}/openai/deployments/${env.AOAI_CHAT_DEPLOYMENT}/chat/completions?api-version=${AOAI_API_VERSION}`;
 
+  const requestId = newRequestId();
+  const startedAt = Date.now();
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": env.AOAI_KEY ?? "" },
@@ -317,6 +321,18 @@ export async function annotateBatch(
   }
 
   const json = (await res.json()) as AoaiChatResponse;
+
+  // Usage & coût marginal (epic 97r) — best-effort, purement additif.
+  logUsage({
+    client_id: "unknown", // propagation client_id : ticket 97r.5
+    request_id: requestId,
+    op: "annotate",
+    prompt_tokens: json.usage?.prompt_tokens,
+    completion_tokens: json.usage?.completion_tokens,
+    latency_ms: Date.now() - startedAt,
+    meta: { batch_size: items.length },
+  });
+
   const choice = json.choices?.[0];
   const content = choice?.message?.content;
   if (!content) {

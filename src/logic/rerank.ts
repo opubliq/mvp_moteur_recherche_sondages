@@ -25,6 +25,7 @@
 
 import type { ResponseOption } from "../types";
 import type { RawCandidate } from "./retrieve";
+import { logUsage, newRequestId } from "./costlog";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -94,15 +95,26 @@ function yamlDoc(question: string, opts: ResponseOption[], label?: string | null
  * recherche de citations (bead jsu.4) reranke des verbatims, qui sont du texte
  * nu sans structure YAML. Seul le formatage des documents diffère — l'appel,
  * lui, est le même.
+ *
+ * @param requestId request_id à corréler à cet appel (epic 97r, op:"rerank").
+ *   Optionnel : fourni par un orchestrateur (boucle agent, /search) pour sommer
+ *   boucle + outils sous une même requête ; sinon on en génère un localement
+ *   (rétrocompatible). C'est ICI qu'est émis le comptage en search units Cohere
+ *   (1 unit = 1 query + jusqu'à 100 docs → Math.ceil(nbDocs / 100)), donc tous
+ *   les appelants — questions ET verbatims — sont instrumentés d'un seul point.
  */
 export async function cohereRerankDocuments(
   query: string,
   documents: string[],
   env: RerankEnv,
+  requestId?: string,
 ): Promise<number[]> {
   const endpoint = (env.COHERE_RERANK_ENDPOINT ?? "").replace(/\/$/, "");
   const url = `${endpoint}/providers/cohere/v2/rerank`;
 
+  const usageRequestId = requestId ?? newRequestId();
+  const nbDocs = documents.length;
+  const startedAt = Date.now();
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -121,6 +133,19 @@ export async function cohereRerankDocuments(
     const body = await res.text();
     throw new RerankError(`Cohere rerank error ${res.status}: ${body}`);
   }
+
+  // Usage & coût marginal (epic 97r) — best-effort, purement additif. Cohere
+  // Rerank facture en search units (pas en tokens) : 1 unit couvre la query +
+  // jusqu'à 100 docs EN ENTRÉE (nbDocs, pas top_n de sortie). Émis après succès
+  // seulement (un appel raté n'est pas facturé côté search units).
+  logUsage({
+    client_id: "unknown", // propagation client_id : ticket 97r.5
+    request_id: usageRequestId,
+    op: "rerank",
+    units: Math.ceil(nbDocs / 100),
+    latency_ms: Date.now() - startedAt,
+    meta: { nb_docs: nbDocs },
+  });
 
   const json = (await res.json()) as CohereRerankResponse;
   const scores = new Array<number>(documents.length).fill(0);
@@ -148,6 +173,10 @@ export async function cohereRerankDocuments(
  * @param query      Query utilisateur brute (déjà trim() côté appelant).
  * @param candidates Candidats bruts renvoyés par `retrieve()`.
  * @param env        Endpoint/clé/déploiement Cohere (voir {@link RerankEnv}).
+ * @param requestId  request_id à corréler à l'appel Cohere (epic 97r). Optionnel :
+ *                   fourni par un orchestrateur (boucle agent) pour partager le
+ *                   même id que les `agent_turn`/`embed` de la requête ; sinon
+ *                   généré localement (rétrocompatible).
  * @returns          Les candidats de la fenêtre, chacun avec son
  *                   `relevance_score`, triés par pertinence décroissante.
  * @throws {RerankError} Si l'appel Cohere échoue.
@@ -156,6 +185,7 @@ export async function rerankCandidates(
   query: string,
   candidates: RawCandidate[],
   env: RerankEnv,
+  requestId?: string,
 ): Promise<RawCandidate[]> {
   if (!candidates || candidates.length === 0) return [];
 
@@ -168,7 +198,7 @@ export async function rerankCandidates(
   const documents = window.map((c) => yamlDoc(c.question_text, c.response_options, c.display_label));
 
   // 3. Appel Cohere (query brute).
-  const scores = await cohereRerankDocuments(query, documents, env);
+  const scores = await cohereRerankDocuments(query, documents, env, requestId);
 
   // 4. Attache relevance_score + tri desc.
   const reranked = window.map((c, i) => ({ ...c, relevance_score: scores[i] }));

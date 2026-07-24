@@ -39,6 +39,7 @@
  */
 
 import type { Concept } from "../types";
+import { logUsage, newRequestId } from "./costlog";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -129,6 +130,7 @@ interface FoundryChatResponse {
       content: string;
     };
   }>;
+  usage?: { prompt_tokens: number; completion_tokens: number };
 }
 
 // ---------------------------------------------------------------------------
@@ -177,6 +179,8 @@ export async function decomposeQuery(query: string, env: DecomposeEnv): Promise<
   const key = env.FOUNDRY_CHAT_KEY ?? "";
   const url = `${endpoint}/models/chat/completions?api-version=${FOUNDRY_API_VERSION}`;
 
+  const requestId = newRequestId();
+  const startedAt = Date.now();
   const res = await fetch(url, {
     method: "POST",
     headers: {
@@ -203,6 +207,17 @@ export async function decomposeQuery(query: string, env: DecomposeEnv): Promise<
   }
 
   const json = (await res.json()) as FoundryChatResponse;
+
+  // Usage & coût marginal (epic 97r) — best-effort, purement additif.
+  logUsage({
+    client_id: "unknown", // propagation client_id : ticket 97r.5
+    request_id: requestId,
+    op: "decompose",
+    prompt_tokens: json.usage?.prompt_tokens,
+    completion_tokens: json.usage?.completion_tokens,
+    latency_ms: Date.now() - startedAt,
+  });
+
   const content = json.choices[0]?.message?.content;
 
   if (!content) {

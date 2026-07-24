@@ -31,6 +31,7 @@
 import type { Concept, SearchFilters } from "../types";
 import { retrieve, RetrieveError, type RetrieveEnv } from "./retrieve";
 import { rerankCandidates, RerankError, type RerankEnv } from "./rerank";
+import { logUsage, newRequestId } from "./costlog";
 import {
   getSurveyCatalog,
   listSurveys,
@@ -143,6 +144,12 @@ interface AoaiChatResponse {
     message: { role: "assistant"; content: string | null; tool_calls?: ToolCall[] };
     finish_reason?: string;
   }>;
+  /**
+   * Consommation de tokens du tour (epic 97r). Le system prompt + les schémas
+   * d'outils sont repayés à CHAQUE tour, donc le coût agent est proportionnel au
+   * nombre de tours : d'où le comptage par tour (op:"agent_turn").
+   */
+  usage?: { prompt_tokens?: number; completion_tokens?: number };
 }
 
 /** Trace d'un appel d'outil, pour le debug et le futur rendu (aat.3). */
@@ -163,6 +170,27 @@ export interface AgentResult {
   iterations: number;
   stopped_reason: "final" | "max_iterations" | "deadline";
 }
+
+/**
+ * Événements émis au fil de la boucle par `runAgentStream` (bead aat.4).
+ *
+ * Canal VOLONTAIREMENT transport-agnostique : la boucle `yield` ces objets, un
+ * adaptateur mince (Netlify aujourd'hui, Azure Functions après l'epic b1d) les
+ * encode en SSE. Aucune primitive de streaming propriétaire ici.
+ *
+ * Niveau A (livré) : progression des outils (`tool_start`/`tool_end`) en direct,
+ * puis la réponse finale d'un bloc (`message`). Niveau B (plus tard) ajoutera un
+ * type `token` sur CE MÊME canal, sans rien casser côté client.
+ */
+export type AgentEvent =
+  /** Un outil va être exécuté (pastille "en cours" côté UI). */
+  | { type: "tool_start"; tool: string; args: unknown }
+  /** L'outil a répondu : sa trace (ok/erreur) est connue. */
+  | { type: "tool_end"; trace: ToolTrace }
+  /** Réponse finale rédigée de l'assistant (Niveau A : d'un bloc). */
+  | { type: "message"; content: string }
+  /** Fin de boucle : le résultat complet fait autorité (fil à réinjecter, trace). */
+  | { type: "done"; result: AgentResult };
 
 /** Levée sur quota AOAI (429) : l'appelant relaie le délai, il ne 502 pas. */
 export class AgentRateLimitError extends Error {
@@ -194,7 +222,7 @@ OUTILS
 - search_questions(query, survey_id?, top?) : recherche hybride + rerank. Pour TROUVER des questions sur un sujet. Renvoie des questions avec leur survey_id, variable, et un score_pertinence 0-100.
 - list_surveys() : catalogue des sondages. Chaque entrée porte has_microdata : true = des croisements pondérés sont calculables, false = seulement de la recherche/lecture.
 - list_themes() : thèmes et concepts du corpus avec leur nombre de questions.
-- get_survey(survey_id) : catalogue EXHAUSTIF d'un sondage — pour CHAQUE variable ses response_options {code, label}, is_sociodemo, sociodemo_type, var_type. C'est l'outil qui te donne le mapping LANGAGE NATUREL → CODES RAW.
+- get_survey(survey_id, variables?) : catalogue d'un sondage. SANS variables → l'INDEX de toutes les variables (nom, question_text, type) mais SANS les response_options : sert à repérer la bonne variable. AVEC variables:[...] → le DÉTAIL (response_options {code, label}) de CES variables seulement. C'est l'outil qui te donne le mapping LANGAGE NATUREL → CODES RAW ; demande-le en ciblant les variables que tu vas croiser.
 - crosstab(survey_id, target, dim?, filters?, agg?, exclude?) : distribution/croisement PONDÉRÉ (erreur-type de Kish incluse). target = variable analysée, dim = variable de croisement, filters = [{var, codes:[...]}], agg = "count" (défaut) ou "mean". Renvoie des CODES RAW, jamais des libellés.
 
 RECHERCHE vs ANALYSE
@@ -205,7 +233,7 @@ CLARIFICATION AVANT DE CALCULER (obligatoire sur demande vague)
 Quand la demande est large ou ambiguë (ex. "sur l'immigration" : accueil ? seuils ? religion ? intégration ?), tu POSES une question de clarification AVANT de lancer des calculs, au lieu de deviner. C'est une fonctionnalité, pas un pis-aller. Ne demande pas de précisions déjà données. Une fois la demande assez précise, agis sans redemander.
 
 MAPPER UN SOUS-GROUPE SUR LES CODES (règle dure)
-crosstab ne connaît QUE les codes raw, propres à chaque sondage. Pour traduire "18-34 ans", "au Québec", "les femmes" en filtres, tu DOIS d'abord appeler get_survey(survey_id) et lire les response_options {code, label} de la variable concernée. Choisis les codes à partir des LABELS, puis passe ces codes à crosstab. Ne devine JAMAIS un code. De même, les résultats de crosstab sont des codes : rejoins-les aux labels via le get_survey déjà obtenu pour les présenter lisiblement.
+crosstab ne connaît QUE les codes raw, propres à chaque sondage. Pour traduire "18-34 ans", "au Québec", "les femmes" en filtres, tu DOIS d'abord appeler get_survey(survey_id, variables:[...]) EN CIBLANT les variables concernées (cible, dimension, filtres) et lire leurs response_options {code, label}. Choisis les codes à partir des LABELS, puis passe ces codes à crosstab. Ne devine JAMAIS un code. Si tu ignores encore le nom exact des variables, appelle d'abord get_survey(survey_id) sans variables pour parcourir l'index, puis redemande le détail des variables retenues. De même, les résultats de crosstab sont des codes : rejoins-les aux labels via le détail get_survey déjà obtenu pour les présenter lisiblement.
 
 RESPECTER LES MICRO-DONNÉES
 Ne propose un crosstab QUE sur un sondage dont has_microdata est true (list_surveys) ou présent dans le manifest. Si l'utilisateur veut analyser un sondage sans micro-données, dis-le et propose au mieux de la recherche/lecture de questions.
@@ -215,7 +243,14 @@ Reste DANS UN SEUL sondage par analyse : mêmes poids, même échantillon, même
 
 GARDE-FOUS
 - Signale les petits sous-groupes (raw_n faible) : un écart peut n'être que du bruit.
-- Sois honnête sur ce que le corpus ne contient pas. "On n'a pas ça directement, mais voici les batteries les plus proches" est une bonne réponse.`;
+- Sois honnête sur ce que le corpus ne contient pas. "On n'a pas ça directement, mais voici les batteries les plus proches" est une bonne réponse.
+
+FORMAT DE RÉPONSE (markdown — ta réponse est RENDUE en markdown)
+Structure toujours ta réponse en markdown, pas en texte plat :
+- Titres de section avec ## et ### (PAS des lignes de texte en gras isolées ; PAS un seul # en début de réponse suivi de tout le reste à plat).
+- Quand tu listes des questions/variables d'un ou plusieurs sondages, utilise un TABLEAU markdown (ex. colonnes Sondage | Variable | Libellé | µ-données). Un inventaire se lit en tableau, pas en puces imbriquées.
+- **Gras** pour les chiffres-clés, les noms de variables et les libellés de réponse ; puces pour les énumérations courtes.
+- Va à l'essentiel : pas de préambule ni de méta-commentaire sur ta démarche. Une réponse courte et bien structurée vaut mieux qu'un long rapport.`;
 
 // ---------------------------------------------------------------------------
 // Définitions des outils (format function calling OpenAI/Azure)
@@ -262,10 +297,18 @@ export const TOOL_DEFS = [
     function: {
       name: "get_survey",
       description:
-        "Catalogue exhaustif d'un sondage : pour chaque variable ses response_options {code,label}, is_sociodemo, sociodemo_type, var_type. Indispensable pour mapper un sous-groupe en langage naturel sur les codes raw AVANT un crosstab, et pour rejoindre les codes d'un crosstab à leurs libellés.",
+        "Catalogue d'un sondage. SANS `variables` : renvoie l'INDEX de toutes les variables (variable, question_text, type) mais PAS les response_options — pour repérer les variables pertinentes. AVEC `variables:[...]` : renvoie le DÉTAIL (response_options {code,label}) UNIQUEMENT pour ces variables. Passe toujours `variables` pour obtenir le mapping code↔label des variables que tu vas croiser (cible, dimension, filtres) : c'est plus rapide et ça évite de renvoyer tout le catalogue à chaque tour.",
       parameters: {
         type: "object",
-        properties: { survey_id: { type: "string" } },
+        properties: {
+          survey_id: { type: "string" },
+          variables: {
+            type: "array",
+            description:
+              "Variables dont tu veux le détail (response_options). Omis = index sans options de toutes les variables.",
+            items: { type: "string" },
+          },
+        },
         required: ["survey_id"],
         additionalProperties: false,
       },
@@ -361,6 +404,24 @@ function trimSurveyQuestion(q: Record<string, any>) {
 }
 
 /**
+ * Variante SANS `response_options` (aat.6) : c'est ce dernier champ — chaque
+ * variable × chaque option — qui fait exploser le catalogue et, ré-émis à chaque
+ * tour de boucle, épuise le TPM. Quand le modèle ne cible pas de variables
+ * précises, on lui renvoie l'INDEX (variable + libellé de question + type), assez
+ * pour repérer la ou les variables à analyser ; il redemande alors le détail avec
+ * `variables:[...]` pour n'obtenir les options QUE de celles-là.
+ */
+function indexSurveyQuestion(q: Record<string, any>) {
+  return {
+    variable: q.variable,
+    question_text: q.question_text,
+    var_type: q.var_type,
+    is_sociodemo: q.is_sociodemo,
+    sociodemo_type: q.sociodemo_type,
+  };
+}
+
+/**
  * Exécute UN outil et renvoie l'objet résultat (sérialisé ensuite en message
  * tool). Ne LÈVE pas sur erreur métier : renvoie `{ error }` pour que le modèle
  * puisse corriger (ex. sondage sans micro-données) plutôt que faire échouer la
@@ -372,6 +433,7 @@ export async function executeTool(
   env: AgentEnv,
   microdata: MicrodataProvider,
   manifestCache: { current: ManifestLike | null },
+  requestId?: string,
 ): Promise<unknown> {
   const getManifest = async (): Promise<ManifestLike> => {
     if (!manifestCache.current) manifestCache.current = await microdata.manifest();
@@ -388,8 +450,11 @@ export async function executeTool(
         : undefined;
       const concepts: Concept[] | undefined = undefined;
       try {
-        const { candidates } = await retrieve(query, concepts, retrieveEnv(env), { filters, top });
-        let ranked = await rerankCandidates(query, candidates, rerankEnv(env));
+        // request_id de la requête agent propagé à l'embedding (op:"embed") ET au
+        // rerank (op:"rerank", ticket 97r.3) pour que l'agrégation par requête
+        // somme la boucle + les /search déclenchés sous un même request_id.
+        const { candidates } = await retrieve(query, concepts, retrieveEnv(env), { filters, top, requestId });
+        let ranked = await rerankCandidates(query, candidates, rerankEnv(env), requestId);
         ranked = ranked
           .map((r) => ({ ...r, score_pertinence: Math.round((r.relevance_score ?? 0) * 100) }))
           .slice(0, top);
@@ -429,12 +494,36 @@ export async function executeTool(
       const catalog = await getSurveyCatalog(surveyId, corpusEnv(env));
       if (!catalog) return { error: `Aucun sondage pour survey_id '${surveyId}'` };
       const manifest = await getManifest();
+
+      // aat.6 : `variables` cible le détail (response_options) sur quelques
+      // variables au lieu de renvoyer — et ré-émettre à chaque tour — TOUT le
+      // catalogue exhaustif. Sans `variables`, on renvoie l'INDEX sans options.
+      const wanted = Array.isArray(args.variables)
+        ? (args.variables as unknown[]).map((v) => String(v)).filter(Boolean)
+        : [];
+      const detailed = wanted.length > 0;
+      const questions = detailed
+        ? catalog.questions.filter((q) => wanted.includes(String((q as any).variable)))
+        : catalog.questions;
+
+      // Variables demandées mais introuvables : le signaler pour que le modèle
+      // corrige (faute de frappe sur un nom de variable) plutôt que de deviner.
+      const unknownVars = detailed
+        ? wanted.filter((v) => !catalog.questions.some((q) => String((q as any).variable) === v))
+        : [];
+
       return {
         survey_id: surveyId,
         survey_name: catalog.survey?.survey_name ?? null,
         has_microdata: manifest.surveys.some((s) => s.survey_id === surveyId),
-        count: catalog.count,
-        questions: catalog.questions.map((q) => trimSurveyQuestion(q as any)),
+        // `mode` explicite pour le modèle : en "index" les response_options sont
+        // ABSENTES par design — il doit rappeler get_survey avec `variables`.
+        mode: detailed ? "detail" : "index",
+        count: detailed ? questions.length : catalog.count,
+        ...(unknownVars.length > 0 ? { unknown_variables: unknownVars } : {}),
+        questions: questions.map((q) =>
+          detailed ? trimSurveyQuestion(q as any) : indexSurveyQuestion(q as any),
+        ),
       };
     }
 
@@ -472,7 +561,17 @@ export async function executeTool(
 // Appel AOAI (chat completions, tools)
 // ---------------------------------------------------------------------------
 
-export type ChatFn = (messages: ChatMessage[], useTools: boolean) => Promise<AoaiChatResponse["choices"][0]["message"]>;
+/**
+ * Résultat d'un tour de chat : le message de l'assistant + l'usage tokens du
+ * tour (epic 97r). L'usage est porté ici pour que la boucle émette une ligne
+ * `agent_turn` par tour sans re-parser la réponse HTTP.
+ */
+export interface ChatTurn {
+  message: AoaiChatResponse["choices"][0]["message"];
+  usage?: { prompt_tokens?: number; completion_tokens?: number };
+}
+
+export type ChatFn = (messages: ChatMessage[], useTools: boolean) => Promise<ChatTurn>;
 
 /** Appel AOAI par défaut. Mirroir de src/logic/annotate.ts (reasoning model). */
 function makeAoaiChat(env: AgentEnv): ChatFn {
@@ -501,7 +600,7 @@ function makeAoaiChat(env: AgentEnv): ChatFn {
     const json = (await res.json()) as AoaiChatResponse;
     const msg = json.choices?.[0]?.message;
     if (!msg) throw new Error("Réponse vide du modèle");
-    return msg;
+    return { message: msg, usage: json.usage };
   };
 }
 
@@ -516,24 +615,38 @@ export interface RunAgentOptions {
   execute?: (name: string, args: Record<string, unknown>) => Promise<unknown>;
   /** Budget mural en ms. Défaut DEFAULT_DEADLINE_MS. */
   deadlineMs?: number;
+  /**
+   * request_id corrélant TOUTE la requête agent (epic 97r) : les lignes
+   * `agent_turn` de chaque tour ET les `embed`/`rerank` des /search déclenchés.
+   * Fourni par le handler Netlify ; à défaut, généré localement (rétrocompatible
+   * pour un appel direct du module hors endpoint).
+   */
+  requestId?: string;
 }
 
 /**
- * Fait tourner la boucle tool-use sur un fil de messages utilisateur/assistant.
- * `history` NE contient PAS le system prompt (ajouté ici). Renvoie la réponse
- * finale + le fil enrichi (pour poursuivre au tour suivant) + la trace d'outils.
+ * Boucle tool-use en GÉNÉRATEUR (bead aat.4) : `yield` des `AgentEvent` au fil
+ * de l'eau (outils qui démarrent/finissent, puis réponse finale). `history` NE
+ * contient PAS le system prompt (ajouté ici). Se termine par UN event `done`
+ * portant le résultat complet (fil à réinjecter + trace) qui fait autorité.
+ *
+ * `runAgent` (plus bas) draine ce générateur pour l'usage synchrone : la logique
+ * de boucle n'existe qu'ICI, un seul endroit à maintenir.
  */
-export async function runAgent(
+export async function* runAgentStream(
   history: ChatMessage[],
   env: AgentEnv,
   microdata: MicrodataProvider,
   opts: RunAgentOptions = {},
-): Promise<AgentResult> {
+): AsyncGenerator<AgentEvent, void, void> {
   const chat = opts.chat ?? makeAoaiChat(env);
+  // request_id unique par requête agent (fallback si non fourni par l'endpoint).
+  const requestId = opts.requestId ?? newRequestId();
   const manifestCache: { current: ManifestLike | null } = { current: null };
   const execute =
     opts.execute ??
-    ((name: string, args: Record<string, unknown>) => executeTool(name, args, env, microdata, manifestCache));
+    ((name: string, args: Record<string, unknown>) =>
+      executeTool(name, args, env, microdata, manifestCache, requestId));
   const deadlineMs = opts.deadlineMs ?? DEFAULT_DEADLINE_MS;
   const start = Date.now();
 
@@ -542,7 +655,19 @@ export async function runAgent(
   const trace: ToolTrace[] = [];
 
   let iterations = 0;
-  let stopped_reason: AgentResult["stopped_reason"] = "final";
+
+  // Émet le message final + l'event `done` terminal, puis termine le générateur.
+  function* finish(
+    assistant: AoaiChatResponse["choices"][0]["message"],
+    stopped_reason: AgentResult["stopped_reason"],
+  ): Generator<AgentEvent> {
+    const content = assistant.content ?? "";
+    yield { type: "message", content };
+    yield {
+      type: "done",
+      result: { message: content, messages: messages.slice(1), trace, iterations, stopped_reason },
+    };
+  }
 
   while (true) {
     iterations += 1;
@@ -552,7 +677,20 @@ export async function runAgent(
     // forcer une réponse rédigée (ou une question) plutôt qu'un nouvel outil.
     const useTools = !overBudget && !atMaxIter;
 
-    const assistant = await chat(messages, useTools);
+    // Un tour = un appel LLM (repayant system prompt + schémas d'outils). On
+    // mesure la latence autour du fetch et on émet UNE ligne agent_turn par tour,
+    // y compris le tour final de rédaction (useTools=false). turn_index 0-based.
+    const turnStartedAt = Date.now();
+    const { message: assistant, usage } = await chat(messages, useTools);
+    logUsage({
+      client_id: "unknown", // propagation client_id : ticket 97r.5
+      request_id: requestId,
+      op: "agent_turn",
+      prompt_tokens: usage?.prompt_tokens,
+      completion_tokens: usage?.completion_tokens,
+      latency_ms: Date.now() - turnStartedAt,
+      meta: { turn_index: iterations - 1 },
+    });
     messages.push({
       role: "assistant",
       content: assistant.content ?? null,
@@ -561,28 +699,15 @@ export async function runAgent(
 
     const toolCalls = assistant.tool_calls ?? [];
     if (toolCalls.length === 0) {
-      stopped_reason = overBudget ? "deadline" : atMaxIter ? "max_iterations" : "final";
-      return {
-        message: assistant.content ?? "",
-        messages: messages.slice(1),
-        trace,
-        iterations,
-        stopped_reason,
-      };
+      yield* finish(assistant, overBudget ? "deadline" : atMaxIter ? "max_iterations" : "final");
+      return;
     }
 
-    // Le modèle a demandé un/des outil(s) : on les exécute et on réinjecte.
+    // Le modèle a demandé un/des outil(s) mais on ne les offre plus (budget/plafond) :
+    // sécurité — on coupe et on rend ce qu'il a écrit.
     if (!useTools) {
-      // Sécurité : si le modèle réclame encore un outil alors qu'on ne les offre
-      // plus, on coupe et on rend ce qu'il a écrit.
-      stopped_reason = overBudget ? "deadline" : "max_iterations";
-      return {
-        message: assistant.content ?? "",
-        messages: messages.slice(1),
-        trace,
-        iterations,
-        stopped_reason,
-      };
+      yield* finish(assistant, overBudget ? "deadline" : "max_iterations");
+      return;
     }
 
     for (const call of toolCalls) {
@@ -592,6 +717,7 @@ export async function runAgent(
       } catch {
         args = {};
       }
+      yield { type: "tool_start", tool: call.function.name, args };
       let result: unknown;
       let ok = true;
       let errMsg: string | undefined;
@@ -607,7 +733,9 @@ export async function runAgent(
         errMsg = err instanceof Error ? err.message : String(err);
         result = { error: errMsg };
       }
-      trace.push({ tool: call.function.name, args, ok, ...(errMsg ? { error: errMsg } : {}) });
+      const t: ToolTrace = { tool: call.function.name, args, ok, ...(errMsg ? { error: errMsg } : {}) };
+      trace.push(t);
+      yield { type: "tool_end", trace: t };
       messages.push({
         role: "tool",
         tool_call_id: call.id,
@@ -615,4 +743,23 @@ export async function runAgent(
       });
     }
   }
+}
+
+/**
+ * Fait tourner la boucle tool-use et renvoie le résultat final (mode SYNCHRONE).
+ * Draine `runAgentStream` : même logique, un seul chemin. Une `AgentRateLimitError`
+ * levée dans la boucle se propage telle quelle à l'appelant (comportement inchangé).
+ */
+export async function runAgent(
+  history: ChatMessage[],
+  env: AgentEnv,
+  microdata: MicrodataProvider,
+  opts: RunAgentOptions = {},
+): Promise<AgentResult> {
+  let result: AgentResult | null = null;
+  for await (const ev of runAgentStream(history, env, microdata, opts)) {
+    if (ev.type === "done") result = ev.result;
+  }
+  if (!result) throw new Error("runAgent: flux terminé sans event `done`");
+  return result;
 }
