@@ -7,8 +7,10 @@ AGENTS.md
 
 eval/
 
-# App de pricing locale — non versionnée
-pricing_app/
+# App de pricing locale — non versionnée, SAUF la doc de coût (price cards,
+# variables à mesurer) qui est une référence partagée (epic 97r).
+pricing_app/*
+!pricing_app/*.md
 
 # Secrets / env
 *.env
