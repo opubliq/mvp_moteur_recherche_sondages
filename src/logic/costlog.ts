@@ -34,6 +34,21 @@ export interface UsageRecord {
   /** Absent pour `rerank` (pas de tokens). */
   prompt_tokens?: number;
   completion_tokens?: number;
+  /**
+   * Part de `prompt_tokens` servie depuis le cache de prompt Azure, quand
+   * l'API la rapporte (`usage.prompt_tokens_details.cached_tokens`).
+   *
+   * POURQUOI ÇA COMPTE (bead 97r.6). Le tarif *cached input* est à **1/10** de
+   * l'input normal. Or la boucle agent repaie son system prompt + les schémas
+   * d'outils à CHAQUE tour : si Azure les sert depuis le cache, le poste
+   * dominant du coût marginal change d'ordre de grandeur. Sous-ensemble de
+   * `prompt_tokens`, pas un supplément — le non-caché vaut
+   * `prompt_tokens - cached_tokens`.
+   *
+   * Absent si l'API ne le rapporte pas : on ne suppose alors aucun cache
+   * (hypothèse conservatrice retenue par la price card).
+   */
+  cached_tokens?: number;
   /** Search units Cohere ; absent pour les ops token-based. */
   units?: number;
   latency_ms: number;

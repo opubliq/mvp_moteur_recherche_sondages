@@ -143,7 +143,12 @@ export class RateLimitError extends Error {
 
 interface AoaiChatResponse {
   choices: Array<{ message: { content: string }; finish_reason?: string }>;
-  usage?: { prompt_tokens: number; completion_tokens: number };
+  usage?: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    /** Part cachée du prompt (tarif à 1/10) — voir `UsageRecord.cached_tokens`. */
+    prompt_tokens_details?: { cached_tokens?: number };
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -328,6 +333,7 @@ export async function annotateBatch(
     op: "annotate",
     prompt_tokens: json.usage?.prompt_tokens,
     completion_tokens: json.usage?.completion_tokens,
+    cached_tokens: json.usage?.prompt_tokens_details?.cached_tokens,
     latency_ms: Date.now() - startedAt,
     meta: { batch_size: items.length },
   });

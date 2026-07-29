@@ -148,8 +148,16 @@ interface AoaiChatResponse {
    * Consommation de tokens du tour (epic 97r). Le system prompt + les schémas
    * d'outils sont repayés à CHAQUE tour, donc le coût agent est proportionnel au
    * nombre de tours : d'où le comptage par tour (op:"agent_turn").
+   *
+   * `prompt_tokens_details.cached_tokens` est le levier : ce sont justement ces
+   * tokens répétés qu'Azure peut servir au tarif caché (1/10). Voir
+   * `UsageRecord.cached_tokens`.
    */
-  usage?: { prompt_tokens?: number; completion_tokens?: number };
+  usage?: {
+    prompt_tokens?: number;
+    completion_tokens?: number;
+    prompt_tokens_details?: { cached_tokens?: number };
+  };
 }
 
 /** Trace d'un appel d'outil, pour le debug et le futur rendu (aat.3). */
@@ -569,7 +577,7 @@ export async function executeTool(
  */
 export interface ChatTurn {
   message: AoaiChatResponse["choices"][0]["message"];
-  usage?: { prompt_tokens?: number; completion_tokens?: number };
+  usage?: AoaiChatResponse["usage"];
 }
 
 export type ChatFn = (messages: ChatMessage[], useTools: boolean) => Promise<ChatTurn>;
@@ -691,6 +699,7 @@ export async function* runAgentStream(
       op: "agent_turn",
       prompt_tokens: usage?.prompt_tokens,
       completion_tokens: usage?.completion_tokens,
+      cached_tokens: usage?.prompt_tokens_details?.cached_tokens,
       latency_ms: Date.now() - turnStartedAt,
       meta: { turn_index: iterations - 1 },
     });
