@@ -11,6 +11,10 @@ eval/
 # variables à mesurer) qui est une référence partagée (epic 97r).
 pricing_app/*
 !pricing_app/*.md
+# Outillage de mesure du coût marginal : versionné pour que les chiffres soient
+# reproductibles. `app.py` (le Streamlit local) reste ignoré.
+!pricing_app/aggregate_costlog.py
+!pricing_app/run_instrumented.py
 
 # Secrets / env
 *.env
