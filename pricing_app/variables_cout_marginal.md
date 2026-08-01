@@ -133,9 +133,39 @@ Petit à l'unité, mais présent à chaque `/search`.
 Coût par item, à mesurer tel quel (le plafonnement viendra après).
 
 ## Fixes à connaître (pas à imputer au /unité)
-- **AI Search** : 1 service (Basic, 104,70 $/mois), plusieurs index — 1 par client. Fixe tant qu'on est sous les limites du tier (voir multi-tenant).
+- **AI Search** : 1 service (Basic, 104,70 $/mois catalogue ; **87,34 $ CAD** facturés réellement en juillet 2026 — Cost Management, `rg-opubliq-sondages`), plusieurs index — 1 par client. Fixe tant qu'on est sous les limites du tier (voir multi-tenant).
 - **Claude Max** : forfait plat (sert surtout à l'ingestion).
-- **Container Apps + Service Bus** : relever sur un mois réel (Cost Management, filtre resource group).
+- **Container Apps + Service Bus** : **n'existent pas** dans `rg-opubliq-sondages` (relevé 2026-08-01, `az resource list`). L'app tourne sur Netlify Functions, pas sur Container Apps — cette ligne de coût est actuellement nulle côté Azure. Netlify facture à part (hors scope Cost Management Azure).
+- **Coût Azure réel juillet 2026** (Cost Management, `rg-opubliq-sondages`, hors bruit d'un autre projet — voir note ci-dessous) : AI Search 87,34 $ + AOAI dédié (`opubliq-sondages-aoai`) 1,86 $ (embedding + gpt-5-mini) + Foundry partagé (`info-4552-resource`) attribuable à nous : gpt-5.4-mini ~23,40 $ + Cohere rerank 2,66 $ ≈ **115,3 $ CAD/mois** au volume actuel (~12 sondages ingérés, usage de dev/test, pas de vrais clients).
+- **⚠️ Piège de mesure** : `info-4552-resource` (Foundry, eastus2) est **partagé avec un autre projet**. Juillet montrait aussi 254,97 $ CAD de « Grounding with Bing » (`MeterCategory: MS Bing Services`) — confirmé étranger à cette app (aucune référence à Bing dans le code). **Ne jamais lire le coût agrégé de cette ressource tel quel** — toujours filtrer par `MeterSubcategory`/`Meter` (`Cohere Models`, `Azure OpenAI GPT5 → 5.4 mini *`) pour isoler ce qui nous appartient.
+
+## Limites de capacité relevées (2026-08-01, portail/CLI Azure)
+
+### TPM par déploiement (quota, `az cognitiveservices account deployment list`)
+| Ressource | Déploiement | Utilisé pour | Capacité (K TPM) | Requêtes/min |
+|---|---|---|---|---|
+| `opubliq-sondages-aoai` (canadaeast) | `text-embedding-3-large` | embedding query | 120K | 120 |
+| `opubliq-sondages-aoai` (canadaeast) | `gpt-5-mini` | `AOAI_CHAT_DEPLOYMENT` | 800K | 800 |
+| `info-4552-resource` (eastus2, Foundry, **partagé**) | `gpt-5.4-mini` | `/decompose` + boucle agent | 200K | 200 |
+| `info-4552-resource` (eastus2, Foundry, **partagé**) | `Cohere-rerank-v4.0-pro` | rerank | 150K | 150 |
+
+Le déploiement chat agent (`gpt-5.4-mini`, 200K TPM) est le plus serré des deux
+chats et **partagé avec un autre projet** sur la même ressource Foundry — le
+noisy-neighbor documenté plus bas n'est pas hypothétique, la ressource sert
+déjà un autre usage.
+
+### Limites du tier AI Search Basic (doc Azure, service créé 2026-07-06 → post-mai 2024)
+- **Index max** : 15 (Basic post-2017 ; nos ~12 sondages = 12 index si 1/client... non, actuellement 1 index partagé `survey-questions`, pas encore 1/client — voir doc ingestion).
+- **Storage** : 15 GB/partition, 1 partition actuelle → **15 GB au total** pour le service.
+- **Storage vectoriel** : 5 GB/partition (sous-quota du storage total, dédié aux champs vecteurs).
+- **Scale-up dispo** : jusqu'à 3 partitions × 3 replicas (9 SU) sur Basic si besoin de dépasser.
+- Confirmé via `az search service show` : `sku.name=basic`, `partitionCount=1`, `replicaCount=1`.
+
+**Combien de clients tient un service Basic ?** Avec 1 index par client (modèle
+cible), la limite dure est **15 index avant saut de tier ou service
+additionnel** — pas le storage (15 GB largement suffisant pour des corpus de
+questions/verbatims de sondages à ce volume). Le palier de capacité réel est
+donc le **nombre d'index**, pas le $/Go.
 
 ---
 
