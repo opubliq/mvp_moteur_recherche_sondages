@@ -35,3 +35,11 @@ les requêtes et éviter les 429 (TPM).
 
 Chaque type part avec un `x-client-id` distinct (`run-search`, `run-agent`,
 `run-annotate`) — filtrable à l'agrégation avec `--client`.
+
+**Limite connue** : `/decompose` et `/search` sont deux appels HTTP séparés,
+chacun avec son propre `request_id` (aucun identifiant partagé, cf.
+`src/api.ts`). `aggregate_costlog.py` les recolle par ordre chronologique au
+sein d'un même `client_id` (`merge_search_pairs`) — fiable pour du trafic
+séquentiel comme ce protocole, pas garanti sous trafic concurrent réel. Un
+vrai correctif demanderait de propager un `request_id` du frontend entre les
+deux appels.

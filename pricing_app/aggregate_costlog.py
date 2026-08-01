@@ -175,6 +175,57 @@ def parse_stream(lines) -> list[Request]:
     return list(by_id.values())
 
 
+def _min_ts(req: Request) -> str:
+    return min((r.get("ts") or "" for r in req.records), default="")
+
+
+def merge_search_pairs(requests: list[Request]) -> list[Request]:
+    """Recolle `/decompose` + `/search` en une requête logique (bead 97r.8).
+
+    `/decompose` et `/search` sont deux appels HTTP distincts (le frontend les
+    fait l'un après l'autre, cf. `src/api.ts`) et chacun génère son propre
+    `request_id` — il n'existe aucun identifiant partagé côté serveur. Sans ce
+    recollage, une recherche utilisateur apparaît comme DEUX lignes
+    (`decompose` seul, puis `embed`+`rerank` seuls) et la médiane du coût par
+    requête est calculée sur ce mélange de moitiés au lieu du coût réel d'une
+    recherche complète.
+
+    Heuristique : par `client_id`, on trie les `decompose`-seuls et les
+    `embed`/`rerank`-seuls chronologiquement (par `ts`) puis on les apparie
+    dans l'ordre (1er decompose ↔ 1er search, 2e ↔ 2e…). Valide pour du trafic
+    séquentiel comme ce protocole de mesure (une requête complète avant la
+    suivante) ; sur du trafic concurrent multi-utilisateur réel sous le même
+    tenant, l'appariement par ordre chronologique peut se tromper de paire —
+    à corriger un jour en propageant un vrai `request_id` partagé du frontend
+    (`/decompose` → `/search`).
+    """
+    others = [r for r in requests if r.kind != "recherche_directe"]
+    directe = [r for r in requests if r.kind == "recherche_directe"]
+
+    by_client: dict[str, list[Request]] = defaultdict(list)
+    for r in directe:
+        by_client[r.client_id].append(r)
+
+    merged: list[Request] = []
+    for client_id, reqs in by_client.items():
+        decomposes = sorted(
+            (r for r in reqs if {rec.get("op") for rec in r.records} == {"decompose"}), key=_min_ts
+        )
+        searches = sorted(
+            (r for r in reqs if {rec.get("op") for rec in r.records} & {"embed", "rerank"}), key=_min_ts
+        )
+        for d, s in zip(decomposes, searches):
+            combined = Request(request_id=f"{d.request_id}+{s.request_id}", client_id=client_id)
+            combined.records = d.records + s.records
+            merged.append(combined)
+        # Orphelins (nombre impair côté decompose ou search) : gardés tels quels
+        # plutôt que jetés silencieusement, pour ne pas fausser le compte total.
+        merged.extend(decomposes[len(searches):])
+        merged.extend(searches[len(decomposes):])
+
+    return others + merged
+
+
 # ---------------------------------------------------------------------------
 # Statistiques
 # ---------------------------------------------------------------------------
@@ -206,13 +257,13 @@ def fmt(cad: float) -> str:
     return f"{cad:.6f}"
 
 
-def summarize(kind: str, requests: list[Request]) -> str:
+def summarize(label: str, kind: str, requests: list[Request]) -> str:
     if not requests:
-        return f"### {kind}\n\n_Aucune requête de ce type dans les logs._\n"
+        return f"### {label}\n\n_Aucune requête de ce type dans les logs._\n"
 
     totals = [r.total for r in requests]
     lines = [
-        f"### {kind} — n = {len(requests)}",
+        f"### {label} — n = {len(requests)}",
         "",
         f"| Composant | Médiane ({CURRENCY}) | p90 ({CURRENCY}) |",
         "|---|---:|---:|",
@@ -278,7 +329,7 @@ def report(requests: list[Request]) -> str:
         ("agent", "Requête agent"),
         ("annotation", "Annotation"),
     ):
-        out.append(summarize(label, by_kind.get(kind, [])))
+        out.append(summarize(label, kind, by_kind.get(kind, [])))
 
     if by_kind.get("autre"):
         out.append(f"_{len(by_kind['autre'])} requête(s) non classées (ops inattendues)._\n")
@@ -309,6 +360,7 @@ def main() -> int:
     stream = Path(args.logfile).open(encoding="utf-8", errors="replace") if args.logfile else sys.stdin
     with stream as fh:
         requests = parse_stream(fh)
+    requests = merge_search_pairs(requests)
 
     if args.client:
         requests = [r for r in requests if r.client_id == args.client]
