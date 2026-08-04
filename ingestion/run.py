@@ -25,14 +25,13 @@ import importlib
 import json
 import logging
 import pkgutil
+from collections import defaultdict
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
-
-from collections import defaultdict
 
 from ingestion import surveys as surveys_pkg
 from ingestion.build_docs import build_docs, embed_text, survey_embed_text

@@ -8,7 +8,7 @@ multi-tenant : parcourt l'index public ET chaque index privé déclaré dans
 `ingestion/tenancy.py` en une seule invocation.
 
 Usage :
-    uv run python -m ingestion.run_verbatims                        # tous les sondages, tous les index
+    uv run python -m ingestion.run_verbatims               # tous les sondages, tous les index
     uv run python -m ingestion.run_verbatims --only cecd_elxn_qc_2018
 """
 

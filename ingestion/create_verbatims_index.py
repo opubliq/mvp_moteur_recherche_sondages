@@ -53,6 +53,7 @@ Usage :
 from __future__ import annotations
 
 import argparse
+import os
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.exceptions import ResourceNotFoundError
@@ -72,8 +73,6 @@ from azure.search.documents.indexes.models import (
 
 from ingestion.canonical import CANONICAL_SOCIODEMO
 from ingestion.config import get_settings
-
-import os
 
 # Nom de cet index. Volontairement PAS piloté par `settings.index_name`
 # (`ingestion/config.py`) : ce dernier vaut `survey-questions` par défaut et
