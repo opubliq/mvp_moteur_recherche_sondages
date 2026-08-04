@@ -33,6 +33,7 @@ import {
   type MicrodataProvider,
 } from "../../src/logic/agent";
 import { newRequestId, resolveClientId } from "../../src/logic/costlog";
+import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
 import { handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "./microdata-core/core.js";
 
 const CORS_HEADERS: Record<string, string> = {
@@ -147,12 +148,16 @@ export default async (req: Request): Promise<Response> => {
   // /search déclenchés, au crédit du tenant résolu des en-têtes.
   const usage = { clientId: resolveClientId(req.headers), requestId: newRequestId() };
 
+  // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
+  // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
+  const indexes = resolveAccessibleQuestionIndexes(req.headers);
+
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const send = (payload: unknown) => controller.enqueue(encoder.encode(sseFrame(payload)));
       try {
-        for await (const ev of runAgentStream(history, env, microdata, { usage })) {
+        for await (const ev of runAgentStream(history, env, microdata, { usage, indexes })) {
           send(ev);
         }
       } catch (err) {

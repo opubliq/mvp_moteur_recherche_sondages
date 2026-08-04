@@ -38,6 +38,7 @@ import {
   listThemeFacets,
   type CorpusEnv,
 } from "./corpus";
+import { PUBLIC_QUESTIONS_INDEX } from "./tenancy";
 
 // Les micro-données (crosstab pondéré + manifest) vivent dans le CŒUR PORTABLE
 // `netlify/functions/microdata-core/core.ts`, qui dépend de Node (DuckDB natif,
@@ -442,6 +443,7 @@ export async function executeTool(
   microdata: MicrodataProvider,
   manifestCache: { current: ManifestLike | null },
   usage?: UsageContext,
+  indexes: string[] = [PUBLIC_QUESTIONS_INDEX],
 ): Promise<unknown> {
   const getManifest = async (): Promise<ManifestLike> => {
     if (!manifestCache.current) manifestCache.current = await microdata.manifest();
@@ -462,7 +464,12 @@ export async function executeTool(
         // l'embedding (op:"embed") ET au rerank (op:"rerank", tickets 97r.3/97r.5)
         // pour que l'agrégation par requête somme la boucle + les /search
         // déclenchés sous un même request_id, au crédit du même client.
-        const { candidates } = await retrieve(query, concepts, retrieveEnv(env), { filters, top, usage });
+        const { candidates } = await retrieve(query, concepts, retrieveEnv(env), {
+          filters,
+          top,
+          usage,
+          indexes,
+        });
         let ranked = await rerankCandidates(query, candidates, rerankEnv(env), usage);
         ranked = ranked
           .map((r) => ({ ...r, score_pertinence: Math.round((r.relevance_score ?? 0) * 100) }))
@@ -476,7 +483,7 @@ export async function executeTool(
 
     case "list_surveys": {
       const [{ surveys, total_questions }, manifest] = await Promise.all([
-        listSurveys(corpusEnv(env)),
+        listSurveys(corpusEnv(env), indexes),
         getManifest(),
       ]);
       const withMd = new Set(manifest.surveys.map((s) => s.survey_id));
@@ -495,12 +502,12 @@ export async function executeTool(
     }
 
     case "list_themes":
-      return await listThemeFacets(corpusEnv(env));
+      return await listThemeFacets(corpusEnv(env), indexes);
 
     case "get_survey": {
       const surveyId = String(args.survey_id ?? "").trim();
       if (!surveyId) return { error: "survey_id est requis" };
-      const catalog = await getSurveyCatalog(surveyId, corpusEnv(env));
+      const catalog = await getSurveyCatalog(surveyId, corpusEnv(env), indexes);
       if (!catalog) return { error: `Aucun sondage pour survey_id '${surveyId}'` };
       const manifest = await getManifest();
 
@@ -632,6 +639,14 @@ export interface RunAgentOptions {
    * hors endpoint).
    */
   usage?: UsageContext;
+  /**
+   * Index catalogue accessibles (f3i.11), résolus par le handler Netlify
+   * depuis le Basic Auth AVANT d'entrer dans la boucle agent — jamais recalculés
+   * ici. Défaut `[survey-questions]` (public seul, rétrocompatible) : sans ça,
+   * un compte client ne verrait pas son corpus privé dans les réponses de
+   * l'agent, alors même que /search le voit déjà (incohérence UX à éviter).
+   */
+  indexes?: string[];
 }
 
 /**
@@ -655,10 +670,11 @@ export async function* runAgentStream(
   const identity = usageIdentity(opts.usage);
   const usageCtx: UsageContext = { clientId: identity.client_id, requestId: identity.request_id };
   const manifestCache: { current: ManifestLike | null } = { current: null };
+  const indexes = opts.indexes ?? [PUBLIC_QUESTIONS_INDEX];
   const execute =
     opts.execute ??
     ((name: string, args: Record<string, unknown>) =>
-      executeTool(name, args, env, microdata, manifestCache, usageCtx));
+      executeTool(name, args, env, microdata, manifestCache, usageCtx, indexes));
   const deadlineMs = opts.deadlineMs ?? DEFAULT_DEADLINE_MS;
   const start = Date.now();
 
