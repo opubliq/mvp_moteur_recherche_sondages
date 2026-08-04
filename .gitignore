@@ -7,14 +7,10 @@ AGENTS.md
 
 eval/
 
-# App de pricing locale — non versionnée, SAUF la doc de coût (price cards,
-# variables à mesurer) qui est une référence partagée (epic 97r).
-pricing_app/*
-!pricing_app/*.md
-# Outillage de mesure du coût marginal : versionné pour que les chiffres soient
-# reproductibles. `app.py` (le Streamlit local) reste ignoré.
-!pricing_app/aggregate_costlog.py
-!pricing_app/run_instrumented.py
+# Exports Google Docs locaux (HTML + assets) dans pricing/ — la doc source
+# (.md) est versionnée, mais pas ces artefacts d'export.
+pricing/*.html
+pricing/*_files/
 
 # Secrets / env
 *.env
