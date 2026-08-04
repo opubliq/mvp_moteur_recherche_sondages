@@ -15,6 +15,7 @@
 
 import type { Handler } from "@netlify/functions";
 import { getSurveyCatalog } from "../../src/logic/corpus";
+import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -79,9 +80,13 @@ export const handler: Handler = async (event) => {
     SEARCH_QUERY_KEY: process.env.SEARCH_QUERY_KEY!,
   };
 
+  // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
+  // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
+  const indexes = resolveAccessibleQuestionIndexes(event.headers);
+
   let catalog: Awaited<ReturnType<typeof getSurveyCatalog>>;
   try {
-    catalog = await getSurveyCatalog(surveyId, env);
+    catalog = await getSurveyCatalog(surveyId, env, indexes);
   } catch (err) {
     console.error("[survey] AI Search request failed:", err);
     return {

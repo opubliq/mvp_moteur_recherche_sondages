@@ -17,7 +17,9 @@
  * pour rester testable hors runtime Netlify — même patron que `retrieve.ts`.
  */
 
-const INDEX_NAME = "survey-questions";
+import { mergeFacets } from "./retrieve";
+import { PUBLIC_QUESTIONS_INDEX } from "./tenancy";
+
 const SEARCH_API_VERSION = "2024-07-01";
 const SEARCH_TOP = 1000;
 
@@ -32,21 +34,36 @@ function odataEscape(value: string): string {
   return value.replace(/'/g, "''");
 }
 
-function searchUrl(env: CorpusEnv): string {
+function searchUrl(env: CorpusEnv, indexName: string): string {
   const endpoint = (env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
-  return `${endpoint}/indexes/${INDEX_NAME}/docs/search?api-version=${SEARCH_API_VERSION}`;
+  return `${endpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
 }
 
-async function aiSearch(env: CorpusEnv, payload: Record<string, unknown>): Promise<any> {
-  const res = await fetch(searchUrl(env), {
+async function aiSearch(env: CorpusEnv, indexName: string, payload: Record<string, unknown>): Promise<any> {
+  const res = await fetch(searchUrl(env, indexName), {
     method: "POST",
     headers: { "Content-Type": "application/json", "api-key": env.SEARCH_QUERY_KEY ?? "" },
     body: JSON.stringify(payload),
   });
   if (!res.ok) {
-    throw new Error(`AI Search error ${res.status}: ${await res.text()}`);
+    throw new Error(`AI Search error ${res.status} (index ${indexName}): ${await res.text()}`);
   }
   return res.json();
+}
+
+/**
+ * Exécute la même requête sur chaque index accessible et concatène les
+ * `value` — les `id`/`survey_id` sont disjoints entre index par construction
+ * (chaque sondage n'appartient qu'à un seul index), aucune déduplication
+ * n'est donc nécessaire.
+ */
+async function aiSearchAll(
+  env: CorpusEnv,
+  indexes: string[],
+  payload: Record<string, unknown>,
+): Promise<{ value: any[] }> {
+  const perIndex = await Promise.all(indexes.map((indexName) => aiSearch(env, indexName, payload)));
+  return { value: perIndex.flatMap((d) => d.value ?? []) };
 }
 
 // Champs renvoyés par /survey (mêmes que search.ts, sans content_vector ;
@@ -107,9 +124,10 @@ interface SurveyDoc {
 export async function getSurveyCatalog(
   surveyId: string,
   env: CorpusEnv,
+  indexes: string[] = [PUBLIC_QUESTIONS_INDEX],
 ): Promise<{ survey: SurveyDoc | null; questions: SurveyDoc[]; count: number } | null> {
   const filter = `survey_id eq '${odataEscape(surveyId)}'`;
-  const data = (await aiSearch(env, {
+  const data = (await aiSearchAll(env, indexes, {
     search: "*",
     filter,
     select: SURVEY_SELECT_FIELDS,
@@ -138,8 +156,9 @@ export async function getSurveyCatalog(
  */
 export async function listSurveys(
   env: CorpusEnv,
+  indexes: string[] = [PUBLIC_QUESTIONS_INDEX],
 ): Promise<{ surveys: SurveyDoc[]; count: number; total_questions: number }> {
-  const data = (await aiSearch(env, {
+  const data = (await aiSearchAll(env, indexes, {
     search: "*",
     filter: "doc_type eq 'survey'",
     select: SURVEYS_SELECT_FIELDS,
@@ -150,13 +169,17 @@ export async function listSurveys(
 
   let totalQuestions = 0;
   try {
-    const countData = (await aiSearch(env, {
-      search: "*",
-      filter: "doc_type eq 'question'",
-      top: 0,
-      count: true,
-    })) as Record<string, unknown>;
-    totalQuestions = (countData["@odata.count"] as number) ?? 0;
+    const countData = await Promise.all(
+      indexes.map((indexName) =>
+        aiSearch(env, indexName, {
+          search: "*",
+          filter: "doc_type eq 'question'",
+          top: 0,
+          count: true,
+        }),
+      ),
+    );
+    totalQuestions = countData.reduce((sum, d) => sum + ((d["@odata.count"] as number) ?? 0), 0);
   } catch {
     // Non bloquant : le total n'est qu'informatif.
   }
@@ -170,16 +193,22 @@ export async function listSurveys(
  */
 export async function listThemeFacets(
   env: CorpusEnv,
+  indexes: string[] = [PUBLIC_QUESTIONS_INDEX],
 ): Promise<{ themes: { value: string; count: number }[]; concepts: { value: string; count: number }[] }> {
   const FACET_COUNT = 300;
-  const data = (await aiSearch(env, {
-    search: "*",
-    filter: "doc_type eq 'question'",
-    top: 0,
-    facets: [`themes,count:${FACET_COUNT}`, `concepts,count:${FACET_COUNT}`],
-  })) as { "@search.facets"?: Record<string, { value: string; count: number }[]> };
+  const perIndex = await Promise.all(
+    indexes.map(
+      (indexName) =>
+        aiSearch(env, indexName, {
+          search: "*",
+          filter: "doc_type eq 'question'",
+          top: 0,
+          facets: [`themes,count:${FACET_COUNT}`, `concepts,count:${FACET_COUNT}`],
+        }) as Promise<{ "@search.facets"?: Record<string, { value: string; count: number }[]> }>,
+    ),
+  );
 
-  const facets = data["@search.facets"] ?? {};
+  const facets = mergeFacets(perIndex.map((d) => d["@search.facets"])) ?? {};
   const map = (arr: { value: string; count: number }[] | undefined) =>
     (arr ?? []).map((f) => ({ value: f.value, count: f.count }));
   return { themes: map(facets.themes), concepts: map(facets.concepts) };

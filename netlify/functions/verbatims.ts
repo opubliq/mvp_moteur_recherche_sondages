@@ -26,8 +26,8 @@ import type { Handler } from "@netlify/functions";
 import { cohereRerankDocuments, RerankError } from "../../src/logic/rerank";
 import type { RerankEnv } from "../../src/logic/rerank";
 import { newRequestId, resolveClientId } from "../../src/logic/costlog";
+import { resolveAccessibleVerbatimIndexes } from "../../src/logic/tenancy";
 
-const INDEX_NAME = "survey-verbatims";
 const SEARCH_API_VERSION = "2024-07-01";
 
 /**
@@ -144,28 +144,42 @@ export const handler: Handler = async (event) => {
   }
 
   const searchEndpoint = (process.env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
-  const searchUrl = `${searchEndpoint}/indexes/${INDEX_NAME}/docs/search?api-version=${SEARCH_API_VERSION}`;
   const headers = { "Content-Type": "application/json", "api-key": process.env.SEARCH_QUERY_KEY ?? "" };
   const filter = `survey_id eq '${odataEscape(surveyId)}' and variable eq '${odataEscape(variable)}'`;
+
+  // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
+  // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
+  // Un sondage donné ne vit que dans UN de ces index : interroger les deux et
+  // concaténer est sûr (l'autre renvoie simplement value=[]), sans avoir à
+  // savoir à l'avance lequel est le bon.
+  const indexes = resolveAccessibleVerbatimIndexes(event.headers);
+  const urlFor = (indexName: string) =>
+    `${searchEndpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
 
   try {
     // --- Parcours : page brute, pas de scoring, pas de Cohere ---
     if (!isSearch) {
-      const res = await fetch(searchUrl, {
-        method: "POST",
-        headers,
-        body: JSON.stringify({
-          search: "*",
-          filter,
-          select: SELECT_FIELDS,
-          top,
-          skip,
-          count: true,
+      const perIndex = await Promise.all(
+        indexes.map(async (indexName) => {
+          const res = await fetch(urlFor(indexName), {
+            method: "POST",
+            headers,
+            body: JSON.stringify({
+              search: "*",
+              filter,
+              select: SELECT_FIELDS,
+              top,
+              skip,
+              count: true,
+            }),
+          });
+          if (!res.ok) throw new Error(`AI Search error ${res.status} (index ${indexName}): ${await res.text()}`);
+          const data = await res.json();
+          return { docs: (data.value ?? []) as VerbatimDoc[], count: data["@odata.count"] as number | undefined };
         }),
-      });
-      if (!res.ok) throw new Error(`AI Search error ${res.status}: ${await res.text()}`);
-      const data = await res.json();
-      const docs: VerbatimDoc[] = data.value ?? [];
+      );
+      const docs = perIndex.flatMap((r) => r.docs);
+      const total = perIndex.reduce((sum, r) => sum + (r.count ?? r.docs.length), 0);
       return {
         statusCode: 200,
         headers: CORS_HEADERS,
@@ -173,7 +187,7 @@ export const handler: Handler = async (event) => {
           survey_id: surveyId,
           variable,
           query: "",
-          total: data["@odata.count"] ?? docs.length,
+          total,
           results: docs.map(toVerbatim),
         }),
       };
@@ -190,26 +204,32 @@ export const handler: Handler = async (event) => {
       }
     }
 
-    const res = await fetch(searchUrl, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        search: query,
-        // `any` plutôt que `all` : une réponse libre de dix mots ne contient
-        // presque jamais tous les termes de la requête. Le tri fin est de
-        // toute façon le travail du reranker.
-        searchMode: "any",
-        searchFields: "text",
-        queryType: "simple",
-        filter,
-        select: SELECT_FIELDS,
-        top: RERANK_POOL,
-        count: true,
+    const perIndex = await Promise.all(
+      indexes.map(async (indexName) => {
+        const res = await fetch(urlFor(indexName), {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            search: query,
+            // `any` plutôt que `all` : une réponse libre de dix mots ne contient
+            // presque jamais tous les termes de la requête. Le tri fin est de
+            // toute façon le travail du reranker.
+            searchMode: "any",
+            searchFields: "text",
+            queryType: "simple",
+            filter,
+            select: SELECT_FIELDS,
+            top: RERANK_POOL,
+            count: true,
+          }),
+        });
+        if (!res.ok) throw new Error(`AI Search error ${res.status} (index ${indexName}): ${await res.text()}`);
+        const data = await res.json();
+        return { docs: (data.value ?? []) as VerbatimDoc[], count: data["@odata.count"] as number | undefined };
       }),
-    });
-    if (!res.ok) throw new Error(`AI Search error ${res.status}: ${await res.text()}`);
-    const data = await res.json();
-    const pool: VerbatimDoc[] = data.value ?? [];
+    );
+    const pool: VerbatimDoc[] = perIndex.flatMap((r) => r.docs);
+    const total = perIndex.reduce((sum, r) => sum + (r.count ?? r.docs.length), 0);
 
     if (pool.length === 0) {
       return {
@@ -249,7 +269,7 @@ export const handler: Handler = async (event) => {
         survey_id: surveyId,
         variable,
         query,
-        total: data["@odata.count"] ?? pool.length,
+        total,
         pool_size: pool.length,
         results: ranked,
       }),

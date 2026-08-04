@@ -13,8 +13,9 @@
  */
 
 import type { Handler } from "@netlify/functions";
+import { mergeFacets } from "../../src/logic/retrieve";
+import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
 
-const INDEX_NAME = "survey-questions";
 const SEARCH_API_VERSION = "2024-07-01";
 const MAX_RESULTS = 500;
 const FACET_COUNT = 300;
@@ -77,7 +78,10 @@ export const handler: Handler = async (event) => {
 
   const searchEndpoint = (process.env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
   const searchKey = process.env.SEARCH_QUERY_KEY ?? "";
-  const searchUrl = `${searchEndpoint}/indexes/${INDEX_NAME}/docs/search?api-version=${SEARCH_API_VERSION}`;
+
+  // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
+  // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
+  const indexes = resolveAccessibleQuestionIndexes(event.headers);
 
   const params = event.queryStringParameters ?? {};
   const theme = params.theme?.trim();
@@ -90,20 +94,28 @@ export const handler: Handler = async (event) => {
   try {
     // --- Mode facettes : liste des thèmes + concepts avec leur nombre ---
     if (!theme && !concept) {
-      const res = await fetch(searchUrl, {
-        method: "POST",
-        headers,
-        body: JSON.stringify({
-          search: "*",
-          filter: "doc_type eq 'question'",
-          top: 0,
-          facets: [`themes,count:${FACET_COUNT}`, `concepts,count:${FACET_COUNT}`],
+      const perIndex = await Promise.all(
+        indexes.map(async (indexName) => {
+          const searchUrl = `${searchEndpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
+          const res = await fetch(searchUrl, {
+            method: "POST",
+            headers,
+            body: JSON.stringify({
+              search: "*",
+              filter: "doc_type eq 'question'",
+              top: 0,
+              facets: [`themes,count:${FACET_COUNT}`, `concepts,count:${FACET_COUNT}`],
+            }),
+          });
+          if (!res.ok) throw new Error(`AI Search error ${res.status} (index ${indexName}): ${await res.text()}`);
+          const data = await res.json();
+          return data["@search.facets"] as
+            | Record<string, Array<{ value: unknown; count: number }>>
+            | undefined;
         }),
-      });
-      if (!res.ok) throw new Error(`AI Search error ${res.status}: ${await res.text()}`);
-      const data = await res.json();
-      const facets = data["@search.facets"] ?? {};
-      const map = (arr: { value: string; count: number }[] | undefined) =>
+      );
+      const facets = mergeFacets(perIndex) ?? {};
+      const map = (arr: { value: unknown; count: number }[] | undefined) =>
         (arr ?? []).map((f) => ({ value: f.value, count: f.count }));
       return {
         statusCode: 200,
@@ -121,19 +133,25 @@ export const handler: Handler = async (event) => {
     if (concept) clauses.push(`concepts/any(c: c eq '${odataEscape(concept)}')`);
     if (year !== undefined && !Number.isNaN(year)) clauses.push(`survey_year eq ${year}`);
 
-    const res = await fetch(searchUrl, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        search: "*",
-        filter: clauses.join(" and "),
-        select: RESULT_FIELDS,
-        top: MAX_RESULTS,
+    const perIndexResults = await Promise.all(
+      indexes.map(async (indexName) => {
+        const searchUrl = `${searchEndpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
+        const res = await fetch(searchUrl, {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            search: "*",
+            filter: clauses.join(" and "),
+            select: RESULT_FIELDS,
+            top: MAX_RESULTS,
+          }),
+        });
+        if (!res.ok) throw new Error(`AI Search error ${res.status} (index ${indexName}): ${await res.text()}`);
+        const data = await res.json();
+        return data.value ?? [];
       }),
-    });
-    if (!res.ok) throw new Error(`AI Search error ${res.status}: ${await res.text()}`);
-    const data = await res.json();
-    const results = data.value ?? [];
+    );
+    const results = perIndexResults.flat();
     return {
       statusCode: 200,
       headers: CORS_HEADERS,

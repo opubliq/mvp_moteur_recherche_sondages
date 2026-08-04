@@ -8,8 +8,8 @@
  */
 
 import type { Handler } from "@netlify/functions";
+import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
 
-const INDEX_NAME = "survey-questions";
 const SEARCH_API_VERSION = "2024-07-01";
 const SEARCH_TOP = 1000;
 
@@ -86,64 +86,18 @@ export const handler: Handler = async (event) => {
 
   const searchEndpoint = (process.env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
   const searchKey = process.env.SEARCH_QUERY_KEY ?? "";
-  const searchUrl = `${searchEndpoint}/indexes/${INDEX_NAME}/docs/search?api-version=${SEARCH_API_VERSION}`;
 
-  const searchPayload = {
-    search: "*",
-    filter: "doc_type eq 'survey'",
-    select: SELECT_FIELDS,
-    top: SEARCH_TOP,
-    orderby: "survey_year desc, survey_name asc",
-  };
+  // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
+  // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
+  const indexes = resolveAccessibleQuestionIndexes(event.headers);
 
   try {
-    const res = await fetch(searchUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": searchKey,
-      },
-      body: JSON.stringify(searchPayload),
-    });
-
-    if (!res.ok) {
-      const errBody = await res.text();
-      throw new Error(`AI Search error ${res.status}: ${errBody}`);
-    }
-
-    const data = await res.json();
-    const surveys = data.value || [];
-
-    // On récupère aussi le nombre total de questions via une requête légère (top=0)
-    const countPayload = {
-      search: "*",
-      filter: "doc_type eq 'question'",
-      top: 0,
-      count: true,
-    };
-    
-    const countRes = await fetch(searchUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": searchKey,
-      },
-      body: JSON.stringify(countPayload),
-    });
-    
-    let totalQuestions = 0;
-    if (countRes.ok) {
-      const countData = await countRes.json();
-      totalQuestions = countData["@odata.count"] || 0;
-    }
-
-    // Concepts dominants par sondage (facettes en parallèle, une par survey_id).
-    const surveysWithConcepts = await Promise.all(
-      surveys.map(async (s: { survey_id: string }) => ({
-        ...s,
-        top_concepts: await fetchTopConcepts(searchUrl, searchKey, s.survey_id),
-      })),
+    const perIndex = await Promise.all(
+      indexes.map((indexName) => fetchSurveysForIndex(searchEndpoint, searchKey, indexName)),
     );
+
+    const surveysWithConcepts = perIndex.flatMap((r) => r.surveys);
+    const totalQuestions = perIndex.reduce((sum, r) => sum + r.totalQuestions, 0);
 
     return {
       statusCode: 200,
@@ -163,3 +117,70 @@ export const handler: Handler = async (event) => {
     };
   }
 };
+
+/** Sondages + concepts dominants + total de questions pour UN index. */
+async function fetchSurveysForIndex(
+  searchEndpoint: string,
+  searchKey: string,
+  indexName: string,
+): Promise<{ surveys: any[]; totalQuestions: number }> {
+  const searchUrl = `${searchEndpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
+
+  const searchPayload = {
+    search: "*",
+    filter: "doc_type eq 'survey'",
+    select: SELECT_FIELDS,
+    top: SEARCH_TOP,
+    orderby: "survey_year desc, survey_name asc",
+  };
+
+  const res = await fetch(searchUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": searchKey,
+    },
+    body: JSON.stringify(searchPayload),
+  });
+
+  if (!res.ok) {
+    const errBody = await res.text();
+    throw new Error(`AI Search error ${res.status} (index ${indexName}): ${errBody}`);
+  }
+
+  const data = await res.json();
+  const surveys = data.value || [];
+
+  // On récupère aussi le nombre total de questions via une requête légère (top=0)
+  const countPayload = {
+    search: "*",
+    filter: "doc_type eq 'question'",
+    top: 0,
+    count: true,
+  };
+
+  const countRes = await fetch(searchUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": searchKey,
+    },
+    body: JSON.stringify(countPayload),
+  });
+
+  let totalQuestions = 0;
+  if (countRes.ok) {
+    const countData = await countRes.json();
+    totalQuestions = countData["@odata.count"] || 0;
+  }
+
+  // Concepts dominants par sondage (facettes en parallèle, une par survey_id).
+  const surveysWithConcepts = await Promise.all(
+    surveys.map(async (s: { survey_id: string }) => ({
+      ...s,
+      top_concepts: await fetchTopConcepts(searchUrl, searchKey, s.survey_id),
+    })),
+  );
+
+  return { surveys: surveysWithConcepts, totalQuestions };
+}

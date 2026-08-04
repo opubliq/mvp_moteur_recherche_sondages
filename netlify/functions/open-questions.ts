@@ -15,8 +15,8 @@
  */
 
 import type { Handler } from "@netlify/functions";
+import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
 
-const INDEX_NAME = "survey-questions";
 const SEARCH_API_VERSION = "2024-07-01";
 /** Le corpus en compte ~82 aujourd'hui ; large de côté pour l'ingestion à venir. */
 const MAX_RESULTS = 1000;
@@ -68,24 +68,33 @@ export const handler: Handler = async (event) => {
 
   const searchEndpoint = (process.env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
   const searchKey = process.env.SEARCH_QUERY_KEY ?? "";
-  const searchUrl = `${searchEndpoint}/indexes/${INDEX_NAME}/docs/search?api-version=${SEARCH_API_VERSION}`;
+
+  // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
+  // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
+  const indexes = resolveAccessibleQuestionIndexes(event.headers);
 
   try {
-    const res = await fetch(searchUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "api-key": searchKey },
-      body: JSON.stringify({
-        search: "*",
-        filter: "doc_type eq 'question' and var_type eq 'open' and text_kind eq 'prose'",
-        select: RESULT_FIELDS,
-        // Pas d'orderby : `survey_id` n'est pas sortable dans l'index. Le
-        // regroupement par sondage se fait côté front.
-        top: MAX_RESULTS,
+    const perIndexResults = await Promise.all(
+      indexes.map(async (indexName) => {
+        const searchUrl = `${searchEndpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
+        const res = await fetch(searchUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "api-key": searchKey },
+          body: JSON.stringify({
+            search: "*",
+            filter: "doc_type eq 'question' and var_type eq 'open' and text_kind eq 'prose'",
+            select: RESULT_FIELDS,
+            // Pas d'orderby : `survey_id` n'est pas sortable dans l'index. Le
+            // regroupement par sondage se fait côté front.
+            top: MAX_RESULTS,
+          }),
+        });
+        if (!res.ok) throw new Error(`AI Search error ${res.status} (index ${indexName}): ${await res.text()}`);
+        const data = await res.json();
+        return data.value ?? [];
       }),
-    });
-    if (!res.ok) throw new Error(`AI Search error ${res.status}: ${await res.text()}`);
-    const data = await res.json();
-    const results = data.value ?? [];
+    );
+    const results = perIndexResults.flat();
     return {
       statusCode: 200,
       headers: CORS_HEADERS,

@@ -405,8 +405,11 @@ async function searchOneIndex(
   };
 }
 
-/** Somme les comptes de facette par valeur, à travers les index interrogés. */
-function mergeFacets(
+/**
+ * Somme les comptes de facette par valeur, à travers les index interrogés.
+ * Exporté : réutilisé par d'autres endpoints multi-index (ex. `/themes`).
+ */
+export function mergeFacets(
   perIndexFacets: Array<AzureSearchResponse["@search.facets"] | undefined>,
 ): AzureSearchResponse["@search.facets"] | undefined {
   const present = perIndexFacets.filter((f): f is NonNullable<typeof f> => !!f);
