@@ -12,6 +12,8 @@ uv run --with streamlit streamlit run pricing_app/app.py
 | `price_card_canadaeast_2026-07-28.md` | Combien coûte chaque SKU (CAD, daté) |
 | `run_instrumented.py` | Provoque la charge → fait émettre les `[costlog]` |
 | `aggregate_costlog.py` | Parse les logs → coût médian/p90 par type d'usage |
+| `modele_parametrique_97r9.md` | Modèle paramétrique + 4 profils clients synthétiques + seuils de capacité (livrable 97r.9) |
+| `simulate_profile.py` | Chiffre un profil client (prédéfini ou custom) → coût marginal médian/p90 |
 
 ### Protocole de mesure (bead 97r.8)
 
