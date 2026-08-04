@@ -22,6 +22,7 @@ import type { RetrieveEnv, RawCandidate } from "../../src/logic/retrieve";
 import { rerankCandidates, RerankError } from "../../src/logic/rerank";
 import type { RerankEnv } from "../../src/logic/rerank";
 import { newRequestId, resolveClientId, type UsageContext } from "../../src/logic/costlog";
+import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -153,8 +154,12 @@ export const handler: Handler = async (event) => {
   let luceneQuery: string;
   let rawFacets: Record<string, Array<{ value: any; count: number }>> | undefined;
 
+  // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
+  // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
+  const indexes = resolveAccessibleQuestionIndexes(event.headers);
+
   try {
-    const result = await retrieve(trimmedQuery, concepts, env, { filters, top, usage });
+    const result = await retrieve(trimmedQuery, concepts, env, { filters, top, usage, indexes });
     results = result.candidates;
     luceneQuery = result.luceneQuery;
     rawFacets = result.facets;

@@ -22,12 +22,12 @@
 
 import type { Concept, SearchFilters, SearchResult } from "../types";
 import { logUsage, usageIdentity, type UsageContext } from "./costlog";
+import { PUBLIC_QUESTIONS_INDEX } from "./tenancy";
 
 // ---------------------------------------------------------------------------
 // Constantes
 // ---------------------------------------------------------------------------
 
-const INDEX_NAME = "survey-questions";
 const SEARCH_API_VERSION = "2024-07-01";
 const AOAI_API_VERSION = "2024-02-01";
 const MAX_TOP = 100;
@@ -68,6 +68,15 @@ export interface RetrieveOptions {
    * `client_id: "unknown"` avec un request_id local (rétrocompatible).
    */
   usage?: UsageContext;
+  /**
+   * Index Azure AI Search à interroger, résolus côté serveur par
+   * `resolveAccessibleQuestionIndexes` (f3i.11) — jamais fournis par le
+   * client. Par défaut : `[survey-questions]` (public seul, rétrocompatible
+   * avec le harness offline et les appelants qui ne gèrent pas le multi-tenant).
+   * Plusieurs index sont interrogés en parallèle et fusionnés (candidats
+   * concaténés, facettes sommées par valeur).
+   */
+  indexes?: string[];
 }
 
 /**
@@ -292,13 +301,9 @@ export async function retrieve(
   }
 
   // -----------------------------------------------------------------------
-  // Étape 2 : recherche hybride Azure AI Search
+  // Étape 2 : recherche hybride Azure AI Search — fan-out multi-index (f3i.11)
   // -----------------------------------------------------------------------
-  const searchEndpoint = (env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
-  const searchKey = env.SEARCH_QUERY_KEY ?? ""; // clé QUERY (read-only)
-  const searchUrl = `${searchEndpoint}/indexes/${INDEX_NAME}/docs/search?api-version=${SEARCH_API_VERSION}`;
   const filter = buildFilter(filters);
-
   const luceneQuery = concepts && concepts.length > 0 ? buildLuceneQuery(concepts) : trimmedQuery;
 
   const searchPayload: any = {
@@ -350,7 +355,27 @@ export async function retrieve(
     top: concepts && concepts.length > 0 ? Math.max(clampedTop, 1000) : clampedTop,
   };
 
-  console.log(`[retrieve] AI Search — query="${luceneQuery}" filter="${filter}" top=${searchPayload.top}`);
+  const indexes = options.indexes && options.indexes.length > 0 ? options.indexes : [PUBLIC_QUESTIONS_INDEX];
+  console.log(
+    `[retrieve] AI Search — index(es)=${indexes.join(",")} query="${luceneQuery}" filter="${filter}" top=${searchPayload.top}`,
+  );
+
+  const perIndex = await Promise.all(indexes.map((indexName) => searchOneIndex(indexName, searchPayload, env)));
+
+  const candidates = perIndex.flatMap((r) => r.candidates);
+  const facets = mergeFacets(perIndex.map((r) => r.facets));
+  return { candidates, facets, luceneQuery };
+}
+
+/** Recherche hybride sur UN index Azure AI Search — appelé en parallèle par index accessible. */
+async function searchOneIndex(
+  indexName: string,
+  searchPayload: Record<string, unknown>,
+  env: RetrieveEnv,
+): Promise<{ candidates: RawCandidate[]; facets?: AzureSearchResponse["@search.facets"] }> {
+  const searchEndpoint = (env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
+  const searchKey = env.SEARCH_QUERY_KEY ?? ""; // clé QUERY (read-only)
+  const searchUrl = `${searchEndpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
 
   let searchResult: AzureSearchResponse;
   try {
@@ -365,16 +390,42 @@ export async function retrieve(
 
     if (!res.ok) {
       const errBody = await res.text();
-      throw new Error(`AI Search error ${res.status}: ${errBody}`);
+      throw new Error(`AI Search error ${res.status} (index ${indexName}): ${errBody}`);
     }
 
     searchResult = (await res.json()) as AzureSearchResponse;
   } catch (err) {
-    console.error("[retrieve] AI Search request failed:", err);
+    console.error(`[retrieve] AI Search request failed (index ${indexName}):`, err);
     throw new RetrieveError("search", err instanceof Error ? err.message : String(err));
   }
 
-  const candidates = (searchResult.value ?? []) as RawCandidate[];
-  const facets = searchResult["@search.facets"];
-  return { candidates, facets, luceneQuery };
+  return {
+    candidates: (searchResult.value ?? []) as RawCandidate[],
+    facets: searchResult["@search.facets"],
+  };
+}
+
+/** Somme les comptes de facette par valeur, à travers les index interrogés. */
+function mergeFacets(
+  perIndexFacets: Array<AzureSearchResponse["@search.facets"] | undefined>,
+): AzureSearchResponse["@search.facets"] | undefined {
+  const present = perIndexFacets.filter((f): f is NonNullable<typeof f> => !!f);
+  if (present.length === 0) return undefined;
+  if (present.length === 1) return present[0];
+
+  const merged: Record<string, Map<unknown, number>> = {};
+  for (const facetSet of present) {
+    for (const [field, entries] of Object.entries(facetSet)) {
+      const byValue = (merged[field] ??= new Map());
+      for (const { value, count } of entries) {
+        byValue.set(value, (byValue.get(value) ?? 0) + count);
+      }
+    }
+  }
+  return Object.fromEntries(
+    Object.entries(merged).map(([field, byValue]) => [
+      field,
+      Array.from(byValue, ([value, count]) => ({ value, count })),
+    ]),
+  );
 }

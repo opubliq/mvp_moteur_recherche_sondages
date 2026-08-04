@@ -87,7 +87,7 @@ export type HeaderSource =
   | null
   | undefined;
 
-function readHeader(source: HeaderSource, name: string): string | undefined {
+export function readHeader(source: HeaderSource, name: string): string | undefined {
   if (!source) return undefined;
   try {
     if (typeof (source as Headers).get === "function") {
@@ -111,7 +111,7 @@ function readHeader(source: HeaderSource, name: string): string | undefined {
  * Lines (pas de guillemet ni de saut de ligne à injecter dans les logs), borné.
  * Renvoie `undefined` si rien d'exploitable ne reste.
  */
-function sanitizeClientId(raw: string | undefined): string | undefined {
+export function sanitizeClientId(raw: string | undefined): string | undefined {
   if (!raw) return undefined;
   const cleaned = raw
     .trim()
@@ -123,7 +123,7 @@ function sanitizeClientId(raw: string | undefined): string | undefined {
 }
 
 /** Extrait le nom d'utilisateur d'un header `Authorization: Basic base64(user:pass)`. */
-function basicAuthUser(authorization: string | undefined): string | undefined {
+export function basicAuthUser(authorization: string | undefined): string | undefined {
   if (!authorization) return undefined;
   const [scheme, encoded] = authorization.split(" ");
   if (scheme !== "Basic" || !encoded) return undefined;
@@ -154,6 +154,11 @@ function basicAuthUser(authorization: string | undefined): string | undefined {
  * Il n'est acceptable que parce qu'il ne sert qu'à la comptabilité de coût, et
  * que la porte d'entrée reste le Basic Auth. Au vrai multi-tenant, seule cette
  * fonction change (source = session/JWT), pas les call-sites.
+ *
+ * NE PAS réutiliser pour décider quels index interroger (le header
+ * `x-client-id` est falsifiable par n'importe quel appelant) — voir
+ * `resolveAuthorizedTenant` dans `src/logic/tenancy.ts` (ticket f3i.11), qui ne
+ * fait confiance qu'au username du Basic Auth, jamais au header.
  *
  * Ne throw jamais : retombe sur {@link UNKNOWN_CLIENT_ID}.
  */
