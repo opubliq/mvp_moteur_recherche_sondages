@@ -48,4 +48,5 @@ def get_settings() -> Settings:
         aoai_endpoint=_require("AOAI_ENDPOINT"),
         aoai_key=_require("AOAI_KEY"),
         aoai_embed_deployment=_require("AOAI_EMBED_DEPLOYMENT"),
+        index_name=os.environ.get("INDEX_NAME", INDEX_NAME),
     )

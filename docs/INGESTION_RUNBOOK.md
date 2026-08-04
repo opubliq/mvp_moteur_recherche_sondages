@@ -39,21 +39,29 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **14 sondages ingérés**, ~3143 docs catalogue (vérité terrain de l'index Azure) :
-  `cecd_charte_2013_10`, `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`,
-  `cecd_elxn_qc_2007`, `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`,
-  `cecd_sante_can_usa`, `eeq_2014`, `govcan_06822_wave1_2024`,
-  `govcan_06822_wave2_2024`, `govcan_06822_wave3_2024`, `govcan_habit_2024`,
-  `govcan_parca_2024`, `medaillon_organismes_qualitatif`.
-- **`medaillon_organismes_qualitatif`** (ajouté 2026-07-23) : premier sondage au
-  format **CSV + questionnaire SurveyJS** (et non SAV/codebook). 130 organismes,
-  29 questions toutes ouvertes (`var_type=open`, `text_kind=prose`), extracteur +
-  enrichment écrits inline (les briefs subagent SAV ne s'appliquent pas). Rails
+- **13 sondages** dans l'index **public** `survey-questions`, ~3133 docs
+  catalogue (vérité terrain de l'index Azure) : `cecd_charte_2013_10`,
+  `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`, `cecd_elxn_qc_2007`,
+  `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`, `cecd_sante_can_usa`, `eeq_2014`,
+  `govcan_06822_wave1_2024`, `govcan_06822_wave2_2024`,
+  `govcan_06822_wave3_2024`, `govcan_habit_2024`, `govcan_parca_2024`.
+- **`medaillon_organismes_qualitatif`** (extrait/enrichi 2026-07-23, **déplacé
+  du public vers l'index privé `survey-questions-opubliq` le 2026-08-04** —
+  cf `docs/multi_tenant_design.md` : c'est une donnée propriétaire opubliq, pas
+  du corpus public P1) : premier sondage au format **CSV + questionnaire
+  SurveyJS** (et non SAV/codebook). 130 organismes, 29 questions toutes
+  ouvertes (`var_type=open`, `text_kind=prose`), extracteur + enrichment
+  écrits inline (les briefs subagent SAV ne s'appliquent pas). Rails
   microdonnées (Parquet 130×33, `mode` conservé pour crosstab DuckDB) + verbatims
-  (1615 docs annotables) ingérés. **PII anonymisée totalement** : l'extracteur
-  génère un CSV dé-identifié (`_deid.csv`, sans `participant_name`/`_email`) qui est
-  la seule source lue par les rails — le `raw_data_file` de la JSON normalisée
-  pointe dessus (garde-fou : sans cette JSON, `_locate_raw` lirait le CSV brut PII).
+  (1615 docs annotables) ingérés — ces rails sont indépendants de l'index AI
+  Search et n'ont pas été affectés par le déplacement. **PII anonymisée
+  totalement** : l'extracteur génère un CSV dé-identifié (`_deid.csv`, sans
+  `participant_name`/`_email`) qui est la seule source lue par les rails — le
+  `raw_data_file` de la JSON normalisée pointe dessus (garde-fou : sans cette
+  JSON, `_locate_raw` lirait le CSV brut PII).
+  Pour cibler l'index privé plutôt que le public, préfixer les commandes
+  `create_index`/`run` avec `INDEX_NAME=survey-questions-opubliq` (override,
+  cf `ingestion/config.py`).
 - Candidats restants : voir `ingestion/COUVERTURE.md` (55 ingérables classe A/B ;
   NE PAS ingérer les 2 classe C « nécessite questionnaire »).
 
