@@ -1,12 +1,14 @@
-"""Point d'entrée CLI du peuplement de l'index `survey-verbatims` (bead jsu.3).
+"""Point d'entrée CLI du peuplement des index `survey-verbatims*` (bead jsu.3).
 
 Rail INDÉPENDANT du catalogue (`ingestion.run`) et des microdonnées
-(`ingestion.run_microdata`) : il ne fait que LIRE les Parquet du Blob et l'index
-`survey-questions`, et n'écrit que dans `survey-verbatims`. Aucun `.sav` ouvert,
-aucun embedding (cf. l'en-tête de `ingestion/verbatims.py`).
+(`ingestion.run_microdata`) : il ne fait que LIRE les Parquet du Blob et les
+index catalogue, et n'écrit que dans les index verbatims. Aucun `.sav` ouvert,
+aucun embedding (cf. l'en-tête de `ingestion/verbatims.py`). Auto-routage
+multi-tenant : parcourt l'index public ET chaque index privé déclaré dans
+`ingestion/tenancy.py` en une seule invocation.
 
 Usage :
-    uv run python -m ingestion.run_verbatims                        # les 5 sondages
+    uv run python -m ingestion.run_verbatims                        # tous les sondages, tous les index
     uv run python -m ingestion.run_verbatims --only cecd_elxn_qc_2018
 """
 
@@ -15,7 +17,7 @@ from __future__ import annotations
 import argparse
 import logging
 
-from ingestion.verbatims import run, verbatims_client
+from ingestion.verbatims import run
 
 
 def main() -> None:
@@ -52,7 +54,6 @@ def main() -> None:
                 + (f", {cov['unknown_codes']} code(s) inconnu(s)" if cov["unknown_codes"] else "")
             )
     print(f"\nTotal poussé : {total} documents.")
-    print(f"Doc count index : {verbatims_client().get_document_count()}")
 
 
 if __name__ == "__main__":

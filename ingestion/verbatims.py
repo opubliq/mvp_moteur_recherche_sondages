@@ -71,9 +71,12 @@ from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 
 from ingestion.canonical import CANONICAL_SOCIODEMO
+from ingestion.config import INDEX_NAME as BASE_QUESTIONS_INDEX_NAME
 from ingestion.config import get_settings
-from ingestion.create_verbatims_index import VERBATIMS_INDEX_NAME
+from ingestion.create_verbatims_index import VERBATIMS_INDEX_NAME as BASE_VERBATIMS_INDEX_NAME
+from ingestion.create_verbatims_index import create_index as create_verbatims_index
 from ingestion.microdata import container_client
+from ingestion.tenancy import PRIVATE_SURVEYS
 
 logger = logging.getLogger("ingestion.verbatims")
 
@@ -240,22 +243,36 @@ def build_verbatim_docs(
 # ---------------------------------------------------------------------------
 
 
-def questions_client() -> SearchClient:
+def questions_client(index_name: str | None = None) -> SearchClient:
     settings = get_settings()
     return SearchClient(
         endpoint=settings.search_endpoint,
-        index_name=settings.index_name,
+        index_name=index_name or settings.index_name,
         credential=AzureKeyCredential(settings.search_admin_key),
     )
 
 
-def verbatims_client() -> SearchClient:
+def verbatims_client(index_name: str | None = None) -> SearchClient:
     settings = get_settings()
     return SearchClient(
         endpoint=settings.search_endpoint,
-        index_name=VERBATIMS_INDEX_NAME,
+        index_name=index_name or BASE_VERBATIMS_INDEX_NAME,
         credential=AzureKeyCredential(settings.search_admin_key),
     )
+
+
+def _index_pairs() -> list[tuple[str, str]]:
+    """[(index questions, index verbatims)] à parcourir : public + un par client privé.
+
+    Auto-routage (cf `ingestion/tenancy.py`) : chaque client déclaré dans
+    `PRIVATE_SURVEYS` a sa propre paire d'index, en plus de la paire publique.
+    """
+    clients = sorted(set(PRIVATE_SURVEYS.values()))
+    pairs = [(BASE_QUESTIONS_INDEX_NAME, BASE_VERBATIMS_INDEX_NAME)]
+    pairs += [
+        (f"{BASE_QUESTIONS_INDEX_NAME}-{c}", f"{BASE_VERBATIMS_INDEX_NAME}-{c}") for c in clients
+    ]
+    return pairs
 
 
 def fetch_verbatim_columns(client: SearchClient) -> dict[str, list[str]]:
@@ -401,29 +418,43 @@ def ingest_survey(
 
 
 def run(only: str | None = None) -> list[dict[str, Any]]:
-    """Point d'entrée programmatique : tous les sondages verbatim, ou un seul."""
-    catalog = questions_client()
-    target = verbatims_client()
+    """Point d'entrée programmatique : tous les sondages verbatim, ou un seul.
+
+    Auto-routage multi-tenant : parcourt la paire d'index publique ET chaque
+    paire d'index privée déclarée (`ingestion/tenancy.py`), pousse chaque
+    sondage dans SON couple catalogue/verbatims — une seule invocation suffit.
+    """
     container = container_client()
+    reports: list[dict[str, Any]] = []
 
-    columns = fetch_verbatim_columns(catalog)
-    if only is not None:
-        if only not in columns:
-            raise SystemExit(
-                f"Sondage '{only}' sans question verbatim. "
-                f"Disponibles : {', '.join(sorted(columns))}"
-            )
-        columns = {only: columns[only]}
+    for questions_index, verbatims_index in _index_pairs():
+        catalog = questions_client(questions_index)
+        target = verbatims_client(verbatims_index)
 
-    total_questions = sum(len(v) for v in columns.values())
-    logger.info(
-        "Sondages verbatim : %d (%d questions).", len(columns), total_questions
-    )
+        columns = fetch_verbatim_columns(catalog)
+        if only is not None:
+            if only not in columns:
+                continue  # ce sondage vit dans un autre index — normal
+            columns = {only: columns[only]}
+        if not columns:
+            continue
 
-    reports = [
-        ingest_survey(sid, variables, catalog, target, container)
-        for sid, variables in columns.items()
-    ]
+        create_verbatims_index(name=verbatims_index)
+
+        total_questions = sum(len(v) for v in columns.values())
+        logger.info(
+            "[%s] sondages verbatim : %d (%d questions).",
+            verbatims_index,
+            len(columns),
+            total_questions,
+        )
+        reports.extend(
+            ingest_survey(sid, variables, catalog, target, container)
+            for sid, variables in columns.items()
+        )
+
+    if only is not None and not reports:
+        raise SystemExit(f"Sondage '{only}' sans question verbatim dans aucun index.")
 
     total = sum(r["n_docs"] for r in reports)
     logger.info(

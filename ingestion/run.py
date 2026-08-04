@@ -32,14 +32,18 @@ from typing import Any
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 
+from collections import defaultdict
+
 from ingestion import surveys as surveys_pkg
 from ingestion.build_docs import build_docs, embed_text, survey_embed_text
+from ingestion.config import INDEX_NAME as BASE_INDEX_NAME
 from ingestion.config import get_settings
 from ingestion.create_index import create_index
 from ingestion.embed import embed_batch
 from ingestion.enrich import apply_enrichment
 from ingestion.models import SurveyFile
 from ingestion.open_text import effective_var_type
+from ingestion.tenancy import index_name_for
 from ingestion.validate import assert_no_fabricated_text
 
 logger = logging.getLogger("ingestion.run")
@@ -208,12 +212,14 @@ def _ingest_survey(
 
 
 def run(only: str | None = None, recreate_index: bool = False, embed: bool = True) -> None:
-    """Point d'entrée programmatique de l'orchestrateur."""
-    settings = get_settings()
+    """Point d'entrée programmatique de l'orchestrateur.
 
-    if recreate_index:
-        logger.info("Recréation de l'index '%s'…", settings.index_name)
-        create_index(recreate=True)
+    Auto-routage multi-tenant (cf `ingestion/tenancy.py`) : chaque sondage
+    découvert est poussé vers SON index (public par défaut, ou l'index privé de
+    son client s'il figure dans `PRIVATE_SURVEYS`) — une seule invocation
+    suffit, pas besoin de relancer par client.
+    """
+    settings = get_settings()
 
     sources = _discover_sources()
     if only is not None:
@@ -229,21 +235,44 @@ def run(only: str | None = None, recreate_index: bool = False, embed: bool = Tru
 
     logger.info("Sondages à ingérer : %s", ", ".join(sorted(sources)))
 
-    client = SearchClient(
-        endpoint=settings.search_endpoint,
-        index_name=settings.index_name,
-        credential=AzureKeyCredential(settings.search_admin_key),
-    )
+    by_index: dict[str, list[str]] = defaultdict(list)
+    for survey_id in sources:
+        by_index[index_name_for(survey_id, BASE_INDEX_NAME)].append(survey_id)
 
     total = 0
-    for survey_id in sorted(sources):
-        total += _ingest_survey(survey_id, sources[survey_id], client, embed=embed)
+    for index_name, survey_ids in sorted(by_index.items()):
+        if recreate_index:
+            logger.info("Recréation de l'index '%s'…", index_name)
+            create_index(recreate=True, name=index_name)
+        else:
+            # Idempotent (create_or_update) : garantit que l'index existe et
+            # porte le schéma courant, même pour un tout nouveau client.
+            create_index(name=index_name)
+
+        client = SearchClient(
+            endpoint=settings.search_endpoint,
+            index_name=index_name,
+            credential=AzureKeyCredential(settings.search_admin_key),
+        )
+
+        n = 0
+        for survey_id in sorted(survey_ids):
+            n += _ingest_survey(survey_id, sources[survey_id], client, embed=embed)
+        total += n
+
+        logger.info(
+            "[%s] %d documents poussés sur %d sondage(s). Doc count index : %d.",
+            index_name,
+            n,
+            len(survey_ids),
+            client.get_document_count(),
+        )
 
     logger.info(
-        "Terminé : %d documents poussés sur %d sondage(s). Doc count index : %d.",
+        "Terminé : %d documents poussés au total sur %d sondage(s), %d index.",
         total,
         len(sources),
-        client.get_document_count(),
+        len(by_index),
     )
 
 

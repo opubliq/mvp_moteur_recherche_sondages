@@ -273,14 +273,14 @@ def build_index(name: str, dims: int) -> SearchIndex:
     )
 
 
-def create_index(recreate: bool = False) -> SearchIndex:
+def create_index(recreate: bool = False, name: str | None = None) -> SearchIndex:
     settings = get_settings()
     client = SearchIndexClient(
         endpoint=settings.search_endpoint,
         credential=AzureKeyCredential(settings.search_admin_key),
     )
 
-    name = settings.index_name
+    name = name or settings.index_name
 
     if recreate:
         try:

@@ -73,13 +73,15 @@ from azure.search.documents.indexes.models import (
 from ingestion.canonical import CANONICAL_SOCIODEMO
 from ingestion.config import get_settings
 
+import os
+
 # Nom de cet index. Volontairement PAS piloté par `settings.index_name`
 # (`ingestion/config.py`) : ce dernier vaut `survey-questions` par défaut et
 # sert de config partagée pour tout le module d'ingestion. `survey-verbatims`
 # est un second index sur le même service Azure AI Search (même endpoint, même
-# clé admin) — on passe donc son nom en constante explicite plutôt que
-# d'ajouter une variable d'environnement pour une simple chaîne fixe.
-VERBATIMS_INDEX_NAME = "survey-verbatims"
+# clé admin). Override possible via `VERBATIMS_INDEX_NAME` (même pattern que
+# `INDEX_NAME` dans `config.py`) pour cibler l'index verbatims d'un client.
+VERBATIMS_INDEX_NAME = os.environ.get("VERBATIMS_INDEX_NAME", "survey-verbatims")
 
 FRENCH_ANALYZER = "fr.microsoft"
 HNSW_ALGORITHM_NAME = "hnsw-config"
@@ -183,14 +185,14 @@ def build_index(name: str, dims: int) -> SearchIndex:
     )
 
 
-def create_index(recreate: bool = False) -> SearchIndex:
+def create_index(recreate: bool = False, name: str | None = None) -> SearchIndex:
     settings = get_settings()
     client = SearchIndexClient(
         endpoint=settings.search_endpoint,
         credential=AzureKeyCredential(settings.search_admin_key),
     )
 
-    name = VERBATIMS_INDEX_NAME
+    name = name or VERBATIMS_INDEX_NAME
 
     if recreate:
         try:
