@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { X, Download } from "lucide-react";
 import { useCart, cartKey, type CartItem } from "../context/CartContext";
 import { exportCart, type ExportFormat } from "../lib/exportCart";
-import { exportCartXlsx } from "../lib/exportExcel";
+import { exportCartXlsx, DEMO_TYPES } from "../lib/exportExcel";
 
 type FullExportFormat = ExportFormat | "xlsx";
 
@@ -10,19 +10,27 @@ type FullExportFormat = ExportFormat | "xlsx";
 export default function ExportDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { items, size, remove, clear } = useCart();
   const [format, setFormat] = useState<FullExportFormat>("xlsx");
+  const [demoTypes, setDemoTypes] = useState<string[]>(["age", "gender", "region"]);
   const [exporting, setExporting] = useState(false);
+  const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  function toggleDemo(key: string) {
+    setDemoTypes((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
+  }
 
   async function handleExport() {
     setError(null);
     if (format === "xlsx") {
       setExporting(true);
+      setProgress({ done: 0, total: 0 });
       try {
-        await exportCartXlsx(items);
+        await exportCartXlsx(items, demoTypes, (done, total) => setProgress({ done, total }));
       } catch (err) {
         setError(err instanceof Error ? err.message : "Échec de l'export Excel");
       } finally {
         setExporting(false);
+        setProgress(null);
       }
     } else {
       exportCart(items, format);
@@ -97,6 +105,31 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
               <option value="csv-large">Format : CSV (codebook)</option>
               <option value="json">Format : JSON (codebook)</option>
             </select>
+
+            {format === "xlsx" && (
+              <div className="mb-2">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-base-content/55">
+                  Croiser avec (onglet par socio-démo, tous sondages)
+                </p>
+                <div className="flex flex-wrap gap-x-3 gap-y-1">
+                  {DEMO_TYPES.map((t) => (
+                    <label key={t.key} className="flex items-center gap-1.5 text-xs">
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-xs"
+                        checked={demoTypes.includes(t.key)}
+                        onChange={() => toggleDemo(t.key)}
+                      />
+                      {t.label}
+                    </label>
+                  ))}
+                </div>
+                <p className="mt-1 text-[11px] text-base-content/50">
+                  Chaque sondage obtient aussi son propre onglet, croisé sur tous ses socio-démos disponibles.
+                </p>
+              </div>
+            )}
+
             {error && <p className="mb-2 text-xs text-error">{error}</p>}
             <button className="btn btn-primary w-full gap-1.5" onClick={handleExport} disabled={exporting}>
               {exporting ? (
@@ -104,7 +137,11 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
               ) : (
                 <Download size={16} strokeWidth={1.75} />
               )}
-              {exporting ? "Génération en cours…" : `Exporter ${size} question${size > 1 ? "s" : ""}`}
+              {exporting
+                ? progress && progress.total > 0
+                  ? `Génération en cours… (${progress.done}/${progress.total})`
+                  : "Génération en cours…"
+                : `Exporter ${size} question${size > 1 ? "s" : ""}`}
             </button>
             <button className="btn btn-ghost btn-sm mt-2 w-full" onClick={clear}>
               Vider le panier
