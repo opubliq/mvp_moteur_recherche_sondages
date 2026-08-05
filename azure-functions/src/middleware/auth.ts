@@ -73,7 +73,15 @@ export function checkBasicAuth(request: HttpRequest): HttpResponseInit | undefin
 
   return {
     status: 401,
-    headers: { "WWW-Authenticate": `Basic realm="${REALM}", charset="UTF-8"` },
+    headers: {
+      "WWW-Authenticate": `Basic realm="${REALM}", charset="UTF-8"`,
+      // Sans ça, un appel cross-origin (frontend sur un domaine distinct de la
+      // Function App, cf. b1d) voit une erreur CORS opaque au lieu d'un 401
+      // lisible — le JS appelant ne peut même pas distinguer "pas de compte"
+      // d'une panne réseau. Découvert en testant le premier déploiement
+      // Static Web Apps (b1d) contre cette Function App.
+      "Access-Control-Allow-Origin": "*",
+    },
     body: "Accès restreint. Identifiants requis.",
   };
 }
