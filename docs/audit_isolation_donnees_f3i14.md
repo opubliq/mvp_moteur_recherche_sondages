@@ -15,7 +15,7 @@ serveur, Basic Auth multi-comptes) plutôt que de le réimplémenter. Contexte :
 2. Recherche systématique (grep) de tout point où un `index`/`tenant`/`client`
    pourrait provenir d'une entrée client (query string, body JSON, header)
    plutôt que d'être dérivé côté serveur de l'identité authentifiée.
-3. Exécution de la suite de tests existante (`netlify/functions/tenancy.test.ts`,
+3. Exécution de la suite de tests existante (`netlify/functions/__tests__/tenancy.test.ts`,
    `client-id.test.ts`, `client-id-propagation.test.ts`, `agent-tenancy.test.ts`)
    — 52 tests, tous verts avant tout changement.
 4. Test empirique en lecture seule sur l'infra réelle (Azure Blob Storage,
@@ -118,7 +118,7 @@ Câblé aux trois points d'entrée :
 
 Fichiers modifiés : `src/logic/tenancy.ts`, `netlify/functions/microdata.ts`,
 `netlify/functions/microdata-manifest.ts`, `netlify/functions/agent.ts`,
-`netlify/functions/tenancy.test.ts` (5 nouveaux tests de régression).
+`netlify/functions/__tests__/tenancy.test.ts` (5 nouveaux tests de régression).
 
 ## Re-vérification post-correctif
 

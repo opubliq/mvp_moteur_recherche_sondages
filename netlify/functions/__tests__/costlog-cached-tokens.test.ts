@@ -12,15 +12,15 @@
  * reste absent (pas 0, qui affirmerait « aucun cache ») quand elle se tait.
  */
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { COSTLOG_PREFIX } from "../../src/logic/costlog";
-import { decomposeQuery } from "../../src/logic/decompose";
-import { annotateBatch } from "../../src/logic/annotate";
+import { COSTLOG_PREFIX } from "../../../src/logic/costlog";
+import { decomposeQuery } from "../../../src/logic/decompose";
+import { annotateBatch } from "../../../src/logic/annotate";
 import {
   runAgent,
   type AgentEnv,
   type ChatFn,
   type MicrodataProvider,
-} from "../../src/logic/agent";
+} from "../../../src/logic/agent";
 
 function costlogLines(spy: ReturnType<typeof vi.spyOn>): any[] {
   return spy.mock.calls

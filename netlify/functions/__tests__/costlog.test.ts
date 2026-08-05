@@ -12,7 +12,7 @@ import {
   logUsage,
   newRequestId,
   type UsageRecord,
-} from "../../src/logic/costlog";
+} from "../../../src/logic/costlog";
 
 /** Parse la dernière ligne émise sur console.log : { prefix, json }. */
 function parseLine(spy: ReturnType<typeof vi.spyOn>): { prefix: string; json: any } {

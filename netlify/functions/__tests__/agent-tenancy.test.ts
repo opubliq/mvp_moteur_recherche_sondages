@@ -7,7 +7,7 @@
  * Placé sous `netlify/functions/` (répertoire vitest).
  */
 import { describe, expect, it, vi } from "vitest";
-import { executeTool, type AgentEnv, type MicrodataProvider } from "../../src/logic/agent";
+import { executeTool, type AgentEnv, type MicrodataProvider } from "../../../src/logic/agent";
 
 const FAKE_ENV = {
   SEARCH_ENDPOINT: "https://search.example.net",

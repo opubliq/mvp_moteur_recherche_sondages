@@ -8,7 +8,7 @@
  * Placé sous `netlify/functions/` : seul répertoire découvert par vitest.
  */
 import { describe, expect, it } from "vitest";
-import { resolveClientId, usageIdentity, UNKNOWN_CLIENT_ID } from "../../src/logic/costlog";
+import { resolveClientId, usageIdentity, UNKNOWN_CLIENT_ID } from "../../../src/logic/costlog";
 
 /** Encode un couple Basic Auth comme le ferait un navigateur. */
 function basic(user: string, password = "pw"): string {

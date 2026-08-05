@@ -14,7 +14,7 @@ import {
   resolveAccessibleQuestionIndexes,
   resolveAccessibleVerbatimIndexes,
   resolveAuthorizedTenant,
-} from "../../src/logic/tenancy";
+} from "../../../src/logic/tenancy";
 
 function basic(user: string, password = "pw"): string {
   return `Basic ${btoa(`${user}:${password}`)}`;

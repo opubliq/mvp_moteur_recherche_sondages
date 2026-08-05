@@ -12,7 +12,7 @@ import {
   type ChatFn,
   type AgentEnv,
   type MicrodataProvider,
-} from "../../src/logic/agent";
+} from "../../../src/logic/agent";
 
 const FAKE_ENV = {} as unknown as AgentEnv;
 const FAKE_MICRODATA = {} as unknown as MicrodataProvider;

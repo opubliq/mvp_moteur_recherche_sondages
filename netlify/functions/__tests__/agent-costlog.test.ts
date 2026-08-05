@@ -7,13 +7,13 @@
  * découvert par vitest).
  */
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { COSTLOG_PREFIX } from "../../src/logic/costlog";
+import { COSTLOG_PREFIX } from "../../../src/logic/costlog";
 import {
   runAgent,
   type ChatFn,
   type AgentEnv,
   type MicrodataProvider,
-} from "../../src/logic/agent";
+} from "../../../src/logic/agent";
 
 /** Récupère les lignes costlog (préfixées) parsées parmi les appels console.log. */
 function costlogLines(spy: ReturnType<typeof vi.spyOn>): any[] {

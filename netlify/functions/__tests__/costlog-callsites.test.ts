@@ -5,11 +5,11 @@
  * `usage`. Placé sous `netlify/functions/` (seul répertoire découvert par vitest).
  */
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { COSTLOG_PREFIX } from "../../src/logic/costlog";
-import { decomposeQuery } from "../../src/logic/decompose";
-import { retrieve } from "../../src/logic/retrieve";
-import { annotateBatch } from "../../src/logic/annotate";
-import { rerankCandidates, type RerankEnv } from "../../src/logic/rerank";
+import { COSTLOG_PREFIX } from "../../../src/logic/costlog";
+import { decomposeQuery } from "../../../src/logic/decompose";
+import { retrieve } from "../../../src/logic/retrieve";
+import { annotateBatch } from "../../../src/logic/annotate";
+import { rerankCandidates, type RerankEnv } from "../../../src/logic/rerank";
 
 /** Récupère la ligne costlog (préfixée) parmi tous les appels console.log. */
 function costlogLines(spy: ReturnType<typeof vi.spyOn>): any[] {

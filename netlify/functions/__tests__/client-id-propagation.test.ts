@@ -8,8 +8,8 @@
  * ne touche aucun service.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { COSTLOG_PREFIX } from "../../src/logic/costlog";
-import { handler as searchHandler } from "./search";
+import { COSTLOG_PREFIX } from "../../../src/logic/costlog";
+import { handler as searchHandler } from "../search";
 
 const ENV_VARS = {
   SEARCH_ENDPOINT: "https://search.example",
