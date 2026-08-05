@@ -262,6 +262,44 @@ export async function exportCartXlsx(
     });
   }
 
+  // Codebook : les feuilles "par sondage" affichent des CODES bruts (liste de
+  // répondants) — sans ce mapping code→libellé ils sont illisibles. Couvre les
+  // variables sélectionnées ET les socio-démos qui apparaissent à côté d'elles
+  // dans ces feuilles (les feuilles socio-démo et "Distributions" ont déjà
+  // leurs libellés en clair, donc pas besoin de les y dupliquer).
+  const codebookTitleRow = summary.rowCount + 2;
+  summary.getCell(`A${codebookTitleRow}`).value = "Codebook (variables sélectionnées + socio-démos utilisés)";
+  summary.getCell(`A${codebookTitleRow}`).font = { bold: true, size: 12 };
+  const codebookHeaderRow = codebookTitleRow + 1;
+  summary.getRow(codebookHeaderRow).values = ["Sondage", "Variable", "Code", "Réponse", "Question / Socio-démo"];
+  summary.getRow(codebookHeaderRow).font = { bold: true };
+
+  let r = codebookHeaderRow + 1;
+  const seenVars = new Set<string>();
+  for (const item of items) {
+    const key = `${item.survey_id}::${item.variable}`;
+    if (seenVars.has(key)) continue;
+    seenVars.add(key);
+    for (const o of item.response_options) {
+      summary.getRow(r++).values = [item.survey_name, item.variable, o.code, o.label, item.question_text];
+    }
+  }
+  for (const sid of surveyIds) {
+    const surveyName = items.find((it) => it.survey_id === sid)?.survey_name ?? sid;
+    for (const [demoKey, q] of demoVarBySurvey.get(sid) ?? new Map()) {
+      const key = `${sid}::${q.variable}`;
+      if (seenVars.has(key)) continue;
+      seenVars.add(key);
+      const demoLabel = DEMO_TYPES.find((d) => d.key === demoKey)?.label ?? demoKey;
+      for (const o of q.response_options) {
+        summary.getRow(r++).values = [surveyName, q.variable, o.code, o.label, `Socio-démo : ${demoLabel}`];
+      }
+    }
+  }
+  summary.getColumn(2).width = Math.max(summary.getColumn(2).width ?? 0, 14);
+  summary.getColumn(3).width = Math.max(summary.getColumn(3).width ?? 0, 10);
+  summary.getColumn(4).width = Math.max(summary.getColumn(4).width ?? 0, 40);
+
   // Feuille "Distributions" : toutes les questions, format long (pivotable).
   const dist = wb.addWorksheet(makeSheetName("Distributions", usedNames));
   dist.columns = [
