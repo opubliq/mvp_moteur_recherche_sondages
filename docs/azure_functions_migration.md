@@ -168,3 +168,52 @@ dès maintenant sans attendre la décision d'architecture finale.
   endpoints API, pas des pages frontend (contrairement à l'edge function
   Netlify qui bloque `path: "/*"`). Une fois le frontend hébergé ailleurs, il
   faudra un mécanisme équivalent pour les pages (`b1d`).
+
+---
+
+# Hosting frontend Azure (b1d) — 2026-08-05
+
+Décision : **Static Web Apps autonome + appel cross-origin vers les
+Functions**, plutôt qu'un backend lié (SWA impose `/api/*`, aurait exigé de
+renommer les 11 routes) ou App Service (plus de config, coût fixe).
+
+## Ressource créée
+
+- Static Web App `opubliq-sondages-web` (Free, East US 2 — SWA n'est pas
+  disponible en canadaeast/canadacentral, régions limitées à Central US/East
+  US 2/West US 2/West Europe/East Asia).
+- URL : `https://nice-sea-019d41e0f.7.azurestaticapps.net`
+- Build : `VITE_API_BASE_URL=https://opubliq-sondages-functions.azurewebsites.net npm run build`
+  puis `swa deploy ./dist --deployment-token <token> --env production`
+  (`az staticwebapp secrets list` pour le token).
+
+## Bug corrigé pendant le déploiement
+
+Réponse 401 de `checkBasicAuth` sans header CORS → erreur CORS opaque côté
+navigateur au lieu d'un 401 lisible. Corrigé dans
+`azure-functions/src/middleware/auth.ts` (commit 3c4620a).
+
+## Trou fonctionnel connu, NON corrigé — bloquant pour un usage réel
+
+Le Basic Auth natif du navigateur (prompt automatique + credentials
+réattachés à chaque requête) fonctionnait sur Netlify parce que l'edge
+function protégeait TOUT le domaine dès la navigation — le navigateur
+propose son prompt natif au chargement de la page, avant même le premier
+`fetch()`. Ici, la page statique (SWA) n'est PAS protégée ; seule l'API
+(domaine différent) l'est. Un `fetch()` cross-origin vers un endpoint qui
+répond 401 ne déclenche PAS de façon fiable le prompt natif du navigateur —
+en pratique, l'app chargée sur `nice-sea-019d41e0f.7.azurestaticapps.net` ne
+peut aujourd'hui récupérer AUCUNE donnée sans qu'un mécanisme fournisse
+l'en-tête `Authorization` explicitement.
+
+**Décision (2026-08-05, avec l'utilisateur)** : ne PAS patcher (ex. prompt()
++ header manuel) — `f3i.19` (vrai système de comptes, en cours par un autre
+agent en parallèle) remplace explicitement le Basic Auth comme mécanisme de
+périmètre selon sa propre description. Un patch intermédiaire serait jeté
+et risquerait d'entrer en conflit. Ce trou reste donc ouvert et documenté
+jusqu'à ce que f3i.19 fournisse le vrai mécanisme de session.
+
+**Implication concrète** : `b1d` techniquement "fait" (le frontend sert
+depuis Azure, Netlify plus dans le chemin pour cette partie), mais l'app
+déployée n'est PAS utilisable de bout en bout tant que f3i.19 (ou un
+remplacement du Basic Auth) n'est pas livré.
