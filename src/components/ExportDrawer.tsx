@@ -11,12 +11,21 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
   const { items, size, remove, clear } = useCart();
   const [format, setFormat] = useState<FullExportFormat>("xlsx");
   const [demoTypes, setDemoTypes] = useState<string[]>(["age", "gender", "region"]);
+  const [filename, setFilename] = useState("");
   const [exporting, setExporting] = useState(false);
   const [progress, setProgress] = useState<{ done: number; total: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const ext = format === "xlsx" ? "xlsx" : format === "json" ? "json" : "csv";
+  const defaultName = `opubliq-export-${new Date().toISOString().slice(0, 10)}`;
+
   function toggleDemo(key: string) {
     setDemoTypes((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
+  }
+
+  function resolvedFilename(): string {
+    const base = filename.trim() || defaultName;
+    return base.toLowerCase().endsWith(`.${ext}`) ? base : `${base}.${ext}`;
   }
 
   async function handleExport() {
@@ -25,7 +34,7 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
       setExporting(true);
       setProgress({ done: 0, total: 0 });
       try {
-        await exportCartXlsx(items, demoTypes, (done, total) => setProgress({ done, total }));
+        await exportCartXlsx(items, demoTypes, (done, total) => setProgress({ done, total }), resolvedFilename());
       } catch (err) {
         setError(err instanceof Error ? err.message : "Échec de l'export Excel");
       } finally {
@@ -33,7 +42,7 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
         setProgress(null);
       }
     } else {
-      exportCart(items, format);
+      await exportCart(items, format, resolvedFilename());
     }
   }
 
@@ -125,10 +134,20 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
                   ))}
                 </div>
                 <p className="mt-1 text-[11px] text-base-content/50">
-                  Chaque sondage obtient aussi son propre onglet, croisé sur tous ses socio-démos disponibles.
+                  Chaque sondage obtient aussi son propre onglet : liste brute des répondants (une ligne chacun) pour
+                  ces questions + tous ses socio-démos disponibles.
                 </p>
               </div>
             )}
+
+            <input
+              type="text"
+              className="input input-bordered input-sm mb-2 w-full"
+              placeholder={defaultName}
+              value={filename}
+              onChange={(e) => setFilename(e.target.value)}
+              aria-label="Nom du fichier"
+            />
 
             {error && <p className="mb-2 text-xs text-error">{error}</p>}
             <button className="btn btn-primary w-full gap-1.5" onClick={handleExport} disabled={exporting}>

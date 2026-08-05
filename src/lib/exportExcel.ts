@@ -1,8 +1,8 @@
 import type { Workbook, Worksheet } from "exceljs";
 import type { CartItem } from "../context/CartContext";
 import type { CrosstabRow, DistributionRow, SearchResult } from "../types";
-import { fetchMicrodata, fetchSurvey, NoMicrodataError } from "../api";
-import { triggerDownload } from "./exportCart";
+import { fetchMicrodata, fetchMicrodataRaw, fetchSurvey, NoMicrodataError, type RawExportResponse } from "../api";
+import { saveFile } from "./exportCart";
 
 /** Catégories socio-démo canoniques (cf. `sociodemo_type`, `QuestionDashboard.tsx`). */
 export const DEMO_TYPES: { key: string; label: string }[] = [
@@ -115,15 +115,18 @@ function writeCrosstabBlock(
  * Construit et télécharge un classeur Excel pour la sélection du panier (bead
  * f3i.13) : Sommaire, une feuille "Distributions" (toutes les questions,
  * format long), une feuille par socio-démo cochée (croise les questions
- * sélectionnées de tous les sondages sur cette dimension), et une feuille par
- * sondage (ses questions sélectionnées × tous ses socio-démos disponibles).
- * Tout est PONDÉRÉ, via `/microdata` (cœur `microdata-core/core.ts`) — repli
- * codebook explicite si le sondage n'a pas de micro-données ingérées.
+ * sélectionnées de tous les sondages sur cette dimension, PONDÉRÉ), et une
+ * feuille par sondage (liste brute des répondants — ses questions
+ * sélectionnées + tous ses socio-démos disponibles, une ligne par répondant,
+ * pas un croisement). Utilise `/microdata` pour les distributions/crosstabs
+ * et `/microdata-raw` pour la liste de répondants (cœur `microdata-core/core.ts`)
+ * — repli codebook explicite si le sondage n'a pas de micro-données ingérées.
  */
 export async function exportCartXlsx(
   items: CartItem[],
   demoTypes: string[] = [],
   onProgress?: (done: number, total: number) => void,
+  filename?: string,
 ): Promise<void> {
   const ExcelJSRuntime = await import("exceljs");
   const wb: Workbook = new ExcelJSRuntime.Workbook();
@@ -132,15 +135,14 @@ export async function exportCartXlsx(
 
   let done = 0;
   const surveyIds = [...new Set(items.map((it) => it.survey_id))];
-  // Approximation du total (les crosstabs par sondage ne sont connus qu'après
-  // la résolution des socio-démos disponibles) — affinée dès que possible.
+  // Approximation du total (affinée après résolution des socio-démos disponibles).
   let total = surveyIds.length + items.length;
   const bump = () => onProgress?.(++done, total);
 
   // 1) Résout les questions complètes de chaque sondage (nécessaire pour retrouver
   // les variables socio-démo — le panier ne contient que les questions cochées).
   const surveyQuestions = new Map<string, SearchResult[]>();
-  await mapLimit(surveyIds, 4, async (sid) => {
+  await mapLimit(surveyIds, 6, async (sid) => {
     try {
       const res = await fetchSurvey(sid);
       surveyQuestions.set(sid, res.questions);
@@ -163,22 +165,25 @@ export async function exportCartXlsx(
     demoVarBySurvey.set(sid, m);
   }
 
-  // 3) Liste les crosstabs nécessaires : union des types cochés (sheets "Âge", etc.,
-  // tous sondages confondus) et des socio-démos par défaut de chaque sondage
-  // (sheet par sondage). Une paire (question, variable dim) n'est calculée qu'une fois.
+  // 3) Liste les crosstabs nécessaires : uniquement les types de socio-démo cochés
+  // (feuilles "Âge", etc., tous sondages confondus). Le détail par sondage est un
+  // export ligne-par-répondant (étape 6), pas des crosstabs — pas besoin d'en
+  // calculer pour les socio-démos non cochées.
   const neededCrosstabs = new Map<string, CrosstabKeyParts>();
   for (const item of items) {
     const demos = demoVarBySurvey.get(item.survey_id) ?? new Map();
-    for (const [, dimQuestion] of demos) {
+    for (const t of demoTypes) {
+      const dimQuestion = demos.get(t);
+      if (!dimQuestion) continue;
       const key = crosstabKey(item.survey_id, item.variable, dimQuestion.variable);
       if (!neededCrosstabs.has(key)) neededCrosstabs.set(key, { item, dimVar: dimQuestion.variable, dimQuestion });
     }
   }
-  total = surveyIds.length + items.length + neededCrosstabs.size;
+  total = surveyIds.length + items.length + neededCrosstabs.size + surveyIds.length;
 
   // 4) Distributions univariées pondérées (une par item).
   const distByItem = new Map<string, DistributionRow[] | null>();
-  await mapLimit(items, 4, async (item) => {
+  await mapLimit(items, 6, async (item) => {
     try {
       const res = await fetchMicrodata<DistributionRow>({ surveyId: item.survey_id, target: item.variable, agg: "count" });
       distByItem.set(item.variable + "::" + item.survey_id, res.rows);
@@ -192,9 +197,9 @@ export async function exportCartXlsx(
     }
   });
 
-  // 5) Crosstabs pondérés (union calculée en 3).
+  // 5) Crosstabs pondérés (union calculée en 3 — seulement les socio-démos cochées).
   const crossResults = new Map<string, CrosstabRow[] | null>();
-  await mapLimit([...neededCrosstabs.entries()], 4, async ([key, parts]) => {
+  await mapLimit([...neededCrosstabs.entries()], 6, async ([key, parts]) => {
     try {
       const res = await fetchMicrodata<CrosstabRow>({
         surveyId: parts.item.survey_id,
@@ -207,6 +212,26 @@ export async function exportCartXlsx(
       crossResults.set(key, null);
       if (!(err instanceof NoMicrodataError)) {
         console.error(`[export] crosstab ${key} échoué`, err);
+      }
+    } finally {
+      bump();
+    }
+  });
+
+  // 6) Export brut ligne-par-répondant, un par sondage : ses variables
+  // sélectionnées + tous ses socio-démos disponibles (pas un crosstab — la
+  // liste des répondants, comme un extrait SPSS/CSV classique).
+  const rawBySurvey = new Map<string, RawExportResponse | null>();
+  await mapLimit(surveyIds, 6, async (sid) => {
+    const surveyItems = items.filter((it) => it.survey_id === sid);
+    const demos = demoVarBySurvey.get(sid) ?? new Map();
+    const columns = [...new Set([...surveyItems.map((it) => it.variable), ...[...demos.values()].map((q) => q.variable)])];
+    try {
+      rawBySurvey.set(sid, await fetchMicrodataRaw(sid, columns));
+    } catch (err) {
+      rawBySurvey.set(sid, null);
+      if (!(err instanceof NoMicrodataError)) {
+        console.error(`[export] export brut ${sid} échoué`, err);
       }
     } finally {
       bump();
@@ -315,38 +340,45 @@ export async function exportCartXlsx(
     }
   }
 
-  // Feuilles par sondage : ses questions sélectionnées × tous ses socio-démos disponibles.
+  // Feuilles par sondage : liste des répondants (une ligne chacun) pour ses
+  // questions sélectionnées + tous ses socio-démos disponibles — un extrait
+  // brut, pas un croisement (ceux-ci vivent dans les feuilles socio-démo).
   for (const sid of surveyIds) {
     const surveyItems = items.filter((it) => it.survey_id === sid);
     const demos = demoVarBySurvey.get(sid) ?? new Map();
-    if (demos.size === 0) continue; // rien à croiser pour ce sondage
+    const raw = rawBySurvey.get(sid);
+    if (!raw || raw.row_count === 0) continue;
 
     const sheet = wb.addWorksheet(makeSheetName(surveyItems[0].survey_name || sid, usedNames));
-    sheet.getColumn(1).width = 42;
-    let row = 1;
-    for (const item of surveyItems) {
-      for (const [demoKey, dimQuestion] of demos) {
-        const key = crosstabKey(sid, item.variable, dimQuestion.variable);
-        const rows = crossResults.get(key);
-        const demoLabel = DEMO_TYPES.find((d) => d.key === demoKey)?.label ?? demoKey;
-        if (!rows) {
-          sheet.getCell(`A${row}`).value = `${item.question_text} × ${demoLabel}`;
-          sheet.getCell(`A${row}`).font = { bold: true };
-          sheet.getCell(`A${row + 1}`).value = "Micro-données indisponibles pour ce sondage.";
-          sheet.getCell(`A${row + 1}`).font = { italic: true, color: { argb: "FF999999" } };
-          row += 3;
-          continue;
-        }
-        row = writeCrosstabBlock(sheet, row, `${item.question_text} × ${demoLabel}`, "", item.response_options, dimQuestion.response_options, rows);
-      }
+    const demoLabelByVar = new Map(
+      [...demos.entries()].map(([demoKey, q]) => [q.variable, DEMO_TYPES.find((d) => d.key === demoKey)?.label ?? q.question_text]),
+    );
+    const labelForColumn = (col: string) =>
+      surveyItems.find((it) => it.variable === col)?.question_text ?? demoLabelByVar.get(col) ?? col;
+
+    const hasRid = "respondent_id" in (raw.rows[0] ?? {});
+    const hasWeight = "weight" in (raw.rows[0] ?? {});
+    const cols: { key: string; header: string; width: number }[] = [];
+    if (hasRid) cols.push({ key: "respondent_id", header: "ID répondant", width: 14 });
+    for (const c of raw.columns) cols.push({ key: c, header: labelForColumn(c), width: 24 });
+    if (hasWeight) cols.push({ key: "weight", header: "Poids", width: 10 });
+
+    sheet.columns = cols.map((c) => ({ key: c.key, width: c.width }));
+    // Deux lignes d'en-tête : le libellé lisible, puis le code de variable brut.
+    sheet.getRow(1).values = cols.map((c) => c.header);
+    sheet.getRow(2).values = cols.map((c) => (c.key === "respondent_id" || c.key === "weight" ? "" : c.key));
+    sheet.getRow(1).font = { bold: true };
+    sheet.getRow(2).font = { italic: true, color: { argb: "FF999999" } };
+    for (const r of raw.rows) {
+      sheet.addRow(r);
     }
   }
 
   const buffer = await wb.xlsx.writeBuffer();
   const stamp = new Date().toISOString().slice(0, 10);
-  triggerDownload(
+  await saveFile(
     buffer as ArrayBuffer,
-    `opubliq-export-${stamp}.xlsx`,
+    filename || `opubliq-export-${stamp}.xlsx`,
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   );
 }

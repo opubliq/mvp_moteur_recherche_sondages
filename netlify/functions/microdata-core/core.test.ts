@@ -13,7 +13,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { DuckDBInstance } from "@duckdb/node-api";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { executeMicrodataQuery, type MicrodataParams } from "./core.js";
+import { executeMicrodataQuery, executeRawExport, type MicrodataParams } from "./core.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixturesDir = resolve(here, "../../../tests/fixtures");
@@ -159,5 +159,35 @@ describe("garde-fous", () => {
   });
   it("colonne inconnue rejetée (whitelist)", async () => {
     await expect(run({ target: "DROP TABLE" as string })).rejects.toThrow(/Invalid target/);
+  });
+});
+
+describe("export brut ligne-par-répondant (f3i.13)", () => {
+  async function runRaw(columns: string[]) {
+    const c = await instance.connect();
+    try {
+      return await executeRawExport(c, PARQUET, { survey_id: SURVEY, columns });
+    } finally {
+      c.closeSync();
+    }
+  }
+
+  it("une ligne par répondant, colonnes demandées + poids", async () => {
+    const res = await runRaw(["GENDER", "AGEGRP"]);
+    expect(res.row_count).toBeGreaterThan(0);
+    expect(res.columns).toEqual(["GENDER", "AGEGRP"]);
+    for (const row of res.rows) {
+      expect(row).toHaveProperty("GENDER");
+      expect(row).toHaveProperty("AGEGRP");
+      expect(row).toHaveProperty("weight");
+    }
+  });
+
+  it("colonne inconnue rejetée (whitelist)", async () => {
+    await expect(runRaw(["DROP TABLE"])).rejects.toThrow(/Invalid column/);
+  });
+
+  it("columns vide → erreur", async () => {
+    await expect(runRaw([])).rejects.toThrow(/columns/);
   });
 });

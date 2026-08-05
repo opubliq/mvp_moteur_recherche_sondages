@@ -15,6 +15,46 @@ export function triggerDownload(content: string | ArrayBuffer, filename: string,
   URL.revokeObjectURL(url);
 }
 
+interface SaveFilePickerOptions {
+  suggestedName?: string;
+  types?: { description: string; accept: Record<string, string[]> }[];
+}
+interface FileSystemWritableStream {
+  write(data: Blob): Promise<void>;
+  close(): Promise<void>;
+}
+interface FileSystemFileHandleLike {
+  createWritable(): Promise<FileSystemWritableStream>;
+}
+type ShowSaveFilePicker = (opts: SaveFilePickerOptions) => Promise<FileSystemFileHandleLike>;
+
+/**
+ * Sauvegarde côté client avec choix de l'emplacement ET du nom, via l'API File
+ * System Access (Chrome/Edge) — l'utilisateur choisit où et sous quel nom.
+ * Repli sur `triggerDownload` (dossier Téléchargements) sur les navigateurs
+ * qui ne l'exposent pas (Firefox, Safari) ou si l'utilisateur annule.
+ */
+export async function saveFile(content: string | ArrayBuffer, suggestedName: string, mime: string): Promise<void> {
+  const picker = (window as unknown as { showSaveFilePicker?: ShowSaveFilePicker }).showSaveFilePicker;
+  if (picker) {
+    const ext = suggestedName.includes(".") ? `.${suggestedName.split(".").pop()}` : "";
+    try {
+      const handle = await picker({
+        suggestedName,
+        types: ext ? [{ description: "Fichier", accept: { [mime]: [ext] } }] : undefined,
+      });
+      const writable = await handle.createWritable();
+      await writable.write(new Blob([content], { type: mime }));
+      await writable.close();
+      return;
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return; // annulé par l'utilisateur
+      // toute autre erreur (ex. navigateur qui expose l'API mais la casse) : repli silencieux
+    }
+  }
+  triggerDownload(content, suggestedName, mime);
+}
+
 /** Échappe une valeur pour un champ CSV (RFC 4180). */
 export function csvCell(value: string | number | null): string {
   const s = value == null ? "" : String(value);
@@ -38,12 +78,12 @@ function toCsvLarge(items: CartItem[]): string {
 }
 
 /** Exporte les questions du panier dans le format demandé (download côté client). */
-export function exportCart(items: CartItem[], format: ExportFormat) {
+export async function exportCart(items: CartItem[], format: ExportFormat, filename?: string): Promise<void> {
   const stamp = new Date().toISOString().slice(0, 10);
   if (format === "json") {
-    triggerDownload(JSON.stringify(items, null, 2), `opubliq-export-${stamp}.json`, "application/json");
+    await saveFile(JSON.stringify(items, null, 2), filename || `opubliq-export-${stamp}.json`, "application/json");
   } else {
     // BOM UTF-8 pour ouverture correcte des accents dans Excel.
-    triggerDownload("﻿" + toCsvLarge(items), `opubliq-export-${stamp}.csv`, "text/csv;charset=utf-8");
+    await saveFile("﻿" + toCsvLarge(items), filename || `opubliq-export-${stamp}.csv`, "text/csv;charset=utf-8");
   }
 }

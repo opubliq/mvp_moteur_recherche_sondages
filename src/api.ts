@@ -109,6 +109,35 @@ export async function fetchMicrodata<Row = Record<string, number | string>>(
   return (await res.json()) as MicrodataResponse<Row>;
 }
 
+export interface RawExportResponse {
+  survey_id: string;
+  columns: string[];
+  row_count: number;
+  rows: Record<string, number | string | null>[];
+}
+
+/**
+ * Appelle `/microdata-raw` : export ligne-par-répondant (non agrégé) pour les
+ * colonnes demandées — distinct de `fetchMicrodata` (distributions/crosstabs
+ * pondérés). Sert la feuille "par sondage" de l'export Excel (bead f3i.13).
+ * Lève `NoMicrodataError` si le sondage n'a pas de Parquet (404).
+ */
+export async function fetchMicrodataRaw(surveyId: string, columns: string[]): Promise<RawExportResponse> {
+  const res = await fetch("/microdata-raw", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ survey_id: surveyId, columns }),
+  });
+  if (res.status === 404) {
+    throw new NoMicrodataError(`Aucune microdonnée pour ${surveyId}`);
+  }
+  if (!res.ok) {
+    const txt = await res.text().catch(() => "");
+    throw new Error(`Export brut échoué (${res.status}): ${txt || res.statusText}`);
+  }
+  return (await res.json()) as RawExportResponse;
+}
+
 /**
  * Appelle `/verbatims` : les réponses libres d'UNE question ouverte.
  *
