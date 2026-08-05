@@ -5,9 +5,26 @@ import type { ChatMessage as AgentMessage, ToolTrace as AgentToolTrace, AgentEve
 
 export type { AgentMessage, AgentToolTrace, AgentEvent };
 
+/**
+ * Base des endpoints API (f3i.1/f3i.2) : vide par défaut → chemin RELATIF,
+ * same-origin, exactement le comportement historique quand frontend et
+ * functions sont servis depuis le même domaine (Netlify aujourd'hui).
+ *
+ * `VITE_API_BASE_URL` (ex. `https://opubliq-sondages-functions.azurewebsites.net`)
+ * permet de découpler l'hébergement du frontend de celui des Azure Functions
+ * tant que `b1d`/`f3i.2` n'ont pas mis en place un routage same-origin
+ * (Static Web Apps lié, proxy, Front Door). Sans cette variable, rien ne
+ * change : `apiUrl("/search")` reste `"/search"`.
+ */
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
+
+function apiUrl(path: string): string {
+  return `${API_BASE_URL}${path}`;
+}
+
 /** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
 export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
-  const res = await fetch("/surveys");
+  const res = await fetch(apiUrl("/surveys"));
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`Chargement des sondages échoué (${res.status}): ${body || res.statusText}`);
@@ -24,7 +41,7 @@ export interface DecomposeResponse {
 }
 
 export async function decompose(query: string): Promise<DecomposeResponse> {
-  const res = await fetch("/decompose", {
+  const res = await fetch(apiUrl("/decompose"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query }),
@@ -47,7 +64,7 @@ export async function search(
   concepts?: Concept[],
   rerankQuery?: string,
 ): Promise<SearchResponse> {
-  const res = await fetch("/search", {
+  const res = await fetch(apiUrl("/search"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query, filters, top, concepts, rerank_query: rerankQuery }),
@@ -63,7 +80,7 @@ export async function search(
 
 /** Appelle la Netlify Function `/survey` : doc parent + toutes ses questions. */
 export async function fetchSurvey(surveyId: string): Promise<SurveyDetailResponse> {
-  const res = await fetch(`/survey?survey_id=${encodeURIComponent(surveyId)}`);
+  const res = await fetch(apiUrl(`/survey?survey_id=${encodeURIComponent(surveyId)}`));
 
   if (!res.ok) {
     const body = await res.text().catch(() => "");
@@ -94,7 +111,7 @@ export async function fetchMicrodata<Row = Record<string, number | string>>(
     exclude: query.exclude ?? [],
     ...(query.annotation ? { annotation: query.annotation } : {}),
   };
-  const res = await fetch("/microdata", {
+  const res = await fetch(apiUrl("/microdata"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -123,7 +140,7 @@ export interface RawExportResponse {
  * Lève `NoMicrodataError` si le sondage n'a pas de Parquet (404).
  */
 export async function fetchMicrodataRaw(surveyId: string, columns: string[]): Promise<RawExportResponse> {
-  const res = await fetch("/microdata-raw", {
+  const res = await fetch(apiUrl("/microdata-raw"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ survey_id: surveyId, columns }),
@@ -151,7 +168,7 @@ export async function fetchVerbatims(params: {
   top?: number;
   skip?: number;
 }): Promise<VerbatimsResponse> {
-  const res = await fetch("/verbatims", {
+  const res = await fetch(apiUrl("/verbatims"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -188,7 +205,7 @@ export async function annotateChunk(params: {
   withReason?: boolean;
   signal?: AbortSignal;
 }): Promise<AnnotateResult> {
-  const res = await fetch("/annotate", {
+  const res = await fetch(apiUrl("/annotate"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -230,7 +247,7 @@ export async function scanQuestion(params: {
   items: ScanItem[];
   signal?: AbortSignal;
 }): Promise<ScanResult> {
-  const res = await fetch("/scan", {
+  const res = await fetch(apiUrl("/scan"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -256,7 +273,7 @@ export async function scanQuestion(params: {
  * cross-sondage. Sert le sélecteur de l'espace « Réponses libres ».
  */
 export async function fetchOpenQuestions(): Promise<SearchResult[]> {
-  const res = await fetch("/open-questions");
+  const res = await fetch(apiUrl("/open-questions"));
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`Chargement des questions ouvertes échoué (${res.status}): ${body || res.statusText}`);
@@ -270,7 +287,7 @@ export async function fetchOpenQuestions(): Promise<SearchResult[]> {
  * chacune triée par nombre de questions décroissant.
  */
 export async function fetchThemeFacets(): Promise<{ themes: ConceptCount[]; concepts: ConceptCount[] }> {
-  const res = await fetch("/themes");
+  const res = await fetch(apiUrl("/themes"));
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`Chargement des thèmes échoué (${res.status}): ${body || res.statusText}`);
@@ -289,7 +306,7 @@ export async function fetchQuestionsByTag(
 ): Promise<SearchResult[]> {
   const params = new URLSearchParams({ [dim]: value });
   if (year != null) params.set("year", String(year));
-  const res = await fetch(`/themes?${params.toString()}`);
+  const res = await fetch(apiUrl(`/themes?${params.toString()}`));
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`Chargement des questions échoué (${res.status}): ${body || res.statusText}`);
@@ -331,7 +348,7 @@ export async function agentChatStream(
   messages: AgentMessage[],
   onEvent: (ev: AgentEvent) => void,
 ): Promise<AgentChatResponse> {
-  const res = await fetch("/agent", {
+  const res = await fetch(apiUrl("/agent"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ messages }),
