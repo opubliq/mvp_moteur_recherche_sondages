@@ -56,13 +56,27 @@ async function aiSearch(env: CorpusEnv, indexName: string, payload: Record<strin
  * `value` — les `id`/`survey_id` sont disjoints entre index par construction
  * (chaque sondage n'appartient qu'à un seul index), aucune déduplication
  * n'est donc nécessaire.
+ *
+ * Attache `is_private` à chaque doc (f3i.18) — même principe que
+ * `retrieve.ts::searchOneIndex` : c'est ici, avant le `flatMap` qui fusionne
+ * tous les index, que la provenance est encore connue.
  */
 async function aiSearchAll(
   env: CorpusEnv,
   indexes: string[],
   payload: Record<string, unknown>,
 ): Promise<{ value: any[] }> {
-  const perIndex = await Promise.all(indexes.map((indexName) => aiSearch(env, indexName, payload)));
+  const perIndex = await Promise.all(
+    indexes.map(async (indexName) => {
+      const data = await aiSearch(env, indexName, payload);
+      const isPrivate = indexName !== PUBLIC_QUESTIONS_INDEX;
+      const value = ((data.value ?? []) as Record<string, unknown>[]).map((doc) => ({
+        ...doc,
+        is_private: isPrivate,
+      }));
+      return { ...data, value };
+    }),
+  );
   return { value: perIndex.flatMap((d) => d.value ?? []) };
 }
 

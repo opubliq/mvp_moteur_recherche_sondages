@@ -8,7 +8,7 @@
  */
 
 import type { Handler } from "@netlify/functions";
-import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
+import { resolveAccessibleQuestionIndexes, PUBLIC_QUESTIONS_INDEX } from "../../src/logic/tenancy";
 
 const SEARCH_API_VERSION = "2024-07-01";
 const SEARCH_TOP = 1000;
@@ -149,7 +149,8 @@ async function fetchSurveysForIndex(
   }
 
   const data = await res.json();
-  const surveys = data.value || [];
+  const isPrivate = indexName !== PUBLIC_QUESTIONS_INDEX;
+  const surveys = (data.value || []).map((s: Record<string, unknown>) => ({ ...s, is_private: isPrivate }));
 
   // On récupère aussi le nombre total de questions via une requête légère (top=0)
   const countPayload = {

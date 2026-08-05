@@ -190,6 +190,28 @@
   border-color: color-mix(in oklch, var(--color-base-content) 12%, transparent);
 }
 
+/* Provenance privée (f3i.18) : un résultat qui vient de l'index privé d'un
+   client (pas du corpus public). « Exclusif » plutôt que « Privé » — le mot
+   et l'icône lock lisaient comme un accès bloqué, alors que c'est l'inverse :
+   ce sont LES données du client, auxquelles il a accès. Or/gold, seule
+   teinte de tout le site — ni le teal primaire ni le coral secondaire, tous
+   deux déjà réutilisés ailleurs (CTA, score, erreur) au point de s'y fondre.
+   Pas de contour : juste le fond plein, comme demandé. */
+.op-badge-exclusive {
+  --op-exclusive-c: oklch(0.72 0.15 85);
+  color: color-mix(in oklch, var(--op-exclusive-c) 55%, black);
+  background: color-mix(in oklch, var(--op-exclusive-c) 30%, white);
+  border-color: transparent;
+}
+
+/* Pendant du badge exclusif : vert pâle, pas de contour non plus. */
+.op-badge-public {
+  --op-public-c: oklch(0.75 0.13 155);
+  color: color-mix(in oklch, var(--op-public-c) 55%, black);
+  background: color-mix(in oklch, var(--op-public-c) 25%, white);
+  border-color: transparent;
+}
+
 /* =========================================================================
    Coquille d'app : rail + topbar + contenu (portées du mockup)
    ========================================================================= */

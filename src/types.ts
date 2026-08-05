@@ -42,6 +42,14 @@ export interface SearchResult {
   themes: string[];
   tags: string[];
   n_respondents: number | null;
+  /**
+   * Provenance résolue côté serveur (f3i.18) : `true` si le document vient
+   * d'un index privé tenant, `false` si du corpus public. Attaché par
+   * `retrieve()` (src/logic/retrieve.ts) au moment du fan-out multi-index —
+   * jamais déduit côté front. Optionnel pour rester rétrocompatible avec des
+   * appelants qui ne passent pas par `retrieve()` (ex. anciens fixtures/tests).
+   */
+  is_private?: boolean;
   /** Score de pertinence sémantique Cohere Rerank (0-1), attaché par le rerank. */
   relevance_score?: number;
   /**
@@ -114,6 +122,8 @@ export interface SurveyParent {
   tags: string[];
   /** Concepts dominants (facette `concepts`), triés par fréquence décroissante. */
   top_concepts?: ConceptCount[];
+  /** true = index privé d'un client, false = corpus public (cf f3i.18). */
+  is_private?: boolean;
 }
 
 /** Contrat de la Netlify Function `/survey` (voir netlify/functions/survey.ts). */

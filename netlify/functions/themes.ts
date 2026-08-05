@@ -14,7 +14,7 @@
 
 import type { Handler } from "@netlify/functions";
 import { mergeFacets } from "../../src/logic/retrieve";
-import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
+import { PUBLIC_QUESTIONS_INDEX, resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
 
 const SEARCH_API_VERSION = "2024-07-01";
 const MAX_RESULTS = 500;
@@ -148,7 +148,13 @@ export const handler: Handler = async (event) => {
         });
         if (!res.ok) throw new Error(`AI Search error ${res.status} (index ${indexName}): ${await res.text()}`);
         const data = await res.json();
-        return data.value ?? [];
+        // Provenance (f3i.18) : attachée ici, avant le flat() qui fusionne
+        // tous les index — même principe que retrieve.ts::searchOneIndex.
+        const isPrivate = indexName !== PUBLIC_QUESTIONS_INDEX;
+        return ((data.value ?? []) as Record<string, unknown>[]).map((doc) => ({
+          ...doc,
+          is_private: isPrivate,
+        }));
       }),
     );
     const results = perIndexResults.flat();

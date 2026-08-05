@@ -82,8 +82,16 @@ export interface RetrieveOptions {
 /**
  * Candidat brut renvoyé par Azure AI Search : le document + son score hybride
  * (`@search.score`), sans aucun score de pertinence sémantique assigné.
+ *
+ * `is_private` (f3i.18) : provenance résolue côté serveur — `true` quand le
+ * document vient d'un index privé tenant (nom différent de l'index public),
+ * `false` sinon. Attaché ici, au moment où on sait de quel index chaque
+ * candidat provient (avant le `flatMap` qui fusionne tous les index en un seul
+ * tableau) — c'est le SEUL endroit où cette info est encore disponible. Le
+ * front ne doit JAMAIS la déduire lui-même (ex. via survey_id) : il l'affiche
+ * telle quelle.
  */
-export type RawCandidate = SearchResult & { "@search.score": number };
+export type RawCandidate = SearchResult & { "@search.score": number; is_private: boolean };
 
 /** Résultat de `retrieve()` : les candidats bruts + la requête Lucene utilisée. */
 export interface RetrieveResult {
@@ -399,8 +407,16 @@ async function searchOneIndex(
     throw new RetrieveError("search", err instanceof Error ? err.message : String(err));
   }
 
+  // Provenance (f3i.18) : attachée ici, avant la fusion multi-index — c'est le
+  // seul point du pipeline où on sait encore de quel index vient chaque doc.
+  const isPrivate = indexName !== PUBLIC_QUESTIONS_INDEX;
+  const candidates = ((searchResult.value ?? []) as RawCandidate[]).map((c) => ({
+    ...c,
+    is_private: isPrivate,
+  }));
+
   return {
-    candidates: (searchResult.value ?? []) as RawCandidate[],
+    candidates,
     facets: searchResult["@search.facets"],
   };
 }

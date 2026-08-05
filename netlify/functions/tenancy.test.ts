@@ -10,6 +10,7 @@ import { describe, expect, it } from "vitest";
 import {
   PUBLIC_QUESTIONS_INDEX,
   PUBLIC_VERBATIMS_INDEX,
+  isMicrodataSurveyAccessible,
   resolveAccessibleQuestionIndexes,
   resolveAccessibleVerbatimIndexes,
   resolveAuthorizedTenant,
@@ -58,5 +59,38 @@ describe("resolveAccessibleQuestionIndexes / resolveAccessibleVerbatimIndexes (f
       PUBLIC_VERBATIMS_INDEX,
       `${PUBLIC_VERBATIMS_INDEX}-opubliq`,
     ]);
+  });
+});
+
+describe("isMicrodataSurveyAccessible (f3i.14)", () => {
+  // Régression : `medaillon_organismes_qualitatif` (privé opubliq) était
+  // interrogeable via /microdata, /microdata-manifest et l'outil micro-données
+  // de l'agent par N'IMPORTE QUEL compte Basic Auth valide — le rail
+  // micro-données (Parquet/Blob) ne consultait jamais la résolution de tenant,
+  // contrairement au catalogue AI Search. Fuite confirmée empiriquement avant
+  // correctif (le sondage est bien présent dans le `_manifest.json` réel).
+
+  it("un sondage public est accessible sans authentification", () => {
+    expect(isMicrodataSurveyAccessible({}, "eeq_2014")).toBe(true);
+  });
+
+  it("un sondage privé n'est PAS accessible sans authentification", () => {
+    expect(isMicrodataSurveyAccessible({}, "medaillon_organismes_qualitatif")).toBe(false);
+  });
+
+  it("un sondage privé n'est PAS accessible à un tenant authentifié tiers", () => {
+    const headers = { authorization: basic("quelquun-dautre") };
+    expect(isMicrodataSurveyAccessible(headers, "medaillon_organismes_qualitatif")).toBe(false);
+  });
+
+  it("le header x-client-id falsifiable n'élargit jamais l'accès", () => {
+    expect(
+      isMicrodataSurveyAccessible({ "x-client-id": "opubliq" }, "medaillon_organismes_qualitatif"),
+    ).toBe(false);
+  });
+
+  it("un sondage privé EST accessible à son propriétaire authentifié", () => {
+    const headers = { authorization: basic("opubliq") };
+    expect(isMicrodataSurveyAccessible(headers, "medaillon_organismes_qualitatif")).toBe(true);
   });
 });

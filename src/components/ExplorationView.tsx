@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Sparkles, Globe } from "lucide-react";
 import { fetchAllSurveys } from "../api";
 import type { SurveyParent } from "../types";
 import ThemeExplorer from "./ThemeExplorer";
@@ -194,7 +195,25 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
                               onClick={() => setExpandedId(open ? null : s.id)}
                             >
                               {/* Toujours visible (replié) : titre + infos de base */}
-                              <h3 className="text-sm font-semibold leading-tight">{s.survey_name}</h3>
+                              <div className="flex items-start justify-between gap-2">
+                                <h3 className="text-sm font-semibold leading-tight">{s.survey_name}</h3>
+                                {s.is_private === true && (
+                                  <span
+                                    className="op-badge op-badge-exclusive shrink-0"
+                                    title="Exclusif — issu de l'index de votre compte, invisible aux autres clients"
+                                  >
+                                    <Sparkles size={11} strokeWidth={2.5} /> Exclusif
+                                  </span>
+                                )}
+                                {s.is_private === false && (
+                                  <span
+                                    className="op-badge op-badge-public shrink-0"
+                                    title="Public — issu du corpus partagé, visible par tous les comptes"
+                                  >
+                                    <Globe size={11} strokeWidth={2.5} /> Public
+                                  </span>
+                                )}
+                              </div>
                               <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs opacity-70">
                                 {s.pollster && <span>{s.pollster}</span>}
                                 {monthLabel(s.survey_month) && (

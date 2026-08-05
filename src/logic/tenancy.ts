@@ -61,3 +61,34 @@ export function resolveAccessibleVerbatimIndexes(headers: HeaderSource): string[
   const tenant = resolveAuthorizedTenant(headers);
   return tenant ? [PUBLIC_VERBATIMS_INDEX, `${PUBLIC_VERBATIMS_INDEX}-${tenant}`] : [PUBLIC_VERBATIMS_INDEX];
 }
+
+/**
+ * Propriété par sondage — rail micro-données (f3i.14). Miroir TS de
+ * `ingestion/tenancy.py::PRIVATE_SURVEYS` : un `survey_id` absent d'ici est
+ * public (accessible à tout compte authentifié) ; un `survey_id` présent est
+ * réservé exclusivement à son client.
+ *
+ * POURQUOI UNE TABLE SÉPARÉE de `KNOWN_TENANTS`/l'index catalogue : le rail
+ * micro-données (`/microdata`, `/microdata-manifest`, `microdata-core/`) est
+ * un pipeline Parquet/Blob indépendant du catalogue AI Search — il identifie
+ * un sondage par `survey_id` (pas par index), et jusqu'ici ne consultait
+ * jamais la résolution de tenant. Audit f3i.14 : `medaillon_organismes_qualitatif`
+ * (privé opubliq) apparaissait dans `_manifest.json` et était interrogeable
+ * via `/microdata?survey_id=...` par N'IMPORTE QUEL compte Basic Auth valide,
+ * fuite de données confirmée empiriquement avant ce correctif.
+ */
+const PRIVATE_MICRODATA_SURVEYS: Record<string, string> = {
+  medaillon_organismes_qualitatif: "opubliq",
+};
+
+/**
+ * Un `survey_id` du rail micro-données est-il accessible pour cette requête ?
+ * Vrai si le sondage est public (absent de {@link PRIVATE_MICRODATA_SURVEYS})
+ * ou si le tenant authentifié (Basic Auth, jamais `x-client-id`) en est le
+ * propriétaire.
+ */
+export function isMicrodataSurveyAccessible(headers: HeaderSource, surveyId: string): boolean {
+  const owner = PRIVATE_MICRODATA_SURVEYS[surveyId];
+  if (!owner) return true;
+  return resolveAuthorizedTenant(headers) === owner;
+}

@@ -33,8 +33,8 @@ import {
   type MicrodataProvider,
 } from "../../src/logic/agent";
 import { newRequestId, resolveClientId } from "../../src/logic/costlog";
-import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
-import { handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "./microdata-core/core.js";
+import { isMicrodataSurveyAccessible, resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
+import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "./microdata-core/core.js";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -138,9 +138,23 @@ export default async (req: Request): Promise<Response> => {
       container: process.env.AZURE_STORAGE_CONTAINER!,
     },
   };
+  // Isolation multi-tenant (f3i.14) : l'outil micro-données de l'agent passait
+  // directement par le cœur portable, sans jamais consulter le tenant résolu —
+  // un sondage privé (ex. `medaillon_organismes_qualitatif`, opubliq) était donc
+  // interrogeable par n'importe quel compte via l'agent. Filtre ici, au même
+  // point d'injection que les index catalogue (`resolveAccessibleQuestionIndexes`
+  // juste en dessous).
   const microdata: MicrodataProvider = {
-    crosstab: (params) => handleMicrodataQuery(params, microdataConfig),
-    manifest: () => fetchManifest(microdataConfig),
+    crosstab: (params) => {
+      if (!isMicrodataSurveyAccessible(req.headers, params.survey_id)) {
+        throw new MicrodataError(404, "Survey not found");
+      }
+      return handleMicrodataQuery(params, microdataConfig);
+    },
+    manifest: async () => {
+      const manifest = await fetchManifest(microdataConfig);
+      return { surveys: manifest.surveys.filter((s) => isMicrodataSurveyAccessible(req.headers, s.survey_id)) };
+    },
   };
 
   // Identité d'usage de la requête agent (epic 97r, ticket 97r.5) : un request_id

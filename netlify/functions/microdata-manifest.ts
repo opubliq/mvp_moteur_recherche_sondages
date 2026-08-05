@@ -17,6 +17,7 @@
  */
 
 import type { Handler } from "@netlify/functions";
+import { isMicrodataSurveyAccessible } from "../../src/logic/tenancy";
 import { fetchManifest, MicrodataError } from "./microdata-core/core.js";
 
 const CORS_HEADERS: Record<string, string> = {
@@ -49,7 +50,11 @@ export const handler: Handler = async (event) => {
 
   try {
     const manifest = await fetchManifest(config);
-    return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify(manifest) };
+    // Isolation multi-tenant (f3i.14) : n'exposer que les sondages publics ou
+    // appartenant au tenant authentifié — sinon la seule PRÉSENCE d'un sondage
+    // privé dans le manifeste renseigne un tiers sur son existence.
+    const surveys = manifest.surveys.filter((s) => isMicrodataSurveyAccessible(event.headers, s.survey_id));
+    return { statusCode: 200, headers: CORS_HEADERS, body: JSON.stringify({ surveys }) };
   } catch (err) {
     if (err instanceof MicrodataError) {
       return { statusCode: err.status, headers: CORS_HEADERS, body: JSON.stringify({ error: err.message }) };
