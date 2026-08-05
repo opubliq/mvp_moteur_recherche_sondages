@@ -1,10 +1,31 @@
 # Migration Netlify Functions → Azure Functions (f3i.1)
 
-Scaffold posé le 2026-08-05. **Les 11 endpoints sont portés et testés en
-direct** (Azure Functions Core Tools local, contre les vraies ressources
-Azure — AI Search, AOAI, Foundry, Cohere, Blob Storage). Reste hors scope de
-ce ticket : le déploiement réel sur une ressource Azure Functions (le
-portage a été validé en local uniquement, cf. §Restant ci-dessous).
+Scaffold posé le 2026-08-05. **Les 11 endpoints sont portés, déployés et
+validés en production** sur `opubliq-sondages-functions.azurewebsites.net`
+(Function App Flex Consumption, `rg-opubliq-sondages`/canadaeast) — testés
+d'abord en local (Azure Functions Core Tools), puis en déploiement cloud réel
+contre les vraies ressources Azure (AI Search, AOAI, Foundry, Cohere, Blob
+Storage).
+
+## Ressources créées (2026-08-05)
+
+- Storage account `opubliqsondagesfunc` (canadaeast, Standard_LRS) — storage
+  interne requis par Flex Consumption (AzureWebJobsStorage/déploiement),
+  distinct de `opubliqsondagesdata` (données micro-données).
+- Function App `opubliq-sondages-functions` (Flex Consumption, Node.js 20,
+  Functions v4, 2048 Mo/instance, canadaeast) —
+  `https://opubliq-sondages-functions.azurewebsites.net`.
+- App settings = mêmes clés que `.env`/Netlify (`SEARCH_*`, `AOAI_*`,
+  `COHERE_RERANK_*`, `FOUNDRY_CHAT_*`, `AZURE_STORAGE_*`) + `BASIC_AUTH_USER`/
+  `BASIC_AUTH_PASSWORD`/`BASIC_AUTH_EXTRA_ACCOUNTS` (mêmes valeurs que
+  Netlify, récupérées via `netlify env:get`).
+- **Piège rencontré** : le premier déploiement est parti SANS les variables
+  `BASIC_AUTH_*` — les 11 endpoints ont été exposés publiquement (avec de
+  vraies clés Azure derrière) pendant la fenêtre entre déploiement et
+  correction. Corrigé dans la foulée + `az functionapp restart` (les
+  `appsettings set` ne sont pas pris en compte à chaud sans redémarrage).
+  **Sur un prochain déploiement propre, configurer `BASIC_AUTH_*` AVANT tout
+  test public.**
 
 ## Décisions
 
@@ -71,43 +92,79 @@ adaptateur nécessaire pour `resolveClientId`/`resolveAuthorizedTenant`/etc.
 - [x] `verbatims.ts` — parcours ET recherche (BM25 + rerank Cohere, scores vérifiés)
 - [x] `annotate.ts` — classification testée avec une grille réelle
 - [x] `scan.ts` — proposition de grille testée avec un échantillon réel
-- [x] `microdata.ts` + `microdata-manifest.ts` — DuckDB natif + httpfs + Blob SAS validés (distribution, crosstab pondéré, t-test de Welch), isolation multi-tenant re-testée (404 sur sondage privé)
-- [x] `agent.ts` — streaming SSE réel avec tool-calling (`list_themes`) et réponse LLM, testé via `curl -sN`
+- [x] `microdata.ts` + `microdata-manifest.ts` — DuckDB natif + httpfs + Blob SAS validés (distribution, crosstab pondéré, t-test de Welch), isolation multi-tenant re-testée (404 sur sondage privé) — **y compris en déploiement cloud réel**
+- [x] `agent.ts` — streaming SSE réel avec tool-calling (`list_themes`) et réponse LLM, testé via `curl -sN` — **y compris en déploiement cloud réel**
 
 ## Points résolus pendant le portage
 
-- **DuckDB natif** (`microdata-core`) : fonctionne tel quel sous Azure
-  Functions Core Tools local — `@duckdb/node-api` + binding natif
-  (`node_modules/@duckdb/node-bindings-linux-x64/`) se chargent et
-  s'exécutent sans configuration spéciale côté `host.json`/`package.json`
-  (contrairement à Netlify qui exige `external_node_modules`/`included_files`
-  dans `netlify.toml`). **Non validé pour autant en déploiement réel Flex
-  Consumption** — le comportement de packaging d'un binding natif dans le zip
-  de déploiement Azure reste à vérifier au premier déploiement.
+- **DuckDB natif** (`microdata-core`) : fonctionne tel quel — local (Azure
+  Functions Core Tools) ET en déploiement cloud réel (Flex Consumption).
+  `@duckdb/node-api` + binding natif se chargent et s'exécutent sans
+  configuration spéciale côté `host.json`/`package.json` (contrairement à
+  Netlify qui exige `external_node_modules`/`included_files` dans
+  `netlify.toml`) : `func azure functionapp publish` fait un déploiement zip
+  simple (`remotebuild = false` dans les logs Kudu — pas de build Oryx, le
+  `node_modules` local avec le binding déjà résolu part tel quel dans le
+  zip), et le binding linux-x64 fonctionne directement sur l'hôte Flex
+  Consumption (même OS cible). Validé avec un vrai crosstab pondéré contre
+  le Blob de prod.
 - **Streaming** (`agent.ts`) : le fichier Netlify source était déjà écrit en
   anticipant cette migration (format v2 `Request`/`Response` Fetch standard,
   `ReadableStream` Web). `HttpResponseBodyInit` d'`@azure/functions` accepte
   ce même `ReadableStream` natif (cf.
   `node_modules/@azure/functions/types/http.d.ts`) — portage sans changement
-  de mécanisme, seule la coquille handler change. Testé en direct : les
-  frames SSE (`tool_start`, `tool_end`, `message`, `done`) arrivent
-  correctement via `curl -sN`.
+  de mécanisme, seule la coquille handler change. Testé en direct, local ET
+  cloud : les frames SSE (`tool_start`, `tool_end`, `message`, `done`)
+  arrivent correctement via `curl -sN`.
 - Azure Functions Core Tools (`func`) installé (`npm install -g
-  azure-functions-core-tools@4`, v4.12.1) — utilisé pour tous les tests ci-dessus.
+  azure-functions-core-tools@4`, v4.12.1) — utilisé pour le déploiement et
+  tous les tests locaux.
+
+## ⚠️ Piège sécurité rencontré au déploiement
+
+Le premier `func azure functionapp publish` est parti avec les clés
+AI Search/AOAI/Cohere/Storage configurées, mais **sans** `BASIC_AUTH_USER`/
+`BASIC_AUTH_PASSWORD` — `checkBasicAuth` ne bloque rien quand aucun compte
+n'est configuré (même comportement que l'edge function Netlify, voulu pour
+ne pas se verrouiller dehors en dev). Concrètement : les 11 endpoints ont
+répondu publiquement, sans authentification, avec de vraies clés Azure
+derrière, le temps entre le déploiement et la correction. Corrigé en
+configurant `BASIC_AUTH_*` (mêmes valeurs que Netlify, récupérées via
+`netlify env:get`) + `az functionapp restart` (**`appsettings set` n'est PAS
+pris en compte à chaud** — un restart est nécessaire). Reconfirmé : 401 sans
+credentials, 200 avec les bons.
+
+**Pour tout futur déploiement d'une nouvelle ressource** : configurer
+`BASIC_AUTH_*` AVANT le premier déploiement, ou au minimum avant tout test
+public.
+
+## Chemin relatif → same-origin cassé (résolu côté frontend, pas côté hosting)
+
+Le frontend appelle les endpoints en chemin relatif (`fetch("/search")`,
+etc., cf. `src/api.ts`) — sans risque quand frontend et functions partagent
+un domaine (Netlify), mais ça casse dès que les deux sont hébergés
+séparément (Azure Functions déployé sur son propre domaine
+`*.azurewebsites.net`, frontend pas encore migré).
+
+Fix appliqué : `apiUrl()` dans `src/api.ts`, préfixe optionnel via
+`VITE_API_BASE_URL` (vide par défaut = chemin relatif inchangé). Ne résout
+PAS le routage same-origin définitif (ça reste `b1d`/`f3i.2` — Static Web
+Apps lié, proxy, Front Door…), mais découple les deux migrations : le
+frontend peut pointer vers `https://opubliq-sondages-functions.azurewebsites.net`
+dès maintenant sans attendre la décision d'architecture finale.
 
 ## Restant (hors scope de ce ticket)
 
-- **Déploiement réel** sur une ressource Azure Functions (Flex Consumption) —
-  tout ce qui précède est validé en local uniquement (`func start`), jamais
-  déployé. Packaging du binding DuckDB natif à re-vérifier au premier
-  déploiement (cf. ci-dessus).
-- **Redirects** (`netlify.toml` `[[redirects]]`) : chaque route est
-  actuellement exposée sans le préfixe `/.netlify/functions/`. Le `route:`
-  d'`app.http` reproduit ça (`route: "search"` → `/api/search` par défaut,
-  **le préfixe `/api` par défaut d'Azure Functions doit être neutralisé**
-  — fait dans le scaffold via `extensions.http.routePrefix: ""` dans
-  `host.json` — pour préserver le contrat `/search`, `/agent`, etc. attendu
-  par le frontend.
+- **Node 20 → 24** : la Function App tourne sur Node 20, dont l'avertissement
+  de dépréciation (EOL 2026-04-29) est apparu au déploiement. Non bloquant
+  aujourd'hui, mais à planifier avant l'échéance.
 - **CORS** : géré ici par des headers en dur par fonction (comme côté
-  Netlify). À terme, envisager `host.json` → `CORS` au niveau plateforme
-  pour éviter la duplication sur 11 fichiers.
+  Netlify), origine `*`. À resserrer à l'origine réelle du frontend une fois
+  celui-ci hébergé (et envisager `host.json` → `CORS` au niveau plateforme
+  pour éviter la duplication sur 11 fichiers).
+- **Routage same-origin définitif** entre frontend et Functions — décision
+  d'architecture qui appartient à `b1d`/`f3i.2`, pas à ce ticket.
+- **Basic Auth des pages statiques** : le middleware ici ne protège que les
+  endpoints API, pas des pages frontend (contrairement à l'edge function
+  Netlify qui bloque `path: "/*"`). Une fois le frontend hébergé ailleurs, il
+  faudra un mécanisme équivalent pour les pages (`b1d`).
