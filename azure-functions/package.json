@@ -1,0 +1,21 @@
+{
+  "name": "opubliq-sondages-functions",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/azure-functions/src/functions/*.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "start": "npm run build && func start",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.5.1",
+    "@duckdb/node-api": "^1.5.4-r.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.10"
+  }
+}

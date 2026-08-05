@@ -1,0 +1,21 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "SEARCH_ENDPOINT": "",
+    "SEARCH_QUERY_KEY": "",
+    "AOAI_ENDPOINT": "",
+    "AOAI_KEY": "",
+    "AOAI_EMBED_DEPLOYMENT": "",
+    "COHERE_RERANK_ENDPOINT": "",
+    "COHERE_RERANK_DEPLOYMENT": "",
+    "COHERE_RERANK_KEY": "",
+    "BASIC_AUTH_USER": "",
+    "BASIC_AUTH_PASSWORD": "",
+    "BASIC_AUTH_EXTRA_ACCOUNTS": "{}"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

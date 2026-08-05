@@ -42,6 +42,9 @@ dist/
 # Local Netlify folder
 .netlify
 
+# Azure Functions Core Tools — secrets locaux (garder local.settings.json.example versionné)
+azure-functions/local.settings.json
+
 # Bundles de fonctions pré-packagés (ne jamais committer : ils shadowent le .ts)
 netlify/functions/*.zip
 
