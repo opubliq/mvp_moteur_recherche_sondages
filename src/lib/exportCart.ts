@@ -3,7 +3,7 @@ import type { CartItem } from "../context/CartContext";
 export type ExportFormat = "csv-large" | "json";
 
 /** Download côté client — partagé avec l'export des citations (`exportVerbatims`). */
-export function triggerDownload(content: string, filename: string, mime: string) {
+export function triggerDownload(content: string | ArrayBuffer, filename: string, mime: string) {
   const blob = new Blob([content], { type: mime });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
