@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import { X, Tag, Plus, ChevronDown, ChevronRight } from "lucide-react";
 import { cartKey, useCart, type CartItem } from "../context/CartContext";
 import { useConcepts, type ConceptGroup } from "../context/ConceptContext";
+import type { DistributionRow, ResponseOption } from "../types";
 import { DEMO_TYPES } from "../lib/exportExcel";
+import { computeConceptTotals, YEAR_CROSSING_KEY } from "../logic/conceptAggregate";
+import DistributionBars from "../components/microdata/DistributionBars";
 
 /** Pseudo-variable de croisement dérivée des métadonnées, pas une colonne de réponse. */
-const YEAR_CROSSING = { key: "__year__", label: "Année du sondage" };
+const YEAR_CROSSING = { key: YEAR_CROSSING_KEY, label: "Année du sondage" };
 const CROSSING_OPTIONS = [YEAR_CROSSING, ...DEMO_TYPES];
 const CROSSING_STORAGE_KEY = "opubliq.crossing.v1";
 
@@ -192,6 +195,64 @@ function CategoryMapping({
 }
 
 /**
+ * Vérification rapide du mapping (tjf.3) : total pondéré par catégorie de
+ * sortie, tous sondages du concept confondus, recalculé automatiquement à
+ * chaque changement de mapping (debounce) — pas d'export à attendre pour voir
+ * si la répartition a du sens. Le vrai croisement (par sondage/année/socio-
+ * démo) vit dans l'export Excel (tjf.6), pas dans une table en page.
+ */
+function ConceptQuickCheck({ group, items }: { group: ConceptGroup; items: CartItem[] }) {
+  const [state, setState] = useState<
+    "idle" | "loading" | { rows: DistributionRow[]; warnings: string[] } | Error
+  >("idle");
+
+  useEffect(() => {
+    if (group.categories.length === 0) {
+      setState("idle");
+      return;
+    }
+    let cancelled = false;
+    setState("loading");
+    const timer = setTimeout(async () => {
+      try {
+        const res = await computeConceptTotals(group, items);
+        if (!cancelled) setState(res);
+      } catch (err) {
+        if (!cancelled) setState(err instanceof Error ? err : new Error("Échec du calcul"));
+      }
+    }, 500);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [group, items]);
+
+  if (group.categories.length === 0 || state === "idle") return null;
+  if (state === "loading") return <p className="mt-2 text-xs text-base-content/40">Calcul en cours…</p>;
+  if (state instanceof Error) return <p className="mt-2 text-xs text-error">{state.message}</p>;
+
+  const hasData = state.rows.some((r) => r.weighted_n > 0);
+  const options: ResponseOption[] = group.categories.map((c) => ({ code: c.id, label: c.label }));
+
+  return (
+    <div className="mt-2 border-t border-base-content/10 pt-2">
+      {hasData ? (
+        <DistributionBars rows={state.rows} options={options} />
+      ) : (
+        <p className="text-xs text-base-content/40">Aucune réponse mappée pour l'instant.</p>
+      )}
+      {state.warnings.length > 0 && (
+        <ul className="mt-1 list-disc pl-4 text-[11px] text-base-content/50">
+          {state.warnings.map((w, i) => (
+            <li key={i}>{w}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+/**
  * Onglet "Exportation avancée" — point d'entrée pour regrouper des questions
  * équivalentes en concept (tjf.2), mapper leurs catégories de réponse (tjf.3)
  * et croiser sur plusieurs variables (tjf.4). Pas de sélection propre : le
@@ -234,6 +295,16 @@ export default function AdvancedExportPage() {
     items,
     groupByItemKey,
   ]);
+
+  // Items résolus par concept, mémoïsés pour ne recalculer (et redéclencher la
+  // vérification rapide de mapping) que quand un groupe ou le panier change réellement.
+  const groupItems = useMemo(() => {
+    const m = new Map<string, CartItem[]>();
+    for (const g of groups) {
+      m.set(g.id, g.itemKeys.map((k) => itemByKey.get(k)).filter((it): it is CartItem => !!it));
+    }
+    return m;
+  }, [groups, itemByKey]);
 
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [naming, setNaming] = useState(false);
@@ -312,152 +383,176 @@ export default function AdvancedExportPage() {
           </Link>
         </div>
       ) : (
-        <>
-          {groups.length > 0 && (
-            <div className="mb-4">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-base-content/55">
-                Concepts ({groups.length})
-              </p>
-              {groups.map((g) => {
-                const isCollapsed = collapsed.has(g.id);
-                return (
-                  <div key={g.id} className="op-card mb-3">
-                    <div className="mb-2 flex items-center justify-between gap-2">
-                      <div className="flex min-w-0 items-center gap-1.5">
-                        <button
-                          className="btn btn-ghost btn-xs btn-circle shrink-0"
-                          onClick={() => toggleCollapsed(g.id)}
-                          aria-label={isCollapsed ? "Déplier le concept" : "Replier le concept"}
-                        >
-                          {isCollapsed ? (
-                            <ChevronRight size={15} strokeWidth={1.75} />
-                          ) : (
-                            <ChevronDown size={15} strokeWidth={1.75} />
-                          )}
-                        </button>
-                        {isCollapsed ? (
+        <div className="grid-verbatims">
+          {/* Colonne de gauche : le travail (concepts, mapping, questions non
+              regroupées) — large, défile avec la page. */}
+          <div className="min-w-0">
+            {groups.length > 0 && (
+              <div className="mb-4">
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-base-content/55">
+                  Concepts ({groups.length})
+                </p>
+                {groups.map((g) => {
+                  const isCollapsed = collapsed.has(g.id);
+                  const items = groupItems.get(g.id) ?? [];
+                  return (
+                    <div key={g.id} className="op-card mb-3">
+                      <div className="mb-2 flex items-center justify-between gap-2">
+                        <div className="flex min-w-0 items-center gap-1.5">
                           <button
-                            className="truncate text-left text-sm font-semibold"
+                            className="btn btn-ghost btn-xs btn-circle shrink-0"
                             onClick={() => toggleCollapsed(g.id)}
+                            aria-label={isCollapsed ? "Déplier le concept" : "Replier le concept"}
                           >
-                            {g.label}{" "}
-                            <span className="font-normal text-base-content/50">
-                              · {g.itemKeys.length} question{g.itemKeys.length > 1 ? "s" : ""}
-                            </span>
+                            {isCollapsed ? (
+                              <ChevronRight size={15} strokeWidth={1.75} />
+                            ) : (
+                              <ChevronDown size={15} strokeWidth={1.75} />
+                            )}
                           </button>
-                        ) : (
-                          <input
-                            className="input input-bordered input-sm max-w-xs font-semibold"
-                            value={g.label}
-                            onChange={(e) => renameGroup(g.id, e.target.value)}
-                            aria-label="Nom du concept"
-                          />
-                        )}
+                          {isCollapsed ? (
+                            <button
+                              className="truncate text-left text-sm font-semibold"
+                              onClick={() => toggleCollapsed(g.id)}
+                            >
+                              {g.label}{" "}
+                              <span className="font-normal text-base-content/50">
+                                · {g.itemKeys.length} question{g.itemKeys.length > 1 ? "s" : ""}
+                              </span>
+                            </button>
+                          ) : (
+                            <input
+                              className="input input-bordered input-sm max-w-xs font-semibold"
+                              value={g.label}
+                              onChange={(e) => renameGroup(g.id, e.target.value)}
+                              aria-label="Nom du concept"
+                            />
+                          )}
+                        </div>
+                        <button className="btn btn-ghost btn-xs shrink-0" onClick={() => deleteGroup(g.id)}>
+                          Supprimer le concept
+                        </button>
                       </div>
-                      <button className="btn btn-ghost btn-xs shrink-0" onClick={() => deleteGroup(g.id)}>
-                        Supprimer le concept
-                      </button>
+                      {!isCollapsed && (
+                        <>
+                          {items.map((it) => (
+                            <QuestionMiniCard
+                              key={cartKey(it.survey_id, it.variable)}
+                              item={it}
+                              onRemove={() => removeFromGroup(g.id, cartKey(it.survey_id, it.variable))}
+                            />
+                          ))}
+                          <CategoryMapping
+                            group={g}
+                            items={items}
+                            addCategory={addCategory}
+                            renameCategory={renameCategory}
+                            removeCategory={removeCategory}
+                            setMapping={setMapping}
+                          />
+                          <ConceptQuickCheck group={g} items={items} />
+                        </>
+                      )}
                     </div>
-                    {!isCollapsed && (
-                      <>
-                        {g.itemKeys.map((k) => {
-                          const it = itemByKey.get(k);
-                          if (!it) return null;
-                          return <QuestionMiniCard key={k} item={it} onRemove={() => removeFromGroup(g.id, k)} />;
-                        })}
-                        <CategoryMapping
-                          group={g}
-                          items={g.itemKeys.map((k) => itemByKey.get(k)).filter((it): it is CartItem => !!it)}
-                          addCategory={addCategory}
-                          renameCategory={renameCategory}
-                          removeCategory={removeCategory}
-                          setMapping={setMapping}
-                        />
-                      </>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-
-          <div className="op-card">
-            <div className="mb-3 flex items-center justify-between gap-2">
-              <b>
-                {ungrouped.length} question{ungrouped.length > 1 ? "s" : ""} non regroupée
-                {ungrouped.length > 1 ? "s" : ""}
-              </b>
-              {!naming && selected.size >= 2 && (
-                <button className="btn btn-primary btn-xs gap-1" onClick={() => setNaming(true)}>
-                  <Tag size={13} strokeWidth={1.75} />
-                  Regrouper en concept ({selected.size})
-                </button>
-              )}
-            </div>
-
-            {naming && (
-              <div className="mb-3 flex items-center gap-2">
-                <input
-                  className="input input-bordered input-sm flex-1"
-                  placeholder="Nom du concept (ex: Souveraineté du Québec)"
-                  value={newLabel}
-                  autoFocus
-                  onChange={(e) => setNewLabel(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") confirmGroup();
-                    if (e.key === "Escape") cancelGroup();
-                  }}
-                />
-                <button className="btn btn-primary btn-sm" onClick={confirmGroup} disabled={!newLabel.trim()}>
-                  Créer
-                </button>
-                <button className="btn btn-ghost btn-sm" onClick={cancelGroup}>
-                  Annuler
-                </button>
+                  );
+                })}
               </div>
             )}
 
-            {ungrouped.length === 0 ? (
-              <p className="text-sm text-base-content/60">Toutes les questions du panier sont regroupées.</p>
-            ) : (
-              <>
-                <p className="mb-2 text-xs text-base-content/50">
-                  Coche au moins deux questions équivalentes pour les regrouper en concept.
-                </p>
-                {ungrouped.map((it) => {
-                  const k = cartKey(it.survey_id, it.variable);
-                  return (
-                    <QuestionMiniCard
-                      key={k}
-                      item={it}
-                      checkbox={{ checked: selected.has(k), onChange: () => toggleSelected(k) }}
-                    />
-                  );
-                })}
-              </>
-            )}
-          </div>
+            <div className="op-card">
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <b>
+                  {ungrouped.length} question{ungrouped.length > 1 ? "s" : ""} non regroupée
+                  {ungrouped.length > 1 ? "s" : ""}
+                </b>
+                {!naming && selected.size >= 2 && (
+                  <button className="btn btn-primary btn-xs gap-1" onClick={() => setNaming(true)}>
+                    <Tag size={13} strokeWidth={1.75} />
+                    Regrouper en concept ({selected.size})
+                  </button>
+                )}
+              </div>
 
-          <div className="op-card mt-4">
-            <p className="mb-1 text-sm font-semibold">Croiser avec</p>
-            <p className="mb-2 text-xs text-base-content/50">
-              Choisis une ou plusieurs variables à croiser simultanément. La variable technique correspondante est
-              résolue séparément pour chaque sondage du concept.
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              {CROSSING_OPTIONS.map((opt) => (
-                <button
-                  key={opt.key}
-                  type="button"
-                  className={`btn btn-xs ${crossing.has(opt.key) ? "btn-primary" : "btn-outline"}`}
-                  onClick={() => toggleCrossing(opt.key)}
-                >
-                  {opt.label}
-                </button>
-              ))}
+              {naming && (
+                <div className="mb-3 flex items-center gap-2">
+                  <input
+                    className="input input-bordered input-sm flex-1"
+                    placeholder="Nom du concept (ex: Souveraineté du Québec)"
+                    value={newLabel}
+                    autoFocus
+                    onChange={(e) => setNewLabel(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") confirmGroup();
+                      if (e.key === "Escape") cancelGroup();
+                    }}
+                  />
+                  <button className="btn btn-primary btn-sm" onClick={confirmGroup} disabled={!newLabel.trim()}>
+                    Créer
+                  </button>
+                  <button className="btn btn-ghost btn-sm" onClick={cancelGroup}>
+                    Annuler
+                  </button>
+                </div>
+              )}
+
+              {ungrouped.length === 0 ? (
+                <p className="text-sm text-base-content/60">Toutes les questions du panier sont regroupées.</p>
+              ) : (
+                <>
+                  <p className="mb-2 text-xs text-base-content/50">
+                    Coche au moins deux questions équivalentes pour les regrouper en concept.
+                  </p>
+                  {ungrouped.map((it) => {
+                    const k = cartKey(it.survey_id, it.variable);
+                    return (
+                      <QuestionMiniCard
+                        key={k}
+                        item={it}
+                        checkbox={{ checked: selected.has(k), onChange: () => toggleSelected(k) }}
+                      />
+                    );
+                  })}
+                </>
+              )}
             </div>
           </div>
-        </>
+
+          {/* Rail de droite : croisement + export — outils qui agissent sur
+              l'ensemble des concepts, pas le travail lui-même. */}
+          <div className="space-y-4">
+            <div className="op-card">
+              <p className="mb-1 text-sm font-semibold">Croiser avec</p>
+              <p className="mb-2 text-xs text-base-content/50">
+                Chaque variable cochée produit sa propre section dans l'export (pas un croisement combiné — ça
+                viderait les cellules). La variable technique correspondante est résolue séparément pour chaque
+                sondage.
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {CROSSING_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.key}
+                    type="button"
+                    className={`btn btn-xs ${crossing.has(opt.key) ? "btn-primary" : "btn-outline"}`}
+                    onClick={() => toggleCrossing(opt.key)}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="op-card">
+              <p className="mb-1 text-sm font-semibold">Export</p>
+              <p className="mb-3 text-xs text-base-content/50">
+                Un classeur Excel avec la table de distributions croisées pondérées, une feuille par variable de
+                croisement, et le mapping en colonne dérivée dans les micro-données par sondage.
+              </p>
+              <button className="btn btn-primary btn-sm w-full" disabled>
+                Exporter en Excel (bientôt)
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

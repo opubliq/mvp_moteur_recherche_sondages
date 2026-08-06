@@ -29,7 +29,7 @@ function makeSheetName(base: string, used: Set<string>): string {
 }
 
 /** Meilleure variable socio-démo d'un type donné dans un sondage (même heuristique que le dashboard : 2-20 options préférées). */
-function pickSociodemoVar(questions: SearchResult[], type: string): SearchResult | undefined {
+export function pickSociodemoVar(questions: SearchResult[], type: string): SearchResult | undefined {
   const candidates = questions.filter((q) => q.is_sociodemo && q.sociodemo_type === type);
   if (candidates.length === 0) return undefined;
   return candidates
@@ -41,7 +41,7 @@ function pickSociodemoVar(questions: SearchResult[], type: string): SearchResult
     .sort((a, b) => a.band - b.band || a.n - b.n)[0].q;
 }
 
-async function mapLimit<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
+export async function mapLimit<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
   const results: R[] = new Array(items.length);
   let idx = 0;
   async function worker() {
