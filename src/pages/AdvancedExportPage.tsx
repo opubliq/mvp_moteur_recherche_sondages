@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { X, Tag } from "lucide-react";
+import { X, Tag, Plus, ChevronDown, ChevronRight } from "lucide-react";
 import { cartKey, useCart, type CartItem } from "../context/CartContext";
-import { useConcepts } from "../context/ConceptContext";
+import { useConcepts, type ConceptGroup } from "../context/ConceptContext";
 
 /** Carte d'une question : sondage · année en tête, libellé propre en gras, texte brut en repli. */
 function QuestionMiniCard({
@@ -45,6 +45,137 @@ function QuestionMiniCard({
 }
 
 /**
+ * Mapping des catégories de réponse d'un concept : les catégories de sortie
+ * sont propres au concept (partagées entre ses questions), le mapping lui est
+ * propre à chaque question (chacune garde ses catégories natives : binaire,
+ * Likert 4/5/7 points...).
+ */
+function CategoryMapping({
+  group,
+  items,
+  addCategory,
+  renameCategory,
+  removeCategory,
+  setMapping,
+}: {
+  group: ConceptGroup;
+  items: CartItem[];
+  addCategory: (groupId: string, label: string) => void;
+  renameCategory: (groupId: string, categoryId: string, label: string) => void;
+  removeCategory: (groupId: string, categoryId: string) => void;
+  setMapping: (groupId: string, itemKey: string, responseCode: string, categoryId: string | null) => void;
+}) {
+  const [newCategory, setNewCategory] = useState("");
+
+  function confirmAddCategory() {
+    const label = newCategory.trim();
+    if (!label) return;
+    addCategory(group.id, label);
+    setNewCategory("");
+  }
+
+  // Propage le mapping quand deux questions du concept partagent une option de
+  // réponse au libellé identique (repli du même instrument d'une année à
+  // l'autre) — évite de remapper la même échelle Likert à chaque question.
+  useEffect(() => {
+    const labelToCategory = new Map<string, string>();
+    for (const it of items) {
+      const k = cartKey(it.survey_id, it.variable);
+      const itemMapping = group.mapping[k] ?? {};
+      for (const opt of it.response_options) {
+        const catId = itemMapping[opt.code];
+        const norm = opt.label.trim().toLowerCase();
+        if (catId && !labelToCategory.has(norm)) labelToCategory.set(norm, catId);
+      }
+    }
+    for (const it of items) {
+      const k = cartKey(it.survey_id, it.variable);
+      const itemMapping = group.mapping[k] ?? {};
+      for (const opt of it.response_options) {
+        if (itemMapping[opt.code]) continue;
+        const suggestion = labelToCategory.get(opt.label.trim().toLowerCase());
+        if (suggestion) setMapping(group.id, k, opt.code, suggestion);
+      }
+    }
+  }, [group.id, group.mapping, items, setMapping]);
+
+  return (
+    <div className="mt-2 border-t border-base-content/10 pt-3">
+      <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-base-content/55">
+        Catégories de sortie
+      </p>
+      <div className="mb-2 flex flex-wrap items-center gap-1.5">
+        {group.categories.map((c) => (
+          <span key={c.id} className="flex items-center gap-1 rounded-full bg-base-content/5 py-0.5 pl-2.5 pr-1">
+            <input
+              className="w-auto min-w-0 border-none bg-transparent p-0 text-xs focus:outline-none"
+              style={{ width: `${Math.max(c.label.length, 3)}ch` }}
+              value={c.label}
+              onChange={(e) => renameCategory(group.id, c.id, e.target.value)}
+            />
+            <button
+              className="btn btn-ghost btn-xs btn-circle"
+              onClick={() => removeCategory(group.id, c.id)}
+              aria-label="Retirer la catégorie"
+            >
+              <X size={11} strokeWidth={2} />
+            </button>
+          </span>
+        ))}
+        <span className="flex items-center gap-1">
+          <input
+            className="input input-bordered input-xs w-40"
+            placeholder="Nouvelle catégorie"
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && confirmAddCategory()}
+          />
+          <button className="btn btn-ghost btn-xs btn-circle" onClick={confirmAddCategory} aria-label="Ajouter">
+            <Plus size={13} strokeWidth={2} />
+          </button>
+        </span>
+      </div>
+
+      {group.categories.length === 0 ? (
+        <p className="text-xs text-base-content/50">Ajoute au moins une catégorie de sortie pour mapper.</p>
+      ) : (
+        items.map((it) => {
+          const k = cartKey(it.survey_id, it.variable);
+          const itemMapping = group.mapping[k] ?? {};
+          return (
+            <div key={k} className="mb-2">
+              <p className="mb-1 text-xs text-base-content/50">{it.display_label || it.question_text}</p>
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5">
+                {it.response_options.map((opt) => {
+                  const current = itemMapping[opt.code];
+                  return (
+                    <Fragment key={opt.code}>
+                      <span className="truncate text-xs">{opt.label}</span>
+                      <div className="flex flex-wrap gap-1">
+                        {group.categories.map((c) => (
+                          <button
+                            key={c.id}
+                            type="button"
+                            className={`btn btn-xs ${current === c.id ? "btn-primary" : "btn-outline"}`}
+                            onClick={() => setMapping(group.id, k, opt.code, current === c.id ? null : c.id)}
+                          >
+                            {c.label}
+                          </button>
+                        ))}
+                      </div>
+                    </Fragment>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  );
+}
+
+/**
  * Onglet "Exportation avancée" — point d'entrée pour regrouper des questions
  * équivalentes en concept (tjf.2), mapper leurs catégories de réponse (tjf.3)
  * et croiser sur plusieurs variables (tjf.4). Pas de sélection propre : le
@@ -52,8 +183,19 @@ function QuestionMiniCard({
  */
 export default function AdvancedExportPage() {
   const { items, size } = useCart();
-  const { groups, groupByItemKey, createGroup, renameGroup, removeFromGroup, deleteGroup, pruneItemKey } =
-    useConcepts();
+  const {
+    groups,
+    groupByItemKey,
+    createGroup,
+    renameGroup,
+    removeFromGroup,
+    deleteGroup,
+    pruneItemKey,
+    addCategory,
+    renameCategory,
+    removeCategory,
+    setMapping,
+  } = useConcepts();
 
   const itemByKey = useMemo(() => {
     const m = new Map<string, CartItem>();
@@ -80,6 +222,16 @@ export default function AdvancedExportPage() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [naming, setNaming] = useState(false);
   const [newLabel, setNewLabel] = useState("");
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+
+  function toggleCollapsed(id: string) {
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
 
   function toggleSelected(key: string) {
     setSelected((prev) => {
@@ -132,26 +284,66 @@ export default function AdvancedExportPage() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-base-content/55">
                 Concepts ({groups.length})
               </p>
-              {groups.map((g) => (
-                <div key={g.id} className="op-card mb-3">
-                  <div className="mb-2 flex items-center justify-between gap-2">
-                    <input
-                      className="input input-bordered input-sm max-w-xs font-semibold"
-                      value={g.label}
-                      onChange={(e) => renameGroup(g.id, e.target.value)}
-                      aria-label="Nom du concept"
-                    />
-                    <button className="btn btn-ghost btn-xs" onClick={() => deleteGroup(g.id)}>
-                      Supprimer le concept
-                    </button>
+              {groups.map((g) => {
+                const isCollapsed = collapsed.has(g.id);
+                return (
+                  <div key={g.id} className="op-card mb-3">
+                    <div className="mb-2 flex items-center justify-between gap-2">
+                      <div className="flex min-w-0 items-center gap-1.5">
+                        <button
+                          className="btn btn-ghost btn-xs btn-circle shrink-0"
+                          onClick={() => toggleCollapsed(g.id)}
+                          aria-label={isCollapsed ? "Déplier le concept" : "Replier le concept"}
+                        >
+                          {isCollapsed ? (
+                            <ChevronRight size={15} strokeWidth={1.75} />
+                          ) : (
+                            <ChevronDown size={15} strokeWidth={1.75} />
+                          )}
+                        </button>
+                        {isCollapsed ? (
+                          <button
+                            className="truncate text-left text-sm font-semibold"
+                            onClick={() => toggleCollapsed(g.id)}
+                          >
+                            {g.label}{" "}
+                            <span className="font-normal text-base-content/50">
+                              · {g.itemKeys.length} question{g.itemKeys.length > 1 ? "s" : ""}
+                            </span>
+                          </button>
+                        ) : (
+                          <input
+                            className="input input-bordered input-sm max-w-xs font-semibold"
+                            value={g.label}
+                            onChange={(e) => renameGroup(g.id, e.target.value)}
+                            aria-label="Nom du concept"
+                          />
+                        )}
+                      </div>
+                      <button className="btn btn-ghost btn-xs shrink-0" onClick={() => deleteGroup(g.id)}>
+                        Supprimer le concept
+                      </button>
+                    </div>
+                    {!isCollapsed && (
+                      <>
+                        {g.itemKeys.map((k) => {
+                          const it = itemByKey.get(k);
+                          if (!it) return null;
+                          return <QuestionMiniCard key={k} item={it} onRemove={() => removeFromGroup(g.id, k)} />;
+                        })}
+                        <CategoryMapping
+                          group={g}
+                          items={g.itemKeys.map((k) => itemByKey.get(k)).filter((it): it is CartItem => !!it)}
+                          addCategory={addCategory}
+                          renameCategory={renameCategory}
+                          removeCategory={removeCategory}
+                          setMapping={setMapping}
+                        />
+                      </>
+                    )}
                   </div>
-                  {g.itemKeys.map((k) => {
-                    const it = itemByKey.get(k);
-                    if (!it) return null;
-                    return <QuestionMiniCard key={k} item={it} onRemove={() => removeFromGroup(g.id, k)} />;
-                  })}
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
 
@@ -212,9 +404,7 @@ export default function AdvancedExportPage() {
             )}
           </div>
 
-          <p className="mt-4 text-xs text-base-content/50">
-            Mapping des catégories et croisement multi-variables arrivent bientôt.
-          </p>
+          <p className="mt-4 text-xs text-base-content/50">Croisement multi-variables arrive bientôt.</p>
         </>
       )}
     </div>
