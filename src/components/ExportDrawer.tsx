@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { X, Download } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { X, Download, FileSpreadsheet } from "lucide-react";
 import { useCart, cartKey, type CartItem } from "../context/CartContext";
 import { exportCart, type ExportFormat } from "../lib/exportCart";
 import { exportCartXlsx, DEMO_TYPES } from "../lib/exportExcel";
@@ -8,6 +9,7 @@ type FullExportFormat = ExportFormat | "xlsx";
 
 /** Slide-over du panier d'export : liste groupée par sondage + download réel. */
 export default function ExportDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const navigate = useNavigate();
   const { items, size, remove, clear } = useCart();
   const [format, setFormat] = useState<FullExportFormat>("xlsx");
   const [demoTypes, setDemoTypes] = useState<string[]>(["age", "gender", "region"]);
@@ -161,6 +163,16 @@ export default function ExportDrawer({ open, onClose }: { open: boolean; onClose
                   ? `Génération en cours… (${progress.done}/${progress.total})`
                   : "Génération en cours…"
                 : `Exporter ${size} question${size > 1 ? "s" : ""}`}
+            </button>
+            <button
+              className="btn btn-ghost btn-sm mt-2 w-full gap-1.5"
+              onClick={() => {
+                onClose();
+                navigate("/exportation-avancee");
+              }}
+            >
+              <FileSpreadsheet size={15} strokeWidth={1.75} />
+              Exportation avancée (regroupement, mapping, croisements)
             </button>
             <button className="btn btn-ghost btn-sm mt-2 w-full" onClick={clear}>
               Vider le panier

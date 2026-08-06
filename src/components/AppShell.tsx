@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { Search, LayoutGrid, Sparkles, MessageSquare, ShoppingCart } from "lucide-react";
+import { Search, LayoutGrid, Sparkles, MessageSquare, ShoppingCart, FileSpreadsheet } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { fetchAllSurveys } from "../api";
 import { useAnnotations, useUnloadGuard } from "../context/AnnotationContext";
@@ -20,6 +20,7 @@ const MODES: ModeDef[] = [
   { key: "corpus", Ico: LayoutGrid, label: "Exploration corpus", to: "/corpus" },
   { key: "agent", Ico: Sparkles, label: "Agent analytique", to: "/agent", soon: true },
   { key: "questions-ouvertes", Ico: MessageSquare, label: "Réponses libres", to: "/questions-ouvertes" },
+  { key: "exportation-avancee", Ico: FileSpreadsheet, label: "Exportation avancée", to: "/exportation-avancee" },
 ];
 
 export default function AppShell() {

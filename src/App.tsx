@@ -5,6 +5,7 @@ import CorpusPage from "./pages/CorpusPage";
 import AgentPage from "./pages/AgentPage";
 import VerbatimsPage from "./pages/VerbatimsPage";
 import SurveyPage from "./pages/SurveyPage";
+import AdvancedExportPage from "./pages/AdvancedExportPage";
 import QuestionDashboard from "./components/QuestionDashboard";
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/agent" element={<AgentPage />} />
         <Route path="/questions-ouvertes" element={<VerbatimsPage />} />
         <Route path="/questions-ouvertes/:surveyId/:variable" element={<VerbatimsPage />} />
+        <Route path="/exportation-avancee" element={<AdvancedExportPage />} />
         <Route path="/sondage/:surveyId" element={<SurveyPage />} />
         <Route path="/sondage/:surveyId/q/:variable" element={<QuestionDashboard />} />
         <Route path="*" element={<Navigate to="/recherche" replace />} />
