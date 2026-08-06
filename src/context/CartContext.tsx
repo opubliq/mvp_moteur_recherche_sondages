@@ -9,6 +9,7 @@ export interface CartItem {
   pollster: string | null;
   variable: string;
   question_text: string;
+  display_label?: string | null;
   response_options: ResponseOption[];
 }
 
@@ -24,6 +25,7 @@ export function toCartItem(q: SearchResult): CartItem {
     pollster: q.pollster,
     variable: q.variable,
     question_text: q.question_text,
+    display_label: q.display_label,
     response_options: q.response_options,
   };
 }
