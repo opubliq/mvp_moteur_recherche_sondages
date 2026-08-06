@@ -12,6 +12,7 @@
   "dependencies": {
     "@azure/data-tables": "^13.3.2",
     "@azure/functions": "^4.5.1",
+    "@azure/storage-blob": "^12.33.0",
     "@duckdb/node-api": "^1.5.4-r.1",
     "bcryptjs": "^3.0.3"
   },
