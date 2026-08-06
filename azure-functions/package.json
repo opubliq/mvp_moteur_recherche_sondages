@@ -10,8 +10,10 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@azure/data-tables": "^13.3.2",
     "@azure/functions": "^4.5.1",
-    "@duckdb/node-api": "^1.5.4-r.1"
+    "@duckdb/node-api": "^1.5.4-r.1",
+    "bcryptjs": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
