@@ -44,18 +44,20 @@ describe("resolveAuthorizedTenant (f3i.11)", () => {
 });
 
 describe("resolveAccessibleQuestionIndexes / resolveAccessibleVerbatimIndexes (f3i.11)", () => {
+  // f3i.19.3 : ces fonctions prennent désormais un tenant déjà résolu (plus les
+  // headers) — la résolution elle-même est testée séparément ci-dessus.
+
   it("public seul sans tenant authentifié", () => {
-    expect(resolveAccessibleQuestionIndexes({})).toEqual([PUBLIC_QUESTIONS_INDEX]);
-    expect(resolveAccessibleVerbatimIndexes({})).toEqual([PUBLIC_VERBATIMS_INDEX]);
+    expect(resolveAccessibleQuestionIndexes(undefined)).toEqual([PUBLIC_QUESTIONS_INDEX]);
+    expect(resolveAccessibleVerbatimIndexes(undefined)).toEqual([PUBLIC_VERBATIMS_INDEX]);
   });
 
   it("public + privé pour un tenant authentifié connu", () => {
-    const headers = { authorization: basic("opubliq") };
-    expect(resolveAccessibleQuestionIndexes(headers)).toEqual([
+    expect(resolveAccessibleQuestionIndexes("opubliq")).toEqual([
       PUBLIC_QUESTIONS_INDEX,
       `${PUBLIC_QUESTIONS_INDEX}-opubliq`,
     ]);
-    expect(resolveAccessibleVerbatimIndexes(headers)).toEqual([
+    expect(resolveAccessibleVerbatimIndexes("opubliq")).toEqual([
       PUBLIC_VERBATIMS_INDEX,
       `${PUBLIC_VERBATIMS_INDEX}-opubliq`,
     ]);
@@ -69,28 +71,22 @@ describe("isMicrodataSurveyAccessible (f3i.14)", () => {
   // micro-données (Parquet/Blob) ne consultait jamais la résolution de tenant,
   // contrairement au catalogue AI Search. Fuite confirmée empiriquement avant
   // correctif (le sondage est bien présent dans le `_manifest.json` réel).
+  //
+  // f3i.19.3 : prend désormais un tenant déjà résolu (plus les headers).
 
   it("un sondage public est accessible sans authentification", () => {
-    expect(isMicrodataSurveyAccessible({}, "eeq_2014")).toBe(true);
+    expect(isMicrodataSurveyAccessible(undefined, "eeq_2014")).toBe(true);
   });
 
   it("un sondage privé n'est PAS accessible sans authentification", () => {
-    expect(isMicrodataSurveyAccessible({}, "medaillon_organismes_qualitatif")).toBe(false);
+    expect(isMicrodataSurveyAccessible(undefined, "medaillon_organismes_qualitatif")).toBe(false);
   });
 
   it("un sondage privé n'est PAS accessible à un tenant authentifié tiers", () => {
-    const headers = { authorization: basic("quelquun-dautre") };
-    expect(isMicrodataSurveyAccessible(headers, "medaillon_organismes_qualitatif")).toBe(false);
-  });
-
-  it("le header x-client-id falsifiable n'élargit jamais l'accès", () => {
-    expect(
-      isMicrodataSurveyAccessible({ "x-client-id": "opubliq" }, "medaillon_organismes_qualitatif"),
-    ).toBe(false);
+    expect(isMicrodataSurveyAccessible("quelquun-dautre", "medaillon_organismes_qualitatif")).toBe(false);
   });
 
   it("un sondage privé EST accessible à son propriétaire authentifié", () => {
-    const headers = { authorization: basic("opubliq") };
-    expect(isMicrodataSurveyAccessible(headers, "medaillon_organismes_qualitatif")).toBe(true);
+    expect(isMicrodataSurveyAccessible("opubliq", "medaillon_organismes_qualitatif")).toBe(true);
   });
 });

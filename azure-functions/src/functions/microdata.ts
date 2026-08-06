@@ -10,7 +10,7 @@
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { isMicrodataSurveyAccessible } from "../../../src/logic/tenancy";
 import { handleMicrodataQuery, MicrodataError, type Agg, type MicrodataParams } from "../microdata-core/core";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const AGGS = ["count", "mean", "corr", "ols", "ttest", "anova"] as const;
 function parseAgg(v: unknown): Agg {
@@ -59,8 +59,8 @@ async function parseParams(request: HttpRequest): Promise<MicrodataParams> {
 export async function microdata(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   if (request.method === "OPTIONS") return { status: 200, headers: CORS_HEADERS, body: "" };
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   for (const key of ["AZURE_STORAGE_ACCOUNT", "AZURE_STORAGE_KEY", "AZURE_STORAGE_CONTAINER"] as const) {
     if (!process.env[key]) {
@@ -76,7 +76,7 @@ export async function microdata(request: HttpRequest, context: InvocationContext
     return { status: 400, headers: CORS_HEADERS, jsonBody: { error: "Invalid request body" } };
   }
 
-  if (!isMicrodataSurveyAccessible(request.headers, params.survey_id)) {
+  if (!isMicrodataSurveyAccessible(auth.tenant, params.survey_id)) {
     return { status: 404, headers: CORS_HEADERS, jsonBody: { error: "Survey not found" } };
   }
 

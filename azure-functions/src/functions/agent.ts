@@ -23,7 +23,7 @@ import {
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
 import { isMicrodataSurveyAccessible, resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "../microdata-core/core";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -84,8 +84,8 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
     return { status: 200, headers: CORS_HEADERS, body: "" };
   }
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   for (const key of REQUIRED_ENV) {
     if (!process.env[key]) {
@@ -122,19 +122,19 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
   };
   const microdata: MicrodataProvider = {
     crosstab: (params) => {
-      if (!isMicrodataSurveyAccessible(request.headers, params.survey_id)) {
+      if (!isMicrodataSurveyAccessible(auth.tenant, params.survey_id)) {
         throw new MicrodataError(404, "Survey not found");
       }
       return handleMicrodataQuery(params, microdataConfig);
     },
     manifest: async () => {
       const manifest = await fetchManifest(microdataConfig);
-      return { surveys: manifest.surveys.filter((s) => isMicrodataSurveyAccessible(request.headers, s.survey_id)) };
+      return { surveys: manifest.surveys.filter((s) => isMicrodataSurveyAccessible(auth.tenant, s.survey_id)) };
     },
   };
 
   const usage = { clientId: resolveClientId(request.headers), requestId: newRequestId() };
-  const indexes = resolveAccessibleQuestionIndexes(request.headers);
+  const indexes = resolveAccessibleQuestionIndexes(auth.tenant);
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({

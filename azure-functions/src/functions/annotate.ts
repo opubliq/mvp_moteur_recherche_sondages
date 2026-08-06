@@ -12,7 +12,7 @@ import {
   type AnnotationItem,
 } from "../../../src/logic/annotate";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -42,8 +42,8 @@ export async function annotate(request: HttpRequest, context: InvocationContext)
     return { status: 200, headers: CORS_HEADERS, body: "" };
   }
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   for (const key of ["AOAI_ENDPOINT", "AOAI_KEY", "AOAI_CHAT_DEPLOYMENT"] as const) {
     if (!process.env[key]) {

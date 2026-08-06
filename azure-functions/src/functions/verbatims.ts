@@ -8,7 +8,7 @@ import { cohereRerankDocuments, RerankError } from "../../../src/logic/rerank";
 import type { RerankEnv } from "../../../src/logic/rerank";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
 import { resolveAccessibleVerbatimIndexes } from "../../../src/logic/tenancy";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const SEARCH_API_VERSION = "2024-07-01";
 
@@ -67,8 +67,8 @@ export async function verbatims(request: HttpRequest, context: InvocationContext
     return { status: 200, headers: CORS_HEADERS, body: "" };
   }
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   let body: VerbatimsBody;
   try {
@@ -101,7 +101,7 @@ export async function verbatims(request: HttpRequest, context: InvocationContext
   const headers = { "Content-Type": "application/json", "api-key": process.env.SEARCH_QUERY_KEY ?? "" };
   const filter = `survey_id eq '${odataEscape(surveyId)}' and variable eq '${odataEscape(variable)}'`;
 
-  const indexes = resolveAccessibleVerbatimIndexes(request.headers);
+  const indexes = resolveAccessibleVerbatimIndexes(auth.tenant);
   const urlFor = (indexName: string) =>
     `${searchEndpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
 

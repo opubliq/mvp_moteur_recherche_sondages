@@ -6,7 +6,7 @@
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { getSurveyCatalog } from "../../../src/logic/corpus";
 import { resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -33,8 +33,8 @@ export async function survey(request: HttpRequest, context: InvocationContext): 
     return { status: 200, headers: CORS_HEADERS, body: "" };
   }
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   for (const key of ["SEARCH_ENDPOINT", "SEARCH_QUERY_KEY"] as const) {
     if (!process.env[key]) {
@@ -53,7 +53,7 @@ export async function survey(request: HttpRequest, context: InvocationContext): 
     SEARCH_QUERY_KEY: process.env.SEARCH_QUERY_KEY!,
   };
 
-  const indexes = resolveAccessibleQuestionIndexes(request.headers);
+  const indexes = resolveAccessibleQuestionIndexes(auth.tenant);
 
   let catalog: Awaited<ReturnType<typeof getSurveyCatalog>>;
   try {

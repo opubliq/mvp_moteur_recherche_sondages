@@ -15,7 +15,7 @@
  */
 
 import type { Handler } from "@netlify/functions";
-import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
+import { resolveAccessibleQuestionIndexes, resolveAuthorizedTenant } from "../../src/logic/tenancy";
 
 const SEARCH_API_VERSION = "2024-07-01";
 /** Le corpus en compte ~82 aujourd'hui ; large de côté pour l'ingestion à venir. */
@@ -71,7 +71,7 @@ export const handler: Handler = async (event) => {
 
   // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
   // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
-  const indexes = resolveAccessibleQuestionIndexes(event.headers);
+  const indexes = resolveAccessibleQuestionIndexes(resolveAuthorizedTenant(event.headers));
 
   try {
     const perIndexResults = await Promise.all(

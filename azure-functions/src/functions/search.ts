@@ -17,7 +17,7 @@ import { rerankCandidates, RerankError } from "../../../src/logic/rerank";
 import type { RerankEnv } from "../../../src/logic/rerank";
 import { newRequestId, resolveClientId, type UsageContext } from "../../../src/logic/costlog";
 import { resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -39,8 +39,8 @@ export async function search(request: HttpRequest, context: InvocationContext): 
     return { status: 200, headers: CORS_HEADERS, body: "" };
   }
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   const requiredEnv = [
     "SEARCH_ENDPOINT",
@@ -108,7 +108,7 @@ export async function search(request: HttpRequest, context: InvocationContext): 
   let luceneQuery: string;
   let rawFacets: Record<string, Array<{ value: any; count: number }>> | undefined;
 
-  const indexes = resolveAccessibleQuestionIndexes(request.headers);
+  const indexes = resolveAccessibleQuestionIndexes(auth.tenant);
 
   try {
     const result = await retrieve(trimmedQuery, concepts, env, { filters, top, usage, indexes });

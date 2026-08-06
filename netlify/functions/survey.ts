@@ -15,7 +15,7 @@
 
 import type { Handler } from "@netlify/functions";
 import { getSurveyCatalog } from "../../src/logic/corpus";
-import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
+import { resolveAccessibleQuestionIndexes, resolveAuthorizedTenant } from "../../src/logic/tenancy";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -82,7 +82,7 @@ export const handler: Handler = async (event) => {
 
   // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
   // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
-  const indexes = resolveAccessibleQuestionIndexes(event.headers);
+  const indexes = resolveAccessibleQuestionIndexes(resolveAuthorizedTenant(event.headers));
 
   let catalog: Awaited<ReturnType<typeof getSurveyCatalog>>;
   try {

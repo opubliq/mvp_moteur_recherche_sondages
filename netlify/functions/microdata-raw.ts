@@ -12,7 +12,7 @@
  */
 
 import type { Handler } from "@netlify/functions";
-import { isMicrodataSurveyAccessible } from "../../src/logic/tenancy";
+import { isMicrodataSurveyAccessible, resolveAuthorizedTenant } from "../../src/logic/tenancy";
 import { handleMicrodataRawExport, MicrodataError, type RawExportParams } from "./microdata-core/core.js";
 
 const CORS_HEADERS: Record<string, string> = {
@@ -44,7 +44,7 @@ export const handler: Handler = async (event) => {
   }
 
   // Isolation multi-tenant (f3i.14) : mêmes règles que /microdata et /microdata-manifest.
-  if (!isMicrodataSurveyAccessible(event.headers, params.survey_id)) {
+  if (!isMicrodataSurveyAccessible(resolveAuthorizedTenant(event.headers), params.survey_id)) {
     return { statusCode: 404, headers: CORS_HEADERS, body: JSON.stringify({ error: "Not found" }) };
   }
 

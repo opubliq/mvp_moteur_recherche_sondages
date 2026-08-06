@@ -6,7 +6,7 @@
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { mergeFacets } from "../../../src/logic/retrieve";
 import { PUBLIC_QUESTIONS_INDEX, resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const SEARCH_API_VERSION = "2024-07-01";
 const MAX_RESULTS = 500;
@@ -49,8 +49,8 @@ export async function themes(request: HttpRequest, context: InvocationContext): 
     return { status: 200, headers: CORS_HEADERS, body: "" };
   }
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   for (const key of ["SEARCH_ENDPOINT", "SEARCH_QUERY_KEY"] as const) {
     if (!process.env[key]) {
@@ -61,7 +61,7 @@ export async function themes(request: HttpRequest, context: InvocationContext): 
   const searchEndpoint = (process.env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
   const searchKey = process.env.SEARCH_QUERY_KEY ?? "";
 
-  const indexes = resolveAccessibleQuestionIndexes(request.headers);
+  const indexes = resolveAccessibleQuestionIndexes(auth.tenant);
 
   const theme = request.query.get("theme")?.trim() || undefined;
   const concept = request.query.get("concept")?.trim() || undefined;

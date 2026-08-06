@@ -6,7 +6,7 @@
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { isMicrodataSurveyAccessible } from "../../../src/logic/tenancy";
 import { fetchManifest, MicrodataError } from "../microdata-core/core";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -18,8 +18,8 @@ const CORS_HEADERS: Record<string, string> = {
 export async function microdataManifest(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   if (request.method === "OPTIONS") return { status: 200, headers: CORS_HEADERS, body: "" };
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   for (const key of ["AZURE_STORAGE_ACCOUNT", "AZURE_STORAGE_KEY", "AZURE_STORAGE_CONTAINER"] as const) {
     if (!process.env[key]) {
@@ -38,7 +38,7 @@ export async function microdataManifest(request: HttpRequest, context: Invocatio
 
   try {
     const manifest = await fetchManifest(config);
-    const surveys = manifest.surveys.filter((s) => isMicrodataSurveyAccessible(request.headers, s.survey_id));
+    const surveys = manifest.surveys.filter((s) => isMicrodataSurveyAccessible(auth.tenant, s.survey_id));
     return { status: 200, headers: CORS_HEADERS, jsonBody: { surveys } };
   } catch (err) {
     if (err instanceof MicrodataError) {

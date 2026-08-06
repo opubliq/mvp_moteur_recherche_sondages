@@ -22,7 +22,7 @@ import type { RetrieveEnv, RawCandidate } from "../../src/logic/retrieve";
 import { rerankCandidates, RerankError } from "../../src/logic/rerank";
 import type { RerankEnv } from "../../src/logic/rerank";
 import { newRequestId, resolveClientId, type UsageContext } from "../../src/logic/costlog";
-import { resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
+import { resolveAccessibleQuestionIndexes, resolveAuthorizedTenant } from "../../src/logic/tenancy";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -156,7 +156,7 @@ export const handler: Handler = async (event) => {
 
   // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
   // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
-  const indexes = resolveAccessibleQuestionIndexes(event.headers);
+  const indexes = resolveAccessibleQuestionIndexes(resolveAuthorizedTenant(event.headers));
 
   try {
     const result = await retrieve(trimmedQuery, concepts, env, { filters, top, usage, indexes });

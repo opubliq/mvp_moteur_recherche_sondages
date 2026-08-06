@@ -26,7 +26,7 @@ import type { Handler } from "@netlify/functions";
 import { cohereRerankDocuments, RerankError } from "../../src/logic/rerank";
 import type { RerankEnv } from "../../src/logic/rerank";
 import { newRequestId, resolveClientId } from "../../src/logic/costlog";
-import { resolveAccessibleVerbatimIndexes } from "../../src/logic/tenancy";
+import { resolveAccessibleVerbatimIndexes, resolveAuthorizedTenant } from "../../src/logic/tenancy";
 
 const SEARCH_API_VERSION = "2024-07-01";
 
@@ -152,7 +152,7 @@ export const handler: Handler = async (event) => {
   // Un sondage donné ne vit que dans UN de ces index : interroger les deux et
   // concaténer est sûr (l'autre renvoie simplement value=[]), sans avoir à
   // savoir à l'avance lequel est le bon.
-  const indexes = resolveAccessibleVerbatimIndexes(event.headers);
+  const indexes = resolveAccessibleVerbatimIndexes(resolveAuthorizedTenant(event.headers));
   const urlFor = (indexName: string) =>
     `${searchEndpoint}/indexes/${indexName}/docs/search?api-version=${SEARCH_API_VERSION}`;
 

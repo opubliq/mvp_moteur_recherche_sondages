@@ -6,7 +6,7 @@
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { decomposeQuery, type DecomposeEnv } from "../../../src/logic/decompose";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -24,8 +24,8 @@ export async function decompose(request: HttpRequest, context: InvocationContext
     return { status: 200, headers: CORS_HEADERS, body: "" };
   }
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   const requiredEnv = ["FOUNDRY_CHAT_ENDPOINT", "FOUNDRY_CHAT_KEY", "FOUNDRY_CHAT_DEPLOYMENT"] as const;
   for (const key of requiredEnv) {

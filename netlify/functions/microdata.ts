@@ -13,7 +13,7 @@
  */
 
 import type { Handler } from "@netlify/functions";
-import { isMicrodataSurveyAccessible } from "../../src/logic/tenancy";
+import { isMicrodataSurveyAccessible, resolveAuthorizedTenant } from "../../src/logic/tenancy";
 import {
   handleMicrodataQuery,
   MicrodataError,
@@ -90,7 +90,7 @@ export const handler: Handler = async (event) => {
   // Isolation multi-tenant (f3i.14) : un sondage privé n'est interrogeable que
   // par le tenant qui le possède. 404 plutôt que 403 — ne pas confirmer à un
   // tiers l'existence même du sondage.
-  if (!isMicrodataSurveyAccessible(event.headers, params.survey_id)) {
+  if (!isMicrodataSurveyAccessible(resolveAuthorizedTenant(event.headers), params.survey_id)) {
     return { statusCode: 404, headers: CORS_HEADERS, body: JSON.stringify({ error: "Survey not found" }) };
   }
 

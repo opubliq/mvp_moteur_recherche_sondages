@@ -5,7 +5,7 @@
 
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { resolveAccessibleQuestionIndexes, PUBLIC_QUESTIONS_INDEX } from "../../../src/logic/tenancy";
-import { checkBasicAuth } from "../middleware/auth";
+import { checkAuth } from "../middleware/auth-transitional";
 
 const SEARCH_API_VERSION = "2024-07-01";
 const SEARCH_TOP = 1000;
@@ -112,8 +112,8 @@ export async function surveys(request: HttpRequest, context: InvocationContext):
     return { status: 200, headers: CORS_HEADERS, body: "" };
   }
 
-  const authFailure = checkBasicAuth(request);
-  if (authFailure) return authFailure;
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
 
   for (const key of ["SEARCH_ENDPOINT", "SEARCH_QUERY_KEY"] as const) {
     if (!process.env[key]) {
@@ -124,7 +124,7 @@ export async function surveys(request: HttpRequest, context: InvocationContext):
   const searchEndpoint = (process.env.SEARCH_ENDPOINT ?? "").replace(/\/$/, "");
   const searchKey = process.env.SEARCH_QUERY_KEY ?? "";
 
-  const indexes = resolveAccessibleQuestionIndexes(request.headers);
+  const indexes = resolveAccessibleQuestionIndexes(auth.tenant);
 
   try {
     const perIndex = await Promise.all(

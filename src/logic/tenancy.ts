@@ -8,12 +8,18 @@
  * le ROUTAGE à l'ingestion — un client peut apparaître dans l'une avant
  * l'autre selon l'ordre des opérations, mais doivent converger).
  *
- * SOURCE D'IDENTITÉ : contrairement à `resolveClientId` (costlog.ts, qui
- * accepte le header `x-client-id` falsifiable), la résolution d'accès ici ne
- * fait confiance QU'AU username du Basic Auth global — la seule chose qu'un
- * appelant ne peut pas choisir librement tant qu'un couple user/mot de passe
- * n'a pas été distribué par nous. Un header explicite ne doit JAMAIS élargir
- * l'accès à un index privé (fuite de données entre clients concurrents).
+ * SOURCE D'IDENTITÉ (f3i.19.3). Les fonctions `resolveAccessible*` et
+ * `isMicrodataSurveyAccessible` prennent désormais un `tenant` déjà résolu,
+ * plutôt que les headers de la requête — la résolution elle-même (session ou,
+ * pendant la fenêtre de coexistence, username du Basic Auth) se fait une
+ * seule fois par requête dans `azure-functions/src/middleware/auth-transitional.ts`,
+ * pas dupliquée ici. `resolveAuthorizedTenant` (headers → tenant, Basic Auth
+ * uniquement) reste néanmoins exportée : c'est elle que la branche de repli
+ * Basic Auth de `auth-transitional.ts` appelle pour produire ce tenant.
+ *
+ * Le principe de sécurité ne change pas : un tenant ne doit JAMAIS provenir
+ * d'un header explicite falsifiable (`x-client-id`), seulement d'une identité
+ * authentifiée (session ou Basic Auth) résolue côté serveur.
  */
 
 import { basicAuthUser, readHeader, sanitizeClientId, type HeaderSource } from "./costlog";
@@ -49,16 +55,15 @@ export function resolveAuthorizedTenant(headers: HeaderSource): string | undefin
  * Index catalogue (`survey-questions*`) accessibles pour cette requête :
  * toujours le public, plus l'index privé du tenant authentifié le cas échéant
  * (croisement public+privé dans une même requête — contrainte produit du
- * design multi-tenant, ne pas cloisonner).
+ * design multi-tenant, ne pas cloisonner). `tenant` doit provenir d'une
+ * identité déjà authentifiée côté serveur (jamais d'un header brut).
  */
-export function resolveAccessibleQuestionIndexes(headers: HeaderSource): string[] {
-  const tenant = resolveAuthorizedTenant(headers);
+export function resolveAccessibleQuestionIndexes(tenant: string | undefined): string[] {
   return tenant ? [PUBLIC_QUESTIONS_INDEX, `${PUBLIC_QUESTIONS_INDEX}-${tenant}`] : [PUBLIC_QUESTIONS_INDEX];
 }
 
 /** Même principe que {@link resolveAccessibleQuestionIndexes}, pour les verbatims. */
-export function resolveAccessibleVerbatimIndexes(headers: HeaderSource): string[] {
-  const tenant = resolveAuthorizedTenant(headers);
+export function resolveAccessibleVerbatimIndexes(tenant: string | undefined): string[] {
   return tenant ? [PUBLIC_VERBATIMS_INDEX, `${PUBLIC_VERBATIMS_INDEX}-${tenant}`] : [PUBLIC_VERBATIMS_INDEX];
 }
 
@@ -84,11 +89,11 @@ const PRIVATE_MICRODATA_SURVEYS: Record<string, string> = {
 /**
  * Un `survey_id` du rail micro-données est-il accessible pour cette requête ?
  * Vrai si le sondage est public (absent de {@link PRIVATE_MICRODATA_SURVEYS})
- * ou si le tenant authentifié (Basic Auth, jamais `x-client-id`) en est le
+ * ou si `tenant` (identité déjà authentifiée côté serveur) en est le
  * propriétaire.
  */
-export function isMicrodataSurveyAccessible(headers: HeaderSource, surveyId: string): boolean {
+export function isMicrodataSurveyAccessible(tenant: string | undefined, surveyId: string): boolean {
   const owner = PRIVATE_MICRODATA_SURVEYS[surveyId];
   if (!owner) return true;
-  return resolveAuthorizedTenant(headers) === owner;
+  return tenant === owner;
 }

@@ -8,7 +8,7 @@
  */
 
 import type { Handler } from "@netlify/functions";
-import { resolveAccessibleQuestionIndexes, PUBLIC_QUESTIONS_INDEX } from "../../src/logic/tenancy";
+import { resolveAccessibleQuestionIndexes, resolveAuthorizedTenant, PUBLIC_QUESTIONS_INDEX } from "../../src/logic/tenancy";
 
 const SEARCH_API_VERSION = "2024-07-01";
 const SEARCH_TOP = 1000;
@@ -89,7 +89,7 @@ export const handler: Handler = async (event) => {
 
   // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
   // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
-  const indexes = resolveAccessibleQuestionIndexes(event.headers);
+  const indexes = resolveAccessibleQuestionIndexes(resolveAuthorizedTenant(event.headers));
 
   try {
     const perIndex = await Promise.all(

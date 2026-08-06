@@ -33,7 +33,7 @@ import {
   type MicrodataProvider,
 } from "../../src/logic/agent";
 import { newRequestId, resolveClientId } from "../../src/logic/costlog";
-import { isMicrodataSurveyAccessible, resolveAccessibleQuestionIndexes } from "../../src/logic/tenancy";
+import { isMicrodataSurveyAccessible, resolveAccessibleQuestionIndexes, resolveAuthorizedTenant } from "../../src/logic/tenancy";
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "./microdata-core/core.js";
 
 const CORS_HEADERS: Record<string, string> = {
@@ -144,16 +144,18 @@ export default async (req: Request): Promise<Response> => {
   // interrogeable par n'importe quel compte via l'agent. Filtre ici, au même
   // point d'injection que les index catalogue (`resolveAccessibleQuestionIndexes`
   // juste en dessous).
+  const tenant = resolveAuthorizedTenant(req.headers);
+
   const microdata: MicrodataProvider = {
     crosstab: (params) => {
-      if (!isMicrodataSurveyAccessible(req.headers, params.survey_id)) {
+      if (!isMicrodataSurveyAccessible(tenant, params.survey_id)) {
         throw new MicrodataError(404, "Survey not found");
       }
       return handleMicrodataQuery(params, microdataConfig);
     },
     manifest: async () => {
       const manifest = await fetchManifest(microdataConfig);
-      return { surveys: manifest.surveys.filter((s) => isMicrodataSurveyAccessible(req.headers, s.survey_id)) };
+      return { surveys: manifest.surveys.filter((s) => isMicrodataSurveyAccessible(tenant, s.survey_id)) };
     },
   };
 
@@ -164,7 +166,7 @@ export default async (req: Request): Promise<Response> => {
 
   // Index accessibles : résolus côté serveur depuis le Basic Auth uniquement
   // (jamais depuis une entrée du client) — cf f3i.11 / src/logic/tenancy.ts.
-  const indexes = resolveAccessibleQuestionIndexes(req.headers);
+  const indexes = resolveAccessibleQuestionIndexes(tenant);
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
