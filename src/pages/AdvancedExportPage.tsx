@@ -3,6 +3,22 @@ import { Link } from "react-router-dom";
 import { X, Tag, Plus, ChevronDown, ChevronRight } from "lucide-react";
 import { cartKey, useCart, type CartItem } from "../context/CartContext";
 import { useConcepts, type ConceptGroup } from "../context/ConceptContext";
+import { DEMO_TYPES } from "../lib/exportExcel";
+
+/** Pseudo-variable de croisement dérivée des métadonnées, pas une colonne de réponse. */
+const YEAR_CROSSING = { key: "__year__", label: "Année du sondage" };
+const CROSSING_OPTIONS = [YEAR_CROSSING, ...DEMO_TYPES];
+const CROSSING_STORAGE_KEY = "opubliq.crossing.v1";
+
+function loadInitialCrossing(): Set<string> {
+  try {
+    const raw = localStorage.getItem(CROSSING_STORAGE_KEY);
+    if (!raw) return new Set();
+    return new Set(JSON.parse(raw) as string[]);
+  } catch {
+    return new Set();
+  }
+}
 
 /** Carte d'une question : sondage · année en tête, libellé propre en gras, texte brut en repli. */
 function QuestionMiniCard({
@@ -223,6 +239,24 @@ export default function AdvancedExportPage() {
   const [naming, setNaming] = useState(false);
   const [newLabel, setNewLabel] = useState("");
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
+  const [crossing, setCrossing] = useState<Set<string>>(loadInitialCrossing);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(CROSSING_STORAGE_KEY, JSON.stringify([...crossing]));
+    } catch {
+      /* quota / mode privé : on ignore */
+    }
+  }, [crossing]);
+
+  function toggleCrossing(key: string) {
+    setCrossing((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }
 
   function toggleCollapsed(id: string) {
     setCollapsed((prev) => {
@@ -404,7 +438,25 @@ export default function AdvancedExportPage() {
             )}
           </div>
 
-          <p className="mt-4 text-xs text-base-content/50">Croisement multi-variables arrive bientôt.</p>
+          <div className="op-card mt-4">
+            <p className="mb-1 text-sm font-semibold">Croiser avec</p>
+            <p className="mb-2 text-xs text-base-content/50">
+              Choisis une ou plusieurs variables à croiser simultanément. La variable technique correspondante est
+              résolue séparément pour chaque sondage du concept.
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {CROSSING_OPTIONS.map((opt) => (
+                <button
+                  key={opt.key}
+                  type="button"
+                  className={`btn btn-xs ${crossing.has(opt.key) ? "btn-primary" : "btn-outline"}`}
+                  onClick={() => toggleCrossing(opt.key)}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </>
       )}
     </div>
