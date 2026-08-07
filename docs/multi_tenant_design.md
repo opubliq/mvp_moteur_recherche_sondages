@@ -53,3 +53,31 @@ Basic Auth déjà en place).
 Création d'un nouvel index par client : f3i.10. Premier cas fait à la main
 pour `opubliq` (`ingestion/create_index.py` avec `INDEX_NAME` en override) —
 sert de brouillon pour le futur script de provisioning.
+
+## Essai P2 temporaire sur corpus public (f3i.7)
+
+cf `pricing/STRATEGIE_PRICING.md` §Essai P2 sur corpus public. Un prospect
+qualifié (ex. Andrew Parkin) reçoit un accès complet aux fonctionnalités P2
+(agent analytique sans restriction) mais scopé au corpus public, pour une
+durée limitée (2 semaines `[À VALIDER]`).
+
+Implémentation : un essai est un compte utilisateur (`azure-functions/src/logic/auth-store.ts`)
+sans `tenant` (donc `resolveAccessibleQuestionIndexes` ci-dessus le scope déjà
+au public seul, aucun changement requis dans `tenancy.ts`) avec un champ
+`trialExpiresAt` (epoch ms) fixé à la création. `verifySession`/`login`
+traitent un essai dont `trialExpiresAt` est dépassé comme une session
+invalide (401) — pas de logique de plan/feature-gating séparée, puisque
+aucune restriction P1 n'existe encore par ailleurs (le tableau « Agent LLM
+limité par forfait » de STRATEGIE_PRICING.md n'est pas implémenté ; tant que
+ce n'est pas le cas, tout compte authentifié a de facto un agent illimité,
+donc un essai P2 = un compte normal + expiration automatique).
+
+Création : script d'admin `azure-functions/src/scripts/create-trial-account.ts`
+(`npm run create-trial-account -- <email> <password> [jours]`, jamais exposé
+en HTTP — cf. commentaire sur `signup()` dans `auth-store.ts`).
+
+Hors scope ici, à faire quand le feature-gating P1 existera vraiment : si un
+jour l'agent P1 devient réellement restreint, l'essai P2 devra porter un
+signal explicite (`plan: "p2_trial"` ou équivalent) pour continuer à
+contourner cette restriction — actuellement l'absence de restriction P1 rend
+ce signal inutile.

@@ -39,6 +39,8 @@ export interface AuthSession {
   userId: string;
   email: string;
   tenant?: string;
+  /** Epoch ms : au-delà, le compte (essai P2, cf. f3i.7) cesse de fonctionner. */
+  trialExpiresAt?: number;
   token: string;
 }
 
@@ -46,6 +48,7 @@ export interface SessionIdentity {
   userId: string;
   email: string;
   tenant?: string;
+  trialExpiresAt?: number;
 }
 
 export type AuthFailure = { error: string };
@@ -54,6 +57,7 @@ interface UserEntity {
   userId: string;
   passwordHash: string;
   tenant?: string;
+  trialExpiresAt?: number;
   createdAt: number;
   lastLoginAt: number;
 }
@@ -62,6 +66,7 @@ interface SessionEntity {
   userId: string;
   email: string;
   tenant?: string;
+  trialExpiresAt?: number;
   createdAt: number;
   expiresAt: number;
 }
@@ -126,6 +131,7 @@ async function createSession(
   userId: string,
   email: string,
   tenant: string | undefined,
+  trialExpiresAt: number | undefined,
   env: AuthStoreEnv,
 ): Promise<string> {
   const token = generateToken();
@@ -139,15 +145,18 @@ async function createSession(
     createdAt: now,
     expiresAt: now + SESSION_TTL_MS,
     ...(tenant ? { tenant } : {}),
+    ...(trialExpiresAt ? { trialExpiresAt } : {}),
   };
   await sessions.createEntity(entity);
   return token;
 }
 
 /**
- * Crée un compte auto-service (P1, `tenant` toujours absent). Les comptes P2
- * (client, tenant existant) sont créés hors flow HTTP par un script d'admin
- * ponctuel (f3i.19.4+) — jamais via cet endpoint.
+ * Crée un compte auto-service (P1, `tenant` et `trialExpiresAt` toujours
+ * absents). Les comptes P2 permanents et les essais P2 temporaires (f3i.7)
+ * sont créés hors flow HTTP par un script d'admin ponctuel
+ * (`scripts/create-trial-account.ts`, f3i.19.4+/f3i.7) — jamais via cet
+ * endpoint.
  */
 export async function signup(email: string, password: string, env: AuthStoreEnv): Promise<AuthSession | AuthFailure> {
   const normalized = normalizeEmail(email);
@@ -177,8 +186,54 @@ export async function signup(email: string, password: string, env: AuthStoreEnv)
   };
   await users.createEntity(entity);
 
-  const token = await createSession(userId, normalized, undefined, env);
+  const token = await createSession(userId, normalized, undefined, undefined, env);
   return { userId, email: normalized, token };
+}
+
+/**
+ * Crée un compte admin (script uniquement, jamais exposé en HTTP) : essai P2
+ * temporaire (`trialExpiresAt` fixé, `tenant` absent → corpus public
+ * seulement, cf. `src/logic/tenancy.ts`) ou compte client P2 permanent
+ * (`tenant` fixé, `trialExpiresAt` absent). Erreur si l'email existe déjà —
+ * pas d'écrasement silencieux d'un compte existant par ce script.
+ */
+export async function createAccount(
+  email: string,
+  password: string,
+  opts: { tenant?: string; trialExpiresAt?: number },
+  env: AuthStoreEnv,
+): Promise<AuthSession | AuthFailure> {
+  const normalized = normalizeEmail(email);
+  if (!isValidEmail(normalized)) return { error: "invalid_email" };
+  const passwordError = validatePassword(password);
+  if (passwordError) return { error: passwordError };
+
+  const users = await getUsersTable(env);
+
+  try {
+    await users.getEntity(USERS_PARTITION, normalized);
+    return { error: "email_taken" };
+  } catch (err) {
+    if (!(err instanceof RestError && err.statusCode === 404)) throw err;
+  }
+
+  const userId = randomUUID();
+  const passwordHash = await hashPassword(password, env.passwordPepper);
+  const now = Date.now();
+  const entity: UserEntity & { partitionKey: string; rowKey: string } = {
+    partitionKey: USERS_PARTITION,
+    rowKey: normalized,
+    userId,
+    passwordHash,
+    createdAt: now,
+    lastLoginAt: now,
+    ...(opts.tenant ? { tenant: opts.tenant } : {}),
+    ...(opts.trialExpiresAt ? { trialExpiresAt: opts.trialExpiresAt } : {}),
+  };
+  await users.createEntity(entity);
+
+  const token = await createSession(userId, normalized, opts.tenant, opts.trialExpiresAt, env);
+  return { userId, email: normalized, tenant: opts.tenant, trialExpiresAt: opts.trialExpiresAt, token };
 }
 
 export async function login(email: string, password: string, env: AuthStoreEnv): Promise<AuthSession | AuthFailure> {
@@ -196,10 +251,12 @@ export async function login(email: string, password: string, env: AuthStoreEnv):
     throw err;
   }
 
+  if (entity.trialExpiresAt && entity.trialExpiresAt < Date.now()) return { error: "trial_expired" };
+
   const ok = await verifyPassword(password, entity.passwordHash, env.passwordPepper);
   if (!ok) return { error: "invalid_credentials" };
 
-  const token = await createSession(entity.userId, normalized, entity.tenant, env);
+  const token = await createSession(entity.userId, normalized, entity.tenant, entity.trialExpiresAt, env);
 
   // Best-effort : un échec de mise à jour de lastLoginAt ne doit jamais faire
   // échouer une connexion par ailleurs valide.
@@ -212,7 +269,7 @@ export async function login(email: string, password: string, env: AuthStoreEnv):
     /* absorbé */
   }
 
-  return { userId: entity.userId, email: normalized, tenant: entity.tenant, token };
+  return { userId: entity.userId, email: normalized, tenant: entity.tenant, trialExpiresAt: entity.trialExpiresAt, token };
 }
 
 export async function logout(token: string, env: AuthStoreEnv): Promise<void> {
@@ -224,12 +281,21 @@ export async function logout(token: string, env: AuthStoreEnv): Promise<void> {
   }
 }
 
+/**
+ * `undefined` si le token est absent/inconnu, si la session a expiré (TTL
+ * fixe 30 jours), OU si le compte est un essai P2 (f3i.7) dont
+ * `trialExpiresAt` est dépassé — un essai expiré ne doit plus jamais pouvoir
+ * interroger l'API, peu importe combien il reste de TTL de session. Le
+ * traiter comme "aucune session valide" réutilise le 401 déjà en place dans
+ * `checkAuth` sans logique de plan/feature-gating séparée.
+ */
 export async function verifySession(token: string, env: AuthStoreEnv): Promise<SessionIdentity | undefined> {
   const sessions = await getSessionsTable(env);
   try {
     const entity = (await sessions.getEntity<SessionEntity>(SESSIONS_PARTITION, hashToken(token))) as SessionEntity;
     if (entity.expiresAt < Date.now()) return undefined;
-    return { userId: entity.userId, email: entity.email, tenant: entity.tenant };
+    if (entity.trialExpiresAt && entity.trialExpiresAt < Date.now()) return undefined;
+    return { userId: entity.userId, email: entity.email, tenant: entity.tenant, trialExpiresAt: entity.trialExpiresAt };
   } catch (err) {
     if (err instanceof RestError && err.statusCode === 404) return undefined;
     throw err;

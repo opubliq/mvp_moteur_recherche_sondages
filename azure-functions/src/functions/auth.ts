@@ -38,7 +38,10 @@ function bearerToken(request: HttpRequest): string | undefined {
 }
 
 function sessionJson(session: AuthSession): HttpResponseInit["jsonBody"] {
-  return { token: session.token, user: { userId: session.userId, email: session.email, tenant: session.tenant } };
+  return {
+    token: session.token,
+    user: { userId: session.userId, email: session.email, tenant: session.tenant, trialExpiresAt: session.trialExpiresAt },
+  };
 }
 
 async function readCredentials(request: HttpRequest): Promise<CredentialsBody | undefined> {
@@ -81,7 +84,7 @@ async function handleLogin(request: HttpRequest, context: InvocationContext): Pr
 
   const result = await login(body.email, body.password, env);
   if ("error" in result) {
-    return { status: 401, headers: CORS_HEADERS, jsonBody: { error: "invalid_credentials" } };
+    return { status: 401, headers: CORS_HEADERS, jsonBody: { error: result.error } };
   }
   return { status: 200, headers: CORS_HEADERS, jsonBody: sessionJson(result) };
 }
