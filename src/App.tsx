@@ -7,10 +7,14 @@ import VerbatimsPage from "./pages/VerbatimsPage";
 import SurveyPage from "./pages/SurveyPage";
 import AdvancedExportPage from "./pages/AdvancedExportPage";
 import QuestionDashboard from "./components/QuestionDashboard";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 
 export default function App() {
   return (
     <Routes>
+      <Route path="/connexion" element={<LoginPage />} />
+      <Route path="/inscription" element={<SignupPage />} />
       <Route element={<AppShell />}>
         <Route index element={<Navigate to="/recherche" replace />} />
         <Route path="/recherche" element={<SearchPage />} />

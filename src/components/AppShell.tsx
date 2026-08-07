@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { Search, LayoutGrid, Sparkles, MessageSquare, ShoppingCart, FileSpreadsheet } from "lucide-react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Search, LayoutGrid, Sparkles, MessageSquare, ShoppingCart, FileSpreadsheet, LogOut } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { fetchAllSurveys } from "../api";
 import { useAnnotations, useUnloadGuard } from "../context/AnnotationContext";
+import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import ExportDrawer from "./ExportDrawer";
 
@@ -25,6 +26,8 @@ const MODES: ModeDef[] = [
 
 export default function AppShell() {
   const { size } = useCart();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   // Garde-fou de sortie au niveau de la coquille, pas de l'espace d'annotation :
   // un run non téléchargé reste en mémoire quand on part explorer un autre
   // onglet, et c'est de LÀ qu'on ferme la fenêtre par distraction.
@@ -89,6 +92,21 @@ export default function AppShell() {
       <div className="main-col">
         <header className="topbar">
           <div className="flex-1" />
+          {user ? (
+            <div className="flex items-center gap-2">
+              <span className="text-sm opacity-70">{user.email}</span>
+              <button
+                className="btn btn-ghost btn-sm gap-1.5"
+                onClick={() => logout().then(() => navigate("/connexion"))}
+              >
+                <LogOut size={16} strokeWidth={1.75} /> Déconnexion
+              </button>
+            </div>
+          ) : (
+            <NavLink to="/connexion" className="btn btn-ghost btn-sm">
+              Connexion
+            </NavLink>
+          )}
           <button className="btn btn-ghost btn-sm gap-1.5" onClick={() => setDrawerOpen(true)}>
             <ShoppingCart size={16} strokeWidth={1.75} /> Export {size > 0 && <span className="cart-count">{size}</span>}
           </button>

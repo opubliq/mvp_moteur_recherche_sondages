@@ -22,6 +22,94 @@ function apiUrl(path: string): string {
   return `${API_BASE_URL}${path}`;
 }
 
+const AUTH_TOKEN_KEY = "opubliq.auth.v1.token";
+
+export function getAuthToken(): string | null {
+  try {
+    return localStorage.getItem(AUTH_TOKEN_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function setAuthToken(token: string | null): void {
+  try {
+    if (token) localStorage.setItem(AUTH_TOKEN_KEY, token);
+    else localStorage.removeItem(AUTH_TOKEN_KEY);
+  } catch {
+    /* quota / mode privé : la session ne survit pas au refresh, tant pis */
+  }
+}
+
+/**
+ * En-tête `Authorization` à fusionner dans tout appel protégé par `checkAuth`
+ * côté serveur (cf. `azure-functions/src/middleware/auth-transitional.ts`).
+ * Objet vide si non connecté : `checkAuth` retombe alors sur le Basic Auth
+ * global tant que `ALLOW_BASIC_AUTH_FALLBACK` n'est pas basculé à `false`
+ * (f3i.20) — ajouter ce header partout est donc sans régression.
+ */
+export function authHeader(): Record<string, string> {
+  const token = getAuthToken();
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
+export interface AuthUser {
+  userId: string;
+  email: string;
+  tenant?: string;
+}
+
+export interface AuthSession {
+  token: string;
+  user: AuthUser;
+}
+
+/** Erreur porteuse d'un message serveur ("email_taken", "invalid_credentials", …). */
+export class AuthError extends Error {
+  constructor(public code: string) {
+    super(code);
+    this.name = "AuthError";
+  }
+}
+
+async function readAuthError(res: Response): Promise<never> {
+  const data = (await res.json().catch(() => ({}))) as { error?: string };
+  throw new AuthError(data.error ?? `http_${res.status}`);
+}
+
+export async function signup(email: string, password: string): Promise<AuthSession> {
+  const res = await fetch(apiUrl("/auth/signup"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!res.ok) return readAuthError(res);
+  return (await res.json()) as AuthSession;
+}
+
+export async function login(email: string, password: string): Promise<AuthSession> {
+  const res = await fetch(apiUrl("/auth/login"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!res.ok) return readAuthError(res);
+  return (await res.json()) as AuthSession;
+}
+
+export async function logout(): Promise<void> {
+  await fetch(apiUrl("/auth/logout"), { method: "POST", headers: authHeader() });
+}
+
+/** `null` si aucune session valide (token absent ou expiré) — pas une erreur. */
+export async function fetchMe(): Promise<AuthUser | null> {
+  const token = getAuthToken();
+  if (!token) return null;
+  const res = await fetch(apiUrl("/auth/me"), { headers: authHeader() });
+  if (!res.ok) return null;
+  return (await res.json()) as AuthUser;
+}
+
 /** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
 export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
   const res = await fetch(apiUrl("/surveys"));
