@@ -8,7 +8,8 @@
     "watch": "tsc -p tsconfig.json --watch",
     "start": "npm run build && func start",
     "test": "vitest run",
-    "create-trial-account": "npm run build && node dist/azure-functions/src/scripts/create-trial-account.js"
+    "create-trial-account": "npm run build && node dist/azure-functions/src/scripts/create-trial-account.js",
+    "create-client-account": "npm run build && node dist/azure-functions/src/scripts/create-client-account.js"
   },
   "dependencies": {
     "@azure/data-tables": "^13.3.2",

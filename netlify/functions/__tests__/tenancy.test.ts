@@ -8,6 +8,8 @@
  */
 import { describe, expect, it } from "vitest";
 import {
+  KNOWN_TENANTS,
+  PRIVATE_MICRODATA_SURVEYS,
   PUBLIC_QUESTIONS_INDEX,
   PUBLIC_VERBATIMS_INDEX,
   isMicrodataSurveyAccessible,
@@ -88,5 +90,20 @@ describe("isMicrodataSurveyAccessible (f3i.14)", () => {
 
   it("un sondage privé EST accessible à son propriétaire authentifié", () => {
     expect(isMicrodataSurveyAccessible("opubliq", "medaillon_organismes_qualitatif")).toBe(true);
+  });
+});
+
+describe("registres KNOWN_TENANTS / PRIVATE_MICRODATA_SURVEYS restent en synchro (f3i.10)", () => {
+  // Régression pour le type de bug qui a causé la fuite f3i.14 : un
+  // propriétaire enregistré dans PRIVATE_MICRODATA_SURVEYS sans que son slug
+  // soit dans KNOWN_TENANTS rendrait `isMicrodataSurveyAccessible` toujours
+  // fausse pour le propriétaire légitime (ou pire, désynchronisée avec l'accès
+  // catalogue). Ce test ne remplace pas la checklist du runbook de
+  // provisioning — voir docs/CLIENT_PROVISIONING_RUNBOOK.md — il attrape juste
+  // l'oubli côté TS si les deux tables divergent.
+  it("chaque propriétaire de PRIVATE_MICRODATA_SURVEYS est un tenant connu", () => {
+    for (const owner of Object.values(PRIVATE_MICRODATA_SURVEYS)) {
+      expect(KNOWN_TENANTS.has(owner)).toBe(true);
+    }
   });
 });

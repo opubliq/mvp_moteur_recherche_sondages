@@ -50,9 +50,14 @@ Basic Auth déjà en place).
 
 ## Provisioning (portée hors f3i.9)
 
-Création d'un nouvel index par client : f3i.10. Premier cas fait à la main
-pour `opubliq` (`ingestion/create_index.py` avec `INDEX_NAME` en override) —
-sert de brouillon pour le futur script de provisioning.
+Onboarder un client = un nouvel index Azure AI Search (`{index}-{slug}`, même
+service, pas de nouvelle ressource Azure), les entrées correspondantes dans
+les registres de routage/accès (`ingestion/tenancy.py::PRIVATE_SURVEYS`,
+`src/logic/tenancy.ts::KNOWN_TENANTS`/`PRIVATE_MICRODATA_SURVEYS`), et un
+compte de connexion avec `tenant` fixé. Aucun nouveau secret, aucune ressource
+AOAI/Cohere/Foundry par client (partagées). Processus documenté/scripté
+(f3i.10) : voir `docs/CLIENT_PROVISIONING_RUNBOOK.md`. Premier cas
+(`opubliq`) fait à la main le 2026-08-04, avant que ce runbook n'existe.
 
 ## Essai P2 temporaire sur corpus public (f3i.7)
 

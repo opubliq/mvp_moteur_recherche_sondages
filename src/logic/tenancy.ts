@@ -33,8 +33,11 @@ export const PUBLIC_VERBATIMS_INDEX = "survey-verbatims";
  * synchronisé avec les index réellement créés (`ingestion/create_index.py`,
  * `ingestion/create_verbatims_index.py`) — un slug ajouté ici sans index
  * existant ferait échouer les requêtes sur cet index (404 Azure).
+ *
+ * Exporté pour `azure-functions/src/scripts/create-client-account.ts`, qui
+ * s'en sert de garde-fou anti-typo avant de créer un compte pour un tenant.
  */
-const KNOWN_TENANTS = new Set(["opubliq"]);
+export const KNOWN_TENANTS = new Set(["opubliq"]);
 
 /**
  * Résout le tenant AUTORISÉ à partir du Basic Auth uniquement (jamais du
@@ -82,7 +85,7 @@ export function resolveAccessibleVerbatimIndexes(tenant: string | undefined): st
  * via `/microdata?survey_id=...` par N'IMPORTE QUEL compte Basic Auth valide,
  * fuite de données confirmée empiriquement avant ce correctif.
  */
-const PRIVATE_MICRODATA_SURVEYS: Record<string, string> = {
+export const PRIVATE_MICRODATA_SURVEYS: Record<string, string> = {
   medaillon_organismes_qualitatif: "opubliq",
 };
 
