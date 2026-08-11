@@ -5,8 +5,11 @@ import {
   DAY_MS,
   DEFAULT_AGENT_PER_DAY,
   DEFAULT_AGENT_PER_MINUTE,
+  DEFAULT_DECOMPOSE_PER_DAY,
+  DEFAULT_DECOMPOSE_PER_MINUTE,
   MINUTE_MS,
   resolveAgentPolicy,
+  resolveDecomposePolicy,
   resolveRateLimitSubject,
   windowStart,
   type RateLimitCounter,
@@ -72,6 +75,28 @@ describe("resolveAgentPolicy", () => {
 
   it("désactive complètement le quota sur RATE_LIMIT_DISABLED", () => {
     expect(resolveAgentPolicy({ RATE_LIMIT_DISABLED: "true" })).toEqual([]);
+  });
+});
+
+describe("resolveDecomposePolicy", () => {
+  it("applique les seuils par défaut, distincts de ceux de /agent", () => {
+    expect(resolveDecomposePolicy({})).toEqual([
+      { name: "minute", windowMs: MINUTE_MS, limit: DEFAULT_DECOMPOSE_PER_MINUTE },
+      { name: "day", windowMs: DAY_MS, limit: DEFAULT_DECOMPOSE_PER_DAY },
+    ]);
+  });
+
+  it("lit ses propres variables d'App Settings, indépendantes de celles de /agent", () => {
+    const resolved = resolveDecomposePolicy({
+      RATE_LIMIT_DECOMPOSE_PER_MINUTE: "10",
+      RATE_LIMIT_DECOMPOSE_PER_DAY: "100",
+      RATE_LIMIT_AGENT_PER_MINUTE: "5",
+    });
+    expect(resolved.map((w) => w.limit)).toEqual([10, 100]);
+  });
+
+  it("désactive complètement le quota sur RATE_LIMIT_DISABLED (soupape commune)", () => {
+    expect(resolveDecomposePolicy({ RATE_LIMIT_DISABLED: "true" })).toEqual([]);
   });
 });
 

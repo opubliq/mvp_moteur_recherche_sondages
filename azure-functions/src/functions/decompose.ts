@@ -7,6 +7,8 @@ import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } 
 import { decomposeQuery, type DecomposeEnv } from "../../../src/logic/decompose";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
 import { checkAuth } from "../middleware/auth-transitional";
+import { checkRateLimit } from "../middleware/ratelimit";
+import { resolveDecomposePolicy } from "../../../src/logic/ratelimit";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -46,6 +48,15 @@ export async function decompose(request: HttpRequest, context: InvocationContext
   if (!query || typeof query !== "string" || !query.trim()) {
     return { status: 400, headers: CORS_HEADERS, jsonBody: { error: "query is required" } };
   }
+
+  // Après validation du corps mais avant l'appel au déploiement `gpt-5.4-mini`
+  // partagé avec un autre projet — c'est lui que ce plafond protège (epic z0v).
+  const rateLimited = await checkRateLimit(auth, context, {
+    bucket: "decompose",
+    policy: resolveDecomposePolicy(process.env),
+    headers: CORS_HEADERS,
+  });
+  if (rateLimited) return rateLimited;
 
   const env: DecomposeEnv = {
     FOUNDRY_CHAT_ENDPOINT: process.env.FOUNDRY_CHAT_ENDPOINT ?? "",

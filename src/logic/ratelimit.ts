@@ -1,10 +1,13 @@
 /**
  * Rate limiting par client — epic z0v.
  *
- * PROBLÈME. Le déploiement Azure OpenAI `gpt-5-mini` est PARTAGÉ par tous les
- * clients du projet : un seul appelant en boucle (script buggé, abus) épuise le
- * TPM du déploiement et fait 429 chez tous les autres. Il faut un plafond par
- * client appliqué AVANT d'entrer dans la boucle agent.
+ * PROBLÈME. Les déploiements Azure OpenAI partagés par tous les clients du
+ * projet (`gpt-5-mini` pour `/agent`, `gpt-5.4-mini` pour `/decompose` — ce
+ * dernier PARTAGÉ AVEC UN AUTRE PROJET, cf. `pricing/STRATEGIE_PRICING.md`
+ * §Garde-fous techniques, la source de l'epic z0v) peuvent être épuisés par un
+ * seul appelant en boucle (script buggé, abus), causant des 429 chez tous les
+ * autres — y compris, pour `gpt-5.4-mini`, chez un projet qui n'a rien à voir
+ * avec celui-ci. Il faut un plafond par client appliqué AVANT chaque appel.
  *
  * CE QUE CE MODULE N'EST PAS. Pas les forfaits business (Gratuit/Découverte/
  * Actif/Pro, bead sai.1) : ici, un seuil technique unique, volontairement HAUT,
@@ -39,6 +42,17 @@ export const DAY_MS = 86_400_000;
  */
 export const DEFAULT_AGENT_PER_MINUTE = 30;
 export const DEFAULT_AGENT_PER_DAY = 1000;
+
+/**
+ * `/decompose` tourne à chaque recherche (pas seulement en tour d'agent) :
+ * une session de recherche active peut légitimement l'appeler plus souvent
+ * qu'un tour d'agent, d'où un plafond plus haut. Reste hors d'atteinte d'un
+ * usage manuel normal ; un script qui balaie des requêtes en boucle le
+ * franchit en quelques secondes. Ajustables via App Settings (voir
+ * {@link resolveDecomposePolicy}).
+ */
+export const DEFAULT_DECOMPOSE_PER_MINUTE = 60;
+export const DEFAULT_DECOMPOSE_PER_DAY = 2000;
 
 export interface RateLimitWindow {
   /** Suffixe de la clé de compteur : le renommer repart d'un compteur vierge. */
@@ -99,15 +113,40 @@ function positiveInt(raw: string | undefined, fallback: number): number {
 }
 
 /**
- * Politique appliquée à `/agent`. Vide si `RATE_LIMIT_DISABLED=true` — soupape
- * d'urgence pour rouvrir le robinet sans redéployer si un seuil s'avère trop bas.
+ * Politique minute+jour à partir d'une paire de variables d'env, vide si
+ * `RATE_LIMIT_DISABLED=true` — soupape d'urgence commune à tous les buckets
+ * pour rouvrir le robinet sans redéployer si un seuil s'avère trop bas.
  */
-export function resolveAgentPolicy(env: Record<string, string | undefined>): RateLimitPolicy {
+function resolveMinuteDayPolicy(
+  env: Record<string, string | undefined>,
+  perMinuteVar: string,
+  perDayVar: string,
+  defaults: { perMinute: number; perDay: number },
+): RateLimitPolicy {
   if (env.RATE_LIMIT_DISABLED === "true") return [];
   return [
-    { name: "minute", windowMs: MINUTE_MS, limit: positiveInt(env.RATE_LIMIT_AGENT_PER_MINUTE, DEFAULT_AGENT_PER_MINUTE) },
-    { name: "day", windowMs: DAY_MS, limit: positiveInt(env.RATE_LIMIT_AGENT_PER_DAY, DEFAULT_AGENT_PER_DAY) },
+    { name: "minute", windowMs: MINUTE_MS, limit: positiveInt(env[perMinuteVar], defaults.perMinute) },
+    { name: "day", windowMs: DAY_MS, limit: positiveInt(env[perDayVar], defaults.perDay) },
   ];
+}
+
+/** Politique appliquée à `/agent` (déploiement `gpt-5-mini`). */
+export function resolveAgentPolicy(env: Record<string, string | undefined>): RateLimitPolicy {
+  return resolveMinuteDayPolicy(env, "RATE_LIMIT_AGENT_PER_MINUTE", "RATE_LIMIT_AGENT_PER_DAY", {
+    perMinute: DEFAULT_AGENT_PER_MINUTE,
+    perDay: DEFAULT_AGENT_PER_DAY,
+  });
+}
+
+/**
+ * Politique appliquée à `/decompose` (déploiement `gpt-5.4-mini`, partagé
+ * avec un autre projet — cible nommément citée par l'epic z0v).
+ */
+export function resolveDecomposePolicy(env: Record<string, string | undefined>): RateLimitPolicy {
+  return resolveMinuteDayPolicy(env, "RATE_LIMIT_DECOMPOSE_PER_MINUTE", "RATE_LIMIT_DECOMPOSE_PER_DAY", {
+    perMinute: DEFAULT_DECOMPOSE_PER_MINUTE,
+    perDay: DEFAULT_DECOMPOSE_PER_DAY,
+  });
 }
 
 /** Début de la fenêtre fixe contenant `now`. */
