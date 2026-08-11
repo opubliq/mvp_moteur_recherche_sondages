@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Sparkles, Globe } from "lucide-react";
 import type { SearchResult } from "../types";
 import QuestionCard from "./QuestionCard";
 import ScoreMiniDist from "./ScoreMiniDist";
@@ -9,6 +10,7 @@ export interface SurveyGroupData {
   survey_name: string;
   survey_year: number | null;
   pollster: string | null;
+  is_private?: boolean;
   questions: SearchResult[];
 }
 
@@ -41,6 +43,22 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
         </span>
         {meta.length > 0 && (
           <span className="text-sm text-base-content/60">{meta.join(" · ")}</span>
+        )}
+        {group.is_private === true && (
+          <span
+            className="op-badge op-badge-exclusive shrink-0"
+            title="Exclusif — issu de l'index de votre compte, invisible aux autres clients"
+          >
+            <Sparkles size={11} strokeWidth={2.5} /> Exclusif
+          </span>
+        )}
+        {group.is_private === false && (
+          <span
+            className="op-badge op-badge-public shrink-0"
+            title="Public — issu du corpus partagé, visible par tous les comptes"
+          >
+            <Globe size={11} strokeWidth={2.5} /> Public
+          </span>
         )}
 
         <div className="ml-auto mr-2 flex items-center gap-2">

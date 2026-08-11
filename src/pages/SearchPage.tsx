@@ -30,6 +30,7 @@ function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
         survey_name: r.survey_name,
         survey_year: r.survey_year,
         pollster: r.pollster,
+        is_private: r.is_private,
         questions: [],
       };
       groups.set(r.survey_id, g);

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BarChart3, ArrowRight, MessageSquare, Sparkles, Globe } from "lucide-react";
+import { BarChart3, ArrowRight, MessageSquare } from "lucide-react";
 import type { SearchResult } from "../types";
 import { useCart, toCartItem } from "../context/CartContext";
 import { scoreColorVars } from "../lib/scoreColor";
@@ -59,22 +59,6 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
             )}
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            {q.is_private === true && (
-              <span
-                className="op-badge op-badge-exclusive"
-                title="Exclusif — issu de l'index de votre compte, invisible aux autres clients"
-              >
-                <Sparkles size={11} strokeWidth={2.5} /> Exclusif
-              </span>
-            )}
-            {q.is_private === false && (
-              <span
-                className="op-badge op-badge-public"
-                title="Public — issu du corpus partagé, visible par tous les comptes"
-              >
-                <Globe size={11} strokeWidth={2.5} /> Public
-              </span>
-            )}
             {score !== undefined && (
               <span
                 className="op-badge op-badge-score tabular-nums"
