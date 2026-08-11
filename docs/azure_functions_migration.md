@@ -217,3 +217,73 @@ jusqu'à ce que f3i.19 fournisse le vrai mécanisme de session.
 depuis Azure, Netlify plus dans le chemin pour cette partie), mais l'app
 déployée n'est PAS utilisable de bout en bout tant que f3i.19 (ou un
 remplacement du Basic Auth) n'est pas livré.
+
+---
+
+# Bascule DNS/domaine vers Azure (f3i.2) — 2026-08-11
+
+Objectif : donner au Static Web App `opubliq-sondages-web` un sous-domaine
+lisible (`app.opubliq.com`) au lieu de l'URL générée
+`nice-sea-019d41e0f.7.azurestaticapps.net`, sans toucher à `opubliq.com`
+(occupé par un site GitHub Pages existant, `opubliq.github.io`) ni à sa
+zone DNS racine.
+
+## Sous-domaine choisi
+
+`app.opubliq.com` → CNAME vers le hostname par défaut du Static Web App.
+
+## Enregistrement DNS requis (Namecheap, à ajouter par l'utilisateur)
+
+Le DNS est géré par l'utilisateur chez Namecheap ; cet agent n'y a pas
+accès. Enregistrement exact à ajouter dans la zone `opubliq.com` :
+
+| Type  | Host  | Value                                      | TTL          |
+|-------|-------|---------------------------------------------|--------------|
+| CNAME | `app` | `nice-sea-019d41e0f.7.azurestaticapps.net`  | Automatic (ou 300–3600) |
+
+Aucun enregistrement TXT n'est requis : la méthode de validation par
+défaut d'Azure Static Web Apps pour un **sous-domaine** (par opposition à
+un domaine apex) est `cname-delegation` — un simple CNAME suffit, Azure
+valide la propriété du domaine via la résolution du CNAME lui-même. (La
+méthode `dns-txt-token`, qui exige un TXT séparé, ne s'applique qu'aux
+domaines racine/apex — non pertinent ici, `opubliq.com` racine n'est pas
+touché.)
+
+Ne rien changer à l'enregistrement `opubliq.com` (racine) existant.
+
+## Commande Azure utilisée
+
+```
+az staticwebapp hostname set \
+  --name opubliq-sondages-web \
+  --resource-group rg-opubliq-sondages \
+  --hostname app.opubliq.com
+```
+
+Premier essai (2026-08-11, avant que le CNAME existe côté Namecheap) :
+
+```
+ERROR: (BadRequest) CNAME Record is invalid.  Please ensure the CNAME record has been created.
+```
+
+Attendu — confirme juste qu'Azure attend le CNAME `app` → hostname par
+défaut avant de pouvoir valider le domaine custom. Aucune commande n'a été
+bloquée par le classificateur de permission ; l'échec est uniquement dû à
+l'absence du CNAME côté DNS à ce stade.
+
+## État au 2026-08-11
+
+**En attente** : CNAME pas encore ajouté côté Namecheap (hors de portée de
+cet agent). Une fois ajouté par l'utilisateur et propagé, relancer la même
+commande `az staticwebapp hostname set` (ou la laisser réessayer via le
+portail/CLI) pour compléter la validation. Azure provisionne ensuite
+automatiquement le certificat TLS pour `app.opubliq.com` (comportement
+standard SWA, aucune action manuelle attendue). Vérification finale à
+faire après propagation : `curl -I https://app.opubliq.com` doit répondre
+200 avec un certificat valide, et `az staticwebapp hostname list --name
+opubliq-sondages-web --resource-group rg-opubliq-sondages` doit lister
+`app.opubliq.com` avec le statut `Ready`.
+
+`.env.example` et `netlify.toml` ne référencent pas l'URL du Static Web
+App (Free tier générée) ni de domaine custom — aucun changement requis
+côté config pour ce ticket.
