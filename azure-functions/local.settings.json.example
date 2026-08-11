@@ -17,7 +17,10 @@
     "AZURE_STORAGE_ACCOUNT": "",
     "AZURE_STORAGE_KEY": "",
     "PASSWORD_PEPPER": "",
-    "ALLOW_BASIC_AUTH_FALLBACK": "true"
+    "ALLOW_BASIC_AUTH_FALLBACK": "true",
+    "RATE_LIMIT_AGENT_PER_MINUTE": "30",
+    "RATE_LIMIT_AGENT_PER_DAY": "1000",
+    "RATE_LIMIT_DISABLED": "false"
   },
   "Host": {
     "CORS": "*"
