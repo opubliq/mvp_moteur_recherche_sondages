@@ -24,6 +24,7 @@ import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
 import { isMicrodataSurveyAccessible, resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "../microdata-core/core";
 import { checkAuth } from "../middleware/auth-transitional";
+import { checkRateLimit } from "../middleware/ratelimit";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -108,6 +109,12 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
   if (history[history.length - 1].role !== "user") {
     return failJson(400, "Le dernier message doit être de rôle user");
   }
+
+  // Après la validation du corps (une requête malformée ne consomme pas le
+  // quota d'un usager légitime) mais avant tout appel au déploiement AOAI
+  // partagé — c'est lui que ce plafond protège (epic z0v).
+  const rateLimited = await checkRateLimit(auth, context, { bucket: "agent", headers: CORS_HEADERS });
+  if (rateLimited) return rateLimited;
 
   const env: AgentEnv = Object.fromEntries(
     REQUIRED_ENV.map((k) => [k, process.env[k] as string]),
