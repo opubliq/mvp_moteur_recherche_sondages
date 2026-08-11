@@ -1,23 +1,19 @@
 /**
- * Persistance des conversations de l'agent (bead agy).
+ * Persistance des conversations de l'agent (bead agy, bascule serveur f3i.19.6).
  *
  * COUCHE D'ACCÈS ISOLÉE, à dessein : le UI ne connaît que les 6 fonctions
- * exportées ici, jamais `localStorage`. Le stockage local suffit au prototype
- * (mono-poste, pas d'identité client) ; le jour où les conversations vivent
- * côté serveur (cf. propagation de `client_id`, bead 97r.5), on réécrit CE
- * fichier en async — le UI, lui, appelle déjà tout en `await`.
+ * exportées ici, jamais l'API `/conversations` directement. Le stockage vit
+ * côté serveur (Table + Blob, cf. `azure-functions/src/functions/conversations.ts`
+ * et `.../logic/conversations-store.ts`), scopé à l'utilisateur authentifié
+ * via `authHeader()` — un fil est donc invisible d'un autre compte.
  *
- * Schéma de stockage :
- *  - `INDEX_KEY`         → `ConversationMeta[]`, trié par `updatedAt` décroissant ;
- *  - `BODY_PREFIX + id`  → `ConversationBody` (fil complet + traces).
- * L'index est séparé des corps pour que lister N conversations ne coûte pas la
- * désérialisation de N fils entiers (une trace de crosstab est volumineuse).
+ * Chaque fonction I/O est un simple appel réseau ; `AgentPage.tsx` les
+ * consommait déjà en `await`, le passage du localStorage au backend est donc
+ * transparent côté appelant.
  */
 
-import type { AgentMessage, AgentToolTrace } from "../api";
+import { apiUrl, authHeader, type AgentMessage, type AgentToolTrace } from "../api";
 
-const INDEX_KEY = "opubliq.agent.v1.index";
-const BODY_PREFIX = "opubliq.agent.v1.conv.";
 const TITLE_MAX = 64;
 
 /** Entrée de la liste des conversations — assez pour l'afficher, sans le fil. */
@@ -39,34 +35,6 @@ export interface ConversationBody {
 
 export type Conversation = ConversationMeta & ConversationBody;
 
-function storage(): Storage | null {
-  try {
-    return window.localStorage;
-  } catch {
-    return null; // navigation privée / stockage bloqué : on dégrade en éphémère
-  }
-}
-
-function readIndex(): ConversationMeta[] {
-  const s = storage();
-  if (!s) return [];
-  try {
-    const raw = s.getItem(INDEX_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed)) return [];
-    return (parsed as ConversationMeta[]).filter((m) => m && typeof m.id === "string");
-  } catch {
-    return []; // index corrompu : on repart à vide plutôt que de casser la page
-  }
-}
-
-function writeIndex(metas: ConversationMeta[]): void {
-  const s = storage();
-  if (!s) return;
-  s.setItem(INDEX_KEY, JSON.stringify(metas));
-}
-
 export function newConversationId(): string {
   const rnd = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Math.random()}`;
   return rnd.slice(0, 8) + Date.now().toString(36);
@@ -81,76 +49,59 @@ export function deriveTitle(messages: AgentMessage[]): string {
 }
 
 export async function listConversations(): Promise<ConversationMeta[]> {
-  return readIndex().sort((a, b) => b.updatedAt - a.updatedAt);
+  const res = await fetch(apiUrl("/conversations"), { headers: authHeader() });
+  if (!res.ok) return []; // pas connecté / session expirée : liste vide plutôt que casser la page
+  return (await res.json()) as ConversationMeta[];
 }
 
 export async function loadConversation(id: string): Promise<Conversation | null> {
-  const s = storage();
-  const meta = readIndex().find((m) => m.id === id);
-  if (!s || !meta) return null;
-  try {
-    const raw = s.getItem(BODY_PREFIX + id);
-    if (!raw) return null;
-    const body = JSON.parse(raw) as ConversationBody;
-    return { ...meta, messages: body.messages ?? [], traceByIndex: body.traceByIndex ?? {} };
-  } catch {
-    return null;
-  }
+  const res = await fetch(apiUrl(`/conversations/${encodeURIComponent(id)}`), { headers: authHeader() });
+  if (!res.ok) return null;
+  return (await res.json()) as Conversation;
 }
 
 /**
  * Écrit (ou met à jour) une conversation. Le titre n'est dérivé du fil qu'à la
- * PREMIÈRE écriture : ensuite on reconduit celui de l'index, ce qui fait tenir
- * un renommage manuel sans avoir à distinguer les deux cas.
+ * PREMIÈRE écriture — géré côté serveur, qui reconduit celui déjà en base sinon,
+ * ce qui fait tenir un renommage manuel sans avoir à distinguer les deux cas ici.
  */
 export async function saveConversation(
   id: string,
   body: ConversationBody,
   opts: { title?: string } = {},
 ): Promise<ConversationMeta> {
-  const s = storage();
-  const metas = readIndex();
-  const existing = metas.find((m) => m.id === id);
-  const now = Date.now();
-  const meta: ConversationMeta = {
-    id,
-    title: opts.title ?? existing?.title ?? deriveTitle(body.messages),
-    createdAt: existing?.createdAt ?? now,
-    updatedAt: now,
-    turns: body.messages.filter(
-      (m) => (m.role === "user" || m.role === "assistant") && typeof m.content === "string" && m.content.length > 0,
-    ).length,
-  };
-  const next = [meta, ...metas.filter((m) => m.id !== id)];
-  if (!s) return meta;
-
-  // Quota dépassé : on sacrifie les conversations les plus anciennes plutôt que
-  // de perdre celle en cours (les traces d'outils pèsent lourd).
-  let candidates = next;
-  for (;;) {
-    try {
-      s.setItem(BODY_PREFIX + id, JSON.stringify(body));
-      writeIndex(candidates);
-      return meta;
-    } catch {
-      const victim = [...candidates].sort((a, b) => a.updatedAt - b.updatedAt).find((m) => m.id !== id);
-      if (!victim) {
-        writeIndex(candidates); // plus rien à libérer : au moins garder l'index cohérent
-        return meta;
-      }
-      s.removeItem(BODY_PREFIX + victim.id);
-      candidates = candidates.filter((m) => m.id !== victim.id);
-    }
+  const res = await fetch(apiUrl(`/conversations/${encodeURIComponent(id)}`), {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", ...authHeader() },
+    body: JSON.stringify({ messages: body.messages, traceByIndex: body.traceByIndex, title: opts.title }),
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Sauvegarde de la conversation échouée (${res.status}): ${text || res.statusText}`);
   }
+  return (await res.json()) as ConversationMeta;
 }
 
 export async function renameConversation(id: string, title: string): Promise<void> {
   const clean = title.trim().slice(0, TITLE_MAX) || "Sans titre";
-  writeIndex(readIndex().map((m) => (m.id === id ? { ...m, title: clean } : m)));
+  const res = await fetch(apiUrl(`/conversations/${encodeURIComponent(id)}`), {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", ...authHeader() },
+    body: JSON.stringify({ title: clean }),
+  });
+  if (!res.ok && res.status !== 404) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Renommage de la conversation échoué (${res.status}): ${text || res.statusText}`);
+  }
 }
 
 export async function deleteConversation(id: string): Promise<void> {
-  const s = storage();
-  s?.removeItem(BODY_PREFIX + id);
-  writeIndex(readIndex().filter((m) => m.id !== id));
+  const res = await fetch(apiUrl(`/conversations/${encodeURIComponent(id)}`), {
+    method: "DELETE",
+    headers: authHeader(),
+  });
+  if (!res.ok && res.status !== 404) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Suppression de la conversation échouée (${res.status}): ${text || res.statusText}`);
+  }
 }

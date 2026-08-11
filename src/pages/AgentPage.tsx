@@ -18,7 +18,7 @@
  *    résultat intermédiaire sans perdre la suite).
  *
  * La persistance des conversations est déléguée à `logic/conversations.ts`
- * (localStorage aujourd'hui, backend le jour où il y a un `client_id`).
+ * (backend `/conversations`, scopé par utilisateur — f3i.19.6).
  *
  * HORS SCOPE ICI (délégué) : garde-fous structurés / parsing fin de la trace
  * (raw_n, écart significatif vs bruit en badges) (aat.5) — la trace est affichée
