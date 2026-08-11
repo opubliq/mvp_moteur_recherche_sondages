@@ -1,52 +1,96 @@
 /**
- * Persistance des conversations de l'agent (bead agy).
- * `localStorage` est stubé : le module ne lit `window.localStorage` qu'à l'appel,
- * donc un faux Storage sur `globalThis.window` suffit — pas besoin de jsdom.
+ * Persistance des conversations de l'agent (bead agy, bascule serveur f3i.19.6).
+ * `fetch` est stubé par un faux backend en mémoire, qui reproduit le contrat
+ * de `azure-functions/src/functions/conversations.ts` (routes, codes HTTP,
+ * dérivation de titre) sans dépendre du réseau ni d'Azurite.
  */
 
-import { beforeEach, describe, expect, it } from "vitest";
-import {
-  deleteConversation,
-  deriveTitle,
-  listConversations,
-  loadConversation,
-  renameConversation,
-  saveConversation,
-} from "./conversations.js";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { deleteConversation, deriveTitle, listConversations, loadConversation, renameConversation, saveConversation } from "./conversations.js";
 import type { AgentMessage } from "../api";
 
-/** Storage minimal, avec plafond d'octets optionnel pour tester l'éviction. */
-function fakeStorage(limitBytes = Infinity): Storage {
-  const map = new Map<string, string>();
-  const used = () => [...map.entries()].reduce((n, [k, v]) => n + k.length + v.length, 0);
-  return {
-    get length() {
-      return map.size;
-    },
-    key: (i: number) => [...map.keys()][i] ?? null,
-    getItem: (k: string) => map.get(k) ?? null,
-    setItem: (k: string, v: string) => {
-      const prev = map.get(k);
-      map.set(k, v);
-      if (used() > limitBytes) {
-        if (prev === undefined) map.delete(k);
-        else map.set(k, prev);
-        throw new Error("QuotaExceededError");
-      }
-    },
-    removeItem: (k: string) => void map.delete(k),
-    clear: () => map.clear(),
-  } as Storage;
+const TITLE_MAX = 64;
+
+function deriveTitleServer(messages: AgentMessage[]): string {
+  const first = messages.find((m) => m.role === "user" && typeof m.content === "string" && (m.content as string).trim());
+  const text = (first?.content as string | undefined)?.trim().split("\n")[0] ?? "";
+  if (!text) return "Nouvelle conversation";
+  return text.length > TITLE_MAX ? `${text.slice(0, TITLE_MAX - 1)}…` : text;
 }
 
-function install(limitBytes?: number) {
-  (globalThis as { window?: unknown }).window = { localStorage: fakeStorage(limitBytes) };
+/** Faux backend en mémoire : mêmes routes/codes que `/conversations[/{id}]`. */
+function installFakeBackend() {
+  interface Entry {
+    title: string;
+    createdAt: number;
+    updatedAt: number;
+    messages: AgentMessage[];
+    traceByIndex: Record<number, unknown[]>;
+  }
+  const store = new Map<string, Entry>();
+
+  const fetchMock = vi.fn(async (url: string | URL, init?: RequestInit) => {
+    const u = new URL(String(url), "http://local");
+    const method = init?.method ?? "GET";
+    const idMatch = u.pathname.match(/^\/conversations\/(.+)$/);
+
+    if (u.pathname === "/conversations" && method === "GET") {
+      const metas = [...store.entries()]
+        .map(([id, e]) => ({ id, title: e.title, createdAt: e.createdAt, updatedAt: e.updatedAt, turns: e.messages.length }))
+        .sort((a, b) => b.updatedAt - a.updatedAt);
+      return new Response(JSON.stringify(metas), { status: 200 });
+    }
+
+    if (idMatch) {
+      const id = decodeURIComponent(idMatch[1]);
+      if (method === "GET") {
+        const e = store.get(id);
+        if (!e) return new Response(JSON.stringify({ error: "not_found" }), { status: 404 });
+        return new Response(JSON.stringify({ id, title: e.title, createdAt: e.createdAt, updatedAt: e.updatedAt, turns: e.messages.length, messages: e.messages, traceByIndex: e.traceByIndex }), { status: 200 });
+      }
+      if (method === "PUT") {
+        const payload = JSON.parse(String(init?.body)) as { messages: AgentMessage[]; traceByIndex: Record<number, unknown[]>; title?: string };
+        const existing = store.get(id);
+        const now = Date.now();
+        const entry: Entry = {
+          title: payload.title ?? existing?.title ?? deriveTitleServer(payload.messages),
+          createdAt: existing?.createdAt ?? now,
+          updatedAt: now,
+          messages: payload.messages,
+          traceByIndex: payload.traceByIndex ?? {},
+        };
+        store.set(id, entry);
+        return new Response(
+          JSON.stringify({ id, title: entry.title, createdAt: entry.createdAt, updatedAt: entry.updatedAt, turns: entry.messages.length }),
+          { status: 200 },
+        );
+      }
+      if (method === "PATCH") {
+        const payload = JSON.parse(String(init?.body)) as { title: string };
+        const e = store.get(id);
+        if (!e) return new Response(JSON.stringify({ error: "not_found" }), { status: 404 });
+        e.title = payload.title;
+        return new Response(null, { status: 204 });
+      }
+      if (method === "DELETE") {
+        store.delete(id);
+        return new Response(null, { status: 204 });
+      }
+    }
+
+    throw new Error(`route non stubée: ${method} ${u.pathname}`);
+  });
+
+  vi.stubGlobal("fetch", fetchMock);
+  return store;
 }
 
 const turn = (role: "user" | "assistant", content: string): AgentMessage => ({ role, content });
 
 describe("conversations", () => {
-  beforeEach(() => install());
+  beforeEach(() => {
+    installFakeBackend();
+  });
 
   it("dérive le titre de la première question de l'utilisateur", () => {
     expect(deriveTitle([turn("user", "Qui appuie la réforme ?\nsuite ignorée")])).toBe("Qui appuie la réforme ?");
@@ -85,7 +129,7 @@ describe("conversations", () => {
     expect((await loadConversation("c1"))?.title).toBe("Analyse BC 2010");
   });
 
-  it("supprime le corps ET l'entrée d'index", async () => {
+  it("supprime la conversation", async () => {
     await saveConversation("c1", { messages: [turn("user", "A")], traceByIndex: {} });
     await deleteConversation("c1");
 
@@ -93,29 +137,11 @@ describe("conversations", () => {
     expect(await listConversations()).toEqual([]);
   });
 
-  it("sacrifie les plus anciennes conversations quand le quota est atteint", async () => {
-    install(1200); // assez pour ~une conversation volumineuse à la fois
-    const big = (tag: string) => ({ messages: [turn("user", tag), turn("assistant", "x".repeat(400))], traceByIndex: {} });
-
-    await saveConversation("c1", big("un"));
-    await new Promise((r) => setTimeout(r, 2));
-    await saveConversation("c2", big("deux"));
-
-    const ids = (await listConversations()).map((m) => m.id);
-    expect(ids).toContain("c2"); // celle en cours survit
-    expect(await loadConversation("c2")).not.toBeNull();
-    expect(ids).not.toContain("c1"); // la plus ancienne a été évincée
-  });
-
-  it("ne casse pas quand le stockage est indisponible (navigation privée)", async () => {
-    (globalThis as { window?: unknown }).window = {
-      get localStorage(): Storage {
-        throw new Error("blocked");
-      },
-    };
-    await expect(saveConversation("c1", { messages: [turn("user", "A")], traceByIndex: {} })).resolves.toMatchObject({
-      id: "c1",
-    });
+  it("renvoie une liste vide si le backend est inaccessible (session expirée)", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => new Response(JSON.stringify({ error: "unauthorized" }), { status: 401 })),
+    );
     expect(await listConversations()).toEqual([]);
   });
 });
