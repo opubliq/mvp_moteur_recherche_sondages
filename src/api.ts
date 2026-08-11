@@ -112,7 +112,7 @@ export async function fetchMe(): Promise<AuthUser | null> {
 
 /** Appelle la Netlify Function `/surveys` : liste de tous les sondages. */
 export async function fetchAllSurveys(): Promise<{ surveys: SurveyParent[]; count: number; total_questions: number }> {
-  const res = await fetch(apiUrl("/surveys"));
+  const res = await fetch(apiUrl("/surveys"), { headers: authHeader() });
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`Chargement des sondages échoué (${res.status}): ${body || res.statusText}`);
@@ -131,7 +131,7 @@ export interface DecomposeResponse {
 export async function decompose(query: string): Promise<DecomposeResponse> {
   const res = await fetch(apiUrl("/decompose"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify({ query }),
   });
 
@@ -154,7 +154,7 @@ export async function search(
 ): Promise<SearchResponse> {
   const res = await fetch(apiUrl("/search"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify({ query, filters, top, concepts, rerank_query: rerankQuery }),
   });
 
@@ -168,7 +168,7 @@ export async function search(
 
 /** Appelle la Netlify Function `/survey` : doc parent + toutes ses questions. */
 export async function fetchSurvey(surveyId: string): Promise<SurveyDetailResponse> {
-  const res = await fetch(apiUrl(`/survey?survey_id=${encodeURIComponent(surveyId)}`));
+  const res = await fetch(apiUrl(`/survey?survey_id=${encodeURIComponent(surveyId)}`), { headers: authHeader() });
 
   if (!res.ok) {
     const body = await res.text().catch(() => "");
@@ -201,7 +201,7 @@ export async function fetchMicrodata<Row = Record<string, number | string>>(
   };
   const res = await fetch(apiUrl("/microdata"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify(body),
   });
   if (res.status === 404) {
@@ -230,7 +230,7 @@ export interface RawExportResponse {
 export async function fetchMicrodataRaw(surveyId: string, columns: string[]): Promise<RawExportResponse> {
   const res = await fetch(apiUrl("/microdata-raw"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify({ survey_id: surveyId, columns }),
   });
   if (res.status === 404) {
@@ -258,7 +258,7 @@ export async function fetchVerbatims(params: {
 }): Promise<VerbatimsResponse> {
   const res = await fetch(apiUrl("/verbatims"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify({
       survey_id: params.surveyId,
       variable: params.variable,
@@ -295,7 +295,7 @@ export async function annotateChunk(params: {
 }): Promise<AnnotateResult> {
   const res = await fetch(apiUrl("/annotate"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify({
       property: params.spec.property,
       options: params.spec.options,
@@ -337,7 +337,7 @@ export async function scanQuestion(params: {
 }): Promise<ScanResult> {
   const res = await fetch(apiUrl("/scan"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify({
       question_text: params.questionText,
       items: params.items,
@@ -361,7 +361,7 @@ export async function scanQuestion(params: {
  * cross-sondage. Sert le sélecteur de l'espace « Réponses libres ».
  */
 export async function fetchOpenQuestions(): Promise<SearchResult[]> {
-  const res = await fetch(apiUrl("/open-questions"));
+  const res = await fetch(apiUrl("/open-questions"), { headers: authHeader() });
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`Chargement des questions ouvertes échoué (${res.status}): ${body || res.statusText}`);
@@ -375,7 +375,7 @@ export async function fetchOpenQuestions(): Promise<SearchResult[]> {
  * chacune triée par nombre de questions décroissant.
  */
 export async function fetchThemeFacets(): Promise<{ themes: ConceptCount[]; concepts: ConceptCount[] }> {
-  const res = await fetch(apiUrl("/themes"));
+  const res = await fetch(apiUrl("/themes"), { headers: authHeader() });
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`Chargement des thèmes échoué (${res.status}): ${body || res.statusText}`);
@@ -394,7 +394,7 @@ export async function fetchQuestionsByTag(
 ): Promise<SearchResult[]> {
   const params = new URLSearchParams({ [dim]: value });
   if (year != null) params.set("year", String(year));
-  const res = await fetch(apiUrl(`/themes?${params.toString()}`));
+  const res = await fetch(apiUrl(`/themes?${params.toString()}`), { headers: authHeader() });
   if (!res.ok) {
     const body = await res.text().catch(() => "");
     throw new Error(`Chargement des questions échoué (${res.status}): ${body || res.statusText}`);
@@ -438,7 +438,7 @@ export async function agentChatStream(
 ): Promise<AgentChatResponse> {
   const res = await fetch(apiUrl("/agent"), {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify({ messages }),
   });
   // Erreur AVANT l'ouverture du flux (env manquant, corps invalide, 429 précoce).
