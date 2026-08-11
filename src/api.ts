@@ -18,7 +18,7 @@ export type { AgentMessage, AgentToolTrace, AgentEvent };
  */
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
 
-function apiUrl(path: string): string {
+export function apiUrl(path: string): string {
   return `${API_BASE_URL}${path}`;
 }
 
