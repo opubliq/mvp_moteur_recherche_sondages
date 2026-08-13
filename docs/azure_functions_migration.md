@@ -287,3 +287,31 @@ opubliq-sondages-web --resource-group rg-opubliq-sondages` doit lister
 `.env.example` et `netlify.toml` ne référencent pas l'URL du Static Web
 App (Free tier générée) ni de domaine custom — aucun changement requis
 côté config pour ce ticket.
+
+## Gestion des secrets — Azure Key Vault (f3i.15, 2026-08-13)
+
+Les 8 vraies clés/mots de passe (par opposition aux endpoints/noms de
+déploiement, non sensibles et laissés en app settings clair) sont
+maintenant stockées dans le Key Vault `opubliq-sondages-kv`
+(`rg-opubliq-sondages`, canadaeast, autorisation RBAC) :
+
+- `SEARCH_QUERY_KEY`, `AOAI_KEY`, `COHERE_RERANK_KEY`, `FOUNDRY_CHAT_KEY`,
+  `AZURE_STORAGE_KEY`, `BASIC_AUTH_USER`, `BASIC_AUTH_PASSWORD`,
+  `BASIC_AUTH_EXTRA_ACCOUNTS`
+
+`opubliq-sondages-functions` a une identité managée système
+(`principalId 791ed199-6c60-49b4-af54-308f622d4577`) avec le rôle
+*Key Vault Secrets User* scopé au vault. Les app settings correspondants
+pointent vers des références `@Microsoft.KeyVault(SecretUri=...)` plutôt
+que la valeur en clair ; le runtime Azure Functions les résout au
+démarrage. Vérifié sans régression via smoke test complet des endpoints
+(search, agent, surveys, microdata-manifest, verbatims, decompose,
+auth/login) après bascule.
+
+Rotation : mettre à jour le secret dans le Key Vault
+(`az keyvault secret set --vault-name opubliq-sondages-kv --name <nom> --value <nouvelle-valeur>`)
+puis redémarrer la Function App pour forcer la ré-résolution
+(`az functionapp restart --name opubliq-sondages-functions -g rg-opubliq-sondages`).
+
+`.env` local reste utilisé tel quel pour le dev (jamais commité, cf.
+`.gitignore`) — seule la prod passe par Key Vault.
