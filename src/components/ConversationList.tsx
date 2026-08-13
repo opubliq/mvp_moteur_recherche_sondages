@@ -6,17 +6,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, Pencil, Trash2, X } from "lucide-react";
 import type { ConversationMeta } from "../logic/conversations";
+import { useLanguage, type Lang } from "../context/LanguageContext";
+import type { TranslationKey } from "../i18n/fr";
 
 /** Ancienneté lisible sans dépendance de formatage de dates. */
-function relativeDate(ts: number): string {
+function relativeDate(ts: number, t: (key: TranslationKey, vars?: Record<string, string | number>) => string, lang: Lang): string {
   const mins = Math.floor((Date.now() - ts) / 60000);
-  if (mins < 1) return "à l'instant";
-  if (mins < 60) return `il y a ${mins} min`;
+  if (mins < 1) return t("convList.justNow");
+  if (mins < 60) return t("convList.minutesAgo", { n: mins });
   const hours = Math.floor(mins / 60);
-  if (hours < 24) return `il y a ${hours} h`;
+  if (hours < 24) return t("convList.hoursAgo", { n: hours });
   const days = Math.floor(hours / 24);
-  if (days < 7) return `il y a ${days} j`;
-  return new Date(ts).toLocaleDateString("fr-CA", { day: "numeric", month: "short" });
+  if (days < 7) return t("convList.daysAgo", { n: days });
+  return new Date(ts).toLocaleDateString(lang === "fr" ? "fr-CA" : "en-CA", { day: "numeric", month: "short" });
 }
 
 interface Props {
@@ -28,6 +30,7 @@ interface Props {
 }
 
 export default function ConversationList({ items, activeId, onOpen, onRename, onDelete }: Props) {
+  const { t, lang } = useLanguage();
   const [editingId, setEditingId] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -37,7 +40,7 @@ export default function ConversationList({ items, activeId, onOpen, onRename, on
   }, [editingId]);
 
   if (items.length === 0) {
-    return <p className="px-1 py-2 text-xs text-base-content/50">Aucune conversation enregistrée pour l'instant.</p>;
+    return <p className="px-1 py-2 text-xs text-base-content/50">{t("convList.empty")}</p>;
   }
 
   function commit(id: string) {
@@ -63,10 +66,10 @@ export default function ConversationList({ items, activeId, onOpen, onRename, on
                     if (e.key === "Escape") setEditingId(null);
                   }}
                 />
-                <button type="button" className="btn btn-ghost btn-xs" onClick={() => commit(c.id)} title="Enregistrer">
+                <button type="button" className="btn btn-ghost btn-xs" onClick={() => commit(c.id)} title={t("convList.save")}>
                   <Check className="h-3.5 w-3.5" />
                 </button>
-                <button type="button" className="btn btn-ghost btn-xs" onClick={() => setEditingId(null)} title="Annuler">
+                <button type="button" className="btn btn-ghost btn-xs" onClick={() => setEditingId(null)} title={t("convList.cancel")}>
                   <X className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -84,7 +87,7 @@ export default function ConversationList({ items, activeId, onOpen, onRename, on
                 >
                   <span className={`block truncate text-sm ${active ? "font-semibold" : ""}`}>{c.title}</span>
                   <span className="block text-[0.68rem] text-base-content/45">
-                    {relativeDate(c.updatedAt)} · {c.turns} message{c.turns > 1 ? "s" : ""}
+                    {relativeDate(c.updatedAt, t, lang)} · {c.turns} {t(c.turns > 1 ? "convList.messages" : "convList.message")}
                   </span>
                 </button>
                 <button
@@ -94,7 +97,7 @@ export default function ConversationList({ items, activeId, onOpen, onRename, on
                     setEditingId(c.id);
                     setDraft(c.title);
                   }}
-                  title="Renommer"
+                  title={t("convList.rename")}
                 >
                   <Pencil className="h-3.5 w-3.5" />
                 </button>
@@ -102,7 +105,7 @@ export default function ConversationList({ items, activeId, onOpen, onRename, on
                   type="button"
                   className="btn btn-ghost btn-xs opacity-0 group-hover:opacity-100 hover:text-error"
                   onClick={() => onDelete(c.id)}
-                  title="Supprimer"
+                  title={t("convList.delete")}
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>

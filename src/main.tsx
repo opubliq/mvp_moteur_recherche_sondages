@@ -6,6 +6,7 @@ import { AnnotationProvider } from "./context/AnnotationContext";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { ConceptProvider } from "./context/ConceptContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import { SearchProvider } from "./context/SearchContext";
 import "./index.css";
 import "./App.css";
@@ -13,19 +14,21 @@ import "./App.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <CartProvider>
-          <ConceptProvider>
-            <SearchProvider>
-              {/* Annotations éphémères : au-dessus des routes, pour qu'un
-                  aller-retour vers la recherche ne détruise pas un run. */}
-              <AnnotationProvider>
-                <App />
-              </AnnotationProvider>
-            </SearchProvider>
-          </ConceptProvider>
-        </CartProvider>
-      </AuthProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <CartProvider>
+            <ConceptProvider>
+              <SearchProvider>
+                {/* Annotations éphémères : au-dessus des routes, pour qu'un
+                    aller-retour vers la recherche ne détruise pas un run. */}
+                <AnnotationProvider>
+                  <App />
+                </AnnotationProvider>
+              </SearchProvider>
+            </ConceptProvider>
+          </CartProvider>
+        </AuthProvider>
+      </LanguageProvider>
     </BrowserRouter>
   </StrictMode>,
 );

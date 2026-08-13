@@ -19,6 +19,7 @@ import StackedBars100 from "./microdata/StackedBars100";
 import RidgePlot from "./microdata/RidgePlot";
 import MeanByGroup from "./microdata/MeanByGroup";
 import DimSelect from "./microdata/DimSelect";
+import { useLanguage } from "../context/LanguageContext";
 
 type Kind = "single" | "scale" | "continuous" | "open" | "multiple";
 
@@ -33,6 +34,7 @@ function kindOf(q: SearchResult): Kind {
 }
 
 export default function QuestionDashboard() {
+  const { t } = useLanguage();
   const { surveyId, variable } = useParams<{ surveyId: string; variable: string }>();
   const { has, toggle } = useCart();
 
@@ -52,7 +54,7 @@ export default function QuestionDashboard() {
         setSurvey(res.survey);
         setQuestions(res.questions);
       })
-      .catch((err: unknown) => !cancelled && setError(err instanceof Error ? err.message : "Erreur inconnue"))
+      .catch((err: unknown) => !cancelled && setError(err instanceof Error ? err.message : t("corpus.unknownError")))
       .finally(() => !cancelled && setLoading(false));
     return () => {
       cancelled = true;
@@ -89,7 +91,7 @@ export default function QuestionDashboard() {
 
   if (loading) return <div className="py-20 text-center"><span className="loading loading-spinner loading-lg" /></div>;
   if (error) return <div className="alert alert-error"><span>{error}</span></div>;
-  if (!q) return <p>Question introuvable.</p>;
+  if (!q) return <p>{t("verbatims.questionNotFound")}</p>;
 
   const surveyName = survey?.survey_name ?? surveyId;
   const inCart = has(q.survey_id, q.variable);
@@ -98,7 +100,7 @@ export default function QuestionDashboard() {
   return (
     <div className="space-y-4">
       <div className="crumbs">
-        <Link to="/recherche">Recherche</Link>
+        <Link to="/recherche">{t("surveyDetail.breadcrumbSearch")}</Link>
         <span className="sep">/</span>
         <Link to={`/sondage/${q.survey_id}`}>{surveyName}</Link>
         <span className="sep">/</span>
@@ -119,10 +121,10 @@ export default function QuestionDashboard() {
           </div>
           <div className="flex shrink-0 flex-col gap-2">
             <button className={`btn btn-sm gap-1.5 ${inCart ? "btn-outline" : "btn-primary"}`} onClick={() => toggle(toCartItem(q))}>
-              {inCart ? <><Check size={16} /> Dans l'export</> : <><Plus size={16} /> Ajouter à l'export</>}
+              {inCart ? <><Check size={16} /> {t("dash.inCart")}</> : <><Plus size={16} /> {t("dash.addToExport")}</>}
             </button>
             <button className="btn btn-outline btn-sm gap-1.5" disabled>
-              <Download size={16} /> Données brutes
+              <Download size={16} /> {t("dash.rawData")}
             </button>
           </div>
         </div>
@@ -155,6 +157,7 @@ export default function QuestionDashboard() {
  * Univarié — bon graphe selon le type
  * ------------------------------------------------------------------------ */
 function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
+  const { t } = useLanguage();
   const [dist, setDist] = useState<DistributionRow[] | null>(null);
   const [stat, setStat] = useState<MeanRow | null>(null);
   const [state, setState] = useState<"loading" | "ok" | "none" | "error">("loading");
@@ -197,7 +200,7 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
   }, [q, kind, numeric, refusal, includeRefusal]);
 
   if (state === "none") return <NoMicrodata />;
-  if (state === "error") return <div className="op-card"><p className="text-sm text-error">Échec du chargement des microdonnées.</p></div>;
+  if (state === "error") return <div className="op-card"><p className="text-sm text-error">{t("dash.microdataLoadError")}</p></div>;
   if (state === "loading" || !dist) return <div className="op-card py-10 text-center"><span className="loading loading-spinner" /></div>;
 
   const totalRaw = dist.reduce((s, r) => s + r.raw_n, 0);
@@ -208,17 +211,17 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
   return (
     <div className="op-card">
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-3">
-        <h3 className="font-semibold">Distribution des réponses</h3>
+        <h3 className="font-semibold">{t("dash.responseDistribution")}</h3>
         <div className="flex items-center gap-3">
           {canToggleRefusal && (
             <label className="label cursor-pointer gap-1.5 text-xs">
               <input type="checkbox" className="checkbox checkbox-xs" checked={includeRefusal} onChange={(e) => setIncludeRefusal(e.target.checked)} />
-              inclure refus/NSP
+              {t("dash.includeRefusal")}
             </label>
           )}
           {stat && (
             <span className="text-sm text-base-content/70">
-              moyenne <b className="text-base-content">{formatMean(stat.mean)}</b>
+              {t("dash.mean")} <b className="text-base-content">{formatMean(stat.mean)}</b>
               <span className="text-base-content/45"> · {stat.min}–{stat.max}</span>
             </span>
           )}
@@ -232,8 +235,8 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
       )}
 
       <p className="mt-3 text-xs text-base-content/45">
-        Base : {formatN(totalRaw)} répondants · pondéré
-        {asHistogram && refusal.length > 0 ? " · refus/NSP exclus" : ""}
+        {t("dash.base", { n: formatN(totalRaw) })}
+        {asHistogram && refusal.length > 0 ? t("dash.refusalExcluded") : ""}
       </p>
     </div>
   );
@@ -253,6 +256,7 @@ function Crossing({
   socioDims: SearchResult[];
   otherDims: SearchResult[];
 }) {
+  const { t } = useLanguage();
   const dims = useMemo(() => [...socioDims, ...otherDims], [socioDims, otherDims]);
   const [dimVar, setDimVar] = useState<string>(dims[0]?.variable ?? "");
   const [mode, setMode] = useState<"mean" | "stacked">("mean");
@@ -321,8 +325,8 @@ function Crossing({
   if (dims.length === 0) {
     return (
       <div className="op-card">
-        <h3 className="mb-2 font-semibold">Croiser avec une dimension</h3>
-        <p className="text-sm text-base-content/60">Aucune dimension croisable dans ce sondage.</p>
+        <h3 className="mb-2 font-semibold">{t("dash.crossWithDimension")}</h3>
+        <p className="text-sm text-base-content/60">{t("dash.noCrossableDimension")}</p>
       </div>
     );
   }
@@ -330,11 +334,11 @@ function Crossing({
   return (
     <div className="op-card">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <h3 className="font-semibold">Croiser par sous-groupe</h3>
+        <h3 className="font-semibold">{t("dash.crossBySubgroup")}</h3>
         {numeric && effKind === "scale" && (
           <div className="join">
-            <button className={`btn join-item btn-xs ${effMode === "mean" ? "btn-primary" : "btn-ghost"}`} onClick={() => setMode("mean")}>Moyenne</button>
-            <button className={`btn join-item btn-xs ${effMode === "stacked" ? "btn-primary" : "btn-ghost"}`} onClick={() => setMode("stacked")}>Distribution</button>
+            <button className={`btn join-item btn-xs ${effMode === "mean" ? "btn-primary" : "btn-ghost"}`} onClick={() => setMode("mean")}>{t("dash.modeMean")}</button>
+            <button className={`btn join-item btn-xs ${effMode === "stacked" ? "btn-primary" : "btn-ghost"}`} onClick={() => setMode("stacked")}>{t("dash.modeDistribution")}</button>
           </div>
         )}
       </div>
@@ -344,23 +348,23 @@ function Crossing({
         <button
           type="button"
           className="btn btn-ghost btn-sm gap-1.5"
-          title="Inverser cible et dimension du croisement"
+          title={t("dash.swapTitle")}
           disabled={!dimQ}
           onClick={() => setSwapped((s) => !s)}
         >
           <ArrowLeftRight size={15} />
-          Inverser
+          {t("dash.swap")}
         </button>
         {refusal.length > 0 && (
           <label className="label cursor-pointer gap-2 text-xs">
             <input type="checkbox" className="checkbox checkbox-xs" checked={includeRefusal} onChange={(e) => setIncludeRefusal(e.target.checked)} />
-            inclure refus/NSP
+            {t("dash.includeRefusal")}
           </label>
         )}
       </div>
 
       {state === "loading" && <div className="py-8 text-center"><span className="loading loading-spinner" /></div>}
-      {state === "error" && <p className="text-sm text-error">Échec du croisement.</p>}
+      {state === "error" && <p className="text-sm text-error">{t("dash.crosstabError")}</p>}
       {state === "ok" && targetQ && otherQ && (() => {
         const groupCount =
           numeric && effMode === "mean" && means
@@ -372,11 +376,7 @@ function Crossing({
         // des dimensions numériques viendra plus tard. On évite un graphe à 90 lignes.
         if (groupCount > MAX_GROUPS) {
           return (
-            <p className="text-sm text-base-content/60">
-              Dimension trop granulaire ({groupCount} sous-groupes) — le regroupement en
-              tranches des dimensions numériques est prévu ultérieurement. Choisis une
-              dimension catégorielle (genre, région, scolarité…).
-            </p>
+            <p className="text-sm text-base-content/60">{t("dash.tooGranular", { count: groupCount })}</p>
           );
         }
         const clip = (s: string, n: number) => (s.length > n ? s.slice(0, n) + "…" : s);
@@ -395,9 +395,7 @@ function Crossing({
               <StackedBars100 rows={cross} targetOptions={targetQ.response_options} dimOptions={otherQ.response_options} ordinal={targetQ.is_ordinal || effKind === "scale"} dimOrdinal={otherQ.is_ordinal} targetName={shortTarget} dimName={shortDim} />
             ) : null}
             <p className="mt-2 text-xs text-base-content/45">
-              {numeric && effMode === "stacked"
-                ? "Densité pondérée par sous-groupe (axe commun). La ligne verticale marque la médiane du sous-groupe."
-                : "% pondéré par sous-groupe."}
+              {numeric && effMode === "stacked" ? t("dash.densityHint") : t("dash.percentHint")}
             </p>
           </>
         );
@@ -415,54 +413,49 @@ function Crossing({
  * n'y a rien à y analyser.
  */
 function OpenTextPanel({ q }: { q: SearchResult }) {
+  const { t } = useLanguage();
   if (!isVerbatim(q)) {
     return (
       <div className="op-card">
-        <h3 className="mb-2 font-semibold">Question à réponse texte</h3>
+        <h3 className="mb-2 font-semibold">{t("dash.textQuestionTitle")}</h3>
         <p className="text-sm text-base-content/50">
-          Les réponses sont du texte libre trop court pour une analyse qualitative
-          {q.text_kind === "empty" ? " (colonne vide)" : ""} — ni distribution ni analyse qualitative.
+          {t("dash.textQuestionBody", { emptyNote: q.text_kind === "empty" ? t("dash.emptyColumnNote") : "" })}
         </p>
       </div>
     );
   }
   return (
     <div className="op-card">
-      <h3 className="mb-2 font-semibold">Question ouverte</h3>
-      <p className="mb-3 text-sm text-base-content/60">
-        Les réponses sont en texte libre : pas de distribution à tracer. L'espace des réponses
-        libres permet d'y chercher des citations.
-      </p>
+      <h3 className="mb-2 font-semibold">{t("dash.openQuestionTitle")}</h3>
+      <p className="mb-3 text-sm text-base-content/60">{t("dash.openQuestionBody")}</p>
       <Link
         to={`/questions-ouvertes/${q.survey_id}/${encodeURIComponent(q.variable)}`}
         className="btn btn-primary btn-sm gap-1.5"
       >
-        <MessageSquare size={16} /> Lire les réponses
+        <MessageSquare size={16} /> {t("questionCard.readAnswers")}
       </Link>
     </div>
   );
 }
 
 function MultipleNotice() {
+  const { t } = useLanguage();
   return (
     <div className="op-card">
       <h3 className="mb-3 font-semibold">
-        Question à choix multiple <span className="op-badge op-badge-plain">graphe à venir</span>
+        {t("dash.multipleTitle")} <span className="op-badge op-badge-plain">{t("dash.multipleComingSoon")}</span>
       </h3>
-      <p className="text-sm text-base-content/50">
-        Cette question autorise plusieurs réponses par répondant (stockées en colonnes de
-        mention). Le graphe « % ayant coché chaque option » nécessite une agrégation
-        multi-mentions dédiée, prévue dans une prochaine itération.
-      </p>
+      <p className="text-sm text-base-content/50">{t("dash.multipleBody")}</p>
     </div>
   );
 }
 
 function NoMicrodata() {
+  const { t } = useLanguage();
   return (
     <div className="op-card">
-      <h3 className="mb-2 font-semibold">Microdonnées non disponibles</h3>
-      <p className="text-sm text-base-content/50">Ce sondage n'a pas encore de données répondant ingérées.</p>
+      <h3 className="mb-2 font-semibold">{t("dash.noMicrodataTitle")}</h3>
+      <p className="text-sm text-base-content/50">{t("dash.noMicrodataBody")}</p>
     </div>
   );
 }
@@ -482,20 +475,20 @@ function NoMicrodata() {
  * navigation, mais on affiche l'ensemble (scrollable, question courante
  * mise en évidence) plutôt qu'une tranche arbitraire des 6 premières.
  * ------------------------------------------------------------------------ */
-const LANG_LABELS: Record<string, string> = { fr: "Français", en: "Anglais" };
-
 function SurveyContext({ survey }: { survey: SurveyParent | null }) {
+  const { t, lang } = useLanguage();
+  const LANG_LABELS: Record<string, string> = { fr: t("facets.lang.fr"), en: t("facets.lang.en") };
   if (!survey) return null;
   const meta = [
     survey.pollster,
     survey.survey_year != null ? String(survey.survey_year) : null,
     survey.language ? LANG_LABELS[survey.language] ?? survey.language : null,
-    survey.n_respondents != null ? `N = ${survey.n_respondents.toLocaleString("fr-CA")}` : null,
+    survey.n_respondents != null ? `N = ${survey.n_respondents.toLocaleString(lang === "fr" ? "fr-CA" : "en-CA")}` : null,
   ].filter(Boolean);
 
   return (
     <div className="op-card">
-      <h3 className="mb-1 text-sm font-semibold">À propos de ce sondage</h3>
+      <h3 className="mb-1 text-sm font-semibold">{t("dash.aboutSurvey")}</h3>
       {meta.length > 0 && <p className="mb-2 text-xs text-base-content/60">{meta.join(" · ")}</p>}
       {survey.survey_description && (
         <p className="text-sm leading-snug text-base-content/70">{survey.survey_description}</p>
@@ -522,6 +515,7 @@ function SurveyQuestionsNav({
   currentVariable: string;
   surveyId: string;
 }) {
+  const { t } = useLanguage();
   const [filter, setFilter] = useState("");
 
   const { shown, invalidRegex } = useMemo(() => {
@@ -548,7 +542,7 @@ function SurveyQuestionsNav({
   return (
     <div className="op-card">
       <h3 className="mb-2 text-sm font-semibold">
-        Questions du sondage{" "}
+        {t("dash.surveyQuestions")}{" "}
         <span className="font-normal text-base-content/45">
           ({filter.trim() ? `${shown.length}/${questions.length}` : questions.length})
         </span>
@@ -557,12 +551,12 @@ function SurveyQuestionsNav({
         type="search"
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
-        placeholder="Filtrer (regex)…"
+        placeholder={t("verbatims.picker.filterPlaceholder")}
         className={`input input-sm input-bordered mb-2 w-full text-sm ${invalidRegex ? "input-error" : ""}`}
       />
       <div className="max-h-96 space-y-0.5 overflow-y-auto pr-1">
         {shown.length === 0 && (
-          <p className="px-2 py-1.5 text-sm text-base-content/50">Aucune question ne correspond.</p>
+          <p className="px-2 py-1.5 text-sm text-base-content/50">{t("verbatims.picker.noMatch")}</p>
         )}
         {shown.map((x) => {
           const active = x.variable === currentVariable;

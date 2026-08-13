@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import type { DistributionRow } from "../../types";
 import { formatMean } from "../../lib/microdataFormat";
 import { HoverTip, useHoverTip } from "./HoverTip";
+import { useLanguage } from "../../context/LanguageContext";
 
 /**
  * Histogramme d'une cible `continuous` (âge, thermomètre 0–100…). Refus/NSP
@@ -17,6 +18,7 @@ export default function Histogram({
   mean?: number;
   bins?: number;
 }) {
+  const { t } = useLanguage();
   const { tip, showTip, hideTip } = useHoverTip<{ range: string; pct: string }>();
 
   const model = useMemo(() => {
@@ -37,7 +39,7 @@ export default function Histogram({
     return { min, max, span, buckets, maxW };
   }, [rows, bins]);
 
-  if (!model) return <p className="text-sm text-base-content/60">Aucune donnée numérique.</p>;
+  if (!model) return <p className="text-sm text-base-content/60">{t("histogram.noData")}</p>;
 
   const W = 640;
   const H = 200;
@@ -50,7 +52,7 @@ export default function Histogram({
 
   return (
     <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxWidth: W }} role="img" aria-label="Histogramme">
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxWidth: W }} role="img" aria-label={t("histogram.ariaLabel")}>
         {/* barres */}
         {model.buckets.map((b, i) => {
           const h = (b.w / model.maxW) * (plotH - 4);
@@ -86,7 +88,7 @@ export default function Histogram({
             <line x1={meanX} y1={4} x2={meanX} y2={plotH} stroke="var(--color-secondary)" strokeWidth={1.5} />
             <circle cx={meanX} cy={plotH} r={3} fill="var(--color-secondary)" />
             <text x={meanX} y={plotH + 27} fontSize={11} textAnchor="middle" fill="var(--color-secondary)" fontWeight={600}>
-              moy. {formatMean(mean!)}
+              {t("histogram.meanAbbrev")} {formatMean(mean!)}
             </text>
           </g>
         )}

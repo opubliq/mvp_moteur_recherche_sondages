@@ -11,6 +11,7 @@ import AnnotationCrosstab from "../components/AnnotationCrosstab";
 import VerbatimRow, { labelBadgeClass } from "../components/VerbatimRow";
 import { annotationKey, useAnnotations } from "../context/AnnotationContext";
 import { effectiveLabels, type Annotation } from "../logic/annotate";
+import { useLanguage } from "../context/LanguageContext";
 
 /**
  * Espace de travail des questions ouvertes — UNE question à la fois.
@@ -26,6 +27,7 @@ import { effectiveLabels, type Annotation } from "../logic/annotate";
  * l'affichage, pas sur la navigation.
  */
 export default function VerbatimsPage() {
+  const { t } = useLanguage();
   const { surveyId, variable } = useParams<{ surveyId: string; variable: string }>();
 
   const [survey, setSurvey] = useState<SurveyParent | null>(null);
@@ -44,7 +46,7 @@ export default function VerbatimsPage() {
         setSurvey(res.survey);
         setQuestions(res.questions);
       })
-      .catch((err: unknown) => !cancelled && setError(err instanceof Error ? err.message : "Erreur inconnue"))
+      .catch((err: unknown) => !cancelled && setError(err instanceof Error ? err.message : t("corpus.unknownError")))
       .finally(() => !cancelled && setLoading(false));
     return () => {
       cancelled = true;
@@ -56,18 +58,18 @@ export default function VerbatimsPage() {
   if (!surveyId || !variable) return <NoQuestion />;
   if (loading) return <div className="py-20 text-center"><span className="loading loading-spinner loading-lg" /></div>;
   if (error) return <div className="alert alert-error"><span>{error}</span></div>;
-  if (!q) return <p>Question introuvable.</p>;
+  if (!q) return <p>{t("verbatims.questionNotFound")}</p>;
 
   // Une question fermée n'a rien à faire ici : on renvoie vers son dashboard.
   if (!isVerbatim(q)) {
     return (
       <div className="op-card max-w-2xl">
-        <h2 className="mb-2 text-lg font-semibold">Pas une question ouverte</h2>
+        <h2 className="mb-2 text-lg font-semibold">{t("verbatims.notOpenTitle")}</h2>
         <p className="mb-3 text-sm text-base-content/60">
-          <code className="font-mono">{q.variable}</code> n'a pas de réponses en texte libre.
+          <code className="font-mono">{q.variable}</code> {t("verbatims.notOpenBody")}
         </p>
         <Link to={`/sondage/${q.survey_id}/q/${encodeURIComponent(q.variable)}`} className="btn btn-primary btn-sm">
-          Voir le dashboard de la question
+          {t("verbatims.viewDashboard")}
         </Link>
       </div>
     );
@@ -102,6 +104,7 @@ function Workspace({
   questions: SearchResult[];
   surveyName: string;
 }) {
+  const { t, lang } = useLanguage();
   // Requête SOUMISE (pas la frappe en cours) : c'est elle qui pilote le fetch.
   const [query, setQuery] = useState("");
   const [data, setData] = useState<VerbatimsResponse | null>(null);
@@ -209,7 +212,7 @@ function Workspace({
   const seedFromVerbatim = (v: Verbatim) => {
     annotations.update(aKey, (s) => ({
       ...s,
-      property: `Est-ce que la réponse exprime la même idée que celle-ci : « ${v.text.trim()} » ?`,
+      property: t("verbatims.seedTemplate", { text: v.text.trim() }),
     }));
     document.getElementById("op-annotate-card")?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   };
@@ -260,7 +263,7 @@ function Workspace({
   return (
     <div className="space-y-4">
       <div className="crumbs">
-        <Link to="/recherche">Recherche</Link>
+        <Link to="/recherche">{t("surveyDetail.breadcrumbSearch")}</Link>
         <span className="sep">/</span>
         <Link to={`/sondage/${q.survey_id}`}>{surveyName}</Link>
         <span className="sep">/</span>
@@ -273,10 +276,12 @@ function Workspace({
             <div className="mb-2 flex items-center gap-2">
               <span className="op-badge op-badge-plain font-mono">{q.variable}</span>
               <span className="badge badge-secondary badge-sm gap-1">
-                <MessageSquare size={12} strokeWidth={2} /> question ouverte
+                <MessageSquare size={12} strokeWidth={2} /> {t("questionCard.openQuestion")}
               </span>
               {!searching && state === "ok" && (
-                <span className="text-xs text-base-content/50">{total.toLocaleString("fr-CA")} réponses</span>
+                <span className="text-xs text-base-content/50">
+                  {total.toLocaleString(lang === "fr" ? "fr-CA" : "en-CA")} {t("verbatims.responses")}
+                </span>
               )}
             </div>
             <h1 className="text-xl font-semibold leading-snug">{q.display_label || q.question_text}</h1>
@@ -297,7 +302,7 @@ function Workspace({
                   document.getElementById("op-crosstab")?.scrollIntoView({ behavior: "smooth", block: "start" })
                 }
               >
-                <GitCompare size={15} strokeWidth={1.75} /> Croisement
+                <GitCompare size={15} strokeWidth={1.75} /> {t("verbatims.crosstabButton")}
               </button>
             )}
             <OpenQuestionPicker current={q} />
@@ -421,6 +426,8 @@ function VerbatimList({
   onLoadMore: () => void;
   onSeed: (v: Verbatim) => void;
 }) {
+  const { t, lang } = useLanguage();
+  const locale = lang === "fr" ? "fr-CA" : "en-CA";
   return (
     <div className="op-card">
       {/* L'en-tête reste toujours visible et sert de poignée de repli : replié,
@@ -433,38 +440,34 @@ function VerbatimList({
           aria-expanded={open}
         >
           {open ? <ChevronDown size={16} strokeWidth={2} /> : <ChevronRight size={16} strokeWidth={2} />}
-          {searching ? "Citations trouvées" : "Réponses"}
+          {searching ? t("verbatims.list.foundQuotes") : t("verbatims.list.responses")}
         </button>
         {state === "ok" && (
           <span className="text-xs text-base-content/45">
             {searching
-              ? `${rows.length} classées par pertinence · ${total.toLocaleString("fr-CA")} réponses contenaient les mots cherchés${
-                  poolSize != null && poolSize < total ? ` (${poolSize} reclassées)` : ""
-                }`
-              : `${rows.length.toLocaleString("fr-CA")} sur ${total.toLocaleString("fr-CA")}`}
+              ? t("verbatims.list.summarySearch", {
+                  shown: rows.length,
+                  total: total.toLocaleString(locale),
+                  poolNote: poolSize != null && poolSize < total ? t("verbatims.list.poolNote", { poolSize }) : "",
+                })
+              : t("verbatims.list.summaryBrowse", {
+                  shown: rows.length.toLocaleString(locale),
+                  total: total.toLocaleString(locale),
+                })}
           </span>
         )}
       </div>
 
       {!open && (
-        <p className="mt-1 text-xs text-base-content/45">
-          Liste repliée pour laisser la place au croisement — clique le titre pour la rouvrir.
-        </p>
+        <p className="mt-1 text-xs text-base-content/45">{t("verbatims.list.collapsedHint")}</p>
       )}
 
       {open && state === "loading" && <div className="py-12 text-center"><span className="loading loading-spinner" /></div>}
-      {open && state === "error" && <p className="text-sm text-error">Échec du chargement des réponses.</p>}
+      {open && state === "error" && <p className="text-sm text-error">{t("verbatims.list.loadError")}</p>}
 
       {open && state === "ok" && rows.length === 0 && (
         <p className="text-sm text-base-content/55">
-          {searching ? (
-            <>
-              Aucune réponse ne contient les mots de « {query} ». La recherche est lexicale : essaie
-              les mots que les répondants auraient employés eux-mêmes.
-            </>
-          ) : (
-            "Aucune réponse pour cette question."
-          )}
+          {searching ? t("verbatims.list.noSearchResults", { query }) : t("verbatims.list.noResults")}
         </p>
       )}
 
@@ -487,7 +490,7 @@ function VerbatimList({
 
           {canLoadMore && (
             <button className="btn btn-ghost btn-sm mt-3 w-full" onClick={onLoadMore} disabled={loadingMore}>
-              {loadingMore ? <span className="loading loading-spinner loading-xs" /> : "Charger plus de réponses"}
+              {loadingMore ? <span className="loading loading-spinner loading-xs" /> : t("verbatims.list.loadMore")}
             </button>
           )}
         </>
@@ -518,6 +521,7 @@ function QuoteSearchCard({
   onSubmit: (q: string) => void;
   busy: boolean;
 }) {
+  const { t } = useLanguage();
   const [draft, setDraft] = useState(query);
 
   return (
@@ -534,11 +538,11 @@ function QuoteSearchCard({
           type="search"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
-          placeholder="Chercher des citations — ex. panneaux solaires"
+          placeholder={t("verbatims.search.placeholder")}
           className="input input-sm input-bordered min-w-48 flex-1 text-sm"
         />
         <button type="submit" className="btn btn-primary btn-sm" disabled={busy}>
-          {busy ? <span className="loading loading-spinner loading-xs" /> : "Chercher"}
+          {busy ? <span className="loading loading-spinner loading-xs" /> : t("verbatims.search.submit")}
         </button>
         {query && (
           <button
@@ -549,13 +553,11 @@ function QuoteSearchCard({
               onSubmit("");
             }}
           >
-            Toutes les réponses
+            {t("verbatims.search.allResponses")}
           </button>
         )}
       </div>
-      <p className="mt-1.5 text-xs text-base-content/45">
-        Recherche par mots dans les réponses, reclassées par pertinence sémantique.
-      </p>
+      <p className="mt-1.5 text-xs text-base-content/45">{t("verbatims.search.hint")}</p>
     </form>
   );
 }
@@ -585,16 +587,15 @@ function SelectionCard({
   onRemove: (id: string) => void;
   onClear: () => void;
 }) {
+  const { t } = useLanguage();
   const [format, setFormat] = useState<ExportFormat>("csv-large");
   const [copied, setCopied] = useState(false);
 
   if (selected.length === 0) {
     return (
       <div className="op-card">
-        <h3 className="mb-1 text-sm font-semibold">Sélection</h3>
-        <p className="text-xs text-base-content/45">
-          Coche des réponses pour les copier ou les télécharger comme exemples.
-        </p>
+        <h3 className="mb-1 text-sm font-semibold">{t("verbatims.selection.title")}</h3>
+        <p className="text-xs text-base-content/45">{t("verbatims.selection.emptyHint")}</p>
       </div>
     );
   }
@@ -612,7 +613,7 @@ function SelectionCard({
   return (
     <div className="op-card">
       <h3 className="mb-2 text-sm font-semibold">
-        Sélection · {selected.length} citation{selected.length > 1 ? "s" : ""}
+        {t("verbatims.selection.titleWithCount", { count: selected.length, plural: selected.length > 1 ? "s" : "" })}
       </h3>
 
       {/* Voir CE qu'on emporte, pas seulement combien : une sélection de 6
@@ -641,7 +642,7 @@ function SelectionCard({
                 type="button"
                 className="btn btn-ghost btn-xs shrink-0 px-1"
                 onClick={() => onRemove(v.id)}
-                aria-label="Retirer de la sélection"
+                aria-label={t("verbatims.selection.removeAria")}
               >
                 <X size={13} strokeWidth={1.75} />
               </button>
@@ -651,21 +652,21 @@ function SelectionCard({
       </ul>
 
       <button className="btn btn-outline btn-sm mb-2 w-full gap-1.5" onClick={copyAll}>
-        {copied ? <Check size={15} /> : <Copy size={15} />} {copied ? "Copié" : "Copier"}
+        {copied ? <Check size={15} /> : <Copy size={15} />} {copied ? t("verbatims.selection.copied") : t("verbatims.selection.copy")}
       </button>
       <select
         className="select select-bordered select-sm mb-2 w-full"
         value={format}
         onChange={(e) => setFormat(e.target.value as ExportFormat)}
       >
-        <option value="csv-large">Format : CSV</option>
-        <option value="json">Format : JSON</option>
+        <option value="csv-large">{t("verbatims.selection.formatCsv")}</option>
+        <option value="json">{t("verbatims.selection.formatJson")}</option>
       </select>
       <button className="btn btn-primary btn-sm w-full gap-1.5" onClick={() => exportVerbatims(selected, q, format)}>
-        <Download size={15} strokeWidth={1.75} /> Télécharger
+        <Download size={15} strokeWidth={1.75} /> {t("verbatims.selection.download")}
       </button>
       <button className="btn btn-ghost btn-xs mt-1 w-full" onClick={onClear}>
-        Vider la sélection
+        {t("verbatims.selection.clear")}
       </button>
     </div>
   );
@@ -690,7 +691,7 @@ function SelectionCard({
  */
 function OpenQuestionPicker({
   current,
-  label = "Changer de question",
+  label,
   btnClass = "btn-outline",
   align = "right",
 }: {
@@ -699,6 +700,8 @@ function OpenQuestionPicker({
   btnClass?: string;
   align?: "left" | "right";
 }) {
+  const { t } = useLanguage();
+  const resolvedLabel = label ?? t("verbatims.picker.changeQuestion");
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [all, setAll] = useState<SearchResult[] | null>(null);
@@ -786,7 +789,7 @@ function OpenQuestionPicker({
   return (
     <div className="relative shrink-0" ref={boxRef}>
       <button type="button" className={`btn btn-sm gap-1.5 ${btnClass}`} onClick={() => setOpen((o) => !o)}>
-        {label}
+        {resolvedLabel}
         <ChevronDown size={15} strokeWidth={1.75} />
       </button>
 
@@ -801,16 +804,16 @@ function OpenQuestionPicker({
             autoFocus
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            placeholder="Filtrer (regex)…"
+            placeholder={t("verbatims.picker.filterPlaceholder")}
             className={`input input-sm input-bordered mb-2 w-full text-sm ${invalidRegex ? "input-error" : ""}`}
           />
 
-          {failed && <p className="px-2 py-3 text-sm text-error">Chargement des questions ouvertes échoué.</p>}
+          {failed && <p className="px-2 py-3 text-sm text-error">{t("verbatims.picker.loadError")}</p>}
           {!failed && !all && (
             <div className="py-6 text-center"><span className="loading loading-spinner loading-sm" /></div>
           )}
           {all && total === 0 && (
-            <p className="px-2 py-3 text-sm text-base-content/50">Aucune question ne correspond.</p>
+            <p className="px-2 py-3 text-sm text-base-content/50">{t("verbatims.picker.noMatch")}</p>
           )}
 
           {all && total > 0 && (
@@ -862,19 +865,18 @@ function OpenQuestionPicker({
  * chemin secondaire (elle, elle classe par pertinence).
  */
 function NoQuestion() {
+  const { t } = useLanguage();
   return (
     <>
-      <p className="op-kicker mb-3">Analyse qualitative</p>
-      <h2 className="text-xl font-semibold tracking-tight">Réponses libres</h2>
+      <p className="op-kicker mb-3">{t("verbatims.noQuestion.kicker")}</p>
+      <h2 className="text-xl font-semibold tracking-tight">{t("verbatims.noQuestion.title")}</h2>
       <p className="mt-1 mb-5 max-w-2xl text-sm text-base-content/60">
-        Cet espace travaille une question ouverte à la fois. Choisis-en une dans la liste, ou
-        trouve-la par la recherche — les questions à réponses libres y portent le badge{" "}
-        <em>question ouverte</em>.
+        {t("verbatims.noQuestion.subtitlePrefix")} <em>{t("questionCard.openQuestion")}</em>.
       </p>
       <div className="flex flex-wrap items-center gap-2">
-        <OpenQuestionPicker label="Choisir une question ouverte" btnClass="btn-primary" align="left" />
+        <OpenQuestionPicker label={t("verbatims.noQuestion.pickerLabel")} btnClass="btn-primary" align="left" />
         <Link to="/recherche" className="btn btn-ghost btn-sm">
-          Aller à la recherche
+          {t("verbatims.noQuestion.goToSearch")}
         </Link>
       </div>
     </>

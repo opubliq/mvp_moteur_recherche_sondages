@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Check, Copy, Wand2 } from "lucide-react";
 import { FALLBACK_LABEL } from "../logic/annotate";
 import type { Verbatim } from "../types";
+import { useLanguage } from "../context/LanguageContext";
 
 /**
  * Les 3 repères sociodémo affichés sous chaque réponse : genre, âge, région.
@@ -63,6 +64,7 @@ export default function VerbatimRow({
   /** « Partir de cette réponse » : pré-remplit la consigne d'annotation. */
   onSeed?: (v: Verbatim) => void;
 }) {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
@@ -86,20 +88,20 @@ export default function VerbatimRow({
         className="checkbox checkbox-sm mt-0.5 shrink-0"
         checked={selected}
         onChange={onToggle}
-        aria-label="Sélectionner cette citation"
+        aria-label={t("verbatimRow.selectAria")}
       />
       <div className="min-w-0 flex-1">
         <p className="whitespace-pre-wrap text-sm leading-snug">{v.text}</p>
 
         <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-base-content/40">
-          <span className="font-mono">répondant {v.respondent_id}</span>
+          <span className="font-mono">{t("verbatimRow.respondent")} {v.respondent_id}</span>
           {shortSociodemo(v).map((s) => (
             <span key={s} className="badge badge-ghost badge-xs whitespace-nowrap">
               {s}
             </span>
           ))}
           {v.score_pertinence != null && (
-            <span className="tabular-nums" title="Score de pertinence Cohere (0-100, absolu)">
+            <span className="tabular-nums" title={t("verbatimRow.scoreTitle")}>
               · {v.score_pertinence}
             </span>
           )}
@@ -109,14 +111,14 @@ export default function VerbatimRow({
                 type="button"
                 className="flex items-center gap-1 hover:text-primary"
                 onClick={() => onSeed(v)}
-                title="Partir de cette réponse pour définir une propriété à annoter"
+                title={t("verbatimRow.seedTitle")}
               >
-                <Wand2 size={13} /> annoter à partir d'ici
+                <Wand2 size={13} /> {t("verbatimRow.seedLabel")}
               </button>
             )}
             <button type="button" className="flex items-center gap-1 hover:text-primary" onClick={copy}>
               {copied ? <Check size={13} /> : <Copy size={13} />}
-              {copied ? "copié" : "copier"}
+              {copied ? t("verbatimRow.copied") : t("verbatimRow.copy")}
             </button>
           </span>
         </div>

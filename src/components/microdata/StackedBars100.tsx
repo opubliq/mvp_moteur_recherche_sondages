@@ -3,6 +3,7 @@ import type { CrosstabRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, formatPct, labelMap, refusalCodes } from "../../lib/microdataFormat";
 import { categoryColor, divergingRamp, MAX_CATEGORIES, OTHER_COLOR } from "../../lib/vizPalette";
 import { HoverTip, useHoverTip } from "./HoverTip";
+import { useLanguage } from "../../context/LanguageContext";
 
 /**
  * Croisement cible catégorielle × dimension → barres empilées 100 %. Une barre
@@ -41,6 +42,7 @@ export default function StackedBars100({
   targetName?: string;
   dimName?: string;
 }) {
+  const { t } = useLanguage();
   const tMap = labelMap(targetOptions);
   const dMap = labelMap(dimOptions);
   const { tip, showTip, hideTip } = useHoverTip<{ label: string; pct: string; n: number; group: string }>();
@@ -83,7 +85,7 @@ export default function StackedBars100({
       cats = kept
         .sort((a, b) => Number(a) - Number(b))
         .map((code, i) => ({ code, color: categoryColor(i), label: codeLabel(tMap, code), dark: false }));
-      if (ranked.length > kept.length) cats.push({ code: OTHER, color: OTHER_COLOR, label: "Autre", dark: true });
+      if (ranked.length > kept.length) cats.push({ code: OTHER, color: OTHER_COLOR, label: t("stackedBars.other"), dark: true });
       catOf = (code) => (keptSet.has(code) ? code : OTHER);
     }
 
@@ -110,14 +112,14 @@ export default function StackedBars100({
       );
 
     return { cats, groups };
-  }, [rows, tMap, dMap, ordinal, targetOptions, dimOptions, dimOrdinal]);
+  }, [rows, tMap, dMap, ordinal, targetOptions, dimOptions, dimOrdinal, t]);
 
   return (
     <div>
       {/* Titre de la couleur = variable cible (quel axe = quelle variable). */}
       {targetName && (
         <div className="mb-1 text-xs font-semibold text-base-content/70">
-          Couleurs = « {targetName} »
+          {t("stackedBars.colorsAre", { targetName })}
         </div>
       )}
       {/* Légende (identité jamais portée par la couleur seule) */}
@@ -131,7 +133,7 @@ export default function StackedBars100({
       </ul>
 
       {dimName && (
-        <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = « {dimName} »</div>
+        <div className="mb-1 text-xs font-medium text-base-content/55">{t("meanByGroup.rowsAre", { dimName })}</div>
       )}
       <div className="space-y-2">
         {groups.map((g) => (

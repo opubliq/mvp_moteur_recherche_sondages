@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, Search } from "lucide-react";
 import type { SearchResult } from "../../types";
+import { useLanguage } from "../../context/LanguageContext";
 
 /**
  * Sélecteur de dimension de croisement avec mini-recherche (regex simple).
@@ -37,6 +38,7 @@ export default function DimSelect({
   value: string;
   onChange: (variable: string) => void;
 }) {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const boxRef = useRef<HTMLDivElement>(null);
@@ -74,7 +76,7 @@ export default function DimSelect({
         className="select select-bordered select-sm flex w-full items-center justify-between gap-2 text-left"
         onClick={() => setOpen((o) => !o)}
       >
-        <span className="truncate">{selected ? optionLabel(selected) : "Choisir une dimension…"}</span>
+        <span className="truncate">{selected ? optionLabel(selected) : t("dimSelect.placeholder")}</span>
         <ChevronDown size={15} className="shrink-0 opacity-60" />
       </button>
 
@@ -85,7 +87,7 @@ export default function DimSelect({
             <input
               autoFocus
               className="w-full bg-transparent text-sm outline-none"
-              placeholder="Rechercher (regex)…"
+              placeholder={t("dimSelect.searchPlaceholder")}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Escape" && setOpen(false)}
@@ -93,14 +95,14 @@ export default function DimSelect({
           </div>
 
           {socio.length === 0 && other.length === 0 && (
-            <p className="px-3 py-3 text-sm text-base-content/50">Aucune variable.</p>
+            <p className="px-3 py-3 text-sm text-base-content/50">{t("dimSelect.noVariable")}</p>
           )}
 
           {socio.length > 0 && (
-            <Group title="Sociodémographiques" dims={socio} value={value} onPick={pick} />
+            <Group title={t("dimSelect.sociodemo")} dims={socio} value={value} onPick={pick} />
           )}
           {other.length > 0 && (
-            <Group title="Autres questions" dims={other} value={value} onPick={pick} />
+            <Group title={t("dimSelect.otherQuestions")} dims={other} value={value} onPick={pick} />
           )}
         </div>
       )}

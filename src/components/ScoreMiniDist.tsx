@@ -2,6 +2,7 @@ import { Fragment, useMemo } from "react";
 import { scoreToColor, scoreToInkColor } from "../lib/scoreColor";
 import { packSwarm, tokenDiameter, TOKEN_QUANTUM } from "../lib/beeswarm";
 import { N_SCORE_BANDS, scoreBandIndex } from "../lib/scoreBins";
+import { useLanguage } from "../context/LanguageContext";
 
 interface ScoreMiniDistProps {
   scores: number[];
@@ -78,6 +79,7 @@ const mainToScore = (main: number) => (main / W) * 100;
  * encaisse des centaines de résultats).
  */
 export default function ScoreMiniDist({ scores }: ScoreMiniDistProps) {
+  const { t } = useLanguage();
   const rows = useMemo(
     () =>
       packSwarm(scores, toMain, {
@@ -95,9 +97,12 @@ export default function ScoreMiniDist({ scores }: ScoreMiniDistProps) {
     <div
       className="relative w-25 shrink-0"
       style={{ height: H }}
-      title={`Distribution des ${scores.length} score${scores.length > 1 ? "s" : ""} (${Math.min(
-        ...scores,
-      )}-${Math.max(...scores)})`}
+      title={t("scoreMiniDist.title", {
+        count: scores.length,
+        plural: scores.length > 1 ? "s" : "",
+        min: Math.min(...scores),
+        max: Math.max(...scores),
+      })}
     >
       {rows.map((row) => (
         <Fragment key={row.main}>

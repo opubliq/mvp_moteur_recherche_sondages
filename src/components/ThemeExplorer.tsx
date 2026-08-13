@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { fetchQuestionsByTag, fetchThemeFacets } from "../api";
 import type { ConceptCount, SearchResult } from "../types";
 import SurveyGroup, { type SurveyGroupData } from "./SurveyGroup";
+import { useLanguage } from "../context/LanguageContext";
 
 type Dim = "theme" | "concept";
 
@@ -30,6 +31,7 @@ function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
 }
 
 export default function ThemeExplorer() {
+  const { t } = useLanguage();
   const [facets, setFacets] = useState<{ themes: ConceptCount[]; concepts: ConceptCount[] }>({
     themes: [],
     concepts: [],
@@ -44,7 +46,7 @@ export default function ThemeExplorer() {
   useEffect(() => {
     fetchThemeFacets()
       .then(setFacets)
-      .catch((err) => setFacetsError(err instanceof Error ? err.message : "Erreur inconnue"));
+      .catch((err) => setFacetsError(err instanceof Error ? err.message : t("corpus.unknownError")));
   }, []);
 
   const chips = dim === "theme" ? facets.themes : facets.concepts.slice(0, CONCEPT_CHIP_LIMIT);
@@ -90,10 +92,10 @@ export default function ThemeExplorer() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold px-1">Explorer par thème</h2>
+        <h2 className="text-xl font-bold px-1">{t("themeExplorer.title")}</h2>
         <p className="text-sm opacity-60 px-1 mt-1">
-          Choisis un {dim === "theme" ? "thème" : "concept"} pour voir les questions correspondantes
-          à travers tous les sondages.
+          {t("themeExplorer.subtitle.prefix")} {t(dim === "theme" ? "themeExplorer.subtitle.theme" : "themeExplorer.subtitle.concept")}{" "}
+          {t("themeExplorer.subtitle.rest")}
         </p>
       </div>
 
@@ -103,13 +105,13 @@ export default function ThemeExplorer() {
           className={`tab ${dim === "theme" ? "tab-active" : ""}`}
           onClick={() => switchDim("theme")}
         >
-          Thèmes
+          {t("themeExplorer.tabs.themes")}
         </button>
         <button
           className={`tab ${dim === "concept" ? "tab-active" : ""}`}
           onClick={() => switchDim("concept")}
         >
-          Concepts
+          {t("themeExplorer.tabs.concepts")}
         </button>
       </div>
 
@@ -129,7 +131,7 @@ export default function ThemeExplorer() {
         ))}
         {dim === "concept" && facets.concepts.length > CONCEPT_CHIP_LIMIT && (
           <span className="badge badge-ghost badge-lg opacity-60">
-            +{facets.concepts.length - CONCEPT_CHIP_LIMIT} autres
+            +{facets.concepts.length - CONCEPT_CHIP_LIMIT} {t("themeExplorer.others")}
           </span>
         )}
       </div>
@@ -143,19 +145,19 @@ export default function ThemeExplorer() {
             </div>
           ) : results.length === 0 ? (
             <div className="alert">
-              <span>Aucune question taggée « {selected} ».</span>
+              <span>{t("themeExplorer.noResults", { tag: selected })}</span>
             </div>
           ) : (
             <>
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-sm opacity-60">
-                  {results.length} question{results.length > 1 ? "s" : ""} · filtrer :
+                  {results.length} {t(results.length > 1 ? "themeExplorer.questions" : "themeExplorer.question")} · {t("themeExplorer.filterBy")}
                 </span>
                 <button
                   className={`badge ${yearFilter == null ? "badge-primary" : "badge-outline"}`}
                   onClick={() => setYearFilter(null)}
                 >
-                  Toutes les années
+                  {t("themeExplorer.allYears")}
                 </button>
                 {years.map((y) => (
                   <button

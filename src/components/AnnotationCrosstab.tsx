@@ -26,6 +26,7 @@ import type { CrosstabRow, ResponseOption, SearchResult } from "../types";
 import DimSelect from "./microdata/DimSelect";
 import StackedBars100 from "./microdata/StackedBars100";
 import { formatN } from "../lib/microdataFormat";
+import { useLanguage } from "../context/LanguageContext";
 
 /** Nom réservé de l'annotation côté `/microdata` (cf. microdata-core/core.ts). */
 const ANNOTATION_COLUMN = "__annotation";
@@ -41,6 +42,7 @@ export default function AnnotationCrosstab({
   questions: SearchResult[];
   session: AnnotationSession;
 }) {
+  const { t } = useLanguage();
   const [dimVar, setDimVar] = useState("");
   const [rows, setRows] = useState<CrosstabRow[] | null>(null);
   const [state, setState] = useState<"idle" | "loading" | "ok" | "error">("idle");
@@ -92,10 +94,10 @@ export default function AnnotationCrosstab({
         if (cancelled) return;
         setError(
           err instanceof NoMicrodataError
-            ? "Ce sondage n'a pas de microdonnées : le croisement est impossible."
+            ? t("crosstab.noMicrodata")
             : err instanceof Error
               ? err.message
-              : "Croisement échoué",
+              : t("crosstab.failed"),
         );
         setState("error");
       });
@@ -128,19 +130,18 @@ export default function AnnotationCrosstab({
     // d'une page qui peut faire plusieurs écrans, on doit pouvoir y sauter.
     <div className="op-card" id="op-crosstab">
       <h3 className="mb-1 flex items-center gap-1.5 font-semibold">
-        <GitCompare size={16} strokeWidth={1.75} /> Croiser l'annotation
+        <GitCompare size={16} strokeWidth={1.75} /> {t("crosstab.title")}
       </h3>
       <p className="mb-3 text-sm text-base-content/55">
-        {formatN(annotation.length)} réponses annotées, croisées avec une autre variable du sondage.
-        Effectifs pondérés par <code className="font-mono text-xs">__weight</code>, comme le dashboard.
+        {t("crosstab.subtitlePrefix", { n: formatN(annotation.length) })}{" "}
+        <code className="font-mono text-xs">__weight</code>
+        {t("crosstab.subtitleSuffix")}
       </p>
 
       <DimSelect socioDims={socioDims} otherDims={otherDims} value={dimVar} onChange={setDimVar} />
 
       {!dimVar && (
-        <p className="mt-3 text-sm text-base-content/45">
-          Choisis une variable pour voir comment tes étiquettes s'y distribuent.
-        </p>
+        <p className="mt-3 text-sm text-base-content/45">{t("crosstab.chooseVariable")}</p>
       )}
 
       {state === "loading" && (
@@ -157,7 +158,7 @@ export default function AnnotationCrosstab({
             targetOptions={targetOptions}
             dimOptions={dimQ.response_options}
             dimOrdinal={dimQ.is_ordinal}
-            targetName={session.property.trim().slice(0, 60) || "annotation"}
+            targetName={session.property.trim().slice(0, 60) || t("crosstab.annotationFallback")}
             dimName={shortLabel(dimQ)}
           />
 
@@ -165,8 +166,8 @@ export default function AnnotationCrosstab({
               répondant sans microdonnée ne peut pas être croisé, et l'écart
               doit être visible plutôt que déduit. */}
           <p className="mt-3 text-xs text-base-content/45">
-            {formatN(joined)} réponses appariées sur {formatN(annotation.length)} annotées
-            {joined < annotation.length && " — les autres n'ont pas de valeur pour cette variable"}.
+            {t("crosstab.matched", { joined: formatN(joined), total: formatN(annotation.length) })}
+            {joined < annotation.length && t("crosstab.matchedNote")}.
           </p>
 
           <button
@@ -181,15 +182,13 @@ export default function AnnotationCrosstab({
               })
             }
           >
-            <Download size={15} strokeWidth={1.75} /> Télécharger le croisement
+            <Download size={15} strokeWidth={1.75} /> {t("crosstab.download")}
           </button>
         </div>
       )}
 
       {state === "ok" && rows && rows.length === 0 && (
-        <p className="mt-3 text-sm text-base-content/55">
-          Aucun croisement : aucune réponse annotée n'a de valeur pour cette variable.
-        </p>
+        <p className="mt-3 text-sm text-base-content/55">{t("crosstab.noCrosstab")}</p>
       )}
     </div>
   );

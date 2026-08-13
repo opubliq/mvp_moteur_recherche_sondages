@@ -36,6 +36,7 @@ import { MAX_ITEMS_PER_CALL, effectiveLabels, type Annotation } from "../logic/a
 import { SCAN_SAMPLE_SIZE } from "../logic/scan";
 import type { SearchResult, Verbatim } from "../types";
 import { labelBadgeClass } from "./VerbatimRow";
+import { useLanguage } from "../context/LanguageContext";
 
 /** Modèle affiché à l'utilisateur et inscrit dans l'export (cf. bead : reste 100 % Azure). */
 const MODEL_LABEL = "gpt-5-mini (Azure)";
@@ -95,6 +96,8 @@ export default function AnnotateCard({
   onSampleRandom: (n?: number) => void;
   sampling: boolean;
 }) {
+  const { t, lang } = useLanguage();
+  const locale = lang === "fr" ? "fr-CA" : "en-CA";
   const [progress, setProgress] = useState<RunProgress | null>(null);
   const [mode, setMode] = useState<"test" | "batch" | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -146,7 +149,7 @@ export default function AnnotateCard({
         signal: ctrl.signal,
       });
       if (sample.length === 0) {
-        setScanError("Aucune réponse exploitable à scanner sur cette question.");
+        setScanError(t("annotate.scanNoSample"));
         return;
       }
       const result = await scanQuestion({
@@ -159,9 +162,9 @@ export default function AnnotateCard({
     } catch (err) {
       if (err instanceof DOMException && err.name === "AbortError") return;
       if (err instanceof ScanRateLimitError) {
-        setScanError("Quota du modèle atteint — réessaie dans une minute.");
+        setScanError(t("annotate.scanQuotaError"));
       } else {
-        setScanError(err instanceof Error ? err.message : "Scan échoué");
+        setScanError(err instanceof Error ? err.message : t("annotate.scanFailed"));
       }
     } finally {
       scanAbortRef.current = null;
@@ -234,10 +237,10 @@ export default function AnnotateCard({
         return slice ? { ...s, [kind]: { ...slice, failed: outcome.failed } } : s;
       });
       if (outcome.annotated === 0 && !outcome.aborted) {
-        setError("Aucune réponse n'a pu être annotée. Réessaie dans un instant.");
+        setError(t("annotate.noneAnnotated"));
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Annotation échouée");
+      setError(err instanceof Error ? err.message : t("annotate.runFailed"));
     } finally {
       abortRef.current = null;
       setMode(null);
@@ -284,7 +287,7 @@ export default function AnnotateCard({
   return (
     <div className="op-card" id="op-annotate-card">
       <h3 className="mb-2 flex items-center gap-1.5 text-sm font-semibold">
-        <Wand2 size={15} strokeWidth={1.75} /> Annoter les réponses
+        <Wand2 size={15} strokeWidth={1.75} /> {t("annotate.title")}
       </h3>
 
       {/* --- Scanner : proposer une grille quand on ne sait pas quoi annoter --- */}
@@ -302,34 +305,31 @@ export default function AnnotateCard({
         ) : (
           <ScanSearch size={14} strokeWidth={2} />
         )}
-        {scanning ? "Analyse d'un échantillon…" : "Proposer une annotation (scanner)"}
+        {scanning ? t("annotate.scanning") : t("annotate.scanButton")}
       </button>
-      <p className="mb-2 text-xs text-base-content/45">
-        Analyse {SCAN_SAMPLE_SIZE} réponses au hasard et propose une propriété à distinguer et ses
-        étiquettes. À corriger avant l'essai — c'est un point de départ.
-      </p>
+      <p className="mb-2 text-xs text-base-content/45">{t("annotate.scanHint", { n: SCAN_SAMPLE_SIZE })}</p>
       {scanError && <p className="mb-2 text-xs text-error">{scanError}</p>}
       {scanRationale && !scanError && (
         <p className="mb-2 rounded-lg bg-info/10 p-2 text-xs leading-snug text-info-content">
-          <span className="font-medium">Angle proposé — </span>
+          <span className="font-medium">{t("annotate.scanAngle")}</span>
           {scanRationale}
         </p>
       )}
 
       <label className="mb-1 block text-xs font-medium text-base-content/60" htmlFor="op-annot-prop">
-        Ce que tu veux distinguer
+        {t("annotate.propertyLabel")}
       </label>
       <textarea
         id="op-annot-prop"
         value={session.property}
         onChange={(e) => update((s) => ({ ...s, property: e.target.value }))}
-        placeholder="ex. est-ce que la personne exprime de la peur, ou de l'optimisme, face à l'avenir ?"
+        placeholder={t("annotate.propertyPlaceholder")}
         className="textarea textarea-bordered mb-2 min-h-20 w-full text-sm leading-snug"
         disabled={running}
       />
 
       <label className="mb-1 block text-xs font-medium text-base-content/60" htmlFor="op-annot-opts">
-        Étiquettes — une par ligne
+        {t("annotate.labelsLabel")}
       </label>
       <textarea
         id="op-annot-opts"
@@ -339,10 +339,7 @@ export default function AnnotateCard({
         className="textarea textarea-bordered mb-1 min-h-16 w-full font-mono text-sm leading-snug"
         disabled={running}
       />
-      <p className="mb-3 text-xs text-base-content/45">
-        « non classable » est ajoutée d'office : sans porte de sortie, le modèle range de force les
-        réponses vides ou hors-sujet dans une de tes étiquettes.
-      </p>
+      <p className="mb-3 text-xs text-base-content/45">{t("annotate.labelsHint")}</p>
 
       {/* --- Étape 2 : l'essai, avant tout batch --- */}
       {/* Tirer au sort plutôt que cocher : sur une question de plusieurs
@@ -355,7 +352,7 @@ export default function AnnotateCard({
         onClick={() => onSampleRandom(10)}
       >
         {sampling ? <span className="loading loading-spinner loading-xs" /> : <Shuffle size={14} strokeWidth={2} />}
-        Tirer 10 réponses au hasard
+        {t("annotate.drawRandom")}
       </button>
       <button
         type="button"
@@ -368,18 +365,13 @@ export default function AnnotateCard({
         ) : (
           <Play size={14} strokeWidth={2} />
         )}
-        Essayer sur {selection.length || "la"} sélection{selection.length > 1 ? "s" : ""}
+        {t("annotate.tryOnPrefix")} {selection.length || t("annotate.selectionDefault")} {t(selection.length > 1 ? "annotate.selections" : "annotate.selection")}
       </button>
       {selection.length === 0 && (
-        <p className="mt-1 text-xs text-base-content/45">
-          Tire un échantillon au hasard, ou coche des réponses dans la liste. Les étiquettes et leurs
-          justifications s'affichent dans « Sélection », plus bas.
-        </p>
+        <p className="mt-1 text-xs text-base-content/45">{t("annotate.selectionEmptyHint")}</p>
       )}
       {session.test && !testFresh && (
-        <p className="mt-1 text-xs text-warning">
-          La consigne a changé depuis l'essai — refais un essai avant de lancer le batch.
-        </p>
+        <p className="mt-1 text-xs text-warning">{t("annotate.specChanged")}</p>
       )}
 
       {/* --- Étape 3 : le batch --- */}
@@ -392,23 +384,23 @@ export default function AnnotateCard({
               disabled={!specReady || !testFresh}
               onClick={() => setConfirming(true)}
             >
-              Lancer sur les {Math.min(questionTotal, MAX_RUN_ITEMS).toLocaleString("fr-CA")} réponses
+              {t("annotate.launchOn", { n: Math.min(questionTotal, MAX_RUN_ITEMS).toLocaleString(locale) })}
             </button>
           ) : (
             <div className="rounded-lg border border-primary/30 bg-primary/5 p-2">
               <p className="mb-2 text-xs leading-snug">
-                {Math.min(questionTotal, MAX_RUN_ITEMS).toLocaleString("fr-CA")} réponses seront annotées
-                — toute la question, pas seulement ce qui est affiché. Compte environ{" "}
-                {estimateMinutes(Math.min(questionTotal, MAX_RUN_ITEMS))} min, onglet ouvert.
-                {questionTotal > MAX_RUN_ITEMS &&
-                  ` La question en compte ${questionTotal.toLocaleString("fr-CA")} : le run est plafonné.`}
+                {t("annotate.confirmBody", {
+                  n: Math.min(questionTotal, MAX_RUN_ITEMS).toLocaleString(locale),
+                  min: estimateMinutes(Math.min(questionTotal, MAX_RUN_ITEMS)),
+                  capNote: questionTotal > MAX_RUN_ITEMS ? t("annotate.capNote", { total: questionTotal.toLocaleString(locale) }) : "",
+                })}
               </p>
               <div className="flex gap-1.5">
                 <button type="button" className="btn btn-primary btn-xs flex-1" onClick={() => start("batch")}>
-                  Lancer
+                  {t("annotate.launch")}
                 </button>
                 <button type="button" className="btn btn-ghost btn-xs" onClick={() => setConfirming(false)}>
-                  Annuler
+                  {t("advExport.cancel")}
                 </button>
               </div>
             </div>
@@ -422,17 +414,16 @@ export default function AnnotateCard({
           <div className="mb-1 flex items-baseline justify-between text-xs">
             <span className="font-medium">
               {progress.phase === "fetching"
-                ? "Récupération des réponses…"
+                ? t("annotate.fetchingResponses")
                 : progress.phase === "waiting"
-                  ? `Quota du modèle atteint — reprise dans ${Math.max(
-                      0,
-                      Math.ceil(((progress.waitUntil ?? Date.now()) - Date.now()) / 1000),
-                    )} s`
-                  : "Annotation en cours…"}
+                  ? t("annotate.quotaResume", {
+                      s: Math.max(0, Math.ceil(((progress.waitUntil ?? Date.now()) - Date.now()) / 1000)),
+                    })
+                  : t("annotate.annotating")}
             </span>
             <span className="tabular-nums text-base-content/50">
-              {progress.done.toLocaleString("fr-CA")}
-              {progress.total > 0 ? ` / ${progress.total.toLocaleString("fr-CA")}` : ""}
+              {progress.done.toLocaleString(locale)}
+              {progress.total > 0 ? ` / ${progress.total.toLocaleString(locale)}` : ""}
             </span>
           </div>
           <progress
@@ -441,23 +432,21 @@ export default function AnnotateCard({
             max={progress.total || 1}
           />
           {progress.failed > 0 && (
-            <p className="mt-1 text-xs text-warning">{progress.failed} réponses non classées</p>
+            <p className="mt-1 text-xs text-warning">{t("annotate.failedCount", { n: progress.failed })}</p>
           )}
           <button
             type="button"
             className="btn btn-ghost btn-xs mt-1 w-full gap-1"
             onClick={() => abortRef.current?.abort()}
           >
-            <Square size={12} /> Arrêter — les réponses déjà annotées sont gardées
+            <Square size={12} /> {t("annotate.stop")}
           </button>
         </div>
       )}
 
       {error && <p className="mt-2 text-xs text-error">{error}</p>}
       {truncated && (
-        <p className="mt-2 text-xs text-warning">
-          Question plafonnée à {MAX_RUN_ITEMS.toLocaleString("fr-CA")} réponses par run.
-        </p>
+        <p className="mt-2 text-xs text-warning">{t("annotate.capped", { n: MAX_RUN_ITEMS.toLocaleString(locale) })}</p>
       )}
 
       {/* --- Résultat --- */}
@@ -465,9 +454,9 @@ export default function AnnotateCard({
         <div className="mt-3 border-t border-base-300 pt-3">
           <div className="mb-2 flex items-baseline justify-between">
             <h4 className="text-xs font-semibold">
-              {latest === session.batch ? "Résultat" : "Essai"} · {latest!.annotations.size} réponses
+              {latest === session.batch ? t("annotate.result") : t("annotate.trial")} · {t("annotate.responsesCount", { n: latest!.annotations.size })}
             </h4>
-            {latest!.failed > 0 && <span className="text-xs text-warning">{latest!.failed} en échec</span>}
+            {latest!.failed > 0 && <span className="text-xs text-warning">{t("annotate.failedShort", { n: latest!.failed })}</span>}
           </div>
           <ul className="mb-3 space-y-1">
             {dist.map((d) => {
@@ -486,7 +475,7 @@ export default function AnnotateCard({
           {batchDone && !session.downloaded && (
             <p className="mb-2 flex items-start gap-1.5 rounded-lg bg-warning/10 p-2 text-xs leading-snug text-warning-content">
               <AlertTriangle size={14} className="mt-0.5 shrink-0" />
-              Ces annotations ne sont conservées nulle part. Télécharge-les avant de fermer l'onglet.
+              {t("annotate.notSaved")}
             </p>
           )}
 
@@ -495,8 +484,8 @@ export default function AnnotateCard({
             value={format}
             onChange={(e) => setFormat(e.target.value as ExportFormat)}
           >
-            <option value="csv-large">Format : CSV</option>
-            <option value="json">Format : JSON</option>
+            <option value="csv-large">{t("exportDrawer.formatCsv")}</option>
+            <option value="json">{t("exportDrawer.formatJson")}</option>
           </select>
           <button
             className={`btn btn-sm w-full gap-1.5 ${session.downloaded ? "btn-outline" : "btn-primary"}`}
@@ -504,8 +493,8 @@ export default function AnnotateCard({
             disabled={running}
           >
             <Download size={15} strokeWidth={1.75} />
-            {session.downloaded ? "Télécharger à nouveau" : "Télécharger"} les{" "}
-            {downloadable!.annotations.size} annotations
+            {session.downloaded ? t("annotate.downloadAgain") : t("annotate.download")}
+            {t("annotate.downloadCount", { n: downloadable!.annotations.size })}
           </button>
           {/* Le pont vers le croisement, depuis l'endroit où on vient de le
               rendre possible : après un batch, le geste suivant est de croiser,
@@ -519,7 +508,7 @@ export default function AnnotateCard({
                 document.getElementById("op-crosstab")?.scrollIntoView({ behavior: "smooth", block: "start" })
               }
             >
-              <GitCompare size={15} strokeWidth={1.75} /> Croiser ces annotations
+              <GitCompare size={15} strokeWidth={1.75} /> {t("annotate.crossAnnotations")}
             </button>
           )}
           <button
@@ -528,7 +517,7 @@ export default function AnnotateCard({
             disabled={running}
             onClick={() => reset()}
           >
-            Effacer l'annotation
+            {t("annotate.clearAnnotation")}
           </button>
         </div>
       )}

@@ -4,6 +4,7 @@ import QuestionCard from "./QuestionCard";
 import { scoreToColor, scoreToInkColor } from "../lib/scoreColor";
 import { packSwarm, tokenDiameter, TOKEN_QUANTUM } from "../lib/beeswarm";
 import { N_SCORE_BANDS, scoreBandIndex } from "../lib/scoreBins";
+import { useLanguage } from "../context/LanguageContext";
 
 interface RelevanceTimelineProps {
   results: SearchResult[];
@@ -126,6 +127,7 @@ function emptyBucket(key: string, label: string): YearBucket {
  * ça relie la chronologie aux cartes de résultat, qui parlent la même langue.
  */
 export default function RelevanceTimeline({ results }: RelevanceTimelineProps) {
+  const { t } = useLanguage();
   const [selected, setSelected] = useState<string | null>(null);
   // Index de la colonne survolée/focus — pilote le tooltip applicatif.
   const [hovered, setHovered] = useState<number | null>(null);
@@ -148,7 +150,7 @@ export default function RelevanceTimeline({ results }: RelevanceTimelineProps) {
 
   const buckets = useMemo<YearBucket[]>(() => {
     const byYear = new Map<number, YearBucket>();
-    const undated = emptyBucket("nd", "n.d.");
+    const undated = emptyBucket("nd", t("timeline.undated"));
     let hasUndated = false;
 
     for (const r of results) {
@@ -176,7 +178,7 @@ export default function RelevanceTimeline({ results }: RelevanceTimelineProps) {
     }
     if (hasUndated) cols.push(undated);
     return cols;
-  }, [results]);
+  }, [results, t]);
 
   const selection = useMemo(
     () => (selected ? buckets.find((b) => b.key === selected) ?? null : null),
@@ -218,23 +220,20 @@ export default function RelevanceTimeline({ results }: RelevanceTimelineProps) {
   return (
     <div className="rounded-2xl border border-base-content/10 bg-base-100 p-4 shadow-sm">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-sm font-semibold tracking-tight">Chronologie de la pertinence</h3>
-        <p className="text-xs text-base-content/60">
-          Un point = une question, un jeton chiffré = plusieurs · hauteur = score (0-100) ·
-          cliquer une année pour la déplier
-        </p>
+        <h3 className="text-sm font-semibold tracking-tight">{t("timeline.title")}</h3>
+        <p className="text-xs text-base-content/60">{t("timeline.subtitle")}</p>
       </div>
 
       <div className="flex gap-2">
         {/* Axe Y : l'échelle absolue, pour que la hauteur soit lisible sans survol. */}
         <div className="relative w-6 shrink-0" style={{ height: PLOT_H }}>
-          {AXIS_TICKS.map((t) => (
+          {AXIS_TICKS.map((tick) => (
             <span
-              key={t}
+              key={tick}
               className="absolute right-0 -translate-y-1/2 text-[10px] tabular-nums text-base-content/35"
-              style={{ top: `${100 - t}%` }}
+              style={{ top: `${100 - tick}%` }}
             >
-              {t}
+              {tick}
             </span>
           ))}
         </div>
@@ -242,11 +241,11 @@ export default function RelevanceTimeline({ results }: RelevanceTimelineProps) {
         <div className="min-w-0 flex-1">
           <div ref={plotRef} className="relative" style={{ height: PLOT_H }}>
             {/* Grille : hairlines solides, une teinte au-dessus du fond (jamais de pointillés). */}
-            {AXIS_TICKS.map((t) => (
+            {AXIS_TICKS.map((tick) => (
               <div
-                key={t}
+                key={tick}
                 className="absolute inset-x-0 h-px bg-base-content/8"
-                style={{ top: `${100 - t}%` }}
+                style={{ top: `${100 - tick}%` }}
               />
             ))}
 
@@ -336,12 +335,12 @@ export default function RelevanceTimeline({ results }: RelevanceTimelineProps) {
               >
                 <span className="font-semibold tabular-nums">{buckets[hovered].items.length}</span>{" "}
                 <span className="text-base-content/60">
-                  question{buckets[hovered].items.length > 1 ? "s" : ""} en {buckets[hovered].label}
+                  {t(buckets[hovered].items.length > 1 ? "timeline.questions" : "timeline.question")} {t("timeline.in")} {buckets[hovered].label}
                 </span>
                 {buckets[hovered].scores.length > 0 && (
                   <>
                     <span className="mx-1 text-base-content/25">·</span>
-                    <span className="text-base-content/60">score </span>
+                    <span className="text-base-content/60">{t("timeline.score")} </span>
                     <span className="font-semibold tabular-nums">
                       {Math.min(...buckets[hovered].scores)}-{Math.max(...buckets[hovered].scores)}
                     </span>
@@ -372,7 +371,7 @@ export default function RelevanceTimeline({ results }: RelevanceTimelineProps) {
               <span className="opacity-50">({selection.items.length})</span>
             </p>
             <button type="button" className="btn btn-ghost btn-xs" onClick={() => setSelected(null)}>
-              Fermer
+              {t("timeline.close")}
             </button>
           </div>
           <div className="overflow-hidden rounded-xl border border-base-content/10">

@@ -3,30 +3,16 @@ import { Sparkles, Globe } from "lucide-react";
 import { fetchAllSurveys } from "../api";
 import type { SurveyParent } from "../types";
 import ThemeExplorer from "./ThemeExplorer";
+import { useLanguage } from "../context/LanguageContext";
+import type { TranslationKey } from "../i18n/fr";
 
 interface ExplorationViewProps {
   onOpenSurvey: (id: string) => void;
 }
 
-const MONTHS_FR = [
-  "",
-  "janv.",
-  "févr.",
-  "mars",
-  "avr.",
-  "mai",
-  "juin",
-  "juil.",
-  "août",
-  "sept.",
-  "oct.",
-  "nov.",
-  "déc.",
-];
-
-function monthLabel(m?: number | null): string {
+function monthLabel(m: number | null | undefined, t: (key: TranslationKey) => string): string {
   if (!m || m < 1 || m > 12) return "";
-  return MONTHS_FR[m];
+  return t(`corpus.month.${m}` as TranslationKey);
 }
 
 interface YearColumn {
@@ -36,6 +22,7 @@ interface YearColumn {
 }
 
 export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) {
+  const { t } = useLanguage();
   const [surveys, setSurveys] = useState<SurveyParent[]>([]);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -53,7 +40,7 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
         setSurveys(data.surveys);
         setTotalQuestions(data.total_questions || 0);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Erreur inconnue");
+        setError(err instanceof Error ? err.message : t("corpus.unknownError"));
       } finally {
         setLoading(false);
       }
@@ -88,10 +75,10 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
       }
     }
     if (undated.length > 0) {
-      cols.push({ key: "nd", label: "n.d.", surveys: undated });
+      cols.push({ key: "nd", label: t("timeline.undated"), surveys: undated });
     }
     return cols;
-  }, [surveys]);
+  }, [surveys, t]);
 
   const maxCount = useMemo(
     () => Math.max(1, ...columns.map((c) => c.surveys.length)),
@@ -126,24 +113,22 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
       {/* Stats */}
       <div className="stats w-full rounded-2xl border border-base-content/10 bg-base-100 shadow-sm">
         <div className="stat">
-          <div className="stat-title">Sondages</div>
+          <div className="stat-title">{t("corpus.stats.surveys")}</div>
           <div className="stat-value text-primary">{surveys.length}</div>
-          <div className="stat-desc">Disponibles dans le corpus</div>
+          <div className="stat-desc">{t("corpus.stats.surveysDesc")}</div>
         </div>
         <div className="stat">
-          <div className="stat-title">Questions</div>
+          <div className="stat-title">{t("corpus.stats.questions")}</div>
           <div className="stat-value text-secondary">{totalQuestions.toLocaleString()}</div>
-          <div className="stat-desc">Indexées et cherchables</div>
+          <div className="stat-desc">{t("corpus.stats.questionsDesc")}</div>
         </div>
       </div>
 
       {/* Timeline : vue d'ensemble (nb de sondages/année), clic = déploie l'année */}
       <div>
-        <h2 className="px-1 text-xl font-semibold tracking-tight">Chronologie du corpus</h2>
+        <h2 className="px-1 text-xl font-semibold tracking-tight">{t("corpus.timeline.title")}</h2>
         <p className="mb-4 mt-1 px-1 text-sm text-base-content/60">
-          {selectedKey
-            ? "Clique de nouveau sur l’année pour revenir à la vue d’ensemble."
-            : "Nombre de sondages par année. Clique une année pour voir ses sondages."}
+          {selectedKey ? t("corpus.timeline.subtitleSelected") : t("corpus.timeline.subtitleDefault")}
         </p>
 
         {/* En vue d'ensemble, les colonnes se partagent la largeur : tout l'axe
@@ -176,7 +161,7 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
                     >
                       <span className="text-lg font-bold tabular-nums">{col.label}</span>
                       <span className="badge badge-primary badge-sm">
-                        {count} sondage{count > 1 ? "s" : ""}
+                        {count} {t(count > 1 ? "corpus.timeline.surveys" : "corpus.timeline.survey")}
                       </span>
                     </button>
 
@@ -200,24 +185,24 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
                                 {s.is_private === true && (
                                   <span
                                     className="op-badge op-badge-exclusive shrink-0"
-                                    title="Exclusif — issu de l'index de votre compte, invisible aux autres clients"
+                                    title={t("surveyGroup.exclusiveTitle")}
                                   >
-                                    <Sparkles size={11} strokeWidth={2.5} /> Exclusif
+                                    <Sparkles size={11} strokeWidth={2.5} /> {t("surveyGroup.exclusive")}
                                   </span>
                                 )}
                                 {s.is_private === false && (
                                   <span
                                     className="op-badge op-badge-public shrink-0"
-                                    title="Public — issu du corpus partagé, visible par tous les comptes"
+                                    title={t("surveyGroup.publicTitle")}
                                   >
-                                    <Globe size={11} strokeWidth={2.5} /> Public
+                                    <Globe size={11} strokeWidth={2.5} /> {t("surveyGroup.public")}
                                   </span>
                                 )}
                               </div>
                               <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs opacity-70">
                                 {s.pollster && <span>{s.pollster}</span>}
-                                {monthLabel(s.survey_month) && (
-                                  <span>· {monthLabel(s.survey_month)}</span>
+                                {monthLabel(s.survey_month, t) && (
+                                  <span>· {monthLabel(s.survey_month, t)}</span>
                                 )}
                                 {s.n_respondents != null && (
                                   <span className="badge badge-ghost badge-xs whitespace-nowrap">
@@ -240,7 +225,7 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
                                   {s.top_concepts && s.top_concepts.length > 0 && (
                                     <div>
                                       <p className="mb-1 text-xs font-semibold uppercase tracking-wide opacity-50">
-                                        Concepts dominants
+                                        {t("corpus.topConcepts")}
                                       </p>
                                       <div className="flex flex-wrap gap-1">
                                         {s.top_concepts.map((c) => (
@@ -257,7 +242,7 @@ export default function ExplorationView({ onOpenSurvey }: ExplorationViewProps) 
                                       className="btn btn-primary btn-xs"
                                       onClick={() => onOpenSurvey(s.survey_id)}
                                     >
-                                      Ouvrir le détail →
+                                      {t("corpus.openDetail")}
                                     </button>
                                   </div>
                                 </div>

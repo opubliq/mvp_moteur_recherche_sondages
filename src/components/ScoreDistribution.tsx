@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import type { SearchResult } from "../types";
 import { scoreToColor } from "../lib/scoreColor";
 import { buildScoreBins } from "../lib/scoreBins";
+import { useLanguage } from "../context/LanguageContext";
 
 interface ScoreDistributionProps {
   results: SearchResult[];
@@ -30,6 +31,7 @@ const AXIS_TICKS = [0, 25, 50, 75, 100];
  * seuil) mais ne recolore et ne recalcule aucun score.
  */
 export default function ScoreDistribution({ results, threshold, onThresholdChange }: ScoreDistributionProps) {
+  const { t } = useLanguage();
   const scores = useMemo(
     () => results.map((r) => r.score_pertinence).filter((s): s is number => s !== undefined),
     [results],
@@ -78,7 +80,7 @@ export default function ScoreDistribution({ results, threshold, onThresholdChang
             >
               <span className="font-semibold tabular-nums">{bins[hovered].count}</span>{" "}
               <span className="text-base-content/60">
-                résultat{bins[hovered].count > 1 ? "s" : ""} · score{" "}
+                {t(bins[hovered].count > 1 ? "scoreDist.results" : "scoreDist.result")} · {t("scoreDist.score")}{" "}
               </span>
               <span className="font-semibold tabular-nums">
                 {bins[hovered].start}-{bins[hovered].end}
@@ -97,12 +99,12 @@ export default function ScoreDistribution({ results, threshold, onThresholdChang
           onChange={(e) => onThresholdChange(Number(e.target.value))}
           className="range range-xs w-full"
           style={{ accentColor: "var(--color-primary)" }}
-          aria-label="Seuil minimal de score de pertinence"
+          aria-label={t("scoreDist.thresholdAria")}
         />
 
         <div className="flex justify-between text-[10px] tabular-nums text-base-content/35">
-          {AXIS_TICKS.map((t) => (
-            <span key={t}>{t}</span>
+          {AXIS_TICKS.map((tick) => (
+            <span key={tick}>{tick}</span>
           ))}
         </div>
       </div>
@@ -112,7 +114,7 @@ export default function ScoreDistribution({ results, threshold, onThresholdChang
           sur QUOI porte le filtre. Pas de décompte ici : le compteur de la page
           affiche déjà « N questions (sur M avant filtre) ». */}
       <div className="shrink-0 text-xs">
-        <span className="text-base-content/60">Score de pertinence</span>{" "}
+        <span className="text-base-content/60">{t("scoreDist.relevanceScore")}</span>{" "}
         <span className="font-semibold tabular-nums">≥ {threshold}</span>
       </div>
     </div>

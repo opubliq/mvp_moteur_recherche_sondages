@@ -2,6 +2,7 @@ import { Fragment, useMemo } from "react";
 import type { MeanByGroupRow, ResponseOption } from "../../types";
 import { codeLabel, formatMean, formatN, labelMap } from "../../lib/microdataFormat";
 import { HoverTip, useHoverTip } from "./HoverTip";
+import { useLanguage } from "../../context/LanguageContext";
 
 /**
  * Croisement cible `scale`/`continuous` × dimension → moyenne pondérée par
@@ -33,6 +34,7 @@ export default function MeanByGroup({
   targetName?: string;
   dimName?: string;
 }) {
+  const { t } = useLanguage();
   const dMap = labelMap(dimOptions);
   const { tip, showTip, hideTip } = useHoverTip<{
     label: string;
@@ -68,9 +70,9 @@ export default function MeanByGroup({
   };
 
   return (
-    <div role="img" aria-label="Moyenne par groupe">
+    <div role="img" aria-label={t("meanByGroup.ariaLabel")}>
       {dimName && (
-        <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = « {dimName} »</div>
+        <div className="mb-1 text-xs font-medium text-base-content/55">{t("meanByGroup.rowsAre", { dimName })}</div>
       )}
       <div
         className="grid items-center"
@@ -158,13 +160,13 @@ export default function MeanByGroup({
             className="absolute top-0 whitespace-nowrap font-medium text-base-content/60"
             style={{ left: pct(overallMean), transform: "translateX(-50%)" }}
           >
-            moy. globale {formatMean(overallMean)}
+            {t("meanByGroup.globalMean", { value: formatMean(overallMean) })}
           </div>
         )}
       </div>
       {targetName && (
         <div className="mt-2 text-center text-xs font-semibold text-base-content/70">
-          Axe horizontal = moyenne de « {targetName} »
+          {t("meanByGroup.xAxis", { targetName })}
         </div>
       )}
 
@@ -174,12 +176,12 @@ export default function MeanByGroup({
           <>
             <div className="font-semibold">{d.label}</div>
             <div className="mt-0.5 tabular-nums">
-              moy. <b>{formatMean(d.mean)}</b>
+              {t("meanByGroup.mean")} <b>{formatMean(d.mean)}</b>
               {d.half != null && <> ± {formatMean(d.half)}</>} · n = {formatN(d.n)}
             </div>
             {d.half != null && (
               <div className="mt-0.5 text-base-content/60">
-                IC 95 %{d.n < 30 ? " · n faible, à interpréter avec prudence" : ""}
+                {t("meanByGroup.ci95")}{d.n < 30 ? t("meanByGroup.lowN") : ""}
               </div>
             )}
           </>

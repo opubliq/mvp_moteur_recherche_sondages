@@ -1,6 +1,7 @@
 import type { DistributionRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, formatPct, labelMap } from "../../lib/microdataFormat";
 import { HoverTip, useHoverTip } from "./HoverTip";
+import { useLanguage } from "../../context/LanguageContext";
 
 /**
  * Distribution univariée — barres horizontales pondérées (une seule série →
@@ -18,6 +19,7 @@ export default function DistributionBars({
   options: ResponseOption[];
   ordinal?: boolean;
 }) {
+  const { t } = useLanguage();
   const map = labelMap(options);
   const { tip, showTip, hideTip } = useHoverTip<{ label: string; pct: string; n: number }>();
   // Index d'ordre ordinal = position dans response_options.
@@ -33,7 +35,7 @@ export default function DistributionBars({
   const maxShare = Math.max(0.01, ...sorted.map((r) => r.share));
 
   return (
-    <div role="img" aria-label="Distribution des réponses">
+    <div role="img" aria-label={t("dash.responseDistribution")}>
       {sorted.map((r) => {
         const label = codeLabel(map, r.target_code);
         return (
@@ -58,7 +60,7 @@ export default function DistributionBars({
           <>
             <div className="font-semibold">{d.label}</div>
             <div className="mt-0.5 tabular-nums">
-              <b>{d.pct}</b> · n = {formatN(d.n)} (n brut)
+              <b>{d.pct}</b> · n = {formatN(d.n)} ({t("microdata.rawN")})
             </div>
           </>
         )}

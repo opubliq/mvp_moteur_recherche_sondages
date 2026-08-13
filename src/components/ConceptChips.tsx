@@ -1,4 +1,5 @@
 import type { Concept } from "../types";
+import { useLanguage } from "../context/LanguageContext";
 
 interface ConceptChipsProps {
   concepts: Concept[];
@@ -8,10 +9,11 @@ interface ConceptChipsProps {
 
 /** Console de concepts compacte : une rangée de chips en lecture seule. */
 export default function ConceptChips({ concepts, rerankQuery }: ConceptChipsProps) {
+  const { t } = useLanguage();
   return (
     <div className="concept-block">
       <div className="concept-row">
-        <span className="text-xs font-semibold uppercase tracking-wide text-base-content/45">Concepts pour le retrieval</span>
+        <span className="text-xs font-semibold uppercase tracking-wide text-base-content/45">{t("conceptChips.title")}</span>
         {concepts.map((c, i) => {
           // Synonymes hors du mot original (souvent dupliqué dans syns).
           const syns = c.syns.filter((s) => s.toLowerCase() !== c.orig.toLowerCase());
@@ -29,7 +31,7 @@ export default function ConceptChips({ concepts, rerankQuery }: ConceptChipsProp
       {rerankQuery && (
         <div className="rerank-query-row">
           <span className="text-xs font-semibold uppercase tracking-wide text-base-content/45">
-            Requête rerank
+            {t("conceptChips.rerankQuery")}
           </span>
           <span className="rerank-query">{rerankQuery}</span>
         </div>

@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { CrosstabRow, ResponseOption } from "../../types";
 import { codeLabel, formatN, labelMap } from "../../lib/microdataFormat";
+import { useLanguage } from "../../context/LanguageContext";
 
 /**
  * Croisement cible `scale`/`continuous` × dimension → RIDGELINE (façon ggridges
@@ -56,6 +57,7 @@ export default function RidgePlot({
   /** Nombre de bins par défaut pour une cible CONTINUE (ignoré en mode discret). */
   binCount?: number;
 }) {
+  const { t } = useLanguage();
   const dMap = labelMap(dimOptions);
   // Contrôles interactifs : nombre de bins (continu) et seuil de n minimal.
   const [nBins, setNBins] = useState(binCount);
@@ -153,7 +155,7 @@ export default function RidgePlot({
   }, [rows, dMap, nBins, minN, dimOptions, dimOrdinal]);
 
   if (!model)
-    return <p className="text-sm text-base-content/60">Aucune donnée numérique.</p>;
+    return <p className="text-sm text-base-content/60">{t("ridgePlot.noData")}</p>;
 
   const { min, max, span, discrete, center, groups, hidden, maxW } = model;
   const N = groups.length;
@@ -162,13 +164,13 @@ export default function RidgePlot({
   const controls = (
     <div className="flex w-36 shrink-0 flex-col gap-3 text-xs text-base-content/60">
       <label className="flex flex-col gap-1">
-        <span className="font-medium">n minimal</span>
+        <span className="font-medium">{t("ridgePlot.minN")}</span>
         <select
           className="select select-bordered select-xs"
           value={minN}
           onChange={(e) => setMinN(Number(e.target.value))}
         >
-          <option value={0}>tous</option>
+          <option value={0}>{t("ridgePlot.all")}</option>
           <option value={10}>≥ 10</option>
           <option value={20}>≥ 20</option>
           <option value={30}>≥ 30</option>
@@ -177,7 +179,7 @@ export default function RidgePlot({
       </label>
       {!discrete && (
         <label className="flex flex-col gap-1">
-          <span className="font-medium">finesse (bins)</span>
+          <span className="font-medium">{t("ridgePlot.binFineness")}</span>
           <input
             type="range"
             className="range range-xs"
@@ -187,12 +189,12 @@ export default function RidgePlot({
             value={nBins}
             onChange={(e) => setNBins(Number(e.target.value))}
           />
-          <span className="tabular-nums text-base-content/45">{nBins} bins</span>
+          <span className="tabular-nums text-base-content/45">{t("ridgePlot.bins", { n: nBins })}</span>
         </label>
       )}
       {hidden > 0 && (
         <span className="text-base-content/45">
-          {hidden} sous-groupe{hidden > 1 ? "s" : ""} masqué{hidden > 1 ? "s" : ""} (n &lt; {minN})
+          {hidden} {t(hidden > 1 ? "ridgePlot.hiddenSubgroups" : "ridgePlot.hiddenSubgroup")} (n &lt; {minN})
         </span>
       )}
     </div>
@@ -202,9 +204,7 @@ export default function RidgePlot({
     return (
       <div>
         {controls}
-        <p className="text-sm text-base-content/60">
-          Aucun sous-groupe au-dessus du seuil (n ≥ {minN}). Abaisse le seuil « n minimal ».
-        </p>
+        <p className="text-sm text-base-content/60">{t("ridgePlot.noSubgroupAboveThreshold", { minN })}</p>
       </div>
     );
 
@@ -228,9 +228,9 @@ export default function RidgePlot({
   const ticks = model.min === model.max ? [min] : buildTicks(min, max, discrete);
 
   return (
-    <div role="img" aria-label="Ridgeline des distributions par sous-groupe">
+    <div role="img" aria-label={t("ridgePlot.ariaLabel")}>
       {dimName && (
-        <div className="mb-1 text-xs font-medium text-base-content/55">Lignes = « {dimName} »</div>
+        <div className="mb-1 text-xs font-medium text-base-content/55">{t("meanByGroup.rowsAre", { dimName })}</div>
       )}
       <div className="flex items-start gap-4">
       <div className="min-w-0 flex-1 overflow-x-auto">
@@ -308,7 +308,7 @@ export default function RidgePlot({
       </div>
       {targetName && (
         <div className="mt-1 text-center text-xs font-semibold text-base-content/70">
-          Axe horizontal = « {targetName} »
+          {t("ridgePlot.xAxis", { targetName })}
         </div>
       )}
     </div>

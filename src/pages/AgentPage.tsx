@@ -53,6 +53,8 @@ import {
   saveConversation,
   type ConversationMeta,
 } from "../logic/conversations";
+import { useLanguage } from "../context/LanguageContext";
+import type { TranslationKey } from "../i18n/fr";
 
 /** Un tour affichable (les messages `tool`/assistant-sans-texte ne le sont pas). */
 interface DisplayTurn {
@@ -71,11 +73,7 @@ interface LiveTool {
   error?: string;
 }
 
-const EXAMPLES = [
-  "Les 18-34 ans au Québec, qu'est-ce qui les distingue sur l'immigration ?",
-  "Qu'est-ce qu'on a comme questions sur les réfugiés climatiques ?",
-  "Qui appuie le plus la réforme du mode de scrutin ?",
-];
+const EXAMPLE_KEYS: TranslationKey[] = ["agent.example1", "agent.example2", "agent.example3"];
 
 /** Icône par outil — repère visuel rapide, pas une taxonomie à maintenir. */
 function toolIcon(tool: string) {
@@ -97,12 +95,12 @@ function toolIcon(tool: string) {
 
 /** Résumé court des arguments d'un appel d'outil : la traçabilité vers la
  *  question source (survey_id/variable) sans reproduire tout le JSON. */
-function summarizeArgs(tool: string, args: unknown): string | null {
+function summarizeArgs(tool: string, args: unknown, t: (key: TranslationKey) => string): string | null {
   if (!args || typeof args !== "object") return null;
   const a = args as Record<string, unknown>;
   const parts: string[] = [];
   if (typeof a.survey_id === "string") parts.push(a.survey_id);
-  if (typeof a.target === "string") parts.push(`cible: ${a.target}`);
+  if (typeof a.target === "string") parts.push(`${t("agent.toolTarget")}: ${a.target}`);
   if (typeof a.dim === "string") parts.push(`× ${a.dim}`);
   if (typeof a.query === "string") parts.push(`« ${a.query} »`);
   if (parts.length === 0 && tool === "list_surveys") return null;
@@ -110,19 +108,20 @@ function summarizeArgs(tool: string, args: unknown): string | null {
 }
 
 /** Un appel d'outil, rendu en pastille discrète. `ok === null` = en cours (spinner). */
-function ToolPill({ t }: { t: { tool: string; args: unknown; ok: boolean | null; error?: string } }) {
-  const summary = summarizeArgs(t.tool, t.args);
-  const pending = t.ok === null;
+function ToolPill({ t: trace }: { t: { tool: string; args: unknown; ok: boolean | null; error?: string } }) {
+  const { t } = useLanguage();
+  const summary = summarizeArgs(trace.tool, trace.args, t);
+  const pending = trace.ok === null;
   return (
     <span
-      className={`op-badge op-badge-plain ${t.ok === false ? "border-error/40 text-error" : ""} ${pending ? "opacity-70" : ""}`}
-      title={t.ok === false ? t.error : undefined}
+      className={`op-badge op-badge-plain ${trace.ok === false ? "border-error/40 text-error" : ""} ${pending ? "opacity-70" : ""}`}
+      title={trace.ok === false ? trace.error : undefined}
     >
-      {toolIcon(t.tool)}
-      {t.tool}
+      {toolIcon(trace.tool)}
+      {trace.tool}
       {summary ? <span className="opacity-70">· {summary}</span> : null}
       {pending && <span className="loading loading-spinner loading-xs" />}
-      {t.ok === false && <AlertTriangle className="h-3 w-3" />}
+      {trace.ok === false && <AlertTriangle className="h-3 w-3" />}
     </span>
   );
 }
@@ -177,16 +176,17 @@ function AssistantMarkdown({ content }: { content: string }) {
 }
 
 /** Première ligne utile d'une réponse — sert d'étiquette dans le fil de gauche. */
-function excerpt(md: string): string {
+function excerpt(md: string, t: (key: TranslationKey) => string): string {
   const line = md
     .split("\n")
     .map((l) => l.replace(/^[#>*\-\s]+/, "").trim())
     .find((l) => l.length > 0);
-  if (!line) return "Réponse";
+  if (!line) return t("agent.excerptFallback");
   return line.length > 90 ? `${line.slice(0, 89)}…` : line;
 }
 
 export default function AgentPage() {
+  const { t } = useLanguage();
   const [convId, setConvId] = useState<string>(() => newConversationId());
   const [metas, setMetas] = useState<ConversationMeta[]>([]);
   const [historyOpen, setHistoryOpen] = useState(false);
@@ -360,7 +360,7 @@ export default function AgentPage() {
     } catch (err) {
       if (err instanceof AgentRateLimitError) {
         setRetryAfterMs(err.retryAfterMs);
-        setError(`Quota du modèle atteint — réessaie dans ${Math.ceil(err.retryAfterMs / 1000)} s.`);
+        setError(t("agent.quotaError", { seconds: Math.ceil(err.retryAfterMs / 1000) }));
       } else {
         setError(err instanceof Error ? err.message : String(err));
       }
@@ -379,13 +379,10 @@ export default function AgentPage() {
     <>
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <div>
-          <p className="op-kicker">Agent analytique</p>
-          <h2 className="text-xl font-semibold tracking-tight">Pose une question en langage naturel</h2>
+          <p className="op-kicker">{t("agent.kicker")}</p>
+          <h2 className="text-xl font-semibold tracking-tight">{t("agent.title")}</h2>
         </div>
-        <p className="max-w-xl text-sm text-base-content/60">
-          L'agent cherche les questions pertinentes, croise les micro-données pondérées et rédige une réponse. Il pose
-          des questions de clarification quand la demande est trop large.
-        </p>
+        <p className="max-w-xl text-sm text-base-content/60">{t("agent.subtitle")}</p>
       </div>
 
       <div className="agent-layout">
@@ -393,7 +390,7 @@ export default function AgentPage() {
         <section className="agent-col">
           <div className="flex items-center gap-1 border-b border-base-content/10 px-2 py-2">
             <button type="button" className="btn btn-primary btn-sm gap-1.5" onClick={newChat} disabled={loading}>
-              <Plus className="h-4 w-4" /> Nouveau chat
+              <Plus className="h-4 w-4" /> {t("agent.newChat")}
             </button>
             <button
               type="button"
@@ -402,7 +399,7 @@ export default function AgentPage() {
               aria-expanded={historyOpen}
             >
               <History className="h-4 w-4" />
-              Historique
+              {t("agent.history")}
               {metas.length > 0 && <span className="opacity-60">({metas.length})</span>}
               <ChevronDown className={`h-3.5 w-3.5 transition-transform ${historyOpen ? "rotate-180" : ""}`} />
             </button>
@@ -422,9 +419,7 @@ export default function AgentPage() {
 
           <div className="agent-scroll flex flex-col gap-2.5 px-3 py-3">
             {turns.length === 0 && !loading && (
-              <p className="text-sm text-base-content/50">
-                Nouvelle conversation — pose ta question ci-dessous, ou pars d'un exemple à droite.
-              </p>
+              <p className="text-sm text-base-content/50">{t("agent.emptyThread")}</p>
             )}
 
             {turns.map((turn) =>
@@ -442,16 +437,16 @@ export default function AgentPage() {
                       ? "border-primary/40 bg-primary/5"
                       : "border-base-content/10"
                   }`}
-                  title="Afficher cette réponse dans le document"
+                  title={t("agent.showInDoc")}
                 >
                   <span className="mb-1 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-wide text-base-content/45">
-                    <FileText className="h-3 w-3" /> Réponse
+                    <FileText className="h-3 w-3" /> {t("agent.response")}
                   </span>
-                  <span className="block text-sm text-base-content/70">{excerpt(turn.content)}</span>
+                  <span className="block text-sm text-base-content/70">{excerpt(turn.content, t)}</span>
                   {turn.trace && turn.trace.length > 0 && (
                     <span className="mt-2 flex flex-wrap gap-1.5 border-t border-base-content/10 pt-2">
-                      {turn.trace.map((t, i) => (
-                        <ToolPill key={i} t={t} />
+                      {turn.trace.map((tr, i) => (
+                        <ToolPill key={i} t={tr} />
                       ))}
                     </span>
                   )}
@@ -463,14 +458,14 @@ export default function AgentPage() {
               <div className="rounded-xl border border-base-content/10 px-3 py-2">
                 {liveTools.length > 0 && (
                   <div className="mb-2 flex flex-wrap gap-1.5">
-                    {liveTools.map((t, i) => (
-                      <ToolPill key={i} t={t} />
+                    {liveTools.map((lt, i) => (
+                      <ToolPill key={i} t={lt} />
                     ))}
                   </div>
                 )}
                 <div className="flex items-center gap-2 text-sm text-base-content/60">
                   <span className="loading loading-dots loading-sm" />
-                  {liveTools.some((t) => t.ok === null) ? "L'agent consulte les données…" : "L'agent rédige…"}
+                  {liveTools.some((lt) => lt.ok === null) ? t("agent.consultingData") : t("agent.writing")}
                 </div>
               </div>
             )}
@@ -494,7 +489,7 @@ export default function AgentPage() {
           >
             <input
               className="input input-bordered flex-1"
-              placeholder="Écris ta question…"
+              placeholder={t("agent.inputPlaceholder")}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={loading || retryAfterMs != null}
@@ -511,10 +506,10 @@ export default function AgentPage() {
             <FileText className="h-3.5 w-3.5" />
             <span>
               {docContent == null
-                ? "Réponse de l'agent"
+                ? t("agent.docHeader.default")
                 : isPinnedStale
-                  ? `Réponse ${answers.findIndex((a) => a.index === pinned!.index) + 1} sur ${answers.length}`
-                  : "Dernière réponse"}
+                  ? t("agent.docHeader.pinned", { n: answers.findIndex((a) => a.index === pinned!.index) + 1, total: answers.length })
+                  : t("agent.docHeader.latest")}
             </span>
             {isPinnedStale && (
               <button
@@ -522,7 +517,7 @@ export default function AgentPage() {
                 className="btn btn-ghost btn-xs ml-auto gap-1"
                 onClick={() => setPinnedIndex(null)}
               >
-                <ArrowDownToLine className="h-3.5 w-3.5" /> Revenir à la dernière
+                <ArrowDownToLine className="h-3.5 w-3.5" /> {t("agent.backToLatest")}
               </button>
             )}
           </div>
@@ -535,25 +530,26 @@ export default function AgentPage() {
             ) : loading ? (
               <div className="mx-auto flex max-w-3xl items-center gap-2 text-sm text-base-content/50">
                 <span className="loading loading-dots loading-sm" />
-                L'agent travaille — la réponse s'affichera ici.
+                {t("agent.working")}
               </div>
             ) : (
               <div className="mx-auto max-w-3xl">
-                <p className="mb-3 text-sm text-base-content/60">
-                  La réponse rédigée de l'agent s'affiche ici, en pleine largeur. Quelques exemples pour démarrer :
-                </p>
+                <p className="mb-3 text-sm text-base-content/60">{t("agent.emptyDocIntro")}</p>
                 <div className="flex flex-col gap-2">
-                  {EXAMPLES.map((ex) => (
-                    <button
-                      key={ex}
-                      type="button"
-                      className="op-card-hover rounded-lg border border-base-content/10 px-3 py-2 text-left text-sm hover:border-primary/40"
-                      onClick={() => send(ex)}
-                      disabled={loading}
-                    >
-                      {ex}
-                    </button>
-                  ))}
+                  {EXAMPLE_KEYS.map((exKey) => {
+                    const ex = t(exKey);
+                    return (
+                      <button
+                        key={exKey}
+                        type="button"
+                        className="op-card-hover rounded-lg border border-base-content/10 px-3 py-2 text-left text-sm hover:border-primary/40"
+                        onClick={() => send(ex)}
+                        disabled={loading}
+                      >
+                        {ex}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}

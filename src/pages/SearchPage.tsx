@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchState } from "../context/SearchContext";
+import { useLanguage } from "../context/LanguageContext";
 import SearchBar from "../components/SearchBar";
 import ConceptChips from "../components/ConceptChips";
 import Facets from "../components/Facets";
@@ -41,6 +42,7 @@ function groupBySurvey(results: SearchResult[]): SurveyGroupData[] {
 }
 
 export default function SearchPage() {
+  const { t } = useLanguage();
   const {
     query, filters, concepts, rerankQuery, results, facets, globalFacets, loading, decomposing, phase, error, hasSearched,
     handleSearch, handleFilterChange,
@@ -114,7 +116,7 @@ export default function SearchPage() {
 
       {!hasSearched && !loading && (
         <div className="py-20 text-center text-base-content/50">
-          <p className="text-lg">Recherchez un concept pour explorer les questions de sondage.</p>
+          <p className="text-lg">{t("search.emptyPrompt")}</p>
         </div>
       )}
 
@@ -123,8 +125,8 @@ export default function SearchPage() {
           « Aucun résultat » clignoterait pendant la phase de décomposition. */}
       {hasSearched && !loading && !decomposing && results.length === 0 && !error && (
         <div className="py-20 text-center text-base-content/50">
-          <p className="text-lg">Aucun résultat pour « {query} ».</p>
-          <p className="mt-1 text-sm">L'index est peut-être encore vide, ou essayez d'autres termes.</p>
+          <p className="text-lg">{t("search.noResults", { query })}</p>
+          <p className="mt-1 text-sm">{t("search.noResultsHint")}</p>
         </div>
       )}
 
@@ -140,11 +142,9 @@ export default function SearchPage() {
 
           <div className="min-w-0 space-y-4">
             <p className="text-sm text-base-content/60">
-              {visibleResults.length} question{visibleResults.length > 1 ? "s" : ""} · {groups.length} sondage
-              {groups.length > 1 ? "s" : ""}
-              {visibleResults.length !== results.length && (
-                <> (sur {results.length} avant filtre)</>
-              )}
+              {visibleResults.length} {t(visibleResults.length > 1 ? "search.resultsSummary.questions" : "search.resultsSummary.question")} · {groups.length}{" "}
+              {t(groups.length > 1 ? "search.resultsSummary.surveys" : "search.resultsSummary.survey")}
+              {visibleResults.length !== results.length && t("search.resultsSummary.beforeFilter", { total: results.length })}
             </p>
 
             {/* Le filtre est un contrôle, pas le sujet de la page : ~40 % de la

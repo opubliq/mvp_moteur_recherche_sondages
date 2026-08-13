@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -7,6 +8,7 @@ interface SearchBarProps {
 
 /** Barre de recherche : champ + bouton, soumission au submit. */
 export default function SearchBar({ onSearch, loading }: SearchBarProps) {
+  const { t } = useLanguage();
   const [value, setValue] = useState("");
 
   return (
@@ -21,7 +23,7 @@ export default function SearchBar({ onSearch, loading }: SearchBarProps) {
         <input
           type="search"
           className="input input-bordered flex-1"
-          placeholder="Rechercher un concept, un thème, une question…"
+          placeholder={t("search.bar.placeholder")}
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -33,7 +35,7 @@ export default function SearchBar({ onSearch, loading }: SearchBarProps) {
           {loading ? (
             <span className="loading loading-spinner loading-sm" />
           ) : (
-            "Rechercher"
+            t("search.bar.submit")
           )}
         </button>
       </form>

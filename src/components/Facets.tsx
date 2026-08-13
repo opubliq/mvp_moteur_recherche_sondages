@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Search, X } from "lucide-react";
 import type { SearchFilters, SearchFacets } from "../types";
+import { useLanguage } from "../context/LanguageContext";
 
 interface FacetsProps {
   facets: SearchFacets | null;
@@ -11,8 +12,6 @@ interface FacetsProps {
   filters: SearchFilters;
   onFilterChange: (next: SearchFilters) => void;
 }
-
-const LANG_LABELS: Record<string, string> = { fr: "Français", en: "Anglais" };
 
 /**
  * Panneau de facettes avancé :
@@ -28,6 +27,8 @@ export default function Facets({
   filters,
   onFilterChange,
 }: FacetsProps) {
+  const { t } = useLanguage();
+  const LANG_LABELS: Record<string, string> = { fr: t("facets.lang.fr"), en: t("facets.lang.en") };
   const [pollsterQuery, setPollsterQuery] = useState("");
 
   const pollsterOptions = useMemo(() => {
@@ -80,14 +81,14 @@ export default function Facets({
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-base-content/55">
-            Filtres
+            {t("facets.title")}
           </h2>
           {hasAnyFilter && (
             <button
               onClick={() => onFilterChange({})}
               className="text-[10px] font-bold uppercase text-primary hover:text-primary-focus transition cursor-pointer"
             >
-              Effacer tout
+              {t("facets.clearAll")}
             </button>
           )}
         </div>
@@ -95,7 +96,7 @@ export default function Facets({
         {/* ANNÉES */}
         <div className="mb-6">
           <h3 className="text-xs font-bold mb-2 flex items-center justify-between">
-            Période
+            {t("facets.period")}
             {(filters.year_min || filters.year_max) && (
                 <X 
                   className="w-3 h-3 cursor-pointer text-base-content/30 hover:text-error" 
@@ -109,7 +110,7 @@ export default function Facets({
               value={filters.year_min ?? ""}
               onChange={(e) => handleYearChange("year_min", e.target.value)}
             >
-              <option value="">De</option>
+              <option value="">{t("facets.yearFrom")}</option>
               {yearOptions.map((y) => (
                 <option key={y} value={y}>
                   {y}
@@ -122,7 +123,7 @@ export default function Facets({
               value={filters.year_max ?? ""}
               onChange={(e) => handleYearChange("year_max", e.target.value)}
             >
-              <option value="">À</option>
+              <option value="">{t("facets.yearTo")}</option>
               {yearOptions.map((y) => (
                 <option key={y} value={y}>
                   {y}
@@ -136,7 +137,7 @@ export default function Facets({
         {pollsterOptions.length > 0 && (
           <div className="mb-6">
             <h3 className="text-xs font-bold mb-2 flex items-center justify-between">
-              Sondeurs
+              {t("facets.pollsters")}
               {filters.pollsters && (
                   <X 
                     className="w-3 h-3 cursor-pointer text-base-content/30 hover:text-error" 
@@ -148,7 +149,7 @@ export default function Facets({
               <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-base-content/40" />
               <input
                 type="text"
-                placeholder="Rechercher..."
+                placeholder={t("facets.pollstersSearch")}
                 className="input input-bordered input-xs w-full pl-8"
                 value={pollsterQuery}
                 onChange={(e) => setPollsterQuery(e.target.value)}
@@ -184,7 +185,7 @@ export default function Facets({
               ))}
               {pollsterOptions.length === 0 && (
                 <p className="text-[10px] text-base-content/40 text-center py-4 italic">
-                  Aucun sondeur trouvé
+                  {t("facets.pollstersNone")}
                 </p>
               )}
             </div>
@@ -194,7 +195,7 @@ export default function Facets({
         {/* LANGUES */}
         {facets?.languages && facets.languages.length > 0 && (
           <div className="mb-6">
-            <h3 className="text-xs font-bold mb-2">Langues</h3>
+            <h3 className="text-xs font-bold mb-2">{t("facets.languages")}</h3>
             <div className="flex flex-wrap gap-1.5">
               {facets.languages.map((l) => {
                 const active = filters.languages?.includes(l.value);
@@ -223,7 +224,7 @@ export default function Facets({
         {/* THÈMES */}
         {themes.length > 0 && (
           <div>
-            <h3 className="text-xs font-bold mb-2">Thèmes détectés</h3>
+            <h3 className="text-xs font-bold mb-2">{t("facets.themes")}</h3>
             <div className="flex flex-wrap gap-1.5">
               {themes.map((t) => {
                 const active = filters.themes?.includes(t);

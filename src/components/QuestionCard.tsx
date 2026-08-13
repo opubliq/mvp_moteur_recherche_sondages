@@ -6,6 +6,7 @@ import { scoreColorVars } from "../lib/scoreColor";
 import { HighlightedText } from "../lib/highlight";
 import { useSearchState } from "../context/SearchContext";
 import { isVerbatim } from "../lib/verbatims";
+import { useLanguage } from "../context/LanguageContext";
 
 /**
  * Une question = une rangée pleine largeur, cliquable. Une question fermée mène
@@ -13,6 +14,7 @@ import { isVerbatim } from "../lib/verbatims";
  * verbatims de CETTE question (bead jsu.2) — il n'y a pas de graphe à y voir.
  */
 export default function QuestionCard({ q }: { q: SearchResult }) {
+  const { t } = useLanguage();
   const { has, toggle } = useCart();
   const inCart = has(q.survey_id, q.variable);
   const verbatim = isVerbatim(q);
@@ -38,7 +40,7 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
         type="checkbox"
         className="cart-check"
         checked={inCart}
-        title="Ajouter à l'export"
+        title={t("questionCard.addToExport")}
         onClick={(e) => e.stopPropagation()}
         onChange={(e) => {
           e.stopPropagation();
@@ -63,7 +65,7 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
               <span
                 className="op-badge op-badge-score tabular-nums"
                 style={scoreVars}
-                title="Score de pertinence (0-100, échelle absolue)"
+                title={t("questionCard.scoreTitle")}
               >
                 {score}
               </span>
@@ -90,14 +92,14 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
         <div className="flex flex-wrap items-center gap-1.5 text-xs">
           {verbatim ? (
             <span className="badge badge-secondary badge-sm gap-1">
-              <MessageSquare size={12} strokeWidth={2} /> question ouverte
+              <MessageSquare size={12} strokeWidth={2} /> {t("questionCard.openQuestion")}
             </span>
           ) : (
             q.var_type && <span className="badge badge-neutral badge-sm">{q.var_type}</span>
           )}
           {q.is_sociodemo && (
             <span className="badge badge-info badge-sm">
-              sociodémo{q.sociodemo_type ? ` · ${q.sociodemo_type}` : ""}
+              {t("questionCard.sociodemo")}{q.sociodemo_type ? ` · ${q.sociodemo_type}` : ""}
             </span>
           )}
           {q.themes.map((t) => (
@@ -108,9 +110,9 @@ export default function QuestionCard({ q }: { q: SearchResult }) {
 
           <span className="op-cta ml-auto flex items-center gap-1 font-semibold text-primary">
             {verbatim ? (
-              <><MessageSquare size={15} strokeWidth={1.75} /> Lire les réponses</>
+              <><MessageSquare size={15} strokeWidth={1.75} /> {t("questionCard.readAnswers")}</>
             ) : (
-              <><BarChart3 size={15} strokeWidth={1.75} /> Explorer les données</>
+              <><BarChart3 size={15} strokeWidth={1.75} /> {t("questionCard.exploreData")}</>
             )}
             <span className="op-cta-arrow" aria-hidden><ArrowRight size={15} strokeWidth={1.75} /></span>
           </span>

@@ -4,6 +4,7 @@ import { Sparkles, Globe } from "lucide-react";
 import type { SearchResult } from "../types";
 import QuestionCard from "./QuestionCard";
 import ScoreMiniDist from "./ScoreMiniDist";
+import { useLanguage } from "../context/LanguageContext";
 
 export interface SurveyGroupData {
   survey_id: string;
@@ -16,6 +17,7 @@ export interface SurveyGroupData {
 
 /** Un sondage = un en-tête + ses questions correspondantes. */
 export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
+  const { t } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const meta = [
@@ -47,17 +49,17 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
         {group.is_private === true && (
           <span
             className="op-badge op-badge-exclusive shrink-0"
-            title="Exclusif — issu de l'index de votre compte, invisible aux autres clients"
+            title={t("surveyGroup.exclusiveTitle")}
           >
-            <Sparkles size={11} strokeWidth={2.5} /> Exclusif
+            <Sparkles size={11} strokeWidth={2.5} /> {t("surveyGroup.exclusive")}
           </span>
         )}
         {group.is_private === false && (
           <span
             className="op-badge op-badge-public shrink-0"
-            title="Public — issu du corpus partagé, visible par tous les comptes"
+            title={t("surveyGroup.publicTitle")}
           >
-            <Globe size={11} strokeWidth={2.5} /> Public
+            <Globe size={11} strokeWidth={2.5} /> {t("surveyGroup.public")}
           </span>
         )}
 
@@ -73,7 +75,7 @@ export default function SurveyGroup({ group }: { group: SurveyGroupData }) {
           className="btn btn-outline btn-xs relative z-10"
           onClick={(e) => e.stopPropagation()}
         >
-          Voir le sondage
+          {t("surveyGroup.viewSurvey")}
         </Link>
       </div>
 
