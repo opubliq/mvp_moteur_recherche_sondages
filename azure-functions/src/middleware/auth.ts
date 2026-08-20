@@ -1,87 +1,45 @@
 /**
- * Basic Auth applicative — remplace `netlify/edge-functions/auth.ts` (f3i.1).
+ * Point d'entrée d'autorisation unique des Azure Functions (f3i.19.2/.3,
+ * fallback Basic Auth retiré en f3i.20). Toute requête doit porter une session
+ * valide (`Authorization: Bearer <token>`, cf. `./session.ts`) — il n'existe
+ * plus de repli sur un Basic Auth global.
  *
- * Azure Functions n'a pas d'équivalent direct aux Netlify Edge Functions (pas
- * de hook "avant toute route" configurable par un simple `path: "/*"`). On
- * réplique donc la vérification en middleware appelé en tête de chaque
- * handler HTTP, plutôt que de dépendre d'une feature de plateforme (Easy
- * Auth) qui changerait le modèle d'auth (SSO/Entra ID) au lieu de porter le
- * Basic Auth existant à l'identique.
- *
- * Comptes configurés via les mêmes variables d'env que côté Netlify :
- *   - BASIC_AUTH_USER / BASIC_AUTH_PASSWORD — le compte partagé historique.
- *   - BASIC_AUTH_EXTRA_ACCOUNTS — JSON `{"user": "password", ...}`, un
- *     username double comme identifiant de tenant côté `src/logic/tenancy.ts`.
+ * Le tenant (le cas échéant) est déjà porté par la session elle-même
+ * (`AuthContext.tenant`, résolu à la création du compte — cf.
+ * `../logic/auth-store.ts`) : ce fichier n'a plus besoin de résoudre de tenant
+ * lui-même, contrairement à l'ancienne branche Basic Auth qui appelait
+ * `resolveAuthorizedTenant` (`src/logic/tenancy.ts`).
  */
 
-import type { HttpRequest, HttpResponseInit } from "@azure/functions";
+import type { HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
+import { checkSession, type AuthContext } from "./session";
+import type { AuthStoreEnv } from "../logic/auth-store";
 
-const REALM = "Opubliq restricted access";
-
-function loadAccounts(): Record<string, string> {
-  const accounts: Record<string, string> = {};
-
-  const user = process.env.BASIC_AUTH_USER;
-  const password = process.env.BASIC_AUTH_PASSWORD;
-  if (user && password) accounts[user] = password;
-
-  const extraRaw = process.env.BASIC_AUTH_EXTRA_ACCOUNTS;
-  if (extraRaw) {
-    try {
-      const extra = JSON.parse(extraRaw) as Record<string, string>;
-      for (const [u, p] of Object.entries(extra)) {
-        if (typeof p === "string" && p) accounts[u] = p;
-      }
-    } catch (err) {
-      console.error("[auth] BASIC_AUTH_EXTRA_ACCOUNTS invalide (JSON attendu) :", err);
-    }
-  }
-
-  return accounts;
+function storageEnv(context: InvocationContext): AuthStoreEnv | undefined {
+  const account = process.env.AZURE_STORAGE_ACCOUNT;
+  const key = process.env.AZURE_STORAGE_KEY;
+  if (!account || !key) return undefined;
+  return { account, key, passwordPepper: process.env.PASSWORD_PEPPER };
 }
 
 /**
- * Vérifie le Basic Auth de la requête. Retourne `undefined` si l'accès est
- * autorisé (le handler appelant doit continuer), ou une `HttpResponseInit`
- * 401 à renvoyer telle quelle sinon.
- *
- * Comme côté Netlify : si aucun compte n'est configuré, on ne bloque rien
- * (évite de se verrouiller dehors en environnement mal configuré).
+ * Résout l'identité de la requête, ou renvoie directement une `HttpResponseInit`
+ * 401 à retourner telle quelle. Les env vars manquantes pour la résolution de
+ * session (Table Storage) font échouer la requête (401) — il n'y a plus de
+ * repli qui pourrait absorber cette absence.
  */
-export function checkBasicAuth(request: HttpRequest): HttpResponseInit | undefined {
-  const accounts = loadAccounts();
-  if (Object.keys(accounts).length === 0) return undefined;
-
-  const header = request.headers.get("authorization") || "";
-  const [scheme, encoded] = header.split(" ");
-
-  if (scheme === "Basic" && encoded) {
-    let decoded = "";
-    try {
-      decoded = Buffer.from(encoded, "base64").toString("utf-8");
-    } catch {
-      decoded = "";
-    }
-    const sep = decoded.indexOf(":");
-    const user = decoded.slice(0, sep);
-    const password = decoded.slice(sep + 1);
-
-    if (Object.prototype.hasOwnProperty.call(accounts, user) && accounts[user] === password) {
-      return undefined;
-    }
+export async function checkAuth(request: HttpRequest, context: InvocationContext): Promise<AuthContext | HttpResponseInit> {
+  const storage = storageEnv(context);
+  if (storage) {
+    const sessionIdentity = await checkSession(request, storage);
+    if (sessionIdentity) return sessionIdentity;
+  } else {
+    context.warn("[auth] AZURE_STORAGE_ACCOUNT/KEY absents : vérification de session sautée.");
   }
 
   return {
     status: 401,
-    headers: {
-      "WWW-Authenticate": `Basic realm="${REALM}", charset="UTF-8"`,
-      // Sans ça, un appel cross-origin (frontend sur un domaine distinct de la
-      // Function App, cf. b1d) voit une erreur CORS opaque au lieu d'un 401
-      // lisible — le JS appelant ne peut même pas distinguer "pas de compte"
-      // d'une panne réseau. Découvert en testant le premier déploiement
-      // Static Web Apps (b1d) contre cette Function App.
-      "Access-Control-Allow-Origin": "*",
-    },
-    body: "Accès restreint. Identifiants requis.",
+    headers: { "Access-Control-Allow-Origin": "*" },
+    body: "Session invalide ou absente.",
   };
 }

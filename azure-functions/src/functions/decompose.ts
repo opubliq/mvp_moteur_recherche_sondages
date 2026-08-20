@@ -6,7 +6,7 @@
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { decomposeQuery, type DecomposeEnv } from "../../../src/logic/decompose";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 import { checkRateLimit } from "../middleware/ratelimit";
 import { resolveDecomposePolicy } from "../../../src/logic/ratelimit";
 

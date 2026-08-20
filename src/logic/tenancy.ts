@@ -8,14 +8,17 @@
  * le ROUTAGE à l'ingestion — un client peut apparaître dans l'une avant
  * l'autre selon l'ordre des opérations, mais doivent converger).
  *
- * SOURCE D'IDENTITÉ (f3i.19.3). Les fonctions `resolveAccessible*` et
- * `isMicrodataSurveyAccessible` prennent désormais un `tenant` déjà résolu,
- * plutôt que les headers de la requête — la résolution elle-même (session ou,
- * pendant la fenêtre de coexistence, username du Basic Auth) se fait une
- * seule fois par requête dans `azure-functions/src/middleware/auth-transitional.ts`,
- * pas dupliquée ici. `resolveAuthorizedTenant` (headers → tenant, Basic Auth
- * uniquement) reste néanmoins exportée : c'est elle que la branche de repli
- * Basic Auth de `auth-transitional.ts` appelle pour produire ce tenant.
+ * SOURCE D'IDENTITÉ (f3i.19.3, fallback Basic Auth retiré côté Azure en
+ * f3i.20). Les fonctions `resolveAccessible*` et `isMicrodataSurveyAccessible`
+ * prennent un `tenant` déjà résolu, plutôt que les headers de la requête —
+ * côté Azure Functions, cette résolution se fait une seule fois par requête
+ * dans `azure-functions/src/middleware/auth.ts` (`checkAuth`), directement à
+ * partir du tenant porté par la session (plus de Basic Auth du tout sur ce
+ * chemin). `resolveAuthorizedTenant` (headers → tenant, Basic Auth uniquement)
+ * reste néanmoins exportée et VIVANTE : c'est elle qu'utilisent encore les
+ * fonctions `netlify/functions/*.ts` (gate Basic Auth global via
+ * `netlify/edge-functions/auth.ts`, mécanisme distinct et non affecté par
+ * f3i.20).
  *
  * Le principe de sécurité ne change pas : un tenant ne doit JAMAIS provenir
  * d'un header explicite falsifiable (`x-client-id`), seulement d'une identité

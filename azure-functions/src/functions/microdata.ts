@@ -10,7 +10,7 @@
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { isMicrodataSurveyAccessible } from "../../../src/logic/tenancy";
 import { handleMicrodataQuery, MicrodataError, type Agg, type MicrodataParams } from "../microdata-core/core";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const AGGS = ["count", "mean", "corr", "ols", "ttest", "anova"] as const;
 function parseAgg(v: unknown): Agg {

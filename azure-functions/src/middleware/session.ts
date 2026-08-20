@@ -1,8 +1,9 @@
 /**
  * Vérification de session (f3i.19.2) — lit `Authorization: Bearer <token>` et
- * résout l'identité via `../logic/auth-store`. Ne gère PAS le repli sur Basic
- * Auth (cf. `auth-transitional.ts`, qui compose les deux pendant la fenêtre de
- * coexistence).
+ * résout l'identité via `../logic/auth-store`. Point d'entrée unique appelant
+ * `checkSession` : `./auth.ts` (`checkAuth`), qui renvoie 401 si aucune
+ * session valide n'est trouvée — plus de repli sur un Basic Auth global
+ * depuis f3i.20.
  */
 
 import type { HttpRequest } from "@azure/functions";
@@ -20,7 +21,7 @@ export function bearerToken(request: HttpRequest): string | undefined {
   return scheme === "Bearer" && token ? token : undefined;
 }
 
-/** `undefined` si aucun Bearer token valide (pas une erreur : peut retomber sur Basic Auth). */
+/** `undefined` si aucun Bearer token valide (pas une erreur : `checkAuth` renvoie alors 401). */
 export async function checkSession(request: HttpRequest, env: AuthStoreEnv): Promise<AuthContext | undefined> {
   const token = bearerToken(request);
   if (!token) return undefined;

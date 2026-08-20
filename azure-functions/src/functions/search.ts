@@ -17,7 +17,7 @@ import { rerankCandidates, RerankError } from "../../../src/logic/rerank";
 import type { RerankEnv } from "../../../src/logic/rerank";
 import { newRequestId, resolveClientId, type UsageContext } from "../../../src/logic/costlog";
 import { resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",

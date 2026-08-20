@@ -12,7 +12,7 @@ import {
   type AnnotationItem,
 } from "../../../src/logic/annotate";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",

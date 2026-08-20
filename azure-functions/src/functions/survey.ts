@@ -6,7 +6,7 @@
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { getSurveyCatalog } from "../../../src/logic/corpus";
 import { resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",

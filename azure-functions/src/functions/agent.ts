@@ -23,7 +23,7 @@ import {
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
 import { isMicrodataSurveyAccessible, resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "../microdata-core/core";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 import { checkRateLimit } from "../middleware/ratelimit";
 
 const CORS_HEADERS: Record<string, string> = {

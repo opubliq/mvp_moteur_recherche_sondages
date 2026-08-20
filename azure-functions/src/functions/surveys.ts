@@ -5,7 +5,7 @@
 
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { resolveAccessibleQuestionIndexes, PUBLIC_QUESTIONS_INDEX } from "../../../src/logic/tenancy";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const SEARCH_API_VERSION = "2024-07-01";
 const SEARCH_TOP = 1000;

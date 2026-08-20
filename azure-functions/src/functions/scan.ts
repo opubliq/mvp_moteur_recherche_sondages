@@ -5,7 +5,7 @@
 
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { scanSample, ScanRateLimitError, type ScanEnv, type ScanItem } from "../../../src/logic/scan";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",

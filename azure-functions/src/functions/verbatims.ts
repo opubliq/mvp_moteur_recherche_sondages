@@ -8,7 +8,7 @@ import { cohereRerankDocuments, RerankError } from "../../../src/logic/rerank";
 import type { RerankEnv } from "../../../src/logic/rerank";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
 import { resolveAccessibleVerbatimIndexes } from "../../../src/logic/tenancy";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const SEARCH_API_VERSION = "2024-07-01";
 

@@ -43,10 +43,9 @@ export function setAuthToken(token: string | null): void {
 
 /**
  * En-tête `Authorization` à fusionner dans tout appel protégé par `checkAuth`
- * côté serveur (cf. `azure-functions/src/middleware/auth-transitional.ts`).
- * Objet vide si non connecté : `checkAuth` retombe alors sur le Basic Auth
- * global tant que `ALLOW_BASIC_AUTH_FALLBACK` n'est pas basculé à `false`
- * (f3i.20) — ajouter ce header partout est donc sans régression.
+ * côté serveur (cf. `azure-functions/src/middleware/auth.ts`). Objet vide si
+ * non connecté : `checkAuth` renvoie alors 401 (plus de repli Basic Auth
+ * depuis f3i.20, la session est obligatoire).
  */
 export function authHeader(): Record<string, string> {
   const token = getAuthToken();

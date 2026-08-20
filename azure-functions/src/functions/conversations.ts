@@ -18,7 +18,7 @@ import {
   type ConversationBody,
   type ConversationStoreEnv,
 } from "../logic/conversations-store";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const CORS_HEADERS: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",

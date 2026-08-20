@@ -5,7 +5,7 @@
 
 import { app, type HttpRequest, type HttpResponseInit, type InvocationContext } from "@azure/functions";
 import { resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
-import { checkAuth } from "../middleware/auth-transitional";
+import { checkAuth } from "../middleware/auth";
 
 const SEARCH_API_VERSION = "2024-07-01";
 const MAX_RESULTS = 1000;
