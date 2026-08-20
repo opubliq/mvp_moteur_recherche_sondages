@@ -448,7 +448,7 @@ export async function agentChatStream(
       throw new AgentRateLimitError(data.retry_after_ms ?? 20000);
     }
     const body = await res.text().catch(() => "");
-    throw new Error(`Agent échoué (${res.status}): ${body || res.statusText}`);
+    throw new Error(`Agent request failed (${res.status}): ${body || res.statusText}`);
   }
 
   const reader = res.body.getReader();
@@ -472,7 +472,7 @@ export async function agentChatStream(
     if (payload.type === "error") {
       const e = payload as AgentStreamError;
       if (e.kind === "rate_limit") throw new AgentRateLimitError(e.retry_after_ms ?? 20000);
-      throw new Error(`Agent échoué: ${e.message ?? "erreur inconnue"}`);
+      throw new Error(`Agent request failed: ${e.message ?? "unknown error"}`);
     }
     if (payload.type === "done") result = payload.result;
     onEvent(payload);
