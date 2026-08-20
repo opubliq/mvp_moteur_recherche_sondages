@@ -1,7 +1,9 @@
 import { cartKey, type CartItem } from "../context/CartContext";
 import type { ConceptGroup } from "../context/ConceptContext";
-import { fetchMicrodataRaw, fetchSurvey, NoMicrodataError } from "../api";
-import { DEMO_TYPES, mapLimit, pickSociodemoVar } from "../lib/exportExcel";
+import type { SociodemoMappings } from "../context/SociodemoMappingContext";
+import { fetchMicrodataRaw, NoMicrodataError } from "../api";
+import { DEMO_TYPES, mapLimit } from "../lib/exportExcel";
+import { resolveDemoVarsForSurveys } from "./sociodemoResolve";
 import type { DistributionRow, SearchResult } from "../types";
 
 /** Pseudo-variable croisement dérivée des métadonnées (cf. AdvancedExportPage). */
@@ -112,13 +114,15 @@ export interface ConceptTableResult {
  * `crossingKey` à `null` : pas de croisement, une colonne par sondage/année
  * (alignement de base). `YEAR_CROSSING_KEY` : une colonne par année,
  * fusionnant les sondages qui la partagent. Une clé de `DEMO_TYPES` : une
- * colonne par (sondage × catégorie native de cette socio-démo dans CE
- * sondage) — pas encore harmonisée entre sondages (cf. tjf.8).
+ * colonne par (sondage × catégorie de sortie harmonisée de cette socio-démo),
+ * via `sociodemoMappings` (tjf.8) — sans mapping défini pour ce type, replie
+ * sur la catégorie native brute (colonnes non harmonisées entre sondages).
  */
 export async function computeConceptTable(
   group: ConceptGroup,
   items: CartItem[],
   crossingKey: string | null,
+  sociodemoMappings?: SociodemoMappings,
 ): Promise<ConceptTableResult> {
   const warnings: string[] = [];
   if (group.categories.length === 0) {
@@ -127,27 +131,26 @@ export async function computeConceptTable(
 
   const groupByYear = crossingKey === YEAR_CROSSING_KEY;
   const demoKey = crossingKey && !groupByYear ? crossingKey : null;
+  const demoMapping = demoKey ? sociodemoMappings?.[demoKey] : undefined;
 
   // 1) Questions complètes de chaque sondage (pour résoudre la variable socio-démo demandée).
   const surveyIds = [...new Set(items.map((it) => it.survey_id))];
-  const demoVarBySurvey = new Map<string, SearchResult | undefined>();
+  const demoVarBySurvey: Map<string, SearchResult | undefined> = demoKey
+    ? await resolveDemoVarsForSurveys(surveyIds, demoKey)
+    : new Map();
   if (demoKey) {
-    const surveyQuestions = new Map<string, SearchResult[]>();
-    await mapLimit(surveyIds, 6, async (sid) => {
-      try {
-        surveyQuestions.set(sid, (await fetchSurvey(sid)).questions);
-      } catch {
-        surveyQuestions.set(sid, []);
-      }
-    });
     for (const sid of surveyIds) {
-      const v = pickSociodemoVar(surveyQuestions.get(sid) ?? [], demoKey);
-      demoVarBySurvey.set(sid, v);
-      if (!v) {
+      if (!demoVarBySurvey.get(sid)) {
         const label = DEMO_TYPES.find((d) => d.key === demoKey)?.label ?? demoKey;
         const surveyName = items.find((it) => it.survey_id === sid)?.survey_name ?? sid;
         warnings.push(`« ${label} » indisponible pour ${surveyName} — pas de croisement pour ce sondage.`);
       }
+    }
+    if (!demoMapping || demoMapping.categories.length === 0) {
+      const label = DEMO_TYPES.find((d) => d.key === demoKey)?.label ?? demoKey;
+      warnings.push(
+        `Mapping socio-démo non défini pour « ${label} » — colonnes non harmonisées entre sondages (catégories natives brutes).`,
+      );
     }
   }
 
@@ -191,9 +194,22 @@ export async function computeConceptTable(
           excluded++;
           continue;
         }
-        const optLabel = dimQuestion.response_options.find((o) => String(o.code) === String(raw))?.label ?? String(raw);
-        comboKeyPart = `|${raw}`;
-        comboLabelPart = ` · ${optLabel}`;
+        // Harmonisée si un mapping socio-démo (tjf.8) existe pour ce type ;
+        // sinon replie sur la catégorie native brute de CE sondage.
+        const harmonizedId = demoMapping?.mapping[item.survey_id]?.[String(raw)];
+        if (demoMapping && demoMapping.categories.length > 0) {
+          if (!harmonizedId) {
+            excluded++;
+            continue;
+          }
+          const catLabel = demoMapping.categories.find((c) => c.id === harmonizedId)?.label ?? harmonizedId;
+          comboKeyPart = `|${harmonizedId}`;
+          comboLabelPart = ` · ${catLabel}`;
+        } else {
+          const optLabel = dimQuestion.response_options.find((o) => String(o.code) === String(raw))?.label ?? String(raw);
+          comboKeyPart = `|${raw}`;
+          comboLabelPart = ` · ${optLabel}`;
+        }
       }
 
       const baseKey = groupByYear ? `year:${item.survey_year ?? "n.d."}` : `survey:${item.survey_id}`;

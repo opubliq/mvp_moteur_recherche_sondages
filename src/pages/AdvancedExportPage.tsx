@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { X, Tag, Plus, ChevronDown, ChevronRight } from "lucide-react";
 import { cartKey, useCart, type CartItem } from "../context/CartContext";
 import { useConcepts, type ConceptGroup } from "../context/ConceptContext";
-import type { DistributionRow, ResponseOption } from "../types";
+import { useSociodemoMapping } from "../context/SociodemoMappingContext";
+import type { DistributionRow, ResponseOption, SearchResult } from "../types";
 import { DEMO_TYPES } from "../lib/exportExcel";
 import { computeConceptTotals, YEAR_CROSSING_KEY } from "../logic/conceptAggregate";
+import { resolveDemoVarsForSurveys } from "../logic/sociodemoResolve";
 import DistributionBars from "../components/microdata/DistributionBars";
 import { useLanguage } from "../context/LanguageContext";
 import type { TranslationKey } from "../i18n/fr";
@@ -261,6 +263,153 @@ function ConceptQuickCheck({ group, items }: { group: ConceptGroup; items: CartI
 }
 
 /**
+ * Mapping des catégories natives d'un type socio-démo (âge, genre...) vers des
+ * catégories de sortie communes (tjf.8) — même mécanique que `CategoryMapping`
+ * mais global à l'app (par `demoKey`, pas par concept) et keyé par sondage
+ * plutôt que par item : la variable socio-démo est résolue une fois par
+ * sondage (`pickSociodemoVar`), pas par question.
+ */
+function SociodemoMappingPanel({ demoKey, surveyIds, surveyNames }: { demoKey: string; surveyIds: string[]; surveyNames: Map<string, string> }) {
+  const { t } = useLanguage();
+  const { getMapping, addCategory, renameCategory, removeCategory, setMapping } = useSociodemoMapping();
+  const [newCategory, setNewCategory] = useState("");
+  const [demoVars, setDemoVars] = useState<Map<string, SearchResult | undefined> | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setDemoVars(null);
+    resolveDemoVarsForSurveys(surveyIds, demoKey).then((m) => {
+      if (!cancelled) setDemoVars(m);
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [surveyIds.join(","), demoKey]);
+
+  const dt = getMapping(demoKey);
+  const demoLabel = t(`demoType.${demoKey}` as TranslationKey);
+
+  // Propage le mapping quand deux sondages partagent une catégorie native au
+  // libellé identique — évite de remapper la même tranche d'une année à l'autre.
+  useEffect(() => {
+    if (!demoVars) return;
+    const labelToCategory = new Map<string, string>();
+    for (const sid of surveyIds) {
+      const v = demoVars.get(sid);
+      if (!v) continue;
+      const itemMapping = dt.mapping[sid] ?? {};
+      for (const opt of v.response_options) {
+        const catId = itemMapping[String(opt.code)];
+        const norm = opt.label.trim().toLowerCase();
+        if (catId && !labelToCategory.has(norm)) labelToCategory.set(norm, catId);
+      }
+    }
+    for (const sid of surveyIds) {
+      const v = demoVars.get(sid);
+      if (!v) continue;
+      const itemMapping = dt.mapping[sid] ?? {};
+      for (const opt of v.response_options) {
+        if (itemMapping[String(opt.code)]) continue;
+        const suggestion = labelToCategory.get(opt.label.trim().toLowerCase());
+        if (suggestion) setMapping(demoKey, sid, String(opt.code), suggestion);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [demoKey, demoVars, dt.mapping, surveyIds]);
+
+  function confirmAddCategory() {
+    const label = newCategory.trim();
+    if (!label) return;
+    addCategory(demoKey, label);
+    setNewCategory("");
+  }
+
+  const bySurvey = surveyIds.map((sid) => ({ sid, v: demoVars?.get(sid) })).filter((x): x is { sid: string; v: SearchResult } => !!x.v);
+
+  return (
+    <div className="op-card mb-3">
+      <p className="mb-1 text-sm font-semibold">{t("advExport.sociodemoMappingTitle", { demo: demoLabel })}</p>
+      <p className="mb-2 text-xs text-base-content/50">{t("advExport.sociodemoMappingHint")}</p>
+
+      <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-base-content/55">
+        {t("advExport.outputCategories")}
+      </p>
+      <div className="mb-2 flex flex-wrap items-center gap-1.5">
+        {dt.categories.map((c) => (
+          <span key={c.id} className="flex items-center gap-1 rounded-full bg-base-content/5 py-0.5 pl-2.5 pr-1">
+            <input
+              className="w-auto min-w-0 border-none bg-transparent p-0 text-xs focus:outline-none"
+              style={{ width: `${Math.max(c.label.length, 3)}ch` }}
+              value={c.label}
+              onChange={(e) => renameCategory(demoKey, c.id, e.target.value)}
+            />
+            <button
+              className="btn btn-ghost btn-xs btn-circle"
+              onClick={() => removeCategory(demoKey, c.id)}
+              aria-label={t("advExport.removeCategoryAria")}
+            >
+              <X size={11} strokeWidth={2} />
+            </button>
+          </span>
+        ))}
+        <span className="flex items-center gap-1">
+          <input
+            className="input input-bordered input-xs w-40"
+            placeholder={t("advExport.newCategory")}
+            value={newCategory}
+            onChange={(e) => setNewCategory(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && confirmAddCategory()}
+          />
+          <button className="btn btn-ghost btn-xs btn-circle" onClick={confirmAddCategory} aria-label={t("advExport.add")}>
+            <Plus size={13} strokeWidth={2} />
+          </button>
+        </span>
+      </div>
+
+      {!demoVars ? (
+        <p className="text-xs text-base-content/40">{t("advExport.sociodemoResolving")}</p>
+      ) : bySurvey.length === 0 ? (
+        <p className="text-xs text-base-content/50">{t("advExport.sociodemoUnavailable", { demo: demoLabel })}</p>
+      ) : dt.categories.length === 0 ? (
+        <p className="text-xs text-base-content/50">{t("advExport.addAtLeastOne")}</p>
+      ) : (
+        bySurvey.map(({ sid, v }) => {
+          const itemMapping = dt.mapping[sid] ?? {};
+          return (
+            <div key={sid} className="mb-2">
+              <p className="mb-1 text-xs text-base-content/50">{surveyNames.get(sid) ?? sid}</p>
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5">
+                {v.response_options.map((opt) => {
+                  const current = itemMapping[String(opt.code)];
+                  return (
+                    <Fragment key={opt.code}>
+                      <span className="truncate text-xs">{opt.label}</span>
+                      <div className="flex flex-wrap gap-1">
+                        {dt.categories.map((c) => (
+                          <button
+                            key={c.id}
+                            type="button"
+                            className={`btn btn-xs ${current === c.id ? "btn-primary" : "btn-outline"}`}
+                            onClick={() => setMapping(demoKey, sid, String(opt.code), current === c.id ? null : c.id)}
+                          >
+                            {c.label}
+                          </button>
+                        ))}
+                      </div>
+                    </Fragment>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })
+      )}
+    </div>
+  );
+}
+
+/**
  * Onglet "Exportation avancée" — point d'entrée pour regrouper des questions
  * équivalentes en concept (tjf.2), mapper leurs catégories de réponse (tjf.3)
  * et croiser sur plusieurs variables (tjf.4). Pas de sélection propre : le
@@ -314,6 +463,15 @@ export default function AdvancedExportPage() {
     }
     return m;
   }, [groups, itemByKey]);
+
+  // Sondages du panier entier (pas juste d'un concept) : l'harmonisation
+  // socio-démo (tjf.8) est globale, indépendante des regroupements en concept.
+  const cartSurveyIds = useMemo(() => [...new Set(items.map((it) => it.survey_id))], [items]);
+  const surveyNames = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const it of items) if (!m.has(it.survey_id)) m.set(it.survey_id, `${it.survey_name} (${it.survey_year ?? "n.d."})`);
+    return m;
+  }, [items]);
 
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [naming, setNaming] = useState(false);
@@ -536,6 +694,12 @@ export default function AdvancedExportPage() {
                 ))}
               </div>
             </div>
+
+            {[...crossing]
+              .filter((k) => k !== YEAR_CROSSING_KEY)
+              .map((demoKey) => (
+                <SociodemoMappingPanel key={demoKey} demoKey={demoKey} surveyIds={cartSurveyIds} surveyNames={surveyNames} />
+              ))}
 
             <div className="op-card">
               <p className="mb-1 text-sm font-semibold">{t("advExport.export")}</p>

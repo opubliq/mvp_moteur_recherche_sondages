@@ -8,6 +8,7 @@ import { CartProvider } from "./context/CartContext";
 import { ConceptProvider } from "./context/ConceptContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import { SearchProvider } from "./context/SearchContext";
+import { SociodemoMappingProvider } from "./context/SociodemoMappingContext";
 import "./index.css";
 import "./App.css";
 
@@ -18,13 +19,15 @@ createRoot(document.getElementById("root")!).render(
         <AuthProvider>
           <CartProvider>
             <ConceptProvider>
-              <SearchProvider>
-                {/* Annotations éphémères : au-dessus des routes, pour qu'un
-                    aller-retour vers la recherche ne détruise pas un run. */}
-                <AnnotationProvider>
-                  <App />
-                </AnnotationProvider>
-              </SearchProvider>
+              <SociodemoMappingProvider>
+                <SearchProvider>
+                  {/* Annotations éphémères : au-dessus des routes, pour qu'un
+                      aller-retour vers la recherche ne détruise pas un run. */}
+                  <AnnotationProvider>
+                    <App />
+                  </AnnotationProvider>
+                </SearchProvider>
+              </SociodemoMappingProvider>
             </ConceptProvider>
           </CartProvider>
         </AuthProvider>

@@ -294,6 +294,10 @@ const fr = {
   "advExport.export": "Export",
   "advExport.exportHint": "Un classeur Excel avec la table de distributions croisées pondérées, une feuille par variable de croisement, et le mapping en colonne dérivée dans les micro-données par sondage.",
   "advExport.exportSoon": "Exporter en Excel (bientôt)",
+  "advExport.sociodemoMappingTitle": "Harmoniser « {{demo}} » entre sondages",
+  "advExport.sociodemoMappingHint": "Chaque sondage a ses propres tranches natives (ex: 5 vs 7 tranches d'âge). Mappe-les sur des catégories communes pour pouvoir comparer un même groupe (ex: 18-34 ans) d'un sondage à l'autre.",
+  "advExport.sociodemoUnavailable": "« {{demo}} » indisponible dans les sondages du panier.",
+  "advExport.sociodemoResolving": "Résolution des variables socio-démo…",
 
   "dash.inCart": "Dans l'export",
   "dash.addToExport": "Ajouter à l'export",

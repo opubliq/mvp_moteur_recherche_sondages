@@ -292,6 +292,10 @@ const en: Record<TranslationKey, string> = {
   "advExport.export": "Export",
   "advExport.exportHint": "An Excel workbook with the weighted crosstab table, one sheet per crossing variable, and the mapping as a derived column in each survey's microdata.",
   "advExport.exportSoon": "Export to Excel (coming soon)",
+  "advExport.sociodemoMappingTitle": "Harmonize \"{{demo}}\" across surveys",
+  "advExport.sociodemoMappingHint": "Each survey has its own native brackets (e.g. 5 vs 7 age brackets). Map them onto shared categories so you can compare the same group (e.g. 18-34) across surveys.",
+  "advExport.sociodemoUnavailable": "\"{{demo}}\" is not available in the surveys in your cart.",
+  "advExport.sociodemoResolving": "Resolving sociodemographic variables…",
 
   "dash.inCart": "In export",
   "dash.addToExport": "Add to export",
