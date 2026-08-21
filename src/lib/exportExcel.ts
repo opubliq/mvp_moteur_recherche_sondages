@@ -16,7 +16,7 @@ export const DEMO_TYPES: { key: string; label: string }[] = [
 ];
 
 /** Nom de feuille Excel : 31 caractères max, sans `[]:*?/\`, dédupliqué. */
-function makeSheetName(base: string, used: Set<string>): string {
+export function makeSheetName(base: string, used: Set<string>): string {
   const clean = base.replace(/[[\]:*?/\\]/g, "_").slice(0, 31) || "Feuille";
   let name = clean;
   let n = 2;

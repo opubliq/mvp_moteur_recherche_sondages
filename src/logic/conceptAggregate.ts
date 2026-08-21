@@ -1,8 +1,10 @@
+import type { Worksheet } from "exceljs";
 import { cartKey, type CartItem } from "../context/CartContext";
 import type { ConceptGroup } from "../context/ConceptContext";
 import type { SociodemoMappings } from "../context/SociodemoMappingContext";
 import { fetchMicrodataRaw, NoMicrodataError } from "../api";
-import { DEMO_TYPES, mapLimit } from "../lib/exportExcel";
+import { DEMO_TYPES, mapLimit, makeSheetName } from "../lib/exportExcel";
+import { saveFile } from "../lib/exportCart";
 import { resolveDemoVarsForSurveys } from "./sociodemoResolve";
 import type { DistributionRow, SearchResult } from "../types";
 
@@ -250,4 +252,116 @@ export async function computeConceptTable(
   }
 
   return { columns, rows, warnings };
+}
+
+function crossingLabel(crossingKey: string | null): string {
+  if (crossingKey === null) return "";
+  if (crossingKey === YEAR_CROSSING_KEY) return "Année";
+  return DEMO_TYPES.find((d) => d.key === crossingKey)?.label ?? crossingKey;
+}
+
+/** Écrit une table de concept (catégories de sortie en lignes, colonnes de croisement en colonnes) sur une feuille dédiée. */
+function writeConceptTableSheet(sheet: Worksheet, groupLabel: string, crossKeyLabel: string, result: ConceptTableResult): void {
+  sheet.getCell("A1").value = groupLabel;
+  sheet.getCell("A1").font = { bold: true, size: 12 };
+  sheet.getCell("A2").value = crossKeyLabel ? `Croisé par : ${crossKeyLabel}` : "Aucun croisement (une colonne par sondage)";
+  sheet.getCell("A2").font = { italic: true, color: { argb: "FF666666" } };
+
+  const headerRow = sheet.getRow(4);
+  result.columns.forEach((col, i) => {
+    headerRow.getCell(2 + i).value = col.label;
+  });
+  headerRow.font = { bold: true };
+
+  result.rows.forEach((row, ri) => {
+    const excelRow = sheet.getRow(5 + ri);
+    excelRow.getCell(1).value = row.categoryLabel;
+    result.columns.forEach((col, ci) => {
+      const cell = row.cells[col.key];
+      const c = excelRow.getCell(2 + ci);
+      c.value = cell?.share ?? 0;
+      c.numFmt = "0.0%";
+    });
+  });
+
+  const nRow = sheet.getRow(5 + result.rows.length);
+  nRow.getCell(1).value = "N pondéré";
+  nRow.font = { italic: true };
+  result.columns.forEach((col, ci) => {
+    const total = result.rows.reduce((s, row) => s + (row.cells[col.key]?.weightedN ?? 0), 0);
+    nRow.getCell(2 + ci).value = Math.round(total);
+  });
+
+  sheet.getColumn(1).width = 30;
+  result.columns.forEach((_, i) => {
+    sheet.getColumn(2 + i).width = 22;
+  });
+
+  if (result.warnings.length > 0) {
+    let r = 7 + result.rows.length;
+    sheet.getCell(`A${r}`).value = "Avertissements";
+    sheet.getCell(`A${r}`).font = { bold: true };
+    r++;
+    for (const w of result.warnings) {
+      sheet.getCell(`A${r}`).value = w;
+      sheet.getCell(`A${r}`).font = { italic: true, color: { argb: "FF999999" } };
+      r++;
+    }
+  }
+}
+
+/**
+ * Construit et télécharge le classeur Excel de l'exportation avancée (bead
+ * tjf.6) : une feuille par (concept × variable de croisement cochée),
+ * réutilisant `computeConceptTable` (tjf.5). Sans aucune variable cochée, une
+ * seule feuille par concept (colonnes = sondage/année, alignement de base).
+ * Ignore silencieusement les concepts sans catégorie de sortie ou avec moins
+ * de deux questions — rien à croiser.
+ */
+export async function exportAdvancedXlsx(
+  groups: ConceptGroup[],
+  groupItems: Map<string, CartItem[]>,
+  crossing: Set<string>,
+  sociodemoMappings: SociodemoMappings,
+  onProgress?: (done: number, total: number) => void,
+  filename?: string,
+): Promise<{ warnings: string[] }> {
+  const exportGroups = groups.filter((g) => g.categories.length > 0 && (groupItems.get(g.id)?.length ?? 0) >= 2);
+  const crossingKeys: (string | null)[] = crossing.size > 0 ? [...crossing] : [null];
+  if (exportGroups.length === 0) {
+    return { warnings: ["Aucun concept avec catégories de sortie et au moins deux questions — rien à exporter."] };
+  }
+
+  const ExcelJSRuntime = await import("exceljs");
+  const wb = new ExcelJSRuntime.Workbook();
+  wb.creator = "Opubliq";
+  wb.created = new Date();
+
+  let done = 0;
+  const total = exportGroups.length * crossingKeys.length;
+  const bump = () => onProgress?.(++done, total);
+
+  const usedNames = new Set<string>();
+  const warnings: string[] = [];
+
+  for (const group of exportGroups) {
+    const items = groupItems.get(group.id) ?? [];
+    for (const crossKey of crossingKeys) {
+      const result = await computeConceptTable(group, items, crossKey, sociodemoMappings);
+      bump();
+      const label = crossingLabel(crossKey);
+      const sheet = wb.addWorksheet(makeSheetName(label ? `${group.label} · ${label}` : group.label, usedNames));
+      writeConceptTableSheet(sheet, group.label, label, result);
+      warnings.push(...result.warnings.map((w) => `${group.label}${label ? ` · ${label}` : ""} : ${w}`));
+    }
+  }
+
+  const buffer = await wb.xlsx.writeBuffer();
+  const stamp = new Date().toISOString().slice(0, 10);
+  await saveFile(
+    buffer as ArrayBuffer,
+    filename || `opubliq-export-avance-${stamp}.xlsx`,
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  );
+  return { warnings };
 }

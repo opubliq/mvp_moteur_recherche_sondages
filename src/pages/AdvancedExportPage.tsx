@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { X, Tag, Plus, ChevronDown, ChevronRight } from "lucide-react";
+import { X, Tag, Plus, ChevronDown, ChevronRight, Download } from "lucide-react";
 import { cartKey, useCart, type CartItem } from "../context/CartContext";
 import { useConcepts, type ConceptGroup } from "../context/ConceptContext";
 import { useSociodemoMapping } from "../context/SociodemoMappingContext";
 import type { DistributionRow, ResponseOption, SearchResult } from "../types";
 import { DEMO_TYPES } from "../lib/exportExcel";
-import { computeConceptTotals, YEAR_CROSSING_KEY } from "../logic/conceptAggregate";
+import { computeConceptTotals, exportAdvancedXlsx, YEAR_CROSSING_KEY } from "../logic/conceptAggregate";
 import { resolveDemoVarsForSurveys } from "../logic/sociodemoResolve";
 import DistributionBars from "../components/microdata/DistributionBars";
 import { useLanguage } from "../context/LanguageContext";
@@ -431,6 +431,7 @@ export default function AdvancedExportPage() {
     removeCategory,
     setMapping,
   } = useConcepts();
+  const { mappings: sociodemoMappings } = useSociodemoMapping();
 
   const itemByKey = useMemo(() => {
     const m = new Map<string, CartItem>();
@@ -478,6 +479,37 @@ export default function AdvancedExportPage() {
   const [newLabel, setNewLabel] = useState("");
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const [crossing, setCrossing] = useState<Set<string>>(loadInitialCrossing);
+  const [exporting, setExporting] = useState(false);
+  const [exportProgress, setExportProgress] = useState<{ done: number; total: number } | null>(null);
+  const [exportError, setExportError] = useState<string | null>(null);
+  const [exportWarnings, setExportWarnings] = useState<string[]>([]);
+
+  const exportableGroups = useMemo(
+    () => groups.filter((g) => g.categories.length > 0 && (groupItems.get(g.id)?.length ?? 0) >= 2),
+    [groups, groupItems],
+  );
+
+  async function handleExport() {
+    setExportError(null);
+    setExportWarnings([]);
+    setExporting(true);
+    setExportProgress({ done: 0, total: 0 });
+    try {
+      const { warnings } = await exportAdvancedXlsx(
+        exportableGroups,
+        groupItems,
+        crossing,
+        sociodemoMappings,
+        (done, total) => setExportProgress({ done, total }),
+      );
+      setExportWarnings(warnings);
+    } catch (err) {
+      setExportError(err instanceof Error ? err.message : t("advExport.exportFailed"));
+    } finally {
+      setExporting(false);
+      setExportProgress(null);
+    }
+  }
 
   useEffect(() => {
     try {
@@ -704,8 +736,31 @@ export default function AdvancedExportPage() {
             <div className="op-card">
               <p className="mb-1 text-sm font-semibold">{t("advExport.export")}</p>
               <p className="mb-3 text-xs text-base-content/50">{t("advExport.exportHint")}</p>
-              <button className="btn btn-primary btn-sm w-full" disabled>
-                {t("advExport.exportSoon")}
+              {exportError && <p className="mb-2 text-xs text-error">{exportError}</p>}
+              {exportWarnings.length > 0 && (
+                <ul className="mb-2 list-disc pl-4 text-[11px] text-base-content/50">
+                  {exportWarnings.map((w, i) => (
+                    <li key={i}>{w}</li>
+                  ))}
+                </ul>
+              )}
+              <button
+                className="btn btn-primary btn-sm w-full gap-1.5"
+                onClick={handleExport}
+                disabled={exporting || exportableGroups.length === 0}
+              >
+                {exporting ? (
+                  <span className="loading loading-spinner loading-xs" />
+                ) : (
+                  <Download size={15} strokeWidth={1.75} />
+                )}
+                {exporting
+                  ? exportProgress && exportProgress.total > 0
+                    ? t("advExport.exportGeneratingProgress", { done: exportProgress.done, total: exportProgress.total })
+                    : t("advExport.exportGenerating")
+                  : exportableGroups.length === 0
+                    ? t("advExport.exportNeedsConcept")
+                    : t("advExport.exportButton")}
               </button>
             </div>
           </div>
