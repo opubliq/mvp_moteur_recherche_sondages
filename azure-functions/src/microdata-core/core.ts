@@ -99,6 +99,64 @@ export interface MicrodataConfig {
   storage: StorageConfig;
 }
 
+export interface RawExportParams {
+  survey_id: string;
+  /** Colonnes RAW à extraire (variables sélectionnées + socio-démos) — whitelistées contre le schéma réel. */
+  columns: string[];
+}
+
+/** Plafond de lignes d'un export ligne-par-répondant — le plus gros sondage du corpus tourne autour de quelques milliers de répondants. */
+const MAX_RAW_EXPORT_ROWS = 20000;
+
+/**
+ * Extrait des LIGNES BRUTES (une par répondant), pas d'agrégation — pour un
+ * export "liste de répondants" (bead f3i.13) distinct des crosstabs pondérés.
+ * Mêmes garde-fous que `executeMicrodataQuery` : colonnes whitelistées contre
+ * le schéma réel du Parquet avant interpolation.
+ */
+export async function handleMicrodataRawExport(params: RawExportParams, config: MicrodataConfig) {
+  const parquetUrl = signedBlobUrl(config.storage, `${params.survey_id}.parquet`);
+  const c = await getConnection();
+  try {
+    return await executeRawExport(c, parquetUrl, params);
+  } finally {
+    c.closeSync();
+  }
+}
+
+export async function executeRawExport(c: DuckDBConnection, parquetUrl: string, params: RawExportParams) {
+  const { survey_id, columns } = params;
+  if (!survey_id || !IDENT_RE.test(survey_id)) {
+    throw new MicrodataError(400, `Invalid survey_id: ${JSON.stringify(survey_id)}`);
+  }
+  if (!Array.isArray(columns) || columns.length === 0) {
+    throw new MicrodataError(400, "columns must be a non-empty array");
+  }
+  if (columns.length > 60) {
+    throw new MicrodataError(400, "too many columns (max 60)");
+  }
+
+  const cols = await fetchColumns(c, parquetUrl).catch(() => {
+    throw new MicrodataError(404, `No microdata Parquet for survey_id '${survey_id}'`);
+  });
+  const uniqueCols = [...new Set(columns)];
+  for (const col of uniqueCols) assertColumn(col, cols, "column");
+
+  const selectCols = uniqueCols.map((col) => quoteIdent(col)).join(", ");
+  const ridSel = cols.has("__respondent_id") ? `"__respondent_id" AS respondent_id, ` : "";
+  const weightSel = cols.has("__weight") ? `, "__weight" AS weight` : "";
+  const sql = `SELECT ${ridSel}${selectCols}${weightSel} FROM read_parquet($url) LIMIT ${MAX_RAW_EXPORT_ROWS}`;
+
+  const res = await c.runAndReadAll(sql, { url: parquetUrl });
+  const rows = res.getRowObjects().map((r) => {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(r)) out[k] = typeof v === "bigint" ? Number(v) : v;
+    return out;
+  });
+
+  return { survey_id, columns: uniqueCols, row_count: rows.length, rows };
+}
+
 /**
  * Une entrée du `_manifest.json` (écrit par `ingestion/microdata.py`). Décrit un
  * sondage dont le Parquet répondant EXISTE dans le Blob — donc calculable par
