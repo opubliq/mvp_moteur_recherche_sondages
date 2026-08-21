@@ -411,5 +411,6 @@
 
 /* Bulles de chat (placeholder agent) */
 .chat-bubble { max-width: 40rem; border-radius: 1rem; padding: 0.8rem 1rem; font-size: 0.9rem; line-height: 1.5; }
+.chat-bubble::before { content: none; }
 .chat-user { background: color-mix(in oklch, var(--color-primary) 12%, transparent); margin-left: auto; }
 .chat-bot { background: color-mix(in oklch, var(--color-base-content) 5%, transparent); }

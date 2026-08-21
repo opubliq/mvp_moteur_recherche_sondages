@@ -115,11 +115,13 @@ function ToolPill({ t: trace }: { t: { tool: string; args: unknown; ok: boolean 
   return (
     <span
       className={`op-badge op-badge-plain ${trace.ok === false ? "border-error/40 text-error" : ""} ${pending ? "opacity-70" : ""}`}
-      title={trace.ok === false ? trace.error : undefined}
+      // Survol = prompt complet (bead aat.8) : plus simple qu'un clic-pour-
+      // déplier, et couvre le cas où summary est tronqué ci-dessous.
+      title={trace.ok === false ? trace.error : (summary ?? undefined)}
     >
       {toolIcon(trace.tool)}
       {trace.tool}
-      {summary ? <span className="opacity-70">· {summary}</span> : null}
+      {summary ? <span className="max-w-[14rem] truncate opacity-70">· {summary}</span> : null}
       {pending && <span className="loading loading-spinner loading-xs" />}
       {trace.ok === false && <AlertTriangle className="h-3 w-3" />}
     </span>
@@ -245,8 +247,12 @@ export default function AgentPage() {
     saveConversation(convId, { messages: thread, traceByIndex }).then(refreshMetas);
   }, [thread, traceByIndex, convId, refreshMetas]);
 
+  // Défilement instantané tant qu'un tour est en vol (liveTools change à
+  // chaque tool_start/tool_end pendant le streaming) : évite d'empiler des
+  // animations de scroll interrompues les unes par les autres. Smooth
+  // seulement à la fin, pour l'agrément visuel.
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    bottomRef.current?.scrollIntoView({ behavior: loading ? "auto" : "smooth", block: "end" });
   }, [thread, loading, liveTools]);
 
   // Compte à rebours du délai de quota relayé par le serveur (429) : le champ
@@ -379,7 +385,6 @@ export default function AgentPage() {
     <>
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <div>
-          <p className="op-kicker">{t("agent.kicker")}</p>
           <h2 className="text-xl font-semibold tracking-tight">{t("agent.title")}</h2>
         </div>
         <p className="max-w-xl text-sm text-base-content/60">{t("agent.subtitle")}</p>
@@ -424,8 +429,15 @@ export default function AgentPage() {
 
             {turns.map((turn) =>
               turn.role === "user" ? (
-                <div key={turn.index} className="chat-bubble chat-user whitespace-pre-wrap">
-                  {turn.content}
+                // Enveloppe dédiée pour l'alignement à droite : la bulle elle-même
+                // ne doit PAS être un item flex direct de `.agent-scroll`. En item
+                // flex, `width: fit-content` combiné à du texte qui wrap (pre-wrap)
+                // ne fait pas grandir sa hauteur avec le texte dès qu'il dépasse une
+                // ligne — le texte déborde de la boîte (bead aat.8, reproductible
+                // partout, pas lié au moniteur). Hors du flex direct, c'est un bloc
+                // normal en shrink-to-fit — code path plus robuste.
+                <div key={turn.index} className="flex justify-end">
+                  <div className="chat-bubble chat-user whitespace-pre-wrap">{turn.content}</div>
                 </div>
               ) : (
                 <button
