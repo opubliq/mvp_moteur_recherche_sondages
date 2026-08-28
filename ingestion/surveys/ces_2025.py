@@ -44,6 +44,8 @@ SURVEY_NAME = "Étude électorale canadienne 2025 / Canadian Election Study 2025
 YEAR = 2025
 POLLSTER = "Stephenson, Harell, Rubenson / CES"
 LANGUAGE = "en"
+WEIGHT_VAR = "cps25_weight_general_all"  # poids général 2025 → weight_source='provided'
+RESPONDENT_ID_VAR = None  # IDs de chaîne (cps25_ResponseId) → index de ligne pour ID unique
 
 # ---------------------------------------------------------------------------
 # Classification des variables socio-démographiques
