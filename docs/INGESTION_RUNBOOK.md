@@ -39,14 +39,24 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **15 sondages** dans l'index **public** `survey-questions`, ~3283 docs
+- **16 sondages** dans l'index **public** `survey-questions`, 4094 docs
   catalogue (vérité terrain de l'index Azure) : `cecd_charte_2013_10`,
   `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`, `cecd_elxn_qc_2007`,
   `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`, `cecd_sante_can_usa`, `eeq_2007`,
-  `eeq_2008`, `eeq_2014`, `govcan_06822_wave1_2024`, `govcan_06822_wave2_2024`,
-  `govcan_06822_wave3_2024`, `govcan_habit_2024`, `govcan_parca_2024`.
-  Rail microdonnées Parquet également fait pour `eeq_2007` et `eeq_2008` (poids
-  `pond` déclaré, `weight_source=provided`).
+  `eeq_2008`, `eeq_2012`, `eeq_2014`, `govcan_06822_wave1_2024`,
+  `govcan_06822_wave2_2024`, `govcan_06822_wave3_2024`, `govcan_habit_2024`,
+  `govcan_parca_2024`.
+  Rail microdonnées Parquet également fait pour `eeq_2007`, `eeq_2008` et
+  `eeq_2012` (poids `pond`/`POND` déclaré, `weight_source=provided`).
+  **`eeq_2012`** (2026-08-28) : cas particulier — le SAV a ses labels en
+  anglais (McGill), donc `question_text`/`response_options` proviennent du
+  questionnaire français intégral `data/eeq_2012/Quebec Election Study 2012
+  FR.md` plutôt que du SAV (déviation assumée à la règle « verbatim SAV » —
+  toujours verbatim, juste une source raw différente). Voir
+  `ingestion/surveys/eeq_2012.py` pour le mapping SAV↔.md et les cas
+  particuliers documentés (batteries, `SCOL` code 10 traduit depuis l'EN faute
+  d'équivalent FR dans le `.md`, `Q64`/`Q65` = connaissances politiques avec
+  options = noms propres du SAV).
 - **`medaillon_organismes_qualitatif`** (extrait/enrichi 2026-07-23, **déplacé
   du public vers l'index privé `survey-questions-opubliq` le 2026-08-04** —
   cf `docs/multi_tenant_design.md` : c'est une donnée propriétaire opubliq, pas
@@ -84,8 +94,10 @@ l'orchestrateur — jamais générés au runtime.
        print(" ", v, "|", (labels.get(v) or "")[:70])
    EOF
    ```
-   Écarter si labels majoritairement vides / dans une langue inattendue (p.ex.
-   `eeq_2012` a des labels anglais) — signaler à l'utilisateur.
+   Écarter si labels majoritairement vides / dans une langue inattendue —
+   signaler à l'utilisateur. Un fichier questionnaire séparé dans la bonne
+   langue peut sauver le cas (cf. `eeq_2012` : SAV en anglais, question_text
+   tiré du `.md` FR à la place — voir État actuel ci-dessus).
 
 ## Le workflow (par sondage)
 
