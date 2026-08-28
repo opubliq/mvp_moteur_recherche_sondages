@@ -35,6 +35,7 @@ DATA_DIR = REPO_ROOT / "data" / "eeq_2018"
 DTA_FILE = DATA_DIR / "Quebec Election Study 2018.dta"
 CODEBOOK_FILE = DATA_DIR / "Quebec Election Study 2018 FR with programmed answer values.md"
 WEIGHT_VAR = "pond"
+RESPONDENT_ID_VAR = "respid"
 OUT_FILE = REPO_ROOT / "ingestion" / "normalized" / "eeq_2018.json"
 
 # ---------------------------------------------------------------------------
