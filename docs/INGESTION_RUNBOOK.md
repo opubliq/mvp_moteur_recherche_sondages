@@ -39,17 +39,19 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **20 sondages** dans l'index **public** `survey-questions`, 4906 docs
+- **21 sondages** dans l'index **public** `survey-questions`, 4920 docs
   catalogue (vérité terrain de l'index Azure, vérifié 2026-08-28) :
   `cecd_charte_2013_10`, `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`,
   `cecd_elxn_qc_2007`, `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`,
-  `cecd_sante_can_usa`, `ces_2025`, `eeq_2007`, `eeq_2008`, `eeq_2012`, `eeq_2014`,
+  `cecd_sante_can_usa`, `cecd_vote_qc_2007_2010`, `ces_2025`, `eeq_2007`, `eeq_2008`, `eeq_2012`, `eeq_2014`,
   `eeq_2018`, `eeq_2022`, `govcan_06822_wave1_2024`, `govcan_06822_wave2_2024`,
   `govcan_06822_wave3_2024`, `govcan_habit_2024`, `govcan_parca_2024`,
   `provincial_qc_2012`.
-  Rail microdonnées Parquet également fait pour `ces_2025` (poids
+  Rail microdonnées Parquet également fait pour `cecd_vote_qc_2007_2010` (poids
+  `XPOND` déclaré, `weight_source=provided`, 24 027 répondants × 19 vars), `ces_2025` (poids
   `cps25_weight_general_all` déclaré, `weight_source=provided`, 20 180 répondants × 1440 vars),
   `eeq_2007`, `eeq_2008`, `eeq_2012`, `eeq_2018`, `eeq_2022` et `provincial_qc_2012`.
+  **`cecd_vote_qc_2007_2010`** (2026-08-28) : Sondages CROP-CECD intention de vote & référendum Québec (2007-2010), 13 questions substantielles, 24 027 répondants. Extraction SAV.
   **`ces_2025`** (2026-08-28) : Canadian Election Study 2025, 588 questions
   substantielles, 20 180 répondants. Extraction DTA avec Stata .dta + codebook PDF.
   **`eeq_2012`** (2026-08-28) : cas particulier — le SAV a ses labels en
