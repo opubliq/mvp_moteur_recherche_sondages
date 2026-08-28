@@ -1,0 +1,2097 @@
+{
+  "survey": {
+    "survey_id": "provincial_qc_2018",
+    "survey_name": "Sondage Panel Élections Provinciales Québec 2018",
+    "survey_description": null,
+    "year": 2018,
+    "survey_month": null,
+    "pollster": "Ipsos",
+    "language": "fr",
+    "n_respondents": 1250,
+    "raw_data_file": "IPsos_oct_2018_17-057727_V.SAV",
+    "tags": [
+      "electoral",
+      "provincial",
+      "québec",
+      "panel",
+      "2018"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "fsa_tabl",
+      "question_text": "Regions",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Region - Île de Montréal"
+        },
+        {
+          "code": 2,
+          "label": "Region - Couronne"
+        },
+        {
+          "code": 3,
+          "label": "Region - Région de Québec"
+        },
+        {
+          "code": 4,
+          "label": "Region - Régions du Sud"
+        },
+        {
+          "code": 5,
+          "label": "Region - Régions du Nord"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qa",
+      "question_text": "qa. Êtes-vous éligible pour aller voter lors des prochaines élections provinciales qui auront lieu en octobre?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 3,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "s1",
+      "question_text": "s1. Quelle est la première langue que vous avez apprise et que vous comprenez toujours?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 3,
+          "label": "Une autre langue"
+        },
+        {
+          "code": 4,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rv1a",
+      "question_text": "rv1a. En pensant à ce que vous ressentez maintenant, si une élection PROVINCIALE était tenue demain, le candidat de quel parti appuieriez-vous probablement?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le Parti libéral du Québec (PLQ)"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti Québécois (PQ)"
+        },
+        {
+          "code": 3,
+          "label": "La Coalition Avenir Québec (CAQ)"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire (QS)"
+        },
+        {
+          "code": 5,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 6,
+          "label": "Ne voterais pas/Aucun/Gâterais mon bulletin de vote"
+        },
+        {
+          "code": 7,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rv1b",
+      "question_text": "rv1b. Et pour quel parti diriez-vous que vous auriez tendance à voter?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le Parti libéral du Québec (PLQ)"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti Québécois (PQ)"
+        },
+        {
+          "code": 3,
+          "label": "La Coalition Avenir Québec (CAQ)"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire (QS)"
+        },
+        {
+          "code": 5,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 6,
+          "label": "Ne voterais pas/Aucun/Gâterais mon bulletin de vote"
+        },
+        {
+          "code": 7,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "qc",
+      "question_text": "qc. Dans quelle mesure êtes-vous certain que c’est bien le parti pour lequel vous allez voter le jour de l’élection? Êtes-vous…",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Absolument certain"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt certain"
+        },
+        {
+          "code": 3,
+          "label": "Pas très certain"
+        },
+        {
+          "code": 4,
+          "label": "Pas certain du tout"
+        },
+        {
+          "code": 5,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q1",
+      "question_text": "q1. Lequel des chefs des principaux partis provinciaux ferait le meilleur premier ministre du Québec? Serait-ce…",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Philippe Couillard, du Parti libéral"
+        },
+        {
+          "code": 2,
+          "label": "Jean-François Lisée, du Parti Québécois"
+        },
+        {
+          "code": 3,
+          "label": "François Legault, de la Coalition Avenir Québec"
+        },
+        {
+          "code": 4,
+          "label": "Manon Massé, de Québec solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Aucun d’entre eux"
+        },
+        {
+          "code": 6,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q1a",
+      "question_text": "q1a. Les prochaines élections provinciales auront lieu le 1er octobre. Sur une échelle de 1 à 10, où 10 indique que",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1 - Complètement certain que je ne vais pas voter"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Complètement certain que je vais voter"
+        },
+        {
+          "code": 11,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q2",
+      "question_text": "q2. Selon vous, devrait-on garder le même gouvernement en place lors des prochaines élections provinciales, ou est-il temps de changer de gouvernement?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Garder le gouvernement en place"
+        },
+        {
+          "code": 2,
+          "label": "Changer de gouvernement"
+        },
+        {
+          "code": 3,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q2a",
+      "question_text": "q2a. Selon vous, quel chef de parti a fait la meilleure campagne électorale jusqu’à présent?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Philippe Couillard, from the Liberal Party of Quebec (PLQ)"
+        },
+        {
+          "code": 2,
+          "label": "Jean-François Lisée, du Parti Québécois (PQ)"
+        },
+        {
+          "code": 3,
+          "label": "François Legault, de la Coalition Avenir Québec (CAQ)"
+        },
+        {
+          "code": 4,
+          "label": "Manon Massé, de Québec solidaire (QS)"
+        },
+        {
+          "code": 5,
+          "label": "Un autre chef de parti"
+        },
+        {
+          "code": 6,
+          "label": "Aucun"
+        },
+        {
+          "code": 7,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q2b",
+      "question_text": "q2b. Et selon vous, quel parti est le plus susceptible de remporter l’élection du 1er octobre?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le Parti libéral du Québec (PLQ)"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti Québécois (PQ)"
+        },
+        {
+          "code": 3,
+          "label": "La Coalition Avenir Québec (CAQ)"
+        },
+        {
+          "code": 4,
+          "label": "Québec solidaire (QS)"
+        },
+        {
+          "code": 5,
+          "label": "Un autre parti"
+        },
+        {
+          "code": 6,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q5_1",
+      "question_text": "q5_1. [Enthousiaste] Dans quelle mesure les mots suivants décrivent-ils votre état d’esprit concernant votre vote aux",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Ne décrit pas du tout mon état d’esprit"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Décrit parfaitement mon état d’esprit"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q5_2",
+      "question_text": "q5_2. [Excité(e)] Dans quelle mesure les mots suivants décrivent-ils votre état d’esprit concernant votre vote aux",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Ne décrit pas du tout mon état d’esprit"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Décrit parfaitement mon état d’esprit"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_01",
+      "question_text": "q6_01. [Je voie des bénéfices clairs à aller voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_02",
+      "question_text": "q6_02. [J'ai l'habitude de voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_03",
+      "question_text": "q6_03. [J'ai un devoir de voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_04",
+      "question_text": "q6_04. [Voter est une partie importante de qui je suis] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_05",
+      "question_text": "q6_05. [J'ai beaucoup réfléchi à mon vote récemment] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_06",
+      "question_text": "q6_06. [J'ai les informations et les choses dont j'ai besoin pour voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_07",
+      "question_text": "q6_07. [Je sais pour qui je vote et pourquoi] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_08",
+      "question_text": "q6_08. [Les gens doivent voter pour que notre démocratie fonctionne bien] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_09",
+      "question_text": "q6_09. [Mon vote est important / fait une différence] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_10",
+      "question_text": "q6_10. [Je sais quand, où et comment voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_11",
+      "question_text": "q6_11. [Il y a des choses dans la société ou dans ma vie personnelle qui me rappellent l'importance de voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_12",
+      "question_text": "q6_12. [Mes amis et ma famille croient en l'importance du vote] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_13",
+      "question_text": "q6_13. [Les gens comment moi ont tendance à voter] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q6_14",
+      "question_text": "q6_14. [Je sais que j'aurai des regrets si je ne vote pas] Êtes-vous en accord ou en désaccord avec les énoncés suivants:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "1- Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7- Fortement en accord"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "age",
+      "question_text": "Age - Total",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "18-34"
+        },
+        {
+          "code": 2,
+          "label": "35-54"
+        },
+        {
+          "code": 3,
+          "label": "55+"
+        },
+        {
+          "code": 4,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "d3",
+      "question_text": "d3. Quel est le plus haut niveau de scolarité que vous avez atteint ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Primaire ou moins"
+        },
+        {
+          "code": 2,
+          "label": "Quelques années d'études secondaires"
+        },
+        {
+          "code": 3,
+          "label": "Diplôme d'études secondaires ou l'équivalent"
+        },
+        {
+          "code": 4,
+          "label": "Apprentissage enregistré ou autre certificat ou diplôme d'un"
+        },
+        {
+          "code": 5,
+          "label": "Certificat ou diplôme d'un collège, cégep ou autre établisse"
+        },
+        {
+          "code": 6,
+          "label": "Certificat ou diplôme universitaire inférieur au baccalauréa"
+        },
+        {
+          "code": 7,
+          "label": "Baccalauréat"
+        },
+        {
+          "code": 8,
+          "label": "Diplôme d'études universitaire supérieur au baccalauréat"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "d4",
+      "question_text": "d4. Laquelle des descriptions suivantes correspond le mieux à votre situation d’emploi actuelle ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Travailleur(se) à temps plein, c.-à-d. 35 heures ou plus par"
+        },
+        {
+          "code": 2,
+          "label": "Travailleur(se) à temps partiel, c.-à-d. moins de 35 heures"
+        },
+        {
+          "code": 3,
+          "label": "Travailleur(se) autonome"
+        },
+        {
+          "code": 4,
+          "label": "Sans emploi, mais à la recherche d'un emploi"
+        },
+        {
+          "code": 5,
+          "label": "Étudiant(e)"
+        },
+        {
+          "code": 6,
+          "label": "Retraité(e)"
+        },
+        {
+          "code": 7,
+          "label": "À l'extérieur du marché du travail (personne au foyer à temp"
+        },
+        {
+          "code": 8,
+          "label": "Autre"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "occupation",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "d5",
+      "question_text": "d5. Laquelle des catégories suivantes décrit le mieux le revenu total de votre foyer, c’est-à-dire le total des revenus",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Moins de 20 000 $"
+        },
+        {
+          "code": 2,
+          "label": "20 000 $ à moins de 40 000 $"
+        },
+        {
+          "code": 3,
+          "label": "40 000 $ à moins de 60 000 $"
+        },
+        {
+          "code": 4,
+          "label": "60 000 $ à moins de 80 000 $"
+        },
+        {
+          "code": 5,
+          "label": "80 000 $ à moins de 100 000 $"
+        },
+        {
+          "code": 6,
+          "label": "100 000 $ à moins de 150 000 $"
+        },
+        {
+          "code": 7,
+          "label": "150 000 $ et plus"
+        },
+        {
+          "code": 8,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "d6",
+      "question_text": "d6. Avez-vous des enfants de moins de 18 ans qui habitent avec vous à la maison ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 3,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "sexfix",
+      "question_text": "sexfix.  Sexe:",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Homme"
+        },
+        {
+          "code": 2,
+          "label": "Femme"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q1",
+      "question_text": "rts_q1. A` chaque élection, certaines personnes décident de ne pas voter, d’autres ne peuvent pas y aller pour différentes raisons.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Vous vouliez voter mais vous n’avez pas pu"
+        },
+        {
+          "code": 2,
+          "label": "Vous avez décidé de ne pas aller voter"
+        },
+        {
+          "code": 3,
+          "label": "Ou vous êtes allé voter?"
+        },
+        {
+          "code": 4,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q2",
+      "question_text": "rts_q2. Et pour qui avez-vous voté?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le Parti Libéral du Québec dirigé par Philippe Couillard"
+        },
+        {
+          "code": 2,
+          "label": "Le Parti Québécois dirigé par Jean-François Lisée"
+        },
+        {
+          "code": 3,
+          "label": "La Coalition Avenir Québec dirigée par François Legault"
+        },
+        {
+          "code": 4,
+          "label": "Québec Solidaire dirigé par Manon Massé et Gabriel Nadeau-Du"
+        },
+        {
+          "code": 5,
+          "label": "Un autre parti?"
+        },
+        {
+          "code": 6,
+          "label": "Ou avez-vous annulé votre vote?"
+        },
+        {
+          "code": 7,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q2a",
+      "question_text": "rts_q2a. À quel moment de la campagne avez-vous fait votre choix final?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Avant le début de la campagne"
+        },
+        {
+          "code": 2,
+          "label": "Vers le début de la campagne"
+        },
+        {
+          "code": 3,
+          "label": "Après les débats des chefs"
+        },
+        {
+          "code": 4,
+          "label": "Durant la dernière fin de semaine"
+        },
+        {
+          "code": 5,
+          "label": "À la toute fin, dans le bureau de scrutin"
+        },
+        {
+          "code": 6,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q3a_verb",
+      "question_text": "Verbatim-rts_q3a.  Quelle est la principale raison pour laquelle vous avez voté pour",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "open",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q3a",
+      "question_text": "rts_q3a.  Quelle est la principale raison pour laquelle vous avez voté pour",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
+        },
+        {
+          "code": 2,
+          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
+        },
+        {
+          "code": 3,
+          "label": "Finances/ (bonne) performance économique"
+        },
+        {
+          "code": 4,
+          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
+        },
+        {
+          "code": 5,
+          "label": "Environnement/ durabilité"
+        },
+        {
+          "code": 6,
+          "label": "Immigration"
+        },
+        {
+          "code": 7,
+          "label": "Soins de santé"
+        },
+        {
+          "code": 8,
+          "label": "Bénéfices pour la famille"
+        },
+        {
+          "code": 9,
+          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
+        },
+        {
+          "code": 10,
+          "label": "Tendance plus à gauche (incl. socialiste)"
+        },
+        {
+          "code": 11,
+          "label": "Tendance plus à droite (incl. conservateur)"
+        },
+        {
+          "code": 12,
+          "label": "Parti séparatiste/ pour un Québec indépendant"
+        },
+        {
+          "code": 13,
+          "label": "J'aimais le candidat (local)"
+        },
+        {
+          "code": 14,
+          "label": "J'aimais le parti/ chef de parti"
+        },
+        {
+          "code": 15,
+          "label": "J'aimais les Libéraux/ Philippe Couillard"
+        },
+        {
+          "code": 16,
+          "label": "J'aimais la CAQ/ François Legault"
+        },
+        {
+          "code": 17,
+          "label": "J'aimais Québec solidaire"
+        },
+        {
+          "code": 18,
+          "label": "Pour chasser les Libéraux du pouvoir"
+        },
+        {
+          "code": 19,
+          "label": "Je n'aimais pas la CAQ/ François Legault"
+        },
+        {
+          "code": 20,
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": 21,
+          "label": "Le meilleur candidat/ parti/ choix possible"
+        },
+        {
+          "code": 22,
+          "label": "Le moins pire/ n'a pas aimé les autres options"
+        },
+        {
+          "code": 23,
+          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
+        },
+        {
+          "code": 24,
+          "label": "Stabilité/ continuité"
+        },
+        {
+          "code": 25,
+          "label": "Confiance/ honnêteté"
+        },
+        {
+          "code": 26,
+          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
+        },
+        {
+          "code": 27,
+          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
+        },
+        {
+          "code": 28,
+          "label": "Rien"
+        },
+        {
+          "code": 29,
+          "label": "Autre"
+        },
+        {
+          "code": 30,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q3a2",
+      "question_text": "2e raison pour le vote",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "J'aimais leur plateforme (politiques/ idées/ promesses/ vale"
+        },
+        {
+          "code": 2,
+          "label": "Le parti répondait à mes préoccupations/ besoins/ opinions/"
+        },
+        {
+          "code": 3,
+          "label": "Finances/ (bonne) performance économique"
+        },
+        {
+          "code": 4,
+          "label": "Droits anglophones/ je suis anglophone/ représentait le mieu"
+        },
+        {
+          "code": 5,
+          "label": "Environnement/ durabilité"
+        },
+        {
+          "code": 6,
+          "label": "Immigration"
+        },
+        {
+          "code": 7,
+          "label": "Soins de santé"
+        },
+        {
+          "code": 8,
+          "label": "Bénéfices pour la famille"
+        },
+        {
+          "code": 9,
+          "label": "Parti fédéraliste/ pas séparatiste/ veux rester au Canada"
+        },
+        {
+          "code": 10,
+          "label": "Tendance plus à gauche (incl. socialiste)"
+        },
+        {
+          "code": 11,
+          "label": "Tendance plus à droite (incl. conservateur)"
+        },
+        {
+          "code": 12,
+          "label": "Parti séparatiste/ pour un Québec indépendant"
+        },
+        {
+          "code": 13,
+          "label": "J'aimais le candidat (local)"
+        },
+        {
+          "code": 14,
+          "label": "J'aimais le parti/ chef de parti"
+        },
+        {
+          "code": 15,
+          "label": "J'aimais les Libéraux/ Philippe Couillard"
+        },
+        {
+          "code": 16,
+          "label": "J'aimais la CAQ/ François Legault"
+        },
+        {
+          "code": 17,
+          "label": "J'aimais Québec solidaire"
+        },
+        {
+          "code": 18,
+          "label": "Pour chasser les Libéraux du pouvoir"
+        },
+        {
+          "code": 19,
+          "label": "Je n'aimais pas la CAQ/ François Legault"
+        },
+        {
+          "code": 20,
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": 21,
+          "label": "Le meilleur candidat/ parti/ choix possible"
+        },
+        {
+          "code": 22,
+          "label": "Le moins pire/ n'a pas aimé les autres options"
+        },
+        {
+          "code": 23,
+          "label": "Par habitude/ mon parti/ le parti pour lequel j'ai toujours"
+        },
+        {
+          "code": 24,
+          "label": "Stabilité/ continuité"
+        },
+        {
+          "code": 25,
+          "label": "Confiance/ honnêteté"
+        },
+        {
+          "code": 26,
+          "label": "Bon gouvernement/ ils ont fait du bon travail/ ont bien fait"
+        },
+        {
+          "code": 27,
+          "label": "Besoin de changement (incl. besoin d'un nouveau parti au pou"
+        },
+        {
+          "code": 28,
+          "label": "Rien"
+        },
+        {
+          "code": 29,
+          "label": "Autre"
+        },
+        {
+          "code": 30,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 31,
+          "label": "valeurs"
+        },
+        {
+          "code": 32,
+          "label": "debat"
+        },
+        {
+          "code": 33,
+          "label": "laicité-religion"
+        },
+        {
+          "code": 34,
+          "label": "promesses"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q3b",
+      "question_text": "rts_q3b. Pourquoi avez-vous annulé votre vote ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Je n'aimais pas les candidats"
+        },
+        {
+          "code": 2,
+          "label": "Tous les candidats/partis sont les mêmes"
+        },
+        {
+          "code": 3,
+          "label": "Aucun candidat (parti) n'a répondu à mes préoccupations"
+        },
+        {
+          "code": 4,
+          "label": "Rien"
+        },
+        {
+          "code": 5,
+          "label": "Autre"
+        },
+        {
+          "code": 6,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q3b_verb",
+      "question_text": "Verbatim - rts_q3b. Pourquoi avez-vous annulé votre vote ?",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "open",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q4",
+      "question_text": "rts_q4. Quelle est la principale raison pour laquelle vous n’êtes pas allé voter?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Aucun intérêt/ Apathie/ N'a pas suivi la campagne électorale"
+        },
+        {
+          "code": 2,
+          "label": "Tous les partis/ candidats sont les mêmes"
+        },
+        {
+          "code": 3,
+          "label": "Je n'aimais aucun parti/ candidat"
+        },
+        {
+          "code": 4,
+          "label": "Je ne fais pas confiance aux politiciens/ grands parleurs, p"
+        },
+        {
+          "code": 5,
+          "label": "Ne savais pas pour qui voter/ N'arrivais pas à choisir"
+        },
+        {
+          "code": 6,
+          "label": "Aucun candidat (parti) n'a répondu à mes préoccupations/ bes"
+        },
+        {
+          "code": 7,
+          "label": "Cela ne fait aucune différence/ Cela ne changerait rien (peu"
+        },
+        {
+          "code": 8,
+          "label": "J'étais malade"
+        },
+        {
+          "code": 9,
+          "label": "Invalidité/mobilité réduite (incl. blessures/ douleurs physi"
+        },
+        {
+          "code": 10,
+          "label": "J'étais au travail"
+        },
+        {
+          "code": 11,
+          "label": "Je n'ai pas eu le temps de changer mon adresse depuis mon dé"
+        },
+        {
+          "code": 12,
+          "label": "Problème de transport (p. ex. voiture non disponible)"
+        },
+        {
+          "code": 13,
+          "label": "Trop loin du bureau de vote"
+        },
+        {
+          "code": 14,
+          "label": "Je n'ai pas reçu mon bulletin de vote par la poste/ Je n'éta"
+        },
+        {
+          "code": 15,
+          "label": "Rien"
+        },
+        {
+          "code": 16,
+          "label": "Autre"
+        },
+        {
+          "code": 17,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "q4_verb",
+      "question_text": "Verbatim- rts_q4. Quelle est la principale raison pour laquelle vous n’êtes pas allé voter?",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "open",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q5",
+      "question_text": "rts_q5. Avez-vous lu ou entendu parler des sondages durant la campagne électorale ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 3,
+          "label": "No answer"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q6",
+      "question_text": "rts_q6. Pensez-vous que le Québec devrait réduire, garder le même nombre, ou augmenter le nombre d’immigrants qu’il accueille chaque année?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Réduire le nombre"
+        },
+        {
+          "code": 2,
+          "label": "Garder le même nombre"
+        },
+        {
+          "code": 3,
+          "label": "Augmenter le nombre"
+        },
+        {
+          "code": 4,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q7",
+      "question_text": "rts_q7. En ce qui concerne l’indépendance du Québec, c’est-à-dire que le Québec ne fasse plus partie du Canada, êtes-vous personnellement",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très favorable"
+        },
+        {
+          "code": 2,
+          "label": "Assez favorable"
+        },
+        {
+          "code": 3,
+          "label": "Assez opposé"
+        },
+        {
+          "code": 4,
+          "label": "Très opposé"
+        },
+        {
+          "code": 5,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "rts_q8",
+      "question_text": "rts_q8. On utilise souvent un axe gauche-droite pour situer les opinions politiques des gens. Sur une échelle de 0",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "0"
+        },
+        {
+          "code": 2,
+          "label": "1"
+        },
+        {
+          "code": 3,
+          "label": "2"
+        },
+        {
+          "code": 4,
+          "label": "3"
+        },
+        {
+          "code": 5,
+          "label": "4"
+        },
+        {
+          "code": 6,
+          "label": "5"
+        },
+        {
+          "code": 7,
+          "label": "6"
+        },
+        {
+          "code": 8,
+          "label": "7"
+        },
+        {
+          "code": 9,
+          "label": "8"
+        },
+        {
+          "code": 10,
+          "label": "9"
+        },
+        {
+          "code": 11,
+          "label": "10"
+        },
+        {
+          "code": 12,
+          "label": "Ne sais pas/Pas certain(e)"
+        }
+      ],
+      "var_type": "scale",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}
