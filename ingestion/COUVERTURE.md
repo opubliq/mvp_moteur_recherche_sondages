@@ -73,7 +73,7 @@ SAV (var labels + value labels) :
 `cecd_elxn_qc_2007`, `cecd_elxn_qc_2008`, `cecd_elxn_qc_2012`,
 `cecd_elxn_qc_2018`, `cecd_sante_can_usa`, `cecd_vote_qc_2007_2010`,
 `eeq_2007` ✅, `eeq_2008` ✅, `eeq_2012` ✅, `eeq_2014` ✅, `focus_canada_2010`,
-`focus_canada_2011`, `focus_canada_2012`, `provincial_qc_2018`.
+`focus_canada_2011`, `focus_canada_2012`, `provincial_qc_2018` ✅.
 
 DTA Stata (var labels + value labels) :
 
