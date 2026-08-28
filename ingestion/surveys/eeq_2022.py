@@ -65,9 +65,11 @@ DATA_DIR = REPO_ROOT / "data" / "eeq_2022"
 SAV_FILE = DATA_DIR / "2022 Quebec Election Study v1.dta"
 OUT_FILE = REPO_ROOT / "ingestion" / "normalized" / "eeq_2022.json"
 
-# Rail microdonnées (étape 4, hors scope de cet extracteur) : 4 colonnes de
-# pondération existent (`cps_weight_general[_trimmed]`, `pes_weight_general
-# [_trimmed]`) — le choix du WEIGHT_VAR se fera séparément, pas ici.
+# Rail microdonnées (étape 4) : 4 colonnes de pondération existent
+# (`cps_weight_general[_trimmed]`, `pes_weight_general[_trimmed]`). On retient
+# cps_weight_general : couverture plein-échantillon (0 null sur 1521), alors que
+# pes_weight_general a 301 nulls (attrition normale de la vague post-électorale).
+WEIGHT_VAR = "cps_weight_general"
 
 # ---------------------------------------------------------------------------
 # Constantes du sondage
