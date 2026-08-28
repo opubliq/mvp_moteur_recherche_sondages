@@ -39,16 +39,20 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **18 sondages** dans l'index **public** `survey-questions`, 4094 docs
+- **19 sondages** dans l'index **public** `survey-questions`, 4317 docs
   catalogue (vérité terrain de l'index Azure, vérifié 2026-08-28) :
   `cecd_charte_2013_10`, `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`,
   `cecd_elxn_qc_2007`, `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`,
   `cecd_sante_can_usa`, `eeq_2007`, `eeq_2008`, `eeq_2012`, `eeq_2014`,
   `eeq_2018`, `eeq_2022`, `govcan_06822_wave1_2024`, `govcan_06822_wave2_2024`,
-  `govcan_06822_wave3_2024`, `govcan_habit_2024`, `govcan_parca_2024`.
+  `govcan_06822_wave3_2024`, `govcan_habit_2024`, `govcan_parca_2024`,
+  `provincial_qc_2012`.
   Rail microdonnées Parquet également fait pour `eeq_2007`, `eeq_2008`,
-  `eeq_2012`, `eeq_2018` et `eeq_2022` (poids `pond`/`POND` déclaré,
-  `weight_source=provided`).
+  `eeq_2012`, `eeq_2018`, `eeq_2022` et `provincial_qc_2012` (poids
+  `POST_WEIGHT1` déclaré, `weight_source=provided`).
+  **`provincial_qc_2012`** (2026-08-28) : extraction DTA avec wording français
+  tiré du questionnaire PDF `data/provincial_qc_2012/Questionnaire_Quebec_provincial_2012_FR.pdf`
+  (labels du DTA en anglais) ; 222 questions, 990 répondants microdonnées.
   **`eeq_2012`** (2026-08-28) : cas particulier — le SAV a ses labels en
   anglais (McGill), donc `question_text`/`response_options` proviennent du
   questionnaire français intégral `data/eeq_2012/Quebec Election Study 2012

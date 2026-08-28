@@ -1,0 +1,8327 @@
+{
+  "survey": {
+    "survey_id": "provincial_qc_2012",
+    "survey_name": "Étude électorale québécoise provinciale 2012",
+    "survey_description": null,
+    "year": 2012,
+    "survey_month": 9,
+    "pollster": "Harris Decima / MEDW",
+    "language": "fr",
+    "n_respondents": 990,
+    "raw_data_file": "data/provincial_qc_2012/Quebec_provincial_2012.dta",
+    "tags": [
+      "québec",
+      "provincial",
+      "élection",
+      "2012",
+      "medw",
+      "decima"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "GEND",
+      "question_text": "Êtes-vous ...?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Un homme"
+        },
+        {
+          "code": 2,
+          "label": "Une femme"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "YOB",
+      "question_text": "En quelle année êtes-vous né(e) ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 9999,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD1A",
+      "question_text": "Quel âge aurez-vous le 4 septembre 2012 ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "17"
+        },
+        {
+          "code": 2,
+          "label": "18"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD2A",
+      "question_text": "Résidez-vous au Québec ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD2B",
+      "question_text": "Êtes-vous citoyen canadien ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD6F",
+      "question_text": "Quelle est la première langue que vous avez apprise et que vous comprenez toujours ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Anglais"
+        },
+        {
+          "code": 2,
+          "label": "Français"
+        },
+        {
+          "code": 3,
+          "label": "Italien"
+        },
+        {
+          "code": 4,
+          "label": "Chinois/Cantonais/Mandarin"
+        },
+        {
+          "code": 5,
+          "label": "Néerlandais"
+        },
+        {
+          "code": 6,
+          "label": "Allemand"
+        },
+        {
+          "code": 7,
+          "label": "Portugais"
+        },
+        {
+          "code": 8,
+          "label": "Espagnol"
+        },
+        {
+          "code": 9,
+          "label": "Arabe"
+        },
+        {
+          "code": 10,
+          "label": "Grec"
+        },
+        {
+          "code": 11,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "MLANG",
+      "question_text": "Quelle est votre langue maternelle ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Anglais"
+        },
+        {
+          "code": 2,
+          "label": "Français"
+        },
+        {
+          "code": 3,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD4",
+      "question_text": "Quel est le plus haut niveau de scolarité que vous avez complété ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Aucun"
+        },
+        {
+          "code": 2,
+          "label": "École primaire commencée"
+        },
+        {
+          "code": 3,
+          "label": "École primaire complétée"
+        },
+        {
+          "code": 4,
+          "label": "École secondaire commencée"
+        },
+        {
+          "code": 5,
+          "label": "École secondaire complétée"
+        },
+        {
+          "code": 6,
+          "label": "Formation professionnelle ou collégiale commencée"
+        },
+        {
+          "code": 7,
+          "label": "Formation professionnelle ou collégiale complétée"
+        },
+        {
+          "code": 8,
+          "label": "Baccalauréat universitaire commencé"
+        },
+        {
+          "code": 9,
+          "label": "Baccalauréat universitaire complété"
+        },
+        {
+          "code": 10,
+          "label": "Diplôme universitaire supérieur au baccalauréat"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q2",
+      "question_text": "Quel est l’enjeu le plus important pour vous dans l’élection PROVINCIALE en cours ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "La santé"
+        },
+        {
+          "code": 2,
+          "label": "Les taxes et impôts"
+        },
+        {
+          "code": 3,
+          "label": "L’éducation"
+        },
+        {
+          "code": 4,
+          "label": "L’environnement"
+        },
+        {
+          "code": 5,
+          "label": "Les dépenses publiques et la dette"
+        },
+        {
+          "code": 6,
+          "label": "Le transport"
+        },
+        {
+          "code": 7,
+          "label": "L’économie"
+        },
+        {
+          "code": 8,
+          "label": "Les garderies"
+        },
+        {
+          "code": 9,
+          "label": "La souveraineté du Québec / le fédéralisme"
+        },
+        {
+          "code": 10,
+          "label": "L’éthique et la corruption"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q3",
+      "question_text": "De votre point de vue, y a-t-il un parti plus apte à s’occuper de l'enjeu le plus important ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q3B",
+      "question_text": "Quel parti est le plus apte à s’occuper de cet enjeu ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q4A",
+      "question_text": "Sur une échelle de 0 à 10, où 0 signifie « aucun intérêt » et 10 signifie « beaucoup d’intérêt », quel est votre degré d’intérêt pour... / L'élection provinciale en cours",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucun intérêt"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'intérêt"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q5",
+      "question_text": "Sur une échelle de 0 à 10, où 0 signifie « aucun intérêt » et 10 signifie « beaucoup d’intérêt », quel est votre degré d’intérêt pour... / La politique en général",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucun intérêt"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'intérêt"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q6",
+      "question_text": "Avez-vous déjà voté (par anticipation, par exemple) à l’élection PROVINCIALE en cours ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q6A",
+      "question_text": "Pour quel parti avez-vous voté ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q7",
+      "question_text": "Pour cette élection, est-ce :",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Certain que vous irez voter"
+        },
+        {
+          "code": 2,
+          "label": "Très probable que vous irez voter"
+        },
+        {
+          "code": 3,
+          "label": "Assez probable que vous irez voter"
+        },
+        {
+          "code": 4,
+          "label": "Assez improbable que vous irez voter"
+        },
+        {
+          "code": 5,
+          "label": "Très improbable que vous irez voter"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q8A",
+      "question_text": "Si vous allez voter, ce sera pour le candidat de quel parti ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q8B",
+      "question_text": "À quel parti appartient le candidat pour lequel il est le plus probable que vous votiez ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q9",
+      "question_text": "S’il y avait une élection FÉDÉRALE demain, pour quel parti voteriez-vous ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Bloc québécois"
+        },
+        {
+          "code": 2,
+          "label": "Parti conservateur du Canada"
+        },
+        {
+          "code": 3,
+          "label": "Nouveau parti démocratique"
+        },
+        {
+          "code": 4,
+          "label": "Parti libéral du Canada"
+        },
+        {
+          "code": 5,
+          "label": "Le Parti vert du Canada"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q10A",
+      "question_text": "Associer la photo du chef au parti : / Parti libéral du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 2,
+          "label": "Pierre Paradis"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q10B",
+      "question_text": "Associer la photo du chef au parti : / Parti québécois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 2,
+          "label": "Pierre Paradis"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q10C",
+      "question_text": "Associer la photo du chef au parti : / Québec solidaire",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 2,
+          "label": "Pierre Paradis"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q10D",
+      "question_text": "Associer la photo du chef au parti : / Coalition avenir Québec - L’équipe François Legault",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 2,
+          "label": "Pierre Paradis"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q10E",
+      "question_text": "Associer la photo du chef au parti : / Option nationale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 2,
+          "label": "Pierre Paradis"
+        },
+        {
+          "code": 3,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 4,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q11",
+      "question_text": "Certaines personnes pensent que, peu importe le parti qui est au pouvoir, c’est du pareil au même. D’autres pensent que c’est différent selon le parti qui est au pouvoir. Sur une échelle de 0 à 10, où vous situez-vous ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - C'est du pareil au même"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - C'est vraiment différent"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q12",
+      "question_text": "Certaines personnes pensent que peu importe qui gagne une élection, cela ne fait pas vraiment de différence quant à ce qui se passe par la suite. D'autres pensent que voter fait une grande différence. Sur une échelle de 0 à 10, où vous situez-vous ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Ne fait pas de différence"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Fait une grande différence"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q13",
+      "question_text": "À quel point êtes-vous satisfait des réalisations du gouvernement du Québec dans les derniers 12 mois ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très insatisfait"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt insatisfait"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt satisfait"
+        },
+        {
+          "code": 4,
+          "label": "Très satisfait"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q14",
+      "question_text": "À quel point êtes-vous satisfait des réalisations du gouvernement FÉDÉRAL canadien dans les derniers 12 mois ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très insatisfait"
+        },
+        {
+          "code": 2,
+          "label": "Plutôt insatisfait"
+        },
+        {
+          "code": 3,
+          "label": "Plutôt satisfait"
+        },
+        {
+          "code": 4,
+          "label": "Très satisfait"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q15",
+      "question_text": "Au cours des 12 derniers mois, l’économie QUÉBÉCOISE s’est-elle améliorée, détériorée ou est restée stable ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "S’est détériorée"
+        },
+        {
+          "code": 2,
+          "label": "Est restée stable"
+        },
+        {
+          "code": 3,
+          "label": "S’est améliorée"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q15A",
+      "question_text": "Au cours des 12 derniers mois, les politiques du gouvernement PROVINCIAL ont-elles rendu l'économie québécoise meilleure, pire ou ne l'ont pas influencée ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pire"
+        },
+        {
+          "code": 2,
+          "label": "Pas influencée"
+        },
+        {
+          "code": 3,
+          "label": "Meilleure"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q16",
+      "question_text": "Durant les 12 derniers mois, l'économie CANADIENNE s’est-elle améliorée, détériorée ou est restée stable ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "S’est détériorée"
+        },
+        {
+          "code": 2,
+          "label": "Est restée stable"
+        },
+        {
+          "code": 3,
+          "label": "S’est améliorée"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q16A",
+      "question_text": "Durant les 12 derniers mois, les politiques du gouvernement FÉDÉRAL ont-elles rendu l'économie canadienne meilleure, pire ou ne l'ont pas influencée ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pire"
+        },
+        {
+          "code": 2,
+          "label": "Pas influencée"
+        },
+        {
+          "code": 3,
+          "label": "Meilleure"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17A",
+      "question_text": "Veuillez attribuer une note à chacun des partis politiques QUÉBÉCOIS suivants en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Parti libéral du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17B",
+      "question_text": "Veuillez attribuer une note à chacun des partis politiques QUÉBÉCOIS suivants en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Parti québécois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17C",
+      "question_text": "Veuillez attribuer une note à chacun des partis politiques QUÉBÉCOIS suivants en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Québec solidaire",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17D",
+      "question_text": "Veuillez attribuer une note à chacun des partis politiques QUÉBÉCOIS suivants en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Coalition avenir Québec - L’équipe François Legault",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17E",
+      "question_text": "Veuillez attribuer une note à chacun des partis politiques QUÉBÉCOIS suivants en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Option nationale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q17F",
+      "question_text": "Veuillez attribuer une note à chacun des partis politiques QUÉBÉCOIS suivants en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Parti vert du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q18",
+      "question_text": "Globalement, quel parti préférez-vous ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19A",
+      "question_text": "Veuillez attribuer une note à chacun des chefs de parti suivant en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Jean Charest",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19B",
+      "question_text": "Veuillez attribuer une note à chacun des chefs de parti suivant en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Pauline Marois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19C",
+      "question_text": "Veuillez attribuer une note à chacun des chefs de parti suivant en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Amir Khadir",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19D",
+      "question_text": "Veuillez attribuer une note à chacun des chefs de parti suivant en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Françoise David",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19E",
+      "question_text": "Veuillez attribuer une note à chacun des chefs de parti suivant en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / François Legault",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19F",
+      "question_text": "Veuillez attribuer une note à chacun des chefs de parti suivant en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Jean-Martin Aussant",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19G",
+      "question_text": "Veuillez attribuer une note à chacun des chefs de parti suivant en utilisant une échelle de 0 à 10, où 0 signifie « n’aime pas du tout » et 10 « aime beaucoup » : / Claude Sabourin",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - N'aime pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Aime beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q19AA",
+      "question_text": "Qui préfèreriez-vous comme premier ministre du Québec ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jean Charest"
+        },
+        {
+          "code": 2,
+          "label": "Pauline Marois"
+        },
+        {
+          "code": 3,
+          "label": "Amir Khadir"
+        },
+        {
+          "code": 4,
+          "label": "Françoise David"
+        },
+        {
+          "code": 5,
+          "label": "François Legault"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q20",
+      "question_text": "En utilisant une échelle de 0 à 10, où 0 indique que vous n’y accordez « aucune importance » et 10 que vous y accordez « beaucoup d’importance », quelle importance accordez-vous au parti politique qui formera le gouvernement au Québec après l’élection ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune importance"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'importance"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q22",
+      "question_text": "Selon vous, est-il préférable d'avoir un gouvernement majoritaire, un gouvernement minoritaire ou cela ne fait aucune différence ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Minoritaire"
+        },
+        {
+          "code": 2,
+          "label": "Aucune différence"
+        },
+        {
+          "code": 3,
+          "label": "Majoritaire"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q24A",
+      "question_text": "Quelle est la probabilité que les partis suivants gagnent assez de votes pour avoir au moins un siège à l’Assemblée nationale (0 = très improbable, 10 = très probable) : / Parti libéral du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Très improbable"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très probable"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q24B",
+      "question_text": "Quelle est la probabilité que les partis suivants gagnent assez de votes pour avoir au moins un siège à l’Assemblée nationale (0 = très improbable, 10 = très probable) : / Parti québécois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Très improbable"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très probable"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q24C",
+      "question_text": "Quelle est la probabilité que les partis suivants gagnent assez de votes pour avoir au moins un siège à l’Assemblée nationale (0 = très improbable, 10 = très probable) : / Coalition avenir Québec - L’équipe François Legault",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Très improbable"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très probable"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q25",
+      "question_text": "D’après vous, quel parti obtiendra le plus de sièges lors de cette élection :",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q26",
+      "question_text": "Sur une échelle de 0 à 10, où 0 signifie « aucune importance » et 10 « beaucoup d'importance », quelle importance accordez-vous à ce qu’un candidat, plutôt qu’un autre, soit élu dans votre circonscription ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune importance"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'importance"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q27",
+      "question_text": "Y a-t-il un candidat local que vous aimez particulièrement dans votre circonscription ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q27A",
+      "question_text": "De quel parti est ce candidat local ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28A",
+      "question_text": "Veuillez indiquer les chances qu’ont les candidats de chaque parti de gagner dans votre CIRCONSCRIPTION sur une échelle de 0 à 10 (0 = aucune chance, 10 = certain de gagner) : / Parti libéral du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune chance"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Certain de gagner"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28B",
+      "question_text": "Veuillez indiquer les chances qu’ont les candidats de chaque parti de gagner dans votre CIRCONSCRIPTION sur une échelle de 0 à 10 (0 = aucune chance, 10 = certain de gagner) : / Parti québécois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune chance"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Certain de gagner"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28C",
+      "question_text": "Veuillez indiquer les chances qu’ont les candidats de chaque parti de gagner dans votre CIRCONSCRIPTION sur une échelle de 0 à 10 (0 = aucune chance, 10 = certain de gagner) : / Québec solidaire",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune chance"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Certain de gagner"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28D",
+      "question_text": "Veuillez indiquer les chances qu’ont les candidats de chaque parti de gagner dans votre CIRCONSCRIPTION sur une échelle de 0 à 10 (0 = aucune chance, 10 = certain de gagner) : / Coalition avenir Québec - L’équipe François Legault",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune chance"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Certain de gagner"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28E",
+      "question_text": "Veuillez indiquer les chances qu’ont les candidats de chaque parti de gagner dans votre CIRCONSCRIPTION sur une échelle de 0 à 10 (0 = aucune chance, 10 = certain de gagner) : / Option nationale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune chance"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Certain de gagner"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q28F",
+      "question_text": "Veuillez indiquer les chances qu’ont les candidats de chaque parti de gagner dans votre CIRCONSCRIPTION sur une échelle de 0 à 10 (0 = aucune chance, 10 = certain de gagner) : / Parti vert du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune chance"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Certain de gagner"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29",
+      "question_text": "Croyez-vous que le résultat de l'élection dans votre circonscription sera très serré, assez serré, pas très serré ou pas du tout serré ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout serré"
+        },
+        {
+          "code": 2,
+          "label": "Pas très serré"
+        },
+        {
+          "code": 3,
+          "label": "Assez serré"
+        },
+        {
+          "code": 4,
+          "label": "Très serré"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q29A",
+      "question_text": "Si un référendum avait lieu aujourd’hui vous demandant si vous voulez que le Québec devienne un pays souverain, voteriez-vous « Oui » ou voteriez-vous « Non » ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30A",
+      "question_text": "En politique, les gens parlent parfois de gauche et de droite. Où vous situez-vous sur une échelle de 0 à 10, où 0 signifie « l’extrême gauche » et 10 « l’extrême droite » ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Extrême gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrême droite"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30AA",
+      "question_text": "Où situeriez-vous chacun des partis politiques sur la même échelle de 0 à 10 de gauche à droite ? / Parti libéral du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Extrême gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrême droite"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30AB",
+      "question_text": "Où situeriez-vous chacun des partis politiques sur la même échelle de 0 à 10 de gauche à droite ? / Parti québécois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Extrême gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrême droite"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30AC",
+      "question_text": "Où situeriez-vous chacun des partis politiques sur la même échelle de 0 à 10 de gauche à droite ? / Québec solidaire",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Extrême gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrême droite"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30AD",
+      "question_text": "Où situeriez-vous chacun des partis politiques sur la même échelle de 0 à 10 de gauche à droite ? / Coalition avenir Québec - L’équipe François Legault",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Extrême gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrême droite"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30AE",
+      "question_text": "Où situeriez-vous chacun des partis politiques sur la même échelle de 0 à 10 de gauche à droite ? / Option nationale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Extrême gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrême droite"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30AF",
+      "question_text": "Où situeriez-vous chacun des partis politiques sur la même échelle de 0 à 10 de gauche à droite ? / Parti vert du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Extrême gauche"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrême droite"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30B",
+      "question_text": "Où vous situez-vous sur une échelle de 0 à 10, où 0 signifie être « très favorable aux réductions de taxes et d’impôts » et 10 signifie être « très favorable à l’amélioration des services publics » ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Réductions de taxes et d'impôts"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Amélioration des services publics"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30C",
+      "question_text": "Où vous situez-vous sur une échelle de 0 à 10, où 0 signifie être « très favorable à la redistribution » et 10 signifie être « très opposé à la redistribution » ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Très favorable à la redistribution"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très opposé à la redistribution"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30D",
+      "question_text": "Où vous situez-vous sur une échelle de 0 à 10, où 0 signifie être « très favorable aux sentences lourdes » et 10 signifie être « très favorable aux programmes de réhabilitation » ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Favorable aux sentences lourdes"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Favorable à la réhabilitation"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30E",
+      "question_text": "Où vous situez-vous sur une échelle de 0 à 10, où 0 signifie être « très favorable à l’accueil d’un plus grand nombre d’immigrants » et 10 signifie être « très favorable à la réduction du nombre de nouveaux immigrants » ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Plus grand nombre d'immigrants"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Réduction de l'immigration"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q30F",
+      "question_text": "Sur une échelle de 0 à 10, où 0 signifie « beaucoup moins » et 10 signifie « beaucoup plus », combien les étudiants universitaires devraient-ils payer pour leurs droits de scolarité ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Beaucoup moins"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup plus"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q31",
+      "question_text": "Si vous ne votiez pas à cette élection, vous sentiriez-vous très coupable, assez coupable, pas très coupable, ou pas du tout coupable ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas du tout coupable"
+        },
+        {
+          "code": 2,
+          "label": "Pas très coupable"
+        },
+        {
+          "code": 3,
+          "label": "Assez coupable"
+        },
+        {
+          "code": 4,
+          "label": "Très coupable"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q32A",
+      "question_text": "À quel point pensez-vous que ces gouvernements se soucient de ce que les gens comme vous pensent : / Le gouvernement du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Aucunement"
+        },
+        {
+          "code": 2,
+          "label": "Un peu"
+        },
+        {
+          "code": 3,
+          "label": "Assez"
+        },
+        {
+          "code": 4,
+          "label": "Beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q32B",
+      "question_text": "À quel point pensez-vous que ces gouvernements se soucient de ce que les gens comme vous pensent : / Le gouvernement du Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Aucunement"
+        },
+        {
+          "code": 2,
+          "label": "Un peu"
+        },
+        {
+          "code": 3,
+          "label": "Assez"
+        },
+        {
+          "code": 4,
+          "label": "Beaucoup"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34A",
+      "question_text": "Veuillez indiquer l’importance que ces élections ont pour vous sur une échelle de 0 à 10 (0 = pas importante du tout, 10 = extrêmement importante) : / L'élection provinciale québécoise de 2012",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas importante du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrêmement importante"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34B",
+      "question_text": "Veuillez indiquer l’importance que ces élections ont pour vous sur une échelle de 0 à 10 (0 = pas importante du tout, 10 = extrêmement importante) : / La dernière élection fédérale canadienne (mai 2011)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas importante du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrêmement importante"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q34C",
+      "question_text": "Veuillez indiquer l’importance que ces élections ont pour vous sur une échelle de 0 à 10 (0 = pas importante du tout, 10 = extrêmement importante) : / La dernière élection municipale dans votre municipalité",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas importante du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Extrêmement importante"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q35A1",
+      "question_text": "Êtes-vous fortement d’accord, assez d’accord, assez en désaccord ou fortement en désaccord avec : On ne devrait pas accorder le droit de vote à des gens qui ne connaissent rien à la politique.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "Assez en désaccord"
+        },
+        {
+          "code": 3,
+          "label": "Assez d’accord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement d’accord"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q35A",
+      "question_text": "Êtes-vous fortement d’accord, assez d’accord, assez en désaccord ou fortement en désaccord avec : Parfois, la politique et le gouvernement semblent tellement compliqués qu'une personne comme moi ne peut pas vraiment comprendre ce qui se passe.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "Assez en désaccord"
+        },
+        {
+          "code": 3,
+          "label": "Assez d’accord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement d’accord"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q35B",
+      "question_text": "Êtes-vous fortement d’accord, assez d’accord, assez en désaccord ou fortement en désaccord avec : Les politiciens ne se soucient pas beaucoup de ce que les gens comme moi pensent.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "Assez en désaccord"
+        },
+        {
+          "code": 3,
+          "label": "Assez d’accord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement d’accord"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q35C",
+      "question_text": "Êtes-vous fortement d’accord, assez d’accord, assez en désaccord ou fortement en désaccord avec : Il n'y a pas grand-chose que l'on puisse faire pour changer la façon dont le gouvernement agit.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "Assez en désaccord"
+        },
+        {
+          "code": 3,
+          "label": "Assez d’accord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement d’accord"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q35D",
+      "question_text": "Êtes-vous fortement d’accord, assez d’accord, assez en désaccord ou fortement en désaccord avec : Les gens comme moi n'ont aucun pouvoir sur ce que fait le gouvernement.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "Assez en désaccord"
+        },
+        {
+          "code": 3,
+          "label": "Assez d’accord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement d’accord"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q36",
+      "question_text": "Votre situation financière est-elle meilleure, pire ou à peu près la même qu'il y a un an ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pire"
+        },
+        {
+          "code": 2,
+          "label": "À peu près la même"
+        },
+        {
+          "code": 3,
+          "label": "Meilleure"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q37",
+      "question_text": "Au cours de la dernière année, les politiques du gouvernement QUÉBÉCOIS ont-elles amélioré votre situation financière, ont-elles nui à votre situation financière, ou n’ont-elles pas changé grand-chose ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Nui à ma situation"
+        },
+        {
+          "code": 2,
+          "label": "Pas changé grand-chose"
+        },
+        {
+          "code": 3,
+          "label": "Amélioré ma situation"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q38",
+      "question_text": "Au cours de la dernière année, les politiques du gouvernement FÉDÉRAL ont-elles amélioré votre situation financière, ont-elles nui à votre situation financière, ou n’ont-elles pas changé grand-chose ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Nui à ma situation"
+        },
+        {
+          "code": 2,
+          "label": "Pas changé grand-chose"
+        },
+        {
+          "code": 3,
+          "label": "Amélioré ma situation"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q40",
+      "question_text": "Veuillez indiquer si l'affirmation suivante est vraie ou fausse : « pour être élu, un candidat à l'élection provinciale doit obtenir plus de la moitié des votes dans une circonscription ».",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Vrai"
+        },
+        {
+          "code": 2,
+          "label": "Faux"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q41",
+      "question_text": "Dans notre système électoral actuel, un parti peut gagner une majorité de sièges sans avoir la majorité des votes. Trouvez-vous cela très acceptable, acceptable, ni acceptable ni inacceptable, inacceptable ou très inacceptable ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très inacceptable"
+        },
+        {
+          "code": 2,
+          "label": "Inacceptable"
+        },
+        {
+          "code": 3,
+          "label": "Ni acceptable ni inacceptable"
+        },
+        {
+          "code": 4,
+          "label": "Acceptable"
+        },
+        {
+          "code": 5,
+          "label": "Très acceptable"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42A",
+      "question_text": "Sur une échelle de 0 à 10, quelle influence les politiques des gouvernements suivants ont-elles sur votre bien-être (0 = très petit impact, 10 = très grand impact) : / Le gouvernement du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Très petit impact"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très grand impact"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42B",
+      "question_text": "Sur une échelle de 0 à 10, quelle influence les politiques des gouvernements suivants ont-elles sur votre bien-être (0 = très petit impact, 10 = très grand impact) : / Le gouvernement du Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Très petit impact"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très grand impact"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q42C",
+      "question_text": "Sur une échelle de 0 à 10, quelle influence les politiques des gouvernements suivants ont-elles sur votre bien-être (0 = très petit impact, 10 = très grand impact) : / Votre gouvernement municipal",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Très petit impact"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très grand impact"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q43A",
+      "question_text": "Sur une échelle de 0 à 10, à quel point êtes-vous attaché au/à (0 = pas attaché du tout, 10 = très attaché) : / Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas attaché du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très attaché"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q43B",
+      "question_text": "Sur une échelle de 0 à 10, à quel point êtes-vous attaché au/à (0 = pas attaché du tout, 10 = très attaché) : / Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas attaché du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très attaché"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q43C",
+      "question_text": "Sur une échelle de 0 à 10, à quel point êtes-vous attaché au/à (0 = pas attaché du tout, 10 = très attaché) : / Votre municipalité",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas attaché du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très attaché"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q44A",
+      "question_text": "Pour vous personnellement, est-ce que voter est avant tout un devoir ou un choix ? / Aux élections provinciales",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Devoir"
+        },
+        {
+          "code": 2,
+          "label": "Choix"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q44B",
+      "question_text": "Pour vous personnellement, est-ce que voter est avant tout un devoir ou un choix ? / Aux élections fédérales",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Devoir"
+        },
+        {
+          "code": 2,
+          "label": "Choix"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q44C",
+      "question_text": "Pour vous personnellement, est-ce que voter est avant tout un devoir ou un choix ? / Aux élections municipales",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Devoir"
+        },
+        {
+          "code": 2,
+          "label": "Choix"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q45A",
+      "question_text": "À quel point considérez-vous que voter est un devoir : très fortement, assez fortement, ou peu fortement ? / En politique provinciale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Peu fortement"
+        },
+        {
+          "code": 2,
+          "label": "Assez fortement"
+        },
+        {
+          "code": 3,
+          "label": "Très fortement"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q45B",
+      "question_text": "À quel point considérez-vous que voter est un devoir : très fortement, assez fortement, ou peu fortement ? / En politique fédérale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Peu fortement"
+        },
+        {
+          "code": 2,
+          "label": "Assez fortement"
+        },
+        {
+          "code": 3,
+          "label": "Très fortement"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q45C",
+      "question_text": "À quel point considérez-vous que voter est un devoir : très fortement, assez fortement, ou peu fortement ? / En politique municipale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Peu fortement"
+        },
+        {
+          "code": 2,
+          "label": "Assez fortement"
+        },
+        {
+          "code": 3,
+          "label": "Très fortement"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q45AA",
+      "question_text": "Laquelle des affirmations suivantes décrit le mieux votre sentiment ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Je me sens seulement Canadien"
+        },
+        {
+          "code": 2,
+          "label": "Je me sens plus Canadien que Québécois"
+        },
+        {
+          "code": 3,
+          "label": "Je me sens autant Canadien que Québécois"
+        },
+        {
+          "code": 4,
+          "label": "Je me sens plus Québécois que Canadien"
+        },
+        {
+          "code": 5,
+          "label": "Je me sens seulement Québécois"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q46",
+      "question_text": "De façon générale, vous sentez-vous proche d'un parti politique PROVINCIAL au Québec ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q46A",
+      "question_text": "De quel parti vous sentez-vous le plus proche ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q46B",
+      "question_text": "Vous sentez-vous très proche, assez proche, ou pas très proche du parti provincial dont vous vous sentez le plus proche ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas très proche"
+        },
+        {
+          "code": 2,
+          "label": "Assez proche"
+        },
+        {
+          "code": 3,
+          "label": "Très proche"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q47",
+      "question_text": "De façon générale, vous sentez-vous proche d'un parti politique FÉDÉRAL ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q47A",
+      "question_text": "De quel parti fédéral vous sentez-vous le plus proche ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Bloc québécois"
+        },
+        {
+          "code": 2,
+          "label": "Parti conservateur du Canada"
+        },
+        {
+          "code": 3,
+          "label": "Nouveau parti démocratique"
+        },
+        {
+          "code": 4,
+          "label": "Parti libéral du Canada"
+        },
+        {
+          "code": 5,
+          "label": "Le Parti vert du Canada"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q47B",
+      "question_text": "Vous sentez-vous très proche, assez proche, ou pas très proche du parti fédéral dont vous vous sentez le plus proche ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Pas très proche"
+        },
+        {
+          "code": 2,
+          "label": "Assez proche"
+        },
+        {
+          "code": 3,
+          "label": "Très proche"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q48",
+      "question_text": "Pour certaines personnes voter est simple et facile. Pour d'autres, c'est difficile ou compliqué. Pour vous, est-il facile ou difficile de voter ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très difficile"
+        },
+        {
+          "code": 2,
+          "label": "Assez difficile"
+        },
+        {
+          "code": 3,
+          "label": "Assez facile"
+        },
+        {
+          "code": 4,
+          "label": "Très facile"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q49",
+      "question_text": "À quel point croyez-vous que vos opinions sont reflétées à l’Assemblée nationale du Québec (0 = pas du tout, 10 = très bien) ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très bien"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q50A",
+      "question_text": "Diriez-vous qu'il y a très peu de corruption, un peu de corruption, moyennement de corruption ou beaucoup de corruption au : / Gouvernement du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très peu de corruption"
+        },
+        {
+          "code": 2,
+          "label": "Un peu de corruption"
+        },
+        {
+          "code": 3,
+          "label": "Moyennement de corruption"
+        },
+        {
+          "code": 4,
+          "label": "Beaucoup de corruption"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q50B",
+      "question_text": "Diriez-vous qu'il y a très peu de corruption, un peu de corruption, moyennement de corruption ou beaucoup de corruption au : / Gouvernement du Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très peu de corruption"
+        },
+        {
+          "code": 2,
+          "label": "Un peu de corruption"
+        },
+        {
+          "code": 3,
+          "label": "Moyennement de corruption"
+        },
+        {
+          "code": 4,
+          "label": "Beaucoup de corruption"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q50C",
+      "question_text": "Diriez-vous qu'il y a très peu de corruption, un peu de corruption, moyennement de corruption ou beaucoup de corruption au : / Niveau municipal",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Très peu de corruption"
+        },
+        {
+          "code": 2,
+          "label": "Un peu de corruption"
+        },
+        {
+          "code": 3,
+          "label": "Moyennement de corruption"
+        },
+        {
+          "code": 4,
+          "label": "Beaucoup de corruption"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD10",
+      "question_text": "Étudiez-vous actuellement dans un collège ou une université ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui, à temps plein"
+        },
+        {
+          "code": 2,
+          "label": "Oui, à temps partiel"
+        },
+        {
+          "code": 3,
+          "label": "Non"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD3",
+      "question_text": "Quelle est votre religion, si vous en avez une ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Anglicane / Église de l’Angleterre"
+        },
+        {
+          "code": 2,
+          "label": "Baptiste"
+        },
+        {
+          "code": 3,
+          "label": "Bouddhiste / Bouddhisme"
+        },
+        {
+          "code": 4,
+          "label": "Catholique"
+        },
+        {
+          "code": 5,
+          "label": "Orthodoxe grecque/ukrainienne/russe"
+        },
+        {
+          "code": 6,
+          "label": "Hindoue / Hindouisme"
+        },
+        {
+          "code": 7,
+          "label": "Islam / Musulmane"
+        },
+        {
+          "code": 8,
+          "label": "Témoins de Jéhovah"
+        },
+        {
+          "code": 9,
+          "label": "Judaïsme / Juive"
+        },
+        {
+          "code": 10,
+          "label": "Luthérienne"
+        },
+        {
+          "code": 11,
+          "label": "Mormone"
+        },
+        {
+          "code": 12,
+          "label": "Protestante"
+        },
+        {
+          "code": 13,
+          "label": "Sikh"
+        },
+        {
+          "code": 14,
+          "label": "Église unie du Canada"
+        },
+        {
+          "code": 15,
+          "label": "Aucune religion"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "religion",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD3B",
+      "question_text": "À l'exception d'occasions spéciales comme les mariages et les cérémonies funéraires, à quelle fréquence assistez-vous à des services religieux ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Jamais"
+        },
+        {
+          "code": 2,
+          "label": "Moins souvent"
+        },
+        {
+          "code": 3,
+          "label": "Seulement lors des fêtes religieuses"
+        },
+        {
+          "code": 4,
+          "label": "Au moins une fois par mois"
+        },
+        {
+          "code": 5,
+          "label": "Une fois par semaine"
+        },
+        {
+          "code": 6,
+          "label": "Plus d'une fois par semaine"
+        },
+        {
+          "code": 7,
+          "label": "Tous les jours"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "religion_practice",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD5",
+      "question_text": "Laquelle des options suivantes décrit le mieux le revenu annuel avant impôt de votre ménage ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Moins de 20,000$"
+        },
+        {
+          "code": 2,
+          "label": "20,000$-29,999$"
+        },
+        {
+          "code": 3,
+          "label": "30,000$-39,999$"
+        },
+        {
+          "code": 4,
+          "label": "40,000$-49,999$"
+        },
+        {
+          "code": 5,
+          "label": "50,000$-59,999$"
+        },
+        {
+          "code": 6,
+          "label": "60,000$-69,999$"
+        },
+        {
+          "code": 7,
+          "label": "70,000$-79,999$"
+        },
+        {
+          "code": 8,
+          "label": "80,000$-89,999$"
+        },
+        {
+          "code": 9,
+          "label": "90,000$-99,999$"
+        },
+        {
+          "code": 10,
+          "label": "100,000$-119,999$"
+        },
+        {
+          "code": 11,
+          "label": "120,000$ et plus"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD6",
+      "question_text": "Êtes-vous né au Canada ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "place_of_birth",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD6A",
+      "question_text": "Dans quel pays êtes-vous né ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Albanie"
+        },
+        {
+          "code": 2,
+          "label": "Algérie"
+        },
+        {
+          "code": 3,
+          "label": "Argentine"
+        },
+        {
+          "code": 4,
+          "label": "Australie"
+        },
+        {
+          "code": 96,
+          "label": "Autre pays"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "place_of_birth",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD6B",
+      "question_text": "Votre mère est-elle née au Canada ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "place_of_birth",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD6C",
+      "question_text": "Dans quel pays est née votre mère ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Albanie"
+        },
+        {
+          "code": 2,
+          "label": "Algérie"
+        },
+        {
+          "code": 3,
+          "label": "Argentine"
+        },
+        {
+          "code": 4,
+          "label": "Australie"
+        },
+        {
+          "code": 96,
+          "label": "Autre pays"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "place_of_birth",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD6D",
+      "question_text": "Depuis combien d'années vivez-vous au Canada ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 999,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "immigration_years",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD6E",
+      "question_text": "Depuis combien d'années vivez-vous au Québec ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 999,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "residence_years",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD7",
+      "question_text": "Quelle expression décrit le mieux l'endroit où vous vivez ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Une grande ville"
+        },
+        {
+          "code": 2,
+          "label": "Une banlieue ou proche d'une grande ville"
+        },
+        {
+          "code": 3,
+          "label": "Une municipalité ou petite ville"
+        },
+        {
+          "code": 4,
+          "label": "Un village"
+        },
+        {
+          "code": 5,
+          "label": "La campagne"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD8",
+      "question_text": "Lors des dernières élections PROVINCIALES, en décembre 2008, pour quel parti avez-vous voté ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Action démocratique du Québec"
+        },
+        {
+          "code": 3,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 4,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 5,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 96,
+          "label": "Autre parti"
+        },
+        {
+          "code": 97,
+          "label": "N'a pas voté"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SD9",
+      "question_text": "Lors de la dernière élection FÉDÉRALE, en mai 2011, pour quel parti avez-vous voté ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Bloc québécois"
+        },
+        {
+          "code": 2,
+          "label": "Parti conservateur du Canada"
+        },
+        {
+          "code": 3,
+          "label": "Nouveau parti démocratique"
+        },
+        {
+          "code": 4,
+          "label": "Parti libéral du Canada"
+        },
+        {
+          "code": 5,
+          "label": "Le Parti vert du Canada"
+        },
+        {
+          "code": 96,
+          "label": "Autre parti"
+        },
+        {
+          "code": 97,
+          "label": "N'a pas voté"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ2A",
+      "question_text": "De quels enjeux les partis ont-ils le plus parlé pendant la campagne électorale ? / Parti libéral du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "La santé"
+        },
+        {
+          "code": 2,
+          "label": "Les taxes et impôts"
+        },
+        {
+          "code": 3,
+          "label": "L’éducation"
+        },
+        {
+          "code": 4,
+          "label": "L’environnement"
+        },
+        {
+          "code": 5,
+          "label": "La dette et l’économie"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ2B",
+      "question_text": "De quels enjeux les partis ont-ils le plus parlé pendant la campagne électorale ? / Parti québécois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "La santé"
+        },
+        {
+          "code": 2,
+          "label": "Les taxes et impôts"
+        },
+        {
+          "code": 3,
+          "label": "L’éducation"
+        },
+        {
+          "code": 4,
+          "label": "L’environnement"
+        },
+        {
+          "code": 5,
+          "label": "La dette et l’économie"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ2C",
+      "question_text": "De quels enjeux les partis ont-ils le plus parlé pendant la campagne électorale ? / Québec solidaire",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "La santé"
+        },
+        {
+          "code": 2,
+          "label": "Les taxes et impôts"
+        },
+        {
+          "code": 3,
+          "label": "L’éducation"
+        },
+        {
+          "code": 4,
+          "label": "L’environnement"
+        },
+        {
+          "code": 5,
+          "label": "La dette et l’économie"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ2D",
+      "question_text": "De quels enjeux les partis ont-ils le plus parlé pendant la campagne électorale ? / Coalition avenir Québec - L’équipe François Legault",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "La santé"
+        },
+        {
+          "code": 2,
+          "label": "Les taxes et impôts"
+        },
+        {
+          "code": 3,
+          "label": "L’éducation"
+        },
+        {
+          "code": 4,
+          "label": "L’environnement"
+        },
+        {
+          "code": 5,
+          "label": "La dette et l’économie"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ2E",
+      "question_text": "De quels enjeux les partis ont-ils le plus parlé pendant la campagne électorale ? / Option nationale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "La santé"
+        },
+        {
+          "code": 2,
+          "label": "Les taxes et impôts"
+        },
+        {
+          "code": 3,
+          "label": "L’éducation"
+        },
+        {
+          "code": 4,
+          "label": "L’environnement"
+        },
+        {
+          "code": 5,
+          "label": "La dette et l’économie"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ2F",
+      "question_text": "De quels enjeux les partis ont-ils le plus parlé pendant la campagne électorale ? / Parti vert du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "La santé"
+        },
+        {
+          "code": 2,
+          "label": "Les taxes et impôts"
+        },
+        {
+          "code": 3,
+          "label": "L’éducation"
+        },
+        {
+          "code": 4,
+          "label": "L’environnement"
+        },
+        {
+          "code": 5,
+          "label": "La dette et l’économie"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ3A",
+      "question_text": "Durant la campagne, quel parti a promis : d'introduire une déduction fiscale de 30% ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ3B",
+      "question_text": "Durant la campagne, quel parti a promis : que les parents bénéficieraient d'un rabais sur la taxe scolaire ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ3C",
+      "question_text": "Durant la campagne, quel parti a promis : $100 aux parents ayant des enfants d'âge scolaire ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ5_1",
+      "question_text": "À chaque élection, plusieurs personnes sont incapables de voter parce qu’elles ne sont pas inscrites sur la liste électorale, elles sont malades ou elles n’ont pas le temps. Laquelle des situations suivantes correspond le mieux à votre cas ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Je n'ai pas voté à cette élection"
+        },
+        {
+          "code": 2,
+          "label": "Je voulais voter mais ne suis pas allé voter"
+        },
+        {
+          "code": 3,
+          "label": "Je vote généralement mais ne suis pas allé cette fois-ci"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ5_2",
+      "question_text": "À chaque élection, plusieurs personnes sont incapables de voter. Avez-vous été capable de voter à cette élection ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas/Préfère ne pas répondre"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ5A",
+      "question_text": "Quand avez-vous décidé de ne pas voter ou réalisé que vous ne pourriez pas voter ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Des mois avant le jour du vote"
+        },
+        {
+          "code": 2,
+          "label": "Quelques semaines avant le jour du vote"
+        },
+        {
+          "code": 3,
+          "label": "Quelques jours avant le jour du vote"
+        },
+        {
+          "code": 4,
+          "label": "Le jour du vote"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ5B",
+      "question_text": "Considérez-vous que la décision de ne pas voter était :",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Une très mauvaise décision"
+        },
+        {
+          "code": 2,
+          "label": "Une assez mauvaise décision"
+        },
+        {
+          "code": 3,
+          "label": "Une assez bonne décision"
+        },
+        {
+          "code": 4,
+          "label": "Une très bonne décision"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ5C",
+      "question_text": "Avez-vous voté le jour du vote, par anticipation ou par mesure spéciale ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Le jour du vote"
+        },
+        {
+          "code": 2,
+          "label": "Par anticipation"
+        },
+        {
+          "code": 3,
+          "label": "Par mesure spéciale"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ5D",
+      "question_text": "Quand avez-vous décidé de voter ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Des mois avant le jour du vote"
+        },
+        {
+          "code": 2,
+          "label": "Quelques semaines avant le jour du vote"
+        },
+        {
+          "code": 3,
+          "label": "Quelques jours avant le jour du vote"
+        },
+        {
+          "code": 4,
+          "label": "Le jour du vote"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ5E",
+      "question_text": "Considérez-vous que la décision de voter était :",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Une très mauvaise décision"
+        },
+        {
+          "code": 2,
+          "label": "Une assez mauvaise décision"
+        },
+        {
+          "code": 3,
+          "label": "Une assez bonne décision"
+        },
+        {
+          "code": 4,
+          "label": "Une très bonne décision"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ5F",
+      "question_text": "Avez-vous considéré la possibilité de ne pas voter ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ6",
+      "question_text": "Pour le candidat de quel parti avez-vous voté ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ6A",
+      "question_text": "Avez-vous considéré la possibilité de voter pour un autre parti ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ6B",
+      "question_text": "Quel autre parti avez-vous considéré ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ6C",
+      "question_text": "Quand avez-vous décidé de voter pour le parti que vous avez choisi ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Des mois avant le jour du vote"
+        },
+        {
+          "code": 2,
+          "label": "Quelques semaines avant le jour du vote"
+        },
+        {
+          "code": 3,
+          "label": "Quelques jours avant le jour du vote"
+        },
+        {
+          "code": 4,
+          "label": "Le jour du vote"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ6D",
+      "question_text": "Considérez-vous que votre choix de vote était :",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Une très mauvaise décision"
+        },
+        {
+          "code": 2,
+          "label": "Une assez mauvaise décision"
+        },
+        {
+          "code": 3,
+          "label": "Une assez bonne décision"
+        },
+        {
+          "code": 4,
+          "label": "Une très bonne décision"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ8",
+      "question_text": "Diriez-vous que le parti pour lequel vous avez voté a gagné l'élection ou a perdu l'élection ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "A gagné l'élection"
+        },
+        {
+          "code": 2,
+          "label": "A perdu l'élection"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ9A",
+      "question_text": "À quel point avez-vous été attentif aux nouvelles concernant l'élection (0 = aucune attention, 10 = beaucoup d'attention) : / À la télévision",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune attention"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'attention"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ9B",
+      "question_text": "À quel point avez-vous été attentif aux nouvelles concernant l'élection (0 = aucune attention, 10 = beaucoup d'attention) : / Dans les journaux",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune attention"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'attention"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ9C",
+      "question_text": "À quel point avez-vous été attentif aux nouvelles concernant l'élection (0 = aucune attention, 10 = beaucoup d'attention) : / À la radio",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune attention"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'attention"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ9D",
+      "question_text": "À quel point avez-vous été attentif aux nouvelles concernant l'élection (0 = aucune attention, 10 = beaucoup d'attention) : / Sur internet",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune attention"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'attention"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ9F",
+      "question_text": "À quel point avez-vous été attentif aux nouvelles concernant l'élection (0 = aucune attention, 10 = beaucoup d'attention) : / Aux débats des chefs à la télévision",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Aucune attention"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Beaucoup d'attention"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ10A",
+      "question_text": "Durant la campagne, avez-vous utilisé ces moyens pour en apprendre plus sur l’élection ? / Le site web d'un candidat ou d'un parti",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ10B",
+      "question_text": "Durant la campagne, avez-vous utilisé ces moyens pour en apprendre plus sur l’élection ? / Les réseaux sociaux (ex. Facebook, Twitter)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ10C",
+      "question_text": "Durant la campagne, avez-vous utilisé ces moyens pour en apprendre plus sur l’élection ? / Les sites d'actualités et journaux en ligne",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ10D",
+      "question_text": "Durant la campagne, avez-vous utilisé ces moyens pour en apprendre plus sur l’élection ? / Les blogues politiques",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ10E",
+      "question_text": "Durant la campagne, avez-vous utilisé ces moyens pour en apprendre plus sur l’élection ? / Les vidéos en ligne (ex. YouTube)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ10F",
+      "question_text": "Durant la campagne, avez-vous utilisé ces moyens pour en apprendre plus sur l’élection ? / Les applications mobiles ou jeux en ligne",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ11",
+      "question_text": "Avez-vous utilisé la Boussole électorale québécoise ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas / Ne me rappelle pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ12",
+      "question_text": "Avez-vous regardé l’un ou l’autre des débats des chefs ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ13A",
+      "question_text": "Veuillez indiquer si vous êtes familier avec ce slogan de campagne électorale : / À nous de choisir",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Familier"
+        },
+        {
+          "code": 2,
+          "label": "Pas familier"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ13B",
+      "question_text": "Veuillez indiquer si vous êtes familier avec ce slogan de campagne électorale : / C'est à vous de choisir",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Familier"
+        },
+        {
+          "code": 2,
+          "label": "Pas familier"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ13C",
+      "question_text": "Veuillez indiquer si vous êtes familier avec ce slogan de campagne électorale : / La force de l'action",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Familier"
+        },
+        {
+          "code": 2,
+          "label": "Pas familier"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ13D",
+      "question_text": "Veuillez indiquer si vous êtes familier avec ce slogan de campagne électorale : / Le Québec a besoin d'un changement",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Familier"
+        },
+        {
+          "code": 2,
+          "label": "Pas familier"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ13E",
+      "question_text": "Veuillez indiquer si vous êtes familier avec ce slogan de campagne électorale : / On a le droit de choisir",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Familier"
+        },
+        {
+          "code": 2,
+          "label": "Pas familier"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ13F",
+      "question_text": "Veuillez indiquer si vous êtes familier avec ce slogan de campagne électorale : / Travailler pour le Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Familier"
+        },
+        {
+          "code": 2,
+          "label": "Pas familier"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ14A",
+      "question_text": "Pouvez-vous indiquer quel parti est associé au slogan : À nous de choisir ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ14B",
+      "question_text": "Pouvez-vous indiquer quel parti est associé au slogan : C'est à vous de choisir ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ14C",
+      "question_text": "Pouvez-vous indiquer quel parti est associé au slogan : La force de l'action ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ14D",
+      "question_text": "Pouvez-vous indiquer quel parti est associé au slogan : Le Québec a besoin d'un changement ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ14E",
+      "question_text": "Pouvez-vous indiquer quel parti est associé au slogan : On a le droit de choisir ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ14F",
+      "question_text": "Pouvez-vous indiquer quel parti est associé au slogan : Travailler pour le Québec ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Parti libéral du Québec"
+        },
+        {
+          "code": 2,
+          "label": "Parti québécois"
+        },
+        {
+          "code": 3,
+          "label": "Québec solidaire"
+        },
+        {
+          "code": 4,
+          "label": "Coalition avenir Québec - L’équipe François Legault"
+        },
+        {
+          "code": 5,
+          "label": "Option nationale"
+        },
+        {
+          "code": 6,
+          "label": "Parti vert du Québec"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 98,
+          "label": "Ne sais pas"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ15A",
+      "question_text": "Durant la campagne électorale, avez-vous appuyé un candidat ou un parti en : / Posant une affiche ou une pancarte",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ15B",
+      "question_text": "Durant la campagne électorale, avez-vous appuyé un candidat ou un parti en : / Donnant de l'argent",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ15C",
+      "question_text": "Durant la campagne électorale, avez-vous appuyé un candidat ou un parti en : / Faisant du bénévolat",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ15D",
+      "question_text": "Durant la campagne électorale, avez-vous appuyé un candidat ou un parti en : / Assistant à une assemblée ou un ralliement",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ16A",
+      "question_text": "Durant la campagne électorale, est-ce que l'une des personnes suivantes vous a encouragé à voter pour un candidat ou un parti : / Un ami",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ16B",
+      "question_text": "Durant la campagne électorale, est-ce que l'une des personnes suivantes vous a encouragé à voter pour un candidat ou un parti : / Un membre de la famille",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ16C",
+      "question_text": "Durant la campagne électorale, est-ce que l'une des personnes suivantes vous a encouragé à voter pour un candidat ou un parti : / Un collègue de travail",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ16D",
+      "question_text": "Durant la campagne électorale, est-ce que l'une des personnes suivantes vous a encouragé à voter pour un candidat ou un parti : / Un voisin",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17A",
+      "question_text": "Durant la campagne, est-ce qu'un candidat ou un parti politique vous a contacté : / En personne à votre porte",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17B",
+      "question_text": "Durant la campagne, est-ce qu'un candidat ou un parti politique vous a contacté : / Par téléphone avec une personne réelle",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17C",
+      "question_text": "Durant la campagne, est-ce qu'un candidat ou un parti politique vous a contacté : / Par téléphone avec un message enregistré (robocall)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17D",
+      "question_text": "Durant la campagne, est-ce qu'un candidat ou un parti politique vous a contacté : / Par la poste ou par dépliant",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17E",
+      "question_text": "Durant la campagne, est-ce qu'un candidat ou un parti politique vous a contacté : / Par courriel",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17AAM1",
+      "question_text": "Quels partis ou candidats vous ont contacté ? / Parti libéral du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Sélectionné"
+        },
+        {
+          "code": 0,
+          "label": "Non sélectionné"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17AAM2",
+      "question_text": "Quels partis ou candidats vous ont contacté ? / Parti québécois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Sélectionné"
+        },
+        {
+          "code": 0,
+          "label": "Non sélectionné"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17AAM3",
+      "question_text": "Quels partis ou candidats vous ont contacté ? / Québec solidaire",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Sélectionné"
+        },
+        {
+          "code": 0,
+          "label": "Non sélectionné"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17AAM4",
+      "question_text": "Quels partis ou candidats vous ont contacté ? / Coalition avenir Québec - L’équipe François Legault",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Sélectionné"
+        },
+        {
+          "code": 0,
+          "label": "Non sélectionné"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17AAM5",
+      "question_text": "Quels partis ou candidats vous ont contacté ? / Option nationale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Sélectionné"
+        },
+        {
+          "code": 0,
+          "label": "Non sélectionné"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17AAM6",
+      "question_text": "Quels partis ou candidats vous ont contacté ? / Parti vert du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Sélectionné"
+        },
+        {
+          "code": 0,
+          "label": "Non sélectionné"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17AAM7",
+      "question_text": "Quels partis ou candidats vous ont contacté ? / Autre parti ou candidat",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Sélectionné"
+        },
+        {
+          "code": 0,
+          "label": "Non sélectionné"
+        }
+      ],
+      "var_type": "multiple",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17BA",
+      "question_text": "Est-ce que l’un des partis qui vous a contacté vous a encouragé à voter de façon stratégique : / Parti libéral du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17BB",
+      "question_text": "Est-ce que l’un des partis qui vous a contacté vous a encouragé à voter de façon stratégique : / Parti québécois",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17BC",
+      "question_text": "Est-ce que l’un des partis qui vous a contacté vous a encouragé à voter de façon stratégique : / Québec solidaire",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17BD",
+      "question_text": "Est-ce que l’un des partis qui vous a contacté vous a encouragé à voter de façon stratégique : / Coalition avenir Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17BE",
+      "question_text": "Est-ce que l’un des partis qui vous a contacté vous a encouragé à voter de façon stratégique : / Option nationale",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17BF",
+      "question_text": "Est-ce que l’un des partis qui vous a contacté vous a encouragé à voter de façon stratégique : / Parti vert du Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ17BG",
+      "question_text": "Est-ce que l’un des partis qui vous a contacté vous a encouragé à voter de façon stratégique : / Autre parti",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ18A",
+      "question_text": "Au cours des 12 derniers mois, avez-vous : Contacté un représentant élu ou un fonctionnaire",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ18B",
+      "question_text": "Au cours des 12 derniers mois, avez-vous : Acheté ou boycotté certains produits pour des raisons politiques, éthiques ou environnementales",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ18C",
+      "question_text": "Au cours des 12 derniers mois, avez-vous : Participé à une manifestation ou un rassemblement public",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ18D",
+      "question_text": "Au cours des 12 derniers mois, avez-vous : Signé une pétition",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ19",
+      "question_text": "Veuillez noter la dernière élection québécoise sur une échelle de 0 à 10, où 0 signifie que l’élection a été conduite de façon « très inéquitable » et 10 qu’elle a été conduite de façon « très équitable ».",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Très inéquitable"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très équitable"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ20",
+      "question_text": "Sur une échelle de 0 à 10 (0 = pas du tout fidèlement, 10 = très fidèlement) : à quel point croyez-vous que le résultat de l'élection représente le point de vue des électeurs ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas du tout fidèlement"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très fidèlement"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ24",
+      "question_text": "Croyez-vous que l’élection a surtout porté sur les enjeux actuels les plus importants ou plutôt sur le choix des meilleures personnes pour gouverner ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Enjeux les plus importants"
+        },
+        {
+          "code": 2,
+          "label": "Meilleures personnes pour gouverner"
+        },
+        {
+          "code": 3,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ25",
+      "question_text": "Quel enjeu était le plus important dans cette élection ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "La santé"
+        },
+        {
+          "code": 2,
+          "label": "Les taxes et impôts"
+        },
+        {
+          "code": 3,
+          "label": "L’éducation"
+        },
+        {
+          "code": 4,
+          "label": "L’environnement"
+        },
+        {
+          "code": 5,
+          "label": "Les dépenses publiques et la dette"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ26B",
+      "question_text": "Êtes-vous fortement d’accord, assez d’accord, assez en désaccord ou très en désaccord avec : Les cours universitaires ne devraient pas coûter plus cher aux étudiants.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "Assez en désaccord"
+        },
+        {
+          "code": 3,
+          "label": "Assez d’accord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement d’accord"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ26C",
+      "question_text": "Êtes-vous fortement d’accord, assez d’accord, assez en désaccord ou très en désaccord avec : La corruption est inévitable en politique.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "Assez en désaccord"
+        },
+        {
+          "code": 3,
+          "label": "Assez d’accord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement d’accord"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ26D",
+      "question_text": "Êtes-vous fortement d’accord, assez d’accord, assez en désaccord ou très en désaccord avec : Le gouvernement devrait dépenser plus pour les services de santé.",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Fortement en désaccord"
+        },
+        {
+          "code": 2,
+          "label": "Assez en désaccord"
+        },
+        {
+          "code": 3,
+          "label": "Assez d’accord"
+        },
+        {
+          "code": 4,
+          "label": "Fortement d’accord"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PSD1",
+      "question_text": "Est-ce que quelqu'un dans votre ménage fait partie d'un syndicat ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Oui"
+        },
+        {
+          "code": 2,
+          "label": "Non"
+        },
+        {
+          "code": 9,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "union",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PSD2",
+      "question_text": "Combien de personnes dans votre ménage ont moins de 18 ans ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 99,
+          "label": "Ne sais pas"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "household_children",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PSD3",
+      "question_text": "Laquelle de ces descriptions décrit le mieux votre type de travail ?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Professionnel à son compte et grand employeur"
+        },
+        {
+          "code": 2,
+          "label": "Propriétaire de petite entreprise, travailleur autonome"
+        },
+        {
+          "code": 3,
+          "label": "Expert technique et technicien"
+        },
+        {
+          "code": 4,
+          "label": "Cadre supérieur et gestionnaire"
+        },
+        {
+          "code": 5,
+          "label": "Employé de bureau et de service"
+        },
+        {
+          "code": 6,
+          "label": "Ouvrier spécialisé ou qualifié"
+        },
+        {
+          "code": 7,
+          "label": "Ouvrier non spécialisé"
+        },
+        {
+          "code": 8,
+          "label": "Agriculteur / exploitant agricole"
+        },
+        {
+          "code": 9,
+          "label": "Autre type de travail"
+        },
+        {
+          "code": 99,
+          "label": "Pas de réponse"
+        }
+      ],
+      "var_type": "single",
+      "is_sociodemo": true,
+      "sociodemo_type": "employment",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q1A",
+      "question_text": "À l’aide d’une échelle de 0 à 10, où 0 signifie « pas satisfait du tout » et 10 signifie « très satisfait », veuillez indiquer si vous êtes satisfait de la façon dont fonctionne la démocratie : / Au Québec",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas satisfait du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très satisfait"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Q1B",
+      "question_text": "À l’aide d’une échelle de 0 à 10, où 0 signifie « pas satisfait du tout » et 10 signifie « très satisfait », veuillez indiquer si vous êtes satisfait de la façon dont fonctionne la démocratie : / Au Canada",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas satisfait du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très satisfait"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ1A",
+      "question_text": "À l’aide d’une échelle de 0 à 10, où 0 signifie « pas satisfait du tout » et 10 signifie « très satisfait », veuillez indiquer si vous êtes satisfait de la façon dont fonctionne la démocratie : / Au Québec (post-électoral)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas satisfait du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très satisfait"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "PQ1B",
+      "question_text": "À l’aide d’une échelle de 0 à 10, où 0 signifie « pas satisfait du tout » et 10 signifie « très satisfait », veuillez indiquer si vous êtes satisfait de la façon dont fonctionne la démocratie : / Au Canada (post-électoral)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 0,
+          "label": "0 - Pas satisfait du tout"
+        },
+        {
+          "code": 1,
+          "label": "1"
+        },
+        {
+          "code": 2,
+          "label": "2"
+        },
+        {
+          "code": 3,
+          "label": "3"
+        },
+        {
+          "code": 4,
+          "label": "4"
+        },
+        {
+          "code": 5,
+          "label": "5"
+        },
+        {
+          "code": 6,
+          "label": "6"
+        },
+        {
+          "code": 7,
+          "label": "7"
+        },
+        {
+          "code": 8,
+          "label": "8"
+        },
+        {
+          "code": 9,
+          "label": "9"
+        },
+        {
+          "code": 10,
+          "label": "10 - Très satisfait"
+        }
+      ],
+      "var_type": "scale",
+      "is_sociodemo": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}
