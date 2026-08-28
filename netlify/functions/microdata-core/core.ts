@@ -415,15 +415,10 @@ export async function executeMicrodataQuery(
     });
     where.push(`${col(f.var)} IN (${placeholders.join(", ")})`);
   });
-  // Sentinelles négatives de refus/NSP exclues d'office des agrégations numériques
-  const DEFAULT_NUMERIC_EXCLUDES = [-9999, -9998, -999, -998, -99, -98, -97, -96, -95, -9, -8, -7, -1];
-  const isNumericAgg = agg === "mean" || agg === "corr" || agg === "ols" || agg === "ttest" || agg === "anova";
-  const effectiveExclude = isNumericAgg
-    ? Array.from(new Set([...exclude, ...DEFAULT_NUMERIC_EXCLUDES]))
-    : exclude;
-  const effectiveExclude2 = isNumericAgg
-    ? Array.from(new Set([...(exclude2 ?? exclude), ...DEFAULT_NUMERIC_EXCLUDES]))
-    : (exclude2 ?? exclude);
+  // Sentinelles négatives de refus/NSP exclues d'office (codes négatifs de sondage comme -99, -98, -999)
+  const DEFAULT_NEGATIVE_EXCLUDES = [-9999, -9998, -999, -998, -99, -98, -97, -96, -95, -9, -8, -7, -1];
+  const effectiveExclude = Array.from(new Set([...exclude, ...DEFAULT_NEGATIVE_EXCLUDES]));
+  const effectiveExclude2 = Array.from(new Set([...(exclude2 ?? exclude), ...DEFAULT_NEGATIVE_EXCLUDES]));
 
   // Exclusion de codes de la cible (refus/NSP) — surtout utile en mode numérique.
   const bindExclude = (codes: (string | number)[], colRef: string, prefix: string) => {

@@ -415,6 +415,11 @@ export async function executeMicrodataQuery(
     });
     where.push(`${col(f.var)} IN (${placeholders.join(", ")})`);
   });
+  // Sentinelles négatives de refus/NSP exclues d'office (codes négatifs de sondage comme -99, -98, -999)
+  const DEFAULT_NEGATIVE_EXCLUDES = [-9999, -9998, -999, -998, -99, -98, -97, -96, -95, -9, -8, -7, -1];
+  const effectiveExclude = Array.from(new Set([...exclude, ...DEFAULT_NEGATIVE_EXCLUDES]));
+  const effectiveExclude2 = Array.from(new Set([...(exclude2 ?? exclude), ...DEFAULT_NEGATIVE_EXCLUDES]));
+
   // Exclusion de codes de la cible (refus/NSP) — surtout utile en mode numérique.
   const bindExclude = (codes: (string | number)[], colRef: string, prefix: string) => {
     if (!codes.length) return;
@@ -425,8 +430,8 @@ export async function executeMicrodataQuery(
     });
     where.push(`${colRef} NOT IN (${placeholders.join(", ")})`);
   };
-  bindExclude(exclude, col(target), "x");
-  if (target2) bindExclude(exclude2 ?? exclude, col(target2), "y");
+  bindExclude(effectiveExclude, col(target), "x");
+  if (target2) bindExclude(effectiveExclude2, col(target2), "y");
 
   // "ttest" : restreindre aux deux groupes demandés (valeurs LIÉES).
   if (agg === "ttest" && groups) {
