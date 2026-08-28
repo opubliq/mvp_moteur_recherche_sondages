@@ -165,16 +165,16 @@ function Univariate({ q, kind }: { q: SearchResult; kind: Kind }) {
   const numeric = kind === "scale" || kind === "continuous";
   const refusal = useMemo(() => refusalCodes(q.response_options), [q]);
   // Refus/NSP EXCLUS par défaut partout ; toggle « inclure refus/NSP » pour les
-  // remettre. Continu : toujours exclus du binning (sinon l'axe se dilate).
+  // remettre (seulement pour les variables catégorielles). Échelle/continu : toujours exclus du binning/scale (sinon l'axe se dilate).
   const [includeRefusal, setIncludeRefusal] = useState(false);
-  const canToggleRefusal = kind !== "continuous" && refusal.length > 0;
+  const canToggleRefusal = !numeric && refusal.length > 0;
 
   useEffect(() => {
     let cancelled = false;
     setState("loading");
     setDist(null);
     setStat(null);
-    const distExclude = kind === "continuous" ? refusal : includeRefusal ? [] : refusal;
+    const distExclude = numeric ? refusal : includeRefusal ? [] : refusal;
     const jobs: Promise<unknown>[] = [
       fetchMicrodata<DistributionRow>({ surveyId: q.survey_id, target: q.variable, exclude: distExclude }).then(
         (r) => !cancelled && setDist(r.rows),
@@ -281,10 +281,10 @@ function Crossing({
   // continuous : moyenne uniquement (empilé 100% d'un continu n'a pas de sens).
   const effMode: "mean" | "stacked" = effKind === "continuous" ? "mean" : mode;
   const refusal = useMemo(() => refusalCodes(targetQ?.response_options ?? q.response_options), [targetQ, q]);
-  // Refus/NSP EXCLUS par défaut (moyenne comme empilé) ; toggle pour les inclure.
+  // Refus/NSP EXCLUS par défaut ; pour les échelles numériques, toujours exclus (axe propre).
   const exclude = useMemo(
-    () => (includeRefusal ? [] : refusal),
-    [includeRefusal, refusal],
+    () => (numeric || !includeRefusal ? refusal : []),
+    [numeric, includeRefusal, refusal],
   );
 
   useEffect(() => {

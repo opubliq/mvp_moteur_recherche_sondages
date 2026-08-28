@@ -24,7 +24,7 @@ export default function Histogram({
   const model = useMemo(() => {
     const pts = rows
       .map((r) => ({ x: Number(r.target_code), w: r.share }))
-      .filter((p) => Number.isFinite(p.x));
+      .filter((p) => Number.isFinite(p.x) && p.x >= 0);
     if (pts.length === 0) return null;
     const min = Math.min(...pts.map((p) => p.x));
     const max = Math.max(...pts.map((p) => p.x));

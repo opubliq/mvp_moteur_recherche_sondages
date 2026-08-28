@@ -19,7 +19,7 @@ import { useLanguage } from "../../context/LanguageContext";
  */
 
 const FILL = "color-mix(in oklch, var(--color-primary) 32%, transparent)";
-const STROKE = "var(--color-primary)";
+const MEDIAN_STROKE = "var(--color-error)";
 
 /** Courbe lisse (Catmull-Rom → Bézier) traversant les points. */
 function smoothPath(pts: { x: number; y: number }[]): string {
@@ -38,6 +38,23 @@ function smoothPath(pts: { x: number; y: number }[]): string {
     d += ` C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${p2.x.toFixed(2)} ${p2.y.toFixed(2)}`;
   }
   return d;
+}
+
+/**
+ * Histogramme à VRAIES barres pour variables discrètes : un rectangle par
+ * valeur, centré sur sa position, avec un espace entre les barres (pas
+ * jointives) — chaque barre est un sous-chemin fermé indépendant.
+ */
+function barsPath(pts: { x: number; y: number }[], halfWidth: number, baseY: number): string {
+  return pts
+    .map((p) => {
+      const xL = (p.x - halfWidth).toFixed(2);
+      const xR = (p.x + halfWidth).toFixed(2);
+      const y = p.y.toFixed(2);
+      const by = baseY.toFixed(2);
+      return `M ${xL} ${by} L ${xL} ${y} L ${xR} ${y} L ${xR} ${by} Z`;
+    })
+    .join(" ");
 }
 
 export default function RidgePlot({
@@ -66,7 +83,7 @@ export default function RidgePlot({
   const model = useMemo(() => {
     const pts = rows
       .map((r) => ({ x: Number(r.target_code), dim: String(r.dim_code), w: r.col_share }))
-      .filter((p) => Number.isFinite(p.x));
+      .filter((p) => Number.isFinite(p.x) && p.x >= 0);
     if (pts.length === 0) return null;
 
     const xs = pts.map((p) => p.x);
@@ -157,7 +174,7 @@ export default function RidgePlot({
   if (!model)
     return <p className="text-sm text-base-content/60">{t("ridgePlot.noData")}</p>;
 
-  const { min, max, span, discrete, center, groups, hidden, maxW } = model;
+  const { min, max, discrete, center, groups, hidden, maxW } = model;
   const N = groups.length;
 
   // Barre de contrôles : seuil de n (toujours) + nombre de bins (continu seul).
@@ -214,12 +231,22 @@ export default function RidgePlot({
   const padR = 14;
   const padT = 8;
   const rowH = 52; // pas vertical entre rangées
-  const ridgeH = 60; // hauteur max d'une densité (> rowH → chevauchement ggridges)
+  // Hauteur max d'une rangée. Continu → densité KDE, chevauchement volontaire
+  // façon ggridges (ridgeH > rowH). Discret → vraies barres, PAS de
+  // chevauchement possible : on laisse un gap visible sous rowH.
+  const rowGap = 14;
+  const ridgeH = discrete ? rowH - rowGap : 60;
   const axisPad = 30;
   const plotW = W - padL - padR;
   const H = padT + ridgeH + rowH * (N - 1) + axisPad;
 
-  const xPix = (v: number) => padL + ((v - min) / span) * plotW;
+  // Domaine de mapping X : en discret, on réserve une demi-largeur de bin de
+  // marge de chaque côté (sinon la barre centrée sur la valeur min/max déborde
+  // du cadre du graphique, par-dessus la gouttière des labels).
+  const domMin = discrete ? min - 0.5 : min;
+  const domMax = discrete ? max + 0.5 : max;
+  const domSpan = domMax - domMin || 1;
+  const xPix = (v: number) => padL + ((v - domMin) / domSpan) * plotW;
   const baseY = (i: number) => padT + ridgeH + i * rowH;
 
   // Graduations liées à la NATURE de la cible (discrète = un tick/entier), pas
@@ -252,14 +279,23 @@ export default function RidgePlot({
               bas passe DEVANT celle du dessus (chevauchement façon ggridges). */}
           {groups.map((g, i) => {
             const by = baseY(i);
-            // Courbe lissée à TRAVERS les centres de bins seulement : pas d'ancre
-            // baseline forcée aux extrémités (évite le débordement de la spline
-            // hors de l'axe). On ferme l'aire par une descente verticale droite.
+            // Centres de bins : variable discrète → vraies barres séparées ; sinon → courbe lissée.
             const curve = g.buckets.map((w, b) => ({ x: xPix(center(b)), y: by - (w / maxW) * ridgeH }));
-            const line = smoothPath(curve);
-            const first = curve[0];
-            const last = curve[curve.length - 1];
-            const area = `${line} L ${last.x.toFixed(2)} ${by} L ${first.x.toFixed(2)} ${by} Z`;
+            // Demi-largeur de barre en pixels (discret) : une fraction du pas entre
+            // deux centres voisins, pour un vrai histogramme à barres SÉPARÉES
+            // (pas jointives), centrées sur chaque valeur entière.
+            const step = curve.length > 1 ? curve[1].x - curve[0].x : plotW / 2;
+            const halfWidth = step * 0.26;
+            // Discret → un rectangle fermé par barre ; continu → une seule aire
+            // sous la courbe lissée (ligne du haut + fermeture verticale droite).
+            const area = discrete
+              ? barsPath(curve, halfWidth, by)
+              : (() => {
+                  const line = smoothPath(curve);
+                  const first = curve[0];
+                  const last = curve[curve.length - 1];
+                  return `${line} L ${last.x.toFixed(2)} ${by} L ${first.x.toFixed(2)} ${by} Z`;
+                })();
             // Position de la médiane du sous-groupe + hauteur de la courbe à cet endroit.
             const mx = xPix(g.median);
             const myTop = by - (g.medianH / maxW) * ridgeH;
@@ -272,7 +308,7 @@ export default function RidgePlot({
                 </clipPath>
                 <path d={area} fill={FILL} stroke="none" clipPath={`url(#${clipId})`} />
                 {/* médiane : de l'axe jusqu'au sommet du ridge à cette position */}
-                <line x1={mx} y1={by} x2={mx} y2={myTop} stroke={STROKE} strokeWidth={1.5} opacity={0.7} />
+                <line x1={mx} y1={by} x2={mx} y2={myTop} stroke={MEDIAN_STROKE} strokeWidth={1.5} opacity={0.85} />
                 <title>{g.label} — n = {formatN(g.raw)}</title>
                 {/* libellé du sous-groupe + n, dans la gouttière gauche : en
                     HTML (foreignObject) pour que les longs libellés passent sur

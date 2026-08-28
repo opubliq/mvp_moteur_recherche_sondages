@@ -42,7 +42,8 @@ export default function MeanByGroup({
     n: number;
     half?: number;
   }>();
-  const span = domainMax - domainMin || 1;
+  const effDomainMin = Math.max(0, domainMin);
+  const span = domainMax - effDomainMin || 1;
   // Rangées : dimension ORDINALE → ordre naturel des response_options ;
   // dimension NOMINALE → tri par n (raw_n) DÉCROISSANT (plus gros en haut).
   const groups = useMemo(() => {
@@ -54,7 +55,7 @@ export default function MeanByGroup({
         : b.raw_n - a.raw_n,
     );
   }, [rows, dimOptions, dimOrdinal]);
-  const frac = (v: number) => ((v - domainMin) / span) * 100;
+  const frac = (v: number) => ((v - effDomainMin) / span) * 100;
   const pct = (v: number) => `${frac(v)}%`;
   /**
    * IC 95 % de la moyenne du groupe, borné au domaine de l'échelle. Renvoie null
