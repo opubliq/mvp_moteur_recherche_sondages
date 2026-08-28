@@ -173,7 +173,14 @@ def read_raw(path: Path) -> pd.DataFrame:
     if ext == ".sav":
         df, _ = pyreadstat.read_sav(str(path), apply_value_formats=False)
     elif ext == ".dta":
-        df, _ = pyreadstat.read_dta(str(path), apply_value_formats=False)
+        try:
+            df, _ = pyreadstat.read_dta(str(path), apply_value_formats=False)
+        except Exception:
+            from pandas.io.stata import StataReader
+            with StataReader(str(path)) as reader:
+                reader._ensure_open()
+                reader._encoding = "latin-1"
+                df = reader.read(convert_categoricals=False)
     elif ext == ".csv":
         df = _read_csv(path)
     else:

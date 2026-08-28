@@ -39,17 +39,19 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **21 sondages** dans l'index **public** `survey-questions`, 4954 docs
+- **23 sondages** dans l'index **public** `survey-questions`, 5739 docs
   catalogue (vérité terrain de l'index Azure, vérifié 2026-08-28) :
   `cecd_charte_2013_10`, `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`,
   `cecd_elxn_qc_2007`, `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`,
-  `cecd_sante_can_usa`, `ces_2025`, `eeq_2007`, `eeq_2008`, `eeq_2012`, `eeq_2014`,
+  `cecd_sante_can_usa`, `ces_2019_online`, `ces_2019_phone`, `ces_2025`, `eeq_2007`, `eeq_2008`, `eeq_2012`, `eeq_2014`,
   `eeq_2018`, `eeq_2022`, `govcan_06822_wave1_2024`, `govcan_06822_wave2_2024`,
   `govcan_06822_wave3_2024`, `govcan_habit_2024`, `govcan_parca_2024`,
   `provincial_qc_2012`, `provincial_qc_2018`.
-  Rail microdonnées Parquet également fait pour `ces_2025` (poids
+  Rail microdonnées Parquet également fait pour `ces_2019_online` (`cps19_weight_general_all`, 37 822 répondants × 620 vars), `ces_2019_phone` (`weight_CES`, 4 021 répondants × 275 vars), `ces_2025` (poids
   `cps25_weight_general_all` déclaré, `weight_source=provided`, 20 180 répondants × 1440 vars),
   `eeq_2007`, `eeq_2008`, `eeq_2012`, `eeq_2018`, `eeq_2022`, `provincial_qc_2012` et `provincial_qc_2018` (`weight` déclaré, 1250 répondants × 72 vars).
+  **`ces_2019_online`** (2026-08-28) : Canadian Election Study 2019 Online Survey, 549 questions substantielles, 37 822 répondants. Extraction Stata `.dta` + codebook PDF.
+  **`ces_2019_phone`** (2026-08-28) : Canadian Election Study 2019 Phone Survey, 211 questions substantielles, 4 021 répondants. Extraction Stata `.dta` + questionnaires PDF.
   **`provincial_qc_2018`** (2026-08-28) : Sondage Panel Élections Provinciales Québec 2018 (Ipsos), 47 questions substantielles, 1250 répondants. Extraction SAV + codebook PDF.
   **`ces_2025`** (2026-08-28) : Canadian Election Study 2025, 588 questions
   substantielles, 20 180 répondants. Extraction DTA avec Stata .dta + codebook PDF.

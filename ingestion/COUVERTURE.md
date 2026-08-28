@@ -77,7 +77,7 @@ SAV (var labels + value labels) :
 
 DTA Stata (var labels + value labels) :
 
-`eeq_2018` ✅, `eeq_2022`, `municipal_canada_elxn_2020`, `provincial_qc_2012` ✅.
+`ces_2019_online` ✅, `ces_2019_phone` ✅, `ces_2025` ✅, `eeq_2018` ✅, `eeq_2022`, `municipal_canada_elxn_2020`, `provincial_qc_2012` ✅.
 
 Dictionnaire / feuille XLSX étiquetée (colonne `Label`/`Etiquette`, feuille
 `Index`/`Doc`, ou en-têtes « avec étiquettes ») :
