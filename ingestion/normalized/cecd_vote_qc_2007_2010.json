@@ -1,0 +1,494 @@
+{
+  "survey": {
+    "survey_id": "cecd_vote_qc_2007_2010",
+    "survey_name": "Sondages CROP-CECD sur l'intention de vote au Québec (juin 2007 - janvier 2010)",
+    "survey_description": null,
+    "year": 2007,
+    "survey_month": null,
+    "pollster": "CROP",
+    "language": "fr",
+    "n_respondents": 24027,
+    "raw_data_file": "intvotetotal_juin2007_jan2010.sav",
+    "tags": [
+      "electoral",
+      "provincial",
+      "québec",
+      "intention_de_vote",
+      "référendum",
+      "crop",
+      "2007-2010"
+    ]
+  },
+  "questions": [
+    {
+      "variable": "QP4",
+      "question_text": "Pour quel parti avez-vous voté aux dernières élections (Original)",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "l'ADQ"
+        },
+        {
+          "code": 2,
+          "label": "Parti Libéral"
+        },
+        {
+          "code": 3,
+          "label": "Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Parti Vert du Québec"
+        },
+        {
+          "code": 6,
+          "label": "autre parti"
+        },
+        {
+          "code": 7,
+          "label": "n'a pas voté/a annulé"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvoteprova",
+      "question_text": "S'il y avait des élections provinciales aujourd'hui...",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "l'ADQ"
+        },
+        {
+          "code": 2,
+          "label": "Parti Libéral"
+        },
+        {
+          "code": 3,
+          "label": "Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Parti Vert"
+        },
+        {
+          "code": 6,
+          "label": "autre parti"
+        },
+        {
+          "code": 7,
+          "label": "annulerait/aucun"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvoteprovb",
+      "question_text": "Peut-être n'êtes-vous pas complètement décidé(e), mais",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "l'ADQ"
+        },
+        {
+          "code": 2,
+          "label": "Parti Libéral"
+        },
+        {
+          "code": 3,
+          "label": "Parti Québécois"
+        },
+        {
+          "code": 4,
+          "label": "Parti Québec Solidaire"
+        },
+        {
+          "code": 5,
+          "label": "Parti Vert"
+        },
+        {
+          "code": 6,
+          "label": "autre parti"
+        },
+        {
+          "code": 7,
+          "label": "annulerait/aucun"
+        },
+        {
+          "code": 9,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvoterefa",
+      "question_text": "Si un référendum avait lieu aujourd'hui vous demandant",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "OUI"
+        },
+        {
+          "code": 2,
+          "label": "NON"
+        },
+        {
+          "code": 3,
+          "label": "NVP/annulerait"
+        },
+        {
+          "code": 8,
+          "label": "NSP"
+        },
+        {
+          "code": 9,
+          "label": "refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "intvoterefb",
+      "question_text": "Même si vous n'avez peut-être pas encore fait votre choix",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "OUI"
+        },
+        {
+          "code": 2,
+          "label": "NON"
+        },
+        {
+          "code": 3,
+          "label": "ne voterait pas/annulerait"
+        },
+        {
+          "code": 8,
+          "label": "NSP"
+        },
+        {
+          "code": 9,
+          "label": "* refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "REG",
+      "question_text": "RÉGION",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "MONTRÉAL ILE"
+        },
+        {
+          "code": 2,
+          "label": "MONTRÉAL RESTE RMR"
+        },
+        {
+          "code": 3,
+          "label": "QUÉBEC RMR"
+        },
+        {
+          "code": 4,
+          "label": "RESTE DU QUÉBEC"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "region",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "SEXE",
+      "question_text": "INSCRIRE LE SEXE DU REPONDANT",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Homme"
+        },
+        {
+          "code": 2,
+          "label": "Femme"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "gender",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "Occup",
+      "question_text": "Laquelle des activités suivantes correspond le mieux …",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "trav. … temps plein"
+        },
+        {
+          "code": 2,
+          "label": "trav. … temps partiel"
+        },
+        {
+          "code": 3,
+          "label": "chomeur(se)/recherche"
+        },
+        {
+          "code": 4,
+          "label": "maison … temps plein"
+        },
+        {
+          "code": 5,
+          "label": "retraité(e)"
+        },
+        {
+          "code": 6,
+          "label": "étudiant(e)"
+        },
+        {
+          "code": 9,
+          "label": "refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "occupation",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "scol",
+      "question_text": "Combien d'années d'études avez-vous complétées?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "primaire"
+        },
+        {
+          "code": 2,
+          "label": "secondaire"
+        },
+        {
+          "code": 3,
+          "label": "Cegep/collège technique"
+        },
+        {
+          "code": 4,
+          "label": "Université"
+        },
+        {
+          "code": 9,
+          "label": "refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "education",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "revenu",
+      "question_text": "Dans laquelle des catégories suivantes se situe le revenu",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "moins de 20 000 $"
+        },
+        {
+          "code": 2,
+          "label": "20 000 $ … 39 999 $"
+        },
+        {
+          "code": 3,
+          "label": "40 000 $ … 59 999 $"
+        },
+        {
+          "code": 4,
+          "label": "60 000 $ … 79 999 $"
+        },
+        {
+          "code": 5,
+          "label": "80 000 $ et plus?"
+        },
+        {
+          "code": 9,
+          "label": "NSP/refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "income",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "QAGE",
+      "question_text": "Auquel des groupes d'àges suivants appartenez-vous?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "18-24 ans"
+        },
+        {
+          "code": 2,
+          "label": "25-34 ans"
+        },
+        {
+          "code": 3,
+          "label": "35-44 ans"
+        },
+        {
+          "code": 4,
+          "label": "45-54 ans"
+        },
+        {
+          "code": 5,
+          "label": "55-64 ans"
+        },
+        {
+          "code": 6,
+          "label": "ou 65 ans et plus?"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "age",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "lmat",
+      "question_text": "Quelle est votre langue maternelle?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 99,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "language",
+      "concepts": [],
+      "themes": []
+    },
+    {
+      "variable": "lusag",
+      "question_text": "Quelle langue parle-t-on le plus souvent dans votre foyer?",
+      "display_label": null,
+      "response_options": [
+        {
+          "code": 1,
+          "label": "Français"
+        },
+        {
+          "code": 2,
+          "label": "Anglais"
+        },
+        {
+          "code": 96,
+          "label": "Autre"
+        },
+        {
+          "code": 99,
+          "label": "NSP/Refus"
+        }
+      ],
+      "var_type": "single",
+      "text_kind": null,
+      "is_sociodemo": false,
+      "is_ordinal": false,
+      "sociodemo_type": null,
+      "concepts": [],
+      "themes": []
+    }
+  ]
+}
