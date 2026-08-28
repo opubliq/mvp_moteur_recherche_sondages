@@ -39,14 +39,14 @@ l'orchestrateur — jamais générés au runtime.
 
 ## État actuel (mettre à jour à chaque session)
 
-- **14 sondages** dans l'index **public** `survey-questions`, ~3223 docs
+- **15 sondages** dans l'index **public** `survey-questions`, ~3283 docs
   catalogue (vérité terrain de l'index Azure) : `cecd_charte_2013_10`,
   `cecd_elxn_can_2011`, `cecd_elxn_qc_1998`, `cecd_elxn_qc_2007`,
   `cecd_elxn_qc_2012`, `cecd_elxn_qc_2018`, `cecd_sante_can_usa`, `eeq_2007`,
-  `eeq_2014`, `govcan_06822_wave1_2024`, `govcan_06822_wave2_2024`,
+  `eeq_2008`, `eeq_2014`, `govcan_06822_wave1_2024`, `govcan_06822_wave2_2024`,
   `govcan_06822_wave3_2024`, `govcan_habit_2024`, `govcan_parca_2024`.
-  Rail microdonnées Parquet également fait pour `eeq_2007` (poids `pond`
-  déclaré, `weight_source=provided`).
+  Rail microdonnées Parquet également fait pour `eeq_2007` et `eeq_2008` (poids
+  `pond` déclaré, `weight_source=provided`).
 - **`medaillon_organismes_qualitatif`** (extrait/enrichi 2026-07-23, **déplacé
   du public vers l'index privé `survey-questions-opubliq` le 2026-08-04** —
   cf `docs/multi_tenant_design.md` : c'est une donnée propriétaire opubliq, pas
