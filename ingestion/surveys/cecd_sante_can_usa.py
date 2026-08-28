@@ -16,8 +16,8 @@ import pyreadstat
 
 from ingestion.canonical import canonical_sociodemo_text
 from ingestion.models import SurveyFile
-from ingestion.validate import fabrication_reason
 from ingestion.open_text import is_text_column
+from ingestion.validate import fabrication_reason
 
 # ---------------------------------------------------------------------------
 # Chemins
