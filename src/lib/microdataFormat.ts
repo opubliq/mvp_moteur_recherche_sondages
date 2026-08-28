@@ -29,24 +29,39 @@ export function formatMean(m: number): string {
   return m.toLocaleString("fr-CA", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
 
-// Sentinelles numériques classiques de refus/NSP (échelles 0–10, 0–100, codes 2 ch.).
-const SENTINELS = new Set([98, 99, 998, 999, 9998, 9999, 997]);
+// Sentinelles numériques classiques de refus/NSP (y compris codes négatifs de sondage comme -99, -98, -999).
+const SENTINELS = new Set([
+  -9999, -9998, -999, -998, -99, -98, -97, -96, -95, -9, -8, -7, -1,
+  98, 99, 998, 999, 9998, 9999, 997,
+]);
+
+// Codes négatifs par défaut à toujours inclure comme refus/missing (utilisés dans les échelles et continus sans response_options)
+const DEFAULT_NEGATIVE_REFUSALS = [-9999, -9998, -999, -998, -99, -98, -97, -96, -95, -9, -8, -7, -1];
+
 // Motifs de libellé de non-réponse.
 const REFUSAL_RE =
-  /refus|nsp|ne sais|ne le\/la conna|pr[ée]f[èe]re ne pas|sans opinion|pas de r[ée]ponse|n\/a|aucun/i;
+  /refus|nsp|ne sais|ne le\/la conna|pr[ée]f[èe]re ne pas|sans opinion|pas de r[ée]ponse|n\/a|aucun|don't know|know\/haven|refused|not applicable|skipped|no response/i;
 
 /**
- * Codes de refus/NSP d'une variable, à exclure des MOYENNES (sinon un 999 fait
+ * Codes de refus/NSP d'une variable, à exclure des MOYENNES et échelles (sinon un -99 ou 999 fait
  * exploser la moyenne d'une échelle). Détectés par libellé, complétés par les
- * sentinelles numériques. Ce sont des réponses RAW valides pour une
- * distribution : on ne les masque QUE pour les moyennes (ou sur demande UI).
+ * sentinelles numériques (y compris codes négatifs de sondage).
  */
-export function refusalCodes(options: ResponseOption[]): (string | number)[] {
+export function refusalCodes(options: ResponseOption[] = []): (string | number)[] {
   const out = new Set<string | number>();
+
+  // Pour les échelles et variables continues (où options est souvent vide ou ne liste pas les sentinelles négatives),
+  // inclure par défaut les sentinelles négatives courantes.
+  for (const neg of DEFAULT_NEGATIVE_REFUSALS) {
+    out.add(neg);
+  }
+
   for (const o of options) {
     if (REFUSAL_RE.test(o.label)) out.add(o.code);
     const n = Number(o.code);
-    if (Number.isFinite(n) && SENTINELS.has(n)) out.add(o.code);
+    if (Number.isFinite(n) && (SENTINELS.has(n) || n < 0)) {
+      out.add(o.code);
+    }
   }
   return [...out];
 }
