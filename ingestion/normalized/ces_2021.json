@@ -436,7 +436,7 @@
           "label": "18"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": true,
       "is_ordinal": false,
@@ -709,7 +709,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -764,7 +764,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -845,7 +845,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -879,7 +879,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -917,7 +917,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -947,7 +947,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -985,7 +985,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1019,7 +1019,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1053,7 +1053,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1087,7 +1087,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1129,7 +1129,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1171,7 +1171,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1213,7 +1213,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1255,7 +1255,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1297,7 +1297,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1343,7 +1343,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1389,7 +1389,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1431,7 +1431,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1473,7 +1473,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1491,7 +1491,7 @@
           "label": "Liberal Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1509,7 +1509,7 @@
           "label": "Conservative Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1527,7 +1527,7 @@
           "label": "ndp"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1545,7 +1545,7 @@
           "label": "Bloc Québécois"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1563,7 +1563,7 @@
           "label": "Green Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1581,7 +1581,7 @@
           "label": "Another party (please specify)"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1599,7 +1599,7 @@
           "label": "I could vote for any of the parties"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1617,7 +1617,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1635,7 +1635,7 @@
           "label": "I don’t like the leader"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1653,7 +1653,7 @@
           "label": "I don't like the policies of the party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1671,7 +1671,7 @@
           "label": "I don’t like the type of people who support the party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1689,7 +1689,7 @@
           "label": "Other (please specify)"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1707,7 +1707,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1819,7 +1819,7 @@
       "question_text": "How do you feel about the federal political parties below? Set the slider to a n",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1897,7 +1897,7 @@
       "question_text": "How do you feel about the federal party leaders below? Set the slider to a numbe",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1910,7 +1910,7 @@
       "question_text": "How do you feel about the candidates in your local riding? Set the slider to a n",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1923,7 +1923,7 @@
       "question_text": "How do you feel about the candidates in your local riding? Set the slider to a n",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1936,7 +1936,7 @@
       "question_text": "How do you feel about the candidates in your local riding? Set the slider to a n",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1949,7 +1949,7 @@
       "question_text": "How do you feel about the candidates in your local riding? Set the slider to a n",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -1962,7 +1962,7 @@
       "question_text": "How do you feel about the candidates in your local riding? Set the slider to a n",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2040,7 +2040,7 @@
       "question_text": "In politics, people sometimes talk of left and right. Where would you place the",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2071,7 +2071,7 @@
           "label": "Justin Trudeau"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2089,7 +2089,7 @@
           "label": "Erin O'Toole"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2107,7 +2107,7 @@
           "label": "Jagmeet Singh"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2125,7 +2125,7 @@
           "label": "Yves-François Blanchet"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2143,7 +2143,7 @@
           "label": "Annamie Paul"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2161,7 +2161,7 @@
           "label": "None of these"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2179,7 +2179,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2197,7 +2197,7 @@
           "label": "Justin Trudeau"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2215,7 +2215,7 @@
           "label": "Erin O'Toole"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2233,7 +2233,7 @@
           "label": "Jagmeet Singh"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2251,7 +2251,7 @@
           "label": "Yves-François Blanchet"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2269,7 +2269,7 @@
           "label": "Annamie Paul"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2287,7 +2287,7 @@
           "label": "None of these"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2305,7 +2305,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2323,7 +2323,7 @@
           "label": "Justin Trudeau"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2341,7 +2341,7 @@
           "label": "Erin O'Toole"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2359,7 +2359,7 @@
           "label": "Jagmeet Singh"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2377,7 +2377,7 @@
           "label": "Yves-François Blanchet"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2395,7 +2395,7 @@
           "label": "Annamie Paul"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2413,7 +2413,7 @@
           "label": "None of these"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2431,7 +2431,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2449,7 +2449,7 @@
           "label": "Justin Trudeau"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2467,7 +2467,7 @@
           "label": "Erin O'Toole"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2485,7 +2485,7 @@
           "label": "Jagmeet Singh"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2503,7 +2503,7 @@
           "label": "Yves-François Blanchet"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2521,7 +2521,7 @@
           "label": "Annamie Paul"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2539,7 +2539,7 @@
           "label": "None of these"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2557,7 +2557,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2767,7 +2767,7 @@
           "label": "Don't know/Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2797,7 +2797,7 @@
           "label": "Don't know/Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2873,7 +2873,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2911,7 +2911,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2949,7 +2949,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -2987,7 +2987,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3025,7 +3025,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3063,7 +3063,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3101,7 +3101,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3139,7 +3139,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3177,7 +3177,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3215,7 +3215,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3317,7 +3317,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3355,7 +3355,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3393,7 +3393,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3431,7 +3431,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3469,7 +3469,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3507,7 +3507,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3545,7 +3545,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3583,7 +3583,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3621,7 +3621,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3634,7 +3634,7 @@
       "question_text": "Which party would do the best job at handling each of the following issues? - An",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3647,7 +3647,7 @@
       "question_text": "Which party would do the best job at handling each of the following issues? - An",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3660,7 +3660,7 @@
       "question_text": "Which party would do the best job at handling each of the following issues? - An",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3673,7 +3673,7 @@
       "question_text": "Which party would do the best job at handling each of the following issues? - An",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3686,7 +3686,7 @@
       "question_text": "Which party would do the best job at handling each of the following issues? - An",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3699,7 +3699,7 @@
       "question_text": "Which party would do the best job at handling each of the following issues? - An",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3777,7 +3777,7 @@
       "question_text": "For each of the parties below, how likely is each party to win the seat in your",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3790,7 +3790,7 @@
       "question_text": "For each of the parties below, how likely is each party to win the seat in your",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3803,7 +3803,7 @@
       "question_text": "For each of the parties below, how likely is each party to win the seat in your",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3816,7 +3816,7 @@
       "question_text": "For each of the parties below, how likely is each party to win the seat in your",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3829,7 +3829,7 @@
       "question_text": "For each of the parties below, how likely is each party to win the seat in your",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3871,7 +3871,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3913,7 +3913,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -3959,7 +3959,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4005,7 +4005,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4035,7 +4035,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4095,7 +4095,7 @@
           "label": "Don’t know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4251,7 +4251,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4285,7 +4285,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4327,7 +4327,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4585,7 +4585,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4679,7 +4679,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4787,7 +4787,7 @@
           "label": "Canada Emergency Response Benefit (CERB)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4805,7 +4805,7 @@
           "label": "Canada Emergency Student Benefit (CESB)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4823,7 +4823,7 @@
           "label": "Canada Recovery Benefit (CRB)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4841,7 +4841,7 @@
           "label": "Canada Recovery Sickness Benefit (CRSB)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4859,7 +4859,7 @@
           "label": "Canada Recovery Caregiving Benefit (CRCB)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4877,7 +4877,7 @@
           "label": "Canada Emergency Wage Subsidy (CEWS)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4895,7 +4895,7 @@
           "label": "Canada Emergency Rent Subsidy (CERS)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4913,7 +4913,7 @@
           "label": "None"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4931,7 +4931,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -4969,7 +4969,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5007,7 +5007,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5045,7 +5045,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5083,7 +5083,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5121,7 +5121,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5159,7 +5159,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5197,7 +5197,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5235,7 +5235,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5529,7 +5529,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5567,7 +5567,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5643,7 +5643,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5721,7 +5721,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5751,7 +5751,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5885,7 +5885,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5927,7 +5927,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5953,7 +5953,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -5979,7 +5979,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6005,7 +6005,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6023,7 +6023,7 @@
           "label": "People whose political views are different from yours"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6041,7 +6041,7 @@
           "label": "People who support the Liberal Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6059,7 +6059,7 @@
           "label": "People who support the Conservative Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6077,7 +6077,7 @@
           "label": "People with extreme left views"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6095,7 +6095,7 @@
           "label": "People with extreme right views"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6113,7 +6113,7 @@
           "label": "None of the above"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6131,7 +6131,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6165,7 +6165,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6199,7 +6199,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6233,7 +6233,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6267,7 +6267,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -6420,7 +6420,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -7456,7 +7456,7 @@
           "label": "Don't know/ Prefer not to say"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -7882,7 +7882,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -7952,7 +7952,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8035,7 +8035,7 @@
           "label": "Arab"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8053,7 +8053,7 @@
           "label": "Asian"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8071,7 +8071,7 @@
           "label": "Black"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8089,7 +8089,7 @@
           "label": "Indigenous (e.g. First Nations, Métis, Inuit, etc.)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8107,7 +8107,7 @@
           "label": "Latino/Latina"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8125,7 +8125,7 @@
           "label": "South Asian (e.g., East Indian, Pakistani, Sri Lankan, etc.)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8143,7 +8143,7 @@
           "label": "Southeast Asian (e.g., Vietnamese, Cambodian, Laotian, Thai, etc.)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8161,7 +8161,7 @@
           "label": "West Asian (e.g., Iranian, Afghan, etc.)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8179,7 +8179,7 @@
           "label": "White"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8197,7 +8197,7 @@
           "label": "Other (please specify)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8215,7 +8215,7 @@
           "label": "None of the above"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8233,7 +8233,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8259,7 +8259,7 @@
           "label": "I don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8323,7 +8323,7 @@
           "label": "English"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8341,7 +8341,7 @@
           "label": "French"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8359,7 +8359,7 @@
           "label": "Indigenous language (please specify)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8377,7 +8377,7 @@
           "label": "Arabic"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8395,7 +8395,7 @@
           "label": "Chinese, Cantonese, Mandarin"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8413,7 +8413,7 @@
           "label": "Filipino / Tagalog"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8431,7 +8431,7 @@
           "label": "German"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8449,7 +8449,7 @@
           "label": "Indian, Hindi, Gujarati"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8467,7 +8467,7 @@
           "label": "Italian"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8485,7 +8485,7 @@
           "label": "Korean"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8503,7 +8503,7 @@
           "label": "Pakistani, Punjabi, Urdu"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8521,7 +8521,7 @@
           "label": "Persian, Farsi"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8539,7 +8539,7 @@
           "label": "Russian"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8557,7 +8557,7 @@
           "label": "Spanish"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8575,7 +8575,7 @@
           "label": "Tamil"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8593,7 +8593,7 @@
           "label": "Vietnamese"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8611,7 +8611,7 @@
           "label": "Other (please specify)"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8629,7 +8629,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8763,7 +8763,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "single",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8781,7 +8781,7 @@
           "label": "Daycare"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8799,7 +8799,7 @@
           "label": "Elementary school"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8817,7 +8817,7 @@
           "label": "Middle or high school"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8835,7 +8835,7 @@
           "label": "Postsecondary school (college, CEGEP, trade school, university)"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8853,7 +8853,7 @@
           "label": "No, my children do not attend any of those"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8871,7 +8871,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -8934,7 +8934,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": true,
       "is_ordinal": false,
@@ -9302,7 +9302,7 @@
           "label": "Own a residence"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9320,7 +9320,7 @@
           "label": "Own a business, a piece of property, a farm or livestock"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9338,7 +9338,7 @@
           "label": "Own stocks or bonds"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9356,7 +9356,7 @@
           "label": "Have any savings"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9374,7 +9374,7 @@
           "label": "None of these"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9392,7 +9392,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "single",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9447,7 +9447,7 @@
       "question_text": "Counting yourself, how many people live in your household?",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9460,7 +9460,7 @@
       "question_text": "Government spending - affordable housing/national childcare system - Display Ord",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9473,7 +9473,7 @@
       "question_text": "Government spending - affordable housing/national childcare system - Display Ord",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9574,7 +9574,7 @@
           "label": "Yukon"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": true,
       "is_ordinal": false,
@@ -9711,7 +9711,7 @@
           "label": "I was not eligible to vote"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9765,7 +9765,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9811,7 +9811,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9849,7 +9849,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9887,7 +9887,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9905,7 +9905,7 @@
           "label": "I didn't know I had to request a vote-by-mail package"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9923,7 +9923,7 @@
           "label": "I didn't know where or how to request a vote-by-mail package"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9941,7 +9941,7 @@
           "label": "The process to request a vote-by-mail package by telephone was confusing"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9959,7 +9959,7 @@
           "label": "The process to request a vote-by-mail package on the Elections Canada website was confusing"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9977,7 +9977,7 @@
           "label": "It took a long time to receive the vote-by-mail package"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -9995,7 +9995,7 @@
           "label": "My vote-by-mail package never arrived"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10013,7 +10013,7 @@
           "label": "The instructions in the vote-by-mail package were confusing"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10031,7 +10031,7 @@
           "label": "The ballot did not list the names of candidates or political parties"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10049,7 +10049,7 @@
           "label": "I was unsure if return postage was paid or not"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10067,7 +10067,7 @@
           "label": "I was unsure if the package would arrive in time for my vote to be counted"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10085,7 +10085,7 @@
           "label": "Other (please explain)"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10103,7 +10103,7 @@
           "label": "Unsure"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10121,7 +10121,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10159,7 +10159,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10209,7 +10209,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10247,7 +10247,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10281,7 +10281,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10331,7 +10331,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10365,7 +10365,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10395,7 +10395,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10434,7 +10434,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10452,7 +10452,7 @@
           "label": "Liberal Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10470,7 +10470,7 @@
           "label": "Conservative Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10488,7 +10488,7 @@
           "label": "ndp"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10506,7 +10506,7 @@
           "label": "Bloc Québécois"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10524,7 +10524,7 @@
           "label": "Green Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10542,7 +10542,7 @@
           "label": "People's Party"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10560,7 +10560,7 @@
           "label": "Another party (please specify)"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10578,7 +10578,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10604,7 +10604,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10642,7 +10642,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10655,7 +10655,7 @@
       "question_text": "How do you feel about the following groups in Canada? Set the slider to any numb",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10668,7 +10668,7 @@
       "question_text": "How do you feel about the following groups in Canada? Set the slider to any numb",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10681,7 +10681,7 @@
       "question_text": "How do you feel about the following groups in Canada? Set the slider to any numb",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10694,7 +10694,7 @@
       "question_text": "How do you feel about the following groups in Canada? Set the slider to any numb",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10732,7 +10732,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10770,7 +10770,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10808,7 +10808,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10846,7 +10846,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10898,7 +10898,7 @@
       "question_text": "Timing - Click Count",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10936,7 +10936,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -10974,7 +10974,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11012,7 +11012,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11050,7 +11050,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11088,7 +11088,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11126,7 +11126,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11164,7 +11164,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11202,7 +11202,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11240,7 +11240,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11278,7 +11278,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11316,7 +11316,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11354,7 +11354,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11392,7 +11392,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11426,7 +11426,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11460,7 +11460,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11494,7 +11494,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11528,7 +11528,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11562,7 +11562,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11596,7 +11596,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11630,7 +11630,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11664,7 +11664,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11698,7 +11698,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11732,7 +11732,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11766,7 +11766,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11800,7 +11800,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11834,7 +11834,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11868,7 +11868,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11902,7 +11902,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11936,7 +11936,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -11970,7 +11970,7 @@
           "label": "Don't know/Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12004,7 +12004,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12038,7 +12038,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12076,7 +12076,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12114,7 +12114,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12148,7 +12148,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12182,7 +12182,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12216,7 +12216,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12250,7 +12250,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12284,7 +12284,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12310,7 +12310,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12336,7 +12336,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12366,7 +12366,7 @@
           "label": "Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12392,7 +12392,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12418,7 +12418,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12452,7 +12452,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12490,7 +12490,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12508,7 +12508,7 @@
           "label": "Elections Canada flyer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12526,7 +12526,7 @@
           "label": "Voter Information Card"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12544,7 +12544,7 @@
           "label": "Advertisements from Elections Canada"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12562,7 +12562,7 @@
           "label": "Radio or Television"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12580,7 +12580,7 @@
           "label": "Newspaper"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12598,7 +12598,7 @@
           "label": "Elections Canada website"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12616,7 +12616,7 @@
           "label": "Word of mouth"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12634,7 +12634,7 @@
           "label": "Facebook"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12652,7 +12652,7 @@
           "label": "Twitter"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12670,7 +12670,7 @@
           "label": "YouTube"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12688,7 +12688,7 @@
           "label": "Other social media"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12706,7 +12706,7 @@
           "label": "From internet website other than Elections Canada"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12724,7 +12724,7 @@
           "label": "From candidates or political parties"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12742,7 +12742,7 @@
           "label": "Other source"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12760,7 +12760,7 @@
           "label": "None of these"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12778,7 +12778,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12791,7 +12791,7 @@
       "question_text": "Thinking about the recent election, how informed did you feel about the followin",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12804,7 +12804,7 @@
       "question_text": "Thinking about the recent election, how informed did you feel about the followin",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12817,7 +12817,7 @@
       "question_text": "Thinking about the recent election, how informed did you feel about the followin",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12855,7 +12855,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12889,7 +12889,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12967,7 +12967,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -12985,7 +12985,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/1}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13003,7 +13003,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/2}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13021,7 +13021,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/3}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13039,7 +13039,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/1}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13057,7 +13057,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/2}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13075,7 +13075,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/3}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13093,7 +13093,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/1}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13111,7 +13111,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/2}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13129,7 +13129,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/3}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13147,7 +13147,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/1}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13165,7 +13165,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/2}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13183,7 +13183,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/3}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13201,7 +13201,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/1}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13219,7 +13219,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/2}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13237,7 +13237,7 @@
           "label": "{q://QID361/ChoiceTextEntryValue/3}"
         }
       ],
-      "var_type": "open",
+      "var_type": "multiple",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13271,7 +13271,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13305,7 +13305,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13339,7 +13339,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13373,7 +13373,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13407,7 +13407,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13441,7 +13441,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13475,7 +13475,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13509,7 +13509,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13543,7 +13543,7 @@
           "label": "Don't know/ Prefer not to a"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13577,7 +13577,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13611,7 +13611,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13645,7 +13645,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13679,7 +13679,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13705,7 +13705,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13743,7 +13743,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13781,7 +13781,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13819,7 +13819,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13857,7 +13857,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13895,7 +13895,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13933,7 +13933,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -13971,7 +13971,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14009,7 +14009,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14047,7 +14047,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14085,7 +14085,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14123,7 +14123,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14153,7 +14153,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14179,7 +14179,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14217,7 +14217,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14255,7 +14255,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14293,7 +14293,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14319,7 +14319,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14345,7 +14345,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14383,7 +14383,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14421,7 +14421,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14451,7 +14451,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14477,7 +14477,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14515,7 +14515,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14553,7 +14553,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14591,7 +14591,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14629,7 +14629,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14655,7 +14655,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14685,7 +14685,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14735,7 +14735,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14765,7 +14765,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14791,7 +14791,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14817,7 +14817,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14847,7 +14847,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14877,7 +14877,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14915,7 +14915,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14953,7 +14953,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14966,7 +14966,7 @@
       "question_text": "How much do you identity as feminine on a scale from 0 to 100, where 0 means not",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14979,7 +14979,7 @@
       "question_text": "How much do you identity as masculine on a scale from 0 to 100, where 0 means no",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "scale",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -14992,7 +14992,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15005,7 +15005,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15018,7 +15018,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15031,7 +15031,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15044,7 +15044,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15057,7 +15057,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15070,7 +15070,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15083,7 +15083,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15096,7 +15096,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15109,7 +15109,7 @@
       "question_text": "We’re interested in how you see yourself. Please indicate how well the following",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15143,7 +15143,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15177,7 +15177,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15211,7 +15211,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15253,7 +15253,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15279,7 +15279,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15317,7 +15317,7 @@
           "label": "Don't know / Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15351,7 +15351,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15385,7 +15385,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15471,7 +15471,7 @@
           "label": "Don't know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": true,
       "is_ordinal": false,
@@ -15533,7 +15533,7 @@
           "label": "Don't Know/ Prefer not to answer"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15546,7 +15546,7 @@
       "question_text": "Position statements: medical treatment, Senate, lose touch, hateful (show 2/4) -",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15559,7 +15559,7 @@
       "question_text": "Position statements: medical treatment, Senate, lose touch, hateful (show 2/4) -",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15572,7 +15572,7 @@
       "question_text": "Position statements: medical treatment, Senate, lose touch, hateful (show 2/4) -",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15585,7 +15585,7 @@
       "question_text": "Position statements: medical treatment, Senate, lose touch, hateful (show 2/4) -",
       "display_label": null,
       "response_options": [],
-      "var_type": "open",
+      "var_type": "continuous",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
@@ -15664,7 +15664,7 @@
           "label": "Nunavut"
         }
       ],
-      "var_type": "open",
+      "var_type": "single",
       "text_kind": null,
       "is_sociodemo": false,
       "is_ordinal": false,
