@@ -22,8 +22,8 @@ import pyreadstat
 
 from ingestion.canonical import canonical_sociodemo_text
 from ingestion.models import SurveyFile
-from ingestion.open_text import is_text_column
 from ingestion.validate import assert_no_fabricated_text, fabrication_reason
+from ingestion.var_types import derive_var_type
 
 # ---------------------------------------------------------------------------
 # Chemins
@@ -320,15 +320,8 @@ def extract() -> dict:
                 code = int(code)
             response_options.append({"code": code, "label": str(label)})
 
-        # Type de variable
-        if is_text_column(df[col]):
-            var_type = "open"
-        elif any(k in raw_label.lower() for k in ["slider", "scale", "rating"]):
-            var_type = "scale"
-        elif raw_opts:
-            var_type = "single"
-        else:
-            var_type = "continuous"
+        # Type de variable — règle unique, cf. ingestion/var_types.py
+        var_type = derive_var_type(df[col], response_options, raw_label)
 
         is_sociodemo = sociodemo_type is not None
 

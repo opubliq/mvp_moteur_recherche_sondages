@@ -47,8 +47,23 @@ def is_text_column(series: pd.Series) -> bool:
     extracteurs : pandas ≥ 2 expose désormais les colonnes chaîne de pyreadstat
     en dtype `str`, et le test échouait SILENCIEUSEMENT (les verbatims de
     cecd_elxn_qc_2007 tombaient en `continuous`).
+
+    Le dtype `object` seul NE SUFFIT PAS (correctif 2026-09-21) : pyreadstat
+    rend en `object` toute colonne d'ENTIERS comportant des manquants (mélange
+    `int` / `NaN`). Des centaines de questions fermées des CES — value labels à
+    l'appui — étaient ainsi typées `open`. On tranche donc sur les VALEURS :
+    une colonne `object` n'est du texte que si elle contient au moins une vraie
+    chaîne. Une colonne `object` entièrement vide reste du texte (comportement
+    historique : elle ressort `text_kind="empty"`, jamais `continuous`).
     """
-    return pd.api.types.is_string_dtype(series) or series.dtype == object
+    if pd.api.types.is_string_dtype(series):
+        return True
+    if series.dtype != object:
+        return False
+    values = series.dropna()
+    if values.empty:
+        return True
+    return any(isinstance(v, str) for v in values)
 
 
 def _clean_values(series: pd.Series) -> list[str]:

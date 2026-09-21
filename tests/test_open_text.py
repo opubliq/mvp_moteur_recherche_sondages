@@ -81,3 +81,15 @@ def test_is_text_column_couvre_les_dtypes_chaine_de_pandas_2():
     assert is_text_column(pd.Series(["a", "b"], dtype="str"))
     assert is_text_column(pd.Series(["a", "b"], dtype=object))
     assert not is_text_column(pd.Series([1.0, 2.0]))
+
+
+def test_is_text_column_rejette_les_entiers_a_manquants_en_dtype_object():
+    # pyreadstat rend en `object` toute colonne d'entiers comportant des
+    # manquants. Le test `dtype == object` typait alors `open` des centaines de
+    # questions FERMÉES des CES (bug corrigé le 2026-09-21).
+    codes = pd.Series([1, 2, None, 3], dtype=object)
+    assert not is_text_column(codes)
+    # Une colonne `object` vide reste du texte (→ text_kind="empty").
+    assert is_text_column(pd.Series([None, None], dtype=object))
+    # Une colonne `object` mixte contenant du texte reste du texte.
+    assert is_text_column(pd.Series([1, "autre", None], dtype=object))

@@ -20,11 +20,12 @@ from pathlib import Path
 
 import pandas as pd
 import pandas.io.stata as stata
+import pyreadstat
 
 from ingestion.canonical import canonical_sociodemo_text
 from ingestion.models import SurveyFile
-from ingestion.open_text import is_text_column
 from ingestion.validate import assert_no_fabricated_text, fabrication_reason
+from ingestion.var_types import derive_var_type
 
 # ---------------------------------------------------------------------------
 # Chemins
@@ -230,8 +231,38 @@ def _clean_text(text: str) -> str:
     return " ".join(lines)
 
 
+def _prefer_utf8(text: str) -> str:
+    """Répare un libellé lu en latin-1 alors qu'il était encodé en UTF-8.
+
+    Ce .dta mélange les deux encodages (pandas émet d'ailleurs un
+    `UnicodeWarning` en le lisant) : 17 des 2 287 value labels sont de l'UTF-8,
+    les autres du latin-1. Lus intégralement en latin-1, ces 17 ressortent en
+    mojibake (« Bloc QuÃ©bÃ©cois »). On ne réécrit RIEN : on se contente, comme
+    pandas, de préférer la lecture UTF-8 quand les octets en forment une valide.
+    """
+    try:
+        return text.encode("latin1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return text
+
+
 def _load_stata_data() -> tuple[pd.DataFrame, dict[str, str], dict[str, dict]]:
-    """Charge le fichier Stata .dta avec prise en charge de l'encodage latin-1 pour les StrLs."""
+    """Charge le .dta : données via pandas (StrLs latin-1), value labels via pyreadstat.
+
+    Les DONNÉES passent par pandas : pyreadstat échoue sur les StrLs mal encodés
+    de ce fichier (UnicodeDecodeError), que le patch `_read_strls` ci-dessous
+    force en latin-1.
+
+    Les VALUE LABELS, eux, viennent de `pyreadstat` (lecture métadonnées seule,
+    encodage latin-1). Motif du correctif (2026-09-21) : `StataReader.value_labels()`
+    de pandas indexe par NOM DE JEU d'étiquettes Stata (`A_JW`, `A_JR`…), pas par
+    nom de variable, contrairement à ce que laisse entendre sa docstring. Le
+    `val_labels.get(col)` de l'extracteur ne trouvait donc presque rien : 273
+    questions fermées ressortaient sans aucune option, typées `continuous`
+    (p.ex. `cps19_demsat`, satisfaction démocratique, codes 1-5). `pyreadstat`
+    expose `variable_value_labels`, DÉJÀ indexé par variable — c'est la source
+    qu'utilisent les autres extracteurs CES et le rail microdonnées.
+    """
     orig_read_strls = stata.StataReader._read_strls
 
     def custom_read_strls(self: stata.StataReader) -> None:
@@ -244,10 +275,17 @@ def _load_stata_data() -> tuple[pd.DataFrame, dict[str, str], dict[str, dict]]:
             str(DTA_FILE), iterator=True, convert_categoricals=False
         )
         var_labels: dict[str, str] = reader.variable_labels()
-        val_labels: dict[str, dict] = reader.value_labels()
         df: pd.DataFrame = reader.read()
     finally:
         stata.StataReader._read_strls = orig_read_strls
+
+    _, meta = pyreadstat.read_dta(
+        str(DTA_FILE), metadataonly=True, encoding="latin1"
+    )
+    val_labels: dict[str, dict] = {
+        var: {code: _prefer_utf8(str(label)) for code, label in labels.items()}
+        for var, labels in (meta.variable_value_labels or {}).items()
+    }
 
     return df, var_labels, val_labels
 
@@ -295,15 +333,8 @@ def extract() -> dict:
                     code = int(code)
                 response_options.append({"code": code, "label": str(label)})
 
-        # Type de variable
-        if is_text_column(df[col]):
-            var_type = "open"
-        elif any(k in raw_label.lower() for k in ["slider", "scale", "rating"]):
-            var_type = "scale"
-        elif response_options:
-            var_type = "single"
-        else:
-            var_type = "continuous"
+        # Type de variable — règle unique, cf. ingestion/var_types.py
+        var_type = derive_var_type(df[col], response_options, raw_label)
 
         is_sociodemo = sociodemo_type is not None
 
