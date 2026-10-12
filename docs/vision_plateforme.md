@@ -35,6 +35,22 @@ de sondages, les résultats publiés par les sondeurs et les données géographi
 3. **Les réponses croisent les sources.** Exemple : « L'appui à la
    souveraineté est-il plus fort dans les circonscriptions à revenu médian faible, et
    qu'en disaient les derniers sondages Léger par région ? »
+4. **Portrait d'un territoire.** On demande « Comment sont les gens dans telle MRC /
+   tel quartier ? » et l'agent produit un portrait global : socio-démo, comportement
+   électoral, dons, et ce que les sondages disent des gens qui ressemblent à cette
+   population (valeurs, priorités, attitudes).
+
+## Pour qui
+
+Au-delà des firmes de sondage et des agences d'affaires publiques : **toute
+organisation qui doit comprendre une population locale.** Cas type : une entreprise
+qui veut évaluer l'acceptabilité sociale d'un projet (parc éolien, mine,
+infrastructure) dans une région donnée, avant d'y investir ou de consulter. Aussi :
+municipalités, partis, organismes, promoteurs.
+
+**Limite à assumer :** à l'échelle d'une petite région, les sondages ont peu ou pas de
+répondants. L'agent doit le dire (taille d'échantillon, fiabilité) et distinguer ce
+qu'il mesure directement de ce qu'il estime à partir du profil de la population.
 
 ## Les quatre chantiers
 
