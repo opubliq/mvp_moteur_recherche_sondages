@@ -16,7 +16,7 @@ export default function App() {
       <Route path="/connexion" element={<LoginPage />} />
       <Route path="/inscription" element={<SignupPage />} />
       <Route element={<AppShell />}>
-        <Route index element={<Navigate to="/recherche" replace />} />
+        <Route index element={<Navigate to="/agent" replace />} />
         <Route path="/recherche" element={<SearchPage />} />
         <Route path="/corpus" element={<CorpusPage />} />
         <Route path="/agent" element={<AgentPage />} />
@@ -25,7 +25,7 @@ export default function App() {
         <Route path="/exportation-avancee" element={<AdvancedExportPage />} />
         <Route path="/sondage/:surveyId" element={<SurveyPage />} />
         <Route path="/sondage/:surveyId/q/:variable" element={<QuestionDashboard />} />
-        <Route path="*" element={<Navigate to="/recherche" replace />} />
+        <Route path="*" element={<Navigate to="/agent" replace />} />
       </Route>
     </Routes>
   );

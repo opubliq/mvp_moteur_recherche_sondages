@@ -105,6 +105,9 @@ Ajouts prévus, sans ordre fixé :
 
 - Ingestion en continu de nouveaux sondages clients (on reste sur un corpus contrôlé).
 - Plateforme de sondages en libre-service : produit séparé (contrat Médaillon).
+- Silicon sampling (`article_silicon_sampling_quebec`) : R&D séparée. Si les résultats
+  tiennent, ça pourrait s'ajouter plus tard comme couche d'estimation par-dessus la
+  plateforme (ex. : estimer les attitudes d'une petite région).
 
 ## Questions ouvertes
 

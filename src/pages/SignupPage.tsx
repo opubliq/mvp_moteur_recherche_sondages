@@ -28,7 +28,7 @@ export default function SignupPage() {
     setBusy(true);
     try {
       await signup(email, password);
-      navigate("/recherche", { replace: true });
+      navigate("/agent", { replace: true });
     } catch (err) {
       setError(errorMessage(err, t));
     } finally {

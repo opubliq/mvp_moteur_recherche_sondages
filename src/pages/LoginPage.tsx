@@ -22,7 +22,7 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  const redirectTo = (location.state as { from?: string } | null)?.from ?? "/recherche";
+  const redirectTo = (location.state as { from?: string } | null)?.from ?? "/agent";
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
