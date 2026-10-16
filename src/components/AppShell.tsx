@@ -58,7 +58,7 @@ export default function AppShell() {
         <div className="rail-brand">
           <img className="rail-logo" src="/opubliq-symbole.png" alt="Opubliq" />
           <div>
-            <b>Opubliq</b>
+            <b>Atlas Opubliq</b>
             <span>{t("app.brand.tagline")}</span>
           </div>
         </div>
