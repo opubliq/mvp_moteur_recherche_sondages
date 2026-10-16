@@ -182,6 +182,28 @@ export interface BuildConceptTableOptions {
   /** Question socio-démo résolue par sondage (croisement socio-démo seulement). */
   demoVarBySurvey?: Map<string, SearchResult | undefined>;
   sociodemoMappings?: SociodemoMappings;
+  /**
+   * Croisement socio-démo seulement (bead 9ou.8) : colonnes = ANNÉE ×
+   * catégorie socio-démo (« 2019 · 18-34 ») au lieu de sondage × catégorie,
+   * fusionnant les sondages d'une même année (poids normalisés par sondage).
+   * Seul croisement combiné permis : année + UNE socio-démo — pas de N-way
+   * (cf. `computeConceptTable`). Sans effet sur `null` / `YEAR_CROSSING_KEY`.
+   */
+  mergeByYear?: boolean;
+}
+
+/**
+ * Seuil de « petite cellule » (bead 9ou.8) : une colonne dont le n BRUT (non
+ * pondéré) est < 100 est signalée « n faible » dans l'export. À n = 100, la
+ * marge d'erreur d'une proportion (IC 95 %, p = 0,5) est déjà ≈ ±10 points —
+ * au-delà, une part sur un sous-groupe (ex. 18-34 d'un sondage) n'est plus
+ * interprétable seule. Convention courante en diffusion de sondages.
+ */
+export const SMALL_CELL_RAW_N = 100;
+
+/** n brut (non pondéré) total d'une colonne : Σ des répondants valides, toutes catégories. */
+export function columnRawN(result: Pick<ConceptTableResult, "rows">, columnKey: string): number {
+  return result.rows.reduce((s, row) => s + (row.cells[columnKey]?.rawN ?? 0), 0);
 }
 
 /**
@@ -197,10 +219,13 @@ export function buildConceptTable(
   const warnings: string[] = [];
   const { crossingKey, sociodemoMappings } = opts;
   const demoVarBySurvey: Map<string, SearchResult | undefined> = opts.demoVarBySurvey ?? new Map();
-  const groupByYear = crossingKey === YEAR_CROSSING_KEY;
-  const demoKey = crossingKey && !groupByYear ? crossingKey : null;
+  const demoKey = crossingKey && crossingKey !== YEAR_CROSSING_KEY ? crossingKey : null;
   const demoMapping = demoKey ? sociodemoMappings?.[demoKey] : undefined;
   const harmonized = !!demoMapping && demoMapping.categories.length > 0;
+  // Colonnes par année : croisement « année » seul, ou socio-démo HARMONISÉE ×
+  // année (9ou.8). Sans harmonisation, fusionner des codes natifs de sondages
+  // différents n'aurait pas de sens : on garde sondage × catégorie native.
+  const groupByYear = crossingKey === YEAR_CROSSING_KEY || (!!demoKey && !!opts.mergeByYear && harmonized);
 
   const columnsByKey = new Map<string, ConceptTableColumn>();
   const totals = new Map<string, Map<string, { weightedN: number; rawN: number }>>(); // columnKey -> categoryId -> totals
@@ -315,6 +340,12 @@ export function buildConceptTable(
  * via `sociodemoMappings` (tjf.8) — sans mapping défini pour ce type, replie
  * sur la catégorie native brute (colonnes non harmonisées entre sondages).
  *
+ * Exception unique (9ou.8) : `mergeByYear` combine UNE socio-démo avec
+ * l'année (colonnes « 2019 · 18-34 »), en fusionnant les sondages d'une même
+ * année — le cas « % souveraineté chez les 18-34 par année ». La fusion
+ * regroupe des sondages au lieu de les découper, donc les cellules grossissent
+ * plutôt que de se vider ; aucune autre combinaison n'est offerte.
+ *
  * Agrégation côté serveur sur TOUS les répondants (9ou.6), poids normalisés
  * par sondage avant cumul (9ou.7) — cf. `ItemAggregate`, `weightNormalizationFactor`.
  */
@@ -323,6 +354,7 @@ export async function computeConceptTable(
   items: CartItem[],
   crossingKey: string | null,
   sociodemoMappings?: SociodemoMappings,
+  opts: { mergeByYear?: boolean } = {},
 ): Promise<ConceptTableResult> {
   if (group.categories.length === 0) {
     return { columns: [], rows: [], warnings: ["Aucune catégorie de sortie définie pour ce concept."] };
@@ -350,6 +382,9 @@ export async function computeConceptTable(
       warnings.push(
         `Mapping socio-démo non défini pour « ${label} » — colonnes non harmonisées entre sondages (catégories natives brutes).`,
       );
+      if (opts.mergeByYear) {
+        warnings.push(`Fusion par année ignorée pour « ${label} » : elle exige un mapping socio-démo harmonisé.`);
+      }
     }
   }
 
@@ -357,15 +392,23 @@ export async function computeConceptTable(
   const aggregates = await fetchItemAggregates(items, (item) => demoVarBySurvey.get(item.survey_id)?.variable);
 
   // 3) Mapping + normalisation + cumul (pur, testé).
-  const result = buildConceptTable(group, aggregates, { crossingKey, demoVarBySurvey, sociodemoMappings });
+  const result = buildConceptTable(group, aggregates, {
+    crossingKey,
+    demoVarBySurvey,
+    sociodemoMappings,
+    mergeByYear: opts.mergeByYear,
+  });
   return { ...result, warnings: [...warnings, ...result.warnings] };
 }
 
-function crossingLabel(crossingKey: string | null): string {
+function crossingLabel(crossingKey: string | null, mergeByYear = false): string {
   if (crossingKey === null) return "";
   if (crossingKey === YEAR_CROSSING_KEY) return "Année";
-  return DEMO_TYPES.find((d) => d.key === crossingKey)?.label ?? crossingKey;
+  const label = DEMO_TYPES.find((d) => d.key === crossingKey)?.label ?? crossingKey;
+  return mergeByYear ? `${label} × année` : label;
 }
+
+const GREY = { argb: "FF999999" };
 
 /** Écrit une table de concept (catégories de sortie en lignes, colonnes de croisement en colonnes) sur une feuille dédiée. */
 function writeConceptTableSheet(sheet: Worksheet, groupLabel: string, crossKeyLabel: string, result: ConceptTableResult): void {
@@ -380,6 +423,10 @@ function writeConceptTableSheet(sheet: Worksheet, groupLabel: string, crossKeyLa
   });
   headerRow.font = { bold: true };
 
+  // n brut par colonne : sert à la ligne « N brut » et au signalement des petites cellules.
+  const rawNByCol = result.columns.map((col) => columnRawN(result, col.key));
+  const isSmall = (ci: number) => rawNByCol[ci] < SMALL_CELL_RAW_N;
+
   result.rows.forEach((row, ri) => {
     const excelRow = sheet.getRow(5 + ri);
     excelRow.getCell(1).value = row.categoryLabel;
@@ -388,6 +435,7 @@ function writeConceptTableSheet(sheet: Worksheet, groupLabel: string, crossKeyLa
       const c = excelRow.getCell(2 + ci);
       c.value = cell?.share ?? 0;
       c.numFmt = "0.0%";
+      if (isSmall(ci)) c.font = { italic: true, color: GREY };
     });
   });
 
@@ -399,13 +447,41 @@ function writeConceptTableSheet(sheet: Worksheet, groupLabel: string, crossKeyLa
     nRow.getCell(2 + ci).value = Math.round(total);
   });
 
+  const rawRow = sheet.getRow(6 + result.rows.length);
+  rawRow.getCell(1).value = "N brut (non pondéré)";
+  rawRow.font = { italic: true };
+  result.columns.forEach((_, ci) => {
+    rawRow.getCell(2 + ci).value = rawNByCol[ci];
+  });
+
+  const flagRow = sheet.getRow(7 + result.rows.length);
+  result.columns.forEach((_, ci) => {
+    if (!isSmall(ci)) return;
+    const c = flagRow.getCell(2 + ci);
+    c.value = "n faible";
+    c.font = { italic: true, color: GREY };
+  });
+
+  let r = 9 + result.rows.length;
+  sheet.getCell(`A${r}`).value = "Légende";
+  sheet.getCell(`A${r}`).font = { bold: true };
+  r++;
+  for (const line of [
+    "Parts pondérées (poids ramenés à moyenne 1 dans chaque sondage avant toute fusion).",
+    `« n faible » (gris italique) : colonne de moins de ${SMALL_CELL_RAW_N} répondants bruts (non pondérés) — marge d'erreur ≈ ±10 points ou plus, à interpréter avec prudence.`,
+  ]) {
+    sheet.getCell(`A${r}`).value = line;
+    sheet.getCell(`A${r}`).font = { italic: true, color: { argb: "FF666666" } };
+    r++;
+  }
+
   sheet.getColumn(1).width = 30;
   result.columns.forEach((_, i) => {
     sheet.getColumn(2 + i).width = 22;
   });
 
   if (result.warnings.length > 0) {
-    let r = 7 + result.rows.length;
+    r++;
     sheet.getCell(`A${r}`).value = "Avertissements";
     sheet.getCell(`A${r}`).font = { bold: true };
     r++;
@@ -420,7 +496,8 @@ function writeConceptTableSheet(sheet: Worksheet, groupLabel: string, crossKeyLa
 /**
  * Construit et télécharge le classeur Excel de l'exportation avancée (bead
  * tjf.6) : une feuille par (concept × variable de croisement cochée),
- * réutilisant `computeConceptTable` (tjf.5). Sans aucune variable cochée, une
+ * réutilisant `computeConceptTable` (tjf.5). `opts.mergeByYear` (9ou.8) :
+ * chaque feuille socio-démo devient socio-démo × année. Sans aucune variable cochée, une
  * seule feuille par concept (colonnes = sondage/année, alignement de base).
  * Ignore silencieusement les concepts sans catégorie de sortie ou avec moins
  * de deux questions — rien à croiser.
@@ -432,6 +509,7 @@ export async function exportAdvancedXlsx(
   sociodemoMappings: SociodemoMappings,
   onProgress?: (done: number, total: number) => void,
   filename?: string,
+  opts: { mergeByYear?: boolean } = {},
 ): Promise<{ warnings: string[] }> {
   const exportGroups = groups.filter((g) => g.categories.length > 0 && (groupItems.get(g.id)?.length ?? 0) >= 2);
   const crossingKeys: (string | null)[] = crossing.size > 0 ? [...crossing] : [null];
@@ -454,9 +532,10 @@ export async function exportAdvancedXlsx(
   for (const group of exportGroups) {
     const items = groupItems.get(group.id) ?? [];
     for (const crossKey of crossingKeys) {
-      const result = await computeConceptTable(group, items, crossKey, sociodemoMappings);
+      const result = await computeConceptTable(group, items, crossKey, sociodemoMappings, opts);
       bump();
-      const label = crossingLabel(crossKey);
+      const merged = !!opts.mergeByYear && crossKey !== null && crossKey !== YEAR_CROSSING_KEY;
+      const label = crossingLabel(crossKey, merged);
       const sheet = wb.addWorksheet(makeSheetName(label ? `${group.label} · ${label}` : group.label, usedNames));
       writeConceptTableSheet(sheet, group.label, label, result);
       warnings.push(...result.warnings.map((w) => `${group.label}${label ? ` · ${label}` : ""} : ${w}`));

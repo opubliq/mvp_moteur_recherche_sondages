@@ -16,7 +16,9 @@ vi.mock("../api", () => ({
 const {
   buildConceptTable,
   buildConceptTotals,
+  columnRawN,
   computeConceptTable,
+  SMALL_CELL_RAW_N,
   computeConceptTotals,
   weightNormalizationFactor,
   YEAR_CROSSING_KEY,
@@ -133,6 +135,108 @@ describe("buildConceptTable — fusion par année avec échelles de poids diffé
     const res = buildConceptTable(group, [{ item: A, cells: null }], { crossingKey: null });
     expect(res.columns).toHaveLength(0);
     expect(res.warnings[0]).toMatch(/Micro-données indisponibles/);
+  });
+});
+
+describe("buildConceptTable — âge × année combiné + N brut (9ou.8)", () => {
+  // A (2010, poids moyen 1) et B (2010, poids moyen 6) + C (2012) ; âge harmonisé
+  // vers « 18-34 » (codes natifs différents par sondage) et « 35+ ».
+  const C = item("survey_c", "Q3", 2012);
+  const groupC: ConceptGroup = {
+    ...group,
+    itemKeys: [...group.itemKeys, "survey_c::Q3"],
+    mapping: { ...group.mapping, "survey_c::Q3": { "1": "oui", "2": "non" } },
+  };
+  const demoVar = { variable: "AGE", response_options: [] } as never;
+  const opts = {
+    crossingKey: "age",
+    mergeByYear: true,
+    demoVarBySurvey: new Map([
+      ["survey_a", demoVar],
+      ["survey_b", demoVar],
+      ["survey_c", demoVar],
+    ]),
+    sociodemoMappings: {
+      age: {
+        categories: [
+          { id: "jeunes", label: "18-34" },
+          { id: "vieux", label: "35+" },
+        ],
+        mapping: {
+          survey_a: { "1": "jeunes", "2": "vieux" },
+          survey_b: { "3": "jeunes", "4": "vieux" },
+          survey_c: { "1": "jeunes", "2": "vieux" },
+        },
+      },
+    },
+  };
+  // A : 18-34 → 20 Oui / 20 Non (n=40) ; 35+ → 10 Oui / 50 Non (n=60). Poids moyen 1.
+  const aggA = {
+    item: A,
+    dimVariable: "AGE",
+    cells: [
+      { target_code: 1, dim_code: 1, weighted_n: 20, raw_n: 20 },
+      { target_code: 2, dim_code: 1, weighted_n: 20, raw_n: 20 },
+      { target_code: 1, dim_code: 2, weighted_n: 10, raw_n: 10 },
+      { target_code: 2, dim_code: 2, weighted_n: 50, raw_n: 50 },
+    ],
+  };
+  // B : poids ×6. 18-34 → 48 Oui / 12 Non (n=60, 80 %) ; 35+ → 20 Oui / 20 Non (n=40).
+  const aggB = {
+    item: B,
+    dimVariable: "AGE",
+    cells: [
+      { target_code: 1, dim_code: 3, weighted_n: 288, raw_n: 48 },
+      { target_code: 2, dim_code: 3, weighted_n: 72, raw_n: 12 },
+      { target_code: 1, dim_code: 4, weighted_n: 120, raw_n: 20 },
+      { target_code: 2, dim_code: 4, weighted_n: 120, raw_n: 20 },
+    ],
+  };
+  const aggC = {
+    item: C,
+    dimVariable: "AGE",
+    cells: [
+      { target_code: 1, dim_code: 1, weighted_n: 300, raw_n: 300 },
+      { target_code: 2, dim_code: 1, weighted_n: 100, raw_n: 100 },
+      { target_code: 1, dim_code: 2, weighted_n: 30, raw_n: 30 },
+      { target_code: 2, dim_code: 2, weighted_n: 30, raw_n: 30 },
+    ],
+  };
+
+  it("colonnes = année × catégorie harmonisée, sondages d'une même année fusionnés (poids normalisés)", () => {
+    const res = buildConceptTable(groupC, [aggA, aggB, aggC], opts);
+    expect(res.columns.map((c) => c.label)).toEqual(["2010 · 18-34", "2010 · 35+", "2012 · 18-34", "2012 · 35+"]);
+    const young2010 = res.columns[0];
+    expect(young2010.surveyIds.sort()).toEqual(["survey_a", "survey_b"]);
+    const oui = res.rows.find((r) => r.categoryId === "oui")!.cells[young2010.key];
+    // Correct : (20 + 48) / (40 + 60) = 68 %. Naïf (poids natifs) : (20 + 288) / (40 + 360) = 77 %.
+    expect(oui.share).toBeCloseTo(0.68, 10);
+    expect(oui.rawN).toBe(68);
+    expect(columnRawN(res, young2010.key)).toBe(100);
+    expect(columnRawN(res, res.columns[2].key)).toBe(400);
+  });
+
+  it("sans mergeByYear : reste sondage × catégorie", () => {
+    const res = buildConceptTable(groupC, [aggA, aggB], { ...opts, mergeByYear: false });
+    expect(res.columns.map((c) => c.label)).toEqual([
+      "survey_a (2010) · 18-34",
+      "survey_a (2010) · 35+",
+      "survey_b (2010) · 18-34",
+      "survey_b (2010) · 35+",
+    ]);
+  });
+
+  it("mergeByYear ignoré sans mapping harmonisé (pas de fusion de codes natifs entre sondages)", () => {
+    const res = buildConceptTable(groupC, [aggA, aggB], { ...opts, sociodemoMappings: {} });
+    expect(res.columns.every((c) => c.surveyIds.length === 1)).toBe(true);
+  });
+
+  it("N brut par colonne et seuil de petite cellule", () => {
+    const res = buildConceptTable(groupC, [aggA, aggB, aggC], opts);
+    const raw = res.columns.map((c) => columnRawN(res, c.key));
+    expect(raw).toEqual([100, 100, 400, 60]);
+    expect(SMALL_CELL_RAW_N).toBe(100);
+    expect(raw.map((n) => n < SMALL_CELL_RAW_N)).toEqual([false, false, false, true]);
   });
 });
 

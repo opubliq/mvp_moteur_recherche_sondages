@@ -19,6 +19,15 @@ function crossingLabelKey(key: string): TranslationKey {
   return key === YEAR_CROSSING_KEY ? "advExport.yearCrossing" : (`demoType.${key}` as TranslationKey);
 }
 const CROSSING_STORAGE_KEY = "opubliq.crossing.v1";
+const MERGE_BY_YEAR_STORAGE_KEY = "opubliq.crossing.mergeByYear.v1";
+
+function loadInitialMergeByYear(): boolean {
+  try {
+    return localStorage.getItem(MERGE_BY_YEAR_STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
 
 function loadInitialCrossing(): Set<string> {
   try {
@@ -479,6 +488,9 @@ export default function AdvancedExportPage() {
   const [newLabel, setNewLabel] = useState("");
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const [crossing, setCrossing] = useState<Set<string>>(loadInitialCrossing);
+  // 9ou.8 : socio-démo × année (sondages d'une même année fusionnés), ex. « 2019 · 18-34 ».
+  const [mergeByYear, setMergeByYear] = useState<boolean>(loadInitialMergeByYear);
+  const hasDemoCrossing = [...crossing].some((k) => k !== YEAR_CROSSING_KEY);
   const [exporting, setExporting] = useState(false);
   const [exportProgress, setExportProgress] = useState<{ done: number; total: number } | null>(null);
   const [exportError, setExportError] = useState<string | null>(null);
@@ -501,6 +513,8 @@ export default function AdvancedExportPage() {
         crossing,
         sociodemoMappings,
         (done, total) => setExportProgress({ done, total }),
+        undefined,
+        { mergeByYear: mergeByYear && hasDemoCrossing },
       );
       setExportWarnings(warnings);
     } catch (err) {
@@ -518,6 +532,14 @@ export default function AdvancedExportPage() {
       /* quota / mode privé : on ignore */
     }
   }, [crossing]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(MERGE_BY_YEAR_STORAGE_KEY, mergeByYear ? "1" : "0");
+    } catch {
+      /* quota / mode privé : on ignore */
+    }
+  }, [mergeByYear]);
 
   function toggleCrossing(key: string) {
     setCrossing((prev) => {
@@ -725,6 +747,20 @@ export default function AdvancedExportPage() {
                   </button>
                 ))}
               </div>
+              {hasDemoCrossing && (
+                <label className="mt-3 flex cursor-pointer items-start gap-2">
+                  <input
+                    type="checkbox"
+                    className="toggle toggle-primary toggle-sm mt-0.5 shrink-0"
+                    checked={mergeByYear}
+                    onChange={(e) => setMergeByYear(e.target.checked)}
+                  />
+                  <span>
+                    <span className="block text-xs font-semibold">{t("advExport.mergeByYear")}</span>
+                    <span className="block text-xs text-base-content/50">{t("advExport.mergeByYearHint")}</span>
+                  </span>
+                </label>
+              )}
             </div>
 
             {[...crossing]
