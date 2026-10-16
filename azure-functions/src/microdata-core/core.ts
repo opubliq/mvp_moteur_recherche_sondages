@@ -93,6 +93,13 @@ export interface MicrodataParams {
    * sans la persister — et donc sans toucher au contrat RAW-FIRST des Parquet.
    */
   annotation?: AnnotationPair[];
+  /**
+   * `true` → NE PAS exclure d'office les sentinelles négatives (-99, -98…) de
+   * la cible. Sert l'exportation avancée (bead 9ou.6) : c'est le mapping de
+   * l'utilisateur qui décide si un code « Refus » compte dans une catégorie de
+   * sortie, comme le faisait l'ancien chemin ligne-par-ligne. Défaut `false`.
+   */
+  include_sentinels?: boolean;
 }
 
 export interface MicrodataConfig {
@@ -105,8 +112,14 @@ export interface RawExportParams {
   columns: string[];
 }
 
-/** Plafond de lignes d'un export ligne-par-répondant — le plus gros sondage du corpus tourne autour de quelques milliers de répondants. */
-const MAX_RAW_EXPORT_ROWS = 20000;
+/**
+ * Plafond de lignes d'un export ligne-par-répondant. Le plus gros sondage du
+ * corpus (ces_2019_online) compte 37 822 répondants : 50 000 les couvre tous.
+ * Au-delà, la réponse porte `truncated: true` (jamais de troncature silencieuse,
+ * bead 9ou.6) et les lignes sont ORDONNÉES par `__respondent_id` (sous-ensemble
+ * déterministe, pas un échantillon arbitraire).
+ */
+export const MAX_RAW_EXPORT_ROWS = 50000;
 
 /**
  * Extrait des LIGNES BRUTES (une par répondant), pas d'agrégation — pour un
@@ -124,7 +137,12 @@ export async function handleMicrodataRawExport(params: RawExportParams, config: 
   }
 }
 
-export async function executeRawExport(c: DuckDBConnection, parquetUrl: string, params: RawExportParams) {
+export async function executeRawExport(
+  c: DuckDBConnection,
+  parquetUrl: string,
+  params: RawExportParams,
+  maxRows: number = MAX_RAW_EXPORT_ROWS,
+) {
   const { survey_id, columns } = params;
   if (!survey_id || !IDENT_RE.test(survey_id)) {
     throw new MicrodataError(400, `Invalid survey_id: ${JSON.stringify(survey_id)}`);
@@ -145,16 +163,21 @@ export async function executeRawExport(c: DuckDBConnection, parquetUrl: string, 
   const selectCols = uniqueCols.map((col) => quoteIdent(col)).join(", ");
   const ridSel = cols.has("__respondent_id") ? `"__respondent_id" AS respondent_id, ` : "";
   const weightSel = cols.has("__weight") ? `, "__weight" AS weight` : "";
-  const sql = `SELECT ${ridSel}${selectCols}${weightSel} FROM read_parquet($url) LIMIT ${MAX_RAW_EXPORT_ROWS}`;
+  const limit = Math.max(1, Math.floor(maxRows));
+  const orderSql = cols.has("__respondent_id") ? ` ORDER BY "__respondent_id"` : "";
+  // LIMIT n+1 : la ligne en trop ne sert qu'à détecter la troncature.
+  const sql = `SELECT ${ridSel}${selectCols}${weightSel} FROM read_parquet($url)${orderSql} LIMIT ${limit + 1}`;
 
   const res = await c.runAndReadAll(sql, { url: parquetUrl });
-  const rows = res.getRowObjects().map((r) => {
+  const objects = res.getRowObjects();
+  const truncated = objects.length > limit;
+  const rows = objects.slice(0, limit).map((r) => {
     const out: Record<string, unknown> = {};
     for (const [k, v] of Object.entries(r)) out[k] = typeof v === "bigint" ? Number(v) : v;
     return out;
   });
 
-  return { survey_id, columns: uniqueCols, row_count: rows.length, rows };
+  return { survey_id, columns: uniqueCols, row_count: rows.length, truncated, max_rows: limit, rows };
 }
 
 /**
@@ -318,6 +341,7 @@ export async function executeMicrodataQuery(
     groups,
     success,
     annotation,
+    include_sentinels = false,
   } = params;
 
   if (!survey_id || !IDENT_RE.test(survey_id)) {
@@ -417,7 +441,9 @@ export async function executeMicrodataQuery(
   });
   // Sentinelles négatives de refus/NSP exclues d'office (codes négatifs de sondage comme -99, -98, -999)
   const DEFAULT_NEGATIVE_EXCLUDES = [-9999, -9998, -999, -998, -99, -98, -97, -96, -95, -9, -8, -7, -1];
-  const effectiveExclude = Array.from(new Set([...exclude, ...DEFAULT_NEGATIVE_EXCLUDES]));
+  const effectiveExclude = include_sentinels
+    ? Array.from(new Set(exclude))
+    : Array.from(new Set([...exclude, ...DEFAULT_NEGATIVE_EXCLUDES]));
   const effectiveExclude2 = Array.from(new Set([...(exclude2 ?? exclude), ...DEFAULT_NEGATIVE_EXCLUDES]));
 
   // Exclusion de codes de la cible (refus/NSP) — surtout utile en mode numérique.

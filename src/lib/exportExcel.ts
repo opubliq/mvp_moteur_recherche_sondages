@@ -381,6 +381,7 @@ export async function exportCartXlsx(
   // Feuilles par sondage : liste des répondants (une ligne chacun) pour ses
   // questions sélectionnées + tous ses socio-démos disponibles — un extrait
   // brut, pas un croisement (ceux-ci vivent dans les feuilles socio-démo).
+  const truncatedSurveys: string[] = [];
   for (const sid of surveyIds) {
     const surveyItems = items.filter((it) => it.survey_id === sid);
     const demos = demoVarBySurvey.get(sid) ?? new Map();
@@ -410,6 +411,21 @@ export async function exportCartXlsx(
     for (const r of raw.rows) {
       sheet.addRow(r);
     }
+    // Jamais de troncature silencieuse (9ou.6) : le serveur plafonne la liste
+    // de répondants et le signale via `truncated`.
+    if (raw.truncated) {
+      const note = sheet.addRow([
+        `⚠ Liste tronquée : ${raw.row_count} premiers répondants seulement (plafond serveur ${raw.max_rows ?? raw.row_count}).`,
+      ]);
+      note.font = { bold: true, color: { argb: "FFC0392B" } };
+      truncatedSurveys.push(surveyItems[0].survey_name || sid);
+    }
+  }
+
+  if (truncatedSurveys.length > 0) {
+    const r0 = summary.rowCount + 2;
+    summary.getCell(`A${r0}`).value = `⚠ Liste de répondants tronquée pour : ${truncatedSurveys.join(", ")} (voir la dernière ligne de chaque feuille).`;
+    summary.getCell(`A${r0}`).font = { bold: true, color: { argb: "FFC0392B" } };
   }
 
   const buffer = await wb.xlsx.writeBuffer();

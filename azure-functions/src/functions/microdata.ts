@@ -39,6 +39,7 @@ async function parseParams(request: HttpRequest): Promise<MicrodataParams> {
       groups: Array.isArray(b.groups) ? b.groups : undefined,
       success: Array.isArray(b.success) ? b.success : undefined,
       annotation: Array.isArray(b.annotation) ? b.annotation : undefined,
+      include_sentinels: b.include_sentinels === true,
     };
   }
   const q = request.query;

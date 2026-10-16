@@ -50,6 +50,7 @@ function parseParams(event: Parameters<Handler>[0]): MicrodataParams {
       // Annotation éphémère (jsu.7) : POST uniquement — une map de plusieurs
       // milliers de paires n'a rien à faire dans une query string.
       annotation: Array.isArray(b.annotation) ? b.annotation : undefined,
+      include_sentinels: b.include_sentinels === true,
     };
   }
   const q = event.queryStringParameters ?? {};

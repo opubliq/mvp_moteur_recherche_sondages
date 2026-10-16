@@ -197,6 +197,7 @@ export async function fetchMicrodata<Row = Record<string, number | string>>(
     agg: query.agg ?? "count",
     exclude: query.exclude ?? [],
     ...(query.annotation ? { annotation: query.annotation } : {}),
+    ...(query.includeSentinels ? { include_sentinels: true } : {}),
   };
   const res = await fetch(apiUrl("/microdata"), {
     method: "POST",
@@ -217,6 +218,9 @@ export interface RawExportResponse {
   survey_id: string;
   columns: string[];
   row_count: number;
+  /** `true` si le sondage dépasse le plafond serveur (`max_rows`) : `rows` est alors incomplet (9ou.6). */
+  truncated?: boolean;
+  max_rows?: number;
   rows: Record<string, number | string | null>[];
 }
 

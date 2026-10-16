@@ -239,4 +239,6 @@ export interface MicrodataQuery {
    * Rien n'est persisté : la map voyage dans la requête et disparaît avec elle.
    */
   annotation?: { rid: number; label: string }[];
+  /** `true` → ne pas exclure d'office les sentinelles négatives (-99…) de la cible (export avancé, 9ou.6). */
+  includeSentinels?: boolean;
 }

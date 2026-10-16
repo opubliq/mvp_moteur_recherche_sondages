@@ -150,6 +150,14 @@ describe("ANOVA à k groupes (agg=anova)", () => {
   });
 });
 
+describe("include_sentinels (9ou.6)", () => {
+  it("sans sentinelle dans la cible, même résultat que le défaut", async () => {
+    const a = (await run({ target: "GENDER" })) as any;
+    const b = (await run({ target: "GENDER", include_sentinels: true })) as any;
+    expect(b.rows).toEqual(a.rows);
+  });
+});
+
 describe("garde-fous", () => {
   it("corr sans target2 → erreur", async () => {
     await expect(run({ target: "XSCALE", agg: "corr" })).rejects.toThrow(/target2/);
@@ -163,10 +171,10 @@ describe("garde-fous", () => {
 });
 
 describe("export brut ligne-par-répondant (f3i.13)", () => {
-  async function runRaw(columns: string[]) {
+  async function runRaw(columns: string[], maxRows?: number) {
     const c = await instance.connect();
     try {
-      return await executeRawExport(c, PARQUET, { survey_id: SURVEY, columns });
+      return await executeRawExport(c, PARQUET, { survey_id: SURVEY, columns }, maxRows);
     } finally {
       c.closeSync();
     }
@@ -181,6 +189,27 @@ describe("export brut ligne-par-répondant (f3i.13)", () => {
       expect(row).toHaveProperty("AGEGRP");
       expect(row).toHaveProperty("weight");
     }
+  });
+
+  it("sous le plafond : toutes les lignes, truncated=false (9ou.6)", async () => {
+    const res = await runRaw(["GENDER"]);
+    expect(res.truncated).toBe(false);
+    expect(res.row_count).toBe(240);
+  });
+
+  it("au-delà du plafond : truncated=true, lignes ordonnées par respondent_id (9ou.6)", async () => {
+    const res = await runRaw(["GENDER"], 100);
+    expect(res.truncated).toBe(true);
+    expect(res.max_rows).toBe(100);
+    expect(res.row_count).toBe(100);
+    const ids = res.rows.map((r) => r.respondent_id as number);
+    expect(ids).toEqual([...ids].sort((x, y) => x - y));
+  });
+
+  it("plafond exactement atteint : pas de faux positif", async () => {
+    const res = await runRaw(["GENDER"], 240);
+    expect(res.truncated).toBe(false);
+    expect(res.row_count).toBe(240);
   });
 
   it("colonne inconnue rejetée (whitelist)", async () => {
