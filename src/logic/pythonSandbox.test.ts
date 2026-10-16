@@ -3,7 +3,6 @@ import {
   AcaSessionsExecutor,
   createRunPythonTool,
   managedIdentityTokenProvider,
-  OUTPUT_SENTINEL,
   parseExecutionResponse,
   RUN_PYTHON_TOOL_DEF,
   SandboxError,
@@ -22,12 +21,13 @@ function jsonResponse(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
 }
 
-function sentinel(payload: Record<string, unknown>): string {
-  return `\n${OUTPUT_SENTINEL}${JSON.stringify({ error: null, figures: [], tables: [], ...payload })}\n`;
+/** Charge utile JSON de l'épilogue (champ `result` de la réponse). */
+function payload(p: Record<string, unknown> = {}): string {
+  return JSON.stringify({ error: null, stdout: "hello", stderr: "", figures: [], tables: [], ...p });
 }
 
-/** Exécuteur en mémoire. */
-function fakeExecutor(stdout = "hello" + sentinel({}), stderr = ""): SandboxExecutor & {
+/** Exécuteur en mémoire : `result` = charge utile, stdout/stderr = sortie brute plateforme. */
+function fakeExecutor(result = payload(), rawStdout = "", rawStderr = ""): SandboxExecutor & {
   files: Set<string>;
   uploads: string[];
   codes: string[];
@@ -48,7 +48,7 @@ function fakeExecutor(stdout = "hello" + sentinel({}), stderr = ""): SandboxExec
     },
     async execute(_sid, code): Promise<RawExecution> {
       codes.push(code);
-      return { status: "Success", stdout, stderr };
+      return { status: "Success", stdout: rawStdout, stderr: rawStderr, result };
     },
   };
 }
@@ -71,7 +71,7 @@ describe("AcaSessionsExecutor (HTTP mocké)", () => {
       fetch: fetchMock as unknown as typeof fetch,
     });
     const out = await ex.execute("sess-1234", "print(42)", 999);
-    expect(out).toEqual({ status: "Success", stdout: "42\n", stderr: "" });
+    expect(out).toEqual({ status: "Success", stdout: "42\n", stderr: "", result: "" });
     const [url, init] = fetchMock.mock.calls[0];
     const u = new URL(String(url));
     expect(u.pathname.endsWith("/sessionPools/pool/code/execute")).toBe(true);
@@ -86,7 +86,7 @@ describe("AcaSessionsExecutor (HTTP mocké)", () => {
   it("profil 2025-10-02-preview : /executions et /files", async () => {
     const fetchMock = vi.fn(async (url: string | URL | Request) => {
       if (String(url).includes("/executions")) {
-        return jsonResponse({ status: "Succeeded", result: { stdout: "ok", stderr: "w" } });
+        return jsonResponse({ status: "Succeeded", result: { stdout: "ok", stderr: "w", executionResult: "{}" } });
       }
       return jsonResponse({}, 200);
     });
@@ -96,7 +96,7 @@ describe("AcaSessionsExecutor (HTTP mocké)", () => {
       apiVersion: "2025-10-02-preview",
       fetch: fetchMock as unknown as typeof fetch,
     });
-    expect(await ex.execute("sess", "x", 10)).toEqual({ status: "Succeeded", stdout: "ok", stderr: "w" });
+    expect(await ex.execute("sess", "x", 10)).toEqual({ status: "Succeeded", stdout: "ok", stderr: "w", result: "{}" });
     await ex.uploadFile("sess", "a.parquet", new Uint8Array([1, 2, 3]));
     const uploadUrl = new URL(String(fetchMock.mock.calls[1][0]));
     expect(uploadUrl.pathname.endsWith("/sessionPools/pool/files")).toBe(true);
@@ -147,7 +147,12 @@ describe("AcaSessionsExecutor (HTTP mocké)", () => {
 
 describe("parseExecutionResponse", () => {
   it("tolère une réponse vide", () => {
-    expect(parseExecutionResponse(null)).toEqual({ status: "Unknown", stdout: "", stderr: "" });
+    expect(parseExecutionResponse(null)).toEqual({ status: "Unknown", stdout: "", stderr: "", result: "" });
+  });
+  it("lit `result` (dernière expression) en texte brut", () => {
+    expect(parseExecutionResponse({ properties: { status: "Success", stdout: "", stderr: "", result: '{"a":1}' } }).result).toBe(
+      '{"a":1}',
+    );
   });
 });
 
@@ -190,13 +195,22 @@ describe("sessionIdentifier", () => {
 });
 
 describe("wrapCode", () => {
-  it("transmet le code en base64 (aucun échappement fragile) et finit par la sentinelle", () => {
+  it("transmet le code en base64 (aucun échappement fragile), capture la sortie, finit par une expression JSON", () => {
     const code = 'print("é\\"\'""" 🎉")';
     const wrapped = wrapCode(code, DEFAULT_RUN_PYTHON_LIMITS);
     const b64 = /b64decode\("([A-Za-z0-9+/=]+)"\)/.exec(wrapped)![1];
     expect(new TextDecoder().decode(Uint8Array.from(atob(b64), (c) => c.charCodeAt(0)))).toBe(code);
     expect(wrapped).not.toContain(code);
-    expect(wrapped).toContain(OUTPUT_SENTINEL);
+    expect(wrapped).toContain("redirect_stdout");
+    // Dernière ligne = expression (→ champ `result`, non tronqué par la plateforme).
+    expect(wrapped.trimEnd().split("\n").slice(-2).join("\n")).toMatch(/^_opq_json\.dumps\(/);
+  });
+  it("style par défaut matplotlib + plotnine, capture des ggplot", () => {
+    const wrapped = wrapCode("1", DEFAULT_RUN_PYTHON_LIMITS);
+    expect(wrapped).toContain('OPQ_PALETTE = ["#008c8e","#f0695a"');
+    expect(wrapped).toContain("theme_minimal");
+    expect(wrapped).toContain("ggplot.draw = _opq_draw_capture");
+    expect(wrapped).toContain('"savefig.dpi": 150');
   });
 });
 
@@ -215,7 +229,7 @@ describe("createRunPythonTool", () => {
     expect(fetchParquet).toHaveBeenCalledTimes(1);
     expect(fetchParquet).toHaveBeenCalledWith("b");
     expect(ex.uploads).toEqual(["b.parquet"]);
-    expect(ex.codes[0]).toContain(OUTPUT_SENTINEL);
+    expect(ex.codes[0]).toContain("_opq_json.dumps(");
   });
 
   it("refus d'accès (fetchParquet lève) → { error } sans exécution", async () => {
@@ -267,14 +281,14 @@ describe("createRunPythonTool", () => {
   });
 
   it("extrait figures et tableaux, tronque stdout (tête) et stderr (queue)", async () => {
-    const out =
-      "x".repeat(50) +
-      sentinel({
-        figures: ["iVBORw0KGgo=", "", "A".repeat(100)],
-        tables: [{ title: "T", columns: ["a", "b"], rows: [[1, 2]], truncated: false }],
-      });
+    const out = payload({
+      stdout: "x".repeat(50),
+      stderr: "line1\n" + "e".repeat(40) + "\nValueError: boom",
+      figures: ["iVBORw0KGgo=", "", "A".repeat(100)],
+      tables: [{ title: "T", columns: ["a", "b"], rows: [[1, 2]], truncated: false }],
+    });
     const tool = createRunPythonTool({
-      executor: fakeExecutor(out, "line1\n" + "e".repeat(40) + "\nValueError: boom"),
+      executor: fakeExecutor(out, "ignored raw stdout"),
       sessionId: "s",
       fetchParquet: async () => parquet,
       limits: { maxStdoutChars: 20, maxStderrChars: 16, maxFigureBase64Chars: 50 },
@@ -292,22 +306,29 @@ describe("createRunPythonTool", () => {
     expect(forModel.figures).toEqual([{ id: "fig-1", mime: "image/png" }]);
   });
 
-  it("erreur Python remontée via la sentinelle", async () => {
+  it("erreur Python remontée via la charge utile", async () => {
     const tool = createRunPythonTool({
-      executor: fakeExecutor(sentinel({ error: "KeyError: 'q1'" }), "Traceback..."),
+      executor: fakeExecutor(payload({ error: "KeyError: 'q1'", stderr: "Traceback..." })),
       sessionId: "s",
       fetchParquet: async () => parquet,
     });
     expect(await tool.run({ code: "1" })).toMatchObject({ ok: false, error: "KeyError: 'q1'" });
   });
 
-  it("sentinelle absente (timeout / noyau mort) → erreur", async () => {
-    const tool = createRunPythonTool({
-      executor: fakeExecutor("partial", ""),
-      sessionId: "s",
-      fetchParquet: async () => parquet,
-    });
-    expect(await tool.run({ code: "1" })).toMatchObject({ ok: false, error: expect.stringContaining("interrompue") });
+  it("charge utile absente ou invalide (timeout / noyau mort) → erreur + sortie brute", async () => {
+    for (const result of ["", "not json", "[1]"]) {
+      const tool = createRunPythonTool({
+        executor: fakeExecutor(result, "partial", "Traceback raw"),
+        sessionId: "s",
+        fetchParquet: async () => parquet,
+      });
+      expect(await tool.run({ code: "1" })).toMatchObject({
+        ok: false,
+        error: expect.stringContaining("interrompue"),
+        stdout: "partial",
+        stderr: "Traceback raw",
+      });
+    }
   });
 
   it("SandboxError de l'exécuteur → { error }, ne lève pas", async () => {

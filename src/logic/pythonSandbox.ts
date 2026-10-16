@@ -32,13 +32,15 @@ export const RUN_PYTHON_TOOL_DEF = {
   function: {
     name: RUN_PYTHON_TOOL_NAME,
     description:
-      "Exécute du code Python (pandas, numpy, statsmodels, scipy, scikit-learn, matplotlib) dans un bac à sable isolé, " +
+      "Exécute du code Python (pandas, numpy, statsmodels, scipy, scikit-learn, matplotlib, plotnine) dans un bac à sable isolé, " +
       "pour les analyses que `crosstab` ne couvre pas : régressions multivariées, pondération, tendances entre sondages, profils. " +
       "Passe `survey_ids` pour charger les micro-données : chaque sondage est disponible dans `/mnt/data/<survey_id>.parquet` " +
       "et via `load('<survey_id>')` (DataFrame pandas). Colonnes : `__respondent_id`, `__weight` (poids, À UTILISER pour toute " +
       "estimation), puis les variables raw (codes ; labels via get_survey). Les variables Python et les fichiers persistent " +
       "entre les appels d'une même conversation. Sortie : `print(...)` (tronquée), `show_table(df, title)` pour un petit tableau, " +
-      "et toute figure matplotlib ouverte est renvoyée en PNG. Pas d'accès réseau. Seulement pour des sondages à has_microdata=true.",
+      "et les figures sont capturées automatiquement en PNG : toute figure matplotlib ouverte, et tout ggplot plotnine " +
+      "(grammaire ggplot2 : `from plotnine import *`) affiché par `p.show()` ou laissé en dernière expression. Un style " +
+      "sobre est déjà appliqué (fond blanc, palette de l'app dans `OPQ_PALETTE`) : n'ajoute pas de thème. Pas d'accès réseau. Seulement pour des sondages à has_microdata=true.",
     parameters: {
       type: "object",
       properties: {
@@ -107,8 +109,11 @@ export const ACA_MAX_EXECUTION_SECONDS = 220;
 /** Résultat brut d'une exécution, normalisé entre versions d'API. */
 export interface RawExecution {
   status: string;
+  /** Tronqués par la plateforme à ~4 095 caractères : diagnostic seulement. */
   stdout: string;
   stderr: string;
+  /** Valeur (texte) de la dernière expression : non tronquée, porte la charge utile JSON. */
+  result: string;
 }
 
 export interface SandboxExecutor {
@@ -242,7 +247,8 @@ export class AcaSessionsExecutor implements SandboxExecutor {
 
 /**
  * Normalise les formes de réponse connues :
- *  - `{ properties: { status, stdout, stderr, result } }` (2024-02-02-preview)
+ *  - `{ properties: { status, stdout, stderr, result } }` (2024-02-02-preview ;
+ *    `result` = valeur texte de la dernière expression)
  *  - `{ status, result: { stdout, stderr, executionResult } }` (forme /executions)
  */
 export function parseExecutionResponse(json: unknown): RawExecution {
@@ -254,6 +260,7 @@ export function parseExecutionResponse(json: unknown): RawExecution {
     status: str(props.status) || str(j.status) || "Unknown",
     stdout: str(props.stdout) || str(inner.stdout),
     stderr: str(props.stderr) || str(inner.stderr),
+    result: str(props.result) || str(inner.executionResult),
   };
 }
 
@@ -323,10 +330,14 @@ export async function sessionIdentifier(secret: string, userId: string, conversa
 // Enrobage du code Python
 // ---------------------------------------------------------------------------
 
-/** Marqueur de la ligne JSON finale (figures + tableaux) ajoutée à stdout. */
-export const OUTPUT_SENTINEL = "__OPUBLIQ_SANDBOX_OUTPUT__";
-
 const SURVEY_ID_RE = /^[A-Za-z0-9_-]{1,100}$/;
+
+/**
+ * Palette des figures, alignée sur le thème de l'app (src/index.css) : teal
+ * primaire (oklch 0.58 0.10 196.4 ≈ #008c8e), corail secondaire, puis teinte
+ * foncée / claire du teal, gris, ocre.
+ */
+export const FIGURE_PALETTE = ["#008c8e", "#f0695a", "#05595a", "#73d1d2", "#8a8f98", "#d9a43b"] as const;
 
 function toBase64(s: string): string {
   const bytes = new TextEncoder().encode(s);
@@ -338,19 +349,76 @@ function toBase64(s: string): string {
 }
 
 /**
- * Code réellement exécuté : prélude (helpers `load`, `show_table`, backend
- * matplotlib non interactif), puis le code de l'agent — transmis en base64 pour
- * éviter tout problème d'échappement — exécuté dans `globals()` (l'état persiste
- * entre appels), traceback sur stderr en cas d'erreur, et TOUJOURS un épilogue
- * qui sérialise les figures ouvertes et les tableaux sur une ligne sentinelle.
+ * Code réellement exécuté. Contrainte plateforme (mesurée sur le pool, 2026-10) :
+ * `stdout` et `stderr` de la réponse sont TRONQUÉS à ~4 095 caractères chacun,
+ * alors que `result` (valeur de la dernière expression de la cellule) passe
+ * intact (2 Mo testés). Donc :
+ *  - prélude : helpers `load`, `show_table`, backend Agg + style par défaut
+ *    matplotlib / plotnine (palette de l'app, fond blanc, 150 dpi) ;
+ *  - le code de l'agent (base64, aucun échappement) est exécuté dans
+ *    `globals()` (l'état persiste), stdout/stderr CAPTURÉS en mémoire ; si la
+ *    dernière instruction est une expression, elle est évaluée comme dans un
+ *    notebook (un ggplot est dessiné, sinon son repr est affiché) ;
+ *  - épilogue : figures matplotlib ouvertes + figures plotnine dessinées → PNG
+ *    base64, puis TOUT (stdout, stderr, erreur, figures, tableaux) est renvoyé
+ *    en JSON comme dernière expression → champ `result`.
  */
 export function wrapCode(code: string, limits: RunPythonLimits): string {
   const b64 = toBase64(code);
+  const pal = JSON.stringify(FIGURE_PALETTE);
+  // Marge de capture côté Python (la troncature fine est faite en TS).
+  const outCap = limits.maxStdoutChars * 2;
+  const errCap = limits.maxStderrChars * 2;
   return `
-import base64 as _opq_b64, io as _opq_io, json as _opq_json, sys as _opq_sys, traceback as _opq_tb
+import ast as _opq_ast, base64 as _opq_b64, contextlib as _opq_ctx, io as _opq_io, json as _opq_json, sys as _opq_sys, traceback as _opq_tb
+OPQ_PALETTE = ${pal}
 try:
     import matplotlib as _opq_mpl
     _opq_mpl.use("Agg")
+    from cycler import cycler as _opq_cycler
+    _opq_mpl.rcParams.update({
+        "figure.figsize": (7, 4.2), "figure.dpi": 100, "savefig.dpi": 150, "savefig.bbox": "tight",
+        "figure.facecolor": "white", "axes.facecolor": "white", "savefig.facecolor": "white",
+        "font.size": 11, "axes.titlesize": 13, "axes.titleweight": "bold", "axes.titlelocation": "left",
+        "axes.labelsize": 11, "xtick.labelsize": 10, "ytick.labelsize": 10, "legend.fontsize": 10, "legend.frameon": False,
+        "axes.spines.top": False, "axes.spines.right": False, "axes.edgecolor": "#9aa3ab",
+        "text.color": "#1f2933", "axes.labelcolor": "#1f2933", "xtick.color": "#4a5560", "ytick.color": "#4a5560",
+        "axes.grid": True, "axes.grid.axis": "y", "grid.color": "#e6e9ec", "grid.linewidth": 0.8, "axes.axisbelow": True,
+        "axes.prop_cycle": _opq_cycler(color=OPQ_PALETTE), "lines.linewidth": 2,
+    })
+except Exception:
+    pass
+try:
+    import plotnine as _opq_p9
+    if not getattr(_opq_p9, "_opq_styled", False):
+        _opq_p9.theme_set(_opq_p9.theme_minimal(base_size=11) + _opq_p9.theme(
+            figure_size=(7, 4.2), dpi=150,
+            plot_background=_opq_p9.element_rect(fill="white", color="white"),
+            panel_grid_minor=_opq_p9.element_blank(),
+            plot_title=_opq_p9.element_text(size=13, weight="bold", ha="left")))
+        for _opq_k in dir(_opq_p9):
+            _opq_g = getattr(_opq_p9, _opq_k)
+            _opq_aes = getattr(_opq_g, "DEFAULT_AES", None) if _opq_k.startswith("geom_") else None
+            if isinstance(_opq_aes, dict):
+                if _opq_aes.get("fill") == "#595959":
+                    _opq_aes["fill"] = OPQ_PALETTE[0]
+                if _opq_aes.get("color") in ("black", "#3366FF") and _opq_k in ("geom_line", "geom_path", "geom_point", "geom_step", "geom_smooth"):
+                    _opq_aes["color"] = OPQ_PALETTE[0]
+        from plotnine.scales import scale_color as _opq_sc
+        _opq_hue_init = _opq_sc.scale_color_hue.__post_init__
+        def _opq_hue_post_init(self, *a, **k):
+            _opq_hue_init(self, *a, **k)
+            _hue = self.palette
+            self.palette = lambda n: list(OPQ_PALETTE[:n]) if n <= len(OPQ_PALETTE) else _hue(n)
+        _opq_sc.scale_color_hue.__post_init__ = _opq_hue_post_init
+        _opq_draw = _opq_p9.ggplot.draw
+        def _opq_draw_capture(self, *a, **k):
+            _fig = _opq_draw(self, *a, **k)
+            _opq_p9._opq_figs.append(_fig)
+            return _fig
+        _opq_p9.ggplot.draw = _opq_draw_capture
+        _opq_p9._opq_figs = []
+        _opq_p9._opq_styled = True
 except Exception:
     pass
 _opq_tables = []
@@ -370,23 +438,47 @@ def show_table(df, title=None):
     except Exception as e:
         print(f"show_table: {e}", file=_opq_sys.stderr)
 _opq_error = None
-try:
-    exec(compile(_opq_b64.b64decode("${b64}").decode("utf-8"), "<run_python>", "exec"), globals())
-except BaseException as _opq_e:
-    _opq_error = f"{type(_opq_e).__name__}: {_opq_e}"
-    _opq_tb.print_exc()
-_opq_figs = []
-try:
-    import matplotlib.pyplot as _opq_plt
-    for _opq_n in _opq_plt.get_fignums()[:${limits.maxFigures}]:
-        _opq_buf = _opq_io.BytesIO()
-        _opq_plt.figure(_opq_n).savefig(_opq_buf, format="png", dpi=110, bbox_inches="tight")
-        _opq_figs.append(_opq_b64.b64encode(_opq_buf.getvalue()).decode("ascii"))
-    _opq_plt.close("all")
-except Exception:
-    pass
-_opq_sys.stdout.flush()
-print("\\n${OUTPUT_SENTINEL}" + _opq_json.dumps({"error": _opq_error, "figures": _opq_figs, "tables": _opq_tables[:${limits.maxTables}]}))
+_opq_out, _opq_err = _opq_io.StringIO(), _opq_io.StringIO()
+with _opq_ctx.redirect_stdout(_opq_out), _opq_ctx.redirect_stderr(_opq_err):
+    try:
+        _opq_tree = _opq_ast.parse(_opq_b64.b64decode("${b64}").decode("utf-8"), "<run_python>")
+        _opq_last = None
+        if _opq_tree.body and isinstance(_opq_tree.body[-1], _opq_ast.Expr):
+            _opq_last = _opq_ast.Expression(_opq_tree.body.pop().value)
+        exec(compile(_opq_tree, "<run_python>", "exec"), globals())
+        if _opq_last is not None:
+            _opq_v = eval(compile(_opq_last, "<run_python>", "eval"), globals())
+            _opq_first = _opq_v[0] if isinstance(_opq_v, (list, tuple)) and _opq_v else _opq_v
+            if type(_opq_v).__name__ == "ggplot" and hasattr(_opq_v, "draw"):
+                _opq_v.draw()
+            elif _opq_v is not None and not type(_opq_first).__module__.startswith(("matplotlib", "plotnine")):
+                print(repr(_opq_v))
+    except BaseException as _opq_e:
+        _opq_error = f"{type(_opq_e).__name__}: {_opq_e}"
+        _opq_tb.print_exc()
+    _opq_figs = []
+    try:
+        import matplotlib.pyplot as _opq_plt
+        _opq_all = [_opq_plt.figure(n) for n in _opq_plt.get_fignums()]
+        _opq_drawn = getattr(_opq_sys.modules.get("plotnine"), "_opq_figs", [])
+        _opq_all += [f for f in _opq_drawn if all(f is not g for g in _opq_all)]
+        _opq_drawn.clear()
+        for _opq_f in _opq_all:
+            if len(_opq_figs) >= ${limits.maxFigures}:
+                break
+            _opq_buf = _opq_io.BytesIO()
+            _opq_f.savefig(_opq_buf, format="png", dpi=150, bbox_inches="tight", facecolor="white")
+            _opq_s = _opq_b64.b64encode(_opq_buf.getvalue()).decode("ascii")
+            if len(_opq_s) > ${limits.maxFigureBase64Chars}:
+                print("figure ignorée : trop volumineuse", file=_opq_sys.stderr)
+            else:
+                _opq_figs.append(_opq_s)
+        _opq_plt.close("all")
+    except Exception as _opq_e:
+        print(f"figures : {_opq_e}", file=_opq_sys.stderr)
+_opq_o, _opq_r = _opq_out.getvalue(), _opq_err.getvalue()
+_opq_json.dumps({"error": _opq_error, "stdout": _opq_o[:${outCap}], "stderr": _opq_r[-${errCap}:],
+    "figures": _opq_figs, "tables": _opq_tables[:${limits.maxTables}]})
 `.trimStart();
 }
 
@@ -449,17 +541,15 @@ function truncateTail(s: string, max: number): [string, boolean] {
   return s.length > max ? ["[tronqué]…\n" + s.slice(s.length - max), true] : [s, false];
 }
 
-function splitSentinel(stdout: string): { stdout: string; payload: Record<string, unknown> | null } {
-  const idx = stdout.lastIndexOf(OUTPUT_SENTINEL);
-  if (idx < 0) return { stdout, payload: null };
-  const line = stdout.slice(idx + OUTPUT_SENTINEL.length).split("\n")[0];
-  let payload: Record<string, unknown> | null = null;
+/** Charge utile JSON produite par l'épilogue de `wrapCode` (champ `result`). */
+function parsePayload(result: string): Record<string, unknown> | null {
+  if (!result) return null;
   try {
-    payload = JSON.parse(line) as Record<string, unknown>;
+    const p = JSON.parse(result) as unknown;
+    return p && typeof p === "object" && !Array.isArray(p) ? (p as Record<string, unknown>) : null;
   } catch {
-    payload = null;
+    return null;
   }
-  return { stdout: stdout.slice(0, idx).replace(/\n$/, ""), payload };
 }
 
 export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
@@ -508,9 +598,13 @@ export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
       }
 
       const raw = await deps.executor.execute(deps.sessionId, wrapCode(code, limits), limits.timeoutSeconds);
-      const { stdout: cleanOut, payload } = splitSentinel(raw.stdout);
-      const [stdout, stdoutTrunc] = truncateHead(cleanOut, limits.maxStdoutChars);
-      const [stderr, stderrTrunc] = truncateTail(raw.stderr, limits.maxStderrChars);
+      const payload = parsePayload(raw.result);
+      // Sans charge utile, on renvoie le stdout/stderr bruts (tronqués par la
+      // plateforme) pour le diagnostic.
+      const outText = payload ? (typeof payload.stdout === "string" ? payload.stdout : "") : raw.stdout;
+      const errText = payload ? (typeof payload.stderr === "string" ? payload.stderr : "") : raw.stderr;
+      const [stdout, stdoutTrunc] = truncateHead(outText, limits.maxStdoutChars);
+      const [stderr, stderrTrunc] = truncateTail(errText, limits.maxStderrChars);
 
       const figures: SandboxFigure[] = [];
       const rawFigs = Array.isArray(payload?.figures) ? (payload!.figures as unknown[]) : [];
@@ -527,7 +621,7 @@ export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
           truncated: Boolean(t.truncated),
         }));
 
-      // Pas de sentinelle = le prélude/épilogue n'a pas tourné jusqu'au bout
+      // Pas de charge utile = le prélude/épilogue n'a pas tourné jusqu'au bout
       // (timeout, crash du noyau) : on le signale comme erreur.
       const error =
         payload === null

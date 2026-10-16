@@ -7,7 +7,7 @@ Code : `src/logic/pythonSandbox.ts` (+ tests `src/logic/pythonSandbox.test.ts`).
 ## Design
 
 - **Bac à sable** : Azure Container Apps dynamic sessions, pool `PythonLTS` (code interpreter,
-  isolation Hyper-V, pandas/numpy/statsmodels/scipy/sklearn/matplotlib préinstallés),
+  isolation Hyper-V, pandas/numpy/statsmodels/scipy/sklearn/matplotlib/plotnine préinstallés),
   **canadaeast**, egress réseau désactivé.
 - **Appel** : API REST du pool (`poolManagementEndpoint`), jeton Entra audience
   `https://dynamicsessions.io` obtenu par l'**identité managée système** de la Function App.
@@ -19,9 +19,24 @@ Code : `src/logic/pythonSandbox.ts` (+ tests `src/logic/pythonSandbox.test.ts`).
   par un autre usager tombe sur une autre session. Les variables Python persistent
   entre appels de la même conversation jusqu'au cooldown du pool.
 - **Enrobage** (`wrapCode`) : code de l'agent passé en base64, exécuté dans `globals()`,
-  traceback sur stderr, puis épilogue qui sérialise les figures matplotlib ouvertes (PNG)
-  et les tableaux `show_table(df, title)` sur une ligne sentinelle de stdout.
+  stdout/stderr **capturés en mémoire** (traceback inclus). Dernière instruction évaluée
+  comme dans un notebook (un ggplot est dessiné, sinon `repr` affiché). Épilogue : figures
+  matplotlib ouvertes + ggplot plotnine dessinés (`p.show()`, `p.draw()` ou dernière
+  expression ; `ggplot.draw` est patché pour les capter) → PNG 150 dpi, puis **tout**
+  (stdout, stderr, erreur, figures, tableaux `show_table(df, title)`) est renvoyé en JSON
+  comme **dernière expression** → champ `result` de la réponse.
   Helper `load(survey_id)` → DataFrame.
+- **Pourquoi `result` et pas stdout** (bead 9ou.11, mesuré sur le pool) : `stdout` et
+  `stderr` de la réponse sont tronqués par la plateforme à **~4 095 caractères** chacun
+  (tête gardée) ; une figure base64 sur stdout faisait disparaître la charge utile →
+  « exécution interrompue (statut Success) ». `result` passe intact (2 Mo testés).
+  Sans charge utile valide (timeout, noyau mort), l'outil renvoie l'erreur + stdout/stderr bruts.
+- **Style des figures** (prélude) : matplotlib (rcParams : fond blanc, police 11, titres
+  gras à gauche, sans bordures haut/droite, grille y légère, cycle `OPQ_PALETTE`) et
+  plotnine (`theme_minimal(base_size=11)`, 7×4,2 po, 150 dpi, remplissage par défaut teal,
+  échelle discrète par défaut = `OPQ_PALETTE` jusqu'à 6 modalités puis hue). Palette
+  (`FIGURE_PALETTE`) : teal primaire `#008c8e` (= `--color-primary`), corail `#f0695a`,
+  teal foncé, teal clair, gris, ocre.
 - **Limites** (`DEFAULT_RUN_PYTHON_LIMITS`) : 6 appels/requête, timeout 90 s (plafond
   plateforme 220 s), code ≤ 20 000 car., ≤ 5 sondages/appel, Parquet ≤ 100 Mo
   (plateforme 128 Mo), stdout 8 000 car. (tête), stderr 4 000 car. (queue),
@@ -173,8 +188,8 @@ Confirmer : forme exacte de la réponse, présence de `statsmodels` et `pyarrow`
 ## Risques ouverts
 
 - **Forme de réponse** : non vérifiée contre un vrai pool (pas d'infra). Parseur tolérant
-  aux deux formes connues ; à confirmer au test de fumée. La sentinelle rend l'outil
-  indépendant du champ `result`.
+  aux deux formes connues. Forme 2024-02-02-preview vérifiée au test de fumée (2026-10-16) ;
+  la charge utile dépend du champ `result` (texte de la dernière expression).
 - **Paquets** : `pyarrow`/`statsmodels` supposés présents dans PythonLTS — à vérifier ;
   sinon pas d'`pip install` possible (egress désactivé) → image custom (`CustomContainer`,
   exige un environnement Container Apps + ACR).
