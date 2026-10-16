@@ -868,7 +868,6 @@ function NoQuestion() {
   const { t } = useLanguage();
   return (
     <>
-      <p className="op-kicker mb-3">{t("verbatims.noQuestion.kicker")}</p>
       <h2 className="text-xl font-semibold tracking-tight">{t("verbatims.noQuestion.title")}</h2>
       <p className="mt-1 mb-5 max-w-2xl text-sm text-base-content/60">
         {t("verbatims.noQuestion.subtitlePrefix")} <em>{t("questionCard.openQuestion")}</em>.

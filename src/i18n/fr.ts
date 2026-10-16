@@ -13,7 +13,6 @@ const fr = {
   "nav.agent": "Agent analytique",
   "nav.openQuestions": "Réponses libres",
   "nav.advancedExport": "Exportation avancée",
-  "nav.soon": "bientôt",
 
   "topbar.login": "Connexion",
   "topbar.logout": "Déconnexion",
@@ -184,7 +183,6 @@ const fr = {
   "verbatims.picker.filterPlaceholder": "Filtrer (regex)…",
   "verbatims.picker.loadError": "Chargement des questions ouvertes échoué.",
   "verbatims.picker.noMatch": "Aucune question ne correspond.",
-  "verbatims.noQuestion.kicker": "Analyse qualitative",
   "verbatims.noQuestion.title": "Réponses libres",
   "verbatims.noQuestion.subtitlePrefix": "Cet espace travaille une question ouverte à la fois. Choisis-en une dans la liste, ou trouve-la par la recherche — les questions à réponses libres y portent le badge",
   "verbatims.noQuestion.pickerLabel": "Choisir une question ouverte",
@@ -199,9 +197,8 @@ const fr = {
   "verbatimRow.copy": "copier",
 
   "agent.excerptFallback": "Réponse",
-  "agent.kicker": "Agent analytique",
   "agent.title": "Pose une question en langage naturel",
-  "agent.subtitle": "L'agent cherche les questions pertinentes, croise les micro-données pondérées et rédige une réponse. Il pose des questions de clarification quand la demande est trop large.",
+  "agent.subtitle": "L'agent cherche les questions pertinentes, croise les micro-données pondérées et rédige une réponse. Il fait une hypothèse raisonnable, exécute et te dit laquelle.",
   "agent.newChat": "Nouveau chat",
   "agent.history": "Historique",
   "agent.emptyThread": "Nouvelle conversation — pose ta question ci-dessous, ou pars d'un exemple à droite.",

@@ -11,7 +11,6 @@ const en: Record<TranslationKey, string> = {
   "nav.agent": "Analytical agent",
   "nav.openQuestions": "Open-ended answers",
   "nav.advancedExport": "Advanced export",
-  "nav.soon": "coming soon",
 
   "topbar.login": "Log in",
   "topbar.logout": "Log out",
@@ -182,7 +181,6 @@ const en: Record<TranslationKey, string> = {
   "verbatims.picker.filterPlaceholder": "Filter (regex)…",
   "verbatims.picker.loadError": "Failed to load open-ended questions.",
   "verbatims.picker.noMatch": "No question matches.",
-  "verbatims.noQuestion.kicker": "Qualitative analysis",
   "verbatims.noQuestion.title": "Open-ended answers",
   "verbatims.noQuestion.subtitlePrefix": "This workspace handles one open-ended question at a time. Pick one from the list, or find it via search — open-ended questions carry the",
   "verbatims.noQuestion.pickerLabel": "Choose an open-ended question",
@@ -197,9 +195,8 @@ const en: Record<TranslationKey, string> = {
   "verbatimRow.copy": "copy",
 
   "agent.excerptFallback": "Answer",
-  "agent.kicker": "Analytical agent",
   "agent.title": "Ask a question in plain language",
-  "agent.subtitle": "The agent finds relevant questions, crosses weighted microdata, and drafts an answer. It asks clarifying questions when a request is too broad.",
+  "agent.subtitle": "The agent finds relevant questions, crosses weighted microdata, and drafts an answer. It makes a reasonable assumption, runs the analysis and tells you which one.",
   "agent.newChat": "New chat",
   "agent.history": "History",
   "agent.emptyThread": "New conversation — ask your question below, or start from an example on the right.",

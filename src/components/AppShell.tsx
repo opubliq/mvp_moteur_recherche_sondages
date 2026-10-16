@@ -15,13 +15,12 @@ interface ModeDef {
   Ico: LucideIcon;
   labelKey: TranslationKey;
   to: string;
-  soon?: boolean;
 }
 
 const MODES: ModeDef[] = [
+  { key: "agent", Ico: Sparkles, labelKey: "nav.agent", to: "/agent" },
   { key: "recherche", Ico: Search, labelKey: "nav.search", to: "/recherche" },
   { key: "corpus", Ico: LayoutGrid, labelKey: "nav.corpus", to: "/corpus" },
-  { key: "agent", Ico: Sparkles, labelKey: "nav.agent", to: "/agent", soon: true },
   { key: "questions-ouvertes", Ico: MessageSquare, labelKey: "nav.openQuestions", to: "/questions-ouvertes" },
   { key: "exportation-avancee", Ico: FileSpreadsheet, labelKey: "nav.advancedExport", to: "/exportation-avancee" },
 ];
@@ -69,11 +68,10 @@ export default function AppShell() {
             <NavLink
               key={m.key}
               to={m.to}
-              className={({ isActive }) => `rail-item ${isActive ? "active" : ""} ${m.soon ? "soon" : ""}`}
+              className={({ isActive }) => `rail-item ${isActive ? "active" : ""}`}
             >
               <span className="ico"><m.Ico size={18} strokeWidth={1.75} /></span>
               <span>{t(m.labelKey)}</span>
-              {m.soon && <span className="soon-tag">{t("nav.soon")}</span>}
             </NavLink>
           ))}
         </nav>
