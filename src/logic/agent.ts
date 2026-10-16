@@ -235,7 +235,7 @@ OUTILS
 - search_questions(query, survey_id?, top?) : recherche hybride + rerank. Pour TROUVER des questions sur un sujet. Renvoie des questions avec leur survey_id, variable, et un score_pertinence 0-100.
 - list_surveys() : catalogue des sondages. Chaque entrée porte has_microdata : true = des croisements pondérés sont calculables, false = seulement de la recherche/lecture.
 - list_themes() : thèmes et concepts du corpus avec leur nombre de questions.
-- get_survey(survey_id, variables?) : catalogue d'un sondage. SANS variables → l'INDEX de toutes les variables (nom, question_text, type) mais SANS les response_options : sert à repérer la bonne variable. AVEC variables:[...] → le DÉTAIL (response_options {code, label}) de CES variables seulement. C'est l'outil qui te donne le mapping LANGAGE NATUREL → CODES RAW ; demande-le en ciblant les variables que tu vas croiser.
+- get_survey(survey_id, variables?, query?) : catalogue d'un sondage. AVEC variables:[...] → le DÉTAIL (response_options "code=label") de CES variables seulement : c'est l'outil qui te donne le mapping LANGAGE NATUREL → CODES RAW. AVEC query:"mots-clés" → les lignes d'index "variable | type | libellé" qui contiennent ces mots (filtre lexical : mets les mots dans la langue du sondage, ex. anglais pour la CES, et plusieurs synonymes). SANS les deux → l'index : lignes complètes pour un petit sondage, NOMS seulement pour un gros (les variables sociodémo sont toujours listées en lignes). L'index n'est montré qu'une fois puis retiré du fil : note les noms de variables qui t'intéressent.
 - crosstab(survey_id, target, dim?, filters?, agg?, exclude?) : distribution/croisement PONDÉRÉ (erreur-type de Kish incluse). target = variable analysée, dim = variable de croisement, filters = [{var, codes:[...]}], agg = "count" (défaut) ou "mean". Renvoie des CODES RAW, jamais des libellés.
 
 RECHERCHE vs ANALYSE
@@ -250,7 +250,7 @@ RÈGLE DURE — UN FEU VERT, C'EST DÉFINITIF
 Dès que l'utilisateur donne un signal d'aller de l'avant ("go", "vas-y", "oui", "ok", "lance", "exécute", ou toute réponse à ta question précédente), tu EXÉCUTES IMMÉDIATEMENT (appels d'outils) — AUCUNE nouvelle question, sans exception, même sur un détail que tu viens de remarquer. Tout point encore ouvert se règle par un défaut raisonnable, mentionné dans ta ligne d'hypothèse.
 
 MAPPER UN SOUS-GROUPE SUR LES CODES (règle dure)
-crosstab ne connaît QUE les codes raw, propres à chaque sondage. Pour traduire "18-34 ans", "au Québec", "les femmes" en filtres, tu DOIS d'abord appeler get_survey(survey_id, variables:[...]) EN CIBLANT les variables concernées (cible, dimension, filtres) et lire leurs response_options {code, label}. Choisis les codes à partir des LABELS, puis passe ces codes à crosstab. Ne devine JAMAIS un code. Si tu ignores encore le nom exact des variables, appelle d'abord get_survey(survey_id) sans variables pour parcourir l'index, puis redemande le détail des variables retenues. De même, les résultats de crosstab sont des codes : rejoins-les aux labels via le détail get_survey déjà obtenu pour les présenter lisiblement.
+crosstab ne connaît QUE les codes raw, propres à chaque sondage. Pour traduire "18-34 ans", "au Québec", "les femmes" en filtres, tu DOIS d'abord appeler get_survey(survey_id, variables:[...]) EN CIBLANT les variables concernées (cible, dimension, filtres) et lire leurs response_options {code, label}. Choisis les codes à partir des LABELS, puis passe ces codes à crosstab. Ne devine JAMAIS un code. Si tu ignores encore le nom exact des variables, trouve-les d'abord avec search_questions(query, survey_id) ou get_survey(survey_id, query:"mots-clés") (préférable à l'index complet sur un gros sondage), puis demande le détail des variables retenues. De même, les résultats de crosstab sont des codes : rejoins-les aux labels via le détail get_survey déjà obtenu pour les présenter lisiblement.
 
 RESPECTER LES MICRO-DONNÉES
 Ne propose un crosstab QUE sur un sondage dont has_microdata est true (list_surveys) ou présent dans le manifest. Si l'utilisateur veut analyser un sondage sans micro-données, dis-le et propose au mieux de la recherche/lecture de questions.
@@ -317,7 +317,7 @@ export const TOOL_DEFS = [
     function: {
       name: "get_survey",
       description:
-        "Catalogue d'un sondage. SANS `variables` : renvoie l'INDEX de toutes les variables (variable, question_text, type) mais PAS les response_options — pour repérer les variables pertinentes. AVEC `variables:[...]` : renvoie le DÉTAIL (response_options {code,label}) UNIQUEMENT pour ces variables. Passe toujours `variables` pour obtenir le mapping code↔label des variables que tu vas croiser (cible, dimension, filtres) : c'est plus rapide et ça évite de renvoyer tout le catalogue à chaque tour.",
+        "Catalogue d'un sondage. AVEC `variables:[...]` : DÉTAIL (response_options \"code=label\") UNIQUEMENT pour ces variables — à demander pour toute variable que tu croises (cible, dimension, filtres). AVEC `query` : lignes d'index \"variable | type | libellé\" filtrées par mots-clés (lexical ; mots dans la langue du sondage, synonymes OK). SANS les deux : index compact (noms seulement pour un gros sondage) + variables sociodémo. Préfère `query` ou `variables` à l'index complet.",
       parameters: {
         type: "object",
         properties: {
@@ -325,8 +325,13 @@ export const TOOL_DEFS = [
           variables: {
             type: "array",
             description:
-              "Variables dont tu veux le détail (response_options). Omis = index sans options de toutes les variables.",
+              "Variables dont tu veux le détail (response_options). Omis = index sans options.",
             items: { type: "string" },
+          },
+          query: {
+            type: "string",
+            description:
+              "Mots-clés pour filtrer l'index (sans `variables`). Ex. \"satisfaction democracy\" sur la CES. Ignoré si `variables` est fourni.",
           },
         },
         required: ["survey_id"],
@@ -339,7 +344,7 @@ export const TOOL_DEFS = [
     function: {
       name: "crosstab",
       description:
-        "Distribution ou croisement PONDÉRÉ (erreur-type de Kish) sur les micro-données d'un sondage. Renvoie des codes raw (à rejoindre aux labels via get_survey). Seulement pour un sondage à has_microdata=true.",
+        "Distribution ou croisement PONDÉRÉ (erreur-type de Kish) sur les micro-données d'un sondage. Renvoie `columns` + `rows` (une ligne = un tableau aligné sur columns), en codes raw (à rejoindre aux labels via get_survey). Seulement pour un sondage à has_microdata=true.",
       parameters: {
         type: "object",
         properties: {
@@ -393,51 +398,219 @@ function corpusEnv(env: AgentEnv): CorpusEnv {
   return { SEARCH_ENDPOINT: env.SEARCH_ENDPOINT, SEARCH_QUERY_KEY: env.SEARCH_QUERY_KEY };
 }
 
-/** Réduit un résultat de recherche aux champs utiles au modèle (borne les tokens). */
-function trimSearchResult(r: Record<string, unknown>) {
-  return {
-    survey_id: r.survey_id,
-    survey_name: r.survey_name,
-    survey_year: r.survey_year,
-    variable: r.variable,
-    question_text: r.question_text,
-    var_type: r.var_type,
-    is_sociodemo: r.is_sociodemo,
-    sociodemo_type: r.sociodemo_type,
-    themes: r.themes,
-    score_pertinence: r.score_pertinence,
-  };
+/**
+ * Résultats de recherche COMPACTS (9ou.10) : une ligne
+ * `survey_id | variable | type | score | question_text [socio:x] {thèmes}` par
+ * résultat + une table `surveys` {survey_id: "nom (année)"} donnée une seule
+ * fois (le nom long bilingue se répétait à chaque ligne).
+ */
+export const SEARCH_TEXT_MAX = 200;
+export function compactSearchResults(results: Record<string, any>[]) {
+  const surveys: Record<string, string> = {};
+  const lines = results.map((r) => {
+    const sid = String(r.survey_id ?? "");
+    if (!(sid in surveys)) surveys[sid] = `${r.survey_name ?? sid}${r.survey_year ? ` (${r.survey_year})` : ""}`;
+    const socio = r.is_sociodemo ? ` [socio:${r.sociodemo_type ?? "?"}]` : "";
+    const themes = Array.isArray(r.themes) && r.themes.length ? ` {${r.themes.join(", ")}}` : "";
+    return `${sid} | ${r.variable} | ${r.var_type ?? "?"} | ${r.score_pertinence ?? "?"} | ${truncate(String(r.question_text ?? ""), SEARCH_TEXT_MAX)}${socio}${themes}`;
+  });
+  return { count: lines.length, format: "survey_id | variable | type | score_pertinence | question_text", surveys, results: lines };
 }
 
-/** Réduit une question de catalogue en gardant le mapping code→label. */
-function trimSurveyQuestion(q: Record<string, any>) {
+/** Catalogue de sondages COMPACT (9ou.10) : une ligne par sondage, description tronquée. */
+export const SURVEY_DESC_MAX = 140;
+export function compactSurveyList(surveys: Record<string, any>[], withMicrodata: Set<string>) {
   return {
-    variable: q.variable,
-    question_text: q.question_text,
-    var_type: q.var_type,
-    is_sociodemo: q.is_sociodemo,
-    sociodemo_type: q.sociodemo_type,
-    response_options: Array.isArray(q.response_options)
-      ? q.response_options.map((o: any) => ({ code: o.code, label: o.label }))
-      : [],
+    format: "survey_id | année | nom | maison | N | micro-données | description",
+    surveys: surveys.map(
+      (s) =>
+        `${s.survey_id} | ${s.survey_year ?? "?"} | ${s.survey_name ?? ""} | ${s.pollster ?? ""} | N=${s.n_respondents ?? "?"} | ${withMicrodata.has(s.survey_id) ? "has_microdata" : "no_microdata"} | ${truncate(String(s.survey_description ?? ""), SURVEY_DESC_MAX)}`,
+    ),
   };
 }
 
 /**
- * Variante SANS `response_options` (aat.6) : c'est ce dernier champ — chaque
- * variable × chaque option — qui fait exploser le catalogue et, ré-émis à chaque
- * tour de boucle, épuise le TPM. Quand le modèle ne cible pas de variables
- * précises, on lui renvoie l'INDEX (variable + libellé de question + type), assez
- * pour repérer la ou les variables à analyser ; il redemande alors le détail avec
- * `variables:[...]` pour n'obtenir les options QUE de celles-là.
+ * Index COMPACT (aat.6, puis 9ou.10). Le catalogue complet d'un gros sondage
+ * (ces_2025 : ~590 variables) pesait ~30k tokens en JSON objet et était repayé à
+ * chaque tour : 100-400k tokens d'input par requête. On renvoie désormais une
+ * LIGNE texte par variable — `variable | type | libellé court` — où le libellé
+ * est `display_label` (court, distinctif dans une batterie) à défaut le
+ * question_text, tronqué. Les response_options restent réservées au mode détail.
  */
-function indexSurveyQuestion(q: Record<string, any>) {
+export const INDEX_LABEL_MAX = 90;
+/** Au-delà de ce nombre de variables, l'index sans `query` ne liste que les NOMS. */
+export const INDEX_FULL_MAX = 150;
+/** Lignes max renvoyées pour un index filtré par `query`. */
+export const INDEX_QUERY_MAX = 50;
+/** Options max par variable en mode détail (listes de pays, etc.). */
+export const DETAIL_OPTIONS_MAX = 120;
+
+function truncate(s: string, max: number): string {
+  const t = s.replace(/\s+/g, " ").trim();
+  return t.length > max ? `${t.slice(0, max - 1)}…` : t;
+}
+
+/** Une ligne d'index : `variable | type | libellé` (+ ` [socio:type]`). */
+export function indexLine(q: Record<string, any>): string {
+  const label = truncate(String(q.display_label || q.question_text || ""), INDEX_LABEL_MAX);
+  const socio = q.is_sociodemo ? ` [socio:${q.sociodemo_type ?? "?"}]` : "";
+  return `${q.variable} | ${q.var_type ?? "?"} | ${label}${socio}`;
+}
+
+function norm(s: string): string {
+  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+/**
+ * Filtre l'index par mots-clés (OU, classé par nombre de mots trouvés). Un mot
+ * long est réduit à ses 6 premières lettres (« démocratie » → « democr » trouve
+ * aussi « democracy ») : recherche lexicale bon marché, pas sémantique — le
+ * modèle peut passer des synonymes / la langue du sondage, ou search_questions.
+ */
+export function filterIndex(questions: Record<string, any>[], query: string): Record<string, any>[] {
+  const terms = [...new Set(norm(query).split(/[^a-z0-9_]+/).filter((t) => t.length >= 3))].map((t) =>
+    t.length > 6 ? t.slice(0, 6) : t,
+  );
+  if (terms.length === 0) return [];
+  return questions
+    .map((q) => {
+      const hay = norm(`${q.variable ?? ""} ${q.display_label ?? ""} ${q.question_text ?? ""} ${q.sociodemo_type ?? ""}`);
+      return { q, score: terms.filter((t) => hay.includes(t)).length };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map((x) => x.q);
+}
+
+/**
+ * Construit la réponse get_survey en mode INDEX (sans `variables`).
+ *  - `query` fourni → lignes compactes des variables qui matchent (≤ INDEX_QUERY_MAX) ;
+ *  - petit sondage (≤ INDEX_FULL_MAX) → toutes les lignes compactes ;
+ *  - gros sondage → NOMS seulement + lignes des variables sociodémo + consigne
+ *    de filtrer avec `query` ou search_questions(survey_id).
+ * Les variables sociodémo sont toujours listées en lignes complètes : ce sont
+ * les dimensions/filtres de presque toute analyse.
+ */
+export function buildSurveyIndex(questions: Record<string, any>[], query?: string) {
+  const socio = questions.filter((q) => q.is_sociodemo).map(indexLine);
+  if (query && query.trim()) {
+    const hits = filterIndex(questions, query);
+    return {
+      query,
+      matched: hits.length,
+      questions: hits.slice(0, INDEX_QUERY_MAX).map(indexLine),
+      ...(hits.length > INDEX_QUERY_MAX ? { truncated: true } : {}),
+      sociodemo: socio,
+      hint:
+        hits.length === 0
+          ? "Aucune variable ne contient ces mots. Essaie des synonymes dans la langue du sondage, ou search_questions(query, survey_id) (sémantique, multilingue)."
+          : "Format : variable | type | libellé. Demande ensuite get_survey(survey_id, variables:[...]) pour les codes.",
+    };
+  }
+  if (questions.length <= INDEX_FULL_MAX) {
+    return { format: "variable | type | libellé", questions: questions.map(indexLine) };
+  }
+  return {
+    variable_names: questions.map((q) => String(q.variable)),
+    sociodemo: socio,
+    hint: `Gros sondage (${questions.length} variables) : seuls les NOMS sont listés. Pour les libellés, rappelle get_survey(survey_id, query:"mots-clés") (filtre lexical, mots dans la langue du sondage, plusieurs synonymes OK) ou search_questions(query, survey_id), puis get_survey(survey_id, variables:[...]) pour les codes.`,
+  };
+}
+
+/** Options compactes `code=label` (moitié moins de tokens que {code,label}). */
+function compactOptions(opts: unknown): { options: string[]; omitted?: number } {
+  if (!Array.isArray(opts)) return { options: [] };
+  const all = opts.map((o: any) => {
+    const code = String(o?.code ?? "");
+    let label = String(o?.label ?? "").trim();
+    // Préfixe « 3. » redondant avec le code (« 3. 1922 » → « 1922 »).
+    if (label.startsWith(`${code}. `)) label = label.slice(code.length + 2).trim();
+    // « 15 » pour le code 15 : le label n'apporte rien au-delà du code.
+    return label === code || label === "" ? code : `${code}=${label}`;
+  });
+  return all.length > DETAIL_OPTIONS_MAX
+    ? { options: all.slice(0, DETAIL_OPTIONS_MAX), omitted: all.length - DETAIL_OPTIONS_MAX }
+    : { options: all };
+}
+
+/** Détail d'une variable (mode `variables`) : question complète + options compactes. */
+export function detailSurveyQuestion(q: Record<string, any>) {
+  const { options, omitted } = compactOptions(q.response_options);
   return {
     variable: q.variable,
+    label: q.display_label ?? undefined,
     question_text: q.question_text,
     var_type: q.var_type,
-    is_sociodemo: q.is_sociodemo,
-    sociodemo_type: q.sociodemo_type,
+    ...(q.is_sociodemo ? { sociodemo_type: q.sociodemo_type } : {}),
+    response_options: options,
+    ...(omitted ? { options_omitted: omitted } : {}),
+  };
+}
+
+/**
+ * Stub qui REMPLACE, dans le fil, un résultat get_survey en mode index déjà lu
+ * par le modèle (9ou.10) : l'index n'est utile qu'au tour où il choisit ses
+ * variables ; le repayer à chaque tour suivant dominait le coût. On garde la
+ * liste sociodémo (petite, utile pour les filtres) et la façon de le rouvrir.
+ */
+export const ELIDED_INDEX_NOTE =
+  "Index déjà consulté au tour précédent, retiré du fil pour économiser des tokens. Pour retrouver une variable : get_survey(survey_id, query:\"mots-clés\") ou search_questions(query, survey_id).";
+
+export function elideIndexResult(content: string): string {
+  try {
+    const r = JSON.parse(content);
+    if (!r || r.mode !== "index") return content;
+    return JSON.stringify({
+      survey_id: r.survey_id,
+      has_microdata: r.has_microdata,
+      mode: "index_elided",
+      ...(r.query ? { query: r.query } : {}),
+      ...(Array.isArray(r.sociodemo) ? { sociodemo: r.sociodemo } : {}),
+      note: ELIDED_INDEX_NOTE,
+    });
+  } catch {
+    return content;
+  }
+}
+
+/** Lignes max d'un crosstab renvoyées au modèle (au-delà : dimension trop fine). */
+export const CROSSTAB_ROWS_MAX = 200;
+
+function roundNum(x: unknown): unknown {
+  if (typeof x !== "number" || !Number.isFinite(x) || Number.isInteger(x)) return x;
+  return Math.abs(x) < 1 ? Number(x.toFixed(4)) : Number(x.toFixed(1));
+}
+
+/**
+ * Compacte un résultat crosstab pour le modèle (9ou.10) : `rows` d'objets à
+ * floats pleine précision → `columns` + `rows` en tableaux, nombres arrondis
+ * (parts/ET à 4 décimales, effectifs/moyennes à 1). ~4-5× moins de tokens à
+ * information égale pour la rédaction. Une dimension très fine (âge en années :
+ * ~460 lignes) est plafonnée à CROSSTAB_ROWS_MAX avec une consigne de regroupement.
+ * Tout résultat d'une autre forme est renvoyé tel quel.
+ */
+export function compactCrosstabResult(result: unknown): unknown {
+  if (!result || typeof result !== "object") return result;
+  const r = result as Record<string, unknown>;
+  const rows = r.rows;
+  if (!Array.isArray(rows) || rows.length === 0 || !rows.every((x) => x && typeof x === "object" && !Array.isArray(x))) {
+    return result;
+  }
+  const columns = [...new Set(rows.flatMap((x) => Object.keys(x as object)))];
+  const kept = rows.slice(0, CROSSTAB_ROWS_MAX);
+  const { rows: _drop, ...meta } = r;
+  void _drop;
+  for (const k of Object.keys(meta)) if (meta[k] === null) delete meta[k];
+  return {
+    ...meta,
+    columns,
+    rows: kept.map((x) => columns.map((c) => roundNum((x as Record<string, unknown>)[c] ?? null))),
+    ...(rows.length > CROSSTAB_ROWS_MAX
+      ? {
+          rows_omitted: rows.length - CROSSTAB_ROWS_MAX,
+          hint: "Dimension trop fine : regroupe-la (ex. tranches d'âge via plusieurs crosstabs filtrés, ou une variable déjà groupée) plutôt que de croiser chaque modalité.",
+        }
+      : {}),
   };
 }
 
@@ -485,7 +658,7 @@ export async function executeTool(
         ranked = ranked
           .map((r) => ({ ...r, score_pertinence: Math.round((r.relevance_score ?? 0) * 100) }))
           .slice(0, top);
-        return { count: ranked.length, results: ranked.map((r) => trimSearchResult(r as any)) };
+        return compactSearchResults(ranked as any[]);
       } catch (err) {
         if (err instanceof RetrieveError || err instanceof RerankError) return { error: err.message };
         throw err;
@@ -498,18 +671,7 @@ export async function executeTool(
         getManifest(),
       ]);
       const withMd = new Set(manifest.surveys.map((s) => s.survey_id));
-      return {
-        total_questions,
-        surveys: surveys.map((s: any) => ({
-          survey_id: s.survey_id,
-          survey_name: s.survey_name,
-          survey_year: s.survey_year,
-          pollster: s.pollster,
-          n_respondents: s.n_respondents,
-          survey_description: s.survey_description,
-          has_microdata: withMd.has(s.survey_id),
-        })),
-      };
+      return { total_questions, ...compactSurveyList(surveys as any[], withMd) };
     }
 
     case "list_themes":
@@ -539,18 +701,24 @@ export async function executeTool(
         ? wanted.filter((v) => !catalog.questions.some((q) => String((q as any).variable) === v))
         : [];
 
-      return {
+      const base = {
         survey_id: surveyId,
         survey_name: catalog.survey?.survey_name ?? null,
         has_microdata: manifest.surveys.some((s) => s.survey_id === surveyId),
+        count: catalog.count,
+      };
+      if (!detailed) {
         // `mode` explicite pour le modèle : en "index" les response_options sont
         // ABSENTES par design — il doit rappeler get_survey avec `variables`.
-        mode: detailed ? "detail" : "index",
-        count: detailed ? questions.length : catalog.count,
+        const query = typeof args.query === "string" ? args.query : undefined;
+        return { ...base, mode: "index", ...buildSurveyIndex(catalog.questions as any[], query) };
+      }
+      return {
+        ...base,
+        mode: "detail",
+        count: questions.length,
         ...(unknownVars.length > 0 ? { unknown_variables: unknownVars } : {}),
-        questions: questions.map((q) =>
-          detailed ? trimSurveyQuestion(q as any) : indexSurveyQuestion(q as any),
-        ),
+        questions: questions.map((q) => detailSurveyQuestion(q as any)),
       };
     }
 
@@ -572,7 +740,7 @@ export async function executeTool(
         exclude: Array.isArray(args.exclude) ? (args.exclude as any) : [],
       };
       try {
-        return await microdata.crosstab(params);
+        return compactCrosstabResult(await microdata.crosstab(params));
       } catch (err) {
         // Erreur métier remontée telle quelle au modèle (ex. cible invalide).
         return { error: err instanceof Error ? err.message : String(err) };
@@ -694,6 +862,11 @@ export async function* runAgentStream(
   const trace: ToolTrace[] = [];
 
   let iterations = 0;
+  // 9ou.10 : messages [0, seenUpTo) ont déjà été envoyés au modèle au moins une
+  // fois. Les résultats get_survey en mode index parmi eux sont remplacés par un
+  // stub avant l'appel suivant (l'index n'est lu qu'une fois, pas repayé).
+  let seenUpTo = 0;
+  const elided = new Set<number>();
 
   // Émet le message final + l'event `done` terminal, puis termine le générateur.
   function* finish(
@@ -719,8 +892,15 @@ export async function* runAgentStream(
     // Un tour = un appel LLM (repayant system prompt + schémas d'outils). On
     // mesure la latence autour du fetch et on émet UNE ligne agent_turn par tour,
     // y compris le tour final de rédaction (useTools=false). turn_index 0-based.
+    for (let i = 0; i < seenUpTo; i++) {
+      const m = messages[i];
+      if (m.role !== "tool" || elided.has(i) || typeof m.content !== "string") continue;
+      m.content = elideIndexResult(m.content);
+      elided.add(i);
+    }
     const turnStartedAt = Date.now();
     const { message: assistant, usage } = await chat(messages, useTools);
+    seenUpTo = messages.length;
     logUsage({
       ...identity,
       op: "agent_turn",
