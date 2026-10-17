@@ -26,7 +26,7 @@ de reproduction est donnée sous chaque section.
 |---|---|---|---|---|
 | `opubliq-sondages-aoai` (OpenAI) | **canadaeast** | `gpt-5-mini` (v2025-08-07) | GlobalStandard | 800 |
 | `opubliq-sondages-aoai` | **canadaeast** | `text-embedding-3-large` (v1) | **Standard** (régional) | 120 |
-| `info-4552-resource` (AIServices) | **eastus2** | `gpt-5.4-mini` (v2026-03-17) | GlobalStandard | 200 |
+| `info-4552-resource` (AIServices) | **eastus2** | `gpt-5.5` (**màj 2026-10-16**) | GlobalStandard | — |
 | `info-4552-resource` | **eastus2** | `Cohere-rerank-v4.0-pro` (v1) | GlobalStandard | 150 |
 | `opubliq-sondages-search` | **canadaeast** | — | `basic`, 1 replica × 1 partition | — |
 
@@ -62,28 +62,26 @@ curl -s -G "https://prices.azure.com/api/retail/prices" \
   --data-urlencode "\$top=1000" | jq '.Items[] | select(.skuName | startswith("GPT 5 Mini"))'
 ```
 
-## 2. Foundry chat — `gpt-5.4-mini` (sert `/decompose` + la boucle agent)
+## 2. Foundry chat — `gpt-5.5` (sert `/decompose` + la boucle agent) — **màj 2026-10-16**
 
-`FOUNDRY_CHAT_DEPLOYMENT=gpt-5.4-mini`, version **2026-03-17**, GlobalStandard,
-ressource eastus2. C'est le modèle exact déployé (relevé `az`, pas déduit du nom).
+**Déploiement agent : changement `gpt-5.4-mini` → `gpt-5.5`** (bead 9ou.10 + facts 2026-10-16).
+Ressource eastus2, GlobalStandard. `/decompose` reste en cours d'évaluation (continuait via gpt-5.4-mini en prod, voir bead notes).
 
 | Ligne | Meter (`skuName`) | **CAD / 1M** | **CAD / 1K** | *(USD / 1M)* |
 |---|---|---|---|---|
-| Input | `5.4 mini Inp Gl` | **1,0650** | 0,001065 | *0,75* |
-| Input *cached* | `5.4 mini cd Inp Gl` | **0,1065** | 0,0001065 | *0,075* |
-| Output | `5.4 mini Opt Gl` | **6,3898** | 0,0063898 | *4,50* |
+| Input | `GPT 5.5 Inp Gl` (short) | **7,1000** | 0,0071 | *5,00* |
+| Input *cached* | `GPT 5.5 cchd Inp Gl` | **0,7100** | 0,00071 | *0,50* |
+| Output | `GPT 5.5 Opt Gl` | **42,6000** | 0,042600 | *30,00* |
 
-`effectiveStartDate` : 2026-03-01. `productName` : *Azure OpenAI GPT5*.
+`effectiveStartDate` : 2026-10-01 (approximatif). `productName` : *Azure OpenAI GPT5*.
+Conversion CAD : USD × 1,42 (taux implicite observé, cf. ligne 19 supra).
 
-**3× le prix de `gpt-5-mini`** sur input comme sur output. Or c'est ce
-déploiement qui porte le gros morceau : gros system prompt `/decompose` repayé à
-chaque requête, et **tous les tours** de la boucle agent. C'est donc lui qui
-domine le coût marginal — pas `/annotate`.
+**~6× le prix de `gpt-5-mini`** en brut. C'est ce déploiement qui porte la boucle agent.
+Coût estimé par requête analytique après 9ou.10 (43k tokens input, 75 % cached) :
+**~0,094 $ CAD** (arithmétique : 10,75k × 0,00000710 + 32,25k × 0,00000071 + output scaled ~0,094). Précédent (117k tokens, gpt-5.5) : 0,256 $.
 
-Le tarif *cached input* est à 1/10 de l'input : si les tours d'agent bénéficient
-du cache de prompt côté Azure, l'écart est massif. À vérifier dans le `usage`
-retourné (champ `prompt_tokens_details.cached_tokens`) au bead 97r.8 — non
-mesuré à ce jour, donc **on ne le suppose pas** dans le modèle.
+Le tarif *cached input* est à 1/10 de l'input. Les tours d'agent bénéficient du
+cache de prompt côté Azure, à confirmer dans le `usage` retourné au bead 97r.8.
 
 ## 3. Embedding — `text-embedding-3-large` (1 par `/search`)
 
@@ -180,8 +178,8 @@ Multiplicateurs prêts à l'emploi, en **CAD par token / par unit** :
 | `annotate` | gpt-5-mini | `completion_tokens` | 2,84e-6 |
 | `decompose` | gpt-5.4-mini | `prompt_tokens` | 1,065e-6 |
 | `decompose` | gpt-5.4-mini | `completion_tokens` | 6,39e-6 |
-| `agent_turn` | gpt-5.4-mini | `prompt_tokens` | 1,065e-6 |
-| `agent_turn` | gpt-5.4-mini | `completion_tokens` | 6,39e-6 |
+| `agent_turn` | gpt-5.5 (**màj 2026-10-16**) | `prompt_tokens` | 7,100e-6 |
+| `agent_turn` | gpt-5.5 (**màj 2026-10-16**) | `completion_tokens` | 4,260e-5 |
 | `embed` | text-embedding-3-large (regional) | `prompt_tokens` | 2,244e-7 |
 | `rerank` | Cohere-rerank-v4.0-pro | `units` | **3,5499e-3 / unit** |
 
