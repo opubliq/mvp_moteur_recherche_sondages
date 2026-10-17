@@ -71,6 +71,7 @@ interface LiveTool {
   args: unknown;
   ok: boolean | null;
   error?: string;
+  figures?: AgentToolTrace["figures"];
 }
 
 const EXAMPLE_KEYS: TranslationKey[] = ["agent.example1", "agent.example2", "agent.example3"];
@@ -105,6 +106,27 @@ function summarizeArgs(tool: string, args: unknown, t: (key: TranslationKey) => 
   if (typeof a.query === "string") parts.push(`« ${a.query} »`);
   if (parts.length === 0 && tool === "list_surveys") return null;
   return parts.length > 0 ? parts.join(" · ") : null;
+}
+
+/**
+ * Figures d'un appel `run_python` (bead 9ou.12) : PNG base64 reçus via l'event
+ * `tool_end` (jamais envoyés au modèle — voir `toModelPayload` côté agent.ts),
+ * rendues ici pour l'utilisateur. Grille simple, cohérente avec `.op-*`/DaisyUI.
+ */
+function FigureGallery({ figures }: { figures: AgentToolTrace["figures"] }) {
+  if (!figures || figures.length === 0) return null;
+  return (
+    <div className="mt-2 flex flex-wrap gap-2">
+      {figures.map((f) => (
+        <img
+          key={f.id}
+          src={`data:${f.mime};base64,${f.base64}`}
+          alt={f.id}
+          className="max-h-64 rounded-lg border border-base-content/10 bg-white"
+        />
+      ))}
+    </div>
+  );
 }
 
 /** Un appel d'outil, rendu en pastille discrète. `ok === null` = en cours (spinner). */
@@ -349,7 +371,13 @@ export default function AgentPage() {
             const next = [...prev];
             for (let i = next.length - 1; i >= 0; i--) {
               if (next[i].ok === null && next[i].tool === ev.trace.tool) {
-                next[i] = { tool: ev.trace.tool, args: ev.trace.args, ok: ev.trace.ok, error: ev.trace.error };
+                next[i] = {
+                  tool: ev.trace.tool,
+                  args: ev.trace.args,
+                  ok: ev.trace.ok,
+                  error: ev.trace.error,
+                  figures: ev.trace.figures,
+                };
                 break;
               }
             }
@@ -358,7 +386,7 @@ export default function AgentPage() {
         } else if (ev.type === "message") {
           setStreamedAnswer(ev.content);
         }
-      });
+      }, convId);
       setThread(result.messages);
       if (result.trace.length > 0) {
         setTraceByIndex((prev) => ({ ...prev, [result.messages.length - 1]: result.trace }));
@@ -456,11 +484,14 @@ export default function AgentPage() {
                   </span>
                   <span className="block text-sm text-base-content/70">{excerpt(turn.content, t)}</span>
                   {turn.trace && turn.trace.length > 0 && (
-                    <span className="mt-2 flex flex-wrap gap-1.5 border-t border-base-content/10 pt-2">
-                      {turn.trace.map((tr, i) => (
-                        <ToolPill key={i} t={tr} />
-                      ))}
-                    </span>
+                    <>
+                      <span className="mt-2 flex flex-wrap gap-1.5 border-t border-base-content/10 pt-2">
+                        {turn.trace.map((tr, i) => (
+                          <ToolPill key={i} t={tr} />
+                        ))}
+                      </span>
+                      {turn.trace.map((tr, i) => <FigureGallery key={`fig-${i}`} figures={tr.figures} />)}
+                    </>
                   )}
                 </button>
               ),
@@ -475,6 +506,7 @@ export default function AgentPage() {
                     ))}
                   </div>
                 )}
+                {liveTools.map((lt, i) => <FigureGallery key={`live-fig-${i}`} figures={lt.figures} />)}
                 <div className="flex items-center gap-2 text-sm text-base-content/60">
                   <span className="loading loading-dots loading-sm" />
                   {liveTools.some((lt) => lt.ok === null) ? t("agent.consultingData") : t("agent.writing")}

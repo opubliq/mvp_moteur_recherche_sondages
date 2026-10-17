@@ -438,11 +438,15 @@ type AgentStreamError = { type: "error"; kind: "rate_limit" | "failed"; retry_af
 export async function agentChatStream(
   messages: AgentMessage[],
   onEvent: (ev: AgentEvent) => void,
+  /** Id de la conversation (bead 9ou.12) : identifie la session `run_python`
+   *  (variables/fichiers persistants) côté bac à sable. Sans lui, l'outil
+   *  reste disponible mais chaque tour repart sur une session neuve. */
+  conversationId?: string,
 ): Promise<AgentChatResponse> {
   const res = await fetch(apiUrl("/agent"), {
     method: "POST",
     headers: { "Content-Type": "application/json", ...authHeader() },
-    body: JSON.stringify({ messages }),
+    body: JSON.stringify({ messages, ...(conversationId ? { conversation_id: conversationId } : {}) }),
   });
   // Erreur AVANT l'ouverture du flux (env manquant, corps invalide, 429 précoce).
   if (!res.ok || !res.body) {

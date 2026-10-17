@@ -22,7 +22,17 @@ import {
 } from "../../../src/logic/agent";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
 import { isMicrodataSurveyAccessible, resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
+import {
+  AcaSessionsExecutor,
+  createRunPythonTool,
+  managedIdentityTokenProvider,
+  sessionIdentifier,
+  staticTokenProvider,
+  type AcaApiVersion,
+  type RunPythonTool,
+} from "../../../src/logic/pythonSandbox";
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "../microdata-core/core";
+import { signedBlobUrl } from "../microdata-core/sas";
 import { checkAuth } from "../middleware/auth";
 import { checkRateLimit } from "../middleware/ratelimit";
 
@@ -80,6 +90,63 @@ function sseFrame(payload: unknown): string {
   return `data: ${JSON.stringify(payload)}\n\n`;
 }
 
+/**
+ * Construit l'outil `run_python` pour CETTE requête (9ou.12), ou `undefined`
+ * si le kill-switch `RUN_PYTHON_ENABLED` est désactivé ou que l'endpoint n'est
+ * pas configuré — une Function App sans ces app settings continue de
+ * fonctionner à l'identique (aucune de ces variables n'est dans REQUIRED_ENV).
+ * UNE instance par requête : c'est elle qui porte le compteur d'appels.
+ */
+async function buildRunPythonTool(opts: {
+  auth: { userId: string; tenant?: string };
+  conversationId: string | undefined;
+  microdataConfig: MicrodataConfig;
+  context: InvocationContext;
+}): Promise<RunPythonTool | undefined> {
+  if (process.env.RUN_PYTHON_ENABLED !== "true") return undefined;
+  const poolManagementEndpoint = process.env.ACA_SESSIONS_POOL_ENDPOINT;
+  const idSecret = process.env.ACA_SESSIONS_ID_SECRET;
+  if (!poolManagementEndpoint || !idSecret) {
+    opts.context.warn("[agent] RUN_PYTHON_ENABLED=true mais ACA_SESSIONS_POOL_ENDPOINT/ACA_SESSIONS_ID_SECRET absents : outil non branché.");
+    return undefined;
+  }
+  // Sans conversation_id (client pas encore à jour, ou absent) : pas de session
+  // stable possible, on n'offre pas l'outil pour CETTE requête plutôt que de
+  // dériver un identifiant par requête (variables/fichiers jamais retrouvés).
+  if (!opts.conversationId) return undefined;
+
+  const getToken = process.env.ACA_SESSIONS_TOKEN
+    ? staticTokenProvider(process.env.ACA_SESSIONS_TOKEN)
+    : managedIdentityTokenProvider({
+        identityEndpoint: process.env.IDENTITY_ENDPOINT ?? "",
+        identityHeader: process.env.IDENTITY_HEADER ?? "",
+      });
+  const executor = new AcaSessionsExecutor({
+    poolManagementEndpoint,
+    apiVersion: (process.env.ACA_SESSIONS_API_VERSION as AcaApiVersion) || undefined,
+    getToken,
+  });
+  const sessionId = await sessionIdentifier(idSecret, opts.auth.userId, opts.conversationId);
+  return createRunPythonTool({
+    executor,
+    sessionId,
+    // Même contrôle d'accès tenant que le rail micro-données (crosstab/manifest
+    // ci-dessus) : un sondage privé d'un autre tenant lève une 404, pas de fuite.
+    fetchParquet: async (surveyId) => {
+      if (!isMicrodataSurveyAccessible(opts.auth.tenant, surveyId)) {
+        throw new MicrodataError(404, "Survey not found");
+      }
+      const res = await fetch(signedBlobUrl(opts.microdataConfig.storage, `${surveyId}.parquet`));
+      if (!res.ok) throw new Error(`blob HTTP ${res.status}`);
+      return new Uint8Array(await res.arrayBuffer());
+    },
+    limits: {
+      maxCallsPerRequest: Number(process.env.RUN_PYTHON_MAX_CALLS_PER_REQUEST) || undefined,
+      timeoutSeconds: Number(process.env.RUN_PYTHON_TIMEOUT_SECONDS) || undefined,
+    },
+  });
+}
+
 export async function agent(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   if (request.method === "OPTIONS") {
     return { status: 200, headers: CORS_HEADERS, body: "" };
@@ -95,9 +162,9 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
     }
   }
 
-  let body: { messages?: unknown };
+  let body: { messages?: unknown; conversation_id?: unknown };
   try {
-    body = (await request.json()) as { messages?: unknown };
+    body = (await request.json()) as { messages?: unknown; conversation_id?: unknown };
   } catch {
     return failJson(400, "Invalid JSON body");
   }
@@ -143,13 +210,17 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
 
   const usage = { clientId: resolveClientId(request.headers), requestId: newRequestId() };
   const indexes = resolveAccessibleQuestionIndexes(auth.tenant);
+  const conversationId = typeof body.conversation_id === "string" && /^[A-Za-z0-9_-]{1,128}$/.test(body.conversation_id)
+    ? body.conversation_id
+    : undefined;
+  const runPython = await buildRunPythonTool({ auth, conversationId, microdataConfig, context });
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const send = (payload: unknown) => controller.enqueue(encoder.encode(sseFrame(payload)));
       try {
-        for await (const ev of runAgentStream(history, env, microdata, { usage, indexes })) {
+        for await (const ev of runAgentStream(history, env, microdata, { usage, indexes, runPython })) {
           send(ev);
         }
       } catch (err) {

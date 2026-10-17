@@ -39,6 +39,15 @@ import {
   type CorpusEnv,
 } from "./corpus";
 import { PUBLIC_QUESTIONS_INDEX } from "./tenancy";
+import {
+  RUN_PYTHON_TOOL_DEF,
+  RUN_PYTHON_TOOL_NAME,
+  toModelPayload,
+  type RunPythonResult,
+  type RunPythonTool,
+  type SandboxFigure,
+  type SandboxTable,
+} from "./pythonSandbox";
 
 // Les micro-données (crosstab pondéré + manifest) vivent dans le CŒUR PORTABLE
 // `netlify/functions/microdata-core/core.ts`, qui dépend de Node (DuckDB natif,
@@ -170,6 +179,14 @@ export interface ToolTrace {
   args: unknown;
   ok: boolean;
   error?: string;
+  /**
+   * `run_python` (9ou.12) UNIQUEMENT : figures/tableaux COMPLETS (base64 inclus)
+   * pour le rendu UI — le message envoyé au MODÈLE, lui, passe par
+   * `toModelPayload` (sans base64, cf. pythonSandbox.ts) : les images coûteraient
+   * des milliers de tokens pour rien, le modèle ne les "voit" pas.
+   */
+  figures?: SandboxFigure[];
+  tables?: SandboxTable[];
 }
 
 export interface AgentResult {
@@ -274,6 +291,16 @@ Structure toujours ta réponse en markdown, pas en texte plat :
 - Va à l'essentiel : pas de préambule ni de méta-commentaire sur ta démarche. Une réponse courte et bien structurée vaut mieux qu'un long rapport.
 
 RAPPEL FINAL : avant d'écrire ta réponse, vérifie la langue du dernier message utilisateur et écris TOUTE ta réponse dans cette langue (English in, English out — français si la question est en français).`;
+
+/**
+ * Ajout au prompt système QUAND `run_python` est branché pour la requête
+ * (9ou.12) : crosstab reste le premier réflexe, run_python pour ce qu'il ne
+ * couvre pas. Court, volontairement — le reste du prompt gère déjà l'action
+ * sans demander et la citation des sources.
+ */
+const RUN_PYTHON_PROMPT_ADDITION = `
+
+OUTIL SUPPLÉMENTAIRE — run_python(code, survey_ids?) : bac à sable Python (pandas, statsmodels, scipy, scikit-learn, matplotlib, plotnine) pour ce que crosstab ne couvre pas : régression multivariée, pondération spéciale, tendance/profil multi-variables, graphique. Essaie TOUJOURS crosstab d'abord pour une distribution ou un croisement simple ; passe à run_python seulement pour une analyse que crosstab ne peut pas faire. \`load(survey_id)\` charge les micro-données (pondérées, colonne \`__weight\` À UTILISER pour toute estimation) ; plotnine (grammaire ggplot2) et matplotlib sont disponibles pour un graphique, déjà stylés — n'ajoute pas de thème. Cite toujours le(s) sondage(s) et variable(s) utilisées dans ta réponse.`;
 
 // ---------------------------------------------------------------------------
 // Définitions des outils (format function calling OpenAI/Azure)
@@ -631,6 +658,8 @@ export async function executeTool(
   manifestCache: { current: ManifestLike | null },
   usage?: UsageContext,
   indexes: string[] = [PUBLIC_QUESTIONS_INDEX],
+  /** `undefined` = outil non branché pour cette requête (feature flag, 9ou.12). */
+  runPython?: RunPythonTool,
 ): Promise<unknown> {
   const getManifest = async (): Promise<ManifestLike> => {
     if (!manifestCache.current) manifestCache.current = await microdata.manifest();
@@ -750,6 +779,23 @@ export async function executeTool(
       }
     }
 
+    case RUN_PYTHON_TOOL_NAME: {
+      if (!runPython) return { error: "run_python n'est pas disponible pour cette requête" };
+      const rawIds = Array.isArray(args.survey_ids) ? (args.survey_ids as unknown[]) : [];
+      const surveyIds = rawIds.map((s) => String(s).trim()).filter(Boolean);
+      if (surveyIds.length > 0) {
+        // Même garde-fou que crosstab : pas de Parquet chargé pour un sondage
+        // absent du manifest (has_microdata), même si le modèle a ignoré la consigne.
+        const manifest = await getManifest();
+        const known = new Set(manifest.surveys.map((s) => s.survey_id));
+        const bad = surveyIds.find((id) => !known.has(id));
+        if (bad) {
+          return { error: `Le sondage '${bad}' n'a pas de micro-données calculables (absent du manifest). Aucune donnée ne peut être chargée dans le bac à sable pour ce sondage.` };
+        }
+      }
+      return await runPython.run(args);
+    }
+
     default:
       return { error: `Outil inconnu : ${name}` };
   }
@@ -771,8 +817,13 @@ export interface ChatTurn {
 
 export type ChatFn = (messages: ChatMessage[], useTools: boolean) => Promise<ChatTurn>;
 
-/** Appel AOAI par défaut. Mirroir de src/logic/annotate.ts (reasoning model). */
-function makeAoaiChat(env: AgentEnv): ChatFn {
+/**
+ * Appel AOAI par défaut. Mirroir de src/logic/annotate.ts (reasoning model).
+ * `tools` est injecté (au lieu de fermer sur la constante TOOL_DEFS) pour que
+ * `run_python` (9ou.12) ne soit offert au modèle QUE quand il est branché pour
+ * cette requête (feature flag par env côté handler).
+ */
+function makeAoaiChat(env: AgentEnv, tools: readonly unknown[]): ChatFn {
   const endpoint = (env.AOAI_ENDPOINT ?? "").replace(/\/$/, "");
   const deployment = env.AGENT_CHAT_DEPLOYMENT || env.AOAI_CHAT_DEPLOYMENT;
   const url = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=${AOAI_API_VERSION}`;
@@ -783,7 +834,7 @@ function makeAoaiChat(env: AgentEnv): ChatFn {
       headers: { "Content-Type": "application/json", "api-key": env.AOAI_KEY ?? "" },
       body: JSON.stringify({
         messages,
-        ...(useTools ? { tools: TOOL_DEFS, tool_choice: "auto" } : {}),
+        ...(useTools ? { tools, tool_choice: "auto" } : {}),
         reasoning_effort: AGENT_REASONING_EFFORT,
         max_completion_tokens: MAX_COMPLETION_TOKENS,
       }),
@@ -830,6 +881,13 @@ export interface RunAgentOptions {
    * l'agent, alors même que /search le voit déjà (incohérence UX à éviter).
    */
   indexes?: string[];
+  /**
+   * Outil `run_python` branché pour cette requête (9ou.12) : UNE instance par
+   * requête agent (elle porte son propre compteur d'appels, cf. pythonSandbox.ts).
+   * `undefined` (défaut) = outil absent de `TOOL_DEFS`/du system prompt — une
+   * Function App sans ACA_SESSIONS_* configuré continue de fonctionner à l'identique.
+   */
+  runPython?: RunPythonTool;
 }
 
 /**
@@ -847,7 +905,11 @@ export async function* runAgentStream(
   microdata: MicrodataProvider,
   opts: RunAgentOptions = {},
 ): AsyncGenerator<AgentEvent, void, void> {
-  const chat = opts.chat ?? makeAoaiChat(env);
+  // run_python (9ou.12) : outil + schéma + ligne de prompt ajoutés ENSEMBLE,
+  // seulement quand branché pour cette requête (feature flag côté handler).
+  const tools: readonly unknown[] = opts.runPython ? [...TOOL_DEFS, RUN_PYTHON_TOOL_DEF] : TOOL_DEFS;
+  const systemPrompt = opts.runPython ? SYSTEM_PROMPT + RUN_PYTHON_PROMPT_ADDITION : SYSTEM_PROMPT;
+  const chat = opts.chat ?? makeAoaiChat(env, tools);
   // Identité résolue une seule fois : le request_id retenu (fourni ou généré)
   // doit être le MÊME pour la boucle et pour les outils.
   const identity = usageIdentity(opts.usage);
@@ -857,12 +919,12 @@ export async function* runAgentStream(
   const execute =
     opts.execute ??
     ((name: string, args: Record<string, unknown>) =>
-      executeTool(name, args, env, microdata, manifestCache, usageCtx, indexes));
+      executeTool(name, args, env, microdata, manifestCache, usageCtx, indexes, opts.runPython));
   const deadlineMs = opts.deadlineMs ?? DEFAULT_DEADLINE_MS;
   const start = Date.now();
 
   // Fil de travail : system + historique client. On renverra `messages` sans le system.
-  const messages: ChatMessage[] = [{ role: "system", content: SYSTEM_PROMPT }, ...history];
+  const messages: ChatMessage[] = [{ role: "system", content: systemPrompt }, ...history];
   const trace: ToolTrace[] = [];
 
   let iterations = 0;
@@ -957,12 +1019,23 @@ export async function* runAgentStream(
         result = { error: errMsg };
       }
       const t: ToolTrace = { tool: call.function.name, args, ok, ...(errMsg ? { error: errMsg } : {}) };
+      // run_python (9ou.12) : le résultat PLEIN (figures en base64) va dans la
+      // trace pour l'UI ; le message renvoyé au MODÈLE passe par toModelPayload
+      // (images remplacées par leur id — le modèle ne les "voit" pas, et le base64
+      // coûterait des milliers de tokens pour rien).
+      let modelResult: unknown = result;
+      if (call.function.name === RUN_PYTHON_TOOL_NAME && result && typeof result === "object") {
+        const r = result as RunPythonResult | { error: string };
+        if ("figures" in r && r.figures.length > 0) t.figures = r.figures;
+        if ("tables" in r && r.tables.length > 0) t.tables = r.tables;
+        modelResult = toModelPayload(r);
+      }
       trace.push(t);
       yield { type: "tool_end", trace: t };
       messages.push({
         role: "tool",
         tool_call_id: call.id,
-        content: JSON.stringify(result),
+        content: JSON.stringify(modelResult),
       });
     }
   }
