@@ -119,6 +119,7 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
   const env: AgentEnv = Object.fromEntries(
     REQUIRED_ENV.map((k) => [k, process.env[k] as string]),
   ) as unknown as AgentEnv;
+  env.AGENT_CHAT_DEPLOYMENT = process.env.AGENT_CHAT_DEPLOYMENT;
 
   const microdataConfig: MicrodataConfig = {
     storage: {

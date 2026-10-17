@@ -90,6 +90,9 @@ export interface AgentEnv {
   AOAI_ENDPOINT: string;
   AOAI_KEY: string;
   AOAI_CHAT_DEPLOYMENT: string;
+  /** Déploiement dédié à l'orchestrateur (bead 9ou.13, gpt-5.5) ; repli sur
+   *  AOAI_CHAT_DEPLOYMENT, partagé avec scan/annotate/judge qui restent sur gpt-5-mini. */
+  AGENT_CHAT_DEPLOYMENT?: string;
   // Recherche hybride + embedding (search_questions)
   SEARCH_ENDPOINT: string;
   SEARCH_QUERY_KEY: string;
@@ -771,7 +774,8 @@ export type ChatFn = (messages: ChatMessage[], useTools: boolean) => Promise<Cha
 /** Appel AOAI par défaut. Mirroir de src/logic/annotate.ts (reasoning model). */
 function makeAoaiChat(env: AgentEnv): ChatFn {
   const endpoint = (env.AOAI_ENDPOINT ?? "").replace(/\/$/, "");
-  const url = `${endpoint}/openai/deployments/${env.AOAI_CHAT_DEPLOYMENT}/chat/completions?api-version=${AOAI_API_VERSION}`;
+  const deployment = env.AGENT_CHAT_DEPLOYMENT || env.AOAI_CHAT_DEPLOYMENT;
+  const url = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=${AOAI_API_VERSION}`;
 
   return async (messages, useTools) => {
     const res = await fetch(url, {
