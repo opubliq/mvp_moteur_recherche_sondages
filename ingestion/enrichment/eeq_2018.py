@@ -85,13 +85,13 @@ QUESTIONS = {
         "themes": ["politique", "élections"],
     },
     "q3": {
-        "display_label": "Intention de vote au niveau provincial",
-        "concepts": ["intentions de vote", "élections provinciales"],
+        "display_label": "Participation hypothétique si le droit de vote à 16-17 ans existait",
+        "concepts": ["participation électorale", "droit de vote à 16 ans"],
         "themes": ["politique", "élections"],
     },
     "q4": {
-        "display_label": "Certitude du choix de vote provincial",
-        "concepts": ["intentions de vote"],
+        "display_label": "Choix de vote hypothétique si le droit de vote à 16-17 ans existait",
+        "concepts": ["intentions de vote", "droit de vote à 16 ans"],
         "themes": ["politique", "élections"],
     },
     "q5": {
