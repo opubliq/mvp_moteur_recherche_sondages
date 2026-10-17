@@ -48,6 +48,14 @@ import {
   type SandboxFigure,
   type SandboxTable,
 } from "./pythonSandbox";
+import {
+  GEO_LOOKUP_TOOL_DEF,
+  GEO_LOOKUP_TOOL_NAME,
+  GEO_PROFILE_TOOL_DEF,
+  GEO_PROFILE_TOOL_NAME,
+  GEO_PROMPT_ADDITION,
+  type GeoTool,
+} from "./geoTool";
 
 // Les micro-données (crosstab pondéré + manifest) vivent dans le CŒUR PORTABLE
 // `netlify/functions/microdata-core/core.ts`, qui dépend de Node (DuckDB natif,
@@ -660,6 +668,8 @@ export async function executeTool(
   indexes: string[] = [PUBLIC_QUESTIONS_INDEX],
   /** `undefined` = outil non branché pour cette requête (feature flag, 9ou.12). */
   runPython?: RunPythonTool,
+  /** `undefined` = outil géo non branché (feature flag GEO_API_BASE_URL, 9ou.5). */
+  geoTool?: GeoTool,
 ): Promise<unknown> {
   const getManifest = async (): Promise<ManifestLike> => {
     if (!manifestCache.current) manifestCache.current = await microdata.manifest();
@@ -796,6 +806,24 @@ export async function executeTool(
       return await runPython.run(args);
     }
 
+    case GEO_PROFILE_TOOL_NAME: {
+      if (!geoTool) return { error: "geo_profile n'est pas disponible pour cette requête" };
+      try {
+        return await geoTool.profile(args);
+      } catch (err) {
+        return { error: err instanceof Error ? err.message : String(err) };
+      }
+    }
+
+    case GEO_LOOKUP_TOOL_NAME: {
+      if (!geoTool) return { error: "geo_lookup n'est pas disponible pour cette requête" };
+      try {
+        return await geoTool.lookup(args);
+      } catch (err) {
+        return { error: err instanceof Error ? err.message : String(err) };
+      }
+    }
+
     default:
       return { error: `Outil inconnu : ${name}` };
   }
@@ -888,6 +916,13 @@ export interface RunAgentOptions {
    * Function App sans ACA_SESSIONS_* configuré continue de fonctionner à l'identique.
    */
   runPython?: RunPythonTool;
+  /**
+   * Outil géo (recensement, 9ou.5) branché pour cette requête quand
+   * `GEO_API_BASE_URL` est configuré côté handler. `undefined` (défaut) =
+   * `geo_profile`/`geo_lookup` absents de `TOOL_DEFS`/du system prompt — une
+   * Function App sans GEO_API_BASE_URL continue de fonctionner à l'identique.
+   */
+  geoTool?: GeoTool;
 }
 
 /**
@@ -907,8 +942,13 @@ export async function* runAgentStream(
 ): AsyncGenerator<AgentEvent, void, void> {
   // run_python (9ou.12) : outil + schéma + ligne de prompt ajoutés ENSEMBLE,
   // seulement quand branché pour cette requête (feature flag côté handler).
-  const tools: readonly unknown[] = opts.runPython ? [...TOOL_DEFS, RUN_PYTHON_TOOL_DEF] : TOOL_DEFS;
-  const systemPrompt = opts.runPython ? SYSTEM_PROMPT + RUN_PYTHON_PROMPT_ADDITION : SYSTEM_PROMPT;
+  const tools: readonly unknown[] = [
+    ...TOOL_DEFS,
+    ...(opts.runPython ? [RUN_PYTHON_TOOL_DEF] : []),
+    ...(opts.geoTool ? [GEO_PROFILE_TOOL_DEF, GEO_LOOKUP_TOOL_DEF] : []),
+  ];
+  const systemPrompt =
+    SYSTEM_PROMPT + (opts.runPython ? RUN_PYTHON_PROMPT_ADDITION : "") + (opts.geoTool ? GEO_PROMPT_ADDITION : "");
   const chat = opts.chat ?? makeAoaiChat(env, tools);
   // Identité résolue une seule fois : le request_id retenu (fourni ou généré)
   // doit être le MÊME pour la boucle et pour les outils.
@@ -919,7 +959,7 @@ export async function* runAgentStream(
   const execute =
     opts.execute ??
     ((name: string, args: Record<string, unknown>) =>
-      executeTool(name, args, env, microdata, manifestCache, usageCtx, indexes, opts.runPython));
+      executeTool(name, args, env, microdata, manifestCache, usageCtx, indexes, opts.runPython, opts.geoTool));
   const deadlineMs = opts.deadlineMs ?? DEFAULT_DEADLINE_MS;
   const start = Date.now();
 

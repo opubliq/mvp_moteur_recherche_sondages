@@ -31,6 +31,12 @@ import {
   type AcaApiVersion,
   type RunPythonTool,
 } from "../../../src/logic/pythonSandbox";
+import {
+  createGeoTool,
+  geoManagedIdentityTokenProvider,
+  geoStaticTokenProvider,
+  type GeoTool,
+} from "../../../src/logic/geoTool";
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "../microdata-core/core";
 import { signedBlobUrl } from "../microdata-core/sas";
 import { checkAuth } from "../middleware/auth";
@@ -147,6 +153,38 @@ async function buildRunPythonTool(opts: {
   });
 }
 
+/**
+ * Construit l'outil géo (recensement, 9ou.5) pour CETTE requête, ou
+ * `undefined` si `GEO_API_BASE_URL` n'est pas configuré — kill-switch par
+ * app setting, même mécanique que `buildRunPythonTool` : une Function App
+ * sans cette variable continue de fonctionner à l'identique (pas dans
+ * REQUIRED_ENV). `GEO_API_TOKEN` (statique) sert au dev/premier déploiement ;
+ * en production, préférer la managed identity (`GEO_API_TOKEN_AUDIENCE`,
+ * cf. docs/geo_integration.md — app registration à créer, rien n'est encore
+ * déployé côté geo-marketing-api).
+ */
+function buildGeoTool(context: InvocationContext): GeoTool | undefined {
+  const baseUrl = process.env.GEO_API_BASE_URL;
+  if (!baseUrl) return undefined;
+  const audience = process.env.GEO_API_TOKEN_AUDIENCE;
+  const getToken = process.env.GEO_API_TOKEN
+    ? geoStaticTokenProvider(process.env.GEO_API_TOKEN)
+    : audience
+      ? geoManagedIdentityTokenProvider({
+          identityEndpoint: process.env.IDENTITY_ENDPOINT ?? "",
+          identityHeader: process.env.IDENTITY_HEADER ?? "",
+          audience,
+        })
+      : undefined;
+  if (!getToken) {
+    context.warn(
+      "[agent] GEO_API_BASE_URL configuré sans GEO_API_TOKEN ni GEO_API_TOKEN_AUDIENCE : aucun jeton envoyé " +
+        "(OK seulement si l'API géo est en dev local, ENVIRONNEMENT=dev).",
+    );
+  }
+  return createGeoTool({ baseUrl, getToken });
+}
+
 export async function agent(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   if (request.method === "OPTIONS") {
     return { status: 200, headers: CORS_HEADERS, body: "" };
@@ -214,13 +252,14 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
     ? body.conversation_id
     : undefined;
   const runPython = await buildRunPythonTool({ auth, conversationId, microdataConfig, context });
+  const geoTool = buildGeoTool(context);
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const send = (payload: unknown) => controller.enqueue(encoder.encode(sseFrame(payload)));
       try {
-        for await (const ev of runAgentStream(history, env, microdata, { usage, indexes, runPython })) {
+        for await (const ev of runAgentStream(history, env, microdata, { usage, indexes, runPython, geoTool })) {
           send(ev);
         }
       } catch (err) {

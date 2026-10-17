@@ -1,0 +1,199 @@
+import { describe, expect, it, vi } from "vitest";
+import {
+  assertAllowedPath,
+  compactGeoLookup,
+  compactGeoProfile,
+  createGeoTool,
+  GeoForbiddenPathError,
+  GEO_ALLOWED_PATHS,
+} from "./geoTool";
+
+/**
+ * Outil géo (recensement, bead 9ou.5) — garde-fou anti-`dons` (Loi 25) et
+ * compaction des réponses pour le modèle. Pas de réseau réel : `fetch` est
+ * injecté (même esprit que les autres outils de agent.ts).
+ */
+
+describe("assertAllowedPath : liste blanche census/geo (jamais /dons/*)", () => {
+  it("accepte les routes census/geo connues", () => {
+    for (const p of [
+      "/ad/profile",
+      "/ad/variables",
+      "/ad/24560123",
+      "/niveaux",
+      "/geo/cp/G1V0A6",
+      "/profil/municipalite",
+      "/profil/municipalite/levis",
+      "/profil/code_postal/G1V0A6",
+    ]) {
+      expect(() => assertAllowedPath(p)).not.toThrow();
+    }
+  });
+
+  it("refuse toute route /dons/*, même déguisée", () => {
+    for (const p of ["/dons/indice", "/DONS/indice", "/profil/dons/indice", "/ad/dons"]) {
+      expect(() => assertAllowedPath(p)).toThrow(GeoForbiddenPathError);
+    }
+  });
+
+  it("refuse une route hors liste blanche (POST /ad/segments, racine, inconnue)", () => {
+    for (const p of ["/ad/segments", "/", "/profil", "/autre-chose"]) {
+      expect(() => assertAllowedPath(p)).toThrow(GeoForbiddenPathError);
+    }
+  });
+
+  it("GEO_ALLOWED_PATHS ne contient aucune entrée qui matche 'dons'", () => {
+    for (const re of GEO_ALLOWED_PATHS) {
+      expect(re.test("/dons/indice")).toBe(false);
+    }
+  });
+});
+
+describe("compactGeoProfile / compactGeoLookup : sortie compacte, source citée", () => {
+  it("compacte un profil /profil/{niveau}/{code} : variables en lignes var=val, nombres arrondis", () => {
+    const profil = {
+      niveau: "circonscription_2026",
+      code: "25213",
+      nom: "Rosemont",
+      population: 68421.4,
+      menages: 33120.0,
+      n_ad: 142,
+      precision: "bonne",
+      variables: {
+        revenu_median_apres_impot_menage: 52345.678,
+        pct_francais: 78.234,
+        pct_universitaire: null,
+      },
+      couverture: { revenu_median_apres_impot_menage: 0.97, pct_francais: 0.99 },
+      methode: { approximations: ["revenu_median_apres_impot_menage_approx"] },
+      notes: ["couverture < 90% sur une variable"],
+    };
+    const out = compactGeoProfile(profil) as Record<string, unknown>;
+    expect(out.source).toMatch(/Recensement 2021.*StatCan/);
+    expect(out.niveau).toBe("circonscription_2026");
+    expect(out.nom).toBe("Rosemont");
+    expect(out.population).toBe(68421); // arrondi (>=10)
+    expect(out.variables).toEqual(
+      expect.arrayContaining(["revenu_median_apres_impot_menage=52346", "pct_francais=78.23"]),
+    );
+    // pas de variable null
+    expect((out.variables as string[]).some((l) => l.startsWith("pct_universitaire"))).toBe(false);
+    expect(out.notes).toEqual(["couverture < 90% sur une variable"]);
+    expect(out.couverture_moyenne).toBeCloseTo(0.98, 2);
+    // methode brut n'est pas renvoyé (compaction)
+    expect(out.methode).toBeUndefined();
+  });
+
+  it("compacte une réponse /geo/cp/{code}", () => {
+    const r = {
+      code_postal: "G1V0A6",
+      rta: "G1V",
+      dauid: "24230123",
+      municipalites: [{ co_mun: "23027", nom_mun: "Québec", part: 1 }],
+      co_cep_2026: "2502",
+      circonscription_2026: "Rosemont",
+      statut: "actif",
+    };
+    const out = compactGeoLookup(r) as Record<string, unknown>;
+    expect(out.code_postal).toBe("G1V0A6");
+    expect(out.municipalites).toEqual(["Québec (100%)"]);
+    expect(out.circonscription_2026).toBe("Rosemont");
+    expect(out.statut).toBeUndefined(); // "actif" omis (bruit)
+  });
+});
+
+function fakeFetch(handler: (url: string) => { status: number; body: unknown }) {
+  return vi.fn(async (url: string) => {
+    const { status, body } = handler(url);
+    return {
+      ok: status >= 200 && status < 300,
+      status,
+      json: async () => body,
+      text: async () => JSON.stringify(body),
+    } as unknown as Response;
+  });
+}
+
+describe("createGeoTool : profile() / lookup() (dispatch HTTP, pas de réseau réel)", () => {
+  it("profile({postal_code}) appelle /profil/code_postal/{cp} et compacte", async () => {
+    const fetchMock = fakeFetch((url) => {
+      expect(url).toContain("/profil/code_postal/G1V0A6");
+      return { status: 200, body: { niveau: "code_postal", code: "G1V0A6", population: 1200, variables: {} } };
+    });
+    const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: fetchMock as unknown as typeof fetch });
+    const r = (await tool.profile({ postal_code: "G1V 0A6" })) as Record<string, unknown>;
+    expect(r.code).toBe("G1V0A6");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("profile({niveau, code}) appelle /profil/{niveau}/{code}", async () => {
+    const fetchMock = fakeFetch((url) => {
+      expect(url).toContain("/profil/municipalite/L%C3%A9vis");
+      return { status: 200, body: { niveau: "municipalite", code: "23027", nom: "Lévis", population: 149683, variables: {} } };
+    });
+    const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: fetchMock as unknown as typeof fetch });
+    const r = (await tool.profile({ niveau: "municipalite", code: "Lévis" })) as Record<string, unknown>;
+    expect(r.nom).toBe("Lévis");
+  });
+
+  it("profile({lat, lon}) appelle /ad/profile?lat=&lng=", async () => {
+    const fetchMock = fakeFetch((url) => {
+      expect(url).toContain("/ad/profile?lat=46.8&lng=-71.2");
+      return { status: 200, body: { dauid: "24230123", variables: { pct_francais: 80 } } };
+    });
+    const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: fetchMock as unknown as typeof fetch });
+    const r = (await tool.profile({ lat: 46.8, lon: -71.2 })) as Record<string, unknown>;
+    expect(r.code).toBe("24230123");
+    expect(r.niveau).toBe("ad");
+  });
+
+  it("profile() rejette un niveau inconnu sans appeler fetch", async () => {
+    const fetchMock = vi.fn();
+    const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: fetchMock as unknown as typeof fetch });
+    const r = (await tool.profile({ niveau: "dons", code: "x" })) as { error: string };
+    expect(r.error).toMatch(/niveau inconnu/);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("profile() rejette un code postal mal formé sans appeler fetch", async () => {
+    const fetchMock = vi.fn();
+    const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: fetchMock as unknown as typeof fetch });
+    const r = (await tool.profile({ postal_code: "pas-un-cp" })) as { error: string };
+    expect(r.error).toMatch(/invalide/);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("lookup({postal_code}) appelle /geo/cp/{cp}", async () => {
+    const fetchMock = fakeFetch((url) => {
+      expect(url).toContain("/geo/cp/G1V0A6");
+      return {
+        status: 200,
+        body: { code_postal: "G1V0A6", rta: "G1V", dauid: "d", municipalites: [], circonscription_2026: "Rosemont" },
+      };
+    });
+    const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: fetchMock as unknown as typeof fetch });
+    const r = (await tool.lookup({ postal_code: "G1V0A6" })) as Record<string, unknown>;
+    expect(r.circonscription_2026).toBe("Rosemont");
+  });
+
+  it("envoie Authorization: Bearer <token> quand getToken est fourni", async () => {
+    const seen: Record<string, string> = {};
+    const fetchMock = vi.fn(async (_url: string, init?: RequestInit) => {
+      Object.assign(seen, init?.headers as Record<string, string>);
+      return { ok: true, status: 200, json: async () => ({}), text: async () => "{}" } as unknown as Response;
+    });
+    const tool = createGeoTool({
+      baseUrl: "http://localhost:8000",
+      fetch: fetchMock as unknown as typeof fetch,
+      getToken: async () => "abc123",
+    });
+    await tool.lookup({ postal_code: "G1V0A6" });
+    expect(seen.Authorization).toBe("Bearer abc123");
+  });
+
+  it("une 404 de l'API devient une erreur lisible, pas une exception non gérée", async () => {
+    const fetchMock = fakeFetch(() => ({ status: 404, body: { detail: "introuvable" } }));
+    const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: fetchMock as unknown as typeof fetch });
+    await expect(tool.lookup({ postal_code: "G1V0A6" })).rejects.toThrow(/HTTP 404/);
+  });
+});
