@@ -25,6 +25,7 @@ de reproduction est donnée sous chaque section.
 | Ressource | Région | Déploiement | SKU de déploiement | Capacité |
 |---|---|---|---|---|
 | `opubliq-sondages-aoai` (OpenAI) | **canadaeast** | `gpt-5-mini` (v2025-08-07) | GlobalStandard | 800 |
+| `opubliq-sondages-aoai` | **canadaeast** | `gpt-5.5` (v2026-04-24) — **agent, màj 2026-10-16** | GlobalStandard | 100 |
 | `opubliq-sondages-aoai` | **canadaeast** | `text-embedding-3-large` (v1) | **Standard** (régional) | 120 |
 | `info-4552-resource` (AIServices) | **eastus2** | `gpt-5.4-mini` (v2026-03-17) | GlobalStandard | 200 |
 | `info-4552-resource` | **eastus2** | `Cohere-rerank-v4.0-pro` (v1) | GlobalStandard | 150 |
@@ -62,7 +63,30 @@ curl -s -G "https://prices.azure.com/api/retail/prices" \
   --data-urlencode "\$top=1000" | jq '.Items[] | select(.skuName | startswith("GPT 5 Mini"))'
 ```
 
-## 2. Foundry chat — `gpt-5.4-mini` (sert `/decompose` + la boucle agent)
+## 1bis. AOAI chat agent — `gpt-5.5` (sert la boucle agent) — **màj 2026-10-16**
+
+**Correction :** cette fiche supposait que la boucle agent tournait sur `gpt-5.4-mini`
+(Foundry). Faux : le code utilisait `AOAI_CHAT_DEPLOYMENT=gpt-5-mini` (coût agent
+surestimé ~3×). Depuis le 2026-10-16 (beads 9ou.3, 9ou.13), l'agent utilise
+`AGENT_CHAT_DEPLOYMENT=gpt-5.5` sur `opubliq-sondages-aoai` (canadaeast,
+GlobalStandard : données au repos au Canada, traitement global — à déclarer aux clients).
+`/annotate`, `/scan` et le juge restent sur `gpt-5-mini` ; `/decompose` reste sur `gpt-5.4-mini`.
+
+| Ligne | **CAD / 1M** | *(USD / 1M)* |
+|---|---|---|
+| Input | **7,10** | *5,00* |
+| Input *cached* | **0,71** | *0,50* |
+| Output | **42,60** | *30,00* |
+
+Source USD : Azure Retail Prices API (`docs/model_benchmark_2026-10.md`) ; CAD = USD × 1,42
+(taux implicite des autres lignes de cette fiche).
+
+**Coût estimé par requête analytique** (après 9ou.10 : ~43k tokens input, ~75 % en cache,
+~2,2k tokens output — output dérivé du benchmark gpt-5.5 : 0,256 $ à 117k input) :
+10,75k × 5 $/M + 32,25k × 0,5 $/M + 2,2k × 30 $/M = 0,054 + 0,016 + 0,066
+≈ **0,14 USD ≈ 0,19 CAD / requête**. À remesurer en prod via le costlog.
+
+## 2. Foundry chat — `gpt-5.4-mini` (sert `/decompose`)
 
 `FOUNDRY_CHAT_DEPLOYMENT=gpt-5.4-mini`, version **2026-03-17**, GlobalStandard,
 ressource eastus2. C'est le modèle exact déployé (relevé `az`, pas déduit du nom).
@@ -180,8 +204,8 @@ Multiplicateurs prêts à l'emploi, en **CAD par token / par unit** :
 | `annotate` | gpt-5-mini | `completion_tokens` | 2,84e-6 |
 | `decompose` | gpt-5.4-mini | `prompt_tokens` | 1,065e-6 |
 | `decompose` | gpt-5.4-mini | `completion_tokens` | 6,39e-6 |
-| `agent_turn` | gpt-5.4-mini | `prompt_tokens` | 1,065e-6 |
-| `agent_turn` | gpt-5.4-mini | `completion_tokens` | 6,39e-6 |
+| `agent_turn` | gpt-5.5 (màj 2026-10-16) | `prompt_tokens` | 7,10e-6 (cached : 7,1e-7) |
+| `agent_turn` | gpt-5.5 (màj 2026-10-16) | `completion_tokens` | 4,26e-5 |
 | `embed` | text-embedding-3-large (regional) | `prompt_tokens` | 2,244e-7 |
 | `rerank` | Cohere-rerank-v4.0-pro | `units` | **3,5499e-3 / unit** |
 
