@@ -1,10 +1,9 @@
 # Outil agent `geo_profile` / `geo_lookup` — geo-marketing-api (bead 9ou.5)
 
 Vision : `docs/vision_plateforme.md`, chantier 2 (géo). Code : `src/logic/geoTool.ts`
-(+ tests `src/logic/geoTool.test.ts`, `src/logic/agentGeoTool.test.ts`). État : **code
-branché et testé (vitest + run réel contre l'API géo en local), geo-marketing-api PAS
-déployée sur Azure** (aucun Container App dans l'abonnement au 2026-10-17) — les
-commandes `az` ci-dessous sont donc pour **après** ce déploiement, pas pour aujourd'hui.
+(+ tests `src/logic/geoTool.test.ts`, `src/logic/agentGeoTool.test.ts`). État : **déployé
+et validé de bout en bout en production le 2026-10-18** : agent de la Function App →
+identité managée → Easy Auth → `geo-marketing-api` sur Container Apps.
 
 Scope dur : **recensement seulement**. `assertAllowedPath` (liste blanche de regex,
 `src/logic/geoTool.ts`) bloque toute route `/dons/*`, même déguisée — c'est un garde-fou
@@ -30,7 +29,7 @@ contributions DGEQ) reste hors de portée tant que la revue Loi 25
 
 | Variable | Rôle |
 | --- | --- |
-| `GEO_API_BASE_URL` | URL de base de geo-marketing-api (ex. `http://localhost:8000` en dev, l'URL Container Apps une fois déployée). Absente = outil non branché. |
+| `GEO_API_BASE_URL` | URL de base de geo-marketing-api (`https://opubliq-geo-api.purpleforest-7fa51f82.canadaeast.azurecontainerapps.io` en prod). Absente = outil non branché. |
 | `GEO_API_TOKEN` | **Dev local / premier déploiement seulement** : jeton fixe. Si présent, pris en priorité sur la managed identity. |
 | `GEO_API_TOKEN_AUDIENCE` | Audience AAD de l'app registration geo-marketing-api (ex. `api://<client-id-geo>`) — utilisée pour obtenir un jeton par **identité managée système** (comme `pythonSandbox.ts` pour les dynamic sessions). |
 | `IDENTITY_ENDPOINT`, `IDENTITY_HEADER` | Déjà injectées par Azure Functions, réutilisées telles quelles. |
@@ -39,10 +38,9 @@ Si `GEO_API_BASE_URL` est configuré sans `GEO_API_TOKEN` ni `GEO_API_TOKEN_AUDI
 `buildGeoTool` logge un avertissement et appelle l'API **sans** jeton — correct seulement
 si l'API géo tourne en dev local (`ENVIRONNEMENT=dev`, bypass Easy Auth côté API géo).
 
-## Authentification — comment geo-marketing-api est protégée (une fois déployée)
+## Authentification — comment geo-marketing-api est protégée
 
-Lu dans `geo-marketing-api/app/core/auth.py` + `config.py` + README (API pas déployée,
-donc rien à vérifier côté `az containerapp` aujourd'hui — pas de ressource existante) :
+Configuration déployée sur le Container App `opubliq-geo-api` :
 
 - **Production (Container Apps)** : Easy Auth, fournisseur Entra ID (AAD), *require
   authentication*. L'app lit les en-têtes `X-MS-CLIENT-PRINCIPAL(-NAME)` injectés par la
@@ -71,36 +69,37 @@ Le correctif est dans `geo-marketing-api` (commit `87e39cc`) et ses tests couvre
 `appid`, `azp`, le refus d'une application inconnue et le non-contournement des accès
 utilisateurs.
 
-### Commandes `az` à exécuter une fois geo-marketing-api déployée sur Container Apps
+### Commandes `az` de référence
 
 ```bash
 SUB=a54061e5-b5f7-49c0-94f0-d2e7b95de4a4
-RG=rg-opubliq-sondages              # ou le groupe choisi pour geo-marketing-api
-CAPP=<nom-container-app-geo>        # à définir au déploiement
+GEO_RG=rg-opubliq-geo-marketing
+FUNC_RG=rg-opubliq-sondages
+CAPP=opubliq-geo-api
+GEO_APP_ID=62fd5eb3-0bee-4166-97ab-32dd1805a092
 FUNC_MI=791ed199-6c60-49b4-af54-308f622d4577   # vérifié : principalId du MI système de opubliq-sondages-functions
 
 # 1. Activer Easy Auth (AAD) sur le Container App, API → 401 si non authentifié
 #    (pas de redirection login, c'est une API) :
 az containerapp auth microsoft update \
-  --subscription $SUB -g $RG -n $CAPP \
-  --client-id <client-id-app-registration-geo> \
+  --subscription $SUB -g $GEO_RG -n $CAPP \
+  --client-id $GEO_APP_ID \
   --client-secret-setting-name geo-auth-client-secret \
-  --issuer "https://login.microsoftonline.com/<tenant-id>/v2.0" \
+  --issuer "https://login.microsoftonline.com/c52ff7ea-8f71-42f2-8417-2ac2d2a1295d/v2.0" \
   --yes
-az containerapp auth update --subscription $SUB -g $RG -n $CAPP \
+az containerapp auth update --subscription $SUB -g $GEO_RG -n $CAPP \
   --unauthenticated-client-action Return401
 
 # 2. Autoriser le client ID de l'identité managée dans le Container App :
-az containerapp update --subscription $SUB -g $RG -n $CAPP \
+az containerapp update --subscription $SUB -g $GEO_RG -n $CAPP \
   --set-env-vars ACCES_APPLICATIONS=63cba2eb-0325-4b41-a0d2-895c23ffa143
 
 # Référence : retrouver le client ID (appid) à partir du principal/object ID du MI :
 az ad sp show --id $FUNC_MI --query appId -o tsv
 
 # 3. App settings de opubliq-sondages-functions :
-GEO_APP_ID=<client-id-app-registration-geo>
-az functionapp config appsettings set --subscription $SUB -g $RG -n opubliq-sondages-functions --settings \
-  GEO_API_BASE_URL="https://<fqdn-container-app-geo>" \
+az functionapp config appsettings set --subscription $SUB -g $FUNC_RG -n opubliq-sondages-functions --settings \
+  GEO_API_BASE_URL="https://opubliq-geo-api.purpleforest-7fa51f82.canadaeast.azurecontainerapps.io" \
   GEO_API_TOKEN_AUDIENCE="api://$GEO_APP_ID"
 # (ne PAS définir GEO_API_TOKEN en prod)
 ```
@@ -113,10 +112,9 @@ Ce que chaque étape fait :
 3. Donne à la Function App l'URL de base et l'audience à utiliser pour obtenir un jeton
    par MI (`geoManagedIdentityTokenProvider`, `src/logic/geoTool.ts`).
 
-Toutes ces commandes sont des lectures/écritures Azure AD + Container App standards ;
-aucune n'a été exécutée par ce travail (seules des commandes `az` **en lecture** ont
-servi à vérifier qu'aucun Container App n'existe encore et à confirmer le `principalId`
-et le client ID du MI ci-dessus).
+Ces réglages sont appliqués en production depuis le 2026-10-18. La Function App utilise
+l'audience `api://62fd5eb3-0bee-4166-97ab-32dd1805a092`; `GEO_API_TOKEN` est absent, donc
+le trajet utilise obligatoirement l'identité managée.
 
 ## Dev local (fait, vérifié de bout en bout)
 
@@ -158,12 +156,23 @@ circonscription, H2G = RTA) et propose de reciblier si ce n'est pas ce qui étai
 Confirme : feature flag OK, dispatch OK, compaction OK, prompt système respecté par le
 modèle.
 
+### Vérification réelle en production (2026-10-18)
+
+Requête envoyée au `/agent` de `opubliq-sondages-functions` : comparer le portrait de la
+circonscription de Rosemont et de la RTA H2G, sans données de sondage.
+
+- HTTP 200 et flux SSE complet, sans événement d'erreur ;
+- deux appels `geo_profile` réussis (`circonscription_2026/Rosemont`, puis `rta/H2G`) ;
+- réponse finale chiffrée citant « Recensement 2021, StatCan, via API géo » ;
+- logs du Container App : les deux requêtes retournent 200 avec
+  `utilisateur: application:63cba2eb-0325-4b41-a0d2-895c23ffa143`, ce qui confirme
+  l'identité managée de la Function App ;
+- appel anonyme direct à l'API géo : 401 ;
+- compte et session temporaires du smoke test supprimés après validation.
+
 ## Risques ouverts
 
-- **Auth prod codée mais pas encore vérifiée sur Azure** : le chemin app-only est testé
-  dans `geo-marketing-api`; la validation réelle avec Easy Auth et le jeton MI dépend du
-  déploiement 9ou.16.
-- **geo-marketing-api non déployée** : tout ce document au-delà de la section « dev
-  local » est préparatoire.
+- L'outil de l'agent conserve sa liste blanche technique qui interdit toutes les routes
+  `/dons/*`; leur exposition dans l'app reste bloquée sur la revue Loi 25 (9ou.17).
 - **Script `venv/bin/uvicorn`** cassé (shebang pointant vers `electoral-atlas-api`) — pas
   corrigé ici (dépôt frère, hors scope) ; contourné avec `python -m uvicorn`.

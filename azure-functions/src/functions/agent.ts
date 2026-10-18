@@ -160,8 +160,7 @@ async function buildRunPythonTool(opts: {
  * sans cette variable continue de fonctionner à l'identique (pas dans
  * REQUIRED_ENV). `GEO_API_TOKEN` (statique) sert au dev/premier déploiement ;
  * en production, préférer la managed identity (`GEO_API_TOKEN_AUDIENCE`,
- * cf. docs/geo_integration.md — app registration à créer, rien n'est encore
- * déployé côté geo-marketing-api).
+ * cf. docs/geo_integration.md).
  */
 function buildGeoTool(context: InvocationContext): GeoTool | undefined {
   const baseUrl = process.env.GEO_API_BASE_URL;
