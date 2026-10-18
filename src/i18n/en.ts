@@ -228,6 +228,7 @@ const en: Record<TranslationKey, string> = {
   "agent.step.runPython": "Python analysis",
   "agent.step.geoProfile": "Geographic profile",
   "agent.step.geoLookup": "Geographic lookup",
+  "agent.step.geoDonationIndex": "Internal DGEQ donation index",
   "agent.step.generic": "Step: {{tool}}",
   "agent.steps.show": "Show steps ({{n}})",
   "agent.steps.hide": "Hide steps",

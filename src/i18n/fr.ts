@@ -230,6 +230,7 @@ const fr = {
   "agent.step.runPython": "Analyse Python",
   "agent.step.geoProfile": "Profil géographique",
   "agent.step.geoLookup": "Recherche géographique",
+  "agent.step.geoDonationIndex": "Indice interne de dons DGEQ",
   "agent.step.generic": "Étape : {{tool}}",
   "agent.steps.show": "Afficher les étapes ({{n}})",
   "agent.steps.hide": "Masquer les étapes",

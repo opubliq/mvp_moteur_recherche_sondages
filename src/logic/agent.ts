@@ -49,6 +49,9 @@ import {
   type SandboxTable,
 } from "./pythonSandbox";
 import {
+  GEO_DONATION_INDEX_TOOL_DEF,
+  GEO_DONATION_INDEX_TOOL_NAME,
+  GEO_DONATIONS_PROMPT_ADDITION,
   GEO_LOOKUP_TOOL_DEF,
   GEO_LOOKUP_TOOL_NAME,
   GEO_PROFILE_TOOL_DEF,
@@ -824,6 +827,15 @@ export async function executeTool(
       }
     }
 
+    case GEO_DONATION_INDEX_TOOL_NAME: {
+      if (!geoTool?.donationIndex) return { error: "geo_donation_index n'est pas disponible pour cette requête" };
+      try {
+        return await geoTool.donationIndex(args);
+      } catch (err) {
+        return { error: err instanceof Error ? err.message : String(err) };
+      }
+    }
+
     default:
       return { error: `Outil inconnu : ${name}` };
   }
@@ -921,6 +933,8 @@ export interface RunAgentOptions {
    * `GEO_API_BASE_URL` est configuré côté handler. `undefined` (défaut) =
    * `geo_profile`/`geo_lookup` absents de `TOOL_DEFS`/du system prompt — une
    * Function App sans GEO_API_BASE_URL continue de fonctionner à l'identique.
+   * `geo_donation_index` n'est offert que si la méthode optionnelle
+   * `geoTool.donationIndex` existe (flag + allowlist interne validés par le handler).
    */
   geoTool?: GeoTool;
 }
@@ -946,9 +960,13 @@ export async function* runAgentStream(
     ...TOOL_DEFS,
     ...(opts.runPython ? [RUN_PYTHON_TOOL_DEF] : []),
     ...(opts.geoTool ? [GEO_PROFILE_TOOL_DEF, GEO_LOOKUP_TOOL_DEF] : []),
+    ...(opts.geoTool?.donationIndex ? [GEO_DONATION_INDEX_TOOL_DEF] : []),
   ];
   const systemPrompt =
-    SYSTEM_PROMPT + (opts.runPython ? RUN_PYTHON_PROMPT_ADDITION : "") + (opts.geoTool ? GEO_PROMPT_ADDITION : "");
+    SYSTEM_PROMPT +
+    (opts.runPython ? RUN_PYTHON_PROMPT_ADDITION : "") +
+    (opts.geoTool ? GEO_PROMPT_ADDITION : "") +
+    (opts.geoTool?.donationIndex ? GEO_DONATIONS_PROMPT_ADDITION : "");
   const chat = opts.chat ?? makeAoaiChat(env, tools);
   // Identité résolue une seule fois : le request_id retenu (fourni ou généré)
   // doit être le MÊME pour la boucle et pour les outils.

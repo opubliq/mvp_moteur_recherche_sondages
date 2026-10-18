@@ -1,14 +1,14 @@
 /**
- * Outil agent `geo_profile` / `geo_lookup` (bead 9ou.5) — branche le dépôt
+ * Outils agent `geo_profile` / `geo_lookup` et, pour les comptes internes
+ * explicitement autorisés, `geo_donation_index` (beads 9ou.5 / 9ou.18) — branche le dépôt
  * frère `geo-marketing-api` (FastAPI + DuckDB sur GeoParquet, recensement 2021
  * par aire de diffusion) comme outil de l'agent analytique.
  *
- * SCOPE DUR : RECENSEMENT SEULEMENT. Le module `dons` (contributions
- * politiques DGEQ) de geo-marketing-api ne doit JAMAIS être exposé — revue
- * Loi 25 non faite (`geo-marketing-api/docs/loi25/`). `assertAllowedPath`
- * REFUSE toute requête hors d'une liste blanche de routes census/geo, même si
- * un appelant construisait le chemin à la main : c'est la garantie technique,
- * pas seulement une consigne de prompt.
+ * Par défaut, le scope reste RECENSEMENT SEULEMENT. `assertAllowedPath` refuse
+ * toujours `/dons/*`. L'unique exception est une méthode POST dédiée au chemin
+ * constant `/dons/indice`, construite seulement si le handler a déjà validé le
+ * feature flag ET le courriel exact de l'utilisateur interne. La revue 9ou.17
+ * reste requise avant toute exposition client.
  *
  * Même esprit d'injection que `MicrodataProvider` / `RunPythonTool` dans
  * agent.ts : aucun `process.env` ici, tout est passé par `GeoToolEnv`. Le
@@ -99,12 +99,25 @@ export function geoStaticTokenProvider(token: string): GeoTokenProvider {
   return async () => token;
 }
 
+/** Gate exact : aucun joker ni domaine, car l'inscription publique ne vérifie pas la propriété du courriel. */
+export function isGeoDonationsAllowed(email: string, enabled: string | undefined, allowlist: string | undefined): boolean {
+  if (enabled !== "true") return false;
+  const normalized = email.trim().toLowerCase();
+  if (!normalized) return false;
+  return (allowlist ?? "")
+    .split(",")
+    .map((item) => item.trim().toLowerCase())
+    .filter(Boolean)
+    .includes(normalized);
+}
+
 // ---------------------------------------------------------------------------
 // Schémas des outils (format function calling, comme TOOL_DEFS dans agent.ts)
 // ---------------------------------------------------------------------------
 
 export const GEO_PROFILE_TOOL_NAME = "geo_profile";
 export const GEO_LOOKUP_TOOL_NAME = "geo_lookup";
+export const GEO_DONATION_INDEX_TOOL_NAME = "geo_donation_index";
 
 /** Niveaux géographiques exposés (miroir de `NIVEAUX` côté geo-marketing-api). */
 export const GEO_NIVEAUX = [
@@ -162,6 +175,53 @@ export const GEO_LOOKUP_TOOL_DEF = {
   },
 } as const;
 
+export const GEO_DONATION_INDEX_TOOL_DEF = {
+  type: "function",
+  function: {
+    name: GEO_DONATION_INDEX_TOOL_NAME,
+    description:
+      "OUTIL INTERNE. Calcule l'indice désidentifié de potentiel de financement politique (0–1) produit par " +
+      "geo-marketing-api à partir des contributions provinciales DGEQ 2018–2025. Fournis exactement une municipalité " +
+      "OU une liste d'au plus 100 codes postaux. La réponse ne contient jamais de donateur, montant, nombre de dons ni " +
+      "résultat par parti. L'indice dépend de la pondération demandée : ne le présente jamais comme une probabilité, un " +
+      "comportement individuel ou une mesure brute des dons.",
+    parameters: {
+      type: "object",
+      properties: {
+        municipalite: { type: "string", description: "Nom ou code d'une municipalité québécoise." },
+        codes_postaux: {
+          type: "array",
+          items: { type: "string" },
+          maxItems: 100,
+          description: "Codes postaux complets canadiens (maximum 100).",
+        },
+        poids_entites: {
+          type: "object",
+          additionalProperties: { type: "number", minimum: 0 },
+          description: "Poids optionnels par entité/parti; motifs fnmatch acceptés par l'API, '*' = défaut.",
+        },
+        poids_annees: {
+          type: "object",
+          additionalProperties: { type: "number", minimum: 0 },
+          description: "Poids optionnels par année; '*' = défaut.",
+        },
+        poids_types: {
+          type: "object",
+          additionalProperties: { type: "number", minimum: 0 },
+          description: "Poids optionnels par type d'entité; '*' = défaut.",
+        },
+        top_n: {
+          type: "integer",
+          minimum: 1,
+          maximum: 25,
+          description: "Nombre de codes les plus/moins élevés à retourner pour une municipalité (défaut 10).",
+        },
+      },
+      additionalProperties: false,
+    },
+  },
+} as const;
+
 /** Ajout au prompt système quand l'outil géo est branché (feature flag, GEO_API_BASE_URL). */
 export const GEO_PROMPT_ADDITION = `
 
@@ -169,7 +229,16 @@ OUTIL SUPPLÉMENTAIRE — PORTRAIT DE TERRITOIRE (recensement, pas un sondage)
 - geo_lookup(postal_code) et geo_profile(niveau/code | postal_code | lat/lon) : profil socio-démographique d'un territoire (recensement 2021, StatCan, via l'API géo interne). Ce sont des données de POPULATION (comptages), à ne JAMAIS confondre avec les données de SONDAGE (déclaratives, pondérées, avec marge d'erreur) : si une réponse combine les deux, distingue clairement "mesuré par sondage" vs "profil du territoire (recensement)".
 - Cite TOUJOURS la source exacte ("Recensement 2021, StatCan, via API géo") et le territoire/unité précis (ex. "circonscription de Rosemont", "code postal G1V 0A6").
 - Utilise geo_lookup d'abord si tu n'as qu'un code postal et veux la circonscription/municipalité ; utilise geo_profile pour le portrait chiffré.
-- Le module "dons" de l'API géo n'est jamais accessible depuis cet outil (hors périmètre, revue Loi 25 non faite) : ne mentionne ni ne tente d'y accéder.`;
+- Si aucun outil geo_donation_index ne t'est offert, les dons sont hors périmètre pour cet utilisateur : ne tente pas d'y accéder.`;
+
+/** Ajout visible seulement pour un courriel interne explicitement autorisé. */
+export const GEO_DONATIONS_PROMPT_ADDITION = `
+
+OUTIL INTERNE — INDICE DE DONS DGEQ
+- geo_donation_index est un indice dérivé 0–1 par code postal, calculé à partir des contributions politiques provinciales DGEQ 2018–2025. Il est réservé à l'usage interne Opubliq.
+- La réponse de l'API est désidentifiée : elle ne fournit jamais de donateur, montant, nombre de dons, taux brut ou détail par parti. N'invente et ne déduis jamais ces éléments.
+- Décris toujours l'indice comme un score relatif dépendant de la pondération demandée, jamais comme une probabilité, un comportement individuel ou une causalité. Cite « DGEQ 2018–2025, indice interne dérivé via API géo ».
+- Pour une municipalité, synthétise la distribution et les codes les plus/moins élevés; pour une liste de codes postaux, compare uniquement ceux demandés.`;
 
 // ---------------------------------------------------------------------------
 // Compaction (même esprit que compactCrosstabResult / compactSearchResults dans agent.ts)
@@ -232,6 +301,54 @@ export function compactGeoLookup(r: Record<string, unknown>): Record<string, unk
   return out;
 }
 
+interface DonationResult {
+  code_postal: string;
+  indice: number;
+}
+
+/** Réponse désidentifiée et bornée destinée au modèle; aucune donnée brute de dons. */
+export function compactDonationIndex(r: Record<string, unknown>, opts: { topN: number; explicitCodes: boolean }): Record<string, unknown> {
+  const rows = (Array.isArray(r.resultats) ? r.resultats : [])
+    .filter((x): x is Record<string, unknown> => Boolean(x && typeof x === "object"))
+    .map((x): DonationResult | null => {
+      const code = typeof x.code_postal === "string" ? normalizePostalCode(x.code_postal) : "";
+      const indice = Number(x.indice);
+      return code && Number.isFinite(indice) ? { code_postal: code, indice: Number(indice.toFixed(4)) } : null;
+    })
+    .filter((x): x is DonationResult => x !== null)
+    .sort((a, b) => b.indice - a.indice || a.code_postal.localeCompare(b.code_postal));
+  const values = rows.map((x) => x.indice).sort((a, b) => a - b);
+  const mean = values.length ? values.reduce((a, b) => a + b, 0) / values.length : null;
+  const mid = Math.floor(values.length / 2);
+  const median = values.length === 0 ? null : values.length % 2 ? values[mid] : (values[mid - 1] + values[mid]) / 2;
+  const sensitivity = r.test_sensibilite && typeof r.test_sensibilite === "object"
+    ? (r.test_sensibilite as Record<string, unknown>)
+    : {};
+
+  return {
+    source: "DGEQ 2018–2025, indice interne dérivé via API géo",
+    interpretation: "Score relatif 0–1 dépendant de la pondération; ni probabilité, ni mesure individuelle, ni volume brut de dons.",
+    n_codes: rows.length,
+    distribution: values.length
+      ? {
+          minimum: values[0],
+          moyenne: Number((mean as number).toFixed(4)),
+          mediane: Number((median as number).toFixed(4)),
+          maximum: values[values.length - 1],
+        }
+      : null,
+    ...(opts.explicitCodes
+      ? { resultats: rows }
+      : { plus_eleves: rows.slice(0, opts.topN), plus_faibles: rows.slice(-opts.topN).reverse() }),
+    test_sensibilite: {
+      conforme: sensitivity.conforme === true,
+      variation_max: Number.isFinite(Number(sensitivity.variation_max))
+        ? Number(Number(sensitivity.variation_max).toFixed(4))
+        : null,
+    },
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Client HTTP + outil
 // ---------------------------------------------------------------------------
@@ -241,12 +358,16 @@ export interface GeoToolEnv {
   baseUrl: string;
   /** Jeton bearer optionnel (server-to-server). Absent en dev local (bypass ENVIRONNEMENT=dev côté API géo). */
   getToken?: GeoTokenProvider;
+  /** Autorise uniquement la méthode dédiée `/dons/indice`; validé par le handler pour un utilisateur interne exact. */
+  allowDonations?: boolean;
   fetch?: FetchLike;
 }
 
 export interface GeoTool {
   profile(args: Record<string, unknown>): Promise<unknown>;
   lookup(args: Record<string, unknown>): Promise<unknown>;
+  /** Absente de l'objet (et donc du schéma/prompt agent) pour tout utilisateur non autorisé. */
+  donationIndex?: (args: Record<string, unknown>) => Promise<unknown>;
 }
 
 async function geoGet(env: GeoToolEnv, path: string): Promise<Record<string, unknown>> {
@@ -262,15 +383,47 @@ async function geoGet(env: GeoToolEnv, path: string): Promise<Record<string, unk
   return (await res.json()) as Record<string, unknown>;
 }
 
+async function geoPostDonationIndex(env: GeoToolEnv, body: Record<string, unknown>): Promise<Record<string, unknown>> {
+  if (!env.allowDonations) throw new GeoForbiddenPathError("/dons/indice");
+  const f = env.fetch ?? fetch;
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (env.getToken) headers.Authorization = `Bearer ${await env.getToken()}`;
+  const path = "/dons/indice"; // Chemin constant : aucun routage /dons contrôlé par le modèle.
+  const res = await f(`${env.baseUrl.replace(/\/+$/, "")}${path}`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`geo-marketing-api HTTP ${res.status} sur ${path}${text ? ` : ${text.slice(0, 300)}` : ""}`);
+  }
+  return (await res.json()) as Record<string, unknown>;
+}
+
 const CP_RE = /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/;
 
 function normalizePostalCode(cp: string): string {
   return cp.toUpperCase().replace(/[\s-]/g, "");
 }
 
-/** Construit l'outil géo (recensement) pour une requête agent. `undefined` partout = outil absent (feature flag). */
+function normalizeWeights(raw: unknown): Record<string, number> | undefined | { error: string } {
+  if (raw === undefined) return undefined;
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return { error: "La pondération doit être un objet clé → poids." };
+  const entries = Object.entries(raw as Record<string, unknown>);
+  if (entries.length > 100) return { error: "Au plus 100 poids par dimension." };
+  const out: Record<string, number> = {};
+  for (const [key, value] of entries) {
+    const n = Number(value);
+    if (!key.trim() || !Number.isFinite(n) || n < 0) return { error: `Poids invalide pour '${key}'.` };
+    out[key.trim()] = n;
+  }
+  return out;
+}
+
+/** Construit les outils géo pour une requête agent. Les dons sont absents par défaut. */
 export function createGeoTool(env: GeoToolEnv): GeoTool {
-  return {
+  const tool: GeoTool = {
     async profile(args) {
       const niveauArg = typeof args.niveau === "string" ? args.niveau : undefined;
       const codeArg = typeof args.code === "string" ? args.code.trim() : undefined;
@@ -306,4 +459,40 @@ export function createGeoTool(env: GeoToolEnv): GeoTool {
       return compactGeoLookup(r);
     },
   };
+  if (env.allowDonations) {
+    tool.donationIndex = async (args) => {
+      const municipalite = typeof args.municipalite === "string" ? args.municipalite.trim() : "";
+      const rawCodes = Array.isArray(args.codes_postaux) ? args.codes_postaux : [];
+      if (Boolean(municipalite) === (rawCodes.length > 0)) {
+        return { error: "Fournis exactement une municipalite OU une liste codes_postaux." };
+      }
+      if (rawCodes.length > 100) return { error: "Au plus 100 codes postaux par appel." };
+      const codes = rawCodes.map((x) => String(x).trim());
+      const invalid = codes.find((cp) => !CP_RE.test(cp));
+      if (invalid) return { error: `Code postal invalide (format A1A1A1) : ${invalid}` };
+
+      const entites = normalizeWeights(args.poids_entites);
+      const annees = normalizeWeights(args.poids_annees);
+      const types = normalizeWeights(args.poids_types);
+      for (const weights of [entites, annees, types]) {
+        if (weights && "error" in weights) return weights;
+      }
+      const ponderation = {
+        ...(entites ? { entites } : {}),
+        ...(annees ? { annees } : {}),
+        ...(types ? { types } : {}),
+      };
+      const body = {
+        territoire: municipalite
+          ? { municipalite }
+          : { codes_postaux: [...new Set(codes.map(normalizePostalCode))] },
+        ponderation,
+      };
+      const raw = await geoPostDonationIndex(env, body);
+      const requestedTopN = Number(args.top_n);
+      const topN = Number.isInteger(requestedTopN) ? Math.min(25, Math.max(1, requestedTopN)) : 10;
+      return compactDonationIndex(raw, { topN, explicitCodes: !municipalite });
+    };
+  }
+  return tool;
 }

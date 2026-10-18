@@ -35,6 +35,7 @@ import {
   createGeoTool,
   geoManagedIdentityTokenProvider,
   geoStaticTokenProvider,
+  isGeoDonationsAllowed,
   type GeoTool,
 } from "../../../src/logic/geoTool";
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "../microdata-core/core";
@@ -162,7 +163,7 @@ async function buildRunPythonTool(opts: {
  * en production, préférer la managed identity (`GEO_API_TOKEN_AUDIENCE`,
  * cf. docs/geo_integration.md).
  */
-function buildGeoTool(context: InvocationContext): GeoTool | undefined {
+function buildGeoTool(context: InvocationContext, auth: { email: string }): GeoTool | undefined {
   const baseUrl = process.env.GEO_API_BASE_URL;
   if (!baseUrl) return undefined;
   const audience = process.env.GEO_API_TOKEN_AUDIENCE;
@@ -181,7 +182,12 @@ function buildGeoTool(context: InvocationContext): GeoTool | undefined {
         "(OK seulement si l'API géo est en dev local, ENVIRONNEMENT=dev).",
     );
   }
-  return createGeoTool({ baseUrl, getToken });
+  const allowDonations = isGeoDonationsAllowed(
+    auth.email,
+    process.env.GEO_DONS_ENABLED,
+    process.env.GEO_DONS_ALLOWED_EMAILS,
+  );
+  return createGeoTool({ baseUrl, getToken, allowDonations });
 }
 
 export async function agent(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -251,7 +257,7 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
     ? body.conversation_id
     : undefined;
   const runPython = await buildRunPythonTool({ auth, conversationId, microdataConfig, context });
-  const geoTool = buildGeoTool(context);
+  const geoTool = buildGeoTool(context, auth);
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({

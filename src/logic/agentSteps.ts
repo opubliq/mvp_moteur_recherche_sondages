@@ -10,7 +10,7 @@
 
 import type { AgentEvent, ToolTrace } from "./agent";
 import { RUN_PYTHON_TOOL_NAME, type SandboxFigure, type SandboxTable } from "./pythonSandbox";
-import { GEO_PROFILE_TOOL_NAME, GEO_LOOKUP_TOOL_NAME } from "./geoTool";
+import { GEO_DONATION_INDEX_TOOL_NAME, GEO_PROFILE_TOOL_NAME, GEO_LOOKUP_TOOL_NAME } from "./geoTool";
 import type { TranslationKey } from "../i18n/fr";
 
 /** Seuls les events pertinents pour la liste d'étapes — `message`/`done` ignorés ici. */
@@ -138,6 +138,8 @@ export function stepLabel(tool: string, args: unknown, t: Translate): string {
       return t("agent.step.geoProfile");
     case GEO_LOOKUP_TOOL_NAME:
       return t("agent.step.geoLookup");
+    case GEO_DONATION_INDEX_TOOL_NAME:
+      return t("agent.step.geoDonationIndex");
     default:
       return t("agent.step.generic", { tool });
   }

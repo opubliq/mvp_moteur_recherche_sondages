@@ -1,27 +1,31 @@
-# Outil agent `geo_profile` / `geo_lookup` — geo-marketing-api (bead 9ou.5)
+# Outils agent géo et indice interne de dons — geo-marketing-api (beads 9ou.5 / 9ou.18)
 
 Vision : `docs/vision_plateforme.md`, chantier 2 (géo). Code : `src/logic/geoTool.ts`
 (+ tests `src/logic/geoTool.test.ts`, `src/logic/agentGeoTool.test.ts`). État : **déployé
 et validé de bout en bout en production le 2026-10-18** : agent de la Function App →
 identité managée → Easy Auth → `geo-marketing-api` sur Container Apps.
 
-Scope dur : **recensement seulement**. `assertAllowedPath` (liste blanche de regex,
-`src/logic/geoTool.ts`) bloque toute route `/dons/*`, même déguisée — c'est un garde-fou
-technique, pas une consigne de prompt. Le module `dons` de geo-marketing-api (indice de
-contributions DGEQ) reste hors de portée tant que la revue Loi 25
-(`geo-marketing-api/docs/loi25/`) n'est pas faite.
+Scope par défaut : **recensement seulement**. `assertAllowedPath` bloque toujours toute
+route `/dons/*`. L'accès interne aux dons passe par une méthode séparée, sur le chemin
+constant `POST /dons/indice`, construite uniquement si le feature flag est actif ET si
+le courriel exact de la session figure dans l'allowlist. La revue Loi 25 (9ou.17) reste
+obligatoire avant toute exposition à un compte client.
 
 ## Câblage (fait)
 
 - `src/logic/geoTool.ts` : liste blanche, client HTTP, compaction des réponses, défs
-  d'outils (`GEO_PROFILE_TOOL_DEF`, `GEO_LOOKUP_TOOL_DEF`), ajout de prompt système
+  d'outils (`GEO_PROFILE_TOOL_DEF`, `GEO_LOOKUP_TOOL_DEF`, et définition interne
+  `GEO_DONATION_INDEX_TOOL_DEF`), ajout de prompt système
   (`GEO_PROMPT_ADDITION` — cite toujours « Recensement 2021, StatCan » et distingue
   données de sondage vs profil de territoire).
 - `src/logic/agent.ts` : `executeTool` dispatche `geo_profile`/`geo_lookup` vers
   `geoTool?.profile`/`.lookup` (`undefined` → `{ error: "... pas disponible" }`, jamais
   d'exception) ; `runAgentStream` ajoute les défs d'outil + la ligne de prompt
   **seulement** si `opts.geoTool` est fourni (même mécanique que `opts.runPython`, 9ou.12).
-- `azure-functions/src/functions/agent.ts` : `buildGeoTool(context)` — kill-switch par
+- `geo_donation_index` n'est ajouté aux outils et au prompt que si la méthode optionnelle
+  `geoTool.donationIndex` existe. La sortie est bornée : résumé top/bottom pour une
+  municipalité ou maximum 100 codes explicitement demandés.
+- `azure-functions/src/functions/agent.ts` : `buildGeoTool(context, auth)` — kill-switch par
   app setting : `undefined` si `GEO_API_BASE_URL` absent (pas dans `REQUIRED_ENV`, une
   Function App sans cette variable continue de fonctionner à l'identique).
 
@@ -32,6 +36,8 @@ contributions DGEQ) reste hors de portée tant que la revue Loi 25
 | `GEO_API_BASE_URL` | URL de base de geo-marketing-api (`https://opubliq-geo-api.purpleforest-7fa51f82.canadaeast.azurecontainerapps.io` en prod). Absente = outil non branché. |
 | `GEO_API_TOKEN` | **Dev local / premier déploiement seulement** : jeton fixe. Si présent, pris en priorité sur la managed identity. |
 | `GEO_API_TOKEN_AUDIENCE` | Audience AAD de l'app registration geo-marketing-api (ex. `api://<client-id-geo>`) — utilisée pour obtenir un jeton par **identité managée système** (comme `pythonSandbox.ts` pour les dynamic sessions). |
+| `GEO_DONS_ENABLED` | `true` pour construire l'outil interne de dons; toute autre valeur le désactive. |
+| `GEO_DONS_ALLOWED_EMAILS` | Courriels internes exacts séparés par des virgules. Aucun domaine/joker : l'inscription publique ne vérifie pas la propriété du courriel. Le flag seul ne donne aucun accès. |
 | `IDENTITY_ENDPOINT`, `IDENTITY_HEADER` | Déjà injectées par Azure Functions, réutilisées telles quelles. |
 
 Si `GEO_API_BASE_URL` est configuré sans `GEO_API_TOKEN` ni `GEO_API_TOKEN_AUDIENCE`,
@@ -172,7 +178,7 @@ circonscription de Rosemont et de la RTA H2G, sans données de sondage.
 
 ## Risques ouverts
 
-- L'outil de l'agent conserve sa liste blanche technique qui interdit toutes les routes
-  `/dons/*`; leur exposition dans l'app reste bloquée sur la revue Loi 25 (9ou.17).
+- L'indice de dons est activé uniquement pour l'allowlist interne. Toute exposition à un
+  compte client reste bloquée sur la revue Loi 25/EFVP (9ou.17).
 - **Script `venv/bin/uvicorn`** cassé (shebang pointant vers `electoral-atlas-api`) — pas
   corrigé ici (dépôt frère, hors scope) ; contourné avec `python -m uvicorn`.

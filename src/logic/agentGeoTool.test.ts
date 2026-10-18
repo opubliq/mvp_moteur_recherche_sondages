@@ -8,7 +8,7 @@ import {
   type ManifestLike,
   type MicrodataProvider,
 } from "./agent";
-import { GEO_LOOKUP_TOOL_NAME, GEO_PROFILE_TOOL_NAME, type GeoTool } from "./geoTool";
+import { GEO_DONATION_INDEX_TOOL_NAME, GEO_LOOKUP_TOOL_NAME, GEO_PROFILE_TOOL_NAME, type GeoTool } from "./geoTool";
 
 /**
  * Câblage `geo_profile`/`geo_lookup` dans la boucle agent (bead 9ou.5) — outil
@@ -124,6 +124,44 @@ describe("executeTool : dispatch geo_profile/geo_lookup (9ou.5)", () => {
     )) as { error: string };
     expect(r.error).toMatch(/HTTP 500/);
   });
+
+  it("geo_donation_index est indisponible sans méthode optionnelle et délégué quand elle existe", async () => {
+    const base = fakeGeoTool();
+    const denied = (await executeTool(
+      GEO_DONATION_INDEX_TOOL_NAME,
+      { municipalite: "Lévis" },
+      env,
+      microdata,
+      { current: null },
+      undefined,
+      undefined,
+      undefined,
+      base,
+    )) as { error: string };
+    expect(denied.error).toMatch(/pas disponible/);
+
+    const calls: unknown[] = [];
+    const allowed: GeoTool = {
+      ...base,
+      async donationIndex(args) {
+        calls.push(args);
+        return { n_codes: 3 };
+      },
+    };
+    const result = (await executeTool(
+      GEO_DONATION_INDEX_TOOL_NAME,
+      { municipalite: "Lévis" },
+      env,
+      microdata,
+      { current: null },
+      undefined,
+      undefined,
+      undefined,
+      allowed,
+    )) as Record<string, unknown>;
+    expect(result.n_codes).toBe(3);
+    expect(calls).toEqual([{ municipalite: "Lévis" }]);
+  });
 });
 
 function chatFinal(content: string): ChatTurn {
@@ -185,5 +223,60 @@ describe("runAgentStream : feature flag geoTool (TOOL_DEFS / system prompt)", ()
       | undefined;
     expect(done?.result.trace[0]).toMatchObject({ tool: GEO_PROFILE_TOOL_NAME, ok: true });
     expect(done?.result.message).toBe("Portrait livré.");
+  });
+
+  it("ajoute le prompt dons et exécute l'outil seulement quand donationIndex existe", async () => {
+    const calls: unknown[] = [];
+    const geo: GeoTool = {
+      ...fakeGeoTool(),
+      async donationIndex(args) {
+        calls.push(args);
+        return { source: "DGEQ 2018–2025, indice interne dérivé via API géo", n_codes: 2 };
+      },
+    };
+    let turn = 0;
+    const chat = async (messages: ChatMessage[]): Promise<ChatTurn> => {
+      turn += 1;
+      expect(messages[0].content).toContain("OUTIL INTERNE — INDICE DE DONS DGEQ");
+      if (turn === 1) {
+        return {
+          message: {
+            role: "assistant",
+            content: null,
+            tool_calls: [{
+              id: "call_dons",
+              type: "function",
+              function: { name: GEO_DONATION_INDEX_TOOL_NAME, arguments: JSON.stringify({ municipalite: "Lévis" }) },
+            }],
+          },
+        };
+      }
+      return chatFinal("Indice interne livré.");
+    };
+    const events: unknown[] = [];
+    for await (const ev of runAgentStream(
+      [{ role: "user", content: "Indice de dons à Lévis ?" }],
+      env,
+      microdata,
+      { chat, geoTool: geo },
+    )) events.push(ev);
+    expect(calls).toEqual([{ municipalite: "Lévis" }]);
+    const done = events.find((e) => (e as { type: string }).type === "done") as
+      | { result: { trace: { tool: string; ok: boolean }[] } }
+      | undefined;
+    expect(done?.result.trace[0]).toMatchObject({ tool: GEO_DONATION_INDEX_TOOL_NAME, ok: true });
+  });
+
+  it("n'ajoute pas le prompt dons quand le compte n'est pas autorisé", async () => {
+    const chat = async (messages: ChatMessage[]): Promise<ChatTurn> => {
+      expect(messages[0].content).not.toContain("OUTIL INTERNE — INDICE DE DONS DGEQ");
+      return chatFinal("non disponible");
+    };
+    for await (const _ of runAgentStream(
+      [{ role: "user", content: "Indice de dons ?" }],
+      env,
+      microdata,
+      { chat, geoTool: fakeGeoTool() },
+    )) { /* drain */ }
   });
 });

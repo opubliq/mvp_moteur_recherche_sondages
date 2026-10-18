@@ -1,11 +1,13 @@
 import { describe, expect, it, vi } from "vitest";
 import {
   assertAllowedPath,
+  compactDonationIndex,
   compactGeoLookup,
   compactGeoProfile,
   createGeoTool,
   GeoForbiddenPathError,
   GEO_ALLOWED_PATHS,
+  isGeoDonationsAllowed,
 } from "./geoTool";
 
 /**
@@ -46,6 +48,16 @@ describe("assertAllowedPath : liste blanche census/geo (jamais /dons/*)", () => 
     for (const re of GEO_ALLOWED_PATHS) {
       expect(re.test("/dons/indice")).toBe(false);
     }
+  });
+});
+
+describe("isGeoDonationsAllowed : flag + allowlist exacte", () => {
+  it("exige le flag exact et le courriel exact, sans joker de domaine", () => {
+    const list = "info@opubliq.com, interne@opubliq.com";
+    expect(isGeoDonationsAllowed("Info@Opubliq.com", "true", list)).toBe(true);
+    expect(isGeoDonationsAllowed("autre@opubliq.com", "true", list)).toBe(false);
+    expect(isGeoDonationsAllowed("info@opubliq.com", "false", list)).toBe(false);
+    expect(isGeoDonationsAllowed("info@opubliq.com", "TRUE", list)).toBe(false);
   });
 });
 
@@ -102,9 +114,36 @@ describe("compactGeoProfile / compactGeoLookup : sortie compacte, source citée"
   });
 });
 
-function fakeFetch(handler: (url: string) => { status: number; body: unknown }) {
-  return vi.fn(async (url: string) => {
-    const { status, body } = handler(url);
+describe("compactDonationIndex : sortie interne désidentifiée et bornée", () => {
+  const raw = {
+    resultats: [
+      { code_postal: "H2G1A1", indice: 0.2 },
+      { code_postal: "H2G1A2", indice: 0.8 },
+      { code_postal: "H2G1A3", indice: 0.5 },
+    ],
+    test_sensibilite: { variation_max: 0.07123, conforme: true },
+  };
+
+  it("résume une municipalité avec top/bottom sans champs bruts", () => {
+    const out = compactDonationIndex(raw, { topN: 1, explicitCodes: false });
+    expect(out.source).toMatch(/DGEQ 2018.*interne/);
+    expect(out.n_codes).toBe(3);
+    expect(out.distribution).toEqual({ minimum: 0.2, moyenne: 0.5, mediane: 0.5, maximum: 0.8 });
+    expect(out.plus_eleves).toEqual([{ code_postal: "H2G1A2", indice: 0.8 }]);
+    expect(out.plus_faibles).toEqual([{ code_postal: "H2G1A1", indice: 0.2 }]);
+    expect(JSON.stringify(out)).not.toMatch(/montant|n_dons|parti|donateur/);
+  });
+
+  it("retourne tous les codes explicitement demandés", () => {
+    const out = compactDonationIndex(raw, { topN: 1, explicitCodes: true });
+    expect(out.resultats).toHaveLength(3);
+    expect(out.plus_eleves).toBeUndefined();
+  });
+});
+
+function fakeFetch(handler: (url: string, init?: RequestInit) => { status: number; body: unknown }) {
+  return vi.fn(async (url: string, init?: RequestInit) => {
+    const { status, body } = handler(url, init);
     return {
       ok: status >= 200 && status < 300,
       status,
@@ -195,5 +234,56 @@ describe("createGeoTool : profile() / lookup() (dispatch HTTP, pas de réseau r�
     const fetchMock = fakeFetch(() => ({ status: 404, body: { detail: "introuvable" } }));
     const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: fetchMock as unknown as typeof fetch });
     await expect(tool.lookup({ postal_code: "G1V0A6" })).rejects.toThrow(/HTTP 404/);
+  });
+
+  it("n'expose aucune méthode dons par défaut", () => {
+    const tool = createGeoTool({ baseUrl: "http://localhost:8000", fetch: vi.fn() as unknown as typeof fetch });
+    expect(tool.donationIndex).toBeUndefined();
+  });
+
+  it("POSTe uniquement /dons/indice quand l'accès interne est accordé et compacte la réponse", async () => {
+    let seenBody: unknown;
+    const fetchMock = fakeFetch((url, init) => {
+      expect(url).toBe("http://localhost:8000/dons/indice");
+      expect(init?.method).toBe("POST");
+      seenBody = JSON.parse(String(init?.body));
+      return {
+        status: 200,
+        body: {
+          resultats: [
+            { code_postal: "H2G1A1", indice: 0.31 },
+            { code_postal: "H2G1A2", indice: 0.72 },
+          ],
+          test_sensibilite: { variation_max: 0.05, conforme: true },
+        },
+      };
+    });
+    const tool = createGeoTool({
+      baseUrl: "http://localhost:8000",
+      fetch: fetchMock as unknown as typeof fetch,
+      getToken: async () => "mi-token",
+      allowDonations: true,
+    });
+    const out = (await tool.donationIndex?.({ municipalite: "Montréal", poids_annees: { "2025": 1, "*": 0 } })) as Record<string, unknown>;
+    expect(seenBody).toEqual({
+      territoire: { municipalite: "Montréal" },
+      ponderation: { annees: { "2025": 1, "*": 0 } },
+    });
+    expect(out.n_codes).toBe(2);
+    expect(fetchMock.mock.calls[0][1]?.headers).toMatchObject({ Authorization: "Bearer mi-token" });
+  });
+
+  it("valide territoire, codes et pondérations avant tout appel", async () => {
+    const fetchMock = vi.fn();
+    const tool = createGeoTool({
+      baseUrl: "http://localhost:8000",
+      fetch: fetchMock as unknown as typeof fetch,
+      allowDonations: true,
+    });
+    expect(await tool.donationIndex?.({})).toMatchObject({ error: expect.stringMatching(/exactement/) });
+    expect(await tool.donationIndex?.({ municipalite: "Lévis", codes_postaux: ["G6V1A1"] })).toMatchObject({ error: expect.any(String) });
+    expect(await tool.donationIndex?.({ codes_postaux: ["invalide"] })).toMatchObject({ error: expect.stringMatching(/invalide/) });
+    expect(await tool.donationIndex?.({ municipalite: "Lévis", poids_annees: { "2025": -1 } })).toMatchObject({ error: expect.stringMatching(/Poids invalide/) });
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 });
