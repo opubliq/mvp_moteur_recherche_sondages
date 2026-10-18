@@ -1,6 +1,7 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   executeTool,
+  runAgent,
   runAgentStream,
   type AgentEnv,
   type ChatMessage,
@@ -278,5 +279,36 @@ describe("runAgentStream : feature flag geoTool (TOOL_DEFS / system prompt)", ()
       microdata,
       { chat, geoTool: fakeGeoTool() },
     )) { /* drain */ }
+  });
+});
+
+describe("schémas AOAI : cloisonnement de geo_donation_index", () => {
+  async function offeredTools(geoTool: GeoTool): Promise<string[]> {
+    let body: Record<string, unknown> = {};
+    vi.stubGlobal("fetch", vi.fn(async (_url: unknown, init?: RequestInit) => {
+      body = JSON.parse(String(init?.body));
+      return {
+        ok: true,
+        status: 200,
+        headers: new Headers(),
+        json: async () => ({ choices: [{ message: { role: "assistant", content: "ok" } }] }),
+        text: async () => "",
+      } as unknown as Response;
+    }));
+    try {
+      await runAgent([{ role: "user", content: "bonjour" }], env, microdata, { geoTool });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+    return ((body.tools as Array<{ function: { name: string } }> | undefined) ?? []).map((t) => t.function.name);
+  }
+
+  it("n'offre pas le schéma à un compte non autorisé", async () => {
+    expect(await offeredTools(fakeGeoTool())).not.toContain(GEO_DONATION_INDEX_TOOL_NAME);
+  });
+
+  it("offre le schéma seulement quand donationIndex existe", async () => {
+    const geo: GeoTool = { ...fakeGeoTool(), donationIndex: async () => ({}) };
+    expect(await offeredTools(geo)).toContain(GEO_DONATION_INDEX_TOOL_NAME);
   });
 });
