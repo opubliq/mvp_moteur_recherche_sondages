@@ -46,40 +46,32 @@ donc rien à vérifier côté `az containerapp` aujourd'hui — pas de ressource
 
 - **Production (Container Apps)** : Easy Auth, fournisseur Entra ID (AAD), *require
   authentication*. L'app lit les en-têtes `X-MS-CLIENT-PRINCIPAL(-NAME)` injectés par la
-  plateforme (fiables seulement derrière Easy Auth) et n'accepte que les **courriels**
-  listés dans `ACCES_UTILISATEURS` (`utilisateurs_autorises`, politique de gouvernance
-  §3) ; sinon 403.
+  plateforme (fiables seulement derrière Easy Auth) et accepte les **courriels** listés
+  dans `ACCES_UTILISATEURS` ou les applications listées dans `ACCES_APPLICATIONS` ;
+  sinon 403.
 - **Dev local** : `AUTH_DEV_UTILISATEUR` bypass tout, mais seulement si
   `ENVIRONNEMENT=dev` (défaut `prod`).
 
-### Écart important pour un appel service-à-service (Function App → geo-marketing-api)
+### Appel service-à-service (Function App → geo-marketing-api)
 
-`utilisateurs_autorises` ne regarde que des claims de type courriel
-(`preferred_username`, `email`, `upn`, …). Un jeton obtenu par l'**identité managée
-système** de la Function App (flux *client credentials*, app-only) **n'a pas** de claim
-courriel — Easy Auth validera l'audience/l'émetteur du jeton (donc la requête passe Easy
-Auth), mais `utilisateur_courant()` lèvera quand même un **403** (« utilisateur absent de
-la liste d'accès ») faute de courriel exploitable.
+Un jeton obtenu par l'**identité managée système** de la Function App (flux *client
+credentials*, app-only) n'a pas de claim courriel. `geo-marketing-api` accepte maintenant
+les claims `appid`/`azp` app-only dont le **client ID** figure dans la variable
+`ACCES_APPLICATIONS`, en plus des courriels humains de `ACCES_UTILISATEURS`. Un jeton
+délégué avec courriel reste soumis à `ACCES_UTILISATEURS` et ne peut pas hériter de
+l'accès de son application cliente.
 
-**Donc : tel quel, le câblage managed-identity ci-dessous ne suffira PAS à passer
-l'auth applicative de geo-marketing-api.** Deux options, à trancher par le propriétaire
-de geo-marketing-api (hors scope de ce bead — ne pas modifier ce dépôt frère) :
+Pour `opubliq-sondages-functions` :
 
-1. **Recommandé** : dans `geo-marketing-api/app/core/auth.py`, accepter aussi un jeton
-   app-only dont le claim `appid`/`azp` correspond à une liste blanche de service
-   principals autorisés (ex. le MI de `opubliq-sondages-functions`), en plus du chemin
-   courriel existant.
-2. Alternative plus lourde : exposer un App Role (`Application`-type) sur l'app
-   registration geo-marketing-api, l'assigner au MI de la Function App, et faire
-   vérifier ce rôle (claim `roles`) côté API au lieu du courriel — nécessite aussi un
-   changement de code côté geo-marketing-api.
+- principal/object ID de l'identité managée : `791ed199-6c60-49b4-af54-308f622d4577` ;
+- client/application ID à mettre dans `ACCES_APPLICATIONS` :
+  `63cba2eb-0325-4b41-a0d2-895c23ffa143`.
 
-Tant que ce changement n'est pas fait côté geo-marketing-api, `GEO_API_TOKEN` (jeton
-statique, ex. celui d'un compte de service avec courriel dans `ACCES_UTILISATEURS`) est
-la seule voie qui fonctionnera en prod sans toucher à geo-marketing-api — à n'utiliser
-qu'en attendant l'option 1.
+Le correctif est dans `geo-marketing-api` (commit `87e39cc`) et ses tests couvrent
+`appid`, `azp`, le refus d'une application inconnue et le non-contournement des accès
+utilisateurs.
 
-### Commandes `az` à exécuter (toi, pas moi) une fois geo-marketing-api déployée sur Container Apps
+### Commandes `az` à exécuter une fois geo-marketing-api déployée sur Container Apps
 
 ```bash
 SUB=a54061e5-b5f7-49c0-94f0-d2e7b95de4a4
@@ -98,43 +90,33 @@ az containerapp auth microsoft update \
 az containerapp auth update --subscription $SUB -g $RG -n $CAPP \
   --unauthenticated-client-action Return401
 
-# 2. (Si l'option 2 ci-dessus est retenue côté geo-marketing-api) exposer un App Role
-#    "Application" sur l'app registration geo-marketing-api et l'assigner au MI :
-GEO_APP_ID=<client-id-app-registration-geo>
-GEO_SP_ID=$(az ad sp show --id $GEO_APP_ID --query id -o tsv)
-az ad app update --id $GEO_APP_ID --app-roles '[{
-  "allowedMemberTypes": ["Application"],
-  "displayName": "Geo Reader (service)",
-  "id": "<nouveau-guid, ex. uuidgen>",
-  "isEnabled": true,
-  "description": "Lecture census/geo depuis la Function App sondages (pas dons).",
-  "value": "Geo.Read"
-}]'
-az rest --method POST \
-  --uri "https://graph.microsoft.com/v1.0/servicePrincipals/$FUNC_MI/appRoleAssignments" \
-  --body "{\"principalId\": \"$FUNC_MI\", \"resourceId\": \"$GEO_SP_ID\", \"appRoleId\": \"<id-du-role-ci-dessus>\"}"
+# 2. Autoriser le client ID de l'identité managée dans le Container App :
+az containerapp update --subscription $SUB -g $RG -n $CAPP \
+  --set-env-vars ACCES_APPLICATIONS=63cba2eb-0325-4b41-a0d2-895c23ffa143
+
+# Référence : retrouver le client ID (appid) à partir du principal/object ID du MI :
+az ad sp show --id $FUNC_MI --query appId -o tsv
 
 # 3. App settings de opubliq-sondages-functions :
+GEO_APP_ID=<client-id-app-registration-geo>
 az functionapp config appsettings set --subscription $SUB -g $RG -n opubliq-sondages-functions --settings \
   GEO_API_BASE_URL="https://<fqdn-container-app-geo>" \
   GEO_API_TOKEN_AUDIENCE="api://$GEO_APP_ID"
-# (ne PAS définir GEO_API_TOKEN en prod une fois l'option 1/2 en place côté geo-marketing-api)
+# (ne PAS définir GEO_API_TOKEN en prod)
 ```
 
 Ce que chaque étape fait :
 1. Force Easy Auth AAD sur le Container App, renvoie 401 (pas une redirection) à toute
    requête non authentifiée — nécessaire pour une API.
-2. (Optionnel, option 2) déclare un rôle applicatif « lecture seule census/geo » sur
-   l'app registration geo-marketing-api et l'assigne au service principal du MI de la
-   Function App — c'est ce qui permettrait à l'API géo de vérifier un claim `roles`
-   plutôt qu'un courriel.
+2. Place le client ID (`appid`/`azp`), et non le principal ID (`oid`), du MI dans la
+   liste blanche applicative de `geo-marketing-api`.
 3. Donne à la Function App l'URL de base et l'audience à utiliser pour obtenir un jeton
    par MI (`geoManagedIdentityTokenProvider`, `src/logic/geoTool.ts`).
 
 Toutes ces commandes sont des lectures/écritures Azure AD + Container App standards ;
 aucune n'a été exécutée par ce travail (seules des commandes `az` **en lecture** ont
 servi à vérifier qu'aucun Container App n'existe encore et à confirmer le `principalId`
-du MI ci-dessus).
+et le client ID du MI ci-dessus).
 
 ## Dev local (fait, vérifié de bout en bout)
 
@@ -178,10 +160,9 @@ modèle.
 
 ## Risques ouverts
 
-- **Auth prod non résolue** : voir « Écart important » ci-dessus — geo-marketing-api doit
-  changer son code d'auth (appid/rôle app) avant qu'un MI pur fonctionne sans jeton
-  statique. À suivre comme un bead côté geo-marketing-api (pas créé ici, dépôt frère).
-  C'est pourquoi 9ou.5 reste **in_progress** plutôt que fermé.
+- **Auth prod codée mais pas encore vérifiée sur Azure** : le chemin app-only est testé
+  dans `geo-marketing-api`; la validation réelle avec Easy Auth et le jeton MI dépend du
+  déploiement 9ou.16.
 - **geo-marketing-api non déployée** : tout ce document au-delà de la section « dev
   local » est préparatoire.
 - **Script `venv/bin/uvicorn`** cassé (shebang pointant vers `electoral-atlas-api`) — pas
