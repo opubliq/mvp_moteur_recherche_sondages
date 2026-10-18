@@ -553,7 +553,12 @@ function parsePayload(result: string): Record<string, unknown> | null {
 }
 
 export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
-  const limits: RunPythonLimits = { ...DEFAULT_RUN_PYTHON_LIMITS, ...deps.limits };
+  // Ignore les clés `undefined` (env var absente) : sinon le spread écrase le
+  // défaut et un timeout NaN fait avorter le fetch immédiatement.
+  const overrides = Object.fromEntries(
+    Object.entries(deps.limits ?? {}).filter(([, v]) => v !== undefined && !Number.isNaN(v)),
+  ) as Partial<RunPythonLimits>;
+  const limits: RunPythonLimits = { ...DEFAULT_RUN_PYTHON_LIMITS, ...overrides };
   const now = deps.now ?? Date.now;
   let calls = 0;
   let figSeq = 0;

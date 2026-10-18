@@ -340,3 +340,24 @@ describe("createRunPythonTool", () => {
     expect(await tool.run({ code: "1" })).toEqual({ error: "Bac à sable : délai HTTP dépassé" });
   });
 });
+
+describe("createRunPythonTool — limites non définies", () => {
+  it("garde le timeout par défaut quand une limite vaut undefined (env var absente)", async () => {
+    let seen: number | undefined;
+    const tool = createRunPythonTool({
+      executor: {
+        listFiles: async () => [],
+        uploadFile: async () => {},
+        execute: async (_s: string, _c: string, t: number) => {
+          seen = t;
+          return { status: "Success", stdout: "", stderr: "", result: "{}" };
+        },
+      } as unknown as SandboxExecutor,
+      sessionId: "s",
+      fetchParquet: async () => new Uint8Array(),
+      limits: { maxCallsPerRequest: undefined, timeoutSeconds: undefined },
+    });
+    await tool.run({ code: "print(1)" });
+    expect(seen).toBe(DEFAULT_RUN_PYTHON_LIMITS.timeoutSeconds);
+  });
+});
