@@ -11,26 +11,35 @@
  *  - COLONNE GAUCHE = navigation + fil. Liste des conversations (nouveau chat,
  *    reprise, renommage, suppression), messages utilisateur, pastilles d'outils,
  *    saisie. Les réponses de l'agent n'y figurent qu'en ENTRÉES CLIQUABLES.
- *  - COLONNE DROITE = rendu Markdown, et rien d'autre. C'est le livrable de
- *    l'agent : il se lit comme un document, sans bulle ni chrome de chat.
- *    Elle affiche par défaut la DERNIÈRE réponse ; cliquer une entrée à gauche
- *    y épingle ce tour-là (le fil peut être long, on veut pouvoir relire un
- *    résultat intermédiaire sans perdre la suite).
+ *  - COLONNE DROITE = le livrable de l'agent : rendu Markdown, qui se lit
+ *    comme un document, sans bulle ni chrome de chat — PLUS les figures/
+ *    tableaux `run_python` (bead UI figures) de la réponse affichée, puisque
+ *    c'est elle qui les a produits. Elle affiche par défaut la DERNIÈRE
+ *    réponse (et ses figures en direct dès qu'elles arrivent, avant même le
+ *    texte final) ; cliquer une entrée à gauche y épingle ce tour-là (le fil
+ *    peut être long, on veut pouvoir relire un résultat intermédiaire sans
+ *    perdre la suite).
  *
  * La persistance des conversations est déléguée à `logic/conversations.ts`
- * (backend `/conversations`, scopé par utilisateur — f3i.19.6).
+ * (backend `/conversations`, scopé par utilisateur — f3i.19.6) : le corps
+ * complet (fil + `traceByIndex`, figures base64 incluses) part dans un blob
+ * JSON (pas de limite 1 Mo comme une entité Table) — rien à élider ici ; un
+ * tour sans trace persistée (vieille conversation) retombe simplement sur
+ * `stepsFromTrace(undefined) === []`, sans figure ni plantage au rechargement.
  *
  * HORS SCOPE ICI (délégué) : garde-fous structurés / parsing fin de la trace
  * (raw_n, écart significatif vs bruit en badges) (aat.5) — la trace est affichée
- * simplement : liste des outils appelés avec leurs arguments-clé.
+ * simplement : étapes (`logic/agentSteps.ts`, pure et testée) avec leur libellé
+ * humain, repliables, plus les figures/tableaux dans le panneau Réponse.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {
   Send,
   AlertTriangle,
+  CheckCircle2,
   Search,
   ListTree,
   BookOpenCheck,
@@ -53,6 +62,16 @@ import {
   saveConversation,
   type ConversationMeta,
 } from "../logic/conversations";
+import {
+  collectStepResults,
+  collectTraceResults,
+  foldAgentSteps,
+  stepLabel,
+  stepsFromTrace,
+  type AgentStep,
+  type AgentToolEvent,
+} from "../logic/agentSteps";
+import type { SandboxFigure, SandboxTable } from "../logic/pythonSandbox";
 import { useLanguage } from "../context/LanguageContext";
 import type { TranslationKey } from "../i18n/fr";
 
@@ -63,15 +82,6 @@ interface DisplayTurn {
   role: "user" | "assistant";
   content: string;
   trace?: AgentToolTrace[];
-}
-
-/** Outil en cours de streaming (bead aat.4) : `ok === null` = pas encore terminé. */
-interface LiveTool {
-  tool: string;
-  args: unknown;
-  ok: boolean | null;
-  error?: string;
-  figures?: AgentToolTrace["figures"];
 }
 
 const EXAMPLE_KEYS: TranslationKey[] = ["agent.example1", "agent.example2", "agent.example3"];
@@ -94,59 +104,145 @@ function toolIcon(tool: string) {
   }
 }
 
-/** Résumé court des arguments d'un appel d'outil : la traçabilité vers la
- *  question source (survey_id/variable) sans reproduire tout le JSON. */
-function summarizeArgs(tool: string, args: unknown, t: (key: TranslationKey) => string): string | null {
-  if (!args || typeof args !== "object") return null;
-  const a = args as Record<string, unknown>;
-  const parts: string[] = [];
-  if (typeof a.survey_id === "string") parts.push(a.survey_id);
-  if (typeof a.target === "string") parts.push(`${t("agent.toolTarget")}: ${a.target}`);
-  if (typeof a.dim === "string") parts.push(`× ${a.dim}`);
-  if (typeof a.query === "string") parts.push(`« ${a.query} »`);
-  if (parts.length === 0 && tool === "list_surveys") return null;
-  return parts.length > 0 ? parts.join(" · ") : null;
-}
-
 /**
- * Figures d'un appel `run_python` (bead 9ou.12) : PNG base64 reçus via l'event
- * `tool_end` (jamais envoyés au modèle — voir `toModelPayload` côté agent.ts),
- * rendues ici pour l'utilisateur. Grille simple, cohérente avec `.op-*`/DaisyUI.
+ * Une étape de la boucle agent, rendue en ligne compacte (bead « étapes en
+ * direct ») : icône d'outil, libellé humain FR/EN (`stepLabel`), spinner
+ * pendant l'exécution, ✓/⚠ une fois connue. Le détail (outil technique +
+ * erreur complète) reste au survol — la ligne elle-même se lit d'un coup d'œil.
  */
-function FigureGallery({ figures }: { figures: AgentToolTrace["figures"] }) {
-  if (!figures || figures.length === 0) return null;
+function StepRow({ step }: { step: AgentStep }) {
+  const { t } = useLanguage();
+  const label = stepLabel(step.tool, step.args, t);
   return (
-    <div className="mt-2 flex flex-wrap gap-2">
-      {figures.map((f) => (
-        <img
-          key={f.id}
-          src={`data:${f.mime};base64,${f.base64}`}
-          alt={f.id}
-          className="max-h-64 rounded-lg border border-base-content/10 bg-white"
-        />
-      ))}
+    <div
+      className={`flex items-center gap-1.5 text-xs ${step.status === "error" ? "text-error" : "text-base-content/70"}`}
+      title={step.status === "error" ? step.error : step.tool}
+    >
+      {toolIcon(step.tool)}
+      <span className={step.status === "running" ? "opacity-80" : ""}>{label}</span>
+      {step.status === "running" && <span className="loading loading-spinner loading-xs" />}
+      {step.status === "done" && <CheckCircle2 className="h-3 w-3 text-success" />}
+      {step.status === "error" && (
+        <span className="flex items-center gap-1 truncate">
+          <AlertTriangle className="h-3 w-3 shrink-0" />
+          {step.error ? <span className="max-w-[12rem] truncate">{step.error}</span> : null}
+        </span>
+      )}
     </div>
   );
 }
 
-/** Un appel d'outil, rendu en pastille discrète. `ok === null` = en cours (spinner). */
-function ToolPill({ t: trace }: { t: { tool: string; args: unknown; ok: boolean | null; error?: string } }) {
+/** Indicateur compact "📊 N graphique(s)" / "📋 N tableau(x)" — le fil reste
+ *  dense ; le rendu complet vit dans le panneau Réponse (`ResultGallery`). */
+function ResultIndicator({ figures, tables }: { figures: SandboxFigure[]; tables: SandboxTable[] }) {
   const { t } = useLanguage();
-  const summary = summarizeArgs(trace.tool, trace.args, t);
-  const pending = trace.ok === null;
+  if (figures.length === 0 && tables.length === 0) return null;
   return (
-    <span
-      className={`op-badge op-badge-plain ${trace.ok === false ? "border-error/40 text-error" : ""} ${pending ? "opacity-70" : ""}`}
-      // Survol = prompt complet (bead aat.8) : plus simple qu'un clic-pour-
-      // déplier, et couvre le cas où summary est tronqué ci-dessous.
-      title={trace.ok === false ? trace.error : (summary ?? undefined)}
-    >
-      {toolIcon(trace.tool)}
-      {trace.tool}
-      {summary ? <span className="max-w-[14rem] truncate opacity-70">· {summary}</span> : null}
-      {pending && <span className="loading loading-spinner loading-xs" />}
-      {trace.ok === false && <AlertTriangle className="h-3 w-3" />}
+    <span className="flex items-center gap-2 text-[0.7rem] text-base-content/50">
+      {figures.length > 0 && (
+        <span>{t(figures.length > 1 ? "agent.figures.indicatorPlural" : "agent.figures.indicator", { n: figures.length })}</span>
+      )}
+      {tables.length > 0 && (
+        <span>{t(tables.length > 1 ? "agent.tables.indicatorPlural" : "agent.tables.indicator", { n: tables.length })}</span>
+      )}
     </span>
+  );
+}
+
+/**
+ * Liste d'étapes compacte et REPLIABLE (fil de gauche) : un bouton résumé
+ * ("N étapes ✓" + indicateur figures/tableaux) ; déplié, le détail ligne par
+ * ligne (`StepRow`). Repliée par défaut une fois le tour terminé — dépliée
+ * d'office pendant que l'agent travaille (`forceOpen`).
+ */
+function StepList({ steps, forceOpen }: { steps: AgentStep[]; forceOpen?: boolean }) {
+  const { t } = useLanguage();
+  const [open, setOpen] = useState(Boolean(forceOpen));
+  if (steps.length === 0) return null;
+  const { figures, tables } = collectStepResults(steps);
+  const allDone = steps.every((s) => s.status !== "running");
+  const hasError = steps.some((s) => s.status === "error");
+  const expanded = forceOpen || open;
+  return (
+    <div className="mt-1">
+      {!forceOpen && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen((v) => !v);
+          }}
+          className={`flex items-center gap-1.5 text-[0.7rem] font-medium ${hasError ? "text-error" : "text-base-content/50"} hover:text-base-content/80`}
+        >
+          <ChevronDown className={`h-3 w-3 transition-transform ${expanded ? "rotate-180" : ""}`} />
+          {expanded ? t("agent.steps.hide") : t("agent.steps.show", { n: steps.length })}
+          {allDone && !hasError && <CheckCircle2 className="h-3 w-3 text-success" />}
+          {hasError && <AlertTriangle className="h-3 w-3" />}
+          <ResultIndicator figures={figures} tables={tables} />
+        </button>
+      )}
+      {expanded && (
+        <div className="mt-1.5 flex flex-col gap-1 border-l border-base-content/10 pl-2">
+          {steps.map((s) => (
+            <StepRow key={s.key} step={s} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Figures + tableaux `run_python` (bead 9ou.12), rendus dans le PANNEAU
+ * RÉPONSE (plus dans le fil, bead UI figures) : attachés à la réponse qui les
+ * a produits (dernière réponse en direct pendant le streaming, ou le tour
+ * épinglé en relecture). Grille simple, cohérente avec `.op-*`/DaisyUI.
+ */
+function ResultGallery({ figures, tables }: { figures: SandboxFigure[]; tables: SandboxTable[] }) {
+  if (figures.length === 0 && tables.length === 0) return null;
+  return (
+    <div className="mb-5 flex flex-col gap-4">
+      {figures.length > 0 && (
+        <div className="flex flex-wrap gap-3">
+          {figures.map((f) => (
+            <img
+              key={f.id}
+              src={`data:${f.mime};base64,${f.base64}`}
+              alt={f.id}
+              className="max-h-80 rounded-lg border border-base-content/10 bg-white"
+            />
+          ))}
+        </div>
+      )}
+      {tables.map((tb, i) => (
+        <div key={i} className="overflow-x-auto">
+          {tb.title && <div className="mb-1 text-xs font-semibold text-base-content/60">{tb.title}</div>}
+          <table className="w-full border-collapse text-xs">
+            <thead className="border-b border-base-content/20">
+              <tr>
+                {tb.columns.map((c, ci) => (
+                  <th key={ci} className="px-2 py-1 text-left font-semibold">
+                    {c}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {tb.rows.map((row, ri) => (
+                <tr key={ri}>
+                  {row.map((cell, ci) => (
+                    <td key={ci} className="border-b border-base-content/10 px-2 py-1 align-top">
+                      {String(cell ?? "")}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {tb.truncated && <div className="mt-1 text-[0.7rem] text-base-content/50">…</div>}
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -218,9 +314,13 @@ export default function AgentPage() {
   const [traceByIndex, setTraceByIndex] = useState<Record<number, AgentToolTrace[]>>({});
   // Tour épinglé à droite. `null` = suivre la dernière réponse (comportement par défaut).
   const [pinnedIndex, setPinnedIndex] = useState<number | null>(null);
-  // Outils du tour EN COURS, streamés au fil de l'eau (bead aat.4). Vidé une fois
-  // le tour terminé : la trace définitive vit alors dans `traceByIndex`.
-  const [liveTools, setLiveTools] = useState<LiveTool[]>([]);
+  // Events tool_start/tool_end du tour EN COURS, streamés au fil de l'eau (bead
+  // aat.4). Vidé une fois le tour terminé : la trace définitive vit alors dans
+  // `traceByIndex`. Repliés en étapes affichables par `foldAgentSteps` (pure,
+  // testée dans agentSteps.test.ts) plutôt que mutés à la main ici.
+  const [liveEvents, setLiveEvents] = useState<AgentToolEvent[]>([]);
+  const liveSteps = useMemo(() => foldAgentSteps(liveEvents), [liveEvents]);
+  const liveResults = useMemo(() => collectStepResults(liveSteps), [liveSteps]);
   // Réponse reçue via l'event `message`, avant le `done` qui clôt le tour : permet
   // d'afficher le Markdown à droite dès qu'il existe.
   const [streamedAnswer, setStreamedAnswer] = useState<string | null>(null);
@@ -269,13 +369,13 @@ export default function AgentPage() {
     saveConversation(convId, { messages: thread, traceByIndex }).then(refreshMetas);
   }, [thread, traceByIndex, convId, refreshMetas]);
 
-  // Défilement instantané tant qu'un tour est en vol (liveTools change à
+  // Défilement instantané tant qu'un tour est en vol (liveEvents change à
   // chaque tool_start/tool_end pendant le streaming) : évite d'empiler des
   // animations de scroll interrompues les unes par les autres. Smooth
   // seulement à la fin, pour l'agrément visuel.
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: loading ? "auto" : "smooth", block: "end" });
-  }, [thread, loading, liveTools]);
+  }, [thread, loading, liveEvents]);
 
   // Compte à rebours du délai de quota relayé par le serveur (429) : le champ
   // reste désactivé jusqu'à expiration plutôt que de laisser réessayer à l'aveugle.
@@ -303,6 +403,14 @@ export default function AgentPage() {
   const docTurn = pinned ?? (streamedAnswer != null ? null : lastAnswer);
   const docContent = pinned ? pinned.content : (streamedAnswer ?? lastAnswer?.content ?? null);
   const isPinnedStale = pinned != null && lastAnswer != null && pinned.index !== lastAnswer.index;
+  // Figures/tableaux attachés à CETTE réponse : le tour épinglé en relecture,
+  // sinon le tour en cours de streaming (ses figures peuvent arriver avant le
+  // texte final), sinon la dernière réponse persistée.
+  const docResults = pinned
+    ? collectTraceResults(pinned.trace)
+    : loading
+      ? liveResults
+      : collectTraceResults(lastAnswer?.trace);
 
   // Une nouvelle réponse ramène la lecture en haut du document.
   useEffect(() => {
@@ -354,39 +462,28 @@ export default function AgentPage() {
     setThread(requestMessages);
     setInput("");
     setError(null);
-    setLiveTools([]);
+    setLiveEvents([]);
     setStreamedAnswer(null);
     setPinnedIndex(null); // une nouvelle question ramène le document sur la réponse à venir
     setLoading(true);
     try {
-      // Streaming (bead aat.4) : les pastilles d'outils apparaissent en direct via
-      // `liveTools` (colonne gauche) ; la réponse rédigée arrive d'un bloc à la fin
-      // et s'affiche à droite dès l'event `message`, sans attendre le `done`.
-      const result = await agentChatStream(requestMessages, (ev) => {
-        if (ev.type === "tool_start") {
-          setLiveTools((prev) => [...prev, { tool: ev.tool, args: ev.args, ok: null }]);
-        } else if (ev.type === "tool_end") {
-          // Marque la dernière pastille EN COURS du même outil comme terminée.
-          setLiveTools((prev) => {
-            const next = [...prev];
-            for (let i = next.length - 1; i >= 0; i--) {
-              if (next[i].ok === null && next[i].tool === ev.trace.tool) {
-                next[i] = {
-                  tool: ev.trace.tool,
-                  args: ev.trace.args,
-                  ok: ev.trace.ok,
-                  error: ev.trace.error,
-                  figures: ev.trace.figures,
-                };
-                break;
-              }
-            }
-            return next;
-          });
-        } else if (ev.type === "message") {
-          setStreamedAnswer(ev.content);
-        }
-      }, convId);
+      // Streaming (bead aat.4) : les events tool_start/tool_end s'accumulent dans
+      // `liveEvents`, repliés en étapes affichables par `foldAgentSteps` (colonne
+      // gauche, compact) ; la réponse rédigée arrive d'un bloc à la fin et
+      // s'affiche à droite dès l'event `message`, sans attendre le `done`. Les
+      // figures/tableaux produits en cours de route s'affichent déjà à droite
+      // (via `liveResults`) avant même que le texte final arrive.
+      const result = await agentChatStream(
+        requestMessages,
+        (ev) => {
+          if (ev.type === "tool_start" || ev.type === "tool_end") {
+            setLiveEvents((prev) => [...prev, ev]);
+          } else if (ev.type === "message") {
+            setStreamedAnswer(ev.content);
+          }
+        },
+        convId,
+      );
       setThread(result.messages);
       if (result.trace.length > 0) {
         setTraceByIndex((prev) => ({ ...prev, [result.messages.length - 1]: result.trace }));
@@ -402,7 +499,7 @@ export default function AgentPage() {
       // l'utilisateur peut relancer le même tour une fois l'erreur passée.
     } finally {
       setLoading(false);
-      setLiveTools([]);
+      setLiveEvents([]);
       setStreamedAnswer(null);
     }
   }
@@ -484,14 +581,9 @@ export default function AgentPage() {
                   </span>
                   <span className="block text-sm text-base-content/70">{excerpt(turn.content, t)}</span>
                   {turn.trace && turn.trace.length > 0 && (
-                    <>
-                      <span className="mt-2 flex flex-wrap gap-1.5 border-t border-base-content/10 pt-2">
-                        {turn.trace.map((tr, i) => (
-                          <ToolPill key={i} t={tr} />
-                        ))}
-                      </span>
-                      {turn.trace.map((tr, i) => <FigureGallery key={`fig-${i}`} figures={tr.figures} />)}
-                    </>
+                    <div className="mt-2 border-t border-base-content/10 pt-2">
+                      <StepList steps={stepsFromTrace(turn.trace)} />
+                    </div>
                   )}
                 </button>
               ),
@@ -499,17 +591,16 @@ export default function AgentPage() {
 
             {loading && (
               <div className="rounded-xl border border-base-content/10 px-3 py-2">
-                {liveTools.length > 0 && (
-                  <div className="mb-2 flex flex-wrap gap-1.5">
-                    {liveTools.map((lt, i) => (
-                      <ToolPill key={i} t={lt} />
+                {liveSteps.length > 0 && (
+                  <div className="mb-2 flex flex-col gap-1">
+                    {liveSteps.map((s) => (
+                      <StepRow key={s.key} step={s} />
                     ))}
                   </div>
                 )}
-                {liveTools.map((lt, i) => <FigureGallery key={`live-fig-${i}`} figures={lt.figures} />)}
                 <div className="flex items-center gap-2 text-sm text-base-content/60">
                   <span className="loading loading-dots loading-sm" />
-                  {liveTools.some((lt) => lt.ok === null) ? t("agent.consultingData") : t("agent.writing")}
+                  {liveSteps.some((s) => s.status === "running") ? t("agent.consultingData") : t("agent.writing")}
                 </div>
               </div>
             )}
@@ -569,12 +660,16 @@ export default function AgentPage() {
           <div ref={docRef} className="agent-scroll px-5 py-5 md:px-8 md:py-7">
             {docContent != null ? (
               <div className="mx-auto max-w-3xl">
+                <ResultGallery figures={docResults.figures} tables={docResults.tables} />
                 <AssistantMarkdown content={docContent} />
               </div>
             ) : loading ? (
-              <div className="mx-auto flex max-w-3xl items-center gap-2 text-sm text-base-content/50">
-                <span className="loading loading-dots loading-sm" />
-                {t("agent.working")}
+              <div className="mx-auto max-w-3xl">
+                <ResultGallery figures={docResults.figures} tables={docResults.tables} />
+                <div className="flex items-center gap-2 text-sm text-base-content/50">
+                  <span className="loading loading-dots loading-sm" />
+                  {t("agent.working")}
+                </div>
               </div>
             ) : (
               <div className="mx-auto max-w-3xl">
