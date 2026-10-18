@@ -176,6 +176,29 @@ circonscription de Rosemont et de la RTA H2G, sans données de sondage.
 - appel anonyme direct à l'API géo : 401 ;
 - compte et session temporaires du smoke test supprimés après validation.
 
+### Indice interne de dons en production (9ou.18, 2026-10-18)
+
+Réglages finaux de `opubliq-sondages-functions` :
+
+- `GEO_DONS_ENABLED=true` ;
+- `GEO_DONS_ALLOWED_EMAILS=hubertcadieux@gmail.com` ;
+- `GEO_API_TOKEN` absent : l'appel utilise toujours l'identité managée.
+
+Validation avec un compte temporaire ajouté puis retiré de l'allowlist :
+
+- autorisé : `/agent` a appelé `geo_donation_index` pour `H2Y1C6` et `G6V1A1`, trace
+  `ok: true`, puis a retourné les indices 0,413 et 0,538 avec la source « DGEQ
+  2018–2025, indice interne dérivé via API géo » et les limites d'interprétation ;
+- log Container App : `POST /dons/indice` 200, `utilisateur` = identité managée de la
+  Function App, deux codes, test de sensibilité conforme ;
+- non autorisé après retrait : aucun `tool_start`, aucune trace
+  `geo_donation_index`; l'agent indique explicitement que l'outil est indisponible ;
+- le compte, sa session et ses compteurs de test ont ensuite été supprimés.
+
+Le compte non listé ne reçoit ni le schéma d'outil ni l'ajout de prompt interne. La
+route census/geo générique continue de refuser `/dons/*`; seul le POST dédié au chemin
+constant `/dons/indice` peut y accéder pour une session allowlistée.
+
 ## Risques ouverts
 
 - L'indice de dons est activé uniquement pour l'allowlist interne. Toute exposition à un
