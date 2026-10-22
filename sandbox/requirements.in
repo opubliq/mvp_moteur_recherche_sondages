@@ -1,0 +1,23 @@
+# Image du pool custom `opubliq-sondages-pysessions-custom` (docs/python_sandbox.md).
+# Recompiler :
+#   uv pip compile sandbox/requirements.in --python-version 3.12 \
+#     --python-platform x86_64-unknown-linux-gnu -o sandbox/requirements.txt
+# --- parité PythonLTS (utilisé par le prélude de src/logic/pythonSandbox.ts) ---
+pandas>=2.2,<3  # parité PythonLTS (2.2.x) : pandas 3 change CoW + dtype str
+numpy
+pyarrow
+statsmodels
+scipy
+scikit-learn
+matplotlib
+plotnine
+# --- bayésien hiérarchique (MRP) ---
+jax[cpu]
+numpyro
+pymc
+bambi
+arviz
+# --- serveur d'exécution ---
+starlette
+uvicorn
+python-multipart

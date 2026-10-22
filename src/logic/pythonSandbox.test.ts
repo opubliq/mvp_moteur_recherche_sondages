@@ -5,6 +5,10 @@ import {
   managedIdentityTokenProvider,
   parseExecutionResponse,
   RUN_PYTHON_TOOL_DEF,
+  CUSTOM_POOL_BAYES_HINT,
+  parsePoolKind,
+  resolveSandboxPool,
+  runPythonToolDef,
   SandboxError,
   sessionIdentifier,
   toModelPayload,
@@ -359,5 +363,61 @@ describe("createRunPythonTool — limites non définies", () => {
     });
     await tool.run({ code: "print(1)" });
     expect(seen).toBe(DEFAULT_RUN_PYTHON_LIMITS.timeoutSeconds);
+  });
+});
+
+describe("pool custom (RUN_PYTHON_POOL_KIND)", () => {
+  const CUSTOM = "https://opubliq-sondages-pysessions-custom.abc123.canadaeast.azurecontainerapps.io";
+
+  it("parsePoolKind : `custom` (insensible à la casse), sinon pythonlts", () => {
+    expect(parsePoolKind("custom")).toBe("custom");
+    expect(parsePoolKind(" CUSTOM ")).toBe("custom");
+    expect(parsePoolKind(undefined)).toBe("pythonlts");
+    expect(parsePoolKind("PythonLTS")).toBe("pythonlts");
+    expect(parsePoolKind("autre")).toBe("pythonlts");
+  });
+
+  it("resolveSandboxPool : endpoint historique par défaut, endpoint custom si kind=custom", () => {
+    const env = { ACA_SESSIONS_POOL_ENDPOINT: POOL, ACA_SESSIONS_CUSTOM_POOL_ENDPOINT: CUSTOM };
+    expect(resolveSandboxPool(env)).toEqual({ kind: "pythonlts", endpoint: POOL });
+    expect(resolveSandboxPool({ ...env, RUN_PYTHON_POOL_KIND: "custom" })).toEqual({ kind: "custom", endpoint: CUSTOM });
+    // kind=custom sans endpoint custom : pas de repli silencieux sur PythonLTS.
+    expect(resolveSandboxPool({ ACA_SESSIONS_POOL_ENDPOINT: POOL, RUN_PYTHON_POOL_KIND: "custom" })).toEqual({
+      kind: "custom",
+      endpoint: undefined,
+    });
+  });
+
+  it("description : défaut inchangé (pas de bayésien) ; custom liste numpyro/jax/pymc/bambi/arviz", () => {
+    const base = RUN_PYTHON_TOOL_DEF.function.description;
+    expect(base).toContain("(pandas, numpy, statsmodels, scipy, scikit-learn, matplotlib, plotnine)");
+    expect(base).not.toMatch(/numpyro|pymc|bambi|arviz/);
+    expect(runPythonToolDef().function.description).toBe(base);
+    const custom = runPythonToolDef("custom");
+    expect(custom.function.description).toContain("plotnine, numpyro + jax (CPU), pymc, bambi, arviz)");
+    expect(custom.function.description).toContain(CUSTOM_POOL_BAYES_HINT);
+    expect(custom.function.parameters).toEqual(RUN_PYTHON_TOOL_DEF.function.parameters);
+  });
+
+  it("createRunPythonTool expose le toolDef du pool", () => {
+    const deps = { executor: fakeExecutor(), sessionId: "s", fetchParquet: async () => new Uint8Array() };
+    expect(createRunPythonTool(deps).toolDef).toBe(RUN_PYTHON_TOOL_DEF);
+    expect(createRunPythonTool({ ...deps, poolKind: "custom" }).toolDef?.function.description).toContain("numpyro");
+  });
+
+  it("AcaSessionsExecutor sur un endpoint custom : mêmes chemins relatifs (relayés au conteneur)", async () => {
+    const fetchMock = vi.fn(async (_url: string | URL | Request, _init?: RequestInit) =>
+      jsonResponse({ properties: { status: "Success", stdout: "", stderr: "", result: "{}" } }),
+    );
+    const ex = new AcaSessionsExecutor({
+      poolManagementEndpoint: CUSTOM,
+      getToken: async () => "tok",
+      fetch: fetchMock as unknown as typeof fetch,
+    });
+    const out = await ex.execute("sess-1234", "1", 30);
+    expect(out.result).toBe("{}");
+    const u = new URL(String(fetchMock.mock.calls[0][0]));
+    expect(u.origin + u.pathname).toBe(`${CUSTOM}/code/execute`);
+    expect(u.searchParams.get("identifier")).toBe("sess-1234");
   });
 });

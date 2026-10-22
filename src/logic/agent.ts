@@ -1028,7 +1028,7 @@ export async function* runAgentStream(
   // seulement quand branché pour cette requête (feature flag côté handler).
   const tools: readonly unknown[] = [
     ...TOOL_DEFS,
-    ...(opts.runPython ? [RUN_PYTHON_TOOL_DEF] : []),
+    ...(opts.runPython ? [opts.runPython.toolDef ?? RUN_PYTHON_TOOL_DEF] : []),
     ...(opts.geoTool ? [GEO_PROFILE_TOOL_DEF, GEO_LOOKUP_TOOL_DEF] : []),
     ...(opts.geoTool?.donationIndex ? [GEO_DONATION_INDEX_TOOL_DEF] : []),
   ];

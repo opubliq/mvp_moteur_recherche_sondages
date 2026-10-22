@@ -26,6 +26,7 @@ import {
   AcaSessionsExecutor,
   createRunPythonTool,
   managedIdentityTokenProvider,
+  resolveSandboxPool,
   sessionIdentifier,
   staticTokenProvider,
   type AcaApiVersion,
@@ -115,10 +116,12 @@ async function buildRunPythonTool(opts: {
   geoEnv?: { baseUrl: string; getToken?: GeoTokenProvider };
 }): Promise<RunPythonTool | undefined> {
   if (process.env.RUN_PYTHON_ENABLED !== "true") return undefined;
-  const poolManagementEndpoint = process.env.ACA_SESSIONS_POOL_ENDPOINT;
+  // RUN_PYTHON_POOL_KIND=custom → pool CustomContainer (ACA_SESSIONS_CUSTOM_POOL_ENDPOINT), sinon PythonLTS.
+  const { kind: poolKind, endpoint: poolManagementEndpoint } = resolveSandboxPool(process.env);
   const idSecret = process.env.ACA_SESSIONS_ID_SECRET;
   if (!poolManagementEndpoint || !idSecret) {
-    opts.context.warn("[agent] RUN_PYTHON_ENABLED=true mais ACA_SESSIONS_POOL_ENDPOINT/ACA_SESSIONS_ID_SECRET absents : outil non branché.");
+    const endpointVar = poolKind === "custom" ? "ACA_SESSIONS_CUSTOM_POOL_ENDPOINT" : "ACA_SESSIONS_POOL_ENDPOINT";
+    opts.context.warn(`[agent] RUN_PYTHON_ENABLED=true mais ${endpointVar}/ACA_SESSIONS_ID_SECRET absents : outil non branché.`);
     return undefined;
   }
   // Sans conversation_id (client pas encore à jour, ou absent) : pas de session
@@ -141,6 +144,7 @@ async function buildRunPythonTool(opts: {
   return createRunPythonTool({
     executor,
     sessionId,
+    poolKind,
     // Même contrôle d'accès tenant que le rail micro-données (crosstab/manifest
     // ci-dessus) : un sondage privé d'un autre tenant lève une 404, pas de fuite.
     fetchParquet: async (surveyId) => {

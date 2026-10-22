@@ -27,50 +27,103 @@
 
 export const RUN_PYTHON_TOOL_NAME = "run_python";
 
-export const RUN_PYTHON_TOOL_DEF = {
-  type: "function",
-  function: {
-    name: RUN_PYTHON_TOOL_NAME,
-    description:
-      "Exécute du code Python (pandas, numpy, statsmodels, scipy, scikit-learn, matplotlib, plotnine) dans un bac à sable isolé, " +
-      "pour les analyses que `crosstab` ne couvre pas : régressions multivariées, pondération, tendances entre sondages, profils. " +
-      "Passe `survey_ids` pour charger les micro-données : chaque sondage est disponible dans `/mnt/data/<survey_id>.parquet` " +
-      "et via `load('<survey_id>')` (DataFrame pandas). Colonnes : `__respondent_id`, `__weight` (poids, À UTILISER pour toute " +
-      "estimation), puis les variables raw (codes ; labels via get_survey). " +
-      "Passe `census_niveaux` (ex. `[\"circonscription_2026\"]`) pour charger, en plus, le profil de recensement 2021 de " +
-      "TOUTES les unités de ce niveau géographique via `load_census_strata('<niveau>')` (DataFrame pandas, une ligne par " +
-      "unité : `code`, `nom`, `population`, `menages`, puis des ratios agrégés `pct_*`/`revenu_*` par unité — PAS une table " +
-      "de comptes croisés par cellule démographique). Utile pour joindre un niveau géo des micro-données de sondage à ces " +
-      "covariables de territoire (ex. petite régression multiniveau + repondération approximative par zone) ; niveaux " +
-      "disponibles via l'outil geo_profile (`niveaux`). " +
-      "`ipf(seed, marginals, dims)` : reconstruit une table de cellules croisées (post-strat MRP, une ligne par " +
-      "combinaison de `dims`) par iterative proportional fitting à partir des marginaux `pct_*`/`population` de " +
-      "`load_census_strata` (quand aucune vraie table croisée n'est disponible) — voir sa docstring pour le format exact. " +
-      "Les variables Python et les fichiers persistent " +
-      "entre les appels d'une même conversation. Sortie : `print(...)` (tronquée), `show_table(df, title)` pour un petit tableau, " +
-      "et les figures sont capturées automatiquement en PNG : toute figure matplotlib ouverte, et tout ggplot plotnine " +
-      "(grammaire ggplot2 : `from plotnine import *`) affiché par `p.show()` ou laissé en dernière expression. Un style " +
-      "sobre est déjà appliqué (fond blanc, palette de l'app dans `OPQ_PALETTE`) : n'ajoute pas de thème. Pas d'accès réseau. Seulement pour des sondages à has_microdata=true.",
-    parameters: {
-      type: "object",
-      properties: {
-        code: { type: "string", description: "Code Python à exécuter." },
-        survey_ids: {
-          type: "array",
-          description: "Sondages dont les micro-données doivent être chargées dans la session (optionnel si déjà chargés).",
-          items: { type: "string" },
+/**
+ * Type de pool de sessions visé (`RUN_PYTHON_POOL_KIND`) :
+ *  - `pythonlts` (défaut) : code interpreter géré par Azure ;
+ *  - `custom` : pool `CustomContainer` avec notre image (sandbox/Dockerfile) qui
+ *    réimplémente la même API REST (sandbox/server.py) et ajoute l'inférence
+ *    bayésienne hiérarchique (numpyro/JAX, PyMC, Bambi, ArviZ) pour la MRP.
+ * Seule la description de l'outil change : l'exécuteur HTTP est le même.
+ */
+export type SandboxPoolKind = "pythonlts" | "custom";
+
+export function parsePoolKind(v: string | undefined): SandboxPoolKind {
+  return v?.trim().toLowerCase() === "custom" ? "custom" : "pythonlts";
+}
+
+/**
+ * Choix du pool depuis les app settings (objet injecté, pas `process.env`) :
+ * `RUN_PYTHON_POOL_KIND=custom` → `ACA_SESSIONS_CUSTOM_POOL_ENDPOINT`, sinon
+ * `ACA_SESSIONS_POOL_ENDPOINT` (comportement historique). Les deux endpoints
+ * coexistent : revenir en arrière = retirer `RUN_PYTHON_POOL_KIND`.
+ */
+export function resolveSandboxPool(env: Record<string, string | undefined>): {
+  kind: SandboxPoolKind;
+  endpoint: string | undefined;
+} {
+  const kind = parsePoolKind(env.RUN_PYTHON_POOL_KIND);
+  const endpoint = kind === "custom" ? env.ACA_SESSIONS_CUSTOM_POOL_ENDPOINT : env.ACA_SESSIONS_POOL_ENDPOINT;
+  return { kind, endpoint: endpoint?.trim() || undefined };
+}
+
+const PYTHONLTS_PACKAGES ="pandas, numpy, statsmodels, scipy, scikit-learn, matplotlib, plotnine";
+const CUSTOM_PACKAGES = `${PYTHONLTS_PACKAGES}, numpyro + jax (CPU), pymc, bambi, arviz`;
+
+/** Phrase ajoutée à la description quand le pool custom est actif. */
+export const CUSTOM_POOL_BAYES_HINT =
+  "Inférence bayésienne hiérarchique disponible (MRP) : préfère numpyro (NUTS sur JAX, rapide ; 2 cœurs → " +
+  "`num_chains=2, chain_method='parallel'`) ; pymc/bambi disponibles mais plus lents (compilation) ; arviz pour " +
+  "les résumés. Garde le modèle compact (effets groupés, ~500 warmup/500 tirages) : timeout par appel. ";
+
+function runPythonDescription(kind: SandboxPoolKind): string {
+  const packages = kind === "custom" ? CUSTOM_PACKAGES : PYTHONLTS_PACKAGES;
+  const bayes = kind === "custom" ? CUSTOM_POOL_BAYES_HINT : "";
+  return (
+    `Exécute du code Python (${packages}) dans un bac à sable isolé, ` +
+    "pour les analyses que `crosstab` ne couvre pas : régressions multivariées, pondération, tendances entre sondages, profils. " +
+    "Passe `survey_ids` pour charger les micro-données : chaque sondage est disponible dans `/mnt/data/<survey_id>.parquet` " +
+    "et via `load('<survey_id>')` (DataFrame pandas). Colonnes : `__respondent_id`, `__weight` (poids, À UTILISER pour toute " +
+    "estimation), puis les variables raw (codes ; labels via get_survey). " +
+    "Passe `census_niveaux` (ex. `[\"circonscription_2026\"]`) pour charger, en plus, le profil de recensement 2021 de " +
+    "TOUTES les unités de ce niveau géographique via `load_census_strata('<niveau>')` (DataFrame pandas, une ligne par " +
+    "unité : `code`, `nom`, `population`, `menages`, puis des ratios agrégés `pct_*`/`revenu_*` par unité — PAS une table " +
+    "de comptes croisés par cellule démographique). Utile pour joindre un niveau géo des micro-données de sondage à ces " +
+    "covariables de territoire (ex. petite régression multiniveau + repondération approximative par zone) ; niveaux " +
+    "disponibles via l'outil geo_profile (`niveaux`). " +
+    "`ipf(seed, marginals, dims)` : reconstruit une table de cellules croisées (post-strat MRP, une ligne par " +
+    "combinaison de `dims`) par iterative proportional fitting à partir des marginaux `pct_*`/`population` de " +
+    "`load_census_strata` (quand aucune vraie table croisée n'est disponible) — voir sa docstring pour le format exact. " +
+    bayes +
+    "Les variables Python et les fichiers persistent " +
+    "entre les appels d'une même conversation. Sortie : `print(...)` (tronquée), `show_table(df, title)` pour un petit tableau, " +
+    "et les figures sont capturées automatiquement en PNG : toute figure matplotlib ouverte, et tout ggplot plotnine " +
+    "(grammaire ggplot2 : `from plotnine import *`) affiché par `p.show()` ou laissé en dernière expression. Un style " +
+    "sobre est déjà appliqué (fond blanc, palette de l'app dans `OPQ_PALETTE`) : n'ajoute pas de thème. Pas d'accès réseau. Seulement pour des sondages à has_microdata=true."
+  );
+}
+
+export function runPythonToolDef(kind: SandboxPoolKind = "pythonlts") {
+  return {
+    type: "function",
+    function: {
+      name: RUN_PYTHON_TOOL_NAME,
+      description: runPythonDescription(kind),
+      parameters: {
+        type: "object",
+        properties: {
+          code: { type: "string", description: "Code Python à exécuter." },
+          survey_ids: {
+            type: "array",
+            description: "Sondages dont les micro-données doivent être chargées dans la session (optionnel si déjà chargés).",
+            items: { type: "string" },
+          },
+          census_niveaux: {
+            type: "array",
+            description: "Niveaux géographiques (recensement 2021) à charger en bulk dans la session (optionnel si déjà chargés).",
+            items: { type: "string" },
+          },
         },
-        census_niveaux: {
-          type: "array",
-          description: "Niveaux géographiques (recensement 2021) à charger en bulk dans la session (optionnel si déjà chargés).",
-          items: { type: "string" },
-        },
+        required: ["code"],
+        additionalProperties: false,
       },
-      required: ["code"],
-      additionalProperties: false,
     },
-  },
-} as const;
+  } as const;
+}
+
+export type RunPythonToolDef = ReturnType<typeof runPythonToolDef>;
+
+/** Définition par défaut (pool PythonLTS) — texte inchangé. */
+export const RUN_PYTHON_TOOL_DEF: RunPythonToolDef = runPythonToolDef("pythonlts");
 
 // ---------------------------------------------------------------------------
 // Limites
@@ -576,12 +629,16 @@ export interface RunPythonDeps {
   fetchCensusParquet?(niveau: string): Promise<Uint8Array>;
   limits?: Partial<RunPythonLimits>;
   now?: () => number;
+  /** Pool visé : ne change que la description exposée au modèle (`toolDef`). Défaut `pythonlts`. */
+  poolKind?: SandboxPoolKind;
 }
 
 export interface RunPythonTool {
   /** Ne lève pas sur erreur métier : renvoie `{ error }` (comme executeTool). */
   run(args: Record<string, unknown>): Promise<RunPythonResult | { error: string }>;
   readonly callsMade: number;
+  /** Schéma à offrir au modèle (description adaptée au pool) ; absent = `RUN_PYTHON_TOOL_DEF`. */
+  readonly toolDef?: RunPythonToolDef;
 }
 
 function truncateHead(s: string, max: number): [string, boolean] {
@@ -737,6 +794,7 @@ export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
     get callsMade() {
       return calls;
     },
+    toolDef: deps.poolKind === "custom" ? runPythonToolDef("custom") : RUN_PYTHON_TOOL_DEF,
   };
 }
 
