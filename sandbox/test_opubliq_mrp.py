@@ -70,3 +70,13 @@ def test_fit_and_poststrat_recover_signal(data_dir):
     assert set(res.code) == {"24001", "24002", "24003"}
     assert ((res.lo <= res.estimate) & (res.estimate <= res.hi)).all()
     assert res.n_repondants.sum() == len(svy)
+
+
+def test_mrp_reference(capsys):
+    M.mrp_reference()
+    assert "poids" in capsys.readouterr().out
+    M.mrp_reference("Poids")
+    out = capsys.readouterr().out
+    assert "Zhang et al. 2015" in out
+    M.mrp_reference("inexistant")
+    assert "Sujet inconnu" in capsys.readouterr().out

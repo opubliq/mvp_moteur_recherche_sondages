@@ -86,7 +86,7 @@ function runPythonDescription(kind: SandboxPoolKind): string {
     "`ipf(seed, marginals, dims)` (raking) reconstruit les cellules croisées d'une unité à partir de ces marges. " +
     "AVANT tout MRP ou post-stratification, appelle `mrp_guide()` : il imprime un gabarit qui utilise les fonctions " +
     "prêtes (pool custom) `recode_age`, `build_poststrat`, `mrp_fit` (modèle hiérarchique bayésien) et `mrp_poststrat` " +
-    "(estimations par unité avec intervalle 90 %) — utilise-les au lieu d'écrire ton propre modèle. " +
+    "(estimations par unité avec intervalle 90 %) — utilise-les au lieu d'écrire ton propre modèle. Pour justifier la méthode ou répondre à une question sur le MRP, `mrp_reference('<sujet>')` imprime la revue de littérature avec ses sources. " +
     bayes +
     "Les variables Python et les fichiers persistent " +
     "entre les appels d'une même conversation. Sortie : `print(...)` (tronquée), `show_table(df, title)` pour un petit tableau, " +
@@ -501,6 +501,8 @@ _OPQ_MRP_GUIDE = """MRP (regression multiniveau + post-stratification) - UTILISE
 
 PRE-REQUIS : run_python avec survey_ids=[...] et census_niveaux=[<niveau CIBLE>, 'pruid'] (+ le niveau du modele
 s'il differe). Fonctions disponibles : recode_age, build_poststrat, mrp_fit, mrp_poststrat, CATEGORIES.
+Pour JUSTIFIER un choix ou repondre a une question de l'usager sur la methode : mrp_reference() (liste des
+sujets) puis mrp_reference('poids'), 'priors', 'cadre', 'projection', 'validation', 'incertitude'... (sources citees).
 
 GABARIT (adapte seulement les recodages et les noms de variables) :
 
@@ -563,7 +565,7 @@ def load_strata(niveau, type="marginals"):
 def mrp_guide():
     print(_OPQ_MRP_GUIDE)
 try:
-    from opubliq_mrp import build_poststrat, mrp_fit, mrp_poststrat, recode_age, CATEGORIES
+    from opubliq_mrp import build_poststrat, mrp_fit, mrp_poststrat, mrp_reference, recode_age, CATEGORIES
 except Exception:
     pass
 def ipf(seed, marginals, dims, max_iter=50, tol=1e-6):

@@ -39,6 +39,111 @@ SHARE_18_19_IN_15_19 = 0.4
 _QC_ONLY_LEVELS = {"code_postal", "rta", "municipalite", "mrc", "region_administrative", "rmr", "circonscription_2026"}
 
 
+MRP_REFERENCE = {
+    "structure": (
+        "Structure du modèle",
+        "Les variables de post-stratification (âge, genre, scolarité) entrent comme EFFETS ALÉATOIRES : le partial "
+        "pooling stabilise les cellules petites ou vides (Downes & Carlin 2019, 2020 ; Gelman 2007). Avec très peu de "
+        "répondants par circonscription, une hiérarchie géographique intermédiaire (province au-dessus de la "
+        "circonscription) aide : l'estimation d'une circonscription est alors portée par sa province et ses "
+        "covariables (Zhang et al. 2014 ; Si 2020). Les PRÉDICTEURS D'UNITÉ (part de francophones, de diplômés, "
+        "revenu, part des 65+) sont le levier le plus documenté contre le sur-lissage des petites unités (Downes & "
+        "Carlin 2020 ; Gelman & Carpenter 2020) — à condition d'être liés à la variable étudiée. Alternatives plus "
+        "lourdes (interactions profondes, autoMrP, stacking) : utiles avec de gros échantillons, gains incertains "
+        "sinon (Ghitza & Gelman 2013 ; Broniecki et al. 2020 ; Ornstein 2019).",
+    ),
+    "priors": (
+        "Priors et paramétrisation",
+        "Prédicteurs continus standardisés, priors faiblement informatifs sur les coefficients logit (Gelman et al. "
+        "2008), priors modérément régularisants sur les écarts-types des effets de groupe, paramétrisation NON "
+        "CENTRÉE pour éviter les pathologies des modèles hiérarchiques (Papaspiliopoulos et al. 2007 ; Betancourt & "
+        "Girolami 2013). Désaccord sur le prior exact des écarts-types : une simulation favorise des priors peu "
+        "contraignants (Bruch & Felderer 2022), la littérature bayésienne plus large des priors half-normal ou PC "
+        "adaptés à l'échelle (Klein & Kneib 2016). Ici : HalfNormal(1) sur les écarts-types, Normal(0, 1) sur les "
+        "prédicteurs standardisés, Normal(0, 2.5) sur l'intercept. Convergence : R-hat < 1.01 et aucune divergence "
+        "(Vehtari et al. 2019).",
+    ),
+    "poids": (
+        "Poids d'enquête",
+        "Consensus modéré : NE PAS mettre les poids individuels dans la vraisemblance multiniveau par défaut. Quand les "
+        "variables de pondération sont modélisées, le MRP non pondéré fait aussi bien ou mieux, et la "
+        "pseudo-vraisemblance pondérée est fragile avec de petits groupes (Zhang et al. 2015 ; Rabe-Hesketh & "
+        "Skrondal 2006). C'est la post-stratification qui corrige la composition de l'échantillon. Alternative si la "
+        "sélection dépend d'autre chose que les variables modélisées : ajouter les poids (ou probabilités "
+        "d'inclusion) comme prédicteur ou variable de post-stratification (Si 2020 ; Gelman, Si & West ; "
+        "Vandendijck et al. 2016).",
+    ),
+    "cadre": (
+        "Table de post-stratification reconstruite (IPF / MrsP)",
+        "Quand seules les marges sont publiées, reconstruire les cellules (raking/IPF, ou MrsP) est valide pour un "
+        "usage courant (Leemann & Wasserfallen 2017 ; Li & Si 2022) ; MrsP fait souvent aussi bien que le MRP "
+        "standard. Ici : âge × genre × scolarité n'est publié que par province/RMR (StatCan 98-10-0386), donc semence "
+        "provinciale rakée aux marges locales âge × genre et scolarité × genre. Hypothèse : la corrélation "
+        "âge-scolarité de la province vaut dans chaque unité. Limite : l'incertitude de cette table n'est PAS "
+        "propagée, d'où des intervalles un peu trop étroits ; les approches « embedded MRP » la propagent "
+        "(Li & Si 2022).",
+    ),
+    "projection": (
+        "Projection à des niveaux plus fins",
+        "Projeter sous le niveau où le répondant est localisé (ex. modèle par circonscription, projection par RTA ou "
+        "code postal) n'est soutenu que CONDITIONNELLEMENT : ça marche quand les prédicteurs du niveau fin portent "
+        "un vrai signal, sinon l'estimation devient « synthétique » (elle reflète surtout la composition "
+        "démographique locale) (Zhang et al. 2015 ; Rufat & Howe 2022 ; Taylor et al. 2016). Évidence faible : à "
+        "présenter comme EXPLORATOIRE. Les priors spatiaux donnent des résultats mitigés (Leemann & Wasserfallen "
+        "2020 ; Sutton et al. 2025).",
+    ),
+    "validation": (
+        "Validation",
+        "Valider les estimations PAR UNITÉ, pas seulement la prédiction individuelle : comparaison à des estimations "
+        "directes quand n est grand, et validation externe contre des résultats électoraux, des données "
+        "administratives ou des sondages locaux (Zhang et al. 2015 ; Park, Gelman & Bafumi 2004). Ordres de "
+        "grandeur publiés : corrélations de 0,85 à 0,99 en santé publique, nettement moins bonnes et variables selon "
+        "les enjeux pour l'opinion avec des tailles d'échantillon nationales usuelles (Buttice & Highton 2013). La "
+        "validation croisée au niveau individuel (PSIS-LOO) peut induire en erreur pour des estimations par unité "
+        "(Kuh et al. 2022). Pas encore de validation maison : prévue contre les résultats électoraux par "
+        "circonscription.",
+    ),
+    "incertitude": (
+        "Incertitude et seuils de publication",
+        "Pas de seuil universel de « n minimal par circonscription » dans la littérature : la fiabilité se juge par "
+        "l'incertitude a posteriori (largeur d'intervalle, coefficient de variation) et la validation externe ; le "
+        "lissage bayésien sert justement à produire des estimations pour des unités avec peu ou pas de répondants "
+        "(Jiang & Rao 2020 ; Hogg et al. 2023). Pour un public non technique, montrer les intervalles ou un niveau "
+        "de fiabilité gradué améliore les décisions sans miner la confiance, à condition que les cartes ne soient "
+        "pas lues comme déterministes (Joslyn & Savelli 2021).",
+    ),
+    "pieges": (
+        "Pièges connus",
+        "Sur-lissage des plus petites unités ; effets fixes de contexte qui sur-ajustent (ils ne sont pas rétrécis "
+        "comme les effets de groupe) ; métriques de validation individuelles trompeuses pour des estimations par "
+        "unité ; tables synthétiques qui cachent de l'incertitude (Downes & Carlin 2020 ; Broniecki et al. 2020 ; "
+        "Kuh et al. 2022 ; Cerina & Duch 2021). D'où un flux de travail conservateur plutôt qu'un modèle maximal.",
+    ),
+    "ouvert": (
+        "Questions ouvertes dans la littérature",
+        "Quand des priors spatiaux améliorent-ils le MRP par circonscription au-delà de bons prédicteurs non "
+        "spatiaux ? Combien d'incertitude la table reconstruite devrait-elle ajouter aux intervalles ? Quelle règle "
+        "(largeur d'intervalle, CV, erreur de validation) pour décider de publier une petite unité ? Et très peu "
+        "d'applications canadiennes publiées (Lai 2024).",
+    ),
+}
+
+
+def mrp_reference(sujet: str | None = None) -> None:
+    """Explications détaillées et sources sur le MRP (revue de littérature). Sans argument : liste des sujets.
+    À utiliser pour justifier un choix de méthode ou répondre à une question de l'usager sur le MRP."""
+    if not sujet:
+        print("Sujets : " + ", ".join(f"{k} ({v[0]})" for k, v in MRP_REFERENCE.items()))
+        print("Usage : mrp_reference('poids')")
+        return
+    key = sujet.lower().strip()
+    if key not in MRP_REFERENCE:
+        print(f"Sujet inconnu : {sujet}. Sujets : {', '.join(MRP_REFERENCE)}")
+        return
+    titre, texte = MRP_REFERENCE[key]
+    print(f"{titre}\n\n{texte}")
+
+
 def recode_age(years) -> pd.Series:
     """Âge en années → groupe du recensement (15_19 ... 75_plus). Moins de 15 ans → NaN."""
     a = pd.to_numeric(pd.Series(years), errors="coerce")
