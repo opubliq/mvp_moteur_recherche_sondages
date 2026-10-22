@@ -407,6 +407,15 @@ export async function fetchQuestionsByTag(
 }
 
 /** Quota du modèle atteint pendant un tour de l'agent : relayer le délai, pas 502. */
+/** Demande l'arrêt côté serveur d'un tour agent (l'abort du fetch ne suffit pas : l'hôte ne propage pas la déconnexion). */
+export async function cancelAgentRun(runId: string): Promise<void> {
+  await fetch(apiUrl("/agent/cancel"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...authHeader() },
+    body: JSON.stringify({ run_id: runId }),
+  });
+}
+
 export class AgentRateLimitError extends Error {
   constructor(public retryAfterMs: number) {
     super("Quota du modèle atteint");
@@ -443,11 +452,16 @@ export async function agentChatStream(
    *  reste disponible mais chaque tour repart sur une session neuve. */
   conversationId?: string,
   signal?: AbortSignal,
+  runId?: string,
 ): Promise<AgentChatResponse> {
   const res = await fetch(apiUrl("/agent"), {
     method: "POST",
     headers: { "Content-Type": "application/json", ...authHeader() },
-    body: JSON.stringify({ messages, ...(conversationId ? { conversation_id: conversationId } : {}) }),
+    body: JSON.stringify({
+      messages,
+      ...(conversationId ? { conversation_id: conversationId } : {}),
+      ...(runId ? { run_id: runId } : {}),
+    }),
     signal,
   });
   // Erreur AVANT l'ouverture du flux (env manquant, corps invalide, 429 précoce).

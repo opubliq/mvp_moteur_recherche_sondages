@@ -43,6 +43,7 @@ import {
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "../microdata-core/core";
 import { signedBlobUrl } from "../microdata-core/sas";
 import { checkAuth } from "../middleware/auth";
+import { RUN_ID_RE, clearCancel, isCancelRequested, requestCancel } from "../logic/agent-cancel-store";
 import { checkRateLimit } from "../middleware/ratelimit";
 
 const CORS_HEADERS: Record<string, string> = {
@@ -220,9 +221,9 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
     }
   }
 
-  let body: { messages?: unknown; conversation_id?: unknown };
+  let body: { messages?: unknown; conversation_id?: unknown; run_id?: unknown };
   try {
-    body = (await request.json()) as { messages?: unknown; conversation_id?: unknown };
+    body = (await request.json()) as { messages?: unknown; conversation_id?: unknown; run_id?: unknown };
   } catch {
     return failJson(400, "Invalid JSON body");
   }
@@ -278,6 +279,22 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
   const encoder = new TextEncoder();
   // Client parti (bouton Arrêter, onglet fermé) : on coupe la boucle pour ne plus brûler de tokens.
   const abort = new AbortController();
+  // L'hôte ne propage pas la déconnexion du navigateur : le bouton Arrêter écrit
+  // une demande dans `AgentCancels`, relue ici toutes les 2 s pendant le tour.
+  const runId = typeof body.run_id === "string" && RUN_ID_RE.test(body.run_id) ? body.run_id : undefined;
+  const cancelEnv = { account: process.env.AZURE_STORAGE_ACCOUNT!, key: process.env.AZURE_STORAGE_KEY! };
+  const cancelPoll = runId
+    ? setInterval(() => {
+        isCancelRequested(cancelEnv, auth.userId, runId)
+          .then((requested) => {
+            if (requested && !abort.signal.aborted) {
+              context.log(`[agent] cancel requested for run ${runId}`);
+              abort.abort();
+            }
+          })
+          .catch((err) => context.warn("[agent] cancel poll failed:", err));
+      }, 2000)
+    : undefined;
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const send = (payload: unknown) => {
@@ -307,6 +324,10 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
           });
         }
       } finally {
+        if (cancelPoll) clearInterval(cancelPoll);
+        if (runId && abort.signal.aborted) {
+          clearCancel(cancelEnv, auth.userId, runId).catch(() => {});
+        }
         try {
           controller.close();
         } catch {
@@ -327,4 +348,35 @@ app.http("agent", {
   authLevel: "anonymous",
   route: "agent",
   handler: agent,
+});
+
+export async function agentCancel(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+  if (request.method === "OPTIONS") {
+    return { status: 200, headers: CORS_HEADERS, body: "" };
+  }
+  const auth = await checkAuth(request, context);
+  if (!("userId" in auth)) return auth;
+
+  let body: { run_id?: unknown };
+  try {
+    body = (await request.json()) as { run_id?: unknown };
+  } catch {
+    return failJson(400, "Invalid JSON body");
+  }
+  if (typeof body.run_id !== "string" || !RUN_ID_RE.test(body.run_id)) {
+    return failJson(400, "run_id invalide");
+  }
+  await requestCancel(
+    { account: process.env.AZURE_STORAGE_ACCOUNT!, key: process.env.AZURE_STORAGE_KEY! },
+    auth.userId,
+    body.run_id,
+  );
+  return { status: 204, headers: CORS_HEADERS };
+}
+
+app.http("agent-cancel", {
+  methods: ["POST", "OPTIONS"],
+  authLevel: "anonymous",
+  route: "agent/cancel",
+  handler: agentCancel,
 });

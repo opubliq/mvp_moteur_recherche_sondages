@@ -55,7 +55,7 @@ import {
   ALargeSmall,
   Square,
 } from "lucide-react";
-import { agentChatStream, AgentRateLimitError, type AgentMessage, type AgentToolTrace } from "../api";
+import { agentChatStream, AgentRateLimitError, cancelAgentRun, type AgentMessage, type AgentToolTrace } from "../api";
 import ConversationList from "../components/ConversationList";
 import {
   deleteConversation,
@@ -478,6 +478,7 @@ export default function AgentPage() {
   const [retryAfterMs, setRetryAfterMs] = useState<number | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const runIdRef = useRef<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   // Suit le bas du fil seulement si l'utilisateur y est déjà : s'il remonte
@@ -538,6 +539,8 @@ export default function AgentPage() {
   }
 
   function stop() {
+    const runId = runIdRef.current;
+    if (runId) cancelAgentRun(runId).catch(() => {});
     abortRef.current?.abort();
   }
 
@@ -609,6 +612,8 @@ export default function AgentPage() {
     stickToBottomRef.current = true;
     const controller = new AbortController();
     abortRef.current = controller;
+    const runId = crypto.randomUUID();
+    runIdRef.current = runId;
     try {
       // Streaming (bead aat.4) : les events tool_start/tool_end s'accumulent dans
       // `liveEvents`, repliés en étapes affichables par `foldAgentSteps`, rendues
@@ -627,6 +632,7 @@ export default function AgentPage() {
         },
         convId,
         controller.signal,
+        runId,
       );
       setThread(result.messages);
       if (result.trace.length > 0) {
@@ -645,6 +651,7 @@ export default function AgentPage() {
       // l'utilisateur peut relancer le même tour une fois l'erreur passée.
     } finally {
       abortRef.current = null;
+      runIdRef.current = null;
       setLoading(false);
       setLiveEvents([]);
       setStreamedAnswer(null);
