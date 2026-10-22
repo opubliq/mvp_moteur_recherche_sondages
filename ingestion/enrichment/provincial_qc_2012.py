@@ -682,12 +682,18 @@ QUESTIONS = {
         "themes": ["politique provinciale", "campagne électorale"],
     },
     "PQ3A": {
-        "display_label": "Paternité de la promesse électorale : déduction fiscale de 30%",
+        "display_label": (
+            "Paternité de la promesse électorale : taxe de 30 % sur les "
+            "surprofits des compagnies minières"
+        ),
         "concepts": ["promesses électorales", "connaissance des programmes"],
         "themes": ["politique provinciale", "campagne électorale"],
     },
     "PQ3B": {
-        "display_label": "Paternité de la promesse électorale : rabais sur la taxe scolaire pour parents",
+        "display_label": (
+            "Paternité de la promesse électorale : cinq jours de congé payé "
+            "pour les parents"
+        ),
         "concepts": ["promesses électorales", "connaissance des programmes"],
         "themes": ["politique provinciale", "campagne électorale"],
     },
@@ -837,27 +843,29 @@ QUESTIONS = {
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ13B": {
-        "display_label": "Familiarité avec le slogan : C'est à vous de choisir",
+        "display_label": "Familiarité avec le slogan : Debout",
         "concepts": ["slogans électoraux", "notoriété des slogans"],
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ13C": {
-        "display_label": "Familiarité avec le slogan : La force de l'action",
+        "display_label": "Familiarité avec le slogan : ON peut mieux pour le Québec",
         "concepts": ["slogans électoraux", "notoriété des slogans"],
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ13D": {
-        "display_label": "Familiarité avec le slogan : Le Québec a besoin d'un changement",
+        "display_label": "Familiarité avec le slogan : Pour le Québec",
         "concepts": ["slogans électoraux", "notoriété des slogans"],
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ13E": {
-        "display_label": "Familiarité avec le slogan : On a le droit de choisir",
+        "display_label": "Familiarité avec le slogan : C'est assez, faut que ça change",
         "concepts": ["slogans électoraux", "notoriété des slogans"],
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ13F": {
-        "display_label": "Familiarité avec le slogan : Travailler pour le Québec",
+        "display_label": (
+            "Familiarité avec le slogan : Une voix différente. Un changement durable"
+        ),
         "concepts": ["slogans électoraux", "notoriété des slogans"],
         "themes": ["communication politique", "campagne électorale"],
     },
@@ -867,27 +875,29 @@ QUESTIONS = {
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ14B": {
-        "display_label": "Association du parti au slogan : C'est à vous de choisir",
+        "display_label": "Association du parti au slogan : Debout",
         "concepts": ["association marque-parti", "slogans électoraux"],
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ14C": {
-        "display_label": "Association du parti au slogan : La force de l'action",
+        "display_label": "Association du parti au slogan : ON peut mieux pour le Québec",
         "concepts": ["association marque-parti", "slogans électoraux"],
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ14D": {
-        "display_label": "Association du parti au slogan : Le Québec a besoin d'un changement",
+        "display_label": "Association du parti au slogan : Pour le Québec",
         "concepts": ["association marque-parti", "slogans électoraux"],
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ14E": {
-        "display_label": "Association du parti au slogan : On a le droit de choisir",
+        "display_label": "Association du parti au slogan : C'est assez, faut que ça change",
         "concepts": ["association marque-parti", "slogans électoraux"],
         "themes": ["communication politique", "campagne électorale"],
     },
     "PQ14F": {
-        "display_label": "Association du parti au slogan : Travailler pour le Québec",
+        "display_label": (
+            "Association du parti au slogan : Une voix différente. Un changement durable"
+        ),
         "concepts": ["association marque-parti", "slogans électoraux"],
         "themes": ["communication politique", "campagne électorale"],
     },
@@ -957,38 +967,38 @@ QUESTIONS = {
         "themes": ["campagne électorale", "stratégie électorale"],
     },
     "PQ17AAM1": {
-        "display_label": "Contacté durant la campagne par le Parti libéral du Québec",
-        "concepts": ["démarchage électoral", "parti libéral du québec"],
+        "display_label": "Partis ou candidats vous ayant contacté durant la campagne (mention 1)",
+        "concepts": ["démarchage électoral", "contact partisan"],
         "themes": ["campagne électorale", "stratégie électorale"],
     },
     "PQ17AAM2": {
-        "display_label": "Contacté durant la campagne par le Parti québécois",
-        "concepts": ["démarchage électoral", "parti québécois"],
+        "display_label": "Partis ou candidats vous ayant contacté durant la campagne (mention 2)",
+        "concepts": ["démarchage électoral", "contact partisan"],
         "themes": ["campagne électorale", "stratégie électorale"],
     },
     "PQ17AAM3": {
-        "display_label": "Contacté durant la campagne par Québec solidaire",
-        "concepts": ["démarchage électoral", "québec solidaire"],
+        "display_label": "Partis ou candidats vous ayant contacté durant la campagne (mention 3)",
+        "concepts": ["démarchage électoral", "contact partisan"],
         "themes": ["campagne électorale", "stratégie électorale"],
     },
     "PQ17AAM4": {
-        "display_label": "Contacté durant la campagne par la Coalition avenir Québec",
-        "concepts": ["démarchage électoral", "coalition avenir québec"],
+        "display_label": "Partis ou candidats vous ayant contacté durant la campagne (mention 4)",
+        "concepts": ["démarchage électoral", "contact partisan"],
         "themes": ["campagne électorale", "stratégie électorale"],
     },
     "PQ17AAM5": {
-        "display_label": "Contacté durant la campagne par Option nationale",
-        "concepts": ["démarchage électoral", "option nationale"],
+        "display_label": "Partis ou candidats vous ayant contacté durant la campagne (mention 5)",
+        "concepts": ["démarchage électoral", "contact partisan"],
         "themes": ["campagne électorale", "stratégie électorale"],
     },
     "PQ17AAM6": {
-        "display_label": "Contacté durant la campagne par le Parti vert du Québec",
-        "concepts": ["démarchage électoral", "parti vert du québec"],
+        "display_label": "Partis ou candidats vous ayant contacté durant la campagne (mention 6)",
+        "concepts": ["démarchage électoral", "contact partisan"],
         "themes": ["campagne électorale", "stratégie électorale"],
     },
     "PQ17AAM7": {
-        "display_label": "Contacté durant la campagne par un autre parti ou candidat",
-        "concepts": ["démarchage électoral", "autres partis"],
+        "display_label": "Partis ou candidats vous ayant contacté durant la campagne (mention 7)",
+        "concepts": ["démarchage électoral", "contact partisan"],
         "themes": ["campagne électorale", "stratégie électorale"],
     },
     "PQ17BA": {
