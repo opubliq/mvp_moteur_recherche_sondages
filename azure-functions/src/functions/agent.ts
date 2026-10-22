@@ -276,15 +276,27 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
   const geoTool = buildGeoTool(geoEnv, auth);
 
   const encoder = new TextEncoder();
+  // Client parti (bouton Arrêter, onglet fermé) : on coupe la boucle pour ne plus brûler de tokens.
+  const abort = new AbortController();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      const send = (payload: unknown) => controller.enqueue(encoder.encode(sseFrame(payload)));
+      const send = (payload: unknown) => {
+        if (abort.signal.aborted) return;
+        try {
+          controller.enqueue(encoder.encode(sseFrame(payload)));
+        } catch {
+          abort.abort();
+        }
+      };
       try {
-        for await (const ev of runAgentStream(history, env, microdata, { usage, indexes, runPython, geoTool })) {
+        for await (const ev of runAgentStream(history, env, microdata, { usage, indexes, runPython, geoTool, signal: abort.signal })) {
           send(ev);
         }
+        if (abort.signal.aborted) context.log("[agent] client disconnected, loop stopped");
       } catch (err) {
-        if (err instanceof AgentRateLimitError) {
+        if (abort.signal.aborted) {
+          context.log("[agent] client disconnected, loop stopped");
+        } else if (err instanceof AgentRateLimitError) {
           send({ type: "error", kind: "rate_limit", retry_after_ms: err.retryAfterMs });
         } else {
           context.error("[agent] stream failed:", err);
@@ -295,8 +307,15 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
           });
         }
       } finally {
-        controller.close();
+        try {
+          controller.close();
+        } catch {
+          // déjà fermé/annulé par le client
+        }
       }
+    },
+    cancel() {
+      abort.abort();
     },
   });
 

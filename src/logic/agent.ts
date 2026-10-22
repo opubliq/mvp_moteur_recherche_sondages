@@ -927,7 +927,7 @@ export type ChatFn = (messages: ChatMessage[], useTools: boolean) => Promise<Cha
  * `run_python` (9ou.12) ne soit offert au modèle QUE quand il est branché pour
  * cette requête (feature flag par env côté handler).
  */
-function makeAoaiChat(env: AgentEnv, tools: readonly unknown[]): ChatFn {
+function makeAoaiChat(env: AgentEnv, tools: readonly unknown[], signal?: AbortSignal): ChatFn {
   const endpoint = (env.AOAI_ENDPOINT ?? "").replace(/\/$/, "");
   const deployment = env.AGENT_CHAT_DEPLOYMENT || env.AOAI_CHAT_DEPLOYMENT;
   const url = `${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=${AOAI_API_VERSION}`;
@@ -942,6 +942,7 @@ function makeAoaiChat(env: AgentEnv, tools: readonly unknown[]): ChatFn {
         reasoning_effort: useTools ? AGENT_REASONING_EFFORT : AGENT_FINAL_REASONING_EFFORT,
         max_completion_tokens: MAX_COMPLETION_TOKENS,
       }),
+      signal,
     });
 
     if (res.status === 429) {
@@ -1001,6 +1002,8 @@ export interface RunAgentOptions {
    * `geoTool.donationIndex` existe (flag + allowlist interne validés par le handler).
    */
   geoTool?: GeoTool;
+  /** Client parti (bouton Arrêter) : la boucle s'arrête sans event `done` et l'appel modèle en vol est annulé. */
+  signal?: AbortSignal;
 }
 
 /**
@@ -1031,7 +1034,8 @@ export async function* runAgentStream(
     (opts.runPython ? RUN_PYTHON_PROMPT_ADDITION : "") +
     (opts.geoTool ? GEO_PROMPT_ADDITION : "") +
     (opts.geoTool?.donationIndex ? GEO_DONATIONS_PROMPT_ADDITION : "");
-  const chat = opts.chat ?? makeAoaiChat(env, tools);
+  const chat = opts.chat ?? makeAoaiChat(env, tools, opts.signal);
+  const aborted = () => opts.signal?.aborted === true;
   // Identité résolue une seule fois : le request_id retenu (fourni ou généré)
   // doit être le MÊME pour la boucle et pour les outils.
   const identity = usageIdentity(opts.usage);
@@ -1104,6 +1108,7 @@ export async function* runAgentStream(
   }
 
   while (true) {
+    if (aborted()) return;
     iterations += 1;
     const overBudget = Date.now() - start >= deadlineMs;
     const atMaxIter = iterations > MAX_ITERATIONS;
@@ -1121,7 +1126,15 @@ export async function* runAgentStream(
       elided.add(i);
     }
     const turnStartedAt = Date.now();
-    const { message: assistant, usage } = await chat(messages, useTools);
+    let turn: ChatTurn;
+    try {
+      turn = await chat(messages, useTools);
+    } catch (err) {
+      if (aborted()) return;
+      throw err;
+    }
+    if (aborted()) return;
+    const { message: assistant, usage } = turn;
     seenUpTo = messages.length;
     logUsage({
       ...identity,
@@ -1161,6 +1174,7 @@ export async function* runAgentStream(
     }
 
     for (const call of toolCalls) {
+      if (aborted()) return;
       let args: Record<string, unknown> = {};
       try {
         args = call.function.arguments ? JSON.parse(call.function.arguments) : {};
