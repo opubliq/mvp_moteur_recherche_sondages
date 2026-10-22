@@ -196,8 +196,8 @@ const fr = {
   "verbatimRow.copied": "copié",
   "verbatimRow.copy": "copier",
 
-  "agent.title": "Pose une question en langage naturel",
-  "agent.subtitle": "L'agent cherche les questions pertinentes, croise les micro-données pondérées et rédige une réponse. Il fait une hypothèse raisonnable, exécute et te dit laquelle.",
+  "agent.title": "Demande aux sondages",
+  "agent.subtitle": "L'agent analyse les données de nos sondages pour répondre à tes questions sur l'opinion publique.",
   "agent.newChat": "Nouveau chat",
   "agent.history": "Historique",
   "agent.textSize.label": "Taille du texte",

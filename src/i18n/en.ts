@@ -194,8 +194,8 @@ const en: Record<TranslationKey, string> = {
   "verbatimRow.copied": "copied",
   "verbatimRow.copy": "copy",
 
-  "agent.title": "Ask a question in plain language",
-  "agent.subtitle": "The agent finds relevant questions, crosses weighted microdata, and drafts an answer. It makes a reasonable assumption, runs the analysis and tells you which one.",
+  "agent.title": "Ask the surveys",
+  "agent.subtitle": "The agent analyzes our survey data to answer your questions about public opinion.",
   "agent.newChat": "New chat",
   "agent.history": "History",
   "agent.textSize.label": "Text size",
