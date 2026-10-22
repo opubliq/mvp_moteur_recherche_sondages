@@ -203,6 +203,8 @@ const fr = {
   "agent.textSize.label": "Taille du texte",
   "agent.consultingData": "L'agent consulte les données…",
   "agent.writing": "L'agent rédige…",
+  "agent.stop": "Arrêter l'agent",
+  "agent.stopped": "Analyse arrêtée. Ta question est gardée : tu peux la reformuler ou la relancer.",
   "agent.inputPlaceholder": "Écris ta question…",
   "agent.emptyDocIntro": "Voici ce que tu peux me demander :",
   "agent.noDetail": "Aucun détail disponible",

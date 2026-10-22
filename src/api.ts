@@ -442,11 +442,13 @@ export async function agentChatStream(
    *  (variables/fichiers persistants) côté bac à sable. Sans lui, l'outil
    *  reste disponible mais chaque tour repart sur une session neuve. */
   conversationId?: string,
+  signal?: AbortSignal,
 ): Promise<AgentChatResponse> {
   const res = await fetch(apiUrl("/agent"), {
     method: "POST",
     headers: { "Content-Type": "application/json", ...authHeader() },
     body: JSON.stringify({ messages, ...(conversationId ? { conversation_id: conversationId } : {}) }),
+    signal,
   });
   // Erreur AVANT l'ouverture du flux (env manquant, corps invalide, 429 précoce).
   if (!res.ok || !res.body) {

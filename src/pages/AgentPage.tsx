@@ -53,6 +53,7 @@ import {
   MapPin,
   Compass,
   ALargeSmall,
+  Square,
 } from "lucide-react";
 import { agentChatStream, AgentRateLimitError, type AgentMessage, type AgentToolTrace } from "../api";
 import ConversationList from "../components/ConversationList";
@@ -307,13 +308,14 @@ function AssistantMarkdown({ content }: { content: string }) {
             <code className="rounded bg-base-content/10 px-1 py-0.5 text-[0.85em]">{children}</code>
           ),
           // Hiérarchie de titres visible (avant : tout aplati en gras identique).
-          h1: ({ children }) => <h3 className="mt-1 text-lg font-semibold tracking-tight">{children}</h3>,
-          h2: ({ children }) => <h4 className="mt-4 text-base font-semibold">{children}</h4>,
-          h3: ({ children }) => <h5 className="mt-3 text-sm font-semibold text-base-content/80">{children}</h5>,
+          // Tailles en `em` : elles suivent le curseur de taille de texte (--agent-text-size).
+          h1: ({ children }) => <h3 className="mt-1 text-[1.2em] font-semibold tracking-tight">{children}</h3>,
+          h2: ({ children }) => <h4 className="mt-4 text-[1.08em] font-semibold">{children}</h4>,
+          h3: ({ children }) => <h5 className="mt-3 text-[0.95em] font-semibold text-base-content/80">{children}</h5>,
           // Tableaux GFM : défilement horizontal si large, bordures discrètes.
           table: ({ children }) => (
             <div className="overflow-x-auto">
-              <table className="my-2 w-full border-collapse text-xs">{children}</table>
+              <table className="my-2 w-full border-collapse text-[0.82em]">{children}</table>
             </div>
           ),
           thead: ({ children }) => <thead className="border-b border-base-content/20">{children}</thead>,
@@ -369,7 +371,8 @@ function ConstatRow({ section }: { section: AnswerSection }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="op-card-hover flex w-full items-center justify-between gap-2 rounded-lg border border-base-content/10 bg-base-200/40 px-3 py-2 text-left text-sm"
+        className="op-card-hover flex w-full items-center justify-between gap-2 rounded-lg border border-base-content/10 bg-base-200/40 px-3 py-2 text-left"
+        style={{ fontSize: "calc(var(--agent-text-size, 0.95rem) * 0.92)" }}
       >
         <span className="flex-1">
           <InlineMarkdown content={section.summary} />
@@ -473,7 +476,13 @@ export default function AgentPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [retryAfterMs, setRetryAfterMs] = useState<number | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  // Suit le bas du fil seulement si l'utilisateur y est déjà : s'il remonte
+  // relire pendant que l'agent travaille, chaque nouvelle étape ne le ramène pas en bas.
+  const stickToBottomRef = useRef(true);
   // Empêche l'effet de sauvegarde de ré-écrire (et donc de remonter `updatedAt`)
   // une conversation qu'on vient juste de CHARGER : ouvrir n'est pas modifier.
   const skipSaveRef = useRef(false);
@@ -518,8 +527,19 @@ export default function AgentPage() {
   // animations de scroll interrompues les unes par les autres. Smooth
   // seulement à la fin, pour l'agrément visuel.
   useEffect(() => {
+    if (!stickToBottomRef.current) return;
     bottomRef.current?.scrollIntoView({ behavior: loading ? "auto" : "smooth", block: "end" });
-  }, [thread, loading, liveEvents]);
+  }, [thread, loading, liveEvents, streamedAnswer]);
+
+  function handleScroll() {
+    const el = scrollRef.current;
+    if (!el) return;
+    stickToBottomRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
+  }
+
+  function stop() {
+    abortRef.current?.abort();
+  }
 
   // Compte à rebours du délai de quota relayé par le serveur (429) : le champ
   // reste désactivé jusqu'à expiration plutôt que de laisser réessayer à l'aveugle.
@@ -582,9 +602,13 @@ export default function AgentPage() {
     setThread(requestMessages);
     setInput("");
     setError(null);
+    setNotice(null);
     setLiveEvents([]);
     setStreamedAnswer(null);
     setLoading(true);
+    stickToBottomRef.current = true;
+    const controller = new AbortController();
+    abortRef.current = controller;
     try {
       // Streaming (bead aat.4) : les events tool_start/tool_end s'accumulent dans
       // `liveEvents`, repliés en étapes affichables par `foldAgentSteps`, rendues
@@ -602,13 +626,16 @@ export default function AgentPage() {
           }
         },
         convId,
+        controller.signal,
       );
       setThread(result.messages);
       if (result.trace.length > 0) {
         setTraceByIndex((prev) => ({ ...prev, [result.messages.length - 1]: result.trace }));
       }
     } catch (err) {
-      if (err instanceof AgentRateLimitError) {
+      if (controller.signal.aborted) {
+        setNotice(t("agent.stopped"));
+      } else if (err instanceof AgentRateLimitError) {
         setRetryAfterMs(err.retryAfterMs);
         setError(t("agent.quotaError", { seconds: Math.ceil(err.retryAfterMs / 1000) }));
       } else {
@@ -617,6 +644,7 @@ export default function AgentPage() {
       // On garde le message user affiché (requestMessages) : rien n'est perdu,
       // l'utilisateur peut relancer le même tour une fois l'erreur passée.
     } finally {
+      abortRef.current = null;
       setLoading(false);
       setLiveEvents([]);
       setStreamedAnswer(null);
@@ -691,7 +719,7 @@ export default function AgentPage() {
         )}
 
         {/* ── Fil unique : questions (bulles) + réponses (inline) ───────── */}
-        <div className="agent-scroll flex flex-col gap-3 px-3 py-3 md:px-6">
+        <div ref={scrollRef} onScroll={handleScroll} className="agent-scroll flex flex-col gap-3 px-3 py-3 md:px-6">
           {turns.length === 0 && !loading && (
             <div className="mx-auto w-full max-w-3xl py-4">
               <p className="mb-3 text-sm text-base-content/60">{t("agent.emptyDocIntro")}</p>
@@ -779,6 +807,7 @@ export default function AgentPage() {
             <span>{error}</span>
           </div>
         )}
+        {notice && <p className="mx-3 mb-2 text-sm text-base-content/60">{notice}</p>}
 
         <form
           className="flex items-center gap-2 border-t border-base-content/10 px-3 py-2.5"
@@ -794,9 +823,15 @@ export default function AgentPage() {
             onChange={(e) => setInput(e.target.value)}
             disabled={loading || retryAfterMs != null}
           />
-          <button type="submit" className="btn btn-primary" disabled={!canSend}>
-            {loading ? <span className="loading loading-spinner loading-sm" /> : <Send className="h-4 w-4" />}
-          </button>
+          {loading ? (
+            <button type="button" className="btn btn-outline" onClick={stop} title={t("agent.stop")} aria-label={t("agent.stop")}>
+              <Square className="h-4 w-4 fill-current" />
+            </button>
+          ) : (
+            <button type="submit" className="btn btn-primary" disabled={!canSend}>
+              <Send className="h-4 w-4" />
+            </button>
+          )}
         </form>
       </div>
     </>
