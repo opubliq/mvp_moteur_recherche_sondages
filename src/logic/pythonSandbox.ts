@@ -514,8 +514,9 @@ GABARIT (adapte seulement les recodages et les noms de variables) :
     d['province'] = d['code'].str[:2]                           # code de province du recensement
     prof = load_census_strata('circonscription_federale_2013')
     fit = mrp_fit(d, 'y', ['age', 'genre', 'education', 'province'], area='code',
-                  area_df=prof, area_vars=['pct_bac_plus_25_64', 'pct_lm_francais', 'revenu_median_apres_impot_menage_approx'])
-    print(fit.summary())
+                  area_df=prof, area_vars=['pct_bac_plus_25_64', 'pct_lm_francais', 'pct_age_65_plus',
+                             'revenu_median_apres_impot_menage_approx'])
+    print(fit.summary())                                        # si pas CONVERGENCE OK : relance avec warmup/draws plus eleves
     cells = build_poststrat('circonscription_federale_2013')    # ou 'rta', 'municipalite', ...
     res = mrp_poststrat(fit, cells, area_df=prof)               # area_df = profil du niveau CIBLE
     show_table(res.sort_values('estimate', ascending=False).head(15), 'Estimations MRP')
@@ -529,7 +530,12 @@ POINTS A RESPECTER
 - Projection a un niveau plus fin (rta, code_postal, municipalite...) : build_poststrat(<niveau fin>) et
   area_df = load_census_strata(<niveau fin>) ; l'effet de circonscription est alors tire de sa loi (plus d'incertitude).
 - Les poids d'enquete ne sont PAS utilises dans le modele : la post-stratification corrige la composition.
-- Rapporte estimate avec lo-hi (intervalle 90 %) et n_repondants par unite.
+- Rapporte estimate avec lo-hi (intervalle 90 %) et n_repondants par unite. Pas de seuil universel de n minimal :
+  c'est la largeur de l'intervalle qui dit si une estimation est utilisable ; signale les unites ou elle depasse ~20 points.
+- Langue : pas dans les cellules ; elle entre via pct_lm_francais (predicteur d'unite).
+- Projection sous le niveau ou le repondant est localise (rta, code_postal) : la litterature ne la valide que
+  faiblement -> presente-la comme EXPLORATOIRE (elle reflete surtout la composition demographique locale).
+- L'incertitude de la table reconstruite (IPF) n'est pas propagee : les intervalles sont un peu trop etroits.
 
 A DIRE DANS LA REPONSE
 Methode (MRP bayesien, effets aleatoires age/genre/education/province/circonscription + profils de territoire,

@@ -125,10 +125,18 @@ class MRPFit:
     n_respondents: int
     n_by_area: dict[str, int] = field(default_factory=dict)
     seconds: float = 0.0
+    max_rhat: float = float("nan")
+    divergences: int = 0
+
+    @property
+    def converged(self) -> bool:
+        return self.divergences == 0 and (np.isnan(self.max_rhat) or self.max_rhat < 1.01)
 
     def summary(self) -> str:
         s = self.samples
-        parts = [f"n={self.n_respondents}", f"tirages={len(s['alpha'])}", f"{self.seconds:.0f}s"]
+        parts = [f"n={self.n_respondents}", f"tirages={len(s['alpha'])}", f"{self.seconds:.0f}s",
+                 f"rhat_max={self.max_rhat:.3f}", f"divergences={self.divergences}",
+                 "CONVERGENCE OK" if self.converged else "ATTENTION : convergence douteuse (augmente warmup/draws)"]
         for g in self.groups:
             parts.append(f"sd[{g}]={np.median(s['sigma_' + g]):.2f}")
         if self.area:
@@ -216,9 +224,15 @@ def mrp_fit(
     samples = {k: np.asarray(v) for k, v in mcmc.get_samples().items()}
     if "beta" not in samples:
         samples["beta"] = np.zeros((len(samples["alpha"]), 0))
+    max_rhat = float("nan")
+    if chains > 1:
+        from numpyro.diagnostics import split_gelman_rubin
+        by_chain = mcmc.get_samples(group_by_chain=True)
+        max_rhat = float(max(np.nanmax(np.asarray(split_gelman_rubin(np.asarray(v)))) for v in by_chain.values()))
+    divergences = int(np.asarray(mcmc.get_extra_fields()["diverging"]).sum())
     n_by_area = d[area].astype(str).value_counts().to_dict() if area else {}
     return MRPFit(groups, levels, area, area_levels, area_vars, mean, sd, samples, len(d), n_by_area,
-                  time.time() - t0)
+                  time.time() - t0, max_rhat, divergences)
 
 
 def _effects(fit: MRPFit, name: str, known: list[str], values: pd.Series, rng) -> np.ndarray:
