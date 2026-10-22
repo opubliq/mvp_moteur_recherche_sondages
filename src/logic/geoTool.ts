@@ -383,6 +383,25 @@ async function geoGet(env: GeoToolEnv, path: string): Promise<Record<string, unk
   return (await res.json()) as Record<string, unknown>;
 }
 
+/**
+ * Bulk export census (bead 9ou.19) : `/profil/export/{niveau}`, binaire (Parquet), pour pont
+ * `run_python` (`load_census_strata`, pythonSandbox.ts). Passe par la même liste blanche que
+ * `geoGet` (le chemin matche `/^\/profil\/[a-z0-9_]+\/[^/]+$/` avec "export" comme 2e segment).
+ */
+export async function geoGetCensusExport(env: GeoToolEnv, niveau: string): Promise<Uint8Array> {
+  const path = `/profil/export/${encodeURIComponent(niveau)}`;
+  assertAllowedPath(path);
+  const f = env.fetch ?? fetch;
+  const headers: Record<string, string> = {};
+  if (env.getToken) headers.Authorization = `Bearer ${await env.getToken()}`;
+  const res = await f(`${env.baseUrl.replace(/\/+$/, "")}${path}`, { headers });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`geo-marketing-api HTTP ${res.status} sur ${path}${text ? ` : ${text.slice(0, 300)}` : ""}`);
+  }
+  return new Uint8Array(await res.arrayBuffer());
+}
+
 async function geoPostDonationIndex(env: GeoToolEnv, body: Record<string, unknown>): Promise<Record<string, unknown>> {
   if (!env.allowDonations) throw new GeoForbiddenPathError("/dons/indice");
   const f = env.fetch ?? fetch;

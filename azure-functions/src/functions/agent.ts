@@ -33,9 +33,11 @@ import {
 } from "../../../src/logic/pythonSandbox";
 import {
   createGeoTool,
+  geoGetCensusExport,
   geoManagedIdentityTokenProvider,
   geoStaticTokenProvider,
   isGeoDonationsAllowed,
+  type GeoTokenProvider,
   type GeoTool,
 } from "../../../src/logic/geoTool";
 import { MicrodataError, handleMicrodataQuery, fetchManifest, type MicrodataConfig } from "../microdata-core/core";
@@ -109,6 +111,7 @@ async function buildRunPythonTool(opts: {
   conversationId: string | undefined;
   microdataConfig: MicrodataConfig;
   context: InvocationContext;
+  geoEnv?: { baseUrl: string; getToken?: GeoTokenProvider };
 }): Promise<RunPythonTool | undefined> {
   if (process.env.RUN_PYTHON_ENABLED !== "true") return undefined;
   const poolManagementEndpoint = process.env.ACA_SESSIONS_POOL_ENDPOINT;
@@ -147,6 +150,10 @@ async function buildRunPythonTool(opts: {
       if (!res.ok) throw new Error(`blob HTTP ${res.status}`);
       return new Uint8Array(await res.arrayBuffer());
     },
+    // Pont census (bead 9ou.19) : présent seulement si l'outil géo (recensement) est aussi branché.
+    fetchCensusParquet: opts.geoEnv
+      ? (niveau) => geoGetCensusExport({ baseUrl: opts.geoEnv!.baseUrl, getToken: opts.geoEnv!.getToken }, niveau)
+      : undefined,
     limits: {
       maxCallsPerRequest: Number(process.env.RUN_PYTHON_MAX_CALLS_PER_REQUEST) || undefined,
       timeoutSeconds: Number(process.env.RUN_PYTHON_TIMEOUT_SECONDS) || undefined,
@@ -163,7 +170,7 @@ async function buildRunPythonTool(opts: {
  * en production, préférer la managed identity (`GEO_API_TOKEN_AUDIENCE`,
  * cf. docs/geo_integration.md).
  */
-function buildGeoTool(context: InvocationContext, auth: { email: string }): GeoTool | undefined {
+function buildGeoToolEnv(context: InvocationContext): { baseUrl: string; getToken?: GeoTokenProvider } | undefined {
   const baseUrl = process.env.GEO_API_BASE_URL;
   if (!baseUrl) return undefined;
   const audience = process.env.GEO_API_TOKEN_AUDIENCE;
@@ -182,12 +189,20 @@ function buildGeoTool(context: InvocationContext, auth: { email: string }): GeoT
         "(OK seulement si l'API géo est en dev local, ENVIRONNEMENT=dev).",
     );
   }
+  return { baseUrl, getToken };
+}
+
+function buildGeoTool(
+  env: { baseUrl: string; getToken?: GeoTokenProvider } | undefined,
+  auth: { email: string },
+): GeoTool | undefined {
+  if (!env) return undefined;
   const allowDonations = isGeoDonationsAllowed(
     auth.email,
     process.env.GEO_DONS_ENABLED,
     process.env.GEO_DONS_ALLOWED_EMAILS,
   );
-  return createGeoTool({ baseUrl, getToken, allowDonations });
+  return createGeoTool({ ...env, allowDonations });
 }
 
 export async function agent(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -256,8 +271,9 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
   const conversationId = typeof body.conversation_id === "string" && /^[A-Za-z0-9_-]{1,128}$/.test(body.conversation_id)
     ? body.conversation_id
     : undefined;
-  const runPython = await buildRunPythonTool({ auth, conversationId, microdataConfig, context });
-  const geoTool = buildGeoTool(context, auth);
+  const geoEnv = buildGeoToolEnv(context);
+  const runPython = await buildRunPythonTool({ auth, conversationId, microdataConfig, context, geoEnv });
+  const geoTool = buildGeoTool(geoEnv, auth);
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({

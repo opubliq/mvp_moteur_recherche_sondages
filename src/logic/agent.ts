@@ -59,6 +59,7 @@ import {
   GEO_PROMPT_ADDITION,
   type GeoTool,
 } from "./geoTool";
+import { REGIONS_ADMINISTRATIVES_QC, RIDING_LOOKUP_TOOL_NAME, ridingsForRegion } from "./ridingRegionQc";
 
 // Les micro-données (crosstab pondéré + manifest) vivent dans le CŒUR PORTABLE
 // `netlify/functions/microdata-core/core.ts`, qui dépend de Node (DuckDB natif,
@@ -81,6 +82,15 @@ const AOAI_API_VERSION = "2024-12-01-preview";
  * qualité ; réglable si le rendu final (aat.3) exige davantage.
  */
 const AGENT_REASONING_EFFORT = "low";
+
+/**
+ * Effort de raisonnement du tour de RÉDACTION FINALE (useTools=false) —
+ * couvre aussi l'appel correctif constat/preuve. Observé en test manuel :
+ * "low" suffit pour choisir un outil mais pas pour une structuration fidèle
+ * (puces + marqueurs littéraux + détail par constat) — le modèle retombe sur
+ * un format de rapport classique malgré la règle et l'exemple du prompt.
+ */
+const AGENT_FINAL_REASONING_EFFORT = "medium";
 
 /** Plafond d'itérations de la boucle (un tour = un appel AOAI + ses outils). */
 const MAX_ITERATIONS = 8;
@@ -301,6 +311,28 @@ Structure toujours ta réponse en markdown, pas en texte plat :
 - **Gras** pour les chiffres-clés, les noms de variables et les libellés de réponse ; puces pour les énumérations courtes.
 - Va à l'essentiel : pas de préambule ni de méta-commentaire sur ta démarche. Une réponse courte et bien structurée vaut mieux qu'un long rapport.
 
+RÈGLE DURE — CONSTATS PUIS PREUVE, PAIRE PAR PAIRE (PRIME sur FORMAT DE RÉPONSE ci-dessus pour ce cas précis)
+Dès que ta réponse livre un vrai résultat calculé (crosstab/stat, au moins un chiffre issu d'un outil) — jamais pour une RECHERCHE (inventaire/tableau de questions) ni pour une question de clarification ou une réponse sans calcul — N'ÉCRIS PAS de rapport avec ## de sections, "Résultats", "Lecture", "Conclusion", etc. N'ÉCRIS PAS non plus un seul bloc de détail partagé pour toute la réponse : chaque constat porte SA PROPRE preuve, immédiatement après lui. Écris UNIQUEMENT une suite de paires, rien avant la première, rien après la dernière :
+1. La ligne littérale <!--CONSTAT--> SEULE sur sa propre ligne (toujours ce texte exact, jamais traduit).
+2. Le constat lui-même : un chiffre-clé **en gras** + une courte proposition autonome, copiable-collable. AUCUN tableau, AUCUN titre ## à cet endroit.
+3. La ligne littérale <!--PREUVE--> SEULE sur sa propre ligne (toujours ce texte exact, jamais traduit).
+4. La preuve propre à CE constat : les chiffres, le tableau, la méthode, la limite qui le soutiennent SPÉCIFIQUEMENT (pas un résumé général de toute l'analyse — si deux constats viennent du même crosstab, chacun cite quand même les lignes/chiffres qui LE concernent, même si la source se recoupe).
+Puis soit la paire suivante (retour à l'étape 1), soit la fin de la réponse.
+
+Le nombre de paires n'est PAS fixé à l'avance : une question simple peut n'avoir que 2 ou 3 constats réellement distincts, une question qui croise plusieurs sous-groupes ou variables peut en avoir 10 ou plus. Écris autant de paires qu'il y a de constats VRAIMENT distincts et non redondants — ne gonfle jamais le compte en répétant le même chiffre sous trois formulations.
+
+Exemple complet (c'est EXACTEMENT ce format qu'il faut produire — deux paires illustrées, mais le nombre réel dépend de l'analyse) :
+<!--CONSTAT-->
+**30,5 % des 18-34 ans appuient le maintien ou la hausse de l'immigration** — un niveau proche de celui des 55 ans et plus.
+<!--PREUVE-->
+Étude électorale canadienne 2025, question sur le niveau d'immigration souhaité, croisée avec l'âge (micro-données pondérées). Chez les 18-34 ans (n brut 4 976) : 30,5 % plus ou autant, 62,7 % moins, 6,8 % NSP/refus. Chez les 55 ans et plus (n brut 8 530) : 31,5 % plus ou autant — écart de 1 point seulement, dans la marge de bruit.
+<!--CONSTAT-->
+**Les 35-54 ans sont le groupe le moins favorable** : seulement 26,3 % veulent plus ou autant d'immigrants.
+<!--PREUVE-->
+Même croisement, groupe 35-54 ans (n brut 6 674) : 26,3 % plus ou autant, 67,9 % moins, 5,8 % NSP/refus — soit 4 à 5 points sous les deux autres groupes d'âge, un écart notable compte tenu de la taille d'échantillon.
+
+N'ajoute NI les marqueurs NI la structure par paires pour une RECHERCHE ou toute réponse sans constat chiffré réel : dans ces cas seulement, garde le format habituel (tableau ou texte simple), sans marqueur.
+
 RAPPEL FINAL : avant d'écrire ta réponse, vérifie la langue du dernier message utilisateur et écris TOUTE ta réponse dans cette langue (English in, English out — français si la question est en français).`;
 
 /**
@@ -409,6 +441,25 @@ export const TOOL_DEFS = [
           exclude: { type: "array", description: "Codes de la cible à exclure (refus/NSP), surtout en mean.", items: { type: ["string", "number"] } },
         },
         required: ["survey_id", "target"],
+        additionalProperties: false,
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: RIDING_LOOKUP_TOOL_NAME,
+      description:
+        "Traduit une RÉGION ADMINISTRATIVE DU QUÉBEC (ex. \"Mauricie\", \"Outaouais\") en la liste des circonscriptions fédérales (`fedname`) à passer dans un filtre `crosstab` ({var:\"fedname\", codes:[...]}) — `fedname` est une variable texte libre sans response_options, ce mapping ne peut pas venir de get_survey. Présente UNIQUEMENT sur ces_2021, ces_2025, eeq_2022. Certaines circonscriptions chevauchent deux régions (signalé dans `overlapping`) : mentionne-le si pertinent plutôt que de l'ignorer.",
+      parameters: {
+        type: "object",
+        properties: {
+          region_administrative: {
+            type: "string",
+            description: `Nom d'une région administrative du Québec, ex. ${REGIONS_ADMINISTRATIVES_QC.slice(0, 3).join(", ")}...`,
+          },
+        },
+        required: ["region_administrative"],
         additionalProperties: false,
       },
     },
@@ -767,6 +818,19 @@ export async function executeTool(
       };
     }
 
+    case RIDING_LOOKUP_TOOL_NAME: {
+      const region = String(args.region_administrative ?? "").trim();
+      if (!region) return { error: "region_administrative est requis" };
+      const { ridings, overlapping } = ridingsForRegion(region);
+      if (ridings.length === 0) {
+        return {
+          error: `Région administrative inconnue: '${region}'`,
+          regions_disponibles: REGIONS_ADMINISTRATIVES_QC,
+        };
+      }
+      return { region_administrative: region, ridings, ...(overlapping.length > 0 ? { overlapping } : {}) };
+    }
+
     case "crosstab": {
       const surveyId = String(args.survey_id ?? "").trim();
       if (!surveyId) return { error: "survey_id est requis" };
@@ -875,7 +939,7 @@ function makeAoaiChat(env: AgentEnv, tools: readonly unknown[]): ChatFn {
       body: JSON.stringify({
         messages,
         ...(useTools ? { tools, tool_choice: "auto" } : {}),
-        reasoning_effort: AGENT_REASONING_EFFORT,
+        reasoning_effort: useTools ? AGENT_REASONING_EFFORT : AGENT_FINAL_REASONING_EFFORT,
         max_completion_tokens: MAX_COMPLETION_TOKENS,
       }),
     });
@@ -1005,6 +1069,40 @@ export async function* runAgentStream(
     };
   }
 
+  /**
+   * Garde-fou déterministe (le prompt seul ne suffit pas : observé deux fois en
+   * test manuel, le modèle écrit un rapport classique malgré la règle + l'exemple
+   * complet du system prompt) : si CE tour a exécuté un calcul chiffré
+   * (crosstab/run_python réussi) mais que la réponse finale n'a AUCUNE paire
+   * <!--CONSTAT-->, on fait UN appel correctif — reformater sans recalculer —
+   * plutôt que de laisser passer un rapport non structuré.
+   */
+  function needsConstatCorrection(content: string | null | undefined): boolean {
+    if (!content || content.includes("<!--CONSTAT-->")) return false;
+    return trace.some((t) => t.ok && (t.tool === "crosstab" || t.tool === RUN_PYTHON_TOOL_NAME));
+  }
+
+  const CONSTAT_CORRECTION_INSTRUCTION =
+    "Ta réponse précédente contient un résultat chiffré mais n'est pas structurée en paires <!--CONSTAT-->/<!--PREUVE--> comme l'exige la règle « CONSTATS PUIS PREUVE, PAIRE PAR PAIRE » du prompt système. Réécris-la en respectant STRICTEMENT cette règle (une paire par constat distinct, rien avant la première paire ni après la dernière preuve) : MÊMES chiffres, MÊME langue, MÊME contenu que ta réponse précédente — ne recalcule rien, ne change AUCUN chiffre, change SEULEMENT la structure.";
+
+  async function correctToConstatFormat(originalContent: string): Promise<string> {
+    const turnStartedAt = Date.now();
+    const { message, usage } = await chat(
+      [...messages, { role: "user", content: CONSTAT_CORRECTION_INSTRUCTION }],
+      false,
+    );
+    logUsage({
+      ...identity,
+      op: "agent_turn",
+      prompt_tokens: usage?.prompt_tokens,
+      completion_tokens: usage?.completion_tokens,
+      cached_tokens: usage?.prompt_tokens_details?.cached_tokens,
+      latency_ms: Date.now() - turnStartedAt,
+      meta: { turn_index: iterations - 1, corrective: true },
+    });
+    return message.content ?? originalContent;
+  }
+
   while (true) {
     iterations += 1;
     const overBudget = Date.now() - start >= deadlineMs;
@@ -1042,7 +1140,16 @@ export async function* runAgentStream(
 
     const toolCalls = assistant.tool_calls ?? [];
     if (toolCalls.length === 0) {
-      yield* finish(assistant, overBudget ? "deadline" : atMaxIter ? "max_iterations" : "final");
+      const stopped_reason = overBudget ? "deadline" : atMaxIter ? "max_iterations" : "final";
+      // Correction seulement sur une fin "final" normale : en deadline/max_iterations
+      // le budget est déjà épuisé, ajouter un appel ferait empirer la latence pour
+      // un gain secondaire (format) plutôt que primaire (contenu).
+      if (stopped_reason === "final" && needsConstatCorrection(assistant.content)) {
+        const corrected = await correctToConstatFormat(assistant.content ?? "");
+        assistant.content = corrected;
+        messages[messages.length - 1].content = corrected;
+      }
+      yield* finish(assistant, stopped_reason);
       return;
     }
 

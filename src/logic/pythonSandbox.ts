@@ -36,7 +36,17 @@ export const RUN_PYTHON_TOOL_DEF = {
       "pour les analyses que `crosstab` ne couvre pas : régressions multivariées, pondération, tendances entre sondages, profils. " +
       "Passe `survey_ids` pour charger les micro-données : chaque sondage est disponible dans `/mnt/data/<survey_id>.parquet` " +
       "et via `load('<survey_id>')` (DataFrame pandas). Colonnes : `__respondent_id`, `__weight` (poids, À UTILISER pour toute " +
-      "estimation), puis les variables raw (codes ; labels via get_survey). Les variables Python et les fichiers persistent " +
+      "estimation), puis les variables raw (codes ; labels via get_survey). " +
+      "Passe `census_niveaux` (ex. `[\"circonscription_2026\"]`) pour charger, en plus, le profil de recensement 2021 de " +
+      "TOUTES les unités de ce niveau géographique via `load_census_strata('<niveau>')` (DataFrame pandas, une ligne par " +
+      "unité : `code`, `nom`, `population`, `menages`, puis des ratios agrégés `pct_*`/`revenu_*` par unité — PAS une table " +
+      "de comptes croisés par cellule démographique). Utile pour joindre un niveau géo des micro-données de sondage à ces " +
+      "covariables de territoire (ex. petite régression multiniveau + repondération approximative par zone) ; niveaux " +
+      "disponibles via l'outil geo_profile (`niveaux`). " +
+      "`ipf(seed, marginals, dims)` : reconstruit une table de cellules croisées (post-strat MRP, une ligne par " +
+      "combinaison de `dims`) par iterative proportional fitting à partir des marginaux `pct_*`/`population` de " +
+      "`load_census_strata` (quand aucune vraie table croisée n'est disponible) — voir sa docstring pour le format exact. " +
+      "Les variables Python et les fichiers persistent " +
       "entre les appels d'une même conversation. Sortie : `print(...)` (tronquée), `show_table(df, title)` pour un petit tableau, " +
       "et les figures sont capturées automatiquement en PNG : toute figure matplotlib ouverte, et tout ggplot plotnine " +
       "(grammaire ggplot2 : `from plotnine import *`) affiché par `p.show()` ou laissé en dernière expression. Un style " +
@@ -48,6 +58,11 @@ export const RUN_PYTHON_TOOL_DEF = {
         survey_ids: {
           type: "array",
           description: "Sondages dont les micro-données doivent être chargées dans la session (optionnel si déjà chargés).",
+          items: { type: "string" },
+        },
+        census_niveaux: {
+          type: "array",
+          description: "Niveaux géographiques (recensement 2021) à charger en bulk dans la session (optionnel si déjà chargés).",
           items: { type: "string" },
         },
       },
@@ -70,6 +85,8 @@ export interface RunPythonLimits {
   maxCodeChars: number;
   /** Sondages max par appel. */
   maxSurveysPerCall: number;
+  /** Niveaux census max par appel (bulk export, bead 9ou.19). */
+  maxCensusNiveauxPerCall: number;
   /** Taille max d'un Parquet téléversé (octets). Plafond plateforme : 128 Mo. */
   maxUploadBytes: number;
   /** Troncature de stdout / stderr renvoyés (caractères). */
@@ -89,6 +106,7 @@ export const DEFAULT_RUN_PYTHON_LIMITS: RunPythonLimits = {
   timeoutSeconds: 90,
   maxCodeChars: 20_000,
   maxSurveysPerCall: 5,
+  maxCensusNiveauxPerCall: 3,
   maxUploadBytes: 100 * 1024 * 1024,
   maxStdoutChars: 8_000,
   maxStderrChars: 4_000,
@@ -331,6 +349,7 @@ export async function sessionIdentifier(secret: string, userId: string, conversa
 // ---------------------------------------------------------------------------
 
 const SURVEY_ID_RE = /^[A-Za-z0-9_-]{1,100}$/;
+const CENSUS_NIVEAU_RE = /^[a-z0-9_]{1,40}$/;
 
 /**
  * Palette des figures, alignée sur le thème de l'app (src/index.css) : teal
@@ -425,6 +444,33 @@ _opq_tables = []
 def load(survey_id):
     import pandas as _pd
     return _pd.read_parquet(f"/mnt/data/{survey_id}.parquet")
+def load_census_strata(niveau):
+    import pandas as _pd
+    return _pd.read_parquet(f"/mnt/data/census_{niveau}.parquet")
+def ipf(seed, marginals, dims, max_iter=50, tol=1e-6):
+    """Iterative proportional fitting (raking) : estime une table de cellules croisées
+    (post-strat, une ligne par combinaison de 'dims') cohérente avec des marginaux connus,
+    à partir d'une table 'seed' (comptes initiaux, même forme que la cible, ex. 1 partout si
+    aucune info a priori sur les corrélations entre dimensions).
+    - seed : DataFrame avec une colonne par dim de 'dims' + une colonne 'n' (compte initial).
+    - marginals : dict {dim: DataFrame[dim, 'n']} - total connu par modalité de CHAQUE dimension.
+    - dims : liste des colonnes de dimension (ex. ['age_grp', 'sexe', 'educ']).
+    Retourne seed avec 'n' ajusté pour matcher exactement chaque marginal (aux 'tol' près).
+    Limite : suppose l'indépendance conditionnelle résiduelle entre dims non observée dans 'seed' ;
+    une vraie table de cellules croisées (recensement) reste préférable quand elle existe."""
+    import pandas as _pd
+    df = seed.copy()
+    for _ in range(max_iter):
+        maxdiff = 0.0
+        for d in dims:
+            target = marginals[d].set_index(d)["n"]
+            cur = df.groupby(d)["n"].sum()
+            factor = (target / cur.replace(0, _pd.NA)).reindex(df[d]).fillna(1.0).to_numpy()
+            df["n"] = df["n"].to_numpy() * factor
+            maxdiff = max(maxdiff, float((cur - target.reindex(cur.index)).abs().max()))
+        if maxdiff < tol:
+            break
+    return df
 def show_table(df, title=None):
     try:
         import pandas as _pd
@@ -510,6 +556,7 @@ export interface RunPythonResult {
   figures: SandboxFigure[];
   tables: SandboxTable[];
   loaded_surveys: string[];
+  loaded_census_niveaux: string[];
   duration_ms: number;
 }
 
@@ -522,6 +569,11 @@ export interface RunPythonDeps {
    * tenant (lever / rejeter si le sondage n'est pas accessible).
    */
   fetchParquet(surveyId: string): Promise<Uint8Array>;
+  /**
+   * Octets du bulk export census d'un niveau géo (bead 9ou.19, `/profil/export/{niveau}`
+   * côté geo-marketing-api). Absent = `census_niveaux` refusé (feature flag géo non branché).
+   */
+  fetchCensusParquet?(niveau: string): Promise<Uint8Array>;
   limits?: Partial<RunPythonLimits>;
   now?: () => number;
 }
@@ -577,6 +629,18 @@ export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
     const bad = surveyIds.find((s) => !SURVEY_ID_RE.test(s));
     if (bad) return { error: `survey_id invalide : ${bad}` };
 
+    const rawNiveaux = args.census_niveaux === undefined ? [] : args.census_niveaux;
+    if (!Array.isArray(rawNiveaux)) return { error: "census_niveaux doit être une liste" };
+    const censusNiveaux = [...new Set(rawNiveaux.map((s) => String(s).trim()).filter(Boolean))];
+    if (censusNiveaux.length > 0 && !deps.fetchCensusParquet) {
+      return { error: "census_niveaux n'est pas disponible pour cette requête" };
+    }
+    if (censusNiveaux.length > limits.maxCensusNiveauxPerCall) {
+      return { error: `trop de niveaux census (max ${limits.maxCensusNiveauxPerCall} par appel)` };
+    }
+    const badNiveau = censusNiveaux.find((n) => !CENSUS_NIVEAU_RE.test(n));
+    if (badNiveau) return { error: `census niveau invalide : ${badNiveau}` };
+
     if (calls >= limits.maxCallsPerRequest) {
       return { error: `plafond d'appels run_python atteint (${limits.maxCallsPerRequest} par requête) ; rédige ta réponse` };
     }
@@ -584,7 +648,7 @@ export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
 
     const start = now();
     try {
-      if (surveyIds.length > 0) {
+      if (surveyIds.length > 0 || censusNiveaux.length > 0) {
         const present = new Set(await deps.executor.listFiles(deps.sessionId));
         for (const id of surveyIds) {
           const filename = `${id}.parquet`;
@@ -597,6 +661,20 @@ export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
           }
           if (bytes.byteLength > limits.maxUploadBytes) {
             return { error: `Parquet de ${id} trop volumineux pour le bac à sable` };
+          }
+          await deps.executor.uploadFile(deps.sessionId, filename, bytes);
+        }
+        for (const niveau of censusNiveaux) {
+          const filename = `census_${niveau}.parquet`;
+          if (present.has(filename)) continue;
+          let bytes: Uint8Array;
+          try {
+            bytes = await deps.fetchCensusParquet!(niveau);
+          } catch (err) {
+            return { error: `census indisponible pour ${niveau} : ${err instanceof Error ? err.message : String(err)}` };
+          }
+          if (bytes.byteLength > limits.maxUploadBytes) {
+            return { error: `Parquet census de ${niveau} trop volumineux pour le bac à sable` };
           }
           await deps.executor.uploadFile(deps.sessionId, filename, bytes);
         }
@@ -645,6 +723,7 @@ export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
         figures,
         tables,
         loaded_surveys: surveyIds,
+        loaded_census_niveaux: censusNiveaux,
         duration_ms: now() - start,
       };
     } catch (err) {

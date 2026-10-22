@@ -59,6 +59,7 @@ SOCIODEMO_VARS: dict[str, str] = {
     "cps25_income": "income",
     "cps25_province": "region",
     "pes25_province": "region",
+    "fedname": "riding",
     "cps25_employment": "occupation",
     "cps25_marital": "marital_status",
     "pes25_lang": "language",
@@ -228,8 +229,7 @@ EXCLUDED_VARS: dict[str, str] = {
     "pes24_place_live_s8_text_fr": (
         "texte de géocodage PCCF (lieu de résidence s8 FR)"
     ),
-    "feduid": "identifiant de circonscription fédérale (FEDuid-2013)",
-    "fedname": "nom de circonscription fédérale (FEDname-2013)",
+    "feduid": "identifiant numérique de circonscription fédérale (FEDuid-2013), redondant avec fedname (ingéré)",
     "premier": "nom du premier ministre provincial (variable de contexte)",
     "Region": "macro-région canadienne dérivée de la province",
     "most_seats": (

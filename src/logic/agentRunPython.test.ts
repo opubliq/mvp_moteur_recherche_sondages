@@ -59,6 +59,7 @@ const okResult: RunPythonResult = {
   figures: [{ id: "fig-1", mime: "image/png", base64: "QUJD" }],
   tables: [],
   loaded_surveys: ["ces_2021"],
+  loaded_census_niveaux: [],
   duration_ms: 12,
 };
 

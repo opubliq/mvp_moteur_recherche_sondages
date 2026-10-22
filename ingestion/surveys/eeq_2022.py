@@ -127,12 +127,9 @@ EXCLUDED_META: dict[str, str] = {
         "flag technique de géocodage postal (Postal Code Conversion File), pas une question"
     ),
     "feduid": (
-        "identifiant de circonscription fédérale dérivé du code postal du répondant "
-        "(géographie administrative appariée par le fournisseur, jamais posée au répondant)"
-    ),
-    "fedname": (
-        "nom de circonscription fédérale dérivé du code postal du répondant "
-        "(géographie administrative appariée par le fournisseur, jamais posée au répondant)"
+        "identifiant numérique de circonscription fédérale, redondant avec "
+        "fedname (ingéré) — géographie administrative appariée par le "
+        "fournisseur via le code postal, jamais posée au répondant"
     ),
     # --- Fragments de texte interne (piping Qualtrics) ---
     "pid_fr": (
@@ -392,6 +389,7 @@ SOCIODEMO_VARS: dict[str, str] = {
     "cps_income": "income",  # revenu exact du ménage (2021)
     "cps_income2": "income",  # revenu du ménage par tranche (repli si montant exact refusé)
     "cps_province": "region",  # province/territoire de résidence
+    "fedname": "riding",  # circonscription fédérale (nom), dérivée du code postal
     "pes_employed": "occupation",  # statut d'emploi actuel
     "pes_married": "marital_status",  # état civil
 }

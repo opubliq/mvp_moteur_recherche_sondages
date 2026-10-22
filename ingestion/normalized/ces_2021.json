@@ -15607,6 +15607,19 @@
       "themes": []
     },
     {
+      "variable": "fedname",
+      "question_text": "Federal electoral district name",
+      "display_label": null,
+      "response_options": [],
+      "var_type": "open",
+      "text_kind": null,
+      "is_sociodemo": true,
+      "is_ordinal": false,
+      "sociodemo_type": "riding",
+      "concepts": [],
+      "themes": []
+    },
+    {
       "variable": "provcode",
       "question_text": "Embedded data field capturing province",
       "display_label": null,

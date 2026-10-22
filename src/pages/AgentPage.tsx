@@ -1,5 +1,6 @@
 /**
- * Agent analytique conversationnel — chat multi-conversations, layout 2 colonnes.
+ * Agent analytique conversationnel — chat multi-conversations, fil UNIQUE
+ * (colonne pleine largeur).
  *
  * Câble le chat sur `/agent` (aat.1) en STREAMING (aat.4) : un POST par tour,
  * réinjection du `messages` renvoyé par le serveur pour poursuivre la
@@ -7,18 +8,19 @@
  * session côté back). Les questions de clarification de l'agent n'ont pas de
  * traitement spécial : ce sont des tours d'assistant normaux.
  *
- * LAYOUT (bead agy) :
- *  - COLONNE GAUCHE = navigation + fil. Liste des conversations (nouveau chat,
- *    reprise, renommage, suppression), messages utilisateur, pastilles d'outils,
- *    saisie. Les réponses de l'agent n'y figurent qu'en ENTRÉES CLIQUABLES.
- *  - COLONNE DROITE = le livrable de l'agent : rendu Markdown, qui se lit
- *    comme un document, sans bulle ni chrome de chat — PLUS les figures/
- *    tableaux `run_python` (bead UI figures) de la réponse affichée, puisque
- *    c'est elle qui les a produits. Elle affiche par défaut la DERNIÈRE
- *    réponse (et ses figures en direct dès qu'elles arrivent, avant même le
- *    texte final) ; cliquer une entrée à gauche y épingle ce tour-là (le fil
- *    peut être long, on veut pouvoir relire un résultat intermédiaire sans
- *    perdre la suite).
+ * LAYOUT (bead agy, révisé) : plus de panneau "document" séparé — chaque
+ * réponse d'assistant se rend EN LIGNE dans le fil, juste sous la question qui
+ * l'a produite :
+ *  - réponse de RECHERCHE/inventaire (pas de marqueur `<!--DETAIL-->`,
+ *    `splitAnswerSections` renvoie `detail: null`) : rendue telle quelle
+ *    (`AssistantMarkdown`), comme avant dans le panneau document.
+ *  - réponse d'ANALYSE (marqueur présent) : d'abord les puces "constat"
+ *    (citables, chiffrées), repliées sur le détail complet (méthode, nombres,
+ *    mises en garde) qui ne s'affiche qu'au clic — l'utilisateur voit le
+ *    résultat sans creuser, et peut vérifier la preuve en un clic.
+ *  - les figures/tableaux `run_python` (bead UI figures) et les étapes de
+ *    l'agent (`StepList`) restent attachés à LEUR tour, pas à un panneau
+ *    global.
  *
  * La persistance des conversations est déléguée à `logic/conversations.ts`
  * (backend `/conversations`, scopé par utilisateur — f3i.19.6) : le corps
@@ -30,10 +32,10 @@
  * HORS SCOPE ICI (délégué) : garde-fous structurés / parsing fin de la trace
  * (raw_n, écart significatif vs bruit en badges) (aat.5) — la trace est affichée
  * simplement : étapes (`logic/agentSteps.ts`, pure et testée) avec leur libellé
- * humain, repliables, plus les figures/tableaux dans le panneau Réponse.
+ * humain, repliables, plus les figures/tableaux attachés au tour.
  */
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import {
@@ -48,8 +50,9 @@ import {
   Plus,
   History,
   ChevronDown,
-  ArrowDownToLine,
-  FileText,
+  MapPin,
+  Compass,
+  ALargeSmall,
 } from "lucide-react";
 import { agentChatStream, AgentRateLimitError, type AgentMessage, type AgentToolTrace } from "../api";
 import ConversationList from "../components/ConversationList";
@@ -71,6 +74,7 @@ import {
   type AgentStep,
   type AgentToolEvent,
 } from "../logic/agentSteps";
+import { splitAnswerSections, type AnswerSection } from "../logic/agentAnswerSections";
 import type { SandboxFigure, SandboxTable } from "../logic/pythonSandbox";
 import { useLanguage } from "../context/LanguageContext";
 import type { TranslationKey } from "../i18n/fr";
@@ -84,7 +88,39 @@ interface DisplayTurn {
   trace?: AgentToolTrace[];
 }
 
-const EXAMPLE_KEYS: TranslationKey[] = ["agent.example1", "agent.example2", "agent.example3"];
+interface AgentUsecase {
+  icon: typeof Search;
+  titleKey: TranslationKey;
+  subtitleKey: TranslationKey;
+  exampleKey: TranslationKey;
+}
+
+const AGENT_USECASES: AgentUsecase[] = [
+  {
+    icon: Search,
+    titleKey: "agent.usecase.search.title",
+    subtitleKey: "agent.usecase.search.subtitle",
+    exampleKey: "agent.usecase.search.example",
+  },
+  {
+    icon: Table2,
+    titleKey: "agent.usecase.finding.title",
+    subtitleKey: "agent.usecase.finding.subtitle",
+    exampleKey: "agent.usecase.finding.example",
+  },
+  {
+    icon: MapPin,
+    titleKey: "agent.usecase.geoProfile.title",
+    subtitleKey: "agent.usecase.geoProfile.subtitle",
+    exampleKey: "agent.usecase.geoProfile.example",
+  },
+  {
+    icon: Compass,
+    titleKey: "agent.usecase.geoCross.title",
+    subtitleKey: "agent.usecase.geoCross.subtitle",
+    exampleKey: "agent.usecase.geoCross.example",
+  },
+];
 
 /** Icône par outil — repère visuel rapide, pas une taxonomie à maintenir. */
 function toolIcon(tool: string) {
@@ -251,7 +287,10 @@ function ResultGallery({ figures, tables }: { figures: SandboxFigure[]; tables: 
  *  Occupe la colonne de droite : typo de document, pas de bulle. */
 function AssistantMarkdown({ content }: { content: string }) {
   return (
-    <div className="space-y-3 text-[0.95rem] leading-relaxed [&_strong]:font-semibold">
+    <div
+      className="space-y-3 leading-relaxed [&_strong]:font-semibold"
+      style={{ fontSize: "var(--agent-text-size, 0.95rem)" }}
+    >
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
@@ -295,25 +334,131 @@ function AssistantMarkdown({ content }: { content: string }) {
   );
 }
 
-/** Première ligne utile d'une réponse — sert d'étiquette dans le fil de gauche. */
-function excerpt(md: string, t: (key: TranslationKey) => string): string {
-  const line = md
-    .split("\n")
-    .map((l) => l.replace(/^[#>*\-\s]+/, "").trim())
-    .find((l) => l.length > 0);
-  if (!line) return t("agent.excerptFallback");
-  return line.length > 90 ? `${line.slice(0, 89)}…` : line;
+/** Rendu Markdown INLINE (pas de `<p>` bloc) pour une puce de constat : le
+ *  `**gras**`/les liens doivent marcher sans réintroduire la marge/typo de
+ *  paragraphe d'`AssistantMarkdown` sur une simple ligne de liste. */
+function InlineMarkdown({ content }: { content: string }) {
+  return (
+    <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
+      components={{
+        p: ({ children }) => <>{children}</>,
+        a: ({ children, href }) => (
+          <a href={href} target="_blank" rel="noreferrer" className="text-primary underline underline-offset-2">
+            {children}
+          </a>
+        ),
+      }}
+    >
+      {content}
+    </ReactMarkdown>
+  );
+}
+
+/**
+ * Une ligne "constat" repliable INDÉPENDANTE : son propre `detail` s'affiche
+ * sous ELLE (pas dans un panneau partagé) au clic — chaque constat a son
+ * bascule propre, cf. nouveau contrat de `splitAnswerSections` (un `detail`
+ * par constat, plus un seul détail pour tout le tour).
+ */
+function ConstatRow({ section }: { section: AnswerSection }) {
+  const { t } = useLanguage();
+  const [open, setOpen] = useState(false);
+  return (
+    <li>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="op-card-hover flex w-full items-center justify-between gap-2 rounded-lg border border-base-content/10 bg-base-200/40 px-3 py-2 text-left text-sm"
+      >
+        <span className="flex-1">
+          <InlineMarkdown content={section.summary} />
+        </span>
+        <ChevronDown className={`h-3 w-3 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="border-t border-base-content/10 pl-3 pt-2">
+          {section.detail ? <AssistantMarkdown content={section.detail} /> : (
+            <p className="text-xs text-base-content/50">{t("agent.noDetail")}</p>
+          )}
+        </div>
+      )}
+    </li>
+  );
+}
+
+/**
+ * Réponse d'assistant rendue EN LIGNE dans le fil (remplace l'ancienne carte
+ * cliquable + panneau document séparé, bead agy révisé) : figures/tableaux
+ * attachés à CE tour, puis soit le Markdown brut (réponse RECHERCHE, pas de
+ * marqueur), soit une liste de constats (réponse ANALYSE) — CHAQUE constat a
+ * désormais son propre bascule indépendant (`ConstatRow`), plus de panneau de
+ * détail partagé pour tout le tour (cf. contrat de `splitAnswerSections`).
+ */
+function AssistantAnswer({ turn }: { turn: DisplayTurn }) {
+  const { figures, tables } = collectTraceResults(turn.trace);
+  const sections = splitAnswerSections(turn.content);
+  const steps = turn.trace && turn.trace.length > 0 ? stepsFromTrace(turn.trace) : [];
+
+  return (
+    <div className="rounded-xl border border-base-content/10 px-3.5 py-3">
+      <ResultGallery figures={figures} tables={tables} />
+      {sections == null ? (
+        <AssistantMarkdown content={turn.content} />
+      ) : (
+        <ul className="space-y-1.5">
+          {sections.map((section, i) => (
+            <ConstatRow key={i} section={section} />
+          ))}
+        </ul>
+      )}
+      {steps.length > 0 && (
+        <div className="mt-2 border-t border-base-content/10 pt-2">
+          <StepList steps={steps} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Clé localStorage du confort de lecture choisi — préférence par appareil,
+ *  pas une donnée de conversation : jamais dans `conversations.ts`. */
+const TEXT_SIZE_KEY = "opubliq_agent_text_scale";
+const TEXT_SCALE_MIN = 80;
+const TEXT_SCALE_MAX = 120;
+const TEXT_SCALE_DEFAULT = 100;
+
+function readStoredTextScale(): number {
+  try {
+    const raw = Number(localStorage.getItem(TEXT_SIZE_KEY));
+    if (Number.isFinite(raw) && raw >= TEXT_SCALE_MIN && raw <= TEXT_SCALE_MAX) return raw;
+  } catch {
+    // stockage indisponible (navigation privée, etc.)
+  }
+  return TEXT_SCALE_DEFAULT;
 }
 
 export default function AgentPage() {
   const { t } = useLanguage();
   const [convId, setConvId] = useState<string>(() => newConversationId());
+  // Taille de texte du fil (confort de lecture, bead UI compacité) : curseur
+  // continu %, persisté côté navigateur, jamais envoyé au serveur ni mêlé à
+  // une conversation. Le bouton "Aa" ouvre/ferme le curseur plutôt que de
+  // basculer directement une valeur — réglage fin, pas un simple on/off.
+  const [textScale, setTextScale] = useState<number>(readStoredTextScale);
+  const [textSizeOpen, setTextSizeOpen] = useState(false);
+  function setAndStoreTextScale(next: number) {
+    setTextScale(next);
+    try {
+      localStorage.setItem(TEXT_SIZE_KEY, String(next));
+    } catch {
+      // stockage indisponible : on continue sans persister
+    }
+  }
   const [metas, setMetas] = useState<ConversationMeta[]>([]);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [thread, setThread] = useState<AgentMessage[]>([]);
   const [traceByIndex, setTraceByIndex] = useState<Record<number, AgentToolTrace[]>>({});
-  // Tour épinglé à droite. `null` = suivre la dernière réponse (comportement par défaut).
-  const [pinnedIndex, setPinnedIndex] = useState<number | null>(null);
   // Events tool_start/tool_end du tour EN COURS, streamés au fil de l'eau (bead
   // aat.4). Vidé une fois le tour terminé : la trace définitive vit alors dans
   // `traceByIndex`. Repliés en étapes affichables par `foldAgentSteps` (pure,
@@ -322,14 +467,13 @@ export default function AgentPage() {
   const liveSteps = useMemo(() => foldAgentSteps(liveEvents), [liveEvents]);
   const liveResults = useMemo(() => collectStepResults(liveSteps), [liveSteps]);
   // Réponse reçue via l'event `message`, avant le `done` qui clôt le tour : permet
-  // d'afficher le Markdown à droite dès qu'il existe.
+  // d'afficher le Markdown du tour en vol dès qu'elle existe, inline dans le fil.
   const [streamedAnswer, setStreamedAnswer] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [retryAfterMs, setRetryAfterMs] = useState<number | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const docRef = useRef<HTMLDivElement>(null);
   // Empêche l'effet de sauvegarde de ré-écrire (et donc de remonter `updatedAt`)
   // une conversation qu'on vient juste de CHARGER : ouvrir n'est pas modifier.
   const skipSaveRef = useRef(false);
@@ -395,28 +539,6 @@ export default function AgentPage() {
       trace: traceByIndex[index],
     }));
 
-  const answers = turns.filter((t) => t.role === "assistant");
-  const lastAnswer = answers.length > 0 ? answers[answers.length - 1] : null;
-  const pinned = pinnedIndex != null ? (answers.find((t) => t.index === pinnedIndex) ?? null) : null;
-  // Ce qu'affiche la colonne de droite : le tour épinglé, sinon la réponse en
-  // cours de streaming, sinon la dernière réponse du fil.
-  const docTurn = pinned ?? (streamedAnswer != null ? null : lastAnswer);
-  const docContent = pinned ? pinned.content : (streamedAnswer ?? lastAnswer?.content ?? null);
-  const isPinnedStale = pinned != null && lastAnswer != null && pinned.index !== lastAnswer.index;
-  // Figures/tableaux attachés à CETTE réponse : le tour épinglé en relecture,
-  // sinon le tour en cours de streaming (ses figures peuvent arriver avant le
-  // texte final), sinon la dernière réponse persistée.
-  const docResults = pinned
-    ? collectTraceResults(pinned.trace)
-    : loading
-      ? liveResults
-      : collectTraceResults(lastAnswer?.trace);
-
-  // Une nouvelle réponse ramène la lecture en haut du document.
-  useEffect(() => {
-    docRef.current?.scrollTo({ top: 0 });
-  }, [docTurn?.index, pinnedIndex]);
-
   function openConversation(id: string) {
     if (loading) return; // un tour est en vol : on ne change pas de fil sous ses pieds
     loadConversation(id).then((conv) => {
@@ -425,7 +547,6 @@ export default function AgentPage() {
       setConvId(conv.id);
       setThread(conv.messages);
       setTraceByIndex(conv.traceByIndex);
-      setPinnedIndex(null);
       setStreamedAnswer(null);
       setError(null);
       setHistoryOpen(false);
@@ -437,7 +558,6 @@ export default function AgentPage() {
     setConvId(newConversationId());
     setThread([]);
     setTraceByIndex({});
-    setPinnedIndex(null);
     setStreamedAnswer(null);
     setError(null);
     setInput("");
@@ -464,15 +584,14 @@ export default function AgentPage() {
     setError(null);
     setLiveEvents([]);
     setStreamedAnswer(null);
-    setPinnedIndex(null); // une nouvelle question ramène le document sur la réponse à venir
     setLoading(true);
     try {
       // Streaming (bead aat.4) : les events tool_start/tool_end s'accumulent dans
-      // `liveEvents`, repliés en étapes affichables par `foldAgentSteps` (colonne
-      // gauche, compact) ; la réponse rédigée arrive d'un bloc à la fin et
-      // s'affiche à droite dès l'event `message`, sans attendre le `done`. Les
-      // figures/tableaux produits en cours de route s'affichent déjà à droite
-      // (via `liveResults`) avant même que le texte final arrive.
+      // `liveEvents`, repliés en étapes affichables par `foldAgentSteps`, rendues
+      // inline sous la question pendant que le tour est en vol ; la réponse
+      // rédigée arrive d'un bloc à la fin et s'affiche dès l'event `message`,
+      // sans attendre le `done`. Les figures/tableaux produits en cours de route
+      // s'affichent déjà (via `liveResults`) avant même que le texte final arrive.
       const result = await agentChatStream(
         requestMessages,
         (ev) => {
@@ -515,185 +634,170 @@ export default function AgentPage() {
         <p className="max-w-xl text-sm text-base-content/60">{t("agent.subtitle")}</p>
       </div>
 
-      <div className="agent-layout">
-        {/* ── COLONNE GAUCHE : conversations + fil + saisie ─────────────── */}
-        <section className="agent-col">
-          <div className="flex items-center gap-1 border-b border-base-content/10 px-2 py-2">
-            <button type="button" className="btn btn-primary btn-sm gap-1.5" onClick={newChat} disabled={loading}>
-              <Plus className="h-4 w-4" /> {t("agent.newChat")}
-            </button>
-            <button
-              type="button"
-              className="btn btn-ghost btn-sm ml-auto gap-1.5"
-              onClick={() => setHistoryOpen((v) => !v)}
-              aria-expanded={historyOpen}
-            >
-              <History className="h-4 w-4" />
-              {t("agent.history")}
-              {metas.length > 0 && <span className="opacity-60">({metas.length})</span>}
-              <ChevronDown className={`h-3.5 w-3.5 transition-transform ${historyOpen ? "rotate-180" : ""}`} />
-            </button>
-          </div>
-
-          {historyOpen && (
-            <div className="agent-history border-b border-base-content/10 px-1.5 py-1.5">
-              <ConversationList
-                items={metas}
-                activeId={convId}
-                onOpen={openConversation}
-                onRename={handleRename}
-                onDelete={handleDelete}
+      <div className="agent-layout" style={{ "--agent-text-size": `${(0.95 * textScale) / 100}rem` } as CSSProperties}>
+        {/* ── En-tête : conversations + saisie, pleine largeur ──────────── */}
+        <div className="relative flex items-center gap-1 border-b border-base-content/10 px-2 py-2">
+          <button type="button" className="btn btn-primary btn-sm gap-1.5" onClick={newChat} disabled={loading}>
+            <Plus className="h-4 w-4" /> {t("agent.newChat")}
+          </button>
+          <button
+            type="button"
+            className={`btn btn-ghost btn-sm ml-auto gap-1.5 ${textSizeOpen ? "text-primary" : ""}`}
+            onClick={() => setTextSizeOpen((v) => !v)}
+            aria-expanded={textSizeOpen}
+            title={t("agent.textSize.label")}
+          >
+            <ALargeSmall className="h-4 w-4" />
+          </button>
+          {textSizeOpen && (
+            <div className="absolute right-0 top-full z-10 mt-1 flex items-center gap-2 rounded-lg border border-base-content/10 bg-base-100 px-3 py-2 shadow-lg">
+              <span className="text-xs text-base-content/50">A</span>
+              <input
+                type="range"
+                min={TEXT_SCALE_MIN}
+                max={TEXT_SCALE_MAX}
+                step={5}
+                value={textScale}
+                onChange={(e) => setAndStoreTextScale(Number(e.target.value))}
+                className="range range-xs range-primary w-28"
               />
+              <span className="text-base text-base-content/50">A</span>
+              <span className="w-10 text-right text-xs text-base-content/50">{textScale}%</span>
+            </div>
+          )}
+          <button
+            type="button"
+            className="btn btn-ghost btn-sm gap-1.5"
+            onClick={() => setHistoryOpen((v) => !v)}
+            aria-expanded={historyOpen}
+          >
+            <History className="h-4 w-4" />
+            {t("agent.history")}
+            {metas.length > 0 && <span className="opacity-60">({metas.length})</span>}
+            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${historyOpen ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+
+        {historyOpen && (
+          <div className="agent-history border-b border-base-content/10 px-1.5 py-1.5">
+            <ConversationList
+              items={metas}
+              activeId={convId}
+              onOpen={openConversation}
+              onRename={handleRename}
+              onDelete={handleDelete}
+            />
+          </div>
+        )}
+
+        {/* ── Fil unique : questions (bulles) + réponses (inline) ───────── */}
+        <div className="agent-scroll flex flex-col gap-3 px-3 py-3 md:px-6">
+          {turns.length === 0 && !loading && (
+            <div className="mx-auto w-full max-w-3xl py-4">
+              <p className="mb-3 text-sm text-base-content/60">{t("agent.emptyDocIntro")}</p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {AGENT_USECASES.map((usecase) => {
+                  const Icon = usecase.icon;
+                  const example = t(usecase.exampleKey);
+                  return (
+                    <div
+                      key={usecase.titleKey}
+                      className="op-card-hover flex flex-col gap-2 rounded-xl border border-base-content/10 p-3"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Icon className="h-4 w-4 text-primary" />
+                        <span className="text-sm font-semibold">{t(usecase.titleKey)}</span>
+                      </div>
+                      <p className="text-xs text-base-content/60">{t(usecase.subtitleKey)}</p>
+                      <button
+                        type="button"
+                        className="mt-auto rounded-lg border border-base-content/10 px-3 py-2 text-left text-sm hover:border-primary/40"
+                        onClick={() => send(example)}
+                        disabled={loading}
+                      >
+                        {example}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
 
-          <div className="agent-scroll flex flex-col gap-2.5 px-3 py-3">
-            {turns.length === 0 && !loading && (
-              <p className="text-sm text-base-content/50">{t("agent.emptyThread")}</p>
-            )}
-
-            {turns.map((turn) =>
-              turn.role === "user" ? (
-                // Enveloppe dédiée pour l'alignement à droite : la bulle elle-même
-                // ne doit PAS être un item flex direct de `.agent-scroll`. En item
-                // flex, `width: fit-content` combiné à du texte qui wrap (pre-wrap)
-                // ne fait pas grandir sa hauteur avec le texte dès qu'il dépasse une
-                // ligne — le texte déborde de la boîte (bead aat.8, reproductible
-                // partout, pas lié au moniteur). Hors du flex direct, c'est un bloc
-                // normal en shrink-to-fit — code path plus robuste.
-                <div key={turn.index} className="flex justify-end">
-                  <div className="chat-bubble chat-user whitespace-pre-wrap">{turn.content}</div>
-                </div>
-              ) : (
-                <button
-                  key={turn.index}
-                  type="button"
-                  onClick={() => setPinnedIndex(turn.index)}
-                  className={`op-card-hover rounded-xl border px-3 py-2 text-left ${
-                    (pinnedIndex ?? lastAnswer?.index) === turn.index
-                      ? "border-primary/40 bg-primary/5"
-                      : "border-base-content/10"
-                  }`}
-                  title={t("agent.showInDoc")}
+          {turns.map((turn) =>
+            turn.role === "user" ? (
+              // Enveloppe dédiée pour l'alignement à droite : la bulle elle-même
+              // ne doit PAS être un item flex direct de `.agent-scroll`. En item
+              // flex, `width: fit-content` combiné à du texte qui wrap (pre-wrap)
+              // ne fait pas grandir sa hauteur avec le texte dès qu'il dépasse une
+              // ligne — le texte déborde de la boîte (bead aat.8, reproductible
+              // partout, pas lié au moniteur). Hors du flex direct, c'est un bloc
+              // normal en shrink-to-fit — code path plus robuste.
+              <div key={turn.index} className="flex justify-end">
+                <div
+                  className="chat-bubble chat-user whitespace-pre-wrap"
+                  style={{ fontSize: "var(--agent-text-size, 0.95rem)" }}
                 >
-                  <span className="mb-1 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-wide text-base-content/45">
-                    <FileText className="h-3 w-3" /> {t("agent.response")}
-                  </span>
-                  <span className="block text-sm text-base-content/70">{excerpt(turn.content, t)}</span>
-                  {turn.trace && turn.trace.length > 0 && (
-                    <div className="mt-2 border-t border-base-content/10 pt-2">
-                      <StepList steps={stepsFromTrace(turn.trace)} />
-                    </div>
-                  )}
-                </button>
-              ),
-            )}
+                  {turn.content}
+                </div>
+              </div>
+            ) : (
+              <AssistantAnswer key={turn.index} turn={turn} />
+            ),
+          )}
 
-            {loading && (
-              <div className="rounded-xl border border-base-content/10 px-3 py-2">
-                {liveSteps.length > 0 && (
-                  <div className="mb-2 flex flex-col gap-1">
-                    {liveSteps.map((s) => (
-                      <StepRow key={s.key} step={s} />
-                    ))}
-                  </div>
-                )}
+          {/* Tour en vol : étapes + spinner, puis le texte dès qu'il arrive (event
+              `message`) et les figures dès qu'elles sont produites — même bloc
+              inline que les réponses passées, pas un panneau à part. */}
+          {loading && (
+            <div className="rounded-xl border border-base-content/10 px-3.5 py-3">
+              <ResultGallery figures={liveResults.figures} tables={liveResults.tables} />
+              {liveSteps.length > 0 && (
+                <div className="mb-2 flex flex-col gap-1">
+                  {liveSteps.map((s) => (
+                    <StepRow key={s.key} step={s} />
+                  ))}
+                </div>
+              )}
+              {streamedAnswer != null ? (
+                <AssistantMarkdown content={streamedAnswer} />
+              ) : (
                 <div className="flex items-center gap-2 text-sm text-base-content/60">
                   <span className="loading loading-dots loading-sm" />
                   {liveSteps.some((s) => s.status === "running") ? t("agent.consultingData") : t("agent.writing")}
                 </div>
-              </div>
-            )}
-
-            <div ref={bottomRef} />
-          </div>
-
-          {error && (
-            <div className="alert alert-error mx-3 mb-2 py-2 text-sm">
-              <AlertTriangle className="h-4 w-4 shrink-0" />
-              <span>{error}</span>
+              )}
             </div>
           )}
 
-          <form
-            className="flex items-center gap-2 border-t border-base-content/10 px-3 py-2.5"
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (canSend) send(input.trim());
-            }}
-          >
-            <input
-              className="input input-bordered flex-1"
-              placeholder={t("agent.inputPlaceholder")}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              disabled={loading || retryAfterMs != null}
-            />
-            <button type="submit" className="btn btn-primary" disabled={!canSend}>
-              {loading ? <span className="loading loading-spinner loading-sm" /> : <Send className="h-4 w-4" />}
-            </button>
-          </form>
-        </section>
+          <div ref={bottomRef} />
+        </div>
 
-        {/* ── COLONNE DROITE : Markdown, et rien d'autre ────────────────── */}
-        <section className="agent-col">
-          <div className="flex items-center gap-2 border-b border-base-content/10 px-4 py-2 text-xs text-base-content/50">
-            <FileText className="h-3.5 w-3.5" />
-            <span>
-              {docContent == null
-                ? t("agent.docHeader.default")
-                : isPinnedStale
-                  ? t("agent.docHeader.pinned", { n: answers.findIndex((a) => a.index === pinned!.index) + 1, total: answers.length })
-                  : t("agent.docHeader.latest")}
-            </span>
-            {isPinnedStale && (
-              <button
-                type="button"
-                className="btn btn-ghost btn-xs ml-auto gap-1"
-                onClick={() => setPinnedIndex(null)}
-              >
-                <ArrowDownToLine className="h-3.5 w-3.5" /> {t("agent.backToLatest")}
-              </button>
-            )}
+        {error && (
+          <div className="alert alert-error mx-3 mb-2 py-2 text-sm">
+            <AlertTriangle className="h-4 w-4 shrink-0" />
+            <span>{error}</span>
           </div>
+        )}
 
-          <div ref={docRef} className="agent-scroll px-5 py-5 md:px-8 md:py-7">
-            {docContent != null ? (
-              <div className="mx-auto max-w-3xl">
-                <ResultGallery figures={docResults.figures} tables={docResults.tables} />
-                <AssistantMarkdown content={docContent} />
-              </div>
-            ) : loading ? (
-              <div className="mx-auto max-w-3xl">
-                <ResultGallery figures={docResults.figures} tables={docResults.tables} />
-                <div className="flex items-center gap-2 text-sm text-base-content/50">
-                  <span className="loading loading-dots loading-sm" />
-                  {t("agent.working")}
-                </div>
-              </div>
-            ) : (
-              <div className="mx-auto max-w-3xl">
-                <p className="mb-3 text-sm text-base-content/60">{t("agent.emptyDocIntro")}</p>
-                <div className="flex flex-col gap-2">
-                  {EXAMPLE_KEYS.map((exKey) => {
-                    const ex = t(exKey);
-                    return (
-                      <button
-                        key={exKey}
-                        type="button"
-                        className="op-card-hover rounded-lg border border-base-content/10 px-3 py-2 text-left text-sm hover:border-primary/40"
-                        onClick={() => send(ex)}
-                        disabled={loading}
-                      >
-                        {ex}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
+        <form
+          className="flex items-center gap-2 border-t border-base-content/10 px-3 py-2.5"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (canSend) send(input.trim());
+          }}
+        >
+          <input
+            className="input input-bordered flex-1"
+            placeholder={t("agent.inputPlaceholder")}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            disabled={loading || retryAfterMs != null}
+          />
+          <button type="submit" className="btn btn-primary" disabled={!canSend}>
+            {loading ? <span className="loading loading-spinner loading-sm" /> : <Send className="h-4 w-4" />}
+          </button>
+        </form>
       </div>
     </>
   );

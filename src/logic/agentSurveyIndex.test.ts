@@ -110,7 +110,10 @@ describe("boucle : l'index n'est montré qu'une fois (9ou.10)", () => {
         : { rows: [] };
     const env = {} as any;
     for await (const _ of runAgentStream([{ role: "user", content: "x" }], env, {} as any, { chat, execute })) void _;
-    expect(seen).toHaveLength(3);
+    // 4e appel : garde-fou de correction du format constat/preuve (le crosstab a
+    // réussi mais "fin" ne contient pas <!--CONSTAT-->) — même outils déjà vus,
+    // donc le filtrage des messages `tool` renvoie le même contenu qu'au 3e appel.
+    expect(seen).toHaveLength(4);
     expect(JSON.parse(seen[1][0]).mode).toBe("index");
     expect(JSON.parse(seen[2][0]).mode).toBe("index_elided");
     expect(JSON.parse(seen[2][1])).toEqual({ rows: [] });

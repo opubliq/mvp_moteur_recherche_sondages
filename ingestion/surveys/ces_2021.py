@@ -62,6 +62,7 @@ SOCIODEMO_VARS: dict[str, str] = {
     "cps21_income_number": "income",
     "cps21_province": "region",
     "pes21_province": "region",
+    "fedname": "riding",
     "cps21_employment": "occupation",
     "cps21_marital": "marital_status",
     "pes21_lang": "language",
@@ -122,8 +123,7 @@ EXCLUDED_VARS: dict[str, str] = {
         "indicateur de données de circonscription ajoutées manuellement"
     ),
     # --- Variables de géographie/contexte et substitutions textuelles / splits ---
-    "feduid": "identifiant unique de circonscription fédérale",
-    "fedname": "nom de la circonscription fédérale",
+    "feduid": "identifiant numérique de circonscription fédérale, redondant avec fedname (ingéré)",
     "message": "message d'erreur PCCF",
     "premier": "nom du premier ministre provincial (variable de contexte)",
     "Region": "macro-région canadienne dérivée de la province",
