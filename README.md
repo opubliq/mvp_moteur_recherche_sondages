@@ -64,17 +64,37 @@ Requiert un `.env` complet (les clés `SEARCH_ADMIN_KEY` + `AOAI_*` sont utilis�
 
 ## Front en local
 
-Le front (Vite) appelle les Netlify Functions `/search` et `/survey`, qui ont besoin
-des clés Azure. On lance donc le tout via la CLI Netlify (Vite seul ne sert pas les
-functions) :
+Le backend API est maintenant **Azure Functions** (`azure-functions/`), pas Netlify
+Functions (legacy, plus branché sur les comptes — voir `docs/azure_functions_migration.md`).
+Le front (Vite) proxy `/search`, `/auth`, `/agent`, etc. vers `func start`
+(`localhost:7071`, voir `vite.config.ts`).
+
+Prérequis (une fois) :
 
 ```bash
-npx netlify dev        # front + functions sur http://localhost:8888
+npm install -g azure-functions-core-tools@4 azurite
+cp azure-functions/local.settings.json.example azure-functions/local.settings.json
+# puis remplir les clés dans azure-functions/local.settings.json (mêmes valeurs que .env)
 ```
 
-`netlify dev` charge le `.env` automatiquement et expose `/search` et `/survey` (voir
-`netlify.toml`). Pour valider le rendu sans index Azure peuplé, lancer Vite seul avec
-le flag mock : `VITE_USE_MOCK=true npm run dev`.
+Lancer toute la stack (Azurite + Azure Functions + Vite) en une commande :
+
+```bash
+npm run dev:all         # front sur http://localhost:5173, API sur :7071
+```
+
+Depuis f3i.19/f3i.20, il n'y a **plus de fallback Basic Auth** : toute route API exige
+une session valide, même en local. Sans compte, tu obtiens des 401. Créer un compte
+d'essai local (écrit dans le vrai Azure Table Storage, comme en prod — Azurite ne sert
+qu'au storage interne du runtime Functions) :
+
+```bash
+npm run dev:account -- ton-email@exemple.com un-mot-de-passe
+```
+
+Puis se logger dans l'app avec ces identifiants. `npm run dev:all` build + démarre
+`func start` à chaque lancement ; utiliser `npm run dev` (Vite seul) si l'API tourne
+déjà dans un autre terminal (`cd azure-functions && npm start`).
 
 ## Déploiement (Netlify)
 

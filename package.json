@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:all": "./scripts/dev.sh",
+    "dev:account": "./scripts/create-local-account.sh",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },

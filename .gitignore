@@ -42,6 +42,9 @@ dist/
 # Local Netlify folder
 .netlify
 
+# Azurite (local dev emulator for AzureWebJobsStorage) — data + logs
+.azurite/
+
 # Azure Functions Core Tools — secrets locaux (garder local.settings.json.example versionné)
 azure-functions/local.settings.json
 
