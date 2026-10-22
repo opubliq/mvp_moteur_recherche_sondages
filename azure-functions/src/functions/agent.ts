@@ -17,10 +17,10 @@ import {
   runAgentStream,
   AgentRateLimitError,
   type AgentEnv,
-  type ChatMessage,
   type MicrodataProvider,
 } from "../../../src/logic/agent";
 import { newRequestId, resolveClientId } from "../../../src/logic/costlog";
+import { sanitizeHistory } from "../../../src/logic/agentHistory";
 import { isMicrodataSurveyAccessible, resolveAccessibleQuestionIndexes } from "../../../src/logic/tenancy";
 import {
   AcaSessionsExecutor,
@@ -76,27 +76,11 @@ const REQUIRED_ENV = [
   "AZURE_STORAGE_CONTAINER",
 ] as const;
 
-const MAX_HISTORY = 40;
-
 const failJson = (status: number, error: string, extra: Record<string, unknown> = {}): HttpResponseInit => ({
   status,
   headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
   jsonBody: { error, ...extra },
 });
-
-function sanitizeHistory(raw: unknown): ChatMessage[] {
-  if (!Array.isArray(raw)) return [];
-  const out: ChatMessage[] = [];
-  for (const m of raw) {
-    if (!m || typeof m !== "object") continue;
-    const role = (m as any).role;
-    const content = (m as any).content;
-    if ((role === "user" || role === "assistant") && typeof content === "string") {
-      out.push({ role, content });
-    }
-  }
-  return out.slice(-MAX_HISTORY);
-}
 
 function sseFrame(payload: unknown): string {
   return `data: ${JSON.stringify(payload)}\n\n`;
