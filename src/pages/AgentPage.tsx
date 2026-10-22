@@ -479,6 +479,7 @@ export default function AgentPage() {
   const [notice, setNotice] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const runIdRef = useRef<string | null>(null);
+  const [stopping, setStopping] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   // Suit le bas du fil seulement si l'utilisateur y est déjà : s'il remonte
@@ -538,10 +539,20 @@ export default function AgentPage() {
     stickToBottomRef.current = el.scrollHeight - el.scrollTop - el.clientHeight < 80;
   }
 
+  // Arrêt doux : le serveur termine proprement et renvoie les étapes déjà faites
+  // (reprises au tour suivant). Coupure franche seulement s'il ne répond pas.
   function stop() {
     const runId = runIdRef.current;
-    if (runId) cancelAgentRun(runId).catch(() => {});
-    abortRef.current?.abort();
+    const controller = abortRef.current;
+    setStopping(true);
+    if (!runId) {
+      controller?.abort();
+      return;
+    }
+    cancelAgentRun(runId).catch(() => controller?.abort());
+    setTimeout(() => {
+      if (abortRef.current === controller) controller?.abort();
+    }, 15000);
   }
 
   // Compte à rebours du délai de quota relayé par le serveur (429) : le champ
@@ -652,6 +663,7 @@ export default function AgentPage() {
     } finally {
       abortRef.current = null;
       runIdRef.current = null;
+      setStopping(false);
       setLoading(false);
       setLiveEvents([]);
       setStreamedAnswer(null);
@@ -799,7 +811,11 @@ export default function AgentPage() {
               ) : (
                 <div className="flex items-center gap-2 text-sm text-base-content/60">
                   <span className="loading loading-dots loading-sm" />
-                  {liveSteps.some((s) => s.status === "running") ? t("agent.consultingData") : t("agent.writing")}
+                  {stopping
+                    ? t("agent.stopping")
+                    : liveSteps.some((s) => s.status === "running")
+                      ? t("agent.consultingData")
+                      : t("agent.writing")}
                 </div>
               )}
             </div>
@@ -831,8 +847,15 @@ export default function AgentPage() {
             disabled={loading || retryAfterMs != null}
           />
           {loading ? (
-            <button type="button" className="btn btn-outline" onClick={stop} title={t("agent.stop")} aria-label={t("agent.stop")}>
-              <Square className="h-4 w-4 fill-current" />
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={stop}
+              disabled={stopping}
+              title={t("agent.stop")}
+              aria-label={t("agent.stop")}
+            >
+              {stopping ? <span className="loading loading-spinner loading-sm" /> : <Square className="h-4 w-4 fill-current" />}
             </button>
           ) : (
             <button type="submit" className="btn btn-primary" disabled={!canSend}>

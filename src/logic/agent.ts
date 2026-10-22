@@ -94,6 +94,8 @@ const AGENT_FINAL_REASONING_EFFORT = "medium";
 
 /** Plafond d'itérations de la boucle (un tour = un appel AOAI + ses outils). */
 const MAX_ITERATIONS = 8;
+export const CANCELLED_NOTE = "_Analyse interrompue. Écris « continue » pour reprendre là où elle s'est arrêtée._";
+const CANCELLED_TOOL_RESULT = "interrompu par l'utilisateur avant la fin de cet outil";
 
 /**
  * Budget mural de la boucle. Volontairement au-dessus des 10 s d'une fonction
@@ -218,7 +220,7 @@ export interface AgentResult {
   /** Journal des outils appelés dans l'ordre. */
   trace: ToolTrace[];
   iterations: number;
-  stopped_reason: "final" | "max_iterations" | "deadline";
+  stopped_reason: "final" | "max_iterations" | "deadline" | "cancelled";
 }
 
 /**
@@ -289,6 +291,7 @@ Tu ne poses une question QUE si la demande est réellement ininterprétable (auc
 
 RÈGLE DURE — UN FEU VERT, C'EST DÉFINITIF
 Dès que l'utilisateur donne un signal d'aller de l'avant ("go", "vas-y", "oui", "ok", "lance", "exécute", ou toute réponse à ta question précédente), tu EXÉCUTES IMMÉDIATEMENT (appels d'outils) — AUCUNE nouvelle question, sans exception, même sur un détail que tu viens de remarquer. Tout point encore ouvert se règle par un défaut raisonnable, mentionné dans ta ligne d'hypothèse.
+ANALYSE INTERROMPUE : si ton tour précédent se termine par « Analyse interrompue », l'utilisateur a arrêté l'analyse en cours. Les résultats d'outils déjà obtenus plus haut restent valides : s'il demande de continuer, reprends à partir d'eux sans refaire les étapes réussies (refais seulement les outils marqués « interrompu »). S'il change de demande, suis la nouvelle demande.
 
 MAPPER UN SOUS-GROUPE SUR LES CODES (règle dure)
 crosstab ne connaît QUE les codes raw, propres à chaque sondage. Pour traduire "18-34 ans", "au Québec", "les femmes" en filtres, tu DOIS d'abord appeler get_survey(survey_id, variables:[...]) EN CIBLANT les variables concernées (cible, dimension, filtres) et lire leurs response_options {code, label}. Choisis les codes à partir des LABELS, puis passe ces codes à crosstab. Ne devine JAMAIS un code. Si tu ignores encore le nom exact des variables, trouve-les d'abord avec search_questions(query, survey_id) ou get_survey(survey_id, query:"mots-clés") (préférable à l'index complet sur un gros sondage), puis demande le détail des variables retenues. De même, les résultats de crosstab sont des codes : rejoins-les aux labels via le détail get_survey déjà obtenu pour les présenter lisiblement.
@@ -1074,6 +1077,24 @@ export async function* runAgentStream(
   }
 
   /**
+   * Arrêt doux (bouton Arrêter) : on rend le travail déjà fait pour que le tour
+   * suivant reparte de là. Les tool_calls restés sans résultat reçoivent un
+   * résultat « interrompu » — sinon le fil est invalide pour l'API au tour suivant.
+   */
+  function* finishCancelled(): Generator<AgentEvent> {
+    const answered = new Set(messages.filter((m) => m.role === "tool").map((m) => m.tool_call_id));
+    for (const m of [...messages]) {
+      for (const call of m.role === "assistant" ? m.tool_calls ?? [] : []) {
+        if (answered.has(call.id)) continue;
+        messages.push({ role: "tool", tool_call_id: call.id, content: JSON.stringify({ error: CANCELLED_TOOL_RESULT }) });
+        answered.add(call.id);
+      }
+    }
+    messages.push({ role: "assistant", content: CANCELLED_NOTE });
+    yield* finish({ role: "assistant", content: CANCELLED_NOTE }, "cancelled");
+  }
+
+  /**
    * Garde-fou déterministe (le prompt seul ne suffit pas : observé deux fois en
    * test manuel, le modèle écrit un rapport classique malgré la règle + l'exemple
    * complet du system prompt) : si CE tour a exécuté un calcul chiffré
@@ -1108,7 +1129,7 @@ export async function* runAgentStream(
   }
 
   while (true) {
-    if (aborted()) return;
+    if (aborted()) return yield* finishCancelled();
     iterations += 1;
     const overBudget = Date.now() - start >= deadlineMs;
     const atMaxIter = iterations > MAX_ITERATIONS;
@@ -1130,10 +1151,10 @@ export async function* runAgentStream(
     try {
       turn = await chat(messages, useTools);
     } catch (err) {
-      if (aborted()) return;
+      if (aborted()) return yield* finishCancelled();
       throw err;
     }
-    if (aborted()) return;
+    if (aborted()) return yield* finishCancelled();
     const { message: assistant, usage } = turn;
     seenUpTo = messages.length;
     logUsage({
@@ -1174,7 +1195,7 @@ export async function* runAgentStream(
     }
 
     for (const call of toolCalls) {
-      if (aborted()) return;
+      if (aborted()) return yield* finishCancelled();
       let args: Record<string, unknown> = {};
       try {
         args = call.function.arguments ? JSON.parse(call.function.arguments) : {};

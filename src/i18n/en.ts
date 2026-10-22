@@ -202,6 +202,7 @@ const en: Record<TranslationKey, string> = {
   "agent.consultingData": "The agent is consulting the data…",
   "agent.writing": "The agent is writing…",
   "agent.stop": "Stop the agent",
+  "agent.stopping": "Stopping — the agent finishes the current step and keeps what is done…",
   "agent.stopped": "Analysis stopped. Your question is kept: you can rephrase or resend it.",
   "agent.inputPlaceholder": "Type your question…",
   "agent.emptyDocIntro": "Here's what you can ask me:",

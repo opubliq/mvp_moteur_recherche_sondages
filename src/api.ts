@@ -429,7 +429,7 @@ export interface AgentChatResponse {
   messages: AgentMessage[];
   trace: AgentToolTrace[];
   iterations: number;
-  stopped_reason: "final" | "max_iterations" | "deadline";
+  stopped_reason: "final" | "max_iterations" | "deadline" | "cancelled";
 }
 
 /** Frame d'erreur du flux SSE /agent (hors union AgentEvent : purement transport). */

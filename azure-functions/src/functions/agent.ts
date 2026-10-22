@@ -295,13 +295,17 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
           .catch((err) => context.warn("[agent] cancel poll failed:", err));
       }, 2000)
     : undefined;
+  // Arrêt doux : après l'abort, la boucle émet encore un `done` portant le travail
+  // déjà fait — on continue donc d'envoyer tant que le flux lui-même tient.
+  let streamBroken = false;
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       const send = (payload: unknown) => {
-        if (abort.signal.aborted) return;
+        if (streamBroken) return;
         try {
           controller.enqueue(encoder.encode(sseFrame(payload)));
         } catch {
+          streamBroken = true;
           abort.abort();
         }
       };
@@ -309,10 +313,10 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
         for await (const ev of runAgentStream(history, env, microdata, { usage, indexes, runPython, geoTool, signal: abort.signal })) {
           send(ev);
         }
-        if (abort.signal.aborted) context.log("[agent] client disconnected, loop stopped");
+        if (abort.signal.aborted) context.log("[agent] run cancelled, partial work returned");
       } catch (err) {
         if (abort.signal.aborted) {
-          context.log("[agent] client disconnected, loop stopped");
+          context.log("[agent] run cancelled during error path");
         } else if (err instanceof AgentRateLimitError) {
           send({ type: "error", kind: "rate_limit", retry_after_ms: err.retryAfterMs });
         } else {
@@ -336,6 +340,7 @@ export async function agent(request: HttpRequest, context: InvocationContext): P
       }
     },
     cancel() {
+      streamBroken = true;
       abort.abort();
     },
   });

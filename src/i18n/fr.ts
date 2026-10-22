@@ -204,6 +204,7 @@ const fr = {
   "agent.consultingData": "L'agent consulte les données…",
   "agent.writing": "L'agent rédige…",
   "agent.stop": "Arrêter l'agent",
+  "agent.stopping": "Arrêt en cours — l'agent termine l'étape en cours et garde ce qui est fait…",
   "agent.stopped": "Analyse arrêtée. Ta question est gardée : tu peux la reformuler ou la relancer.",
   "agent.inputPlaceholder": "Écris ta question…",
   "agent.emptyDocIntro": "Voici ce que tu peux me demander :",
