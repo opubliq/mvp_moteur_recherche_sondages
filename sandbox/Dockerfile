@@ -27,9 +27,10 @@ ENV HOME=/home/sandbox \
     XLA_FLAGS=--xla_force_host_platform_device_count=2 \
     PYTENSOR_FLAGS=compiledir=/home/sandbox/.pytensor \
     SANDBOX_DATA_DIR=/mnt/data \
+    PYTHONPATH=/app \
     PORT=8080
 
-COPY --chown=root:root server.py kernel.py warmup.py /app/
+COPY --chown=root:root server.py kernel.py warmup.py opubliq_mrp.py /app/
 WORKDIR /app
 USER sandbox
 

@@ -84,8 +84,9 @@ function runPythonDescription(kind: SandboxPoolKind): string {
     "POST-STRATIFICATION / MRP : `census_niveaux` charge aussi les COMPTES du recensement via " +
     "`load_strata('<niveau>', 'marginals'|'cells')` (format long : code, nom, tableau, genre, age, langue, education, n). " +
     "`ipf(seed, marginals, dims)` (raking) reconstruit les cellules croisées d'une unité à partir de ces marges. " +
-    "AVANT tout MRP ou post-stratification, appelle `mrp_guide()` : il imprime la méthode, les tableaux disponibles " +
-    "et les pièges (seed provincial, recodage des catégories du sondage, appariement fedname). " +
+    "AVANT tout MRP ou post-stratification, appelle `mrp_guide()` : il imprime un gabarit qui utilise les fonctions " +
+    "prêtes (pool custom) `recode_age`, `build_poststrat`, `mrp_fit` (modèle hiérarchique bayésien) et `mrp_poststrat` " +
+    "(estimations par unité avec intervalle 90 %) — utilise-les au lieu d'écrire ton propre modèle. " +
     bayes +
     "Les variables Python et les fichiers persistent " +
     "entre les appels d'une même conversation. Sortie : `print(...)` (tronquée), `show_table(df, title)` pour un petit tableau, " +
@@ -496,42 +497,45 @@ try:
         _opq_p9._opq_styled = True
 except Exception:
     pass
-_OPQ_MRP_GUIDE = """MRP (regression multiniveau + post-stratification) - guide pour ce bac a sable
+_OPQ_MRP_GUIDE = """MRP (regression multiniveau + post-stratification) - UTILISE LES FONCTIONS PRETES, n'improvise pas le modele.
 
-1. DONNEES DU SONDAGE
-   df = load(survey_id). Labels des codes via get_survey. Recode CHAQUE variable de strate du sondage dans les
-   categories EXACTES du recensement (regroupe des deux cotes si besoin) :
-   - age : 0_14, 15_19, 20_24, 25_34, 35_44, 45_54, 55_64, 65_74, 75_plus (sondage = 18+ : regrouper 15_19+20_24
-     en 18_24 cote recensement inclut les 15-17 ans ; dis-le, ou travaille sur 25+ si c'est plus propre)
-   - genre : homme, femme ; education : aucun, secondaire, postsec_inf_bac, bac_plus ; langue : francais, anglais, autre
-   - Geographie du repondant : fedname/feduid sont dans l'ORDRE 2013 -> niveau circonscription_federale_2013,
-     jointure code == str(int(feduid)) (sinon par nom, normalise accents/tirets/apostrophes). A defaut : pruid.
+PRE-REQUIS : run_python avec survey_ids=[...] et census_niveaux=[<niveau CIBLE>, 'pruid'] (+ le niveau du modele
+s'il differe). Fonctions disponibles : recode_age, build_poststrat, mrp_fit, mrp_poststrat, CATEGORIES.
 
-2. MODELE (numpyro conseille si dispo, sinon statsmodels BinomialBayesMixedGLM)
-   Logistique hierarchique : intercepts aleatoires par age, education, unite geo (+ region si plusieurs niveaux),
-   effet fixe genre, et des PREDICTEURS DE NIVEAU UNITE tires de load_census_strata(niveau) (pct_bac_plus_25_64,
-   revenu, pct_lm_francais...) : indispensables quand il y a peu de repondants par unite.
-   Le MRP classique n'utilise pas __weight dans la vraisemblance : la post-stratification fait la correction.
-   Garde-le compact (timeout) : ~500 warmup / 500 tirages, 2 chaines.
+GABARIT (adapte seulement les recodages et les noms de variables) :
 
-3. TABLE DE POST-STRATIFICATION pour le niveau CIBLE T (code_postal, rta, municipalite, circonscription_..., etc.)
-   m = load_strata(T, 'marginals')  # tableaux : population, age_genre, langue_maternelle, education,
-                                    # education_genre, pop_18_plus_genre
-   c = load_strata(T, 'cells')      # age_genre_langue (cellules croisees) quand dispo
-   Age x genre x education n'est PUBLIE NI par circonscription NI par AD : semence = cellules age_genre_education
-   de la province (load_strata('pruid','cells'), code 24 pour le Quebec) ou de la RMR, puis ipf() vers les marges
-   locales de chaque unite (age_genre restreint a 15+, education_genre). Pour raker une marge a 2 dims, cree une
-   colonne combinee (ex. seed['ag'] = seed.genre + '|' + seed.age, idem dans la marge) et passe 'ag' comme dim.
-   Univers : education = 15 ans+ en menages prives (echantillon 25 %) ; age_genre = population totale.
-   Colonne couverture < 0.9 = beaucoup d'AD supprimees : prudence.
+    df = load('ces_2025')
+    d = df[df['MA_VARIABLE'].isin([1, 2])].copy()             # reponses valides seulement
+    d['y'] = (d['MA_VARIABLE'] == 1).astype(int)                # 0/1
+    d['age'] = recode_age(d['cps25_age_in_years'])              # groupes du recensement
+    d['genre'] = d['cps25_genderid'].map({1: 'homme', 2: 'femme'})
+    d['education'] = d['cps25_education'].map({...})           # vers aucun/secondaire/postsec_inf_bac/bac_plus
+    d['code'] = d['feduid'].astype('Int64').astype(str)          # circonscription (ordre 2013)
+    d['province'] = d['code'].str[:2]                           # code de province du recensement
+    prof = load_census_strata('circonscription_federale_2013')
+    fit = mrp_fit(d, 'y', ['age', 'genre', 'education', 'province'], area='code',
+                  area_df=prof, area_vars=['pct_bac_plus_25_64', 'pct_lm_francais', 'revenu_median_apres_impot_menage_approx'])
+    print(fit.summary())
+    cells = build_poststrat('circonscription_federale_2013')    # ou 'rta', 'municipalite', ...
+    res = mrp_poststrat(fit, cells, area_df=prof)               # area_df = profil du niveau CIBLE
+    show_table(res.sort_values('estimate', ascending=False).head(15), 'Estimations MRP')
 
-4. PROJECTION
-   Pour chaque tirage posterieur : p_cellule -> estimation_unite = somme(p * n) / somme(n).
-   Rapporte la mediane et l'intervalle 90 % des tirages, pour chaque unite.
+POINTS A RESPECTER
+- Categories (CATEGORIES) : genre homme/femme ; age 15_19 ... 75_plus ; education aucun, secondaire,
+  postsec_inf_bac, bac_plus. Verifie les labels avec get_survey avant de recoder. Exclus NSP/refus.
+- Codes de province du recensement (2 chiffres) : 10 T.-N.-L., 11 I.-P.-E., 12 N.-E., 13 N.-B., 24 Quebec,
+  35 Ontario, 46 Manitoba, 47 Saskatchewan, 48 Alberta, 59 C.-B., 60-62 territoires.
+- fedname/feduid de ces_2021, ces_2025 et eeq_2022 sont dans l'ordre 2013 : circonscription_federale_2013.
+- Projection a un niveau plus fin (rta, code_postal, municipalite...) : build_poststrat(<niveau fin>) et
+  area_df = load_census_strata(<niveau fin>) ; l'effet de circonscription est alors tire de sa loi (plus d'incertitude).
+- Les poids d'enquete ne sont PAS utilises dans le modele : la post-stratification corrige la composition.
+- Rapporte estimate avec lo-hi (intervalle 90 %) et n_repondants par unite.
 
-5. A DIRE DANS LA REPONSE
-   Hypotheses (semence provinciale, categories regroupees, ordre 2013), n de repondants par unite (petites unites =
-   estimation surtout portee par le modele), et que ce sont des ESTIMATIONS modelisees, pas des sondages locaux.
+A DIRE DANS LA REPONSE
+Methode (MRP bayesien, effets aleatoires age/genre/education/province/circonscription + profils de territoire,
+post-stratification Recensement 2021 avec semence provinciale age x genre x scolarite rakee aux marges locales),
+hypotheses (groupe 15-19 reduit aux 18-19, categories regroupees), n par unite (petites unites = estimation surtout
+portee par le modele) et que ce sont des ESTIMATIONS modelisees, pas des sondages locaux.
 """
 _opq_tables = []
 def load(survey_id):
@@ -552,6 +556,10 @@ def load_strata(niveau, type="marginals"):
     return _pd.read_parquet(path)
 def mrp_guide():
     print(_OPQ_MRP_GUIDE)
+try:
+    from opubliq_mrp import build_poststrat, mrp_fit, mrp_poststrat, recode_age, CATEGORIES
+except Exception:
+    pass
 def ipf(seed, marginals, dims, max_iter=50, tol=1e-6):
     """Iterative proportional fitting (raking) : estime une table de cellules croisées
     (post-strat, une ligne par combinaison de 'dims') cohérente avec des marginaux connus,

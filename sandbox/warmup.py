@@ -6,7 +6,7 @@ import importlib
 
 for m in [
     "pandas", "numpy", "pyarrow.parquet", "statsmodels.api", "scipy.stats", "sklearn",
-    "matplotlib", "plotnine", "jax", "numpyro", "pymc", "bambi", "arviz",
+    "matplotlib", "plotnine", "jax", "numpyro", "pymc", "bambi", "arviz", "opubliq_mrp",
 ]:
     mod = importlib.import_module(m)
     print(m, getattr(mod, "__version__", ""))
