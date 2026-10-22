@@ -1,4 +1,4 @@
-# Image du pool de sessions custom `opubliq-sondages-pysessions-custom`
+# Image du pool de sessions custom `opubliq-sondages-pycustom`
 # (Azure Container Apps dynamic sessions, CustomContainer). Voir docs/python_sandbox.md.
 #
 # Build (ACR Tasks, pas de Docker local requis) :

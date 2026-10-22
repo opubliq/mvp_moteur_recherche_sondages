@@ -54,6 +54,8 @@ Code : `src/logic/pythonSandbox.ts` (+ tests `src/logic/pythonSandbox.test.ts`).
 | --- | --- |
 | `RUN_PYTHON_ENABLED` | `true` pour exposer l'outil à l'agent (kill-switch). |
 | `ACA_SESSIONS_POOL_ENDPOINT` | `https://canadaeast.dynamicsessions.io/subscriptions/<sub>/resourceGroups/rg-opubliq-sondages/sessionPools/<pool>` |
+| `RUN_PYTHON_POOL_KIND` | `pythonlts` (défaut) ou `custom` (pool CustomContainer avec MRP bayésienne, voir plus bas). |
+| `ACA_SESSIONS_CUSTOM_POOL_ENDPOINT` | Endpoint du pool custom, lu seulement si `RUN_PYTHON_POOL_KIND=custom`. |
 | `ACA_SESSIONS_API_VERSION` | `2024-02-02-preview` (défaut) ou `2025-10-02-preview`. |
 | `ACA_SESSIONS_ID_SECRET` | Secret HMAC des identifiants de session (≥ 32 octets aléatoires ; référence Key Vault en prod). |
 | `ACA_SESSIONS_TOKEN` | **Dev local seulement** : jeton `az account get-access-token --resource https://dynamicsessions.io --query accessToken -o tsv` (expire ~1 h). Vide en prod. |
@@ -185,6 +187,95 @@ curl -s -X POST "$ENDPOINT/code/execute?api-version=2024-02-02-preview&identifie
 ```
 Confirmer : forme exacte de la réponse, présence de `statsmodels` et `pyarrow` (lecture Parquet).
 
+## Pool custom (MRP bayésienne) — `opubliq-sondages-pycustom`
+
+PythonLTS n'a ni egress ni `pip` ni bibliothèques bayésiennes hiérarchiques. Un second pool,
+de type **CustomContainer**, exécute notre image (`sandbox/`) qui ajoute numpyro + JAX (CPU),
+PyMC, Bambi, ArviZ aux paquets PythonLTS. Les deux pools coexistent ; le choix se fait par
+app setting (retour arrière = retirer `RUN_PYTHON_POOL_KIND`).
+
+- **Image** `sandbox/Dockerfile` : `python:3.12-slim-bookworm`, `g++` (backend C de PyTensor),
+  versions figées dans `sandbox/requirements.txt` (compilé depuis `requirements.in`),
+  utilisateur non-root `sandbox` (uid 1000), `warmup.py` au build (imports + cache PyTensor).
+- **Serveur** `sandbox/server.py` (Starlette/uvicorn, port 8080) : réimplémente le sous-ensemble
+  de l'API code interpreter utilisé par `AcaSessionsExecutor` — `POST /code/execute`,
+  `GET /files`, `POST /files/upload` (2024-02-02-preview) et `POST /executions`, `POST /files`
+  (2025-10-02-preview), + `GET /files/content/{name}`, `GET /health`. Le pool relaie
+  `<endpoint>/<chemin>?identifier=<id>` au conteneur dédié à `identifier` après validation du
+  jeton Entra (le conteneur ne voit jamais de requête non authentifiée) ; `api-version` et
+  `identifier` sont ignorés côté conteneur (un conteneur = une session).
+- **Noyau** `sandbox/kernel.py` : processus enfant persistant (`globals()` conservé entre appels,
+  comme PythonLTS) ; `result` = valeur de la dernière expression (str telle quelle). Timeout
+  par exécution (`timeoutInSeconds`, plafond 220 s) : le noyau est tué et relancé (état perdu).
+  Figures/tableaux : inchangés, c'est le prélude TS (`wrapCode`) qui les renvoie dans `result`
+  (pas de troncature 4 095 car. ici, mais le protocole reste le même).
+- **Infra** : environnement Container Apps `opubliq-geo-env` (rg-opubliq-geo-marketing,
+  **Canada East**, Consumption), pool dans `rg-opubliq-sondages`, 2 vCPU / 4 Gi par session,
+  `EgressDisabled`, cooldown 900 s (`Timed`), max 10 sessions, 1 session prête. Tirage d'image
+  par l'identité managée utilisateur `opubliq-sondages-pysessions-acrpull` (AcrPull sur
+  `opubliqgeomarketingacr`).
+- **TS** : `RUN_PYTHON_POOL_KIND=custom` → `resolveSandboxPool` prend
+  `ACA_SESSIONS_CUSTOM_POOL_ENDPOINT` (pas de repli silencieux sur PythonLTS si absent) et
+  `createRunPythonTool({ poolKind: "custom" })` expose `runPythonToolDef("custom")` (liste de
+  paquets + consigne numpyro). Description par défaut inchangée.
+
+### Reconstruire l'image
+
+```bash
+# (si requirements.in change)
+uv pip compile sandbox/requirements.in --python-version 3.12 \
+  --python-platform x86_64-unknown-linux-gnu -o sandbox/requirements.txt
+TAG=v$(date +%Y%m%d%H%M)
+az acr build -r opubliqgeomarketingacr -t sondages-pysandbox:$TAG sandbox/
+az containerapp sessionpool update -g rg-opubliq-sondages -n opubliq-sondages-pycustom \
+  --image opubliqgeomarketingacr.azurecr.io/sondages-pysandbox:$TAG
+```
+Les sessions déjà allouées gardent l'ancienne image jusqu'à leur cooldown.
+
+### Créer le pool (fait le 2026-10-22)
+
+```bash
+SUB=a54061e5-b5f7-49c0-94f0-d2e7b95de4a4; RG=rg-opubliq-sondages; POOL=opubliq-sondages-pycustom
+ENV_ID=$(az containerapp env show -g rg-opubliq-geo-marketing -n opubliq-geo-env --query id -o tsv)
+UAMI_ID=$(az identity show -g $RG -n opubliq-sondages-pysessions-acrpull --query id -o tsv)
+# UAMI : AcrPull sur le registre
+az role assignment create --role AcrPull --assignee-object-id $(az identity show --ids $UAMI_ID --query principalId -o tsv) \
+  --assignee-principal-type ServicePrincipal --scope $(az acr show -n opubliqgeomarketingacr --query id -o tsv)
+az containerapp sessionpool create --subscription $SUB -g $RG -n $POOL -l canadaeast \
+  --container-type CustomContainer --environment $ENV_ID \
+  --image opubliqgeomarketingacr.azurecr.io/sondages-pysandbox:v3-20261022 \
+  --registry-server opubliqgeomarketingacr.azurecr.io --registry-identity $UAMI_ID \
+  --mi-user-assigned $UAMI_ID --cpu 2.0 --memory 4Gi --target-port 8080 \
+  --cooldown-period 900 --max-sessions 10 --ready-sessions 1 --network-status EgressDisabled
+POOL_ID=$(az containerapp sessionpool show -g $RG -n $POOL --query id -o tsv)
+# Function App (identité système) : exécuteur sur CE pool seulement
+az role assignment create --role "Azure ContainerApps Session Executor" \
+  --assignee-object-id 791ed199-6c60-49b4-af54-308f622d4577 --assignee-principal-type ServicePrincipal --scope $POOL_ID
+# (dev / test de fumée) même rôle pour ton compte, portée pool
+az role assignment create --role "Azure ContainerApps Session Executor" \
+  --assignee $(az ad signed-in-user show --query id -o tsv) --scope $POOL_ID
+```
+
+### Basculer le backend (Function App)
+
+```bash
+az functionapp config appsettings set -g rg-opubliq-sondages -n opubliq-sondages-functions --settings \
+  RUN_PYTHON_POOL_KIND=custom \
+  ACA_SESSIONS_CUSTOM_POOL_ENDPOINT=https://opubliq-sondages-pycustom.purpleforest-7fa51f82.canadaeast.azurecontainerapps.io
+# retour PythonLTS : az functionapp config appsettings delete ... --setting-names RUN_PYTHON_POOL_KIND
+```
+`ACA_SESSIONS_ID_SECRET`, `ACA_SESSIONS_API_VERSION`, `RUN_PYTHON_*` : inchangés (partagés).
+
+### Test de fumée
+
+```bash
+node --experimental-transform-types scripts/smoke_custom_pool.ts \
+  --endpoint https://opubliq-sondages-pycustom.purpleforest-7fa51f82.canadaeast.azurecontainerapps.io
+# ou contre un conteneur local : docker run --rm -p 8080:8080 <image> ; ... --local http://localhost:8080
+```
+Téléverse un Parquet synthétique (2 000 lignes, 50 groupes), le lit, ajuste une logistique
+hiérarchique numpyro (2 chaînes × 500/500) et récupère une figure, via le vrai chemin TS.
+
 ## Risques ouverts
 
 - **Forme de réponse** : non vérifiée contre un vrai pool (pas d'infra). Parseur tolérant
@@ -203,3 +294,7 @@ Confirmer : forme exacte de la réponse, présence de `statsmodels` et `pyarrow`
 - **Exfiltration via sortie** : le code peut imprimer des lignes brutes de répondants
   (déjà possible via crosstab agrégé seulement). Envisager un garde-fou (tailles de cellule
   minimales) si des clients externes accèdent à l'agent.
+- **Pool custom (2026-10-22)** : rôle *Session Executor* sur `opubliq-sondages-pycustom` PAS
+  encore attribué (Function App ni compte dev) → le test de fumée distant renvoie 403 tant que
+  ce n'est pas fait ; validé seulement contre le serveur local. 1 session prête 2 vCPU/4 Gi
+  facturée en continu (mettre `--ready-sessions 0` si le démarrage à froid est acceptable).

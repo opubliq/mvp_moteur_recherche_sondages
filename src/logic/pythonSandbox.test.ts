@@ -367,7 +367,7 @@ describe("createRunPythonTool — limites non définies", () => {
 });
 
 describe("pool custom (RUN_PYTHON_POOL_KIND)", () => {
-  const CUSTOM = "https://opubliq-sondages-pysessions-custom.abc123.canadaeast.azurecontainerapps.io";
+  const CUSTOM = "https://opubliq-sondages-pycustom.abc123.canadaeast.azurecontainerapps.io";
 
   it("parsePoolKind : `custom` (insensible à la casse), sinon pythonlts", () => {
     expect(parsePoolKind("custom")).toBe("custom");

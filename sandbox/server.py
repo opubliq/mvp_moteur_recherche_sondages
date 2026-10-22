@@ -54,7 +54,7 @@ class Kernel:
 
     def _start(self) -> None:
         parent, child = self._ctx.Pipe()
-        proc = self._ctx.Process(target=kernel.main, args=(child,), daemon=True)
+        proc = self._ctx.Process(target=kernel.main, args=(child,), daemon=False)  # non-daemon : PyMC cores>1 crée des sous-processus
         proc.start()
         child.close()
         self._proc, self._conn = proc, parent

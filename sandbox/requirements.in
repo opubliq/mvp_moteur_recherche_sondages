@@ -1,4 +1,4 @@
-# Image du pool custom `opubliq-sondages-pysessions-custom` (docs/python_sandbox.md).
+# Image du pool custom `opubliq-sondages-pycustom` (docs/python_sandbox.md).
 # Recompiler :
 #   uv pip compile sandbox/requirements.in --python-version 3.12 \
 #     --python-platform x86_64-unknown-linux-gnu -o sandbox/requirements.txt
