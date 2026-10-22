@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Price sheet P2 (one-pager). Régénérer le PDF :
+     chromium --headless --disable-gpu --no-pdf-header-footer \
+       --print-to-pdf=Opubliq-Tarifs-2026.pdf price_sheet_fr.html
+     (exécuter depuis pricing/one_pager/).
+     Les chiffres viennent de pricing/STRATEGIE_PRICING.md. -->
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}@page{size:letter;margin:11mm 13mm}</style>
+<title>Opubliq Tarifs corpus</title>
+<!-- Polices embarquées localement (fonts/) : le rendu PDF headless n'a pas de réseau. -->
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Inter-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/Inter-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Inter-500-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/Inter-500-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/Inter-600-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/Inter-600-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Inter-700-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/Inter-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/SourceSerif4-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/SourceSerif4-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/SourceSerif4-600-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/SourceSerif4-600-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+  :root {
+    --teal:      #0c8492;
+    --teal-deep: #076872;
+    --teal-lite: #56d5db;
+    --coral:     #f0695a;
+    --ink:       #13272b;
+    --muted:     #5e7276;
+    --rule:      #dbe4e5;
+    --ground:    #f7fafa;
+    --panel:     #ffffff;
+    --panel-alt: #eef5f5;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans:  "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --teal: #56d5db; --teal-deep: #8ae5ea; --teal-lite: #56d5db; --coral: #ff8474;
+      --ink: #e6efef; --muted: #93a8ab; --rule: #2a3d40;
+      --ground: #101c1e; --panel: #16262a; --panel-alt: #1b3035;
+    }
+  }
+  :root[data-theme="dark"] {
+    --teal: #56d5db; --teal-deep: #8ae5ea; --teal-lite: #56d5db; --coral: #ff8474;
+    --ink: #e6efef; --muted: #93a8ab; --rule: #2a3d40;
+    --ground: #101c1e; --panel: #16262a; --panel-alt: #1b3035;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    max-width: 54rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* masthead */
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--teal);
+  }
+  .brandline {
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    justify-content: space-between; gap: 0.4rem 1.5rem;
+  }
+  .lockup { display: flex; align-items: center; gap: 0.55rem; }
+  .lockup img { width: 2.05rem; height: 2.05rem; display: block; }
+  .wordmark {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+    letter-spacing: -0.015em; color: var(--teal-deep);
+  }
+  .eyebrow {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  h1 {
+    font-family: var(--serif); font-size: 1.95rem; font-weight: 600;
+    line-height: 1.1; letter-spacing: -0.02em; text-wrap: balance; margin: 0;
+  }
+  .standfirst { font-size: 0.97rem; color: var(--muted); max-width: 40rem; margin: 0; }
+
+  /* two-column body */
+  .cols {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 1.6rem 2.2rem;
+    align-items: start;
+  }
+  .col { display: flex; flex-direction: column; gap: 1.4rem; }
+
+  @media screen and (max-width: 760px) {
+    .cols { grid-template-columns: 1fr; }
+  }
+
+  section { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  h2 {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 600;
+    letter-spacing: -0.01em; margin: 0;
+  }
+  h2 .num {
+    font-family: var(--sans); font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--coral);
+    vertical-align: 0.45em; margin-right: 0.45rem;
+  }
+
+  p { margin: 0; }
+  .note { font-size: 0.85rem; color: var(--muted); }
+
+  /* headline price */
+  .headline {
+    background: linear-gradient(90deg,
+      color-mix(in srgb, var(--teal-lite) 13%, var(--panel)), var(--panel) 62%);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--teal);
+    border-radius: 0.2rem 0.5rem 0.5rem 0.2rem;
+    padding: 0.85rem 1rem;
+    display: flex; flex-direction: column; gap: 0.2rem;
+  }
+  .headline .figure {
+    font-family: var(--serif); font-size: 1.85rem; font-weight: 600;
+    line-height: 1; letter-spacing: -0.025em; font-variant-numeric: tabular-nums;
+  }
+  .headline .figure .unit {
+    font-family: var(--sans); font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0; color: var(--muted);
+  }
+  .headline .bounds { font-size: 0.85rem; color: var(--muted); }
+
+  /* tables */
+  .tablewrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  caption {
+    text-align: left; font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); padding-bottom: 0.4rem;
+  }
+  th, td {
+    text-align: left; padding: 0.38rem 0.7rem 0.38rem 0;
+    border-bottom: 1px solid var(--rule); white-space: nowrap; font-size: 0.9rem;
+  }
+  thead th {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--ink);
+  }
+  td.price, th.price { text-align: right; padding-right: 0; font-weight: 600; }
+  tbody tr:last-child td { border-bottom: none; }
+  .plan-name { font-weight: 600; }
+  .plan-scope { color: var(--muted); font-weight: 400; }
+
+  /* included list */
+  .included {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .included li { position: relative; padding-left: 1.1rem; font-size: 0.9rem; }
+  .included li::before {
+    content: ""; position: absolute; left: 0; top: 0.6em;
+    width: 0.38rem; height: 0.38rem; border-radius: 50%;
+    background: var(--teal); box-shadow: 0 0 0 2px color-mix(in srgb, var(--teal-lite) 32%, transparent);
+  }
+
+  .incgroups { display: flex; flex-direction: column; gap: 0.75rem; }
+  .incgroup { display: flex; flex-direction: column; gap: 0.3rem; }
+  .inclabel {
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  /* poc */
+  .poc {
+    background: var(--panel);
+    border: 1px solid var(--coral);
+    border-radius: 0.5rem;
+    padding: 0.85rem 1rem;
+    display: flex; flex-direction: column; gap: 0.35rem;
+  }
+  .poc .tag {
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--coral);
+  }
+  .poc .headline-text { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
+  .poc p { font-size: 0.88rem; }
+
+  /* terms */
+  .terms {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 0.3rem;
+    font-size: 0.83rem; color: var(--muted);
+  }
+  .terms li { padding-left: 1rem; position: relative; }
+  .terms li::before { content: "\00b7"; position: absolute; left: 0.15rem; color: var(--teal); font-weight: 700; }
+
+  footer {
+    border-top: 1px solid var(--rule); padding-top: 0.8rem;
+    font-size: 0.8rem; color: var(--muted);
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.4rem 1.5rem;
+  }
+
+  @media print {
+    :root { --ground: #fff; --panel: #fff; --panel-alt: #f2f7f7; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { background: #fff; font-size: 9.2pt; line-height: 1.34; }
+    .sheet { padding: 0; gap: 0.8rem; max-width: none; zoom: 0.88; }
+    .masthead { gap: 0.4rem; padding-bottom: 0.7rem; }
+    h1 { font-size: 1.7rem; }
+    .cols { gap: 0.85rem 1.6rem; }
+    .col { gap: 0.75rem; }
+    section { gap: 0.45rem; }
+    .headline, .poc { padding: 0.7rem 0.85rem; }
+    .incgroups { gap: 0.55rem; }
+    th, td { padding: 0.3rem 0.6rem 0.3rem 0; }
+    footer { padding-top: 0.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="sheet">
+
+  <header class="masthead">
+    <div class="brandline">
+      <div class="lockup">
+        <img src="opubliq-symbole.png" alt="">
+        <span class="wordmark">Opubliq</span>
+      </div>
+      <div class="eyebrow">Tarifs &middot; 2026</div>
+    </div>
+    <h1>Le prix dépend de la taille de votre corpus.</h1>
+    <p class="standfirst">
+      Deux frais, calculés en variables : un montant unique pour intégrer vos sondages, et un
+      forfait annuel fixe selon la taille de votre corpus. Une variable est une question posée.
+      Rien n'est facturé par utilisateur, par recherche ou par fonctionnalité. Une seule étude
+      pour commencer : aucuns frais annuels (04).
+    </p>
+  </header>
+
+  <div class="cols">
+
+    <div class="col">
+
+      <section>
+        <h2><span class="num">01</span>Ingestion</h2>
+        <p class="note">
+          Nous lisons chaque sondage à partir de son codebook et de son fichier de données,
+          puis nous annotons chaque variable : un titre lisible, des thèmes et concepts, ses
+          choix de réponse et un type sociodémographique standard. C'est ce qui rend une
+          question retrouvable dans toutes vos études.
+        </p>
+
+        <div class="headline">
+          <div class="figure">200&#8239;$<span class="unit"> par sondage</span> + 2&#8239;$<span class="unit"> par variable</span></div>
+          <div class="bounds">Unique, par sondage &middot; plafonné à 2&#8239;500&#8239;$ par sondage</div>
+        </div>
+
+        <div class="tablewrap">
+          <table>
+            <caption>Exemples</caption>
+            <thead>
+              <tr>
+                <th scope="col">Taille</th>
+                <th scope="col">Étude type</th>
+                <th scope="col" class="price">Unique</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>40 variables</td><td>Court module omnibus</td><td class="price">280&#8239;$</td></tr>
+              <tr><td>200 variables</td><td>Sondage national standard</td><td class="price">600&#8239;$</td></tr>
+              <tr><td>550 variables</td><td>Vague d'étude électorale</td><td class="price">1&#8239;300&#8239;$</td></tr>
+              <tr><td>1&#8239;240 variables</td><td>Grande étude multimodule</td><td class="price">2&#8239;500&#8239;$</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">
+          Par lot : sondages 6 à 15 à −20&#8239;%, 16 à 30 à −35&#8239;%. Au-delà de 30, prix de volume.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="num">02</span>Forfait annuel</h2>
+        <p class="note">
+          Un montant fixe pour l'année, selon le nombre total de variables de votre corpus.
+          Il ne varie pas selon votre usage de la plateforme, le nombre d'utilisateurs ou
+          ce que vous intégrez pendant l'année.
+        </p>
+
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Forfait</th>
+                <th scope="col">Votre corpus</th>
+                <th scope="col" class="price">Par année</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="plan-name">Essentiel</td><td class="plan-scope">Moins de 1&#8239;500 variables</td><td class="price">4&#8239;000&#8239;$</td></tr>
+              <tr><td class="plan-name">Standard</td><td class="plan-scope">1&#8239;500 – 4&#8239;000</td><td class="price">8&#8239;000&#8239;$</td></tr>
+              <tr><td class="plan-name">Avancé</td><td class="plan-scope">4&#8239;000 – 10&#8239;000</td><td class="price">14&#8239;000&#8239;$</td></tr>
+              <tr><td class="plan-name">Étendu</td><td class="plan-scope">10&#8239;000 – 25&#8239;000</td><td class="price">22&#8239;000&#8239;$</td></tr>
+              <tr><td class="plan-name">Intensif</td><td class="plan-scope">25&#8239;000 &ndash; 50&#8239;000</td><td class="price">32&#8239;000&#8239;$</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">
+          Seules vos propres études comptent pour le seuil. Le corpus public est gratuit et
+          ne vous fait pas changer de forfait. Au-delà de 50&#8239;000 variables, sur devis.
+        </p>
+      </section>
+
+    </div>
+
+    <div class="col">
+
+      <section>
+        <h2><span class="num">03</span>Inclus dans tous les forfaits</h2>
+        <div class="incgroups">
+          <div class="incgroup">
+            <div class="inclabel">Recherche et analyse</div>
+            <ul class="included">
+              <li>Recherche entre sondages par thème et concept</li>
+              <li>Agent d'analyse en langage naturel</li>
+              <li>Tableaux croisés et export Excel</li>
+              <li>Annotation IA des réponses ouvertes</li>
+            </ul>
+          </div>
+          <div class="incgroup">
+            <div class="inclabel">Accès</div>
+            <ul class="included">
+              <li>Recherches et analyses illimitées</li>
+              <li>Utilisateurs illimités dans votre organisation</li>
+            </ul>
+          </div>
+          <div class="incgroup">
+            <div class="inclabel">Dès le premier jour</div>
+            <ul class="included">
+              <li>Mise en place et configuration initiales</li>
+              <li>Corpus public : 25 sondages, 6&#8239;237 variables</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">
+          Tout est inclus dans chaque forfait ; seule la quantité de vos données change.
+          Interrogez vos études et le corpus public dans une même question.
+        </p>
+      </section>
+
+      <section>
+        <h2><span class="num">04</span>Preuve de concept</h2>
+        <div class="poc">
+          <span class="tag">Aucuns frais annuels pour commencer</span>
+          <span class="headline-text">Commencez avec une seule étude.</span>
+          <p>
+            Envoyez-nous un sondage. Nous l'intégrons au tarif ci-dessus (300 à 1&#8239;300&#8239;$
+            habituellement) et vous avez toute la plateforme 30 jours. Si vous continuez, ce
+            montant est crédité sur le forfait annuel.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="num">05</span>Conditions</h2>
+        <ul class="terms">
+          <li>Prix en dollars canadiens, taxes en sus, valides jusqu'au 30 juin 2027.</li>
+          <li>Ingestion facturée par lot à la livraison ; forfait annuel à la signature, net 30 jours.</li>
+          <li>Études en ligne 10 jours ouvrables après réception des fichiers et codebooks.</li>
+          <li>Les variables sociodémographiques comptent ; pondérations, identifiants et métadonnées d'entrevue, non. Sources non structurées : sur devis.</li>
+          <li>Durée d'un an, renouvelable avec préavis de 30 jours. Le forfait ne change qu'au renouvellement, si la taille du corpus a changé.</li>
+          <li>Vos données restent dans un index isolé, hébergé au Canada, et ne servent jamais à entraîner des modèles.</li>
+        </ul>
+      </section>
+
+    </div>
+  </div>
+
+  <footer>
+    <span>Opubliq &middot; Recherche et analyse de corpus de sondages</span>
+    <span>hubertcadieux@opubliq.com</span>
+  </footer>
+
+</div>
+
+</body>
+</html>

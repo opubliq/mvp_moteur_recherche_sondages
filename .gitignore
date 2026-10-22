@@ -53,3 +53,6 @@ netlify/functions/*.zip
 
 # Worktrees éphémères créés par Claude Code
 .claude/worktrees/
+
+# Doublons de screenshots laissés par des sessions agent (non référencés)
+docs/image copy*.png
