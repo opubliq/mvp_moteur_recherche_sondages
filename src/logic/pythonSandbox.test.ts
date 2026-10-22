@@ -236,6 +236,27 @@ describe("createRunPythonTool", () => {
     expect(ex.codes[0]).toContain("_opq_json.dumps(");
   });
 
+  it("census_niveaux : charge profil + strates ; des cellules absentes ne bloquent pas", async () => {
+    const ex = fakeExecutor();
+    const fetchStrataParquet = vi.fn(async (_niveau: string, type: "marginals" | "cells") => {
+      if (type === "cells") throw new Error("404");
+      return parquet;
+    });
+    const tool = createRunPythonTool({
+      executor: ex,
+      sessionId: "s",
+      fetchParquet: async () => parquet,
+      fetchCensusParquet: async () => parquet,
+      fetchStrataParquet,
+    });
+    const r = (await tool.run({ code: "print(1)", census_niveaux: ["rta"] })) as RunPythonResult;
+    expect(r.ok).toBe(true);
+    expect(ex.uploads).toEqual(["census_rta.parquet", "strata_marginals_rta.parquet"]);
+    expect(fetchStrataParquet).toHaveBeenCalledTimes(2);
+    expect(ex.codes[0]).toContain("def load_strata(");
+    expect(ex.codes[0]).toContain("def mrp_guide(");
+  });
+
   it("refus d'accès (fetchParquet lève) → { error } sans exécution", async () => {
     const ex = fakeExecutor();
     const tool = createRunPythonTool({

@@ -79,10 +79,13 @@ function runPythonDescription(kind: SandboxPoolKind): string {
     "unité : `code`, `nom`, `population`, `menages`, puis des ratios agrégés `pct_*`/`revenu_*` par unité — PAS une table " +
     "de comptes croisés par cellule démographique). Utile pour joindre un niveau géo des micro-données de sondage à ces " +
     "covariables de territoire (ex. petite régression multiniveau + repondération approximative par zone) ; niveaux " +
-    "disponibles via l'outil geo_profile (`niveaux`). " +
-    "`ipf(seed, marginals, dims)` : reconstruit une table de cellules croisées (post-strat MRP, une ligne par " +
-    "combinaison de `dims`) par iterative proportional fitting à partir des marginaux `pct_*`/`population` de " +
-    "`load_census_strata` (quand aucune vraie table croisée n'est disponible) — voir sa docstring pour le format exact. " +
+    "disponibles via l'outil geo_profile (`niveaux`), dont `circonscription_federale_2013` (ordre des `fedname`/`feduid` " +
+    "de ces_2021, ces_2025, eeq_2022) et `circonscription_federale_2023`. " +
+    "POST-STRATIFICATION / MRP : `census_niveaux` charge aussi les COMPTES du recensement via " +
+    "`load_strata('<niveau>', 'marginals'|'cells')` (format long : code, nom, tableau, genre, age, langue, education, n). " +
+    "`ipf(seed, marginals, dims)` (raking) reconstruit les cellules croisées d'une unité à partir de ces marges. " +
+    "AVANT tout MRP ou post-stratification, appelle `mrp_guide()` : il imprime la méthode, les tableaux disponibles " +
+    "et les pièges (seed provincial, recodage des catégories du sondage, appariement fedname). " +
     bayes +
     "Les variables Python et les fichiers persistent " +
     "entre les appels d'une même conversation. Sortie : `print(...)` (tronquée), `show_table(df, title)` pour un petit tableau, " +
@@ -493,6 +496,43 @@ try:
         _opq_p9._opq_styled = True
 except Exception:
     pass
+_OPQ_MRP_GUIDE = """MRP (regression multiniveau + post-stratification) - guide pour ce bac a sable
+
+1. DONNEES DU SONDAGE
+   df = load(survey_id). Labels des codes via get_survey. Recode CHAQUE variable de strate du sondage dans les
+   categories EXACTES du recensement (regroupe des deux cotes si besoin) :
+   - age : 0_14, 15_19, 20_24, 25_34, 35_44, 45_54, 55_64, 65_74, 75_plus (sondage = 18+ : regrouper 15_19+20_24
+     en 18_24 cote recensement inclut les 15-17 ans ; dis-le, ou travaille sur 25+ si c'est plus propre)
+   - genre : homme, femme ; education : aucun, secondaire, postsec_inf_bac, bac_plus ; langue : francais, anglais, autre
+   - Geographie du repondant : fedname/feduid sont dans l'ORDRE 2013 -> niveau circonscription_federale_2013,
+     jointure code == str(int(feduid)) (sinon par nom, normalise accents/tirets/apostrophes). A defaut : pruid.
+
+2. MODELE (numpyro conseille si dispo, sinon statsmodels BinomialBayesMixedGLM)
+   Logistique hierarchique : intercepts aleatoires par age, education, unite geo (+ region si plusieurs niveaux),
+   effet fixe genre, et des PREDICTEURS DE NIVEAU UNITE tires de load_census_strata(niveau) (pct_bac_plus_25_64,
+   revenu, pct_lm_francais...) : indispensables quand il y a peu de repondants par unite.
+   Le MRP classique n'utilise pas __weight dans la vraisemblance : la post-stratification fait la correction.
+   Garde-le compact (timeout) : ~500 warmup / 500 tirages, 2 chaines.
+
+3. TABLE DE POST-STRATIFICATION pour le niveau CIBLE T (code_postal, rta, municipalite, circonscription_..., etc.)
+   m = load_strata(T, 'marginals')  # tableaux : population, age_genre, langue_maternelle, education,
+                                    # education_genre, pop_18_plus_genre
+   c = load_strata(T, 'cells')      # age_genre_langue (cellules croisees) quand dispo
+   Age x genre x education n'est PUBLIE NI par circonscription NI par AD : semence = cellules age_genre_education
+   de la province (load_strata('pruid','cells'), code 24 pour le Quebec) ou de la RMR, puis ipf() vers les marges
+   locales de chaque unite (age_genre restreint a 15+, education_genre). Pour raker une marge a 2 dims, cree une
+   colonne combinee (ex. seed['ag'] = seed.genre + '|' + seed.age, idem dans la marge) et passe 'ag' comme dim.
+   Univers : education = 15 ans+ en menages prives (echantillon 25 %) ; age_genre = population totale.
+   Colonne couverture < 0.9 = beaucoup d'AD supprimees : prudence.
+
+4. PROJECTION
+   Pour chaque tirage posterieur : p_cellule -> estimation_unite = somme(p * n) / somme(n).
+   Rapporte la mediane et l'intervalle 90 % des tirages, pour chaque unite.
+
+5. A DIRE DANS LA REPONSE
+   Hypotheses (semence provinciale, categories regroupees, ordre 2013), n de repondants par unite (petites unites =
+   estimation surtout portee par le modele), et que ce sont des ESTIMATIONS modelisees, pas des sondages locaux.
+"""
 _opq_tables = []
 def load(survey_id):
     import pandas as _pd
@@ -500,6 +540,18 @@ def load(survey_id):
 def load_census_strata(niveau):
     import pandas as _pd
     return _pd.read_parquet(f"/mnt/data/census_{niveau}.parquet")
+def load_strata(niveau, type="marginals"):
+    """Comptes du recensement 2021 (format long) pour la post-stratification : type='marginals' (marges à raker)
+    ou 'cells' (cellules croisées, semence IPF). Colonnes : code, nom, nom_fr, nom_en, type, tableau, univers,
+    genre, age, langue, education, n, couverture, source. Exige census_niveaux=['<niveau>'] dans l'appel run_python."""
+    import os as _os
+    import pandas as _pd
+    path = f"/mnt/data/strata_{type}_{niveau}.parquet"
+    if not _os.path.exists(path):
+        raise FileNotFoundError(f"{path} absent : passe census_niveaux=['{niveau}'] (cells n'existe pas pour tous les niveaux)")
+    return _pd.read_parquet(path)
+def mrp_guide():
+    print(_OPQ_MRP_GUIDE)
 def ipf(seed, marginals, dims, max_iter=50, tol=1e-6):
     """Iterative proportional fitting (raking) : estime une table de cellules croisées
     (post-strat, une ligne par combinaison de 'dims') cohérente avec des marginaux connus,
@@ -627,6 +679,8 @@ export interface RunPythonDeps {
    * côté geo-marketing-api). Absent = `census_niveaux` refusé (feature flag géo non branché).
    */
   fetchCensusParquet?(niveau: string): Promise<Uint8Array>;
+  /** Strates MRP (`/strata/export/{niveau}?type=`), chargées avec le profil quand présent. */
+  fetchStrataParquet?(niveau: string, type: "marginals" | "cells"): Promise<Uint8Array>;
   limits?: Partial<RunPythonLimits>;
   now?: () => number;
   /** Pool visé : ne change que la description exposée au modèle (`toolDef`). Défaut `pythonlts`. */
@@ -734,6 +788,24 @@ export function createRunPythonTool(deps: RunPythonDeps): RunPythonTool {
             return { error: `Parquet census de ${niveau} trop volumineux pour le bac à sable` };
           }
           await deps.executor.uploadFile(deps.sessionId, filename, bytes);
+        }
+        // Strates MRP : best-effort (les cellules n'existent pas pour tous les niveaux) ;
+        // load_strata() signale le fichier manquant au modèle.
+        if (deps.fetchStrataParquet) {
+          for (const niveau of censusNiveaux) {
+            for (const type of ["marginals", "cells"] as const) {
+              const filename = `strata_${type}_${niveau}.parquet`;
+              if (present.has(filename)) continue;
+              try {
+                const bytes = await deps.fetchStrataParquet(niveau, type);
+                if (bytes.byteLength > 0 && bytes.byteLength <= limits.maxUploadBytes) {
+                  await deps.executor.uploadFile(deps.sessionId, filename, bytes);
+                }
+              } catch {
+                // indisponible pour ce niveau : load_strata() le dira
+              }
+            }
+          }
         }
       }
 

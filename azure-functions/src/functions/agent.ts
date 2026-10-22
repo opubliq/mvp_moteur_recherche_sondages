@@ -35,6 +35,7 @@ import {
 import {
   createGeoTool,
   geoGetCensusExport,
+  geoGetStrataExport,
   geoManagedIdentityTokenProvider,
   geoStaticTokenProvider,
   isGeoDonationsAllowed,
@@ -158,6 +159,9 @@ async function buildRunPythonTool(opts: {
     // Pont census (bead 9ou.19) : présent seulement si l'outil géo (recensement) est aussi branché.
     fetchCensusParquet: opts.geoEnv
       ? (niveau) => geoGetCensusExport({ baseUrl: opts.geoEnv!.baseUrl, getToken: opts.geoEnv!.getToken }, niveau)
+      : undefined,
+    fetchStrataParquet: opts.geoEnv
+      ? (niveau, type) => geoGetStrataExport({ baseUrl: opts.geoEnv!.baseUrl, getToken: opts.geoEnv!.getToken }, niveau, type)
       : undefined,
     limits: {
       maxCallsPerRequest: Number(process.env.RUN_PYTHON_MAX_CALLS_PER_REQUEST) || undefined,

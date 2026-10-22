@@ -35,6 +35,7 @@ export const GEO_ALLOWED_PATHS: RegExp[] = [
   /^\/geo\/cp\/[A-Za-z0-9]+$/,
   /^\/profil\/[a-z0-9_]+$/,
   /^\/profil\/[a-z0-9_]+\/[^/]+$/,
+  /^\/strata\/export\/[a-z0-9_]+$/,
 ];
 
 export class GeoForbiddenPathError extends Error {
@@ -395,6 +396,21 @@ export async function geoGetCensusExport(env: GeoToolEnv, niveau: string): Promi
   const headers: Record<string, string> = {};
   if (env.getToken) headers.Authorization = `Bearer ${await env.getToken()}`;
   const res = await f(`${env.baseUrl.replace(/\/+$/, "")}${path}`, { headers });
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`geo-marketing-api HTTP ${res.status} sur ${path}${text ? ` : ${text.slice(0, 300)}` : ""}`);
+  }
+  return new Uint8Array(await res.arrayBuffer());
+}
+
+/** Strates MRP (comptes, format long) : `marginals` à raker ou `cells` croisées servant de semence IPF. */
+export async function geoGetStrataExport(env: GeoToolEnv, niveau: string, type: "marginals" | "cells"): Promise<Uint8Array> {
+  const path = `/strata/export/${encodeURIComponent(niveau)}`;
+  assertAllowedPath(path);
+  const f = env.fetch ?? fetch;
+  const headers: Record<string, string> = {};
+  if (env.getToken) headers.Authorization = `Bearer ${await env.getToken()}`;
+  const res = await f(`${env.baseUrl.replace(/\/+$/, "")}${path}?type=${type}`, { headers });
   if (!res.ok) {
     const text = await res.text().catch(() => "");
     throw new Error(`geo-marketing-api HTTP ${res.status} sur ${path}${text ? ` : ${text.slice(0, 300)}` : ""}`);
