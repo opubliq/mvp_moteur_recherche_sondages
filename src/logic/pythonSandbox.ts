@@ -515,7 +515,7 @@ GABARIT (adapte seulement les recodages et les noms de variables) :
     d['code'] = d['feduid'].astype('Int64').astype(str)          # circonscription (ordre 2013)
     d['province'] = d['code'].str[:2]                           # code de province du recensement
     prof = load_census_strata('circonscription_federale_2013')
-    fit = mrp_fit(d, 'y', ['age', 'genre', 'education', 'province'], area='code',
+    fit = mrp_fit(d, 'y', ['age', 'education', 'province'], fixed=['genre'], area='code',
                   area_df=prof, area_vars=['pct_bac_plus_25_64', 'pct_lm_francais', 'pct_age_65_plus',
                              'revenu_median_apres_impot_menage_approx'])
     print(fit.summary())                                        # si pas CONVERGENCE OK : relance avec warmup/draws plus eleves
@@ -524,6 +524,7 @@ GABARIT (adapte seulement les recodages et les noms de variables) :
     show_table(res.sort_values('estimate', ascending=False).head(15), 'Estimations MRP')
 
 POINTS A RESPECTER
+- genre en effet FIXE (2 modalites : un effet aleatoire est mal identifie et cause des divergences).
 - Categories (CATEGORIES) : genre homme/femme ; age 15_19 ... 75_plus ; education aucun, secondaire,
   postsec_inf_bac, bac_plus. Verifie les labels avec get_survey avant de recoder. Exclus NSP/refus.
 - Codes de province du recensement (2 chiffres) : 10 T.-N.-L., 11 I.-P.-E., 12 N.-E., 13 N.-B., 24 Quebec,

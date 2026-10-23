@@ -62,7 +62,7 @@ def test_fit_and_poststrat_recover_signal(data_dir):
     idx = rng.choice(len(cells), size=800, p=(cells.n / cells.n.sum()).to_numpy())
     svy = cells.iloc[idx].copy()
     svy["y"] = rng.binomial(1, 1 / (1 + np.exp(-svy.education.map(edu_eff))))
-    fit = M.mrp_fit(svy, "y", ["age", "genre", "education"], area="code", draws=200, warmup=200, chains=1)
+    fit = M.mrp_fit(svy, "y", ["age", "education"], fixed=["genre"], area="code", draws=200, warmup=200, chains=1)
     edu_z = np.median(fit.samples["z_education"] * fit.samples["sigma_education"][:, None], axis=0)
     order = [fit.levels["education"].index(e) for e in EDU]
     assert np.all(np.diff(edu_z[order]) > 0)

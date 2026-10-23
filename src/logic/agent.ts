@@ -94,6 +94,8 @@ const AGENT_FINAL_REASONING_EFFORT = "medium";
 
 /** Plafond d'itérations de la boucle (un tour = un appel AOAI + ses outils). */
 const MAX_ITERATIONS = 8;
+const BUDGET_EXHAUSTED_INSTRUCTION =
+  "Le temps ou le nombre d'étapes alloué à cette question est épuisé : tu ne peux plus appeler d'outil. Rédige maintenant ta réponse avec les résultats déjà obtenus, dis clairement ce qui n'a pas pu être fait et ce que l'utilisateur peut demander ensuite (ex. « continue » ou une version plus légère de l'analyse).";
 export const CANCELLED_NOTE = "_Analyse interrompue. Écris « continue » pour reprendre là où elle s'est arrêtée._";
 const CANCELLED_TOOL_RESULT = "interrompu par l'utilisateur avant la fin de cet outil";
 
@@ -103,7 +105,8 @@ const CANCELLED_TOOL_RESULT = "interrompu par l'utilisateur avant la fin de cet 
  * (`netlify dev`, budget plus large) la boucle peut aller au bout. Passé ce
  * délai, on demande une réponse finale SANS outils plutôt que d'enchaîner.
  */
-const DEFAULT_DEADLINE_MS = 40000;
+// Un MRP (chargement des données + ajustement bayésien) prend 1 à 3 min : 40 s coupait l'analyse à mi-chemin.
+const DEFAULT_DEADLINE_MS = 180000;
 
 /** Plafond de tokens de sortie par appel (raisonnement compris). */
 const MAX_COMPLETION_TOKENS = 4000;
@@ -291,7 +294,7 @@ Tu ne poses une question QUE si la demande est réellement ininterprétable (auc
 
 RÈGLE DURE — UN FEU VERT, C'EST DÉFINITIF
 Dès que l'utilisateur donne un signal d'aller de l'avant ("go", "vas-y", "oui", "ok", "lance", "exécute", ou toute réponse à ta question précédente), tu EXÉCUTES IMMÉDIATEMENT (appels d'outils) — AUCUNE nouvelle question, sans exception, même sur un détail que tu viens de remarquer. Tout point encore ouvert se règle par un défaut raisonnable, mentionné dans ta ligne d'hypothèse.
-ANALYSE INTERROMPUE : si ton tour précédent se termine par « Analyse interrompue », l'utilisateur a arrêté l'analyse en cours. Les résultats d'outils déjà obtenus plus haut restent valides : s'il demande de continuer, reprends à partir d'eux sans refaire les étapes réussies (refais seulement les outils marqués « interrompu »). S'il change de demande, suis la nouvelle demande.
+ANALYSE INTERROMPUE : si ton tour précédent est la note système « _Analyse interrompue. Écris « continue »… » (ajoutée automatiquement quand l'utilisateur clique Arrêter — n'écris JAMAIS cette note toi-même), l'utilisateur a arrêté l'analyse en cours. Les résultats d'outils déjà obtenus plus haut restent valides : s'il demande de continuer, reprends à partir d'eux sans refaire les étapes réussies (refais seulement les outils marqués « interrompu »). S'il change de demande, suis la nouvelle demande.
 
 MAPPER UN SOUS-GROUPE SUR LES CODES (règle dure)
 crosstab ne connaît QUE les codes raw, propres à chaque sondage. Pour traduire "18-34 ans", "au Québec", "les femmes" en filtres, tu DOIS d'abord appeler get_survey(survey_id, variables:[...]) EN CIBLANT les variables concernées (cible, dimension, filtres) et lire leurs response_options {code, label}. Choisis les codes à partir des LABELS, puis passe ces codes à crosstab. Ne devine JAMAIS un code. Si tu ignores encore le nom exact des variables, trouve-les d'abord avec search_questions(query, survey_id) ou get_survey(survey_id, query:"mots-clés") (préférable à l'index complet sur un gros sondage), puis demande le détail des variables retenues. De même, les résultats de crosstab sont des codes : rejoins-les aux labels via le détail get_survey déjà obtenu pour les présenter lisiblement.
@@ -1136,6 +1139,10 @@ export async function* runAgentStream(
     // Passé le budget ou le plafond d'itérations : dernier appel SANS outils pour
     // forcer une réponse rédigée (ou une question) plutôt qu'un nouvel outil.
     const useTools = !overBudget && !atMaxIter;
+    if (!useTools) {
+      // Sans consigne, le modèle répondait parfois « Analyse interrompue » au lieu de rendre ce qu'il avait.
+      messages.push({ role: "system", content: BUDGET_EXHAUSTED_INSTRUCTION });
+    }
 
     // Un tour = un appel LLM (repayant system prompt + schémas d'outils). On
     // mesure la latence autour du fetch et on émet UNE ligne agent_turn par tour,

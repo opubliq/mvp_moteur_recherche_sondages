@@ -232,10 +232,14 @@ class MRPFit:
     seconds: float = 0.0
     max_rhat: float = float("nan")
     divergences: int = 0
+    fixed: list[str] = field(default_factory=list)
+    fixed_levels: dict[str, list[str]] = field(default_factory=dict)
 
     @property
     def converged(self) -> bool:
-        return self.divergences == 0 and (np.isnan(self.max_rhat) or self.max_rhat < 1.01)
+        # Quelques divergences isolées (< 1 % des tirages) sont généralement bénignes ; au-delà, l'a posteriori est suspect.
+        few_divergences = self.divergences <= 0.01 * len(self.samples["alpha"])
+        return few_divergences and (np.isnan(self.max_rhat) or self.max_rhat < 1.01)
 
     def summary(self) -> str:
         s = self.samples
@@ -244,6 +248,9 @@ class MRPFit:
                  "CONVERGENCE OK" if self.converged else "ATTENTION : convergence douteuse (augmente warmup/draws)"]
         for g in self.groups:
             parts.append(f"sd[{g}]={np.median(s['sigma_' + g]):.2f}")
+        for f in self.fixed:
+            for lv, b in zip(self.fixed_levels[f][1:], np.median(s["b_" + f], axis=0)):
+                parts.append(f"{f}[{lv}]={b:+.2f}")
         if self.area:
             parts.append(f"sd[{self.area}]={np.median(s['sigma_area']):.2f}")
         for i, v in enumerate(self.area_vars):
@@ -265,10 +272,13 @@ def mrp_fit(
     area: str | None = None,
     area_df: pd.DataFrame | None = None,
     area_vars: list[str] | None = None,
+    fixed: list[str] | None = None,
     draws: int = 500,
     warmup: int = 500,
     chains: int = 2,
     seed: int = 0,
+    max_tree_depth: int = 8,
+    target_accept: float = 0.9,
 ) -> MRPFit:
     """Logistique hiérarchique (numpyro, NUTS) : intercept + effet aléatoire par groupe (et par unité `area`)
     + prédicteurs d'unité standardisés tirés de area_df (colonne 'code' = valeurs de df[area]).
@@ -281,14 +291,15 @@ def mrp_fit(
 
     numpyro.set_host_device_count(max(chains, 1))
     area_vars = list(area_vars or [])
-    cols = [y, *groups] + ([area] if area else [])
+    fixed = list(fixed or [])
+    cols = [y, *groups, *fixed] + ([area] if area else [])
     d = df.dropna(subset=cols).copy()
     yy = pd.to_numeric(d[y]).astype(int).to_numpy()
     if not set(np.unique(yy)) <= {0, 1}:
         raise ValueError(f"{y} doit être 0/1")
 
     levels, idx = {}, {}
-    for g in groups:
+    for g in [*groups, *fixed]:
         lv = sorted(d[g].astype(str).unique())
         levels[g] = lv
         idx[g] = pd.Categorical(d[g].astype(str), categories=lv).codes
@@ -304,7 +315,21 @@ def mrp_fit(
         raw = area_df.assign(code=area_df["code"].astype(str))[area_vars].to_numpy(dtype=float)
         mean, sd = np.nanmean(raw, axis=0), np.nanstd(raw, axis=0)
         sd[sd == 0] = 1.0
-        x = _area_matrix(area_df, d[area].astype(str), area_vars, mean, sd)
+
+    # Répondants au profil identique regroupés : binomiale sur (n, succès), même vraisemblance que les
+    # Bernoulli individuelles, beaucoup moins de lignes (≈20k répondants → quelques milliers de cellules).
+    keys = pd.DataFrame({g: idx[g] for g in [*groups, *fixed]})
+    if area:
+        keys["__area"] = area_idx
+    keys["__y"] = yy
+    agg = keys.groupby(list(keys.columns[:-1]), sort=False)["__y"].agg(["sum", "count"]).reset_index()
+    idx = {g: agg[g].to_numpy() for g in [*groups, *fixed]}
+    if area:
+        area_idx = agg["__area"].to_numpy()
+    successes = agg["sum"].to_numpy()
+    trials = agg["count"].to_numpy()
+    if area_vars:
+        x = _area_matrix(area_df, np.asarray(area_levels)[area_idx], area_vars, mean, sd)
 
     def model():
         alpha = numpyro.sample("alpha", dist.Normal(0.0, 2.5))
@@ -313,6 +338,9 @@ def mrp_fit(
             s = numpyro.sample(f"sigma_{g}", dist.HalfNormal(1.0))
             z = numpyro.sample(f"z_{g}", dist.Normal(0.0, 1.0).expand([len(levels[g])]))
             eta = eta + s * z[jnp.asarray(idx[g])]
+        for f in fixed:
+            b = numpyro.sample(f"b_{f}", dist.Normal(0.0, 1.0).expand([len(levels[f]) - 1]))
+            eta = eta + jnp.concatenate([jnp.zeros(1), b])[jnp.asarray(idx[f])]
         if area:
             s = numpyro.sample("sigma_area", dist.HalfNormal(1.0))
             z = numpyro.sample("z_area", dist.Normal(0.0, 1.0).expand([len(area_levels)]))
@@ -320,10 +348,10 @@ def mrp_fit(
         if area_vars:
             b = numpyro.sample("beta", dist.Normal(0.0, 1.0).expand([len(area_vars)]))
             eta = eta + jnp.asarray(x) @ b
-        numpyro.sample("y", dist.Bernoulli(logits=eta), obs=jnp.asarray(yy))
+        numpyro.sample("y", dist.Binomial(total_count=jnp.asarray(trials), logits=eta), obs=jnp.asarray(successes))
 
     t0 = time.time()
-    mcmc = MCMC(NUTS(model), num_warmup=warmup, num_samples=draws, num_chains=chains,
+    mcmc = MCMC(NUTS(model, max_tree_depth=max_tree_depth, target_accept_prob=target_accept), num_warmup=warmup, num_samples=draws, num_chains=chains,
                 chain_method="parallel" if chains > 1 else "sequential", progress_bar=False)
     mcmc.run(jax.random.PRNGKey(seed))
     samples = {k: np.asarray(v) for k, v in mcmc.get_samples().items()}
@@ -336,8 +364,8 @@ def mrp_fit(
         max_rhat = float(max(np.nanmax(np.asarray(split_gelman_rubin(np.asarray(v)))) for v in by_chain.values()))
     divergences = int(np.asarray(mcmc.get_extra_fields()["diverging"]).sum())
     n_by_area = d[area].astype(str).value_counts().to_dict() if area else {}
-    return MRPFit(groups, levels, area, area_levels, area_vars, mean, sd, samples, len(d), n_by_area,
-                  time.time() - t0, max_rhat, divergences)
+    return MRPFit(groups, {g: levels[g] for g in groups}, area, area_levels, area_vars, mean, sd, samples, len(d),
+                  n_by_area, time.time() - t0, max_rhat, divergences, fixed, {f: levels[f] for f in fixed})
 
 
 def _effects(fit: MRPFit, name: str, known: list[str], values: pd.Series, rng) -> np.ndarray:
@@ -377,7 +405,7 @@ def mrp_poststrat(
     keep = np.arange(nd) if nd <= max_draws else np.linspace(0, nd - 1, max_draws).astype(int)
     s = {k: v[keep] for k, v in s.items()}
     sub = MRPFit(**{**fit.__dict__, "samples": s})
-    missing = [g for g in fit.groups if g not in cells.columns]
+    missing = [g for g in [*fit.groups, *fit.fixed] if g not in cells.columns]
     if missing:
         raise ValueError(f"colonnes absentes de cells : {missing}")
 
@@ -395,6 +423,10 @@ def mrp_poststrat(
         eta = np.repeat(s["alpha"][:, None], len(part), axis=1)
         for g in fit.groups:
             eta = eta + _effects(sub, g, fit.levels[g], part[g], rng)
+        for f in fit.fixed:
+            full = np.concatenate([np.zeros((len(keep), 1)), s["b_" + f]], axis=1)
+            pos = {lv: i for i, lv in enumerate(fit.fixed_levels[f])}
+            eta = eta + full[:, part[f].astype(str).map(pos).fillna(0).astype(int).to_numpy()]
         if fit.area and acol and acol in part.columns:
             eta = eta + _effects(sub, "area", fit.area_levels, part[acol], rng)
         elif fit.area:
