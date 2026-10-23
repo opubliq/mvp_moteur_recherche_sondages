@@ -9,8 +9,11 @@ import AdvancedExportPage from "./pages/AdvancedExportPage";
 import QuestionDashboard from "./components/QuestionDashboard";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import MaintenancePage from "./pages/MaintenancePage";
 
 export default function App() {
+  if (import.meta.env.VITE_MAINTENANCE === "1") return <MaintenancePage />;
+
   return (
     <Routes>
       <Route path="/connexion" element={<LoginPage />} />

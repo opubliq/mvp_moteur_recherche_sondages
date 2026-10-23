@@ -56,3 +56,4 @@ netlify/functions/*.zip
 
 # Doublons de screenshots laissés par des sessions agent (non référencés)
 docs/image copy*.png
+backups/
